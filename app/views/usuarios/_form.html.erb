@@ -1,0 +1,59 @@
+<%= form_for(usuario) do |f| %>
+  <%= render 'shared/mensajes_de_error',  object: f.object %>
+
+  <div class="field">
+    <%= f.label :primer_apellido %>
+    <%= f.text_field :primer_apellido, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :segundo_apellido %>
+    <%= f.text_field :segundo_apellido, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nombres %>
+    <%= f.text_field :nombres, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tipo_de_documento_id %>
+    <%= f.collection_select(:tipo_de_documento_id, TipoDeDocumento.all, :id, :code_view,
+                            {}, {:class=>'form-control'}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :numero_documento %>
+    <%= f.text_field :numero_documento, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fecha_expedicion %>
+    <%= f.date_select :fecha_expedicion, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rol_id %>
+    <%= f.collection_select(:rol_id, Rol.all, :id, :codigo,
+                            {}, {:class=>'form-control'}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :nombre_usuario %>
+    <%= f.text_field :nombre_usuario, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, t('.password') %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, t('.password_confirmation') %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit(data: {disable_with: I18n.t(:procesando)}, class: "btn btn-primary") %>
+  </div>
+<% end %>

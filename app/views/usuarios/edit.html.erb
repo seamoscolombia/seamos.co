@@ -1,0 +1,6 @@
+<h1><%= t :editar%> <%= Usuario.model_name.human %></h1>
+
+<%= render 'form', usuario: @usuario %>
+
+<%= link_to t(:ver), @usuario %> |
+<%= link_to t(:regresar), usuarios_path %>

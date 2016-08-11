@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  primer_apellido: MyString
+  segundo_apellido: MyString
+  nombres: MyString
+  tipo_de_documento: one
+  numero_documento: MyString
+  fecha_expedicion: 2016-07-19
+  rol: one
+  nombre_usuario: MyString
+  password_digest: MyString
+  valido: false
+
+two:
+  primer_apellido: MyString
+  segundo_apellido: MyString
+  nombres: MyString
+  tipo_de_documento: two
+  numero_documento: MyString
+  fecha_expedicion: 2016-07-19
+  rol: two
+  nombre_usuario: MyString
+  password_digest: MyString
+  valido: false
