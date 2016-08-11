@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719200049) do
+ActiveRecord::Schema.define(version: 20160811205909) do
 
   create_table "departamentos", force: :cascade do |t|
     t.string   "nombre"
@@ -46,21 +46,32 @@ ActiveRecord::Schema.define(version: 20160719200049) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "usuarios", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,     null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.string   "primer_apellido"
     t.string   "segundo_apellido"
     t.string   "nombres"
     t.integer  "tipo_de_documento_id"
     t.string   "numero_documento"
+    t.string   "provider"
+    t.string   "uid"
     t.date     "fecha_expedicion"
     t.integer  "rol_id"
-    t.string   "nombre_usuario"
-    t.string   "password_digest"
-    t.boolean  "valido"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["rol_id"], name: "index_usuarios_on_rol_id"
-    t.index ["tipo_de_documento_id"], name: "index_usuarios_on_tipo_de_documento_id"
+    t.boolean  "valido",                 default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["numero_documento"], name: "index_users_on_numero_documento"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["rol_id"], name: "index_users_on_rol_id"
+    t.index ["tipo_de_documento_id"], name: "index_users_on_tipo_de_documento_id"
   end
 
 end
