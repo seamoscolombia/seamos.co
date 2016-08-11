@@ -1,0 +1,49 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+
+    <div class="field">
+      <%= f.label :primer_apellido %>
+      <%= f.text_field :primer_apellido, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :segundo_apellido %>
+      <%= f.text_field :segundo_apellido, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :nombres %>
+      <%= f.text_field :nombres, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :tipo_de_documento_id %>
+      <%= f.collection_select(:tipo_de_documento_id, TipoDeDocumento.all, :id, :code_view,
+                              {}, {:class=>'form-control'}) %>
+    </div>
+
+    <div class="field">
+      <%= f.label :numero_documento %>
+      <%= f.text_field :numero_documento, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :fecha_expedicion %>
+      <%= f.date_select :fecha_expedicion, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :rol_id %>
+      <%= f.collection_select(:rol_id, Rol.all, :id, :codigo,
+                              {}, {:class=>'form-control'}) %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
