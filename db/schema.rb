@@ -51,16 +51,17 @@ ActiveRecord::Schema.define(version: 20160719200049) do
     t.string   "segundo_apellido"
     t.string   "nombres"
     t.integer  "tipo_de_documento_id"
-    t.string   "numero_documento"
+    t.string   "numero_documento",     null: false
     t.date     "fecha_expedicion"
     t.integer  "rol_id"
-    t.string   "nombre_usuario"
-    t.string   "password_digest"
+    t.string   "uid",                  null: false
     t.boolean  "valido"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.index ["numero_documento"], name: "index_usuarios_on_numero_documento"
     t.index ["rol_id"], name: "index_usuarios_on_rol_id"
     t.index ["tipo_de_documento_id"], name: "index_usuarios_on_tipo_de_documento_id"
+    t.index ["uid"], name: "index_usuarios_on_uid", unique: true
   end
 
 end

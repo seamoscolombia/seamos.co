@@ -5,14 +5,15 @@ class CreateUsuarios < ActiveRecord::Migration[5.0]
       t.string :segundo_apellido
       t.string :nombres
       t.references :tipo_de_documento, foreign_key: true
-      t.string :numero_documento
+      t.string :numero_documento, null: false
       t.date :fecha_expedicion
       t.references :rol, foreign_key: true
-      t.string :nombre_usuario
-      t.string :password_digest
+      t.string :uid, null: false
       t.boolean :valido
 
       t.timestamps
     end
+    add_index :usuarios, :uid, unique: true
+    add_index :usuarios, :numero_documento
   end
 end

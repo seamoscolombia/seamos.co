@@ -14,7 +14,7 @@ class UsuariosController < ApplicationController
 
   # GET /usuarios/new
   def new
-    @usuario = Usuario.new
+    @usuario = Usuario.new()
   end
 
   # GET /usuarios/1/edit
@@ -27,7 +27,7 @@ class UsuariosController < ApplicationController
     @usuario = Usuario.new(usuario_params)
     @usuario.valido = false
     @usuario.rol = Rol.find_by(codigo: 'ciudadano')
-
+    @usuario.uid = session[:uid]
     respond_to do |format|
       if @usuario.save
         format.html { redirect_to @usuario, notice: I18n.t(:success) }
