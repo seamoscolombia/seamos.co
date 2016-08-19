@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: usuarios
+#
+#  id                   :integer          not null, primary key
+#  primer_apellido      :string
+#  segundo_apellido     :string
+#  nombres              :string
+#  tipo_de_documento_id :integer
+#  numero_documento     :string
+#  fecha_expedicion     :date
+#  rol_id               :integer
+#  nombre_usuario       :string
+#  password_digest      :string
+#  valido               :boolean
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
@@ -7,9 +26,8 @@ one:
   tipo_de_documento: one
   numero_documento: MyString
   fecha_expedicion: 2016-07-19
+  uid: uidString1
   rol: one
-  nombre_usuario: MyString
-  password_digest: MyString
   valido: false
 
 two:
@@ -19,7 +37,6 @@ two:
   tipo_de_documento: two
   numero_documento: MyString
   fecha_expedicion: 2016-07-19
+  uid: uidString2
   rol: two
-  nombre_usuario: MyString
-  password_digest: MyString
   valido: false

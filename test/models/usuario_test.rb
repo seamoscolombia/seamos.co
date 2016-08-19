@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: usuarios
+#
+#  id                   :integer          not null, primary key
+#  primer_apellido      :string
+#  segundo_apellido     :string
+#  nombres              :string
+#  tipo_de_documento_id :integer
+#  numero_documento     :string
+#  fecha_expedicion     :date
+#  rol_id               :integer
+#  nombre_usuario       :string
+#  password_digest      :string
+#  valido               :boolean
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#
+
 require 'test_helper'
 
 class UsuarioTest < ActiveSupport::TestCase
@@ -6,7 +25,7 @@ class UsuarioTest < ActiveSupport::TestCase
     @usuario = Usuario.new(primer_apellido: "primer apellido", segundo_apellido: "segundo apellido",
                      nombres: "nombres", tipo_de_documento: tipo_de_documentos(:one),
                      numero_documento: "1113645899", fecha_expedicion: 1.day.ago,
-                     rol: roles(:one), uid: "cualquierCosa", email: "email@unico.com"
+                     rol: roles(:one), uid: "cualquierCosa"
     )
   end
 

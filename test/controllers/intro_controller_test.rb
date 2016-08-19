@@ -2,7 +2,7 @@ require 'test_helper'
 
 class IntroControllerTest < ActionDispatch::IntegrationTest
   test "should get inicio" do
-    get intro_inicio_url
+    get root_path
     assert_response :success
   end
 
