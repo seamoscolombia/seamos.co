@@ -1,7 +1,17 @@
+# == Schema Information
+#
+# Table name: roles
+#
+#  id         :integer          not null, primary key
+#  codigo     :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  codigo: MyString
+  codigo: ciudadano
 
 two:
-  codigo: MyString
+  codigo: admnistrador

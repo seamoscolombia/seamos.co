@@ -1,7 +1,20 @@
+# == Schema Information
+#
+# Table name: tipo_de_documentos
+#
+#  id         :integer          not null, primary key
+#  codigo     :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  codigo: MyString
+  codigo: "cedula"
 
 two:
-  codigo: MyString
+  codigo: "cedula extranjería"
+
+
+
