@@ -207,7 +207,7 @@ es:
         
   intro:
     inicio:
-      sign_in: Registrarme
+      sign_in: Iniciar sesión con Facebook
       sign_in_invitation: "¡Te invitamos, Regístrate!"
 
   sesion_usuarios:
