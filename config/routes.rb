@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   post '/sessions', to: 'sessions#create', format: 'json'
   get '/auth/sessions', to: 'sessions#error'
+
+  resources :tipo_de_documentos, only: :index
 end

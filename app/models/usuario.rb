@@ -7,15 +7,16 @@
 #  segundo_apellido     :string
 #  nombres              :string
 #  tipo_de_documento_id :integer
-#  numero_documento     :string
+#  numero_documento     :string           not null
 #  fecha_expedicion     :date
 #  rol_id               :integer
-#  nombre_usuario       :string
-#  password_digest      :string
+#  uid                  :string           not null
 #  valido               :boolean
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
+
+
 
 class Usuario < ApplicationRecord
   belongs_to :tipo_de_documento
