@@ -73,7 +73,6 @@ class UsuariosController < ApplicationController
     def usuario_params
       params.require(:usuario).permit(:primer_apellido, :segundo_apellido, :nombres,
                                       :tipo_de_documento_id, :numero_documento,
-                                      :fecha_expedicion, :nombre_usuario, :rol_id,
-                                      :password, :password_confirmation)
+                                      :fecha_expedicion)
     end
 end

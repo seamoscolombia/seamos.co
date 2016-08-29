@@ -11,6 +11,5 @@
 class TipoDeDocumentosController < ApplicationController
   def index
     @tipo_de_documentos = TipoDeDocumento.all
-    render json: @tipo_de_documentos, status: :ok
   end
 end
