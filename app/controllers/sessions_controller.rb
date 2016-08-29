@@ -7,10 +7,10 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if (@usuario)
         format.html { redirect_to usuario_path(@usuario)  }
-        format.json { render json: {},status: :ok  }
+        format.json { render json: { authenticity_token: form_authenticity_token },status: :ok  }
       else
         format.html { redirect_to new_usuario_path() }
-        format.json { render json: {},status: :not_found  }
+        format.json { render json: { authenticity_token: form_authenticity_token },status: :not_found  }
       end
     end
   end
