@@ -10,6 +10,5 @@ class CreatePolls < ActiveRecord::Migration[5.0]
     end
     
     add_index :polls, :title
-    add_index :polls, :usuario_id
   end
 end

@@ -21,6 +21,8 @@
 class Usuario < ApplicationRecord
   belongs_to :tipo_de_documento
   belongs_to :rol
+  
+  has_many  :polls
 
   validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres, :numero_documento]
   validates :numero_documento, numericality: { only_integer: true }
