@@ -21,6 +21,6 @@ ActiveSupport::Inflector.inflections(:es) do |inflect|
 end
 
 ActiveSupport::Inflector.inflections do |inflect|
-  inflect.plural(/(l)$/i, '\1es')
+#  inflect.plural(/(l)$/i, '\1es')
   inflect.singular(/es$/i, '')
 end
