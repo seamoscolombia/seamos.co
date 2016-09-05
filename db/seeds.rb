@@ -9,6 +9,6 @@
 TipoDeDocumento.create!(codigo: 'cedula')
 TipoDeDocumento.create!(codigo: 'cedula_extranjeria')
 
-Rol.create!(codigo: 'ciudadano')
-Rol.create!(codigo: 'politico')
-Rol.create!(codigo: 'administrador')
+Role.create!(code: 'ciudadano')
+Role.create!(code: 'politico')
+Role.create!(code: 'administrador')

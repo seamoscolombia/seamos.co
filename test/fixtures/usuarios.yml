@@ -26,7 +26,7 @@ one:
   numero_documento: MyString
   fecha_expedicion: 2016-07-19
   uid: uidString1
-  rol: one
+  role: one
   valido: false
 
 two:
@@ -37,5 +37,5 @@ two:
   numero_documento: MyString
   fecha_expedicion: 2016-07-19
   uid: uidString2
-  rol: two
+  role: two
   valido: false

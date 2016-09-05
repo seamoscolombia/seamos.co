@@ -6,6 +6,6 @@ one:
   vote_type: one
 
 two:
-  poll: two
+  poll: one
   usuario: two
   vote_type: two

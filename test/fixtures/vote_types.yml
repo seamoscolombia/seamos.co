@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  code: MyString
+si:
+  code: Sí
 
-two:
-  code: MyString
+no:
+  code: No
+
+blanco:
+  code: Blanco

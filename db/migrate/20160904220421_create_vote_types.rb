@@ -6,6 +6,6 @@ class CreateVoteTypes < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     
-    add_index :vote_types, :code
+    add_index :vote_types, :code, unique: true
   end
 end

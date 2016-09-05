@@ -26,7 +26,7 @@ class UsuariosController < ApplicationController
   def create
     @usuario = Usuario.new(usuario_params)
     @usuario.valido = false
-    @usuario.rol = Rol.find_by(codigo: 'ciudadano')
+    @usuario.rol = Role.find_by(code: 'ciudadano')
     @usuario.uid = session[:uid]
     respond_to do |format|
       if @usuario.save

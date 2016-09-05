@@ -5,5 +5,7 @@ class CreateTipoDeDocumentos < ActiveRecord::Migration[5.0]
       
       t.timestamps
     end
+    
+    add_index :tipo_de_documentos, :codigo, unique: true
   end
 end

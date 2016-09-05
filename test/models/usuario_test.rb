@@ -24,7 +24,7 @@ class UsuarioTest < ActiveSupport::TestCase
     @usuario = Usuario.new(primer_apellido: "primer apellido", segundo_apellido: "segundo apellido",
                      nombres: "nombres", tipo_de_documento: tipo_de_documentos(:one),
                      numero_documento: "1113645899", fecha_expedicion: 1.day.ago,
-                     rol: roles(:one), uid: "cualquierCosa"
+                     role: roles(:one), uid: "cualquierCosa"
     )
   end
 

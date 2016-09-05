@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 20160904222923) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "globales", force: :cascade do |t|
-    t.string   "codigo",     null: false
-    t.string   "valor",      null: false
+  create_table "globals", force: :cascade do |t|
+    t.string   "code",       null: false
+    t.string   "value",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["codigo"], name: "index_globales_on_codigo"
+    t.index ["code"], name: "index_globals_on_code", unique: true
   end
 
   create_table "municipios", force: :cascade do |t|
@@ -35,27 +35,29 @@ ActiveRecord::Schema.define(version: 20160904222923) do
   end
 
   create_table "polls", force: :cascade do |t|
-    t.string   "title",       null: false
-    t.string   "description", null: false
+    t.string   "title",                      null: false
+    t.text     "description",                null: false
+    t.boolean  "private",     default: true, null: false
     t.integer  "usuario_id"
     t.string   "totals"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["title"], name: "index_polls_on_title"
     t.index ["usuario_id"], name: "index_polls_on_usuario_id"
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string   "codigo",     null: false
+    t.string   "code",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["codigo"], name: "index_roles_on_codigo"
+    t.index ["code"], name: "index_roles_on_code", unique: true
   end
 
   create_table "tipo_de_documentos", force: :cascade do |t|
     t.string   "codigo",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["codigo"], name: "index_tipo_de_documentos_on_codigo", unique: true
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -65,13 +67,14 @@ ActiveRecord::Schema.define(version: 20160904222923) do
     t.integer  "tipo_de_documento_id"
     t.string   "numero_documento",     null: false
     t.date     "fecha_expedicion"
-    t.integer  "rol_id"
+    t.integer  "role_id"
     t.string   "uid",                  null: false
     t.boolean  "valido"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["numero_documento"], name: "index_usuarios_on_numero_documento"
-    t.index ["rol_id"], name: "index_usuarios_on_rol_id"
+    t.index ["role_id"], name: "index_usuarios_on_role_id"
+    t.index ["tipo_de_documento_id", "numero_documento"], name: "index_usuarios_on_tipo_de_documento_id_and_numero_documento", unique: true
     t.index ["tipo_de_documento_id"], name: "index_usuarios_on_tipo_de_documento_id"
     t.index ["uid"], name: "index_usuarios_on_uid", unique: true
   end
@@ -80,7 +83,7 @@ ActiveRecord::Schema.define(version: 20160904222923) do
     t.string   "code",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_vote_types_on_code"
+    t.index ["code"], name: "index_vote_types_on_code", unique: true
   end
 
   create_table "votes", force: :cascade do |t|

@@ -8,5 +8,6 @@
 #  updated_at :datetime         not null
 #
 
-class Rol < ApplicationRecord
+class Role < ApplicationRecord
+  validates :code, presence: true, uniqueness: true
 end

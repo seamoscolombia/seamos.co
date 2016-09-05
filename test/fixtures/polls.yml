@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyString
+  title: Primera votación
+  description: Porque debe haber un primero
   usuario: one
+  private: false
   totals: MyString
 
 two:
-  title: MyString
-  description: MyString
+  title: Segunda votación
+  description: Pues la segunda
   usuario: two
+  private: false
   totals: MyString

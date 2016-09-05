@@ -20,7 +20,7 @@
 
 class Usuario < ApplicationRecord
   belongs_to :tipo_de_documento
-  belongs_to :rol
+  belongs_to :role
   
   has_many  :polls
 
