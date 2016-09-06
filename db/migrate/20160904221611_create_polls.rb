@@ -4,6 +4,7 @@ class CreatePolls < ActiveRecord::Migration[5.0]
       t.string :title, null: false
       t.text :description, null: false
       t.boolean :private, null: false, default: true
+      t.date :closing_date, null: false
       t.references :usuario, foreign_key: true
       t.string :totals
 

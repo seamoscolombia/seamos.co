@@ -35,13 +35,14 @@ ActiveRecord::Schema.define(version: 20160904222923) do
   end
 
   create_table "polls", force: :cascade do |t|
-    t.string   "title",                      null: false
-    t.text     "description",                null: false
-    t.boolean  "private",     default: true, null: false
+    t.string   "title",                       null: false
+    t.text     "description",                 null: false
+    t.boolean  "private",      default: true, null: false
+    t.date     "closing_date",                null: false
     t.integer  "usuario_id"
     t.string   "totals"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["title"], name: "index_polls_on_title"
     t.index ["usuario_id"], name: "index_polls_on_usuario_id"
   end
