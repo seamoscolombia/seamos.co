@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create', format: 'json'
   get '/auth/sessions', to: 'sessions#error'
 
+  resources :polls, only: [:index, :create, :new]
   resources :tipo_de_documentos, only: :index
 end
