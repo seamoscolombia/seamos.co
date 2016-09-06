@@ -9,14 +9,12 @@
 #  tipo_de_documento_id :integer
 #  numero_documento     :string           not null
 #  fecha_expedicion     :date
-#  rol_id               :integer
+#  role_id              :integer
 #  uid                  :string           not null
 #  valido               :boolean
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #
-
-
 
 class Usuario < ApplicationRecord
   belongs_to :tipo_de_documento
@@ -24,8 +22,11 @@ class Usuario < ApplicationRecord
   
   has_many  :polls
 
+  validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\s]+\z/}
+  validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\s]+\z/}
+  validates  :nombres, :format => { :with => /\A[a-zA-Z\s]+\z/}
   validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres, :numero_documento]
-  validates :numero_documento, numericality: { only_integer: true }
+  validates :numero_documento, numericality: { only_integer: true }, uniqueness: true
   validate :fecha_de_expedicion_razonable
 
   def fecha_de_expedicion_razonable

@@ -1,10 +1,10 @@
 # == Schema Information
 #
-# Table name: globales
+# Table name: globals
 #
 #  id         :integer          not null, primary key
-#  codigo     :string           not null
-#  valor      :string           not null
+#  code       :string           not null
+#  value      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
