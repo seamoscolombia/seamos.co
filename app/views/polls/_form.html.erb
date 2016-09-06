@@ -1,0 +1,33 @@
+<%= form_for(poll) do |f| %>
+    <%= render 'shared/mensajes_de_error',  object: f.object %>
+
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :closing_date %>
+      <%= f.date_select :closing_date, class: 'form-control' %>
+    </div>
+
+    <%= f.label t('.secret_public') %>
+    <div class=" field radio">
+      <%= f.radio_button :private, true %>
+      <%= f.label t('.secret')  %>
+    </div>
+
+    <div class="radio">
+      <%= f.radio_button :private, false %>
+      <%= f.label t('.public')  %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit(data: {disable_with: I18n.t(:procesando)}, class: "btn btn-primary") %>
+    </div>
+<% end %>
