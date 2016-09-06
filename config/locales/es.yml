@@ -199,21 +199,39 @@ es:
   
   activerecord:
     attributes:
+      poll:
+        title: Título
+        description: Descripción
+        closing_date: Fecha de cierre
+        totals: Totales
+        private: Secreto
       usuario:
         fecha_expedicion: Fecha de expedición
         nombre: 'Nombre'
         numero_documento: Número del documento
         tipo_de_documento: 'Tipo de documento'
-        
+    models:
+        poll: Propuesta
+
   intro:
     inicio:
       sign_in: Iniciar sesión con Facebook
       sign_in_invitation: "¡Te invitamos, Regístrate!"
 
+  polls:
+    index:
+      "false": Pública
+      "true": Secreta
+    new:
+      create: Crear
+    form:
+      secret_public: Indique si la propuesta tendrá votación secreta o pública
+      secret: Secreta
+      public: Pública
   sesion_usuarios:
     new:
       log_in: Iniciar sesión
-  
+
   usuarios:
     form:
       password: Contraseña
@@ -221,6 +239,7 @@ es:
     new:
       registrar: Registro de
         
+  accion_exitosa: "Acción exitosa"
   accion_exitosa_pendiente: "Acción exitosa, pendiente de autorización."
   accion_no_autorizada: "Acción no autorizada."
   accion_no_realizada: "No se pudo realizar la acción."
@@ -229,6 +248,7 @@ es:
   confirmar: Favor confirmar la operación
   crear: Crear
   editar: Editar
+  fecha_invalida: Fecha Inválida
   regresar: Regresar
   rol_usuario:
     - Ciudadano
