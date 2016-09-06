@@ -19,4 +19,13 @@ class Poll < ApplicationRecord
   validates :title, presence: true
   validates :closing_date, presence: true
   validates :description, presence: true
+
+  validate :closing_date_validation
+
+  def closing_date_validation
+    if closing_date < Date.today
+      #TODO change to Format I18n Rails errors Message
+      errors.add(:closing_date, I18n.t(:fecha_invalida))
+    end
+  end
 end
