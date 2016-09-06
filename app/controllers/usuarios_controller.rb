@@ -26,7 +26,7 @@ class UsuariosController < ApplicationController
   def create
     @usuario = Usuario.new(usuario_params)
     @usuario.valido = false
-    @usuario.rol = Role.find_by(code: 'ciudadano')
+    @usuario.role = Role.find_by(code: 'ciudadano')
     @usuario.uid = session[:uid]
     respond_to do |format|
       if @usuario.save
@@ -34,7 +34,7 @@ class UsuariosController < ApplicationController
         format.json { render :show, status: :created, location: @usuario }
       else
         format.html { render :new }
-        format.json { render json: @usuario.errors, status: :unprocessable_entity }
+        format.json { render json: @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } }.first, status: :unprocessable_entity }
       end
     end
   end
