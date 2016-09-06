@@ -36,4 +36,8 @@ class Usuario < ApplicationRecord
     end
   end
 
+  def full_name
+    "#{nombres} #{primer_apellido} #{segundo_apellido}"
+  end
+
 end
