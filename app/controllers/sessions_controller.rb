@@ -1,9 +1,14 @@
 class SessionsController < ApplicationController
   protect_from_forgery with: :exception, except: [:create]
+
   def create
-    uid = (request.format.json?) ? params[:uid] : request.env['omniauth.auth']['uid']
+    if request.format.json?
+      uid = params[:uid]
+    else
+      uid = request.env['omniauth.auth']['uid']
+      session[:fb_token] = request.env['omniauth.auth']['credentials']['token']
+    end
     session[:uid] = uid
-    session[:fb_token] = request.env['omniauth.auth']['credentials']['token']
     @usuario = Usuario.find_by(uid: uid)
     respond_to do |format|
       if (@usuario)
@@ -15,8 +20,10 @@ class SessionsController < ApplicationController
       end
     end
   end
+
   def error
 
   end
+
 end
 
