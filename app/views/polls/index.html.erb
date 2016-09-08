@@ -1,30 +1,9 @@
 <% if is_admin? %>
   <%= link_to "#{t(:crear)} #{Poll.model_name.human}", new_poll_path, class: "btn btn-primary" %>
 <% end %>
-
+<br>
+<br>
 <div class="col-md-12">
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th><%= Poll.human_attribute_name :title %></th>
-      <th><%= Poll.human_attribute_name :description %></th>
-      <th><%= Poll.human_attribute_name :private %></th>
-      <th><%= Poll.human_attribute_name :closing_date %></th>
-      <th><%= Poll.human_attribute_name :usuario %></th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <% @polls.each do |poll| %>
-        <tr>
-          <td><%= poll.title %></td>
-          <td><%= poll.description %></td>
-          <td><%= t (".#{poll.private.to_s}")%></td>
-          <td><%= poll.closing_date %></td>
-          <td><%= poll.usuario.full_name %></td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <%= render @polls%>
 </div>
 

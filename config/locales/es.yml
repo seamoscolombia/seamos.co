@@ -219,15 +219,19 @@ es:
       sign_in_invitation: "¡Te invitamos, Regístrate!"
 
   polls:
+    form:
+      secret_public: Indique si la propuesta tendrá votación secreta o pública
+      secret: Secreta
+      public: Pública
     index:
       "false": Pública
       "true": Secreta
     new:
       create: Crear
-    form:
-      secret_public: Indique si la propuesta tendrá votación secreta o pública
-      secret: Secreta
-      public: Pública
+    poll:
+      "false": Votación pública
+      "true": Votación Secreta
+
   sesion_usuarios:
     new:
       log_in: Iniciar sesión
