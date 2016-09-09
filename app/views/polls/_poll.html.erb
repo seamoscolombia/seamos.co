@@ -22,11 +22,30 @@
         </div>
       </div>
     </div>
-
   </div>
 
-
-
+  <% unless current_user.already_voted?(poll) %>
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      <%= form_for :vote, url: yes_path, html: {class: "btn btn-success no-padding"} do |f|%>
+        <%= f.hidden_field :poll_id, value: poll.id %>
+        <%= f.submit t('.yes'),  class: "btn btn-success" %>
+      <% end %>
+      <%= form_for :vote, url: blank_path, html: {class: "btn btn-default no-padding"}  do |f| %>
+        <%= f.hidden_field :poll_id, value: poll.id %>
+        <%= f.submit t('.blank'), class: "btn btn-default" %>
+      <% end %>
+      <%= form_for :vote, url: no_path, html: {class: "btn btn-danger no-padding"}  do |f| %>
+        <%= f.hidden_field :poll_id, value: poll.id %>
+        <%= f.submit t('.no') ,class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  <% else %>
+      <div class="row" role="group" aria-label="...">
+        <div class="col-xs-push-1 col-xs-11">
+          <p> <%= t '.greatings' %> </p>
+        </div>
+      </div>
+  <% end %>
 
 </div>
 
