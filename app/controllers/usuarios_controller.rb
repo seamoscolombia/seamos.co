@@ -30,7 +30,7 @@ class UsuariosController < ApplicationController
     @usuario.uid = session[:uid]
     respond_to do |format|
       if @usuario.save
-        format.html { redirect_to @usuario, notice: I18n.t(:success) }
+        format.html { redirect_to polls_path, notice: I18n.t(:success) }
         format.json { render :show, status: :created, location: @usuario }
       else
         format.html { render :new }
