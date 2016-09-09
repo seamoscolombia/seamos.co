@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root 'intro#inicio'
 
   resources :usuarios
@@ -11,4 +12,11 @@ Rails.application.routes.draw do
 
   resources :polls, only: [:index, :create, :new]
   resources :tipo_de_documentos, only: :index
+
+  scope '/votes', controller: :votes do
+    post '/yes', action: :yes
+    post '/no', action: :no
+    post '/blank', action: :blank
+  end
+
 end

@@ -12,3 +12,7 @@ TipoDeDocumento.create!(codigo: 'cedula_extranjeria')
 Role.create!(code: 'ciudadano')
 Role.create!(code: 'politico')
 Role.create!(code: 'administrador')
+
+VoteType.create!(code: "yes")
+VoteType.create!(code: "no")
+VoteType.create!(code: "blank")

@@ -229,8 +229,12 @@ es:
     new:
       create: Crear
     poll:
+      blank: En blanco
       "false": Votación pública
+      greatings: Gracias por participar.
+      "no": "No"
       "true": Votación Secreta
+      "yes": Sí
 
   sesion_usuarios:
     new:
