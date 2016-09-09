@@ -21,6 +21,7 @@ class Usuario < ApplicationRecord
   belongs_to :role
   
   has_many  :polls
+  has_many  :votes
 
   validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\s]+\z/}
   validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\s]+\z/}
@@ -38,6 +39,10 @@ class Usuario < ApplicationRecord
 
   def full_name
     "#{nombres} #{primer_apellido} #{segundo_apellido}"
+  end
+
+  def already_voted?(poll)
+    !(votes.find_by(poll: poll).nil?)
   end
 
 end
