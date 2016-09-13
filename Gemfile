@@ -36,9 +36,12 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
 gem 'omniauth-facebook', '~> 4.0.0'
 
+gem 'chartkick', '~> 2.1.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'faker'
 end
 
 group :development do
