@@ -246,7 +246,11 @@ es:
       password_confirmation: Confirmación de contraseña
     new:
       registrar: Registro de
-        
+
+  votes:
+    closed_poll: La propuesta ya ha cerrado.
+
+
   accion_exitosa: "Acción exitosa"
   accion_exitosa_pendiente: "Acción exitosa, pendiente de autorización."
   accion_no_autorizada: "Acción no autorizada."
