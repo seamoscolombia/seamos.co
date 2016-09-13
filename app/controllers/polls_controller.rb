@@ -16,6 +16,7 @@
 class PollsController < ApplicationController
   include SessionsHelper
 
+  before_action :validate_poll_closed?, only: :show
   before_action :validate_session
   before_action :validate_admin_user, except: :index
 
@@ -40,6 +41,15 @@ class PollsController < ApplicationController
     @polls = Poll.all.order('closing_date DESC')
   end
 
+  def show
+    @poll = Poll.find_by(id: params[:id])
+    @votes_code = @poll.votes.joins(:vote_type).
+        group("vote_types.code").
+        count("vote_types.id")
+    # Translate vote_types_ids
+    @votes_code = @votes_code.map { |key,value| [I18n.t("polls.poll.#{key}"),value] }.to_h
+  end
+
   private
     def poll_params
       params.require(:poll).permit(
@@ -58,5 +68,12 @@ class PollsController < ApplicationController
        unless current_user.role.code == "administrador"
          redirect_to root_path
        end
+    end
+
+    def validate_poll_closed?
+      poll = Poll.find_by(id: params[:id] )
+      if poll.closing_date < Date.today
+        redirect_to polls_path
+      end
     end
 end

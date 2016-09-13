@@ -1,0 +1,6 @@
+<!-- resultado de votación -->
+
+
+<h1><%= t '.poll_results' %></h1>
+<h2>Total: <%= @poll.votes.count %></h2>
+<%= bar_chart @votes_code%>

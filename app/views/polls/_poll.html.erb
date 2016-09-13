@@ -2,7 +2,9 @@
   <!-- Default panel contents -->
   <div class="panel-heading">
     <% if is_admin? && poll.closed? %>
-        <%= link_to poll.title, poll_path(poll), class: "btn btn-primary" %>
+        <h2>
+          <%= link_to poll.title, poll_path(poll), class: "" %>
+        </h2>
     <% else %>
       <%= poll.title %>
     <% end %>
