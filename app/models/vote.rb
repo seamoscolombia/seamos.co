@@ -18,7 +18,7 @@ class Vote < ApplicationRecord
   validate :vote_date, on: :create
 
   def vote_date
-    if poll.closing_date < 2.day.from_now
+    if poll.closing_date < Date.today
       #TODO change to Format I18n Rails errors Message
       errors.add(:base, I18n.t( :closed_poll, scope: :votes))
     end
