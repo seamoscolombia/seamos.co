@@ -235,6 +235,8 @@ es:
       "no": "No"
       "true": Votación Secreta
       "yes": Sí
+    show:
+      poll_results: Resultados de votación
 
   sesion_usuarios:
     new:
