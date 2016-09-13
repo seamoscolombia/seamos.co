@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create', format: 'json'
   get '/auth/sessions', to: 'sessions#error'
 
-  resources :polls, only: [:index, :create, :new]
+  resources :polls, except: [:destroy, :update]
   resources :tipo_de_documentos, only: :index
 
   scope '/votes', controller: :votes do
