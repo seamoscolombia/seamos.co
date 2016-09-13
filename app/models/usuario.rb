@@ -19,13 +19,13 @@
 class Usuario < ApplicationRecord
   belongs_to :tipo_de_documento
   belongs_to :role
-  
+
   has_many  :polls
   has_many  :votes
 
-  validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\s]+\z/}
-  validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\s]+\z/}
-  validates  :nombres, :format => { :with => /\A[a-zA-Z\s]+\z/}
+  validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
+  validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
+  validates  :nombres, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres, :numero_documento]
   validates :numero_documento, numericality: { only_integer: true }, uniqueness: true
   validate :fecha_de_expedicion_razonable
