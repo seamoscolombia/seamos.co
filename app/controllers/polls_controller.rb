@@ -72,7 +72,7 @@ class PollsController < ApplicationController
 
     def validate_poll_closed?
       poll = Poll.find_by(id: params[:id] )
-      if poll.closing_date < Date.today
+      unless po
         redirect_to polls_path
       end
     end
