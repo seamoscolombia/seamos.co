@@ -29,10 +29,15 @@ class VotesController < ApplicationController
 
   private
     def vote_save(vote) 
-      if vote.save!
+      if vote.save
         redirect_to polls_path
       else
-        redirect_to polls_path, danger: I18n.t(:accion_no_realizada)
+
+        error_msg = "#{I18n.t(:accion_no_realizada)} "
+        error_msg += vote.errors.messages[:base].join(" ") unless vote.errors.messages[:base].nil?
+
+        flash[:danger] = " #{error_msg}"
+        redirect_to polls_path
       end
     end
 

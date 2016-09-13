@@ -28,4 +28,8 @@ class Poll < ApplicationRecord
       errors.add(:closing_date, I18n.t(:fecha_invalida))
     end
   end
+
+  def closed?
+    closing_date < Date.today
+  end
 end
