@@ -15,7 +15,8 @@
 
 class Poll < ApplicationRecord
   belongs_to :usuario
-  
+  has_many :votes
+
   validates :title, presence: true
   validates :closing_date, presence: true
   validates :description, presence: true
