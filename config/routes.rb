@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
-
   root 'intro#inicio'
 
   resources :usuarios
