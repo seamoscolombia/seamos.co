@@ -1,7 +1,7 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading">
-    <% if is_admin? && poll.closed? %>
+    <% if poll.closed? %>
         <h2>
           <%= link_to poll.title, poll_path(poll), class: "" %>
         </h2>
@@ -57,6 +57,3 @@
       </div>
   <% end %>
 </div>
-
-
-
