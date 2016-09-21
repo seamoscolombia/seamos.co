@@ -13,13 +13,12 @@
 class Vote < ApplicationRecord
   belongs_to :poll
   belongs_to :usuario
-  belongs_to :vote_type
+  belongs_to :vote_type, optional: true
 
   validate :vote_date, on: :create
 
   def vote_date
     if poll.closing_date < Date.today
-      #TODO change to Format I18n Rails errors Message
       errors.add(:base, I18n.t( :closed_poll, scope: :votes))
     end
   end
