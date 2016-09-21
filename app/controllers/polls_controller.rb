@@ -28,6 +28,7 @@ class PollsController < ApplicationController
     @poll = Poll.new poll_params
     @poll.private = get_radiobutton_private
     @poll.usuario = current_user
+    @poll.totals = {"blank": 0, "yes": 0, "no": 0}.to_s
 
     if @poll.save
       flash[:success] = I18n.t(:accion_exitosa)
@@ -43,11 +44,16 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find_by(id: params[:id])
-    @votes_code = @poll.votes.joins(:vote_type).
-        group("vote_types.code").
-        count("vote_types.id")
-    # Translate vote_types_ids
-    @votes_code = @votes_code.map { |key,value| [I18n.t("polls.poll.#{key}"),value] }.to_h
+    if @poll.private?
+      @votes_code = eval(@poll.totals)
+      @votes_code = @votes_code.map { |key,value| [I18n.t("polls.poll.#{key}"),value] }.to_h
+    else
+      @votes_code = @poll.votes.joins(:vote_type).
+          group("vote_types.code").
+          count("vote_types.id")
+      # Translate vote_types_ids
+      @votes_code = @votes_code.map { |key,value| [I18n.t("polls.poll.#{key}"),value] }.to_h
+    end
   end
 
   private
@@ -72,7 +78,7 @@ class PollsController < ApplicationController
 
     def validate_poll_closed?
       poll = Poll.find_by(id: params[:id] )
-      unless po
+      unless poll
         redirect_to polls_path
       end
     end
