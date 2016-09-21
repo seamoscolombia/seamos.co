@@ -196,7 +196,7 @@ es:
       long: ! '%A, %d de %B de %Y a las %I:%M %p'
       short: ! '%d de %b a las %H:%M hrs'
     pm: pm
-  
+
   activerecord:
     attributes:
       poll:
@@ -220,20 +220,20 @@ es:
 
   polls:
     form:
-      secret_public: Indique si la propuesta tendrá votación secreta o pública
-      secret: Secreta
+      secret_public: Indique si la propuesta tendrá votación anónima o pública.
+      secret: Anónima
       public: Pública
     index:
       "false": Pública
-      "true": Secreta
+      "true": Anónima
     new:
       create: Crear
     poll:
       blank: En blanco
-      "false": Votación pública
+      "false": Votación Pública.
       greatings: Gracias por participar.
       "no": "No"
-      "true": Votación Secreta
+      "true": Votación Anónima.
       "yes": Sí
     show:
       poll_results: Resultados de votación
@@ -250,6 +250,7 @@ es:
       registrar: Registro de
 
   votes:
+    poll_does_not_exist: La propuesta no existe.
     closed_poll: La propuesta ya ha cerrado.
 
 
