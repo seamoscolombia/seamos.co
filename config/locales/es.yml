@@ -264,6 +264,7 @@ es:
   crear: Crear
   editar: Editar
   fecha_invalida: Fecha Inválida
+  processing: Procesando...
   regresar: Regresar
   rol_usuario:
     - Ciudadano
