@@ -13,7 +13,8 @@
 
     <div class="field">
       <%= f.label :closing_date %>
-      <%= f.date_select :closing_date, class: 'form-control' %>
+      <input type="text" data-provide='datepicker' data-date-language="es"
+                 data-date-format="yyyy/mm/dd" class="input-sm form-control" name="poll[closing_date]" />
     </div>
 
     <%= f.label t('.secret_public') %>
@@ -28,6 +29,6 @@
     </div>
 
     <div class="actions">
-      <%= f.submit(data: {disable_with: I18n.t(:procesando)}, class: "btn btn-primary") %>
+      <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
     </div>
 <% end %>
