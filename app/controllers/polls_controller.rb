@@ -28,8 +28,7 @@ class PollsController < ApplicationController
     @poll = Poll.new poll_params
     @poll.private = get_radiobutton_private
     @poll.usuario = current_user
-    @poll.totals = {"blank": 0, "yes": 0, "no": 0}.to_s
-
+    @poll.totals = {"blank": 0, "yes": 0, "no": 0}.to_s    
     if @poll.save
       flash[:success] = I18n.t(:accion_exitosa)
       redirect_to polls_path
