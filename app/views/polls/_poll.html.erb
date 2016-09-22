@@ -3,7 +3,11 @@
   <div class="panel-heading">
     <% if poll.closed? %>
         <h2>
-          <%= link_to poll.title, poll_path(poll), class: "" %>
+          <%= link_to poll_path(poll), class: "" do %>
+            <%= poll.title %>
+            <span>  </span>
+            <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+          <%end%>
         </h2>
     <% else %>
       <%= poll.title %>
