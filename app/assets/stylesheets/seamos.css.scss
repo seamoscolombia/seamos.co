@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@import "bootstrap-datepicker3";
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -94,7 +96,7 @@ p {
 
 .gana-diario{
   float: left;
-  margin-left: 10px; 
+  margin-left: 10px;
   padding-top: 9px;
 }
 
@@ -200,7 +202,7 @@ aside {
 .inicio-sesion{
   width: 100%;
   float: right;
-  margin-right: 10px; 
+  margin-right: 10px;
   padding-top: 9px;
   input{
     height: 30px !important;
@@ -258,11 +260,10 @@ input {
         background-color: $color-rojo;
       }
   }
-  
+
   .btn-primary{
     &:hover {
         background-color: $color-azul-oscuro;
       }
   }
 }
-

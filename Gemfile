@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'bootstrap-sass', '~> 3.3.6' 
+gem 'bootstrap-sass', '~> 3.3.6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -35,8 +35,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # ### project gems
 # gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
 gem 'omniauth-facebook', '~> 4.0.0'
-
 gem 'chartkick', '~> 2.1.1'
+gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
