@@ -25,7 +25,6 @@ class Poll < ApplicationRecord
 
   def closing_date_validation
     if closing_date < Date.today
-      #TODO change to Format I18n Rails errors Message
       errors.add(:closing_date, I18n.t(:fecha_invalida))
     end
   end
