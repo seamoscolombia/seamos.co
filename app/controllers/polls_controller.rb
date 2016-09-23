@@ -56,6 +56,11 @@ class PollsController < ApplicationController
   end
 
   private
+    def publish_facebook
+      # #ToDo
+      # facebook = Koala::Facebook::API.new(session[:fb_token])
+      # facebook.get_object("me?fields=name,picture")
+    end
     def poll_params
       params.require(:poll).permit(
         :title,

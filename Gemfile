@@ -37,6 +37,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'chartkick', '~> 2.1.1'
 gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
+gem 'koala', '~>2.4.0'
 
 
 group :development, :test do
