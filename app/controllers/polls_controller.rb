@@ -29,8 +29,8 @@ class PollsController < ApplicationController
     @poll.private = get_radiobutton_private
     @poll.usuario = current_user
     @poll.totals = {"blank": 0, "yes": 0, "no": 0}.to_s    
-    publish_facebook(@poll)
     if @poll.save
+      publish_facebook(@poll)
       flash[:success] = I18n.t(:accion_exitosa)
       redirect_to polls_path
     else
