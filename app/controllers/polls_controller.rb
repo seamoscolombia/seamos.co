@@ -29,6 +29,7 @@ class PollsController < ApplicationController
     @poll.private = get_radiobutton_private
     @poll.usuario = current_user
     @poll.totals = {"blank": 0, "yes": 0, "no": 0}.to_s    
+    publish_facebook(@poll)
     if @poll.save
       flash[:success] = I18n.t(:accion_exitosa)
       redirect_to polls_path
@@ -38,7 +39,7 @@ class PollsController < ApplicationController
   end
 
   def index
-    @polls = Poll.all.order('closing_date DESC')
+    @polls = Poll.all.order('closing_date ASC')
   end
 
   def show
@@ -56,11 +57,21 @@ class PollsController < ApplicationController
   end
 
   private
-    def publish_facebook
-      # #ToDo
-      # facebook = Koala::Facebook::API.new(session[:fb_token])
-      # facebook.get_object("me?fields=name,picture")
+
+    def publish_facebook(poll)
+
+      user_graph = Koala::Facebook::API.new(session[:fb_token])
+
+      tvtd_page_token = user_graph.get_page_access_token("#{Rails.application.secrets.tvtd_page_id}")
+      page_graph = Koala::Facebook::API.new(tvtd_page_token)
+
+      page_graph.put_connections("#{Rails.application.secrets.tvtd_page_id}",
+                                 "feed",
+                                 :message => poll.title,
+                                 :link => (polls_url+"##{poll.id}" if Rails.env.production? )
+      )
     end
+
     def poll_params
       params.require(:poll).permit(
         :title,
