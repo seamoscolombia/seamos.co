@@ -1,13 +1,25 @@
 // Place all the styles related to the polls controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@keyframes highlight-fade {
+  0%   { border: red solid 12px; }
+  50%   { border: green solid 6px; }
+  100% { border: none ;    }
+}
+
+
 .no-padding {
   padding: 0 !important;
 }
 .span-results{
   padding-left: 3em;
 }
-:target{
-  border: solid red !important;
-  background: #e5eecc;
+.transition-panel{
+  background: whitesmoke;
+  &:target{
+    animation: highlight-fade 6s ;
+  }
 }
+
+
