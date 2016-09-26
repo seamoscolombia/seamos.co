@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">
+  <div class="panel-heading" id="<%=poll.id%>">
     <% if poll.closed? %>
         <h2>
           <%= link_to poll_path(poll), class: "" do %>
