@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   def create
     if request.format.json?
       uid = params[:uid]
+      session[:fb_token] = params[:fb_token]
     else
       uid = request.env['omniauth.auth']['uid']
       session[:fb_token] = request.env['omniauth.auth']['credentials']['token']
@@ -26,4 +27,3 @@ class SessionsController < ApplicationController
   end
 
 end
-
