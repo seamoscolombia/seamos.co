@@ -4,7 +4,6 @@
 
 @keyframes highlight-fade {
   0%   { border: red solid 12px; }
-  50%   { border: green solid 6px; }
   100% { border: none ;    }
 }
 
@@ -18,8 +17,6 @@
 .transition-panel{
   background: whitesmoke;
   &:target{
-    animation: highlight-fade 6s ;
+    animation: highlight-fade 5s ;
   }
 }
-
-
