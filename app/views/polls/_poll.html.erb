@@ -38,17 +38,20 @@
   <% unless current_user.already_voted?(poll) %>
     <% unless poll.closed? %>
       <div class="btn-group btn-group-justified" role="group" aria-label="...">
-        <%= form_for :vote, url: yes_path, html: {class: "form-sender btn btn-success no-padding"} do |f|%>
+        <%= form_for :vote, url: yes_path, html: { class: "form-sender  btn btn-success no-padding"} do |f|%>
+          <%= f.hidden_field :fb_feed, value: false  %>
           <%= f.hidden_field :poll_id, value: poll.id %>
-          <%= f.submit t('.yes'),  class: "btn btn-success"%>
+          <%= f.submit t('.yes'),  class: "button-sender btn btn-success"%>
         <% end %>
-        <%= form_for :vote, url: blank_path, html: {class: "form-sender btn btn-default no-padding"}  do |f| %>
+        <%= form_for :vote, url: blank_path, html: { class:"form-sender btn btn-default no-padding"}  do |f| %>
+          <%= f.hidden_field :fb_feed, value: false  %>
           <%= f.hidden_field :poll_id, value: poll.id %>
-          <%= f.submit t('.blank'), class: "btn btn-default" %>
+          <%= f.submit t('.blank'), class: "button-sender btn btn-default" %>
         <% end %>
-        <%= form_for :vote, url: no_path, html: {class: "form-sender btn btn-danger no-padding"}  do |f| %>
+        <%= form_for :vote, url: no_path, html: { class: "form-sender btn btn-danger no-padding"}  do |f| %>
+          <%= f.hidden_field :fb_feed, value: false  %>
           <%= f.hidden_field :poll_id, value: poll.id %>
-          <%= f.submit t('.no') ,class: "btn btn-danger" %>
+          <%= f.submit t('.no') ,class: "button-sender btn btn-danger" %>
         <% end %>
       </div>
     <% end %>
