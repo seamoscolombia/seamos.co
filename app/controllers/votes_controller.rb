@@ -61,7 +61,7 @@ class VotesController < ApplicationController
 
     def vote_save(vote)
       if vote.save!
-        publish_vote_facebook vote
+        publish_vote_facebook vote if params["vote"]["fb_feed"] == "true"
         redirect_to polls_url+"##{vote.poll.id}"
       end
     end
