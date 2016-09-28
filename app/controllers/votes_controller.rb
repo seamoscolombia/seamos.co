@@ -21,9 +21,9 @@ class VotesController < ApplicationController
 
     def publish_vote_facebook(vote)
       user_graph = Koala::Facebook::API.new(session[:fb_token])
-      # link_url = polls_url+"##{vote.poll.id}" if Rails.env.production?
+      link_url = polls_url+"##{vote.poll.id}" if Rails.env.production?
 
-      user_graph.put_connections( "me", "feed", message: vote.poll.title )
+      user_graph.put_connections( "me", "feed", message: vote.poll.title, link: link_url)
     end
 
     def set_poll
@@ -62,7 +62,7 @@ class VotesController < ApplicationController
     def vote_save(vote)
       if vote.save!
         publish_vote_facebook vote
-        redirect_to polls_path
+        redirect_to polls_url+"##{vote.poll.id}"
       end
     end
 
