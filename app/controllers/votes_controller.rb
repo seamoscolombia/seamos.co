@@ -19,6 +19,21 @@ class VotesController < ApplicationController
 
   private
 
+    def publish_vote_facebook(vote)
+      user_graph = Koala::Facebook::API.new(session[:fb_token])
+      # link_url = polls_url+"##{vote.poll.id}" if Rails.env.production?
+
+      user_graph.put_connections( "me", "feed", message: vote.poll.title )
+    end
+
+    def set_poll
+      @poll = Poll.find_by(id: params[:vote][:poll_id])
+      if @poll.nil?
+        flash[:danger] = t(".poll_does_not_exist")
+        redirect_to polls_path
+      end
+    end
+
     def vote(code)
       vote_type = nil
       @poll.transaction do
@@ -34,6 +49,7 @@ class VotesController < ApplicationController
             poll_id: @poll.id,
             vote_type: vote_type
         )
+
         vote_save vote
       end
     rescue ActiveRecord::RecordInvalid
@@ -43,16 +59,9 @@ class VotesController < ApplicationController
       redirect_to polls_path
     end
 
-    def set_poll
-      @poll = Poll.find_by(id: params[:vote][:poll_id])
-      if @poll.nil?
-        flash[:danger] = t(".poll_does_not_exist")
-        redirect_to polls_path
-      end
-    end
-
     def vote_save(vote)
       if vote.save!
+        publish_vote_facebook vote
         redirect_to polls_path
       end
     end

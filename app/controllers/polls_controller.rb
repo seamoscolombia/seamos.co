@@ -28,7 +28,7 @@ class PollsController < ApplicationController
     @poll = Poll.new poll_params
     @poll.private = get_radiobutton_private
     @poll.usuario = current_user
-    @poll.totals = {"blank": 0, "yes": 0, "no": 0}.to_s    
+    @poll.totals = {"blank": 0, "yes": 0, "no": 0}.to_s
     if @poll.save
       publish_facebook(@poll)
       flash[:success] = I18n.t(:accion_exitosa)
@@ -65,10 +65,11 @@ class PollsController < ApplicationController
       tvtd_page_token = user_graph.get_page_access_token("#{Rails.application.secrets.tvtd_page_id}")
       page_graph = Koala::Facebook::API.new(tvtd_page_token)
 
-      page_graph.put_connections("#{Rails.application.secrets.tvtd_page_id}",
-                                 "feed",
-                                 :message => poll.title,
-                                 :link => (polls_url+"##{poll.id}" if Rails.env.production? )
+      page_graph.put_connections(
+        "#{Rails.application.secrets.tvtd_page_id}",
+         "feed",
+         :message => poll.title,
+         :link => (polls_url+"##{poll.id}" if Rails.env.production? )
       )
     end
 
