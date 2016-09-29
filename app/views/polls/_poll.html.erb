@@ -63,5 +63,32 @@
       </div>
   <% end %>
 
+<script>
+function normalEvent(event){
+  return true
+}
+function formConfig (event) {
+        event.preventDefault();
+        var myBtn = $(this);
+        var myForm = $(this).parent();
+        swal({
+            title: "<%= t '.fb_publish.title' %>",
+            text: "<%= t '.fb_publish.text' %>",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "<%= t '.fb_publish.yes_button'%>",
+            cancelButtonText: "<%= t '.fb_publish.no_button'%>",
+            closeOnConfirm: false
+        }, function(isConfirm){
+            if (isConfirm) {
+                myForm.children("#vote_fb_feed").val("true")
+                swal("<%= t '.greatings' %>", "<%= t '.fb_publish.share_message'%>", "success");
+            }
+            myForm.trigger('submit');
+        });
+};
+
+</script>
 
 </div>

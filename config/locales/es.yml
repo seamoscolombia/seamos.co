@@ -225,12 +225,23 @@ es:
       public: Pública
     index:
       "false": Pública
+      filter: Filtrar
+      filter_options:
+        - Todas
+        - Abiertas
+        - Cerradas
       "true": Anónima
     new:
       create: Crear
     poll:
       blank: En blanco
       "false": Votación Pública.
+      fb_publish:
+        no_button: No, gracias
+        "share_message": Has invitado a tus amigos a participar
+        title: ¿Deseas publicar?
+        text: Invita a tus amigos a que participen en esta propuesta.
+        yes_button: Compartir
       greatings: Gracias por participar.
       "no": "No"
       "true": Votación Anónima.
