@@ -20,9 +20,6 @@ class PollsController < ApplicationController
   before_action :validate_session
   before_action :validate_admin_user, except: :index
 
-  def new
-    @poll = Poll.new
-  end
 
   def create
     @poll = Poll.new poll_params
@@ -39,7 +36,20 @@ class PollsController < ApplicationController
   end
 
   def index
-    @polls = Poll.all.order('closing_date ASC')
+    @polls_filter = params[:polls_filter_select]
+    case @polls_filter
+    when nil, "0"
+      @polls = Poll.all.order('closing_date ASC')
+    when "1"
+      @polls = Poll.where("closing_date >= ?", Date.today)
+    when "2"
+      @polls = Poll.where("closing_date < ?", Date.today)
+    end
+    @polls
+  end
+
+  def new
+    @poll = Poll.new
   end
 
   def show
