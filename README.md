@@ -3,7 +3,7 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-# COPY coldocuments (doc_num, divipol_id)  FROM 'pth to CSV' DELIMITER ',' CSV;
+# COPY coldocuments (divipol_id, doc_num)  FROM 'pth to CSV' DELIMITER ',' CSV;
 
 Things you may want to cover:
 
