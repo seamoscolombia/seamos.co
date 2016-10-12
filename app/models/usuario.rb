@@ -29,20 +29,30 @@ class Usuario < ApplicationRecord
   validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres, :numero_documento]
   validates :numero_documento, numericality: { only_integer: true }, uniqueness: true
   validate :fecha_de_expedicion_razonable
+  validate :validar_cedula
 
-  def fecha_de_expedicion_razonable
-    if fecha_expedicion > Date.today
-      #TODO change to Format I18n Rails errors Message
-      errors.add(:fecha_expedicion, I18n.t(:fecha_invalida))
-    end
+
+  def already_voted?(poll)
+    !(votes.find_by(poll: poll).nil?)
   end
 
   def full_name
     "#{nombres} #{primer_apellido} #{segundo_apellido}"
   end
 
-  def already_voted?(poll)
-    !(votes.find_by(poll: poll).nil?)
-  end
+  private
+
+    def fecha_de_expedicion_razonable
+      if fecha_expedicion.blank? || (fecha_expedicion > Date.today)
+        errors.add(:fecha_expedicion, I18n.t(:fecha_invalida))
+      end
+    end
+
+    def validar_cedula
+
+      if !(/^\d+$/.match(numero_documento)) || Coldocument.find_by(doc_num: numero_documento.to_i).nil?
+        errors.add(:numero_documento, I18n.t(:cedula_invalida))
+      end
+    end
 
 end

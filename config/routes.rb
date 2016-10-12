@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'intro#inicio'
 
-  resources :usuarios
+  resources :usuarios, only: [:new, :create]
 
   #ToDo ajax call on session
   get '/auth/:provider/callback', to: 'sessions#create'
