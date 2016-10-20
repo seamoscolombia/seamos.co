@@ -16,20 +16,30 @@
 class Poll < ApplicationRecord
   belongs_to :usuario
   has_many :votes
+  has_many :vote_types, inverse_of: :poll
+  accepts_nested_attributes_for :vote_types
+
 
   validates :title, presence: true
   validates :closing_date, presence: true
   validates :description, presence: true
 
   validate :closing_date_validation
-
-  def closing_date_validation
-    if closing_date < Date.today
-      errors.add(:closing_date, I18n.t(:fecha_invalida))
-    end
-  end
-
+  
   def closed?
     closing_date < Date.today
   end
+
+  private
+    def closing_date_validation
+      if closing_date < Date.today
+        errors.add(:closing_date, I18n.t(:fecha_invalida))
+      end
+    end
+
+    def has_at_least_two_vote_types
+      if vote_types.length < 2
+        errors.add(:base, I18n.t( :at_least_two_options, scope: :polls))
+      end
+    end
 end

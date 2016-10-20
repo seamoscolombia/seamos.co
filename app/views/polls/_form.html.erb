@@ -17,6 +17,14 @@
                  data-date-autoclose="true" data-date-format="yyyy/mm/dd" class="input-sm form-control" name="poll[closing_date]" />
     </div>
 
+    <div class="field">
+      <%= f.label t('.list_of_options') %>
+
+      <button type="button" id="button_vote_types_attributes" class="btn btn-default">agregar</button>
+      <div id="vote_types_attributes">
+      </div>
+    </div>
+
     <%= f.label t('.secret_public') %>
     <div class=" field radio">
       <%= f.radio_button :private, true %>
@@ -31,4 +39,16 @@
     <div class="actions">
       <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
     </div>
+
 <% end %>
+
+<script type="text/javascript">
+  function addOption (){
+    var optionsContainer = $("#vote_types_attributes");
+    var childrenCount = optionsContainer.children().length;
+
+    var myHTML = `<input type='text' placeholder='<%= t('.new_option')%>' name='poll[vote_types_attributes][${childrenCount}][name]' id='poll_vote_types_attributes_${childrenCount}_name'>`;
+
+    optionsContainer.append(myHTML);
+  }
+</script>

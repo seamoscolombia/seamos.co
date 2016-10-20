@@ -7,8 +7,8 @@
 <%= form_for(:polls_filter, url: polls_path, method: :get) do |f|  %>
     <label for="polls_filter_select">Filtro: </label>
     <select class="form-control" name="polls_filter_select" id="polls_filter">
-      <option value="0"><%= t('.filter_options')[0]%></option>
-      <option value="1" <%= 'selected' if @polls_filter == "1" %>><%= t('.filter_options')[1]%></option>
+      <option value="1" ><%= t('.filter_options')[1]%></option>
+      <option value="0" <%= 'selected' if @polls_filter == "0" %>><%= t('.filter_options')[0]%></option>
       <option value="2" <%= 'selected' if @polls_filter == "2" %>><%= t('.filter_options')[2]%></option>
     </select>
 <% end %>
