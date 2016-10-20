@@ -24,9 +24,6 @@ html {
   overflow-y: scroll;
 }
 
-body {
-  padding-top: 65px;
-}
 
 section {
   overflow: auto;
@@ -267,4 +264,13 @@ input {
         background-color: $color-azul-oscuro;
       }
   }
+}
+
+.profile-pic{
+  width: 2em;
+  border-radius: 1em
+}
+
+.greatings-image{
+  width: 6em;
 }
