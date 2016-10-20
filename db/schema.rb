@@ -91,10 +91,11 @@ ActiveRecord::Schema.define(version: 20161011143838) do
   end
 
   create_table "vote_types", force: :cascade do |t|
-    t.string   "code",       null: false
+    t.string   "name",       null: false
+    t.integer  "poll_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_vote_types_on_code", unique: true, using: :btree
+    t.index ["poll_id"], name: "index_vote_types_on_poll_id", using: :btree
   end
 
   create_table "votes", force: :cascade do |t|
@@ -112,6 +113,7 @@ ActiveRecord::Schema.define(version: 20161011143838) do
   add_foreign_key "polls", "usuarios"
   add_foreign_key "usuarios", "roles"
   add_foreign_key "usuarios", "tipo_de_documentos"
+  add_foreign_key "vote_types", "polls"
   add_foreign_key "votes", "polls"
   add_foreign_key "votes", "usuarios"
 end
