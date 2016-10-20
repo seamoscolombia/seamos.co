@@ -218,11 +218,21 @@ es:
       sign_in: Iniciar sesión con Facebook
       sign_in_invitation: "¡Te invitamos, Regístrate!"
 
+  layouts:
+    application:
+      polls: Propuestas
+      logout: Salir
+
   polls:
+    at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
     form:
+      add: Agregar
+      list_of_options: Lista de opciones
+      new_option: Ingrese una opción
+      public: Pública
       secret_public: Indique si la propuesta tendrá votación anónima o pública.
       secret: Anónima
-      public: Pública
+
     index:
       "false": Pública
       filter: Filtrar
