@@ -3,11 +3,14 @@
 # Table name: vote_types
 #
 #  id         :integer          not null, primary key
-#  code       :string           not null
+#  name       :string           not null
+#  poll_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 class VoteType < ApplicationRecord
-  validates :code, presence: true
+  validates :name, presence: true
+  belongs_to :poll, inverse_of: :vote_types
+ validates_presence_of :poll
 end
