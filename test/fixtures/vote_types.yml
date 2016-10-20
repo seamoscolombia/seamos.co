@@ -3,7 +3,8 @@
 # Table name: vote_types
 #
 #  id         :integer          not null, primary key
-#  code       :string           not null
+#  name       :string           not null
+#  poll_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
