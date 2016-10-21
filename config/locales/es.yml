@@ -253,9 +253,8 @@ es:
         text: Invita a tus amigos a que participen en esta propuesta.
         yes_button: Compartir
       greatings: Gracias por participar.
-      "no": "No"
+      participate: Participa
       "true": Votación Anónima.
-      "yes": Sí
     show:
       poll_results: Resultados de votación
 

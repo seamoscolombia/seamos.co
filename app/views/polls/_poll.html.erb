@@ -37,23 +37,14 @@
 
   <% unless current_user.already_voted?(poll) %>
     <% unless poll.closed? %>
-      <div class="btn-group btn-group-justified" role="group" aria-label="...">
-        <%= form_for :vote, url: yes_path, html: { class: "form-sender  btn btn-success no-padding"} do |f|%>
-          <%= f.hidden_field :fb_feed, value: false  %>
-          <%= f.hidden_field :poll_id, value: poll.id %>
-          <%= f.submit t('.yes'),  class: "button-sender btn btn-success"%>
-        <% end %>
-        <%= form_for :vote, url: blank_path, html: { class:"form-sender btn btn-default no-padding"}  do |f| %>
-          <%= f.hidden_field :fb_feed, value: false  %>
-          <%= f.hidden_field :poll_id, value: poll.id %>
-          <%= f.submit t('.blank'), class: "button-sender btn btn-default" %>
-        <% end %>
-        <%= form_for :vote, url: no_path, html: { class: "form-sender btn btn-danger no-padding"}  do |f| %>
-          <%= f.hidden_field :fb_feed, value: false  %>
-          <%= f.hidden_field :poll_id, value: poll.id %>
-          <%= f.submit t('.no') ,class: "button-sender btn btn-danger" %>
-        <% end %>
-      </div>
+
+      <%= form_for(:vote, url: votes_path) do |f|  %>
+        <%= f.hidden_field :fb_feed, value: false  %>
+        <%= f.collection_select( :vote_type_id, poll.vote_types.all, :id, :name, prompt: true) %>
+        <%= f.submit t('.participate'), class: "btn btn-default button-sender"%>
+
+      <%end%>
+
     <% end %>
   <% else %>
       <div class="row" role="group" aria-label="...">

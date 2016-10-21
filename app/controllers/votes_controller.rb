@@ -3,19 +3,9 @@ class VotesController < ApplicationController
   before_action :validate_session
   before_action :set_poll
 
-
-  def yes
-    vote("yes")
+  def create
+    vote(vote_param)
   end
-
-  def no
-    vote("no")
-  end
-
-  def blank
-    vote("blank")
-  end
-
 
   private
 
@@ -27,7 +17,7 @@ class VotesController < ApplicationController
     end
 
     def set_poll
-      @poll = Poll.find_by(id: params[:vote][:poll_id])
+      @poll = VoteType.find_by(id: vote_param).poll
       if @poll.nil?
         flash[:danger] = t(".poll_does_not_exist")
         redirect_to polls_path
@@ -38,7 +28,7 @@ class VotesController < ApplicationController
       vote_type = nil
       @poll.transaction do
         if !@poll.private?
-          vote_type = VoteType.find_by(code: code)
+          vote_type = VoteType.find_by(id: code)
         else
           totals = eval(@poll.totals)
           totals[code.to_sym] += 1
@@ -57,6 +47,10 @@ class VotesController < ApplicationController
       error_msg += vote.errors.messages[:base].join(" ") unless vote.errors.messages[:base].nil?
       flash[:danger] = " #{error_msg}"
       redirect_to polls_path
+    end
+
+    def vote_param
+      params[:vote][:vote_type_id].to_i
     end
 
     def vote_save(vote)
