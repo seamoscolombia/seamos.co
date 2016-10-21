@@ -46,7 +46,7 @@
   function addOption (){
     var optionsContainer = $("#vote_types_attributes");
     var childrenCount = optionsContainer.children().length;
-
+    // #ToDo add DELETE option && error takes previous values
     var myHTML = `<input type='text' placeholder='<%= t('.new_option')%>' name='poll[vote_types_attributes][${childrenCount}][name]' id='poll_vote_types_attributes_${childrenCount}_name'>`;
 
     optionsContainer.append(myHTML);
