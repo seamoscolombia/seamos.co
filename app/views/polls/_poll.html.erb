@@ -41,8 +41,10 @@
       <%= form_for(:vote, url: votes_path) do |f|  %>
         <%= f.hidden_field :fb_feed, value: false  %>
         <%= f.collection_select( :vote_type_id, poll.vote_types.all, :id, :name, prompt: true) %>
-        <%= f.submit t('.participate'), class: "btn btn-default button-sender"%>
-
+        <div class="input-group text-center">
+          <%= f.submit t('.participate'), class: "btn-lg btn-default button-sender"%>
+        </div>
+        <br>
       <%end%>
 
     <% end %>
