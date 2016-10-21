@@ -18,13 +18,14 @@ class PollsController < ApplicationController
 
   before_action :validate_poll_closed?, only: :show
   before_action :validate_session
-  before_action :validate_admin_user, except: :index
+  before_action :validate_admin_user, except: [:index, :show]
 
 
   def create
     @poll = Poll.new poll_params
     @poll.private = get_radiobutton_private
     @poll.usuario = current_user
+    #ToDo remove line below
     @poll.totals = {"blank": 0, "yes": 0, "no": 0}.to_s
     if @poll.save
       publish_facebook(@poll)
@@ -38,9 +39,9 @@ class PollsController < ApplicationController
   def index
     @polls_filter = params[:polls_filter_select]
     case @polls_filter
-    when nil, "0"
+    when "0"
       @polls = Poll.all.order('closing_date ASC')
-    when "1"
+    when nil, "1"
       @polls = Poll.where("closing_date >= ?", Date.today)
     when "2"
       @polls = Poll.where("closing_date < ?", Date.today)
@@ -50,6 +51,9 @@ class PollsController < ApplicationController
 
   def new
     @poll = Poll.new
+    3.times do |index|
+      @poll.vote_types.build(name: "a"*index)
+    end
   end
 
   def show
@@ -83,12 +87,15 @@ class PollsController < ApplicationController
       )
     end
 
+
+
     def poll_params
       params.require(:poll).permit(
-        :title,
-        :description,
         :closing_date,
-        :private
+        :description,
+        :private,
+        :title,
+        {vote_types_attributes: [:name]}
       )
     end
 
