@@ -11,11 +11,8 @@ Rails.application.routes.draw do
 
   resources :polls, except: [:destroy, :update]
   resources :tipo_de_documentos, only: :index
+  resources :votes, only: :create
 
-  scope '/votes', controller: :votes do
-    post '/yes', action: :yes
-    post '/no', action: :no
-    post '/blank', action: :blank
-  end
+
 
 end
