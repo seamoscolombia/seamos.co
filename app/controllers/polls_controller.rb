@@ -25,9 +25,15 @@ class PollsController < ApplicationController
     @poll = Poll.new poll_params
     @poll.private = get_radiobutton_private
     @poll.usuario = current_user
-    #ToDo remove line below
-    # @poll.totals = {"blank": 0, "yes": 0, "no": 0}.to_s
+    totals_hash = {}
+
     if @poll.save
+      @poll.vote_types.each do |vote_type|
+        totals_hash[vote_type.id] = 0
+      end
+      @poll.totals = totals_hash.to_s
+      @poll.save
+
       publish_facebook(@poll)
       flash[:success] = I18n.t(:accion_exitosa)
       redirect_to polls_path
@@ -59,11 +65,17 @@ class PollsController < ApplicationController
   def show
     @poll = Poll.find_by(id: params[:id])
     if @poll.private?
-      @votes_code = @poll.vote_types
+      totals_hash = eval(@poll.totals)
+      @votes_code = {}
+      totals_hash.each do |k,v|
+        vote_type = VoteType.find_by(id: k)
+        @votes_code[vote_type.name] = v
+      end
     else
       @votes_code = @poll.votes.joins(:vote_type).
           group("vote_types.name").
           count("vote_types.id")
+
     end
   end
 

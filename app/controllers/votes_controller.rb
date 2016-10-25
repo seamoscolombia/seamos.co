@@ -27,20 +27,19 @@ class VotesController < ApplicationController
     def vote(code)
       vote_type = nil
       @poll.transaction do
-        if !@poll.private?
-          vote_type = VoteType.find_by(id: code)
-        else
-          totals = eval(@poll.totals)
-          totals[code.to_sym] += 1
-          @poll.totals = totals
-          @poll.save!
-        end
+      vote_type = VoteType.find_by(id: code)
+      if @poll.private?
+        totals = eval(@poll.totals)
+        totals[vote_type.id] += 1
+        @poll.totals = totals
+        @poll.save!
+      end
         vote = current_user.votes.build(
             poll_id: @poll.id,
             vote_type: vote_type
         )
 
-        vote_save vote
+        vote_save_fb vote
       end
     rescue ActiveRecord::RecordInvalid
       error_msg = "#{I18n.t(:accion_no_realizada)} "
@@ -53,7 +52,7 @@ class VotesController < ApplicationController
       params[:vote][:vote_type_id].to_i
     end
 
-    def vote_save(vote)
+    def vote_save_fb(vote)
       if vote.save!
         publish_vote_facebook vote if params["vote"]["fb_feed"] == "true"
         redirect_to polls_url+"##{vote.poll.id}"
