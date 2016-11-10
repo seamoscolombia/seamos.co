@@ -17,10 +17,10 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if (@usuario)
         format.html { redirect_to polls_path(@usuario)  }
-        format.json { render json: { authenticity_token: form_authenticity_token },status: :ok  }
+        format.json { render json: { authenticity_token: form_authenticity_token },status: :ok }
       else
         format.html { redirect_to new_usuario_path() }
-        format.json { render json: { authenticity_token: form_authenticity_token },status: :not_found  }
+        format.json { render json: { authenticity_token: form_authenticity_token },status: :unprocessable_entity }
       end
     end
   end
