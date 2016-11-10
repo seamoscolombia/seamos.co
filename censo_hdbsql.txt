@@ -1,1 +1,0 @@
-java -cp hsqldb.jar org.hsqldb.util.DatabaseManager --url dbc:hsqldb:file://Users/jasmo2/Downloads/Aplicativo_Consulta_Autoridades_locales_2015/CensoB;ifexists=true;shutdown=true;crypt_key=fd3ff9bb04f1c31335a1ad68c83f2085;crypt_type=Blowfish" --user SA
