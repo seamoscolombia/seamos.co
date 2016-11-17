@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117153225) do
+ActiveRecord::Schema.define(version: 20161117163624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 20161117153225) do
 
   create_table "departamentos", force: :cascade do |t|
     t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "document_photos", force: :cascade do |t|
+    t.string   "url",        null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,7 +89,8 @@ ActiveRecord::Schema.define(version: 20161117153225) do
     t.boolean  "valido"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.string   "foto_url",             null: false
+    t.integer  "document_photo_id"
+    t.index ["document_photo_id"], name: "index_usuarios_on_document_photo_id", using: :btree
     t.index ["numero_documento"], name: "index_usuarios_on_numero_documento", using: :btree
     t.index ["role_id"], name: "index_usuarios_on_role_id", using: :btree
     t.index ["tipo_de_documento_id", "numero_documento"], name: "index_usuarios_on_tipo_de_documento_id_and_numero_documento", unique: true, using: :btree
@@ -112,6 +119,7 @@ ActiveRecord::Schema.define(version: 20161117153225) do
 
   add_foreign_key "municipios", "departamentos"
   add_foreign_key "polls", "usuarios"
+  add_foreign_key "usuarios", "document_photos"
   add_foreign_key "usuarios", "roles"
   add_foreign_key "usuarios", "tipo_de_documentos"
   add_foreign_key "vote_types", "polls"

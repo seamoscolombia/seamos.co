@@ -26,7 +26,8 @@ class Usuario < ApplicationRecord
   validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
   validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :nombres, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
-  validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres, :numero_documento]
+  validates_presence_of  [:primer_apellido, :segundo_apellido,
+     :nombres, :numero_documento, :document_photo_id]
   validates :numero_documento, numericality: { only_integer: true }, uniqueness: true
   validate :fecha_de_expedicion_razonable
   validate :validar_cedula
