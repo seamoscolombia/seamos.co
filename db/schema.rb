@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011143838) do
+ActiveRecord::Schema.define(version: 20161117153225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20161011143838) do
     t.boolean  "valido"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.string   "foto_url",             null: false
     t.index ["numero_documento"], name: "index_usuarios_on_numero_documento", using: :btree
     t.index ["role_id"], name: "index_usuarios_on_role_id", using: :btree
     t.index ["tipo_de_documento_id", "numero_documento"], name: "index_usuarios_on_tipo_de_documento_id_and_numero_documento", unique: true, using: :btree
