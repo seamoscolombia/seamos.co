@@ -1,10 +1,12 @@
 class PhotosController < ApplicationController
   def create
-    @photo = Photo.save(url: params[:photo])
-    if @photo.save
-      render json:{id: @photo.id}, status: :created }
+    @document_photo =  DocumentPhoto.new(url: params[:photo])
+    if @document_photo.save
+      puts @document_photo
+      puts @document_photo.id
+      render json: {id: @document_photo.id, status: :created }, status: :created
     else
-      render json: {}, status: :unprocessable_entity
+      render json: {status: :unprocessable_entity }, status: :unprocessable_entity
     end
   end
 end
