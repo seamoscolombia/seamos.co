@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  get 'photos/create'
+
   root 'intro#inicio'
 
+  resources :photos, only: :create
   resources :usuarios, only: [:new, :create]
 
   #ToDo ajax call on session
