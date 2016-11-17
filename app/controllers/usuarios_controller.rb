@@ -29,9 +29,10 @@ class UsuariosController < ApplicationController
     @usuario.role = Role.find_by(code: 'ciudadano')
     @usuario.uid = session[:uid]
     respond_to do |format|
+      @usuario.document_photo_id = params[:photo_id]
       if @usuario.save
         format.html { redirect_to polls_path, notice: I18n.t(:success) }
-        format.json { render :show, status: :created, location: @usuario }
+        format.json { render :show, status: :created, location: usuarios_url(@usuario) }
       else
         format.html { render :new }
         format.json { render json: @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } }.first, status: :unprocessable_entity }
