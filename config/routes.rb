@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'photos/create'
-
   root 'intro#inicio'
 
   resources :photos, only: :create
