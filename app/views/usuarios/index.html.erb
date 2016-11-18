@@ -5,11 +5,18 @@
 <div class="container">
 	<div class="row">
         <div class="span12">
-    		<ul class="thumbnails">
+    		<ul class="thumbnails" style="list-style-type: none;">
           <% @usuarios.each do |usuario| %>
                 <li class="span5 clearfix">
                   <div class="thumbnail clearfix">
-                    <img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" class="pull-left span2 clearfix" style='margin-right:10px; height: 150px;'>
+										<a class="profile pull-left span2 clearfix" href="#thumb">
+											<img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" border="0" style='margin-right:10px; height: 150px;'/>
+											<span>
+												<img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" style='height: 450px;'/>
+											</span>
+										</a>
+
+
                     <div class="caption" class="pull-left">
                       <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">Select</a>
                       <h4>
