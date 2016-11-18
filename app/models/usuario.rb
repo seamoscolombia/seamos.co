@@ -19,6 +19,7 @@
 class Usuario < ApplicationRecord
   belongs_to :tipo_de_documento
   belongs_to :role
+  has_one  :document_photo
 
   has_many  :polls
   has_many  :votes
