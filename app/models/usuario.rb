@@ -22,7 +22,7 @@ class Usuario < ApplicationRecord
   has_one  :document_photo
 
   has_many  :polls
-  has_many  :votes
+  has_many  :votes, dependent: :destroy
 
   validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
   validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
