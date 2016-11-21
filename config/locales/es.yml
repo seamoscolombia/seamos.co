@@ -263,16 +263,21 @@ es:
       log_in: Iniciar sesión
 
   usuarios:
+
     form:
       password: Contraseña
       password_confirmation: Confirmación de contraseña
+    index:
+      validate_user: Validar Documento
+    edit:
+      validate_user: Validar Documento
+      delete_user: Eliminar Usuario
     new:
       registrar: Registro de
 
   votes:
     poll_does_not_exist: La propuesta no existe.
     closed_poll: La propuesta ya ha cerrado.
-
 
   accion_exitosa: "Acción exitosa"
   accion_exitosa_pendiente: "Acción exitosa, pendiente de autorización."

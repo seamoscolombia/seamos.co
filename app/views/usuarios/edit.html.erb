@@ -1,6 +1,25 @@
 <h1><%= t :editar%> <%= Usuario.model_name.human %></h1>
 
-<%= render 'form', usuario: @usuario %>
+<table class="table">
+  <tr>
+    <th> <%= Usuario.human_attribute_name("nombres") %> </th>
+    <th> <%= Usuario.human_attribute_name("tipo_de_documento_id") %> </th>
+    <th> <%= Usuario.human_attribute_name("numero_documento") %> </th>
+    <th> <%= Usuario.human_attribute_name("fecha_expedicion") %> </th>
+    <th colspan="2"></th>
+  </tr>
+  <tr>
+    <td>
+      <%= @usuario.nombres %>
+      <%= @usuario.primer_apellido %>
+      <%= @usuario.segundo_apellido %>
+    </td>
+    <td> <%= @usuario.tipo_de_documento.code_view %> </td>
+    <td> <%= @usuario.numero_documento %> </td>
+    <td> <%= @usuario.fecha_expedicion %> </td>
+    <td> <%= link_to t(".validate_user"), usuario_path(@usuario), class: "btn btn-info", method: :put %> </td>
+    <td> <%= link_to t(".destroy_user"), usuario_path(@usuario), class: "btn btn-danger", method: :delete %> </td>
+  </tr>
+</table>
 
-<%= link_to t(:ver), @usuario %> |
-<%= link_to t(:regresar), usuarios_path %>
+<img src="<%= get_photo_url(@usuario) %>"   style='width: 100%;'/>

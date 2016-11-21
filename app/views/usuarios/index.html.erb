@@ -18,7 +18,7 @@
 
 
                     <div class="caption" class="pull-left">
-                      <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">Select</a>
+											<%= link_to t(".validate_user") ,edit_usuario_path(usuario), class:"btn btn-primary icon  pull-right"%>
                       <h4>
                       <a href="#" >
                         <%= usuario.nombres %>
@@ -26,9 +26,9 @@
                         <%= usuario.segundo_apellido %>
                       </a>
                       </h4>
-                      <p><small><b>Tipo de documento: </b><%= usuario.tipo_de_documento.code_view %></small></p>
-                      <p><small><b>Numero documento:  </b><%= usuario.numero_documento %></small></p>
-                      <p><small><b>Fecha expedicion:  </b><%= usuario.fecha_expedicion %></small></p>
+                      <p><small><b><%= Usuario.human_attribute_name("tipo_de_documento_id") %>: </b><%= usuario.tipo_de_documento.code_view %></small></p>
+                      <p><small><b><%= Usuario.human_attribute_name("numero_documento") %>: </b><%= usuario.numero_documento %></small></p>
+                      <p><small><b><%= Usuario.human_attribute_name("fecha_expedicion") %>: </b><%= usuario.fecha_expedicion %></small></p>
                     </div>
                   </div>
                 </li>
