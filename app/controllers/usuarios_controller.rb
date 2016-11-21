@@ -20,7 +20,8 @@ class UsuariosController < ApplicationController
   end
 
   def edit
-
+    @usuario = Usuario.find_by(id: params[:id])
+    redirect_to usuarios_path if @usuario.nil?
   end
 
   # POST /usuarios
@@ -42,17 +43,9 @@ class UsuariosController < ApplicationController
     end
   end
 
-  # PATCH/PUT /usuarios/1
-  # PATCH/PUT /usuarios/1.json
   def update
-    respond_to do |format|
-      if @usuario.update(usuario_params)
-        format.html { redirect_to @usuario, notice: I18n.t(:success) }
-        format.json { render :show, status: :ok, location: @usuario }
-      else
-        format.html { render :edit }
-        format.json { render json: @usuario.errors, status: :unprocessable_entity }
-      end
+    if @usuario.update({valido: true})
+      redirect_to usuarios_url, notice: I18n.t(:success)
     end
   end
 
@@ -68,6 +61,7 @@ class UsuariosController < ApplicationController
     def set_usuario
       @usuario = Usuario.find(params[:id])
     end
+
     def usuario_params
       params.require(:usuario).permit(:primer_apellido, :segundo_apellido, :nombres,
                                       :tipo_de_documento_id, :numero_documento,
