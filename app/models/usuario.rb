@@ -14,6 +14,7 @@
 #  valido               :boolean
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  document_photo_id    :integer
 #
 
 class Usuario < ApplicationRecord

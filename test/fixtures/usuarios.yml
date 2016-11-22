@@ -14,28 +14,31 @@
 #  valido               :boolean
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
+#  document_photo_id    :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  primer_apellido: MyString
+  primer_apellido: First_Apellido
   segundo_apellido: MyString
-  nombres: MyString
+  nombres: First_User
   tipo_de_documento: one
-  numero_documento: MyString
-  fecha_expedicion: 2016-07-19
+  numero_documento: 1113645710
+  fecha_expedicion: 2008-05-28
   uid: uidString1
   role: one
   valido: false
+  document_photo_id: one
 
 two:
-  primer_apellido: MyString
+  primer_apellido: Second_Apellido
   segundo_apellido: MyString
-  nombres: MyString
+  nombres: Second_User
   tipo_de_documento: two
-  numero_documento: MyString
+  numero_documento: 79471501
   fecha_expedicion: 2016-07-19
   uid: uidString2
   role: two
   valido: false
+  document_photo_id: two
