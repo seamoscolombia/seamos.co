@@ -20,25 +20,37 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  primer_apellido: First_Apellido
+  primer_apellido: First Apellido
   segundo_apellido: MyString
-  nombres: First_User
+  nombres: First User
   tipo_de_documento: one
-  numero_documento: 1113645710
+  numero_documento: "1113645710"
   fecha_expedicion: 2008-05-28
   uid: uidString1
-  role: one
+  role: ciudadano
   valido: false
-  document_photo_id: one
+  document_photo: one
 
 two:
   primer_apellido: Second_Apellido
   segundo_apellido: MyString
   nombres: Second_User
   tipo_de_documento: two
-  numero_documento: 79471501
+  numero_documento: "123123123"
   fecha_expedicion: 2016-07-19
   uid: uidString2
-  role: two
+  role: politico
   valido: false
-  document_photo_id: two
+  document_photo: two
+
+three:
+  primer_apellido: Third_Apellido
+  segundo_apellido: MyString
+  nombres: Third_User
+  tipo_de_documento: two
+  numero_documento: "123456789"
+  fecha_expedicion: 2016-07-19
+  uid: uidString3
+  role: administrador
+  valido: true
+  document_photo: two

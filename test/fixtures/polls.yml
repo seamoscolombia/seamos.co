@@ -18,13 +18,15 @@
 one:
   title: Primera votación
   description: Porque debe haber un primero
+  closing_date: <%= Date.today %>
   usuario: one
   private: false
   totals: MyString
 
 two:
-  title: Segunda votación
+  title: Votación cerrada
   description: Pues la segunda
-  usuario: two
+  closing_date:  <%= 1.day.ago %>
+  usuario:  two
   private: false
   totals: MyString

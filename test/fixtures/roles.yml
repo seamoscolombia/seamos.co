@@ -10,8 +10,11 @@
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+ciudadano:
   code: ciudadano
 
-two:
-  code: admnistrador
+politico:
+  code: politico
+
+administrador:
+  code: administrador

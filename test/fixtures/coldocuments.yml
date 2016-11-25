@@ -9,9 +9,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  doc_num: 1
+  doc_num: 1113645710
   divipol_id: 1
 
 two:
-  doc_num: 1
+  doc_num: 123123123
+  divipol_id: 1
+
+three:
+  doc_num: 123456789
+  divipol_id: 1
+
+four:
+  doc_num: 1113645711
   divipol_id: 1
