@@ -22,6 +22,7 @@ class Usuario < ApplicationRecord
   belongs_to :role
   belongs_to  :document_photo
 
+  has_many  :causes
   has_many  :polls
   has_many  :votes, dependent: :destroy
 

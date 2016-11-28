@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117163624) do
+ActiveRecord::Schema.define(version: 20161128194630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "causes", force: :cascade do |t|
+    t.text     "description"
+    t.string   "title"
+    t.integer  "usuario_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["usuario_id"], name: "index_causes_on_usuario_id", using: :btree
+  end
 
   create_table "coldocuments", id: false, force: :cascade do |t|
     t.bigint "doc_num"
@@ -117,6 +126,7 @@ ActiveRecord::Schema.define(version: 20161117163624) do
     t.index ["vote_type_id"], name: "index_votes_on_vote_type_id", using: :btree
   end
 
+  add_foreign_key "causes", "usuarios"
   add_foreign_key "municipios", "departamentos"
   add_foreign_key "polls", "usuarios"
   add_foreign_key "usuarios", "document_photos"
