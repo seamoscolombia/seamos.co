@@ -4,7 +4,7 @@ class VotesController < ApplicationController
   before_action :set_poll
 
   def create
-    vote(vote_param)
+    vote(http_params)
   end
 
   private
@@ -17,7 +17,7 @@ class VotesController < ApplicationController
     end
 
     def set_poll
-      @poll = VoteType.find_by(id: vote_param).poll
+      @poll = VoteType.find_by(id: http_params).poll
       if @poll.nil?
         flash[:danger] = t(".poll_does_not_exist")
         redirect_to polls_path
@@ -48,14 +48,14 @@ class VotesController < ApplicationController
       redirect_to polls_path
     end
 
-    def vote_param
+    def http_params
       params[:vote][:vote_type_id].to_i
     end
 
     def vote_save_fb(vote)
       if vote.save!
         publish_vote_facebook vote if params["vote"]["fb_feed"] == "true"
-        redirect_to polls_url+"##{vote.poll.id}"
+        redirect_to polls_url #+"##{vote.poll.id}"
       end
     end
 
