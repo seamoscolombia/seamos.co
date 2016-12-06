@@ -32,7 +32,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # gem 'capistrano-rails', group: :development
 
 
-# ### project gems
+# #### project gems ####
 # gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
 gem 'anti-captcha', '~> 0.1.1'
 gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
@@ -41,6 +41,7 @@ gem 'chartkick', '~> 2.1.1'
 gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave-base64', '~> 2.3.2'
 gem 'fog-aws', '~> 0.12.0'
+gem 'material_design_lite-rails', '~> 1.2'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'koala', '~>2.4.0'
 

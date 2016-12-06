@@ -16,5 +16,6 @@
 //= require bootstrap-datepicker
 //= require turbolinks
 //= require chartkick
+//= require material
 
 //= require_tree .
