@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seamos</title>
     <%= csrf_meta_tags %>
-
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://www.google.com/jsapi" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -57,8 +57,8 @@
     <div class="container">
       <%= yield %>
     </div>
-    <div class="container">
-      <%= debug(params) if Rails.env.development? %>
-    </div>
+    <!-- <div class="container"> -->
+     <!-- debug(params) if Rails.env.development? %> -->
+    <!-- </div> -->
   </body>
 </html>

@@ -1,0 +1,71 @@
+.polls-container{
+  height: 100vh;
+  padding: 0 15px;
+  background: #F6F7FB;
+  background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, #F6F7FB 98%, #F6F7FB 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,#F6F7FB 98%,#F6F7FB 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,#F6F7FB 98%,#F6F7FB 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  .panel{
+    background: rgba(0,0,0,0);
+    position: relative;
+    &.noborder {
+      border: none;
+      box-shadow: none;
+    }
+    > .panel-heading {
+      border: 1px solid #dddddd;
+      border-radius: 0;
+    }
+    h3{
+      margin-top: 3em;
+      text-align: center;
+    }
+    .date{
+      font-weight: normal;
+      text-decoration: underline;
+    }
+    p{
+      font-size: 12px;
+      line-height: 1em;
+      &.description{
+        margin-top: 36px ;
+        text-align: justify;
+      }
+    }
+    .panel-footer{
+      background-color: inherit;
+      border-top: none;
+      .votes{
+      margin: 10px auto;
+      width: 60%;
+      position: relative;
+      min-height: 74px;
+      .horizontal{
+        display: inline-block;
+        position: absolute;
+        .icon-label{
+          font-weight: normal;
+        }
+      }
+      .left{
+        left: 0;
+        button{
+          background: #FFF;
+          i{
+            color: #FF4C69;
+          }
+        }
+      }
+      .right{
+        right: 0;
+        button{
+          background: #FFF;
+          i{
+            color: #39E9BE;
+          }
+        }
+      }
+    }
+    }
+  }
+}

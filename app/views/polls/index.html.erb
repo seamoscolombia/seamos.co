@@ -1,27 +1,7 @@
-<% if is_admin? %>
-  <%= link_to "#{t(:crear)} #{Poll.model_name.human}", new_poll_path, class: "btn btn-primary" %>
-  <!-- #ToDo Internationalization -->
-  <%= link_to "Validar usuarios", usuarios_path, class: "btn btn-info" %>
-<% end %>
-<br>
-<br>
-
-<%= form_for(:polls_filter, url: polls_path, method: :get) do |f|  %>
-    <label for="polls_filter_select">Filtro: </label>
-    <select class="form-control" name="polls_filter_select" id="polls_filter">
-      <option value="1" ><%= t('.filter_options')[1]%></option>
-      <option value="0" <%= 'selected' if @polls_filter == "0" %>><%= t('.filter_options')[0]%></option>
-      <option value="2" <%= 'selected' if @polls_filter == "2" %>><%= t('.filter_options')[2]%></option>
-    </select>
-<% end %>
-<br>
-<br>
-
-<div class="col-md-12">
+<div id="polls-container" class="polls-container">
   <%= render @polls%>
 </div>
-<script>
-function filterPoll (event) {
-   $(this).parent().trigger('submit');
-};
+<script type="text/javascript">
+  var parent = document.getElementById("polls-container").parentElement
+  parent.style.padding = "0";
 </script>

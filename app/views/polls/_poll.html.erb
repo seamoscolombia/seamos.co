@@ -1,58 +1,43 @@
-<div class="panel panel-default transition-panel" id="<%=poll.id%>">
+<div class="panel panel-default transition-panel noborder" id="<%=poll.id%>">
   <!-- Default panel contents -->
-  <div class="panel-heading" >
-    <% if poll.closed? %>
-        <h2>
-          <%= link_to poll_path(poll), class: "" do %>
-            <%= poll.title %>
-            <span class="span-results glyphicon glyphicon-new-window" aria-hidden="true"></span>
-          <%end%>
-        </h2>
-    <% else %>
-      <%= poll.title %>
+  <!-- <div class="panel-heading" > -->
+     <!-- #if poll.closed?  -->
+        <!-- <h2> -->
+          <!-- = #link_to poll_path(poll), class: "" do  -->
+            <!-- = #poll.title  -->
+            <!-- <span class="span-results glyphicon glyphicon-new-window" aria-hidden="true"></span> -->
+          <!-- #end -->
+        <!-- </h2> -->
+     <!-- #else  -->
+      <!-- = #poll.title  -->
+     <!-- #end  -->
+  <!-- </div> -->
+
+  <strong><%= poll.usuario.full_name%></strong>
+  <p>
+    <label class="date">Cierre: <%= poll.closing_date %> </label>
+  </p>
+
+  <p class="description"><%= poll.description %></p>
+
+   <!-- t (".#{poll.private.to_s}")%> -->
+  <div class="panel-footer">
+    <h3>Tu Voto</h3>
+    <% unless current_user.already_voted?(poll) %>
+      <% unless poll.closed? %>
+        <div class="votes">
+          <%= render partial: 'votes/vote_type', locals:
+          {vote_type_id:  poll.vote_types.last.id,  label_text: t('.no'),
+            align_class: "horizontal left", icon: "cancel"}%>
+
+          <%= render partial: 'votes/vote_type', locals:
+          {vote_type_id:  poll.vote_types.first.id,  label_text: t('.yes'),
+            align_class: "horizontal right", icon: "check"}%>
+
+        </div>
+      <% end %>
     <% end %>
   </div>
-  <div class="panel-body">
-    <div class="list-group">
-      <div class="list-group-item">
-        <strong><%= poll.usuario.full_name%></strong>
-      </div>
-      <div class="list-group-item">
-        <%= poll.description %>
-      </div>
-      <div class="list-group-item  ">
-        <div class="row">
-          <div class="col-xs-6">
-            <label>La votación cierra el: </label>
-            <%= poll.closing_date %>
-          </div>
-
-          <div class="col-xs-6">
-            <%= t (".#{poll.private.to_s}")%>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <% unless current_user.already_voted?(poll) %>
-    <% unless poll.closed? %>
-
-      <%= form_for(:vote, url: votes_path) do |f|  %>
-        <%= f.hidden_field :fb_feed, value: false  %>
-        <%= f.collection_select( :vote_type_id, poll.vote_types.all, :id, :name, prompt: true) %>
-        <%= f.submit t('.participate'), class: "btn-lg btn-default button-sender"%>
-        <br>
-      <%end%>
-
-    <% end %>
-  <% else %>
-      <div class="row" role="group" aria-label="...">
-        <div class="col-xs-push-1 col-xs-11">
-          <p> <img src="http://i.giphy.com/sZhNcDpiG077i.gif" class="greatings-image" /> <%= t '.greatings' %> </p>
-        </div>
-      </div>
-  <% end %>
 
 <script>
 function normalEvent(event){
