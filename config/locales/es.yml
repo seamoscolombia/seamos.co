@@ -215,13 +215,17 @@ es:
 
   intro:
     inicio:
-      sign_in: Iniciar sesión con Facebook
       sign_in_invitation: "¡Te invitamos, Regístrate!"
+    index:
+      sign_in: Iniciar sesión con Facebook
 
   layouts:
     application:
       polls: Propuestas
       logout: Salir
+
+  dashboard:
+    validate_users: Validar Usuarios
 
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
@@ -265,7 +269,6 @@ es:
       log_in: Iniciar sesión
 
   usuarios:
-
     form:
       password: Contraseña
       password_confirmation: Confirmación de contraseña
@@ -287,9 +290,10 @@ es:
   accion_no_realizada: "No se pudo realizar la acción."
   actual_password: "Contraseña actual"
   actualizacion_exitosa: "Actualización exitosa."
+  admin: Admin
   cedula_invalida: Lo sentimos esta cédula no es válida
   confirmar: Favor confirmar la operación
-  crear: Crear
+  create: Crear
   editar: Editar
   fecha_invalida: Fecha Inválida
   processing: Procesando...
