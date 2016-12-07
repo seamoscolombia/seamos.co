@@ -1,8 +1,14 @@
 #admin{
-  height: 100vh;
-  display: flex;
-  .col-md-4.col-md-offset-4{
-    margin: auto;
+  height: 90vh;
+  .admin-container{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    .panel-conainer{
+      margin: 0;
+    }
     .hr{
         margin: 12px 0;
     }
@@ -30,11 +36,11 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3b5998', endColorstr='#ff133783', GradientType=0);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
   &:hover, &:focus, &:active, &.active, &.disabled, &[disabled] {
-    color: #ffffff;
+    color: #ffffff !important;
     background-color: #133783 !important;
     *background-color: #102e6d !important;
   }
   &:active, &.active {
-    background-color: #0d2456 \9 !important;
+    background-color: #fffff \9 !important;
   }
 }
