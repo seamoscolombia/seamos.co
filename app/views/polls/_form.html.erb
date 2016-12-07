@@ -14,16 +14,16 @@
     <div class="field">
       <%= f.label :closing_date %>
       <input type="text" data-provide='datepicker' data-date-language="es"
-                 data-date-autoclose="true" data-date-format="yyyy/mm/dd" class="input-sm form-control" name="poll[closing_date]" />
+                  data-date-autoclose="true" data-date-format="yyyy/mm/dd"
+                  class="input-sm form-control" name="poll[closing_date]" />
     </div>
 
-    <div class="field">
-      <%= f.label t('.list_of_options') %>
-
+    <!-- <div class="field">
+      f.label t('.list_of_options') %>
       <button type="button" id="button_vote_types_attributes" class="btn btn-default">agregar</button>
       <div id="vote_types_attributes">
       </div>
-    </div>
+    </div> -->
 
     <%= f.label t('.secret_public') %>
     <div class=" field radio">

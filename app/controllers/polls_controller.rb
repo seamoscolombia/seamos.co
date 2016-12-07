@@ -22,24 +22,26 @@ class PollsController < ApplicationController
 
 
   def create
-    @poll = Poll.new poll_params
+    @poll = Poll.new http_params
     @poll.private = get_radiobutton_private
     @poll.usuario = current_user
     totals_hash = {}
+    Poll.transaction do
+        @poll.save!
+        @poll.vote_types.create!(name: "YES")
+        @poll.vote_types.create!(name: "NO")
+        @poll.vote_types.each do |vote_type|
+          totals_hash[vote_type.id] = 0
+        end
+        @poll.totals = totals_hash.to_s
+        @poll.save!
 
-    if @poll.save
-      @poll.vote_types.each do |vote_type|
-        totals_hash[vote_type.id] = 0
-      end
-      @poll.totals = totals_hash.to_s
-      @poll.save
-
-      publish_facebook(@poll)
-      flash[:success] = I18n.t(:accion_exitosa)
-      redirect_to polls_path
-    else
-      render :new
+        publish_facebook(@poll)
     end
+    flash[:success] = I18n.t(:accion_exitosa)
+    redirect_to dashboard_index_path
+  rescue Exception
+    render :new
   end
 
   def index
@@ -61,9 +63,6 @@ class PollsController < ApplicationController
 
   def new
     @poll = Poll.new
-    3.times do |index|
-      @poll.vote_types.build(name: "a"*index)
-    end
   end
 
   def show
@@ -100,9 +99,7 @@ class PollsController < ApplicationController
       )
     end
 
-
-
-    def poll_params
+    def http_params
       params.require(:poll).permit(
         :closing_date,
         :description,
