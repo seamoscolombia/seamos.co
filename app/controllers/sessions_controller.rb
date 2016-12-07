@@ -1,5 +1,10 @@
 class SessionsController < ApplicationController
   protect_from_forgery with: :exception, except: [:create]
+  include SessionsHelper
+
+
+  def new
+  end
 
   def create
     if request.format.json?
@@ -16,7 +21,13 @@ class SessionsController < ApplicationController
     @usuario = Usuario.find_by(uid: uid)
     respond_to do |format|
       if (@usuario)
-        format.html { redirect_to polls_path(@usuario)  }
+        format.html do
+          if session[:session_type] == 'web' && is_admin?
+            redirect_to dashboard_index_path
+          else
+            destroy
+          end
+        end
         format.json { render json: { authenticity_token: form_authenticity_token },status: :ok }
       else
         format.html { redirect_to new_usuario_path() }

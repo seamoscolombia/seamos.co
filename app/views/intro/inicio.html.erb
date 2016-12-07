@@ -1,9 +1,5 @@
 <div class="col-md-12">
   <%= image_tag "LogoSeamos.png", class: "center-block"%>
   <h1><%= t ".sign_in_invitation"%></h1>
-  <h2>
-    <% if current_user.nil? %>
-      <%= link_to t(".sign_in"), '/auth/facebook', class: "btn btn-default" %>
-    <%end%>
-  </h2>
+  
 </div>
