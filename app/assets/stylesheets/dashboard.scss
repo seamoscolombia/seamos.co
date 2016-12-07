@@ -1,3 +1,18 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#dashboard{
+  height: 90vh;
+  > div{
+    height: 100%;
+    .my-buttons-container{
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .btn{
+        padding: 50px 30px;
+      }
+    }
+  }
+}
