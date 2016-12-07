@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'intro#inicio'
 
   resources :photos, only: :create
@@ -14,6 +15,12 @@ Rails.application.routes.draw do
   resources :tipo_de_documentos, only: :index
   resources :votes, only: :create
 
+  scope '/admin' do
+    # get '/', to: 'sessions#new'
+    get '/', to: 'intro#index'
+    get 'validate-users', to: 'usuarios#index'
+    resources 'dashboard', only: :index
+  end
 
 
 end
