@@ -225,7 +225,8 @@ es:
       logout: Salir
 
   dashboard:
-    validate_users: Validar Usuarios
+    index:
+      validate_users: Validar Usuarios
 
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.

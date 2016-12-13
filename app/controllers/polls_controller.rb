@@ -52,8 +52,10 @@ class PollsController < ApplicationController
       @polls = Poll.all.order('closing_date ASC')
     when nil, "1"
       @polls = Poll.where("closing_date >= ?", Date.today)
-      @polls = @polls.select { |poll| poll unless current_user.already_voted?(poll)  }
-      @polls = @polls.last
+      @polls = @polls.select { |poll| poll unless current_user.already_voted?(poll) }
+      if @polls.length > 0
+        @polls = @polls.last
+      end
       # @polls = Poll.where("closing_date >= ?", Date.today)
       #ToDo remove ".last" in next iteration.
     when "2"
