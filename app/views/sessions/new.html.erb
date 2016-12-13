@@ -1,0 +1,23 @@
+<section id="seamos-login">
+  <hgroup>
+    <h1>Administración</h1>
+    <h3>By Seamos.co</h3>
+  </hgroup>
+
+  <%= form_for :session, url: sessions_path do |f| %>
+    <div class="group">
+      <%= f.email_field :email %><span class="highlight"></span><span class="bar"></span>
+      <label>Email</label>
+    </div>
+    <div class="group">
+      <%= f.password_field :password %><span class="highlight"></span><span class="bar"></span>
+      <label>Contraseña</label>
+    </div>
+    <button type="button" class="button buttonBlue">Ingresar
+      <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+    </button>
+  <% end %>
+  <footer>
+    <p>seamos inc</p>
+  </footer>
+</section>

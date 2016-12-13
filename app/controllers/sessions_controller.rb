@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     if request.format.json?
       uid = params[:uid]
       session[:fb_token] = params[:fb_token]
+      session[:session_type] = "mobile"
     else
       puts  request.env['omniauth.auth']
       uid = request.env['omniauth.auth']['uid']
@@ -24,6 +25,8 @@ class SessionsController < ApplicationController
         format.html do
           if session[:session_type] == 'web' && is_admin?
             redirect_to dashboard_index_path
+          elsif session[:session_type] == 'mobile'
+            redirect_to polls_path
           else
             destroy
           end
