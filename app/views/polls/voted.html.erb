@@ -7,12 +7,13 @@
             <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
               <h5><%= poll.title %></h5>
               <span class="text" ><%= poll.description[0..140] %> ...<span/>
-              <br><a href="#">Leer más</a>
+              <br> <%= link_to 'Leer más', poll_path(poll) %>
+
             </div>
             <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-              <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
+              <a href="<%= poll_path(poll) %>" class="mdl-button mdl-js-button mdl-js-ripple-effect">
                 <i class="material-icons ">keyboard_arrow_right</i>
-              </button>
+              </a>
             </div>
           <% end %>
         </div>
