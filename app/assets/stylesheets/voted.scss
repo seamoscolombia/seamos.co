@@ -1,6 +1,8 @@
 #voted-polls {
+    background-color: #DFE0E5;
+    height: 100vh;
     .mdl-card.mdl-cell.mdl-cell--12-col {
-      background: #DFE0E5;
+      background-color: inherit;;
     }
     color: #616161;
     .mdl-layout.is-small-screen .mdl-layout__header-row h3 {
@@ -119,7 +121,7 @@
       .section__text {
         flex-grow: 1;
         flex-shrink: 0;
-        padding-top: 8px;
+        padding-top: 30px;
         text-align: justify ;
 
         h5 {
