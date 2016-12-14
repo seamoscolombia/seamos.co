@@ -5,13 +5,14 @@ Rails.application.routes.draw do
   resources :photos, only: :create
   resources :usuarios , except: [:new, :show]
 
-  #ToDo ajax call on session
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/sessions', to: 'sessions#destroy', as: 'session'
   post '/sessions', to: 'sessions#create', format: 'json'
   get '/auth/sessions', to: 'sessions#error'
 
-  resources :polls, except: [:destroy, :update]
+  resources :polls, except: [:destroy, :update] do
+    get 'voted', on: :collection
+  end
   resources :tipo_de_documentos, only: :index
   resources :votes, only: :create
 

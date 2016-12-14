@@ -40,8 +40,14 @@ class PollsController < ApplicationController
     end
     flash[:success] = I18n.t(:accion_exitosa)
     redirect_to dashboard_index_path
+
   rescue Exception
     render :new
+  end
+
+  def voted
+    @polls = Poll.where("closing_date < ?", Date.today)
+    @polls = @polls.select { |poll| poll if current_user.already_voted?(poll) }
   end
 
   def index
