@@ -28,7 +28,7 @@ class PollsController < ApplicationController
     totals_hash = {}
     Poll.transaction do
         @poll.vote_types.build(name: "YES")
-        @poll.vote_types.build!(name: "NO")
+        @poll.vote_types.build(name: "NO")
         @poll.vote_types.each do |vote_type|
           totals_hash[vote_type.id] = 0
         end
