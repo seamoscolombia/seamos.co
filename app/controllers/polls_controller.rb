@@ -27,9 +27,8 @@ class PollsController < ApplicationController
     @poll.usuario = current_user
     totals_hash = {}
     Poll.transaction do
-        @poll.save!
-        @poll.vote_types.create!(name: "YES")
-        @poll.vote_types.create!(name: "NO")
+        @poll.vote_types.build(name: "YES")
+        @poll.vote_types.build!(name: "NO")
         @poll.vote_types.each do |vote_type|
           totals_hash[vote_type.id] = 0
         end
@@ -40,7 +39,9 @@ class PollsController < ApplicationController
     end
     flash[:success] = I18n.t(:accion_exitosa)
     redirect_to dashboard_index_path
-  rescue Exception
+  rescue Exception => e
+    logger.debug "ERROR POLL CREATION: #{e.inspect}"
+    logger.debug "#{e.backtrace}"
     render :new
   end
 
