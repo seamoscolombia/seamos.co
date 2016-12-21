@@ -92,7 +92,9 @@ class PollsController < ApplicationController
       user_graph = Koala::Facebook::API.new(session[:fb_token])
 
       tvtd_page_token = user_graph.get_page_access_token("#{Rails.application.secrets.tvtd_page_id}")
+      logger.debug "Token in publish_facebook: #{tvtd_page_token} "
       page_graph = Koala::Facebook::API.new(tvtd_page_token)
+      logger.debug "page_graph in publish_facebook: #{page_graph} "
 
       page_graph.put_connections(
         "#{Rails.application.secrets.tvtd_page_id}",
