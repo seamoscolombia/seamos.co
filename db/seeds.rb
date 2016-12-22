@@ -6,7 +6,7 @@ Role.create!(code: 'ciudadano')
 Role.create!(code: 'politico')
 Role.create!(code: 'administrador')
 
-user = Usuario.create!(primer_apellido: "Molina", segundo_apellido: "Orbe", nombres: "Jaime Santiago", tipo_de_documento_id: 1, numero_documento: "1113645710", fecha_expedicion: "2011-05-28", role_id: 3, uid: "10152902624895489", valido: false)
+# user = Usuario.create!(primer_apellido: "Molina", segundo_apellido: "Orbe", nombres: "Jaime Santiago", tipo_de_documento_id: 1, numero_documento: "1113645710", fecha_expedicion: "2011-05-28", role_id: 3, uid: "10152902624895489", valido: false)
 
 # poll = Poll.create!(
 #     title: Faker::Lorem.sentence,

@@ -22,6 +22,8 @@ erl_crash.dump
 .byebug_history
 /.idea
 
+# Ignore photos in public/uploads
+/public/uploads/*
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
