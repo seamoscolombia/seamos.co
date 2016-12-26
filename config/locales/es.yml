@@ -237,7 +237,6 @@ es:
       public: Pública
       secret_public: Indique si la propuesta tendrá votación anónima o pública.
       secret: Anónima
-
     index:
       "false": Pública
       filter: Filtrar
@@ -245,6 +244,7 @@ es:
         - Todas
         - Abiertas
         - Cerradas
+      no_polls_available: Seamos está en el proceso de definir cual será la próxima propuesta a discutir.
       "true": Anónima
     new:
       create: Crear

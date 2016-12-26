@@ -1,5 +1,11 @@
 <div id="polls-container" class="polls-container">
-  <%= render @polls%>
+  <% if @polls.length > 0 %>
+    <%= render @polls%>
+  <% else %>
+   <div>
+     <%= t '.no_polls_available' %>
+   </div>
+  <% end %>
 </div>
 <script type="text/javascript">
   var parent = document.getElementById("polls-container").parentElement
