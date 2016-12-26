@@ -55,7 +55,7 @@ class PollsController < ApplicationController
       @polls = Poll.where("closing_date >= ?", Date.today)
       @polls = @polls.select { |poll| poll unless current_user.already_voted?(poll) }
       if @polls.length > 0
-        @polls = @polls.last
+        @polls = [@polls.last]
       end
       # @polls = Poll.where("closing_date >= ?", Date.today)
       #ToDo remove ".last" in next iteration.
