@@ -1,5 +1,5 @@
 <div id="polls-container" class="polls-container">
-  <% if @polls.length > 0 %>
+  <% unless @polls.nil? %>
     <%= render @polls%>
   <% else %>
    <div>
