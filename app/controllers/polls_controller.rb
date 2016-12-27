@@ -86,6 +86,11 @@ class PollsController < ApplicationController
     end
   end
 
+  def voted
+    @polls = Poll.where("closing_date < ?", Date.today)
+    @polls = @polls.select { |poll| poll if current_user.already_voted?(poll) }
+  end
+
   private
 
     def publish_facebook(poll)
