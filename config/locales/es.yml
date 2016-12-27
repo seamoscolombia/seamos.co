@@ -264,6 +264,8 @@ es:
       "yes": "Apoyar"
     show:
       poll_results: Resultados de votación
+    voted:
+      no_voted_polls: Aún no ha votado por alguna propuesta.  
 
   sesion_usuarios:
     new:

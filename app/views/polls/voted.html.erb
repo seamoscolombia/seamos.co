@@ -3,17 +3,25 @@
     <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
       <div class="mdl-card mdl-cell mdl-cell--12-col">
         <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-          <% @polls.each do |poll|  %>
-            <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-              <h5><%= poll.title %></h5>
-              <span class="text" ><%= poll.description[0..140] %> ...<span/>
-              <br> <%= link_to 'Leer más', poll_path(poll) %>
+          <% if @polls.length > 0 %>
+            <% @polls.each do |poll|  %>
+              <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+                <h5><%= poll.title %></h5>
+                <span class="text" ><%= poll.description[0..140] %> ...<span/>
+                <br> <%= link_to 'Leer más', poll_path(poll) %>
 
-            </div>
-            <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
-              <a href="<%= poll_path(poll) %>" class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                <i class="material-icons ">keyboard_arrow_right</i>
-              </a>
+              </div>
+              <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+                <a href="<%= poll_path(poll) %>" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+                  <i class="material-icons ">keyboard_arrow_right</i>
+                </a>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="mdl-grid">
+                <div class="mdl-layout-spacer"></div>
+                  <%= t '.no_voted_polls' %>
+                <div class="mdl-layout-spacer"></div>
             </div>
           <% end %>
         </div>
