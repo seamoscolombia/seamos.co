@@ -1,0 +1,13 @@
+<div id="polls-container" class="polls-container">
+  <% if @polls.length > 0 %>
+    <%= render @polls%>
+  <% else %>
+   <div>
+     <%= t '.no_polls_available' %>
+   </div>
+  <% end %>
+</div>
+<script type="text/javascript">
+  var parent = document.getElementById("polls-container").parentElement
+  parent.style.padding = "0";
+</script>

@@ -9,6 +9,7 @@
 #  closing_date :date             not null
 #  usuario_id   :integer
 #  totals       :string
+#  url_image    :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
@@ -36,17 +37,22 @@ class PollsController < ApplicationController
         @poll.totals = totals_hash.to_s
         @poll.save!
 
-        publish_facebook(@poll)
+        # publish_facebook(@poll)
     end
     flash[:success] = I18n.t(:accion_exitosa)
     redirect_to dashboard_index_path
   rescue Exception => e
+    puts "ERROR POLL CREATION: #{e.inspect}"
     logger.debug "ERROR POLL CREATION: #{e.inspect}"
     logger.debug "#{e.backtrace}"
     render :new
   end
 
   def index
+    @polls = Poll.all
+  end
+
+  def last
     @polls_filter = params[:polls_filter_select]
     @polls_filter = "1"
     case @polls_filter
@@ -63,6 +69,7 @@ class PollsController < ApplicationController
     when "2"
       @polls = Poll.where("closing_date < ?", Date.today)
     end
+
   end
 
   def new
@@ -111,6 +118,8 @@ class PollsController < ApplicationController
       params.require(:poll).permit(
         :closing_date,
         :description,
+        :poll_image,
+        :poll_image_cache,
         :private,
         :title,
         {vote_types_attributes: [:name]}
