@@ -11,6 +11,7 @@
 #  totals       :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  url_image    :string
 #
 
 require 'test_helper'

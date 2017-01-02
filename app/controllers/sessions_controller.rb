@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
         end
         format.json { render json: { authenticity_token: form_authenticity_token },status: :ok }
       else
-        format.html { redirect_to new_usuario_path() }
+        format.html { redirect_to root_path }
         format.json { render json: { authenticity_token: form_authenticity_token },status: :unprocessable_entity }
       end
     end

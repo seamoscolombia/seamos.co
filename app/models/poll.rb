@@ -14,6 +14,8 @@
 #
 
 class Poll < ApplicationRecord
+  mount_uploader :poll_image, PollImageUploader
+
   belongs_to :usuario
   has_many :votes
   has_many :vote_types, inverse_of: :poll
@@ -23,9 +25,10 @@ class Poll < ApplicationRecord
   validates :title, presence: true
   validates :closing_date, presence: true
   validates :description, presence: true
+  validates :url_image, presence: true
 
   validate :closing_date_validation
-  
+
   def closed?
     closing_date < Date.today
   end

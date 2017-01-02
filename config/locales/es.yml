@@ -234,6 +234,7 @@ es:
       add: Agregar
       list_of_options: Lista de opciones
       new_option: Ingrese una opción
+      poll_image: Imagen de la propuesta
       public: Pública
       secret_public: Indique si la propuesta tendrá votación anónima o pública.
       secret: Anónima
@@ -265,7 +266,7 @@ es:
     show:
       poll_results: Resultados de votación
     voted:
-      no_voted_polls: Aún no ha votado por alguna propuesta.  
+      no_voted_polls: Aún no ha votado por alguna propuesta.
 
   sesion_usuarios:
     new:

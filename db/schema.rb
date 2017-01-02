@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161128194630) do
+ActiveRecord::Schema.define(version: 20170102145745) do
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20161128194630) do
     t.string   "totals"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.string   "url_image"
     t.index ["title"], name: "index_polls_on_title"
     t.index ["usuario_id"], name: "index_polls_on_usuario_id"
   end

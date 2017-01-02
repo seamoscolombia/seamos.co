@@ -2,13 +2,12 @@
 #
 # Table name: causes
 #
-#  id             :integer          not null, primary key
-#  description    :text             not null
-#  title          :string           not null
-#  state_cause_id :integer          not null
-#  usuario_id     :integer          not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id          :integer          not null, primary key
+#  description :text
+#  title       :string
+#  usuario_id  :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 require 'test_helper'

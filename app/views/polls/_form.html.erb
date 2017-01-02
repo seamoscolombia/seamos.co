@@ -1,4 +1,4 @@
-<%= form_for(poll) do |f| %>
+<%= form_for(poll, html: { multipart: true } ) do |f| %>
     <%= render 'shared/mensajes_de_error',  object: f.object %>
 
     <div class="field">
@@ -18,12 +18,12 @@
                   class="input-sm form-control" name="poll[closing_date]" />
     </div>
 
-    <!-- <div class="field">
-      f.label t('.list_of_options') %>
-      <button type="button" id="button_vote_types_attributes" class="btn btn-default">agregar</button>
-      <div id="vote_types_attributes">
-      </div>
-    </div> -->
+
+    <div class="field">
+     <%= f.label t('.poll_image') %>
+     <%= f.file_field :poll_image %>
+     <%= f.hidden_field :poll_image_cache %>
+   </div>
 
     <%= f.label t('.secret_public') %>
     <div class=" field radio">
