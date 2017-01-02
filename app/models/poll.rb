@@ -11,6 +11,8 @@
 #  totals       :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  url_image    :string
+#  poll_image   :string
 #
 
 class Poll < ApplicationRecord
@@ -25,7 +27,7 @@ class Poll < ApplicationRecord
   validates :title, presence: true
   validates :closing_date, presence: true
   validates :description, presence: true
-  validates :url_image, presence: true
+  validates :poll_image, presence: true
 
   validate :closing_date_validation
 

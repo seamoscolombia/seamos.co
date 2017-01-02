@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20170102145745) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "url_image"
+    t.string   "poll_image"
     t.index ["title"], name: "index_polls_on_title"
     t.index ["usuario_id"], name: "index_polls_on_usuario_id"
   end
