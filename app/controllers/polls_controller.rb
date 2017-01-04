@@ -18,7 +18,7 @@ class PollsController < ApplicationController
   include SessionsHelper
 
   before_action :validate_poll_closed?, only: :show
-  before_action :validate_session
+  before_action :validate_session, except: :index
   before_action :validate_admin_user, except: [:index, :show]
 
 
@@ -49,6 +49,12 @@ class PollsController < ApplicationController
   end
 
   def index
+    if request.format.json?
+      @polls = Poll.where("closing_date >= ?", Date.today).last(5)
+    end
+  end
+
+  def index_admin
     @polls = Poll.all
   end
 

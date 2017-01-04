@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   scope '/admin' do
     # get '/', to: 'sessions#new'
+    get 'polls', to:  'polls#index_admin', as: :admin_polls
     get '/', to: 'intro#index'
     get 'validate-users', to: 'usuarios#index'
     resources 'dashboard', only: :index
