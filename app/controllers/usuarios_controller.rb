@@ -1,20 +1,22 @@
 class UsuariosController < ApplicationController
   include SessionsHelper
+  before_action :validate_session, only: :already_voted
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
   before_action :validate_administrator, only: :index
 
-  # GET /usuarios
-  # GET /usuarios.json
+  def already_voted
+    render json: {
+      already_voted: current_user.already_voted?(params[:id])
+    }, status: :ok
+  end
+
   def index
     @usuarios = Usuario.where(valido: false)
   end
 
-  # GET /usuarios/1
-  # GET /usuarios/1.json
   def show
   end
 
-  # GET /usuarios/new
   def new
     @usuario = Usuario.new()
   end

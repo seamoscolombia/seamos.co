@@ -50,7 +50,7 @@ class PollsController < ApplicationController
 
   def index
     if request.format.json?
-      @polls = Poll.where("closing_date >= ?", Date.today).last(5)
+      @polls = Poll.where("closing_date >= ?", Date.today).includes(:vote_types).last(5)
     end
   end
 

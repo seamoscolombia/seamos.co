@@ -7,5 +7,9 @@ json.polls do
     json.description poll.description
     json.closing_date poll.closing_date
     json.poll_image "#{url}#{poll.poll_image_url}"
+    json.vote_types poll.vote_types do |vt|
+      json.id vt.id
+      json.name vt.name
+    end
   end
 end
