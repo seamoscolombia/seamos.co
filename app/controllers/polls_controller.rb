@@ -49,10 +49,18 @@ class PollsController < ApplicationController
   end
 
   def index
-    if request.format.json?
-      @polls = Poll.where("closing_date >= ?", Date.today).includes(:vote_types).last(5)
-      if current_user
-        @polls = @polls.select { |poll| poll unless current_user.already_voted?(poll) }
+
+    respond_to do |format|
+      format.html do
+        @polls = Poll.all.last(10)
+        @polls
+      end
+      format.json do
+        @polls = Poll.where("closing_date >= ?", Date.today).includes(:vote_types).last(5)
+        if current_user
+          @polls = @polls.select { |poll| poll unless current_user.already_voted?(poll) }
+        end
+        @polls
       end
     end
   end
@@ -89,16 +97,21 @@ class PollsController < ApplicationController
     @poll = Poll.find_by(id: params[:id])
     if @poll.private?
       totals_hash = eval(@poll.totals)
-      @votes_code = {}
+      @vote_types = {}
       totals_hash.each do |k,v|
         vote_type = VoteType.find_by(id: k)
-        @votes_code[vote_type.name] = v
+        @vote_types[vote_type.name] = v
       end
     else
-      @votes_code = @poll.votes.joins(:vote_type).
+      @vote_types = @poll.votes.joins(:vote_type).
           group("vote_types.name").
           count("vote_types.id")
-
+    end
+    respond_to do |format|
+      format.html {}
+      format.json {
+        @vote_types = @vote_types.to_a.map{|v| {name: "#{v[0]} \n#{v[1]}", votes: v[1]}}
+        render json: { vote_types: @vote_types }}
     end
   end
 
