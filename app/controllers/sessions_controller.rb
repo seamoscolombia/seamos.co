@@ -41,7 +41,10 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:uid] = session[:fb_token] = session[:fb_image] = session[:session_type] = nil
-    redirect_to root_path
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.json { render json: {} , stats: :ok }
+    end
   end
 
   def error
