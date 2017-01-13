@@ -294,7 +294,7 @@ es:
   accion_no_realizada: "No se pudo realizar la acción."
   actual_password: "Contraseña actual"
   actualizacion_exitosa: "Actualización exitosa."
-  admin: Admin
+  admin: Menú administración
   cedula_invalida: Lo sentimos esta cédula no es válida
   confirmar: Favor confirmar la operación
   create: Crear
