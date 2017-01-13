@@ -1,5 +1,5 @@
 json.polls do
-  url = Rails.env.prod? ? '' : 'http://localhost:3000'
+  url = Rails.env.production? ? '' : 'http://localhost:3000'
 
   json.array! @polls do |poll|
     json.id poll.id
