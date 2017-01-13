@@ -33,12 +33,13 @@ class VotesController < ApplicationController
         totals[vote_type.id] += 1
         @poll.totals = totals
         @poll.save!
-      end
+        vote = current_user.votes.build( poll_id: @poll.id )
+      else
         vote = current_user.votes.build(
             poll_id: @poll.id,
             vote_type: vote_type
         )
-
+      end
         vote_save_fb vote
       end
     rescue ActiveRecord::RecordInvalid
