@@ -49,10 +49,9 @@ class PollsController < ApplicationController
   end
 
   def index
-
     respond_to do |format|
       format.html do
-        @polls = Poll.all.last(10)
+        @polls = Poll.order('id desc').all.last(10)
         @polls
       end
       format.json do
@@ -66,7 +65,8 @@ class PollsController < ApplicationController
   end
 
   def index_admin
-    @polls = Poll.all
+    @polls = Poll.order('id desc').all.last(10)
+    render :index
   end
 
   def last
