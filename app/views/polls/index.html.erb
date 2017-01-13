@@ -1,8 +1,6 @@
 <div id="polls-index">
   <% if @polls.length > 0 %>
-    <ul class="event-list">
-      <%= render @polls%>
-    </ul>
+    <%= render @polls%>
   <% else %>
    <div>
      <%= t '.no_polls_available' %>

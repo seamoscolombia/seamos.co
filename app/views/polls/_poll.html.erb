@@ -1,10 +1,37 @@
-<li>
-  <img alt="Independence Day" src="<%= poll.poll_image %>" />
-  <div class="info">
-  	<h2 class="title"><%= poll.title %></h2>
-  	<p class="desc"><%= poll.description %></p>
-    <ul>
-			<li ><span class="fa fa-globe"><%= poll.closing_date %></span></li>
-		</ul>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-12 center">
+        <h4>
+          <strong >
+            <%= link_to poll.title, poll_path(poll.id), style: "color: #393939;" %>
+          </strong>
+        </h4>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-3" >
+        <a href="#"  >
+            <img src="<%= poll.poll_image %>"  style='width: 180px; ' alt="">
+        </a>
+      </div>
+      <div class="col-md-8">
+        <p>
+          <%= poll.description %>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <p></p>
+        <p>
+          <i class="icon-calendar"></i> <%= poll.closing_date %>
+        </p>
+      </div>
+    </div>
   </div>
-</li>
+</div>
+<hr>
