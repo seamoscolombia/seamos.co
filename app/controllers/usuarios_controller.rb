@@ -11,7 +11,9 @@ class UsuariosController < ApplicationController
   end
 
   def index
-    @usuarios = Usuario.where(valido: false)
+    @usuarios = Usuario.where("valido= ? and role_id!= ?", false,
+        Role.find_by(code: "administrador")
+    )
   end
 
   def show
