@@ -201,8 +201,10 @@ es:
     attributes:
       poll:
         title: Título
-        description: Descripción
         closing_date: Fecha de cierre
+        delete_poll: Borrar Propuesta
+        description: Descripción
+        edit_poll: Editar Propuesta
         totals: Totales
         private: Secreto
       usuario:
@@ -232,6 +234,7 @@ es:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
     form:
       add: Agregar
+      has_image: La propuesta ya tiene la imagen %{filename}. Si desea cambiar, por favor escoja otra. En caso contrario dejarla vacia.
       list_of_options: Lista de opciones
       new_option: Ingrese una opción
       poll_image: Imagen de la propuesta
@@ -251,6 +254,7 @@ es:
       create: Crear
     poll:
       blank: En blanco
+      confirmation: ¿Está seguro de borrar la propuesta?
       "false": Votación Pública.
       fb_publish:
         no_button: No, gracias

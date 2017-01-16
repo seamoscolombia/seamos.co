@@ -48,6 +48,16 @@ class PollsController < ApplicationController
     render :new
   end
 
+  def destroy
+    @poll = Poll.find_by(id: params[:id])
+    @poll.destroy
+    redirect_to admin_polls_path
+  end
+
+  def edit
+    @poll = Poll.find_by(id: params[:id])
+  end
+
   def index
     respond_to do |format|
       format.html do
@@ -112,6 +122,16 @@ class PollsController < ApplicationController
       format.json {
         @vote_types = @vote_types.to_a.map{|v| {name: "#{v[0]} \n#{v[1]}", votes: v[1]}}
         render json: { vote_types: @vote_types }}
+    end
+  end
+
+  def update
+    @poll = Poll.find_by(id: params[:id])
+    get_radiobutton_private
+    if @poll.update(http_params)
+      redirect_to dashboard_index_path
+    else
+      render :edit
     end
   end
 

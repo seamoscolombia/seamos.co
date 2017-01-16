@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-md-3" >
         <a href="#"  >
-            <img src="<%= poll.poll_image %>"  style='width: 180px; ' alt="">
+          <img src="<%= poll.poll_image %>"  style='width: 180px; ' alt="">
         </a>
       </div>
       <div class="col-md-8">
@@ -26,10 +26,15 @@
     </div>
     <div class="row">
       <div class="col-md-8">
-        <p></p>
-        <p>
-          <i class="icon-calendar"></i> <%= poll.closing_date %>
-        </p>
+        <ul class="list-inline list-unstyled">
+          <li><span><i class="icon-calendar"></i> <%= poll.closing_date %></span></li>
+          <% if is_admin? %>
+            <li>|</li>
+            <span> <%= link_to t('.edit_poll'), edit_poll_path(poll.id), class: "btn btn-default" %></span>
+            <li>|</li>
+            <span> <%= link_to t('.delete_poll'), poll, class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></span>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>

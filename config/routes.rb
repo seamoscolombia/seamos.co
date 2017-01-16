@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create', format: 'json'
   get '/auth/sessions', to: 'sessions#error'
 
-  resources :polls, except: [:destroy, :update] do
+  resources :polls do
     get 'last', on: :collection
     get 'voted', on: :collection
   end

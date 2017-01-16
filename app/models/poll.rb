@@ -27,7 +27,7 @@ class Poll < ApplicationRecord
   validates :title, presence: true
   validates :closing_date, presence: true
   validates :description, presence: true
-  validates :poll_image, presence: true
+  validates :poll_image, presence: true, on: :create
 
   validate :closing_date_validation
 

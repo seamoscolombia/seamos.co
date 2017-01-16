@@ -13,14 +13,24 @@
 
     <div class="field">
       <%= f.label :closing_date %>
-      <input type="text" data-provide='datepicker' data-date-language="es"
-                  data-date-autoclose="true" data-date-format="yyyy/mm/dd"
-                  class="input-sm form-control" name="poll[closing_date]" />
+      <input
+        type="text"
+        value="<%= poll.closing_date %>"
+        data-provide='datepicker' data-date-language="es"
+        data-date-autoclose="true" data-date-format="yyyy/mm/dd"
+        class="input-sm form-control" name="poll[closing_date]"
+
+      />
     </div>
 
 
     <div class="field">
      <%= f.label t('.poll_image') %>
+     <% if poll.poll_image.file %>
+      <p id="has_image">
+        <%= t('.has_image', filename: poll.poll_image.file.filename) %>
+      </p>
+     <% end %>
      <%= f.file_field :poll_image %>
      <%= f.hidden_field :poll_image_cache %>
    </div>
