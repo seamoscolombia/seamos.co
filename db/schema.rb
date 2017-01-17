@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170102145745) do
+ActiveRecord::Schema.define(version: 20170116221030) do
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 20170102145745) do
     t.integer "divipol_id", limit: 8
     t.index ["divipol_id"], name: "index_coldocuments_on_divipol_id"
     t.index ["doc_num"], name: "index_coldocuments_on_doc_num"
+  end
+
+  create_table "debates", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "published",  default: false
+    t.integer  "poll_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["poll_id"], name: "index_debates_on_poll_id"
   end
 
   create_table "departamentos", force: :cascade do |t|

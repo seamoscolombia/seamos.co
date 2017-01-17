@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'debates/new'
+
+  get 'debates/create'
+
+  get 'debates/destroy'
+
+  get 'debates/show'
+
   root 'intro#inicio'
 
   resources :photos, only: :create
