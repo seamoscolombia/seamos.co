@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'debates/new'
-
-  get 'debates/create'
-
-  get 'debates/destroy'
-
-  get 'debates/show'
-
   root 'intro#inicio'
 
   resources :photos, only: :create
@@ -23,6 +15,7 @@ Rails.application.routes.draw do
   resources :polls do
     get 'last', on: :collection
     get 'voted', on: :collection
+    resources :debates, on: :collection
   end
   resources :tipo_de_documentos, only: :index
   resources :votes, only: :create

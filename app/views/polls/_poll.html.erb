@@ -32,6 +32,8 @@
             <li>|</li>
             <span> <%= link_to t('.edit_poll'), edit_poll_path(poll.id), class: "btn btn-default" %></span>
             <li>|</li>
+            <span> <%= link_to t('.poll_debates'), poll_debates_path(poll.id), class: "btn btn-default" %></span>
+            <li>|</li>
             <span> <%= link_to t('.delete_poll'), poll, class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></span>
           <% end %>
         </ul>

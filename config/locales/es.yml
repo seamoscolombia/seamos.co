@@ -205,6 +205,7 @@ es:
         delete_poll: Borrar Propuesta
         description: Descripción
         edit_poll: Editar Propuesta
+        poll_debates: Debates
         totals: Totales
         private: Secreto
       usuario:
@@ -229,7 +230,11 @@ es:
   dashboard:
     index:
       validate_users: Validar Usuarios
-
+  debates:
+    index:
+      add_debate: Añadir debate
+      poll: Propuesta
+      no_debates_available: No hay debates para esta Propuesta.
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
     form:
