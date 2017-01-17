@@ -2,6 +2,7 @@ class DebatesController < ApplicationController
   before_action :get_poll,
 
   def create
+    
   end
 
   def destroy

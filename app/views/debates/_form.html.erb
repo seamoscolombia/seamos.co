@@ -6,6 +6,11 @@
       <%= f.text_field :title, class: 'form-control' %>
     </div>
 
+    <%= f.fields_for :question do |q| %>
+      <%= q.label :description %>
+      <%= q.text_field :description %><br>
+    <% end %>
+
     <div class="actions">
       <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
     </div>
@@ -18,7 +23,7 @@
     var childrenCount = optionsContainer.children().length;
     // #ToDo add DELETE option && error takes previous values
     var myHTML = `<input type='text' placeholder='<%= t('.new_option')%>' name='poll[vote_types_attributes][${childrenCount}][name]' id='poll_vote_types_attributes_${childrenCount}_name'>`;
-
+                //<input type="text" placeholder='<%= t('.new_option')%>' name="debate[question][description]" id="debate_question_description">
     optionsContainer.append(myHTML);
   }
 </script>
