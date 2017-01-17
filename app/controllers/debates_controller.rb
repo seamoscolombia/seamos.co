@@ -1,6 +1,4 @@
 class DebatesController < ApplicationController
-  def new
-  end
   before_action :get_poll,
 
   def create
@@ -10,6 +8,10 @@ class DebatesController < ApplicationController
   end
 
   def index
+  end
+
+  def new
+    @debate = Debate.new(poll_id: @poll.id)
   end
 
   def show

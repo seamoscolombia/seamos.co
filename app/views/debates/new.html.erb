@@ -1,2 +1,5 @@
-<h1>Debates#new</h1>
-<p>Find me in app/views/debates/new.html.erb</p>
+<h1><%= t ('.create')%> <%= Debate.model_name.human %></h1>
+
+<div class="col-md-6 col-md-offset-3">
+  <%= render 'form', debate: @debate, poll: @poll %>
+</div>
