@@ -6,10 +6,16 @@
       <%= f.text_field :title, class: 'form-control' %>
     </div>
 
-    <%= f.fields_for :question do |q| %>
-      <%= q.label :description %>
-      <%= q.text_field :description %><br>
-    <% end %>
+     <!-- f.fields_for :question do |q| %> -->
+       <!-- q.label :description %> -->
+       <!-- q.text_field :description %><br> -->
+     <!-- end %> -->
+  
+    <label> Descripción</label>
+
+    <button type="button" id="button_questions_attributes" class="btn btn-default">agregar</button>
+    <div id="questions_attributes">
+    </div>
 
     <div class="actions">
       <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
@@ -18,11 +24,18 @@
 <% end %>
 
 <script type="text/javascript">
-  function addOption (){
-    var optionsContainer = $("#vote_types_attributes");
+  function addOptionQuestion (){
+    var optionsContainer = $("#questions_attributes");
     var childrenCount = optionsContainer.children().length;
     // #ToDo add DELETE option && error takes previous values
-    var myHTML = `<input type='text' placeholder='<%= t('.new_option')%>' name='poll[vote_types_attributes][${childrenCount}][name]' id='poll_vote_types_attributes_${childrenCount}_name'>`;
+    if (childrenCount > 3) {
+      alert("Solo se permiten maximo hasta 4 preguntas");
+      $('#button_questions_attributes').prop("disabled",true);
+    } else if (childrenCount == 2) {
+      $('#button_questions_attributes').prop("disabled",true);
+    }
+    $('#button_questions_attributes').prop("disabled",false);
+    var myHTML = `<input type='text' placeholder='<%= t('.new_option')%>' name='debate[question][${childrenCount}][question]' id='debate_questions_attributes_${childrenCount}_description'>`;
                 //<input type="text" placeholder='<%= t('.new_option')%>' name="debate[question][description]" id="debate_question_description">
     optionsContainer.append(myHTML);
   }

@@ -235,6 +235,8 @@ es:
       add_debate: Añadir debate
       poll: Propuesta
       no_debates_available: No hay debates para esta Propuesta.
+    form:
+      new_option: Escriba una pregunta para el debate
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
     form:
