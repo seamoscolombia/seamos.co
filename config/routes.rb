@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   resources :polls do
     get 'last', on: :collection
     get 'voted', on: :collection
-    resources :debates, on: :collection
+    resources :debates, on: :collection #, except: :create
+    # post 'debates', to: 'debates#create'
   end
   resources :tipo_de_documentos, only: :index
   resources :votes, only: :create

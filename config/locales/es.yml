@@ -215,7 +215,16 @@ es:
         tipo_de_documento: 'Tipo de documento'
     models:
         poll: Propuesta
-
+    errors:
+      models:
+        debate:
+          attributes:
+            poll:
+             required: requerido una Propuesta como Padre
+        question:
+          attributes:
+            debate:
+              required: descripción requerido en preguntas de Debate
   intro:
     inicio:
       sign_in_invitation: "¡Te invitamos, Regístrate!"
@@ -236,6 +245,7 @@ es:
       poll: Propuesta
       no_debates_available: No hay debates para esta Propuesta.
     form:
+      delete_option: Borrar
       new_option: Escriba una pregunta para el debate
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
