@@ -12,5 +12,5 @@
 class VoteType < ApplicationRecord
   validates :name, presence: true
   belongs_to :poll, inverse_of: :vote_types
- validates_presence_of :poll
+  validates_presence_of :poll
 end
