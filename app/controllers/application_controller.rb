@@ -3,7 +3,10 @@ class ApplicationController < ActionController::Base
 
   def validate_session
     if current_user.nil?
-      redirect_to root_path
+      respond_to do |format|
+       format.html { redirect_to root_path }
+       format.json { render json: {}, status: :unauthorized }
+     end 
     end
   end
 end
