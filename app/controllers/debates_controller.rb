@@ -1,6 +1,20 @@
 class DebatesController < ApplicationController
   before_action :get_poll
-
+  # { 
+  #  "debate": {
+  #     "title": "Debate 1",
+  #     "poll_id": "5",
+  #     "questions_attributes": {
+  #       "0": {
+  #         "description": "A"
+  #       },
+  #       "1": {
+  #         "description":"B"
+  #       }
+  #     }
+  #   },
+  #   "poll_id":"5"
+  # }
   def create
     Debate.create!(http_params)
     #ToDo if statement
