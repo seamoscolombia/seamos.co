@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170116221030) do
+ActiveRecord::Schema.define(version: 20170117203930) do
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -78,6 +78,14 @@ ActiveRecord::Schema.define(version: 20170116221030) do
     t.string   "poll_image"
     t.index ["title"], name: "index_polls_on_title"
     t.index ["usuario_id"], name: "index_polls_on_usuario_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "description", null: false
+    t.integer  "debate_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["debate_id"], name: "index_questions_on_debate_id"
   end
 
   create_table "roles", force: :cascade do |t|
