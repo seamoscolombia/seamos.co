@@ -247,6 +247,13 @@ es:
     form:
       delete_option: Borrar
       new_option: Escriba una pregunta para el debate
+    debate:
+      published_debate: debate publicado
+      unpublished_debate: debate oculto
+    edit:
+      publish_debate: publicar debate
+      # p_email: Correo electronico del creador:
+      unpublish_debate: ocultar debate
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
     form:
