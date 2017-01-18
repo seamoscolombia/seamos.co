@@ -1,15 +1,17 @@
 # == Schema Information
 #
-# Table name: questions
+# Table name: debate_votes
 #
 #  id          :integer          not null, primary key
-#  description :string           not null
+#  question_id :integer
+#  usuario_id  :integer
 #  debate_id   :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
-class Question < ApplicationRecord
+class DebateVote < ApplicationRecord
   belongs_to :debate
-  validates :description, presence: true
+  belongs_to :usuario
+  belongs_to :question
 end

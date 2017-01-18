@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117203930) do
+ActiveRecord::Schema.define(version: 20170118200512) do
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -28,13 +28,26 @@ ActiveRecord::Schema.define(version: 20170117203930) do
     t.index ["doc_num"], name: "index_coldocuments_on_doc_num"
   end
 
+  create_table "debate_votes", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "usuario_id"
+    t.integer  "debate_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["debate_id"], name: "index_debate_votes_on_debate_id"
+    t.index ["question_id"], name: "index_debate_votes_on_question_id"
+    t.index ["usuario_id"], name: "index_debate_votes_on_usuario_id"
+  end
+
   create_table "debates", force: :cascade do |t|
     t.string   "title"
     t.boolean  "published",  default: false
     t.integer  "poll_id"
+    t.integer  "usuario_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["poll_id"], name: "index_debates_on_poll_id"
+    t.index ["usuario_id"], name: "index_debates_on_usuario_id"
   end
 
   create_table "departamentos", force: :cascade do |t|
