@@ -4,7 +4,7 @@
     <div class="android-wear-band">
       <div class="android-wear-band-text">
         <div class="mdl-typography--display-2 mdl-typography--font-thin">
-          <%= link_to '/admin', class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
+          <%= link_to admin_polls_path, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
             <i class="material-icons">navigate_before</i>
           <% end %>
           <%= t '.poll' %>
@@ -29,7 +29,7 @@
   </div>
 </div>
 
-<div id="polls-index">
+<div style="max-width: 500px;">
   <% if @debates.length > 0 %>
     <%= render @debates%>
   <% end %>
