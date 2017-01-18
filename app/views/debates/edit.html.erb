@@ -7,7 +7,8 @@
           <%= link_to poll_debates_path(@debate.poll), class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
             <i class="material-icons">navigate_before</i>
           <% end %>
-          <%= t('.p_email')%> <%= debate.usuario.primer_apellido %>
+          <span>   <%= t('.created_by')%> <%= @debate.usuario.primer_apellido %></span>
+          <br>
           <%= link_to publish_debate_path(@debate), class: 'mdl-button mdl-js-button mdl-button--raised', method: :patch do %>
               <%= @debate.published ? t('.unpublish_debate') : t('.publish_debate')  %>
               <i class="material-icons">playlist_add_check</i>

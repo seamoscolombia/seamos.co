@@ -251,6 +251,7 @@ es:
       published_debate: debate publicado
       unpublished_debate: debate oculto
     edit:
+      created_by: 'Creador: '
       publish_debate: publicar debate
       # p_email: Correo electronico del creador:
       unpublish_debate: ocultar debate
