@@ -7,7 +7,7 @@
     </div>
 
     <%= f.hidden_field(:poll_id) %>
-
+    <input type="hidden" value="<%= current_user.uid %>" name="debate[usuario_uid]" id="debate_usuario_uid">
 
     <label> Descripción</label>
 
