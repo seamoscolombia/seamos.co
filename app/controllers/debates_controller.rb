@@ -48,7 +48,14 @@ class DebatesController < ApplicationController
   end
 
   def index
-    @debates = Debate.where(poll_id: @poll.id)
+    respond_to do |format|
+      format.html {
+        @debates = Debate.where(poll_id: @poll.id)
+      }
+      format.json {
+        @debates = Debate.where('poll_id= ? AND published= ?', @poll.id, true)
+      }
+    end
   end
 
   def publish
@@ -60,6 +67,7 @@ class DebatesController < ApplicationController
       redirect_to edit_poll_debate_path debate
     end
   end
+
   def new
     @debate = Debate.new(poll_id: @poll.id)
   end
