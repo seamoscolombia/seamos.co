@@ -41,6 +41,7 @@ class UsuariosController < ApplicationController
         format.html { redirect_to polls_path, notice: I18n.t(:success) }
         format.json { render :show, status: :created, location: usuarios_url(@usuario) }
       else
+        logger.debug "QQQQQ: #{@usuario.errors.messages}"
         format.html { render :new }
         format.json { render json: @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } }.first, status: :unprocessable_entity }
       end
