@@ -1,0 +1,60 @@
+<%= form_for [poll, debate] do |f| %>
+    <%= render 'shared/mensajes_de_error',  object: f.object %>
+
+    <div class="field">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+
+    <%= f.hidden_field(:poll_id) %>
+    <input type="hidden" value="<%= current_user.uid %>" name="debate[usuario_uid]" id="debate_usuario_uid">
+
+    <label> Descripción</label>
+
+    <button type="button" id="button_questions_attributes" class="btn btn-default">agregar</button>
+    <br>
+    <br>
+    <div id="questions_attributes">
+    </div>
+
+    <br>
+    <div class="actions">
+      <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
+    </div>
+
+<% end %>
+
+<script type="text/javascript">
+  function deleteQuestion(self){
+    self.parentElement.parentElement.remove();
+    $('#button_questions_attributes').prop("disabled",false);
+  }
+  function addOptionQuestion (){
+    var optionsContainer = $("#questions_attributes");
+    var childrenCount = optionsContainer.children().length;
+    var myHTML = `
+      <div class="input-group" style="margin-bottom: 15px" >
+        <input type='text' class="form-control" placeholder='<%= t('.new_option')%>' name='debate[questions_attributes][${childrenCount}][description]' id='debate_questions_attributes_${childrenCount}_description'>
+        <span class="input-group-btn">
+          <button
+            onclick="deleteQuestion(this)"
+            class="btn btn-danger"
+            type="button"
+          >
+            <%= t('.delete_option')%>
+          </button>
+        </span>
+      </div>
+    `;
+    if (childrenCount > 3) {
+      alert("Solo se permiten maximo hasta 4 preguntas");
+      $('#button_questions_attributes').prop("disabled",true);
+    } else if (childrenCount < 2) {
+      myHTML = ` <input type='text' class="form-control" placeholder='<%= t('.new_option')%>' name='debate[questions_attributes][${childrenCount}][description]' id='debate_questions_attributes_${childrenCount}_description'> `;
+      optionsContainer.append(myHTML);
+    } else {
+      optionsContainer.append(myHTML);
+    }
+  }
+  addOptionQuestion(); addOptionQuestion();
+</script>

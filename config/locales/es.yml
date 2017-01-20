@@ -205,6 +205,7 @@ es:
         delete_poll: Borrar Propuesta
         description: Descripción
         edit_poll: Editar Propuesta
+        poll_debates: Debates
         totals: Totales
         private: Secreto
       usuario:
@@ -214,7 +215,16 @@ es:
         tipo_de_documento: 'Tipo de documento'
     models:
         poll: Propuesta
-
+    errors:
+      models:
+        debate:
+          attributes:
+            poll:
+             required: requerido una Propuesta como Padre
+        question:
+          attributes:
+            debate:
+              required: descripción requerido en preguntas de Debate
   intro:
     inicio:
       sign_in_invitation: "¡Te invitamos, Regístrate!"
@@ -229,7 +239,22 @@ es:
   dashboard:
     index:
       validate_users: Validar Usuarios
-
+  debates:
+    index:
+      add_debate: Añadir debate
+      poll: Propuesta
+      no_debates_available: No hay debates para esta Propuesta.
+    form:
+      delete_option: Borrar
+      new_option: Escriba una pregunta para el debate
+    debate:
+      published_debate: debate publicado
+      unpublished_debate: debate oculto
+    edit:
+      created_by: 'Creador: '
+      publish_debate: publicar debate
+      # p_email: Correo electronico del creador:
+      unpublish_debate: ocultar debate
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
     form:

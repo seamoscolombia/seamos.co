@@ -12,9 +12,13 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create', format: 'json'
   get '/auth/sessions', to: 'sessions#error'
 
+
+  patch 'debate/:id', to: 'debates#publish', as: :publish_debate
+
   resources :polls do
     get 'last', on: :collection
     get 'voted', on: :collection
+    resources :debates, on: :collection #, except: :create
   end
   resources :tipo_de_documentos, only: :index
   resources :votes, only: :create
