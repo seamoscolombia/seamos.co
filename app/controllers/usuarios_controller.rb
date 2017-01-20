@@ -36,9 +36,8 @@ class UsuariosController < ApplicationController
     @usuario.role = Role.find_by(code: 'ciudadano')
     @usuario.uid = session[:uid]
 
+    @usuario.document_photo_id = params[:photo_id]
     respond_to do |format|
-
-      @usuario.document_photo_id = params[:photo_id]
       format.html do
         if @usuario.save
           redirect_to polls_path, notice: I18n.t(:success)
@@ -53,11 +52,11 @@ class UsuariosController < ApplicationController
           render :show, status: :created, location: usuarios_url(@usuario)
         else
           logger.debug "Create User Error: #{@usuario.errors.messages}"
-          render json: @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } }.first, status: :unprocessable_entity }
+          render json: @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } }.first, status: :unprocessable_entity 
         end
       end
-
     end
+
   end
 
   def update
