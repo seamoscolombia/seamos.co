@@ -19,7 +19,7 @@ class PollsController < ApplicationController
 
   before_action :validate_poll_closed?, only: :show
   before_action :validate_session, except: :index
-  before_action :validate_admin_user, except: [:index, :show]
+  before_action :validate_admin_user, except: [:index, :show, :voted]
 
 
   def create
@@ -139,10 +139,7 @@ class PollsController < ApplicationController
     @polls = current_user.voted_polls.last(5)
     respond_to do |format|
       format.html { @polls }
-      format.json {
-        logger.debug "Voted Polls: #{@polls}"
-        @polls
-      }
+      format.json { @polls }
     end
   end
 
