@@ -139,7 +139,10 @@ class PollsController < ApplicationController
     @polls = current_user.voted_polls.last(5)
     respond_to do |format|
       format.html { @polls }
-      format.json { @polls }
+      format.json {
+        logger.debug "Voted Polls: #{@polls}"
+        @polls
+      }
     end
   end
 
