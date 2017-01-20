@@ -35,16 +35,28 @@ class UsuariosController < ApplicationController
     @usuario.valido = false
     @usuario.role = Role.find_by(code: 'ciudadano')
     @usuario.uid = session[:uid]
+
     respond_to do |format|
+
       @usuario.document_photo_id = params[:photo_id]
-      if @usuario.save
-        format.html { redirect_to polls_path, notice: I18n.t(:success) }
-        format.json { render :show, status: :created, location: usuarios_url(@usuario) }
-      else
-        logger.debug "QQQQQ: #{@usuario.errors.messages}"
-        format.html { render :new }
-        format.json { render json: @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } }.first, status: :unprocessable_entity }
+      format.html do
+        if @usuario.save
+          redirect_to polls_path, notice: I18n.t(:success)
+        else
+          render :new
+        end
       end
+
+      format.json do
+        date = Date.strptime("8/19/2010", "%m/%d/%Y")
+        if @usuario.save
+          render :show, status: :created, location: usuarios_url(@usuario)
+        else
+          logger.debug "Create User Error: #{@usuario.errors.messages}"
+          render json: @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } }.first, status: :unprocessable_entity }
+        end
+      end
+
     end
   end
 
