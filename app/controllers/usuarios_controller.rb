@@ -47,12 +47,13 @@ class UsuariosController < ApplicationController
       end
 
       format.json do
-        date = Date.strptime("8/19/2010", "%m/%d/%Y")
+        fecha_expedicion = Date.strptime(@usuario.fecha_expedicion, "%m/%d/%Y")
+        @usuario.fecha_expedicion = fecha_expedicion
         if @usuario.save
           render :show, status: :created, location: usuarios_url(@usuario)
         else
           logger.debug "Create User Error: #{@usuario.errors.messages}"
-          render json: @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } }.first, status: :unprocessable_entity 
+          render json: @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } }.first, status: :unprocessable_entity
         end
       end
     end
