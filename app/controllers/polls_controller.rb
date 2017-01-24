@@ -106,6 +106,7 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find_by(id: params[:id])
+    chart_type = 'pie'
     if @poll.private?
       totals_hash = eval(@poll.totals)
       @vote_types = {}
@@ -117,12 +118,18 @@ class PollsController < ApplicationController
       @vote_types = @poll.votes.joins(:vote_type).
           group("vote_types.name").
           count("vote_types.id")
+
+      puts "@vote_types: #{@vote_types}"
     end
     respond_to do |format|
       format.html {}
-      format.json {
+      format.json do
+        if @vote_types['YES'].nil? || @vote_types['NO'].nil?
+          chart_type = 'circle'
+        end
         @vote_types = @vote_types.to_a.map{|v| {name: "#{v[0]} \n#{v[1]}", votes: v[1]}}
-        render json: { vote_types: @vote_types }}
+        render json: { vote_types: @vote_types, chart_type: chart_type }
+      end
     end
   end
 
