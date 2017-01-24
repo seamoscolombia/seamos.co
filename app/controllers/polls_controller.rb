@@ -65,10 +65,11 @@ class PollsController < ApplicationController
         @polls
       end
       format.json do
-        @polls = Poll.where("closing_date >= ?", Date.today).includes(:vote_types).last(5)
-        if current_user
-          @polls = @polls.select { |poll| poll unless current_user.already_voted?(poll) }
-        end
+        # @polls = Poll.where("closing_date >= ?", Date.today).includes(:vote_types).last(5)
+        @polls = Poll.where("closing_date >= ?", Date.today).includes(:vote_types)
+        # if current_user
+        #   @polls = @polls.map { |poll| poll unless current_user.already_voted?(poll) }
+        # end
         @polls
       end
     end
