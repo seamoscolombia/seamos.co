@@ -19,6 +19,7 @@ class Poll < ApplicationRecord
   mount_uploader :poll_image, PollImageUploader
 
   belongs_to :usuario
+  has_many :debates
   has_many :votes
   has_many :vote_types, inverse_of: :poll
   accepts_nested_attributes_for :vote_types
