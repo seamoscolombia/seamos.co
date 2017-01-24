@@ -36,15 +36,16 @@
    </div>
 
     <%= f.label t('.secret_public') %>
+    <div class="radio">
+      <%= f.radio_button :private, false %>
+      <%= f.label t('.public')  %>
+    </div>
+
     <div class=" field radio">
       <%= f.radio_button :private, true %>
       <%= f.label t('.secret')  %>
     </div>
 
-    <div class="radio">
-      <%= f.radio_button :private, false %>
-      <%= f.label t('.public')  %>
-    </div>
 
     <div class="actions">
       <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
