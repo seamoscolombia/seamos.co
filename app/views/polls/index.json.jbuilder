@@ -5,6 +5,7 @@ json.polls do
     json.id poll.id
     json.title poll.title
     json.description poll.description
+    json.debates_size poll.debates.size
     json.closing_date poll.closing_date
     json.poll_image "#{url}#{poll.poll_image_url}"
     if current_user
