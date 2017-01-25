@@ -24,7 +24,7 @@ class DebateVotesController < ApplicationController
             debate_id: @debate.id,
             question: question
         )
-        # debate_vote.save!
+        debate_vote.save!
         respond_to do |format|
           format.json { render json: { status: :created },status: :created }
         end
