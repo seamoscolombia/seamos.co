@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   resources :tipo_de_documentos, only: :index
   resources :votes, only: :create
+  resources :debate_votes, only: :create
 
   scope '/admin' do
     # get '/', to: 'sessions#new'

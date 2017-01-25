@@ -26,6 +26,7 @@ class Usuario < ApplicationRecord
   has_many  :polls
   has_many  :voted_polls, source: 'poll', through: 'votes', foreign_key: 'poll_id'
   has_many  :votes, dependent: :destroy
+  has_many  :debate_votes, dependent: :destroy
 
   validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
   validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
