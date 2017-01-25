@@ -42,6 +42,10 @@ class Usuario < ApplicationRecord
     !(votes.find_by(poll: poll).nil?)
   end
 
+  def debate_already_voted?(debate)
+    !(debate_votes.find_by(debate: debate).nil?)
+  end
+
   def full_name
     "#{nombres} #{primer_apellido} #{segundo_apellido}"
   end

@@ -73,6 +73,19 @@ class DebatesController < ApplicationController
   end
 
   def show
+    @debate = Debate.find_by(id: params[:id])
+    @debate_votes = @debate.debate_votes.joins(:question).
+        group("questions.description").
+        count("questions.id")
+
+    puts "@debate_votes: #{@debate_votes}"
+    respond_to do |format|
+      format.html {}
+      format.json do
+        @debate_votes = @debate_votes.to_a.map{|v| [{name: v[0], votes: v[1]}]}
+        render json: { vote_types: @debate_votes }
+      end
+    end
   end
 
   private
