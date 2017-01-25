@@ -240,6 +240,7 @@ es:
     index:
       validate_users: Validar Usuarios
   debates:
+    debates_does_not_exist: el debate no existe
     index:
       add_debate: Añadir debate
       poll: Propuesta
