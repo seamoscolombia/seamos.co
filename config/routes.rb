@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get 'last', on: :collection
     get 'voted', on: :collection
     resources :debates, on: :collection #, except: :create
+    get '/debates/:id/change_debate_state', to: 'debates#change_debate_state', as: :change_debate_state
   end
   resources :tipo_de_documentos, only: :index
   resources :votes, only: :create

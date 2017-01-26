@@ -12,7 +12,7 @@
       <span><%= t('.unpublished_debate') %></span>
     <% end %>
   </span>
-  <%= link_to edit_poll_debate_path(@poll, debate), class: "mdl-list__item-secondary-action" do%>
+  <%= link_to poll_change_debate_state_path(@poll, debate), class: "mdl-list__item-secondary-action" do%>
     <i class="material-icons" style="font-size:42px;">navigate_next</i>
   <% end %>
 </div>
