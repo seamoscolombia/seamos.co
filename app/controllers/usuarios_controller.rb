@@ -47,7 +47,8 @@ class UsuariosController < ApplicationController
       end
 
       format.json do
-        fecha_expedicion = Date.strptime(@usuario.fecha_expedicion, "%m/%d/%Y")
+        # server Date format 2015-05-28 YYYY-MM-DD
+        fecha_expedicion = Time.parse(@usuario.fecha_expedicion.to_s).strftime("%Y-%m-%d")
         @usuario.fecha_expedicion = fecha_expedicion
         if @usuario.save
           render :show, status: :created, location: usuarios_url(@usuario)
