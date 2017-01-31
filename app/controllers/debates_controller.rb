@@ -9,7 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-
+ 
 class DebatesController < ApplicationController
   before_action :validate_session
   before_action :get_poll
