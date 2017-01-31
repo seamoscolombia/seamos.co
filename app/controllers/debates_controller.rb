@@ -28,6 +28,11 @@ class DebatesController < ApplicationController
   #   },
   #   "poll_id":"5"
   # }
+  def change_debate_state
+    @debate = Debate.find_by(id: params[:id])
+    @questions = @debate.questions
+  end
+
   def create
     @debate = Debate.new(http_params)
     @debate.usuario = Usuario.find_by(uid: params[:debate][:usuario_uid])

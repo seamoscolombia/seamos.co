@@ -36,6 +36,9 @@ class Poll < ApplicationRecord
     closing_date < Date.today
   end
 
+  def published_debates
+    where(published: true)
+  end
   private
     def closing_date_validation
       if closing_date < Date.today
