@@ -37,7 +37,7 @@ class Poll < ApplicationRecord
   end
 
   def published_debates
-    where(published: true)
+    debates.where(published: true)
   end
   private
     def closing_date_validation
