@@ -65,6 +65,7 @@ class Usuario < ApplicationRecord
   private
 
     def encrypt_password_for_admin
+      byebug
       if password.present? && (role.code == 'administrador')
         self.password_salt = BCrypt::Engine.generate_salt
         self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
@@ -78,14 +79,18 @@ class Usuario < ApplicationRecord
     end
 
     def password_for_admin
-      if password.nil? && (role.code != 'administrador')
-        errors.add(:contraseña, I18n.t(:password))
+      if (role.code == 'administrador')
+        if password.nil?
+          errors.add(:contraseña, I18n.t(:password))
+        end
       end
     end
 
     def email_for_admin
-      if email.nil? && (role.code != 'administrador')
-        errors.add(:password, I18n.t(:password))
+      if (role.code == 'administrador')
+        if email.nil?
+          errors.add(:password, I18n.t(:password))
+        end
       end
     end
 
