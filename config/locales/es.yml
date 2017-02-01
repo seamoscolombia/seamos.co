@@ -325,9 +325,11 @@ es:
   actual_password: "Contraseña actual"
   actualizacion_exitosa: "Actualización exitosa."
   admin: Menú administración
+  admin_invalid: Comunicate con la administración de seamos
   cedula_invalida: Lo sentimos esta cédula no es válida
   confirmar: Favor confirmar la operación
   create: Crear
+  password: Contraseña requerida
   editar: Editar
   fecha_invalida: Fecha Inválida
   processing: Procesando...
