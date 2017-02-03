@@ -2,7 +2,7 @@
     <%= render 'shared/mensajes_de_error',  object: f.object %>
 
     <div class="field">
-      <%= f.label :title %>
+      <%= f.label t('.add_questions') %>
       <%= f.text_field :title, class: 'form-control' %>
     </div>
 
@@ -10,7 +10,7 @@
     <%= f.hidden_field(:poll_id) %>
     <input type="hidden" value="<%= current_user.uid %>" name="debate[usuario_uid]" id="debate_usuario_uid">
 
-    <label> Descripción</label>
+    <label><%= t('.questions_options')%></label>
 
     <button type="button" id="button_questions_attributes" class="btn btn-default">agregar</button>
     <br>
@@ -20,7 +20,7 @@
 
     <br>
     <div class="actions">
-      <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
+      <%= f.submit(t(:create),data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
     </div>
 
 <% end %>

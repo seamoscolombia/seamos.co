@@ -228,6 +228,7 @@ es:
         tipo_de_documento: 'Tipo de documento'
     models:
         poll: Propuesta
+        question: Pregunta
     errors:
       models:
         debate:
@@ -254,13 +255,6 @@ es:
       validate_users: Validar Usuarios
   debates:
     debates_does_not_exist: el debate no existe
-    index:
-      add_debate: Añadir debate
-      poll: Propuesta
-      no_debates_available: No hay debates para esta Propuesta.
-    form:
-      delete_option: Borrar
-      new_option: Escriba una pregunta para el debate
     debate:
       published_debate: debate publicado
       unpublished_debate: debate oculto
@@ -269,6 +263,17 @@ es:
       publish_debate: publicar debate
       # p_email: Correo electronico del creador:
       unpublish_debate: ocultar debate
+    form:
+      add_questions: Pregunta
+      questions_options: Agregar respuestas
+      delete_option: Borrar
+      new_option: Escriba una respuesta ...
+    new:
+      create: Crear
+    index:
+      add_debate: Añadir pregunta al debate
+      poll: Propuesta
+      no_debates_available: No hay debates para esta Propuesta.
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
     edit: Editar
@@ -326,6 +331,8 @@ es:
     index:
       validate_user: Validar Documento
     validate:
+      confirmation: ¿Está seguro de borrar el usuario?
+      confirmation_validation: ¿Está seguro de validar el usuario?
       validate_user: Validar Documento
       destroy_user: Eliminar Usuario
     new:

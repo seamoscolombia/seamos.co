@@ -1,8 +1,8 @@
+<%= link_to poll_debates_path(@debate.poll), class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
+  <i class="material-icons">navigate_before</i>
+<% end %>
 <h1>
-  <%= link_to poll_debates_path(@debate.poll), class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
-    <i class="material-icons">navigate_before</i>
-  <% end %>
-  <%= t ('.create')%> <%= Debate.model_name.human %>
+  <%= t ('.create')%> <%= Question.model_name.human %>
 </h1>
 
 <div class="col-md-6 col-md-offset-3">
