@@ -15,6 +15,9 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  document_photo_id    :integer
+#  email                :string
+#  password_hash        :string
+#  password_salt        :string
 #
 
 require 'test_helper'

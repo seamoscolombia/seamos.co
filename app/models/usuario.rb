@@ -15,6 +15,9 @@
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  document_photo_id    :integer
+#  email                :string
+#  password_hash        :string
+#  password_salt        :string
 #
 
 class Usuario < ApplicationRecord
@@ -65,7 +68,6 @@ class Usuario < ApplicationRecord
   private
 
     def encrypt_password_for_admin
-      byebug
       if password.present? && (role.code == 'administrador')
         self.password_salt = BCrypt::Engine.generate_salt
         self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)

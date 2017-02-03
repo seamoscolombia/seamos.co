@@ -10,26 +10,6 @@ class UsuariosController < ApplicationController
     }, status: :ok
   end
 
-  def index
-    @usuarios = Usuario.where("valido= ? and role_id!= ?", false,
-        Role.find_by(code: "administrador")
-    )
-  end
-
-  def show
-  end
-
-  def new
-    @usuario = Usuario.new()
-  end
-
-  def edit
-    @usuario = Usuario.find_by(id: params[:id])
-    redirect_to usuarios_path if @usuario.nil?
-  end
-
-  # POST /usuarios
-  # POST /usuarios.json
   def create
     @usuario = Usuario.new(usuario_params)
     @usuario.valido = false
@@ -61,10 +41,26 @@ class UsuariosController < ApplicationController
 
   end
 
+  def edit
+  end
+
+  def index
+    @usuarios = Usuario
+      .where("valido= ? and role_id!= ?", false,
+        Role.find_by(code: "administrador")
+      )
+      .page(params[:page]).per(4)
+  end
+
+
+  def new
+    @usuario = Usuario.new()
+  end
+
+  def show
+  end
+
   def update
-    if @usuario.update({valido: true})
-      redirect_to usuarios_url, notice: I18n.t(:success)
-    end
   end
 
   def destroy
@@ -83,7 +79,7 @@ class UsuariosController < ApplicationController
     def usuario_params
       params.require(:usuario).permit(:primer_apellido, :segundo_apellido, :nombres,
                                       :tipo_de_documento_id, :numero_documento,
-                                      :fecha_expedicion)
+                                      :fecha_expedicion, :email)
     end
     def validate_administrator
       if current_user.role.code != "administrador"

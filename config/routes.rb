@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :photos, only: :create
   resources :usuarios , except: [:new, :show] do
     get 'already_voted', on: :member
+    get 'validate', on: :member
+    patch 'update_valid_usuario', on: :member
   end
 
   get '/auth/:provider/callback', to: 'sessions#create'

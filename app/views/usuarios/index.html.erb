@@ -1,41 +1,64 @@
 <p id="notice"><%= notice %></p>
+<%= link_to dashboard_index_path, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
+  <i class="material-icons">navigate_before</i>
+<% end %>
+<h1>
+	Usuarios
+	<small class='select-usuarios'>
+		<select id="usuarios-select">
+		  <option value="1">Sin validar</option>
+		  <option value="0">Todos</option>
+		</select>
+	</small>
+</h1>
 
-<h1>Usuarios</h1>
+<h2> <%= paginate @usuarios %> </h2>
 
 <div class="container">
 	<div class="row">
         <div class="span12">
     		<ul class="thumbnails" style="list-style-type: none;">
           <% @usuarios.each do |usuario| %>
-                <li class="span5 clearfix">
-                  <div class="thumbnail clearfix">
-										<a class="profile pull-left span2 clearfix" href="#thumb">
-											<img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" border="0" style='margin-right:10px; height: 150px;'/>
-											<span>
-												<img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" style='height: 450px;'/>
-											</span>
-										</a>
-                    <div class="caption" class="pull-left">
-											<%= link_to t(".validate_user") ,edit_usuario_path(usuario), class:"btn btn-primary icon  pull-right"%>
-                      <h4>
-                      <a href="#" >
-                        <%= usuario.nombres %>
-                        <%= usuario.primer_apellido %>
-                        <%= usuario.segundo_apellido %>
-                      </a>
-                      </h4>
-                      <p><small><b><%= Usuario.human_attribute_name("tipo_de_documento_id") %>: </b><%= usuario.tipo_de_documento.code_view %></small></p>
-                      <p><small><b><%= Usuario.human_attribute_name("numero_documento") %>: </b><%= usuario.numero_documento %></small></p>
-                      <p><small><b><%= Usuario.human_attribute_name("fecha_expedicion") %>: </b><%= usuario.fecha_expedicion %></small></p>
-                    </div>
+              <li class="span5 clearfix">
+                <div class="thumbnail clearfix">
+									<a class="profile pull-left span2 clearfix" href="#thumb">
+										<img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" border="0" style='margin-right:10px; height: 150px;'/>
+										<span>
+											<img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" style='height: 450px;'/>
+										</span>
+									</a>
+                  <div class="caption" class="pull-left">
+										<%= link_to t(".validate_user") ,validate_usuario_path(usuario), class:"btn btn-primary icon  pull-right"%>
+                    <h4>
+                    <a href="#" >
+                      <%= usuario.nombres %>
+                      <%= usuario.primer_apellido %>
+                      <%= usuario.segundo_apellido %>
+                    </a>
+                    </h4>
+                    <p><small><b><%= Usuario.human_attribute_name("tipo_de_documento_id") %>: </b><%= usuario.tipo_de_documento.code_view %></small></p>
+                    <p><small><b><%= Usuario.human_attribute_name("numero_documento") %>: </b><%= usuario.numero_documento %></small></p>
+                    <p><small><b><%= Usuario.human_attribute_name("email") %>: </b><%= usuario.email %></small></p>
+                    <p><small><b><%= Usuario.human_attribute_name("fecha_expedicion") %>: </b><%= usuario.fecha_expedicion %></small></p>
+                    <p><small><b>ID de Facebook: </b><%= usuario.uid %></small></p>
                   </div>
-                </li>
+                </div>
+              </li>
           <% end %>
-
             </ul>
         </div>
 	</div>
 </div>
 
+<script>
+	$('#select-usuarios').on('change',function() {
+		$.ajax({ type: "GET",
+			 url: "<%= usuarios_path %>",
+			 data: { sort: $('option:selected', this).val() }
+		}).done(function(data) {
+			console.log(data);
+		});
+	});
+</script>
 
   <!-- # link_to 'Validar', edit_usuario_path(usuario) -->
