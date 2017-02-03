@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+h2.paginations {}
 .profile{
 position: relative;
 z-index: 0;
@@ -33,4 +34,9 @@ visibility: visible;
 top: 0;
 left: 60px; /*position where enlarged image should offset horizontally */
 
+}
+
+.select-usuarios {
+  display: inline-block;
+  width: 70%;
 }

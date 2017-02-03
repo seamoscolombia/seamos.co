@@ -17,6 +17,7 @@ class UsuariosController < ApplicationController
     @usuario.uid = session[:uid]
 
     @usuario.document_photo_id = params[:photo_id]
+    @usuario.email = params[:usuario_email]
     respond_to do |format|
       format.html do
         if @usuario.save
@@ -68,6 +69,17 @@ class UsuariosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to usuarios_url, notice: I18n.t(:success) }
       format.json { head :no_content }
+    end
+  end
+
+  def validate
+    @usuario = Usuario.find_by(id: params[:id])
+    redirect_to usuarios_path if @usuario.nil?
+  end
+
+  def update_valid_usuario
+    if @usuario.update({valido: true})
+      redirect_to usuarios_url, notice: I18n.t(:success)
     end
   end
 
