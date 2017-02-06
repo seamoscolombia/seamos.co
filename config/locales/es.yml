@@ -329,7 +329,12 @@ es:
       password: Contraseña
       password_confirmation: Confirmación de contraseña
     index:
+      confirmation: ¿Está seguro de borrar el usuario?
+      details: Detalles de usuario
+      destroy_user: Eliminar usuario
       validate_user: Validar Documento
+      validated_user: Usuario Validado
+
       filter_options:
         - Sin validar
         - Todas
