@@ -30,7 +30,19 @@
 										</span>
 									</a>
                   <div class="caption" class="pull-left">
-										<%= link_to t(".validate_user") ,validate_usuario_path(usuario), class:"btn btn-primary icon  pull-right"%>
+                    <div class="pull-right">
+                      <div>
+                        <%= link_to usuario.valido ? t(".validated_user") : t(".validate_user") ,validate_usuario_path(usuario), class:"btn btn-primary icon #{'disabled' if usuario.valido}"%>
+                      </div>
+                      <br>
+                      <div>
+                        <%= link_to t(".details") , edit_usuario_path(usuario), class:"btn btn-info icon" %>
+                      </div>
+                      <br>
+                      <div>
+                        <%= link_to t(".destroy_user"), usuario_path(usuario), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")} %>
+                      </div>
+                    </div>
                     <h4>
                     <a href="#" >
                       <%= usuario.nombres %>

@@ -43,6 +43,7 @@ class UsuariosController < ApplicationController
   end
 
   def edit
+    usuario_exist
   end
 
   def index
@@ -58,6 +59,26 @@ class UsuariosController < ApplicationController
   end
 
   def update
+    prev_document_photo = @usuario.document_photo
+    document_photo_param = params[:usuario][:document_photo]
+    @usuario = Usuario.find_by(id: params[:id])
+    @usuario.attributes = usuario_params
+    @usuario.transaction do
+      if document_photo_param
+        @usuario.document_photo.destroy!
+        document_photo = DocumentPhoto.create!(url: document_photo_param);
+        @usuario.document_photo = document_photo
+      end
+    end
+    @usuario.save!
+    redirect_to usuarios_path
+  rescue ActiveRecord::RecordInvalid => e
+    puts "update usuario: #{e}"
+    flash[:danger] = " #{e}"
+    document_photo = DocumentPhoto.create!(url: prev_document_photo.url)
+    @usuario.document_photo = document_photo
+    @usuario.save!
+    redirect_to edit_usuario_path @usuario
   end
 
   def destroy
@@ -70,8 +91,7 @@ class UsuariosController < ApplicationController
   end
 
   def validate
-    @usuario = Usuario.find_by(id: params[:id])
-    redirect_to usuarios_path if @usuario.nil?
+    usuario_exist
   end
 
   def update_valid_usuario
@@ -106,7 +126,12 @@ class UsuariosController < ApplicationController
     def usuario_params
       params.require(:usuario).permit(:primer_apellido, :segundo_apellido, :nombres,
                                       :tipo_de_documento_id, :numero_documento,
-                                      :fecha_expedicion, :email)
+                                      :fecha_expedicion, :email, :password, :password_confirmation)
+    end
+
+    def usuario_exist
+      @usuario = Usuario.find_by(id: params[:id])
+      redirect_to usuarios_path if @usuario.nil?
     end
     def validate_administrator
       if current_user.role.code != "administrador"

@@ -21,7 +21,7 @@
 #
 
 class Usuario < ApplicationRecord
-  attr_accessor :password
+  attr_accessor :password, :password_confirmation
 
   belongs_to :tipo_de_documento
   belongs_to :role
@@ -41,8 +41,9 @@ class Usuario < ApplicationRecord
      :nombres, :numero_documento, :document_photo_id]
   validates :numero_documento, numericality: { only_integer: true }, uniqueness: true
   validate :fecha_de_expedicion_razonable
-  validate :validar_cedula, :password_for_admin, :email_for_admin
-
+  validate :validar_cedula,  :email_for_admin
+  validate :password_for_admin, on: :create
+  validate :password_for_admin_update, on: :update
 
   def already_voted?(poll)
     !(votes.find_by(poll: poll).nil?)
@@ -81,17 +82,21 @@ class Usuario < ApplicationRecord
     end
 
     def password_for_admin
-      if (role.code == 'administrador')
-        if password.nil?
-          errors.add(:contraseña, I18n.t(:password))
-        end
+      if role.code == 'administrador' && (password.nil? || password.present? != password_confirmation.present?)
+        errors.add(:contraseña, I18n.t(:password))
+      end
+    end
+
+    def password_for_admin_update
+      if role.code == 'administrador' && (password.present? != password_confirmation.present?)
+        errors.add(:contraseña, I18n.t(:password))
       end
     end
 
     def email_for_admin
       if (role.code == 'administrador')
         if email.nil?
-          errors.add(:password, I18n.t(:password))
+          errors.add(:email, I18n.t(:email))
         end
       end
     end

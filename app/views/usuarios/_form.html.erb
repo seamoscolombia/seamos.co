@@ -30,10 +30,31 @@
   <div class="field">
     <%= f.label :fecha_expedicion %>
     <input type="text" data-provide='datepicker' data-date-language="es"
-               data-date-autoclose="true" data-date-format="yyyy/mm/dd" class="input-sm form-control" name="usuario[fecha_expedicion]" />
+           data-date-autoclose="true" data-date-format="yyyy/mm/dd" class="input-sm form-control" name="usuario[fecha_expedicion]"
+           value="<%= usuario.fecha_expedicion.nil? ? '' : usuario.fecha_expedicion %>"
+    />
   </div>
+
+  <% if usuario.role.code == 'administrador' %>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+  <% end %>
+  <%= f.file_field :document_photo %>
+  <div class="field">
+    <label for=""> Foto anterior</label>
+    <br>
+    <img src="<%= get_photo_url(@usuario) %>" style='width: 400px; height: 400px;'/>
+  </div>
+  <br><br>
 
   <div class="actions">
     <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
   </div>
+
 <% end %>
