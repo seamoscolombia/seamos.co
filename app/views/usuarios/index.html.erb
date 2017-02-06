@@ -5,19 +5,21 @@
 <h1>
 	Usuarios
 	<small class='select-usuarios'>
-		<select id="usuarios-select">
-		  <option value="1">Sin validar</option>
-		  <option value="0">Todos</option>
-		</select>
+    <%= form_for(:usuarios_filter, url: usuarios_path, method: :get) do |f|  %>
+      <select class="form-control" name="usuarios_filter_select" id="usuarios_filter">
+        <option value="0"><%= t('.filter_options')[0]%></option>
+        <option value="1" <%= 'selected' if @usuarios_filter == "1" %>><%= t('.filter_options')[1]%></option>
+      </select>
+    <% end %>
 	</small>
 </h1>
 
-<h2> <%= paginate @usuarios %> </h2>
 
-<div class="container">
+<div class="container" id="usuarios-list" >
+  <h2> <%= paginate @usuarios %> </h2>
 	<div class="row">
-        <div class="span12">
-    		<ul class="thumbnails" style="list-style-type: none;">
+    <div class="span12">
+  		<ul class="thumbnails" style="list-style-type: none;">
           <% @usuarios.each do |usuario| %>
               <li class="span5 clearfix">
                 <div class="thumbnail clearfix">
@@ -45,20 +47,15 @@
                 </div>
               </li>
           <% end %>
-            </ul>
-        </div>
+        </ul>
+    </div>
 	</div>
 </div>
 
 <script>
-	$('#select-usuarios').on('change',function() {
-		$.ajax({ type: "GET",
-			 url: "<%= usuarios_path %>",
-			 data: { sort: $('option:selected', this).val() }
-		}).done(function(data) {
-			console.log(data);
-		});
-	});
+function filterUsuario (event) {
+   $(this).parent().trigger('submit');
+};
 </script>
 
-  <!-- # link_to 'Validar', edit_usuario_path(usuario) -->
+<!-- # link_to 'Validar', edit_usuario_path(usuario) -->

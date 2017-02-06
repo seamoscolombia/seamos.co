@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'intro#inicio'
 
   resources :photos, only: :create
+
   resources :usuarios , except: [:new, :show] do
     get 'already_voted', on: :member
     get 'validate', on: :member

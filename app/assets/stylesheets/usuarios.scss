@@ -39,4 +39,12 @@ left: 60px; /*position where enlarged image should offset horizontally */
 .select-usuarios {
   display: inline-block;
   width: 70%;
+  font-size: 14px;
+  select {
+    margin-bottom: 0;
+  }
+  input {
+    background-color: #286090;
+    padding: 2px 12px;
+  }
 }

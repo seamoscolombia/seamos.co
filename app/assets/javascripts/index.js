@@ -1,11 +1,11 @@
 $( document ).on('turbolinks:load', function() {
-  var pF = $("#polls_filter");
+  var fU = $("#usuarios_filter");
   var bS = $(".button-sender");
   var bVTA = $("#button_vote_types_attributes");
   var bDebate = $("#button_questions_attributes");
   loginScreen();
-  if(pF.length > 0){
-    pF.change(filterPoll);
+  if(fU.length > 0){
+    fU.change(filterUsuario);
   }
   // .button-sender only renders in partial _poll.html.erb
   if(bS.length > 0){

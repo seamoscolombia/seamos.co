@@ -46,13 +46,9 @@ class UsuariosController < ApplicationController
   end
 
   def index
-    @usuarios = Usuario
-      .where("valido= ? and role_id!= ?", false,
-        Role.find_by(code: "administrador")
-      )
-      .page(params[:page]).per(4)
+    @usuarios = filter_usuarios_option
+    @usuarios_filter = params[:usuarios_filter_select]
   end
-
 
   def new
     @usuario = Usuario.new()
@@ -80,11 +76,29 @@ class UsuariosController < ApplicationController
 
   def update_valid_usuario
     if @usuario.update({valido: true})
-      redirect_to usuarios_url, notice: I18n.t(:success)
+      redirect_to usuarios_path, notice: I18n.t(:success)
     end
   end
 
   private
+    def filter_usuarios_option
+      case params[:usuarios_filter_select]
+        when "1"
+          Usuario.all.page(params[:page]).per(4)
+        when "0"
+          Usuario
+           .where("valido= ? and role_id!= ?",
+             false,
+             Role.find_by(code: "administrador")
+           ).page(params[:page]).per(4)
+        else
+          Usuario.where("valido= ? and role_id!= ?",
+            false,
+            Role.find_by(code: "administrador")
+          ).page(params[:page]).per(4)
+      end
+    end
+
     def set_usuario
       @usuario = Usuario.find(params[:id])
     end

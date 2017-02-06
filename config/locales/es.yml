@@ -330,6 +330,9 @@ es:
       password_confirmation: Confirmación de contraseña
     index:
       validate_user: Validar Documento
+      filter_options:
+        - Sin validar
+        - Todas
     validate:
       confirmation: ¿Está seguro de borrar el usuario?
       confirmation_validation: ¿Está seguro de validar el usuario?
