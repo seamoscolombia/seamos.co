@@ -2,8 +2,16 @@ class SessionsController < ApplicationController
   protect_from_forgery with: :exception, except: [:create]
   include SessionsHelper
 
-
-  def new
+  def admin_create
+    usuario = Usuario.get_admin(http_params)
+    if usuario
+      session[:session_type] = 'web'
+      session[:email] = usuario.email
+      redirect_to dashboard_index_path
+    else
+      flash[:warning] = I18n.t(:admin_invalid)
+      redirect_to admin_login_path
+    end
   end
 
   def create
@@ -40,7 +48,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:uid] = session[:fb_token] = session[:fb_image] = session[:session_type] = nil
+    session[:email] = session[:uid] = session[:fb_token] = session[:fb_image] = session[:session_type] = nil
     respond_to do |format|
       format.html { redirect_to root_path }
       format.json { render json: {} , stats: :ok }
@@ -48,7 +56,16 @@ class SessionsController < ApplicationController
   end
 
   def error
-
   end
 
+  def new
+    if current_user
+      redirect_to dashboard_index_path
+    end
+  end
+
+  private
+    def http_params
+      params[:session].permit(:email, :password)
+    end
 end

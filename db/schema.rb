@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118200512) do
+ActiveRecord::Schema.define(version: 20170201193203) do
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -128,6 +128,9 @@ ActiveRecord::Schema.define(version: 20170118200512) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "document_photo_id"
+    t.string   "email"
+    t.string   "password_hash"
+    t.string   "password_salt"
     t.index ["document_photo_id"], name: "index_usuarios_on_document_photo_id"
     t.index ["numero_documento"], name: "index_usuarios_on_numero_documento"
     t.index ["role_id"], name: "index_usuarios_on_role_id"

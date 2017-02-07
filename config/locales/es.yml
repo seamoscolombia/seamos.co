@@ -1,4 +1,20 @@
 es:
+  views:
+    pagination:
+      first: "&laquo; Primera"
+      last: "Última &raquo;"
+      previous: "&lsaquo; Anterior"
+      next: "Siguiente &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} encontrada"
+          one: "<b>1</b> %{entry_name}"
+          other: "<b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "%{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> en total"
   date:
     abbr_day_names:
     - dom
@@ -202,10 +218,7 @@ es:
       poll:
         title: Título
         closing_date: Fecha de cierre
-        delete_poll: Borrar Propuesta
         description: Descripción
-        edit_poll: Editar Propuesta
-        poll_debates: Debates
         totals: Totales
         private: Secreto
       usuario:
@@ -215,6 +228,7 @@ es:
         tipo_de_documento: 'Tipo de documento'
     models:
         poll: Propuesta
+        question: Pregunta
     errors:
       models:
         debate:
@@ -241,13 +255,6 @@ es:
       validate_users: Validar Usuarios
   debates:
     debates_does_not_exist: el debate no existe
-    index:
-      add_debate: Añadir debate
-      poll: Propuesta
-      no_debates_available: No hay debates para esta Propuesta.
-    form:
-      delete_option: Borrar
-      new_option: Escriba una pregunta para el debate
     debate:
       published_debate: debate publicado
       unpublished_debate: debate oculto
@@ -256,8 +263,20 @@ es:
       publish_debate: publicar debate
       # p_email: Correo electronico del creador:
       unpublish_debate: ocultar debate
+    form:
+      add_questions: Pregunta
+      questions_options: Agregar respuestas
+      delete_option: Borrar
+      new_option: Escriba una respuesta ...
+    new:
+      create: Crear
+    index:
+      add_debate: Añadir pregunta al debate
+      poll: Propuesta
+      no_debates_available: No hay debates para esta Propuesta.
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
+    edit: Editar
     form:
       add: Agregar
       has_image: La propuesta ya tiene la imagen %{filename}. Si desea cambiar, por favor escoja otra. En caso contrario dejarla vacia.
@@ -281,6 +300,8 @@ es:
     poll:
       blank: En blanco
       confirmation: ¿Está seguro de borrar la propuesta?
+      delete_poll: Borrar Propuesta
+      edit_poll: Editar Propuesta
       "false": Votación Pública.
       fb_publish:
         no_button: No, gracias
@@ -291,6 +312,7 @@ es:
       greatings: Gracias por participar.
       "no": "Rechazar"
       participate: Participa
+      poll_debates: Debates
       "true": Votación Anónima.
       "yes": "Apoyar"
     show:
@@ -307,10 +329,20 @@ es:
       password: Contraseña
       password_confirmation: Confirmación de contraseña
     index:
+      confirmation: ¿Está seguro de borrar el usuario?
+      details: Detalles de usuario
+      destroy_user: Eliminar usuario
       validate_user: Validar Documento
-    edit:
+      validated_user: Usuario Validado
+
+      filter_options:
+        - Sin validar
+        - Todas
+    validate:
+      confirmation: ¿Está seguro de borrar el usuario?
+      confirmation_validation: ¿Está seguro de validar el usuario?
       validate_user: Validar Documento
-      delete_user: Eliminar Usuario
+      destroy_user: Eliminar Usuario
     new:
       registrar: Registro de
 
@@ -325,9 +357,11 @@ es:
   actual_password: "Contraseña actual"
   actualizacion_exitosa: "Actualización exitosa."
   admin: Menú administración
+  admin_invalid: Comunicate con la administración de seamos
   cedula_invalida: Lo sentimos esta cédula no es válida
   confirmar: Favor confirmar la operación
   create: Crear
+  password: Contraseña requerida
   editar: Editar
   fecha_invalida: Fecha Inválida
   processing: Procesando...

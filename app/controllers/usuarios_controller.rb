@@ -10,26 +10,6 @@ class UsuariosController < ApplicationController
     }, status: :ok
   end
 
-  def index
-    @usuarios = Usuario.where("valido= ? and role_id!= ?", false,
-        Role.find_by(code: "administrador")
-    )
-  end
-
-  def show
-  end
-
-  def new
-    @usuario = Usuario.new()
-  end
-
-  def edit
-    @usuario = Usuario.find_by(id: params[:id])
-    redirect_to usuarios_path if @usuario.nil?
-  end
-
-  # POST /usuarios
-  # POST /usuarios.json
   def create
     @usuario = Usuario.new(usuario_params)
     @usuario.valido = false
@@ -37,6 +17,7 @@ class UsuariosController < ApplicationController
     @usuario.uid = session[:uid]
 
     @usuario.document_photo_id = params[:photo_id]
+    @usuario.email = params[:usuario_email]
     respond_to do |format|
       format.html do
         if @usuario.save
@@ -61,21 +42,83 @@ class UsuariosController < ApplicationController
 
   end
 
+  def edit
+    usuario_exist
+  end
+
+  def index
+    @usuarios = filter_usuarios_option
+    @usuarios_filter = params[:usuarios_filter_select]
+  end
+
+  def new
+    @usuario = Usuario.new()
+  end
+
+  def show
+  end
+
   def update
-    if @usuario.update({valido: true})
-      redirect_to usuarios_url, notice: I18n.t(:success)
+    prev_document_photo = @usuario.document_photo
+    document_photo_param = params[:usuario][:document_photo]
+    @usuario = Usuario.find_by(id: params[:id])
+    @usuario.attributes = usuario_params
+    @usuario.transaction do
+      if document_photo_param
+        @usuario.document_photo.destroy!
+        document_photo = DocumentPhoto.create!(url: document_photo_param);
+        @usuario.document_photo = document_photo
+      end
     end
+    @usuario.save!
+    redirect_to usuarios_path
+  rescue ActiveRecord::RecordInvalid => e
+    puts "update usuario: #{e}"
+    flash[:danger] = " #{e}"
+    document_photo = DocumentPhoto.create!(url: prev_document_photo.url)
+    @usuario.document_photo = document_photo
+    @usuario.save!
+    redirect_to edit_usuario_path @usuario
   end
 
   def destroy
     @usuario.destroy
     respond_to do |format|
-      format.html { redirect_to usuarios_url, notice: I18n.t(:success) }
+      format.html {
+        redirect_to usuarios_url, notice: I18n.t(:success) }
       format.json { head :no_content }
     end
   end
 
+  def validate
+    usuario_exist
+  end
+
+  def update_valid_usuario
+    if @usuario.update({valido: true})
+      redirect_to usuarios_path, notice: I18n.t(:success)
+    end
+  end
+
   private
+    def filter_usuarios_option
+      case params[:usuarios_filter_select]
+        when "1"
+          Usuario.all.page(params[:page]).per(4)
+        when "0"
+          Usuario
+           .where("valido= ? and role_id!= ?",
+             false,
+             Role.find_by(code: "administrador")
+           ).page(params[:page]).per(4)
+        else
+          Usuario.where("valido= ? and role_id!= ?",
+            false,
+            Role.find_by(code: "administrador")
+          ).page(params[:page]).per(4)
+      end
+    end
+
     def set_usuario
       @usuario = Usuario.find(params[:id])
     end
@@ -83,7 +126,12 @@ class UsuariosController < ApplicationController
     def usuario_params
       params.require(:usuario).permit(:primer_apellido, :segundo_apellido, :nombres,
                                       :tipo_de_documento_id, :numero_documento,
-                                      :fecha_expedicion)
+                                      :fecha_expedicion, :email, :password, :password_confirmation)
+    end
+
+    def usuario_exist
+      @usuario = Usuario.find_by(id: params[:id])
+      redirect_to usuarios_path if @usuario.nil?
     end
     def validate_administrator
       if current_user.role.code != "administrador"
