@@ -29,7 +29,7 @@ class Usuario < ApplicationRecord
   before_save :encrypt_password_for_admin
 
   has_many  :causes
-  has_many  :polls
+  has_many  :polls,  dependent: :destroy
   has_many  :voted_polls, source: 'poll', through: 'votes', foreign_key: 'poll_id'
   has_many  :votes, dependent: :destroy
   has_many  :debate_votes, dependent: :destroy
