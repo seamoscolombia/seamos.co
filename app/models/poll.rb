@@ -19,9 +19,9 @@ class Poll < ApplicationRecord
   mount_uploader :poll_image, PollImageUploader
 
   belongs_to :usuario
-  has_many :debates,  dependent: :destroy
-  has_many :votes, dependent: :destroy
   has_many :vote_types, inverse_of: :poll, dependent: :destroy
+  has_many :votes, dependent: :destroy
+  has_many :debates,  dependent: :destroy
   accepts_nested_attributes_for :vote_types
 
 
