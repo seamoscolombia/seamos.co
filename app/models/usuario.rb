@@ -102,7 +102,7 @@ class Usuario < ApplicationRecord
     end
 
     def validar_cedula
-      if !(/^\d+$/.match(numero_documento)) || Coldocument.find_by(doc_num: numero_documento.to_i).nil?
+      if role.code != 'administrador' && (!(/^\d+$/.match(numero_documento)) || Coldocument.find_by(doc_num: numero_documento.to_i).nil?)
         errors.add(:numero_documento, I18n.t(:cedula_invalida))
       end
     end
