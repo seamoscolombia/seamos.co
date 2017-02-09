@@ -1,6 +1,9 @@
 <%= link_to dashboard_index_path, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
   <i class="material-icons">navigate_before</i>
 <% end %>
+
+<h2> <%= paginate @polls %> </h2>
+
 <div id="polls-index">
   <% if @polls.length > 0 %>
     <%= render @polls%>

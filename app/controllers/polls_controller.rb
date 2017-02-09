@@ -76,7 +76,7 @@ class PollsController < ApplicationController
   end
 
   def index_admin
-    @polls = Poll.order('id desc').all.last(10)
+    @polls = Poll.order('id desc').all.page(params[:page]).per(4)
     render :index
   end
 
