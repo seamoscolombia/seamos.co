@@ -88,7 +88,7 @@ class Usuario < ApplicationRecord
     end
 
     def password_for_admin_update
-      if role.code == 'administrador' && (password.present? != password_confirmation.present?)
+      if role.code == 'administrador' && (self.password != self.password_confirmation)
         errors.add(:contraseña, I18n.t(:password))
       end
     end

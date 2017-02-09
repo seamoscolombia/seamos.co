@@ -59,25 +59,22 @@ class UsuariosController < ApplicationController
   end
 
   def update
-    prev_document_photo = @usuario.document_photo
-    document_photo_param = params[:usuario][:document_photo]
-    @usuario = Usuario.find_by(id: params[:id])
-    @usuario.attributes = usuario_params
     @usuario.transaction do
+      document_photo_param = params[:usuario][:document_photo]
+      @usuario = Usuario.find_by(id: params[:id])
+      @usuario.attributes = usuario_params
       if document_photo_param
-        @usuario.document_photo.destroy!
+        @usuario.document_photo.delete
         document_photo = DocumentPhoto.create!(url: document_photo_param);
         @usuario.document_photo = document_photo
       end
+      @usuario.save!
     end
-    @usuario.save!
+    flash[:notice] = I18n.t(:accion_exitosa)
     redirect_to usuarios_path
   rescue ActiveRecord::RecordInvalid => e
     puts "update usuario: #{e}"
     flash[:danger] = " #{e}"
-    document_photo = DocumentPhoto.create!(url: prev_document_photo.url)
-    @usuario.document_photo = document_photo
-    @usuario.save!
     redirect_to edit_usuario_path @usuario
   end
 
@@ -134,7 +131,7 @@ class UsuariosController < ApplicationController
       redirect_to usuarios_path if @usuario.nil?
     end
     def validate_administrator
-      if current_user.role.code != "administrador"
+      if current_user.nil? || current_user.role.code != "administrador"
         redirect_to root_path
       end
     end

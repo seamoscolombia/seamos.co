@@ -27,6 +27,8 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
               <li>  <%= link_to t('.polls'),admin_polls_path %></li>
+              <li>  <%= link_to t('.usuarios'),validate_users_path %> </li>
+
               <% if is_admin? %>
                 <li>  <%= link_to t(:admin),dashboard_index_path %></li
               <% end %>
