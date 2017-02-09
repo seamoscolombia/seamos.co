@@ -1,2 +1,18 @@
-<h1>Debates#show</h1>
-<p>Find me in app/views/debates/show.html.erb</p>
+<!-- resultado de votación -->
+
+<div class="row">
+  <div class="col-md-4">
+    <%= link_to poll_debates_path(@debate.poll), class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
+      <i class="material-icons">navigate_before</i>
+    <% end %>
+
+  </div>
+  <div class="col-md-4">
+    <h1><%= t('.debate_results', debate_title: @debate.title) %></h1>
+  </div>
+  <div class="col-md-4"></div>
+
+</div>
+
+<h2>Total: <%= @debate.debate_votes.count %></h2>
+<%= column_chart @vote_types%>
