@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201193203) do
+ActiveRecord::Schema.define(version: 20170210152351) do
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -120,10 +120,10 @@ ActiveRecord::Schema.define(version: 20170201193203) do
     t.string   "segundo_apellido"
     t.string   "nombres"
     t.integer  "tipo_de_documento_id"
-    t.string   "numero_documento",     null: false
+    t.string   "numero_documento"
     t.date     "fecha_expedicion"
     t.integer  "role_id"
-    t.string   "uid",                  null: false
+    t.string   "uid"
     t.boolean  "valido"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false

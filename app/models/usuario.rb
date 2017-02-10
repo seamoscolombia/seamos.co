@@ -23,7 +23,7 @@
 class Usuario < ApplicationRecord
   attr_accessor :password, :password_confirmation
 
-  belongs_to :tipo_de_documento
+  belongs_to :tipo_de_documento, required: !:admin?
   belongs_to :role
   belongs_to  :document_photo
   before_save :encrypt_password_for_admin
@@ -37,13 +37,19 @@ class Usuario < ApplicationRecord
   validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
   validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :nombres, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
-  validates_presence_of  [:primer_apellido, :segundo_apellido,
-     :nombres, :numero_documento, :document_photo_id]
-  validates :numero_documento, numericality: { only_integer: true }, uniqueness: true
-  validate :fecha_de_expedicion_razonable
-  validate :validar_cedula,  :email_for_admin
-  validate :password_for_admin, on: :create
-  validate :password_for_admin_update, on: :update
+  validates  :document_photo_id, presence: true
+  validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres]
+  validates :uid, uniqueness: true
+  validate :fecha_de_expedicion_razonable, unless: :admin?
+
+  validate :validar_cedula, unless: :admin?
+  validate :email_for_admin, if: :admin?
+  validate :password_for_admin, on: :create, if: :admin?
+  validate :password_for_admin_update, on: :update, if: :admin?
+  validates :numero_documento, numericality: { only_integer: true }, uniqueness: true, unless: :admin?
+  validates :tipo_de_documento, presence: true, unless: :admin?
+  validates :uid, presence: true, unless: :admin?
+  validates :numero_documento, presence: true,  unless: :admin?
 
   def already_voted?(poll)
     !(votes.find_by(poll: poll).nil?)
@@ -82,29 +88,31 @@ class Usuario < ApplicationRecord
     end
 
     def password_for_admin
-      if role.code == 'administrador' && (password.nil? || password.present? != password_confirmation.present?)
+      if (password.nil? || password.present? != password_confirmation.present?)
         errors.add(:contraseña, I18n.t(:password))
       end
     end
 
     def password_for_admin_update
-      if role.code == 'administrador' && (self.password != self.password_confirmation)
+      if (self.password != self.password_confirmation)
         errors.add(:contraseña, I18n.t(:password))
       end
     end
 
     def email_for_admin
-      if (role.code == 'administrador')
-        if email.nil?
-          errors.add(:email, I18n.t(:email))
-        end
+      if email.nil?
+        errors.add(:email, I18n.t(:email))
       end
     end
 
     def validar_cedula
-      if role.code != 'administrador' && (!(/^\d+$/.match(numero_documento)) || Coldocument.find_by(doc_num: numero_documento.to_i).nil?)
+      if !(/^\d+$/.match(numero_documento)) || Coldocument.find_by(doc_num: numero_documento.to_i).nil?
         errors.add(:numero_documento, I18n.t(:cedula_invalida))
       end
+    end
+
+    def admin?
+      return (role.code == 'administrador')
     end
 
 end

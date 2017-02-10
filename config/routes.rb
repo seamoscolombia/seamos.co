@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   resources :votes, only: :create
   resources :debate_votes, only: :create
 
+
+  resources :admin, only: [:create, :new]
   scope '/admin' do
     # get '/', to: 'sessions#new'
     get 'polls', to:  'polls#index_admin', as: :admin_polls

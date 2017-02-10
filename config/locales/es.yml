@@ -231,6 +231,10 @@ es:
         question: Pregunta
     errors:
       models:
+        usuario:
+          attributes:
+            tipo_de_documento:
+             required: Requerida
         debate:
           attributes:
             poll:
