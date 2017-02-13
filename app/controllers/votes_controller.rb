@@ -25,7 +25,7 @@ class VotesController < ApplicationController
     end
 
     def vote(code)
-      Rails.logger("")
+      Rails.logger.info("")
       vote_type = nil
       @poll.transaction do
       vote_type = VoteType.find_by(id: code)
@@ -46,7 +46,7 @@ class VotesController < ApplicationController
     rescue ActiveRecord::RecordInvalid
       error_msg = "#{I18n.t(:accion_no_realizada)} "
       error_msg += vote.errors.messages[:base].join(" ") unless vote.errors.messages[:base].nil?
-      Rails.logger(error_msg)
+      Rails.logger.debug(error_msg)
       flash[:danger] = " #{error_msg}"
       redirect_to polls_path
     end
