@@ -25,6 +25,7 @@ class VotesController < ApplicationController
     end
 
     def vote(code)
+      Rails.logger("")
       vote_type = nil
       @poll.transaction do
       vote_type = VoteType.find_by(id: code)
@@ -45,6 +46,7 @@ class VotesController < ApplicationController
     rescue ActiveRecord::RecordInvalid
       error_msg = "#{I18n.t(:accion_no_realizada)} "
       error_msg += vote.errors.messages[:base].join(" ") unless vote.errors.messages[:base].nil?
+      Rails.logger(error_msg)
       flash[:danger] = " #{error_msg}"
       redirect_to polls_path
     end
@@ -55,7 +57,7 @@ class VotesController < ApplicationController
 
     def vote_save_fb(vote)
       if vote.save!
-        publish_vote_facebook vote if params["vote"]["fb_feed"] == "true"
+        # publish_vote_facebook vote if params["vote"]["fb_feed"] == "true"
         redirect_to polls_url #+"##{vote.poll.id}"
       end
     end
