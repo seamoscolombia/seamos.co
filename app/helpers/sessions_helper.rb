@@ -3,8 +3,10 @@ module SessionsHelper
   def current_user
     if session[:email]
       @current_user ||= Usuario.find_by(email: session[:email])
-    else
+    elsif session[:uid]
       @current_user ||= Usuario.find_by(uid: session[:uid])
+    else
+      nil
     end
   end
 
