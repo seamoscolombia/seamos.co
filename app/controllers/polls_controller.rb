@@ -25,6 +25,7 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new http_params
     @poll.private = get_radiobutton_private
+    @poll.private = false
     @poll.usuario = current_user
     totals_hash = {}
     Poll.transaction do
