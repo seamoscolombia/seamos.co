@@ -29,12 +29,6 @@ class UsuariosController < ApplicationController
 
       format.json do
         # server Date format 2015-05-28 YYYY-MM-DD
-        fecha_expedicion = params[:usuario][:fecha_expedicion]
-        Rails.logger.debug("fecha_expedicion #{fecha_expedicion}")
-        Rails.logger.debug("fecha_expedicion.to_s #{fecha_expedicion.to_s}")
-        Rails.logger.debug("Time.parse(fecha_expedicion.to_s #{Time.parse(fecha_expedicion.to_s)}")
-        Rails.logger.debug("Time.parse(fecha_expedicion.to_s).strftime('%Y-%m-%d') #{Time.parse(fecha_expedicion.to_s).strftime('%Y-%m-%d')}")
-        fecha_expedicion = Time.parse(fecha_expedicion.to_s).strftime("%Y-%m-%d")
         if @usuario.save
           render :show, status: :created, location: usuarios_url(@usuario)
         else
