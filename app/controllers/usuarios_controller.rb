@@ -29,7 +29,6 @@ class UsuariosController < ApplicationController
 
       format.json do
         # server Date format 2015-05-28 YYYY-MM-DD
-        @usuario.fecha_expedicion = Date.parse @usuario.fecha_expedicion
         if @usuario.save
           render :show, status: :created, location: usuarios_url(@usuario)
         else
