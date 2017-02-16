@@ -18,6 +18,7 @@ class UsuariosController < ApplicationController
 
     @usuario.document_photo_id = params[:photo_id]
     @usuario.email = params[:usuario_email]
+    @usuario.fecha_expedicion = params[:fecha_expedicion]
     respond_to do |format|
       format.html do
         if @usuario.save
@@ -29,7 +30,6 @@ class UsuariosController < ApplicationController
 
       format.json do
         # server Date format 2015-05-28 YYYY-MM-DD
-        @usuario.fecha_expedicion = fecha_expedicion
         Rails.logger.debug("@usuario.fecha_expedicion.to_s #{@usuario.fecha_expedicion.to_s}")
         Rails.logger.debug("Time.parse(@usuario.fecha_expedicion.to_s #{Time.parse(@usuario.fecha_expedicion.to_s)}")
         Rails.logger.debug("Time.parse(@usuario.fecha_expedicion.to_s).strftime('%Y-%m-%d') #{Time.parse(@usuario.fecha_expedicion.to_s).strftime('%Y-%m-%d')}")
