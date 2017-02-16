@@ -30,6 +30,7 @@ class UsuariosController < ApplicationController
 
       format.json do
         # server Date format 2015-05-28 YYYY-MM-DD
+        Rails.logger.debug("@usuario.fecha_expedicion #{@usuario.fecha_expedicion}")
         Rails.logger.debug("@usuario.fecha_expedicion.to_s #{@usuario.fecha_expedicion.to_s}")
         Rails.logger.debug("Time.parse(@usuario.fecha_expedicion.to_s #{Time.parse(@usuario.fecha_expedicion.to_s)}")
         Rails.logger.debug("Time.parse(@usuario.fecha_expedicion.to_s).strftime('%Y-%m-%d') #{Time.parse(@usuario.fecha_expedicion.to_s).strftime('%Y-%m-%d')}")
