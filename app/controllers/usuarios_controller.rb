@@ -33,7 +33,8 @@ class UsuariosController < ApplicationController
           render :show, status: :created, location: usuarios_url(@usuario)
         else
           logger.debug "Create User Error: #{@usuario.errors.messages}"
-          render json: @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } }.first, status: :unprocessable_entity
+          errors = @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } } || []
+          render json: {errors: errors}, status: :unprocessable_entity
         end
       end
     end
