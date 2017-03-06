@@ -7,10 +7,10 @@
 #  segundo_apellido     :string
 #  nombres              :string
 #  tipo_de_documento_id :integer
-#  numero_documento     :string           not null
+#  numero_documento     :string
 #  fecha_expedicion     :date
 #  role_id              :integer
-#  uid                  :string           not null
+#  uid                  :string
 #  valido               :boolean
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
