@@ -9,7 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
- 
+
 class DebatesController < ApplicationController
   before_action :validate_session
   before_action :get_poll
@@ -35,7 +35,7 @@ class DebatesController < ApplicationController
 
   def create
     @debate = Debate.new(http_params)
-    @debate.usuario = Usuario.find_by(uid: params[:debate][:usuario_uid])
+    @debate.usuario = current_user
     if @debate.save
       redirect_to poll_debates_path @debate.poll
     else
