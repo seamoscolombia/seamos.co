@@ -29,7 +29,7 @@ class PollsController < ApplicationController
     @poll.usuario = current_user
     totals_hash = {}
     Poll.transaction do
-        @poll.vote_types.build(name: "YES")
+        @poll.vote_types.build(name: "SI")
         @poll.vote_types.build(name: "NO")
         @poll.save! # We need vote_type.id
         @poll.vote_types.each do |vote_type|
@@ -125,7 +125,7 @@ class PollsController < ApplicationController
     respond_to do |format|
       format.html {}
       format.json do
-        if @vote_types['YES'].nil? || @vote_types['NO'].nil?
+        if @vote_types['SI'].nil? || @vote_types['NO'].nil?
           chart_type = 'circle'
         end
         @vote_types = @vote_types.to_a.map{|v| {name: "#{v[0]} \n#{v[1]}", votes: v[1]}}

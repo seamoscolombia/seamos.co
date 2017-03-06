@@ -5,12 +5,21 @@
     <%= link_to admin_polls_path, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
       <i class="material-icons">navigate_before</i>
     <% end %>
-  
+
   </div>
   <div class="col-md-4">
     <h1><%= t '.poll_results' %></h1>
   </div>
-  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <% form_for(@poll, html: { class: "row" } ) do |f| %>
+      <div class="col-md-6">
+        <input type="text" data-provide='datepicker' >
+      </div>
+      <div class="col-md-6">
+        <input type="text" data-provide='datepicker' >
+      </div>
+    <% end %>
+  </div>
 
 </div>
 
