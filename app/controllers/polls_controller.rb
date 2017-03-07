@@ -108,6 +108,7 @@ class PollsController < ApplicationController
   def show
     @poll = Poll.find_by(id: params[:id])
     chart_type = 'pie'
+
     if @poll.private?
       totals_hash = eval(@poll.totals)
       @vote_types = {}
@@ -116,14 +117,27 @@ class PollsController < ApplicationController
         @vote_types[vote_type.name] = v
       end
     else
-      @vote_types = @poll.votes.joins(:vote_type).
-          group("vote_types.name").
-          count("vote_types.id")
+      if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
+        @vote_types = @poll.votes.joins(:vote_type).
+            group("vote_types.name").
+            count("vote_types.id")
+      else
+        i_date = params[:poll][:initial_date]
+        f_date = params[:poll][:final_date]
+        @vote_types = @poll.votes.joins(:vote_type).
+            where(created_at: (i_date)...(f_date) )
+        unless @vote_types.empty?
+            @vote_types = @vote_types.group("vote_types.name").
+            count("vote_types.id")
+        end
+      end
 
       puts "@vote_types: #{@vote_types}"
     end
     respond_to do |format|
-      format.html {}
+      format.html do
+
+      end
       format.json do
         if @vote_types['SI'].nil? || @vote_types['NO'].nil?
           chart_type = 'circle'
