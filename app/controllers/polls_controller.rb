@@ -40,6 +40,7 @@ class PollsController < ApplicationController
 
         # publish_facebook(@poll)
     end
+    ActionCable.server.broadcast "polls_channel", message: 'changed'
     flash[:success] = I18n.t(:accion_exitosa)
     redirect_to dashboard_index_path
   rescue Exception => e
