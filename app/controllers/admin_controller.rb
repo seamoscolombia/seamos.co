@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   include SessionsHelper
-  before_action :validate_administrator
+  #before_action :validate_administrator
 
   def new
     @usuario = Usuario.new()
@@ -12,7 +12,7 @@ class AdminController < ApplicationController
       document_photo_param = params[:usuario][:document_photo]
       document_photo = DocumentPhoto.create!(url: document_photo_param);
       @usuario.document_photo = document_photo
-      @usuario.role = Role.find_by(code: 'administrador')
+      @usuario.role_type = 2
 
       if @usuario.save
         flash[:notice] = I18n.t(:accion_exitosa)
@@ -33,7 +33,7 @@ class AdminController < ApplicationController
   private
 
     def validate_administrator
-      if current_user.nil? || current_user.role.code != "administrador"
+      if current_user.nil? || current_user.role_type != "administrador"
         redirect_to root_path
       end
     end

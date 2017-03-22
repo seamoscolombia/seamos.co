@@ -202,7 +202,7 @@ class PollsController < ApplicationController
     end
 
     def validate_admin_user
-       unless current_user.role.code == "administrador"
+       unless current_user.role_type == "administrador"
          redirect_to root_path
        end
     end

@@ -13,7 +13,7 @@ class UsuariosController < ApplicationController
   def create
     @usuario = Usuario.new(usuario_params)
     @usuario.valido = false
-    @usuario.role = Role.find_by(code: 'ciudadano')
+    @usuario.role_type = 0
     @usuario.uid = session[:uid]
 
     @usuario.document_photo_id = params[:photo_id]
@@ -24,7 +24,7 @@ class UsuariosController < ApplicationController
           redirect_to polls_path, notice: I18n.t(:success)
         else
           render :new
-        end
+          end
       end
 
       format.json do
@@ -34,11 +34,10 @@ class UsuariosController < ApplicationController
         else
           logger.debug "Create User Error: #{@usuario.errors.messages}"
           errors = @usuario.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } } || []
-          render json: {errors: errors}, status: :unprocessable_entity
+          render json: { errors: errors }, status: :unprocessable_entity
         end
       end
     end
-
   end
 
   def edit
@@ -51,7 +50,7 @@ class UsuariosController < ApplicationController
   end
 
   def new
-    @usuario = Usuario.new()
+    @usuario = Usuario.new
   end
 
   def show
@@ -64,7 +63,7 @@ class UsuariosController < ApplicationController
       @usuario.attributes = usuario_params
       if document_photo_param
         @usuario.document_photo.delete
-        document_photo = DocumentPhoto.create!(url: document_photo_param);
+        document_photo = DocumentPhoto.create!(url: document_photo_param)
         @usuario.document_photo = document_photo
       end
       @usuario.save!
@@ -80,8 +79,9 @@ class UsuariosController < ApplicationController
   def destroy
     @usuario.destroy
     respond_to do |format|
-      format.html {
-        redirect_to usuarios_url, notice: I18n.t(:success) }
+      format.html do
+        redirect_to usuarios_url, notice: I18n.t(:success)
+      end
       format.json { head :no_content }
     end
   end
@@ -91,47 +91,46 @@ class UsuariosController < ApplicationController
   end
 
   def update_valid_usuario
-    if @usuario.update({valido: true})
+    if @usuario.update(valido: true)
       redirect_to usuarios_path, notice: I18n.t(:success)
     end
   end
 
   private
-    def filter_usuarios_option
-      case params[:usuarios_filter_select]
-        when "1"
-          Usuario.all.page(params[:page]).per(4)
-        when "0"
-          Usuario
-           .where("valido= ? and role_id!= ?",
-             false,
-             Role.find_by(code: "administrador")
-           ).page(params[:page]).per(4)
-        else
-          Usuario.where("valido= ? and role_id!= ?",
-            false,
-            Role.find_by(code: "administrador")
-          ).page(params[:page]).per(4)
-      end
-    end
 
-    def set_usuario
-      @usuario = Usuario.find(params[:id])
+  def filter_usuarios_option
+    case params[:usuarios_filter_select]
+    when '1'
+      Usuario.all.page(params[:page]).per(4)
+    when '0'
+      Usuario
+        .where('valido= ? and role_type!= ?', false, 'administrador')
+        .page(params[:page]).per(4)
+    else
+      Usuario
+        .where('valido= ? and role_type!= ?', false, 'administrador')
+        .page(params[:page]).per(4)
     end
+  end
 
-    def usuario_params
-      params.require(:usuario).permit(:primer_apellido, :segundo_apellido, :nombres,
-                                      :tipo_de_documento_id, :numero_documento,
-                                      :fecha_expedicion, :email, :password, :password_confirmation)
-    end
+  def set_usuario
+    @usuario = Usuario.find(params[:id])
+  end
 
-    def usuario_exist
-      @usuario = Usuario.find_by(id: params[:id])
-      redirect_to usuarios_path if @usuario.nil?
+  def usuario_params
+    params.require(:usuario).permit(:primer_apellido, :segundo_apellido, :nombres,
+                                    :tipo_de_documento_id, :numero_documento,
+                                    :fecha_expedicion, :email, :password, :password_confirmation)
+  end
+
+  def usuario_exist
+    @usuario = Usuario.find_by(id: params[:id])
+    redirect_to usuarios_path if @usuario.nil?
+  end
+
+  def validate_administrator
+    if current_user.nil? || current_user.role_type != 'administrador'
+      redirect_to root_path
     end
-    def validate_administrator
-      if current_user.nil? || current_user.role.code != "administrador"
-        redirect_to root_path
-      end
-    end
+  end
 end

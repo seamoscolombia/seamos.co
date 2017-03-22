@@ -15,6 +15,6 @@ module SessionsHelper
   end
 
   def is_admin?
-    current_user && current_user.role.code == "administrador"
+    current_user && current_user.role_type == "administrador"
   end
 end
