@@ -51,6 +51,11 @@ class Usuario < ApplicationRecord
   validates :uid, presence: true, unless: :admin?
   validates :numero_documento, presence: true,  unless: :admin?
 
+  enum role: {
+    ciudadano: 1,
+    politico: 2,
+    administrador: 3
+  }
   def already_voted?(poll)
     !(votes.find_by(poll: poll).nil?)
   end
