@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210152351) do
+ActiveRecord::Schema.define(version: 20170322160021) do
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(version: 20170210152351) do
     t.string   "totals"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.string   "url_image"
     t.string   "poll_image"
     t.index ["title"], name: "index_polls_on_title"
     t.index ["usuario_id"], name: "index_polls_on_usuario_id"
@@ -99,13 +98,6 @@ ActiveRecord::Schema.define(version: 20170210152351) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["debate_id"], name: "index_questions_on_debate_id"
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string   "code",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_roles_on_code", unique: true
   end
 
   create_table "tipo_de_documentos", force: :cascade do |t|
@@ -122,7 +114,7 @@ ActiveRecord::Schema.define(version: 20170210152351) do
     t.integer  "tipo_de_documento_id"
     t.string   "numero_documento"
     t.date     "fecha_expedicion"
-    t.integer  "role_id"
+    t.integer  "role_type"
     t.string   "uid"
     t.boolean  "valido"
     t.datetime "created_at",           null: false
@@ -133,7 +125,7 @@ ActiveRecord::Schema.define(version: 20170210152351) do
     t.string   "password_salt"
     t.index ["document_photo_id"], name: "index_usuarios_on_document_photo_id"
     t.index ["numero_documento"], name: "index_usuarios_on_numero_documento"
-    t.index ["role_id"], name: "index_usuarios_on_role_id"
+    t.index ["role_type"], name: "index_usuarios_on_role_type"
     t.index ["tipo_de_documento_id", "numero_documento"], name: "index_usuarios_on_tipo_de_documento_id_and_numero_documento", unique: true
     t.index ["tipo_de_documento_id"], name: "index_usuarios_on_tipo_de_documento_id"
     t.index ["uid"], name: "index_usuarios_on_uid", unique: true

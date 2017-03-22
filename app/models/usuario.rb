@@ -9,7 +9,7 @@
 #  tipo_de_documento_id :integer
 #  numero_documento     :string
 #  fecha_expedicion     :date
-#  role_id              :integer
+#  role_type              :integer
 #  uid                  :string
 #  valido               :boolean
 #  created_at           :datetime         not null
@@ -24,7 +24,6 @@ class Usuario < ApplicationRecord
   attr_accessor :password, :password_confirmation
 
   belongs_to :tipo_de_documento, required: !:admin?
-  belongs_to :role
   belongs_to  :document_photo
   before_save :encrypt_password_for_admin
 
@@ -51,6 +50,8 @@ class Usuario < ApplicationRecord
   validates :uid, presence: true, unless: :admin?
   validates :numero_documento, presence: true,  unless: :admin?
 
+  enum role_type: {ciudadano: 0, politico: 1, administrador: 2}
+
   def already_voted?(poll)
     !(votes.find_by(poll: poll).nil?)
   end
@@ -75,7 +76,7 @@ class Usuario < ApplicationRecord
   private
 
     def encrypt_password_for_admin
-      if password.present? && (role.code == 'administrador')
+      if password.present? && (role_type == "administrador")
         self.password_salt = BCrypt::Engine.generate_salt
         self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
       end
@@ -112,7 +113,7 @@ class Usuario < ApplicationRecord
     end
 
     def admin?
-      return (role.code == 'administrador')
+      role_type == "administrador"
     end
 
 end
