@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20170322160021) do
     t.string   "totals"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.string   "url_image"
     t.string   "poll_image"
     t.index ["title"], name: "index_polls_on_title"
     t.index ["usuario_id"], name: "index_polls_on_usuario_id"
@@ -98,6 +99,13 @@ ActiveRecord::Schema.define(version: 20170322160021) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["debate_id"], name: "index_questions_on_debate_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "code",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_roles_on_code", unique: true
   end
 
   create_table "tipo_de_documentos", force: :cascade do |t|
