@@ -21,10 +21,12 @@ class PollsController < ApplicationController
   before_action :validate_session, except: :index
   before_action :validate_admin_user, except: [:index, :show, :voted]
 
-
   def create
     @poll = Poll.new http_params
     @poll.private = get_radiobutton_private
+    if @poll.private
+      @poll.import(params[:poll][:poll_csv])
+    end
     @poll.usuario = current_user
     totals_hash = {}
     Poll.transaction do
@@ -67,11 +69,7 @@ class PollsController < ApplicationController
         @polls
       end
       format.json do
-        # @polls = Poll.where("closing_date >= ?", Date.today).includes(:vote_types).last(5)
         @polls = Poll.where("closing_date >= ?", Date.today).includes(:vote_types)
-        # if current_user
-        #   @polls = @polls.map { |poll| poll unless current_user.already_voted?(poll) }
-        # end
         @polls
       end
     end
@@ -94,8 +92,6 @@ class PollsController < ApplicationController
       if @polls.length > 0
         @polls = [@polls.last]
       end
-      # @polls = Poll.where("closing_date >= ?", Date.today)
-      #ToDo remove ".last" in next iteration.
     when "2"
       @polls = Poll.where("closing_date < ?", Date.today)
     end
@@ -180,7 +176,6 @@ class PollsController < ApplicationController
       params.require(:poll).permit(
         :closing_date,
         :description,
-        :poll_csv,
         :poll_image,
         :poll_image_cache,
         :private,
