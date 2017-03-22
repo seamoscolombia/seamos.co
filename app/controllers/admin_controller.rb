@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   include SessionsHelper
-  #before_action :validate_administrator
+  before_action :validate_administrator
 
   def new
     @usuario = Usuario.new()
