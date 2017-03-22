@@ -23,7 +23,6 @@
       />
     </div>
 
-
     <div class="field">
      <%= f.label t('.poll_image') %>
      <% if poll.poll_image.file %>
@@ -35,16 +34,17 @@
      <%= f.hidden_field :poll_image_cache %>
    </div>
 
-     <!-- f.label t('.secret_public') %>
+     <%= f.label t('.secret_public') %>
     <div class="radio">
-       f.radio_button :private, true %>
-       f.label t('.public')  %>
+       <%= f.radio_button :private, "false", checked: true %>
+       <%= f.label t('.public')  %>
     </div>
 
     <div class=" field radio">
-       f.radio_button :private, false %>
-       f.label t('.secret')  %>
-    </div> -->
+       <%= f.radio_button :private, "true", checked: false %>
+       <%= f.label t('.private')  %>
+    </div>
+
 
 
     <div class="actions">

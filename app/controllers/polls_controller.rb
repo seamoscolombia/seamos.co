@@ -25,7 +25,6 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new http_params
     @poll.private = get_radiobutton_private
-    @poll.private = false
     @poll.usuario = current_user
     totals_hash = {}
     Poll.transaction do
@@ -111,31 +110,23 @@ class PollsController < ApplicationController
     @poll = Poll.find_by(id: params[:id])
     chart_type = 'pie'
 
-    if @poll.private?
-      totals_hash = eval(@poll.totals)
-      @vote_types = {}
-      totals_hash.each do |k,v|
-        vote_type = VoteType.find_by(id: k)
-        @vote_types[vote_type.name] = v
-      end
+    if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
+      @vote_types = @poll.votes.joins(:vote_type).
+          group("vote_types.name").
+          count("vote_types.id")
     else
-      if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
-        @vote_types = @poll.votes.joins(:vote_type).
-            group("vote_types.name").
-            count("vote_types.id")
-      else
-        i_date = params[:poll][:initial_date]
-        f_date = params[:poll][:final_date]
-        @vote_types = @poll.votes.joins(:vote_type).
-            where(created_at: (i_date)...(f_date) )
-        unless @vote_types.empty?
-            @vote_types = @vote_types.group("vote_types.name").
-            count("vote_types.id")
-        end
+      i_date = params[:poll][:initial_date]
+      f_date = params[:poll][:final_date]
+      @vote_types = @poll.votes.joins(:vote_type).
+          where(created_at: (i_date)...(f_date) )
+      unless @vote_types.empty?
+          @vote_types = @vote_types.group("vote_types.name").
+          count("vote_types.id")
       end
-
-      puts "@vote_types: #{@vote_types}"
     end
+
+    puts "@vote_types: #{@vote_types}"
+
     respond_to do |format|
       format.html do
 
@@ -189,6 +180,7 @@ class PollsController < ApplicationController
       params.require(:poll).permit(
         :closing_date,
         :description,
+        :poll_csv,
         :poll_image,
         :poll_image_cache,
         :private,
