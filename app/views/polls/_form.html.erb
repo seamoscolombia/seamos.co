@@ -45,6 +45,12 @@
        <%= f.label t('.private')  %>
     </div>
 
+    <div id='csv-field' class="field" style='display: none'>
+       <%= f.label t('.csv_field') %>
+       <p>El formato será los correos electronicos separados por coma ej: </p>
+       <p><small>correo_a@correo.com<strong>,</strong>correo_b@correo.com<strong>,</strong>correo_c@correo.com</small></p>
+       <%= f.file_field :poll_csv, accept: 'text/csv'%>
+    </div>
 
 
     <div class="actions">
