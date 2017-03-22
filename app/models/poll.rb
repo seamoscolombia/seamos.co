@@ -40,8 +40,9 @@ class Poll < ApplicationRecord
     debates.where(published: true)
   end
   def import_csv
-    #ToDo csv reader
-    raise NotImplementedError 
+    # ToDo csv reader
+    # format: email1, email2, ... ,emailN
+    raise NotImplementedError
   end
   private
     def closing_date_validation
