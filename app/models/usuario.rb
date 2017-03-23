@@ -37,7 +37,7 @@ class Usuario < ApplicationRecord
   validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :nombres, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :document_photo_id, presence: true
-  validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres]
+  validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres, :role_type]
   validates :uid, uniqueness: true
   validate :fecha_de_expedicion_razonable, unless: :admin?
 
@@ -76,7 +76,7 @@ class Usuario < ApplicationRecord
   private
 
     def encrypt_password_for_admin
-      if password.present? && (role_type == "administrador")
+      if password.present? && (role_type != "ciudadano")
         self.password_salt = BCrypt::Engine.generate_salt
         self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
       end
@@ -113,7 +113,7 @@ class Usuario < ApplicationRecord
     end
 
     def admin?
-      role_type == "administrador"
+      role_type != "ciudadano"
     end
 
 end

@@ -1,39 +1,51 @@
-<%= form_for(usuario, url: admin_index_path) do |f| %>
-  <%= render 'shared/mensajes_de_error',  object: f.object %>
+<div id="new_admin_form">
 
-  <div class="field">
-    <%= f.label :primer_apellido %>
-    <%= f.text_field :primer_apellido, class: 'form-control' %>
-  </div>
+    <%= form_for(usuario, url: admin_index_path) do |f| %>
+    <%= render 'shared/mensajes_de_error',  object: f.object %>
 
-  <div class="field">
-    <%= f.label :segundo_apellido %>
-    <%= f.text_field :segundo_apellido, class: 'form-control' %>
-  </div>
+    <div class="field">
+        <%= f.label :primer_apellido %>
+        <%= f.text_field :primer_apellido, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :nombres %>
-    <%= f.text_field :nombres, class: 'form-control' %>
-  </div>
+    <div class="field">
+        <%= f.label :segundo_apellido %>
+        <%= f.text_field :segundo_apellido, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, class: 'form-control' %>
-  </div>
+    <div class="field">
+        <%= f.label :nombres %>
+        <%= f.text_field :nombres, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-  </div>
+    <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+    </div>
 
-  <br><br>
+    <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+    </div>
+    <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
-  </div>
-  <br><br>
-<% end %>
+    <div class="radio_button_field">
+        <%= f.label :role_type %><br/><br>
+        <%= f.radio_button :role_type, "administrador" %>
+        <%= f.label :role_type, "Administrador"%><br>
+        <%= f.radio_button :role_type, "politico" %>
+        <%= f.label :role_type, "Politico",class: "radio_button_lbl"  %>
+    </div>
+
+    <br><br>
+
+    <div class="actions">
+        <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
+    </div>
+    <br><br>
+    <% end %>
+
+</div>
