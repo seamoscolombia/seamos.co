@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210152351) do
+ActiveRecord::Schema.define(version: 20170322160021) do
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20170210152351) do
     t.integer  "tipo_de_documento_id"
     t.string   "numero_documento"
     t.date     "fecha_expedicion"
-    t.integer  "role_id"
+    t.integer  "role_type"
     t.string   "uid"
     t.boolean  "valido"
     t.datetime "created_at",           null: false
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 20170210152351) do
     t.string   "password_salt"
     t.index ["document_photo_id"], name: "index_usuarios_on_document_photo_id"
     t.index ["numero_documento"], name: "index_usuarios_on_numero_documento"
-    t.index ["role_id"], name: "index_usuarios_on_role_id"
+    t.index ["role_type"], name: "index_usuarios_on_role_type"
     t.index ["tipo_de_documento_id", "numero_documento"], name: "index_usuarios_on_tipo_de_documento_id_and_numero_documento", unique: true
     t.index ["tipo_de_documento_id"], name: "index_usuarios_on_tipo_de_documento_id"
     t.index ["uid"], name: "index_usuarios_on_uid", unique: true

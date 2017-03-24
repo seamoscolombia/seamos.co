@@ -9,7 +9,7 @@
 #  tipo_de_documento_id :integer
 #  numero_documento     :string
 #  fecha_expedicion     :date
-#  role_id              :integer
+#  role_type            :integer
 #  uid                  :string
 #  valido               :boolean
 #  created_at           :datetime         not null

@@ -35,7 +35,7 @@
     />
   </div>
 
-  <% if usuario.role.code == 'administrador' %>
+  <% if usuario.role_type == 'administrador' %>
     <div class="field">
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>

@@ -12,7 +12,6 @@ class AdminController < ApplicationController
       document_photo_param = params[:usuario][:document_photo]
       document_photo = DocumentPhoto.create!(url: document_photo_param);
       @usuario.document_photo = document_photo
-      @usuario.role = Role.find_by(code: 'administrador')
 
       if @usuario.save
         flash[:notice] = I18n.t(:accion_exitosa)
@@ -33,7 +32,7 @@ class AdminController < ApplicationController
   private
 
     def validate_administrator
-      if current_user.nil? || current_user.role.code != "administrador"
+      if current_user.nil? || current_user.role_type != "administrador"
         redirect_to root_path
       end
     end
@@ -41,6 +40,6 @@ class AdminController < ApplicationController
     def usuario_params
       params.require(:usuario).permit(:primer_apellido, :segundo_apellido, :nombres,
                                       :tipo_de_documento_id, :numero_documento,
-                                      :fecha_expedicion, :email, :password, :password_confirmation)
+                                      :fecha_expedicion, :email, :password, :password_confirmation, :role_type)
     end
 end

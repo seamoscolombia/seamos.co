@@ -39,6 +39,11 @@ class Poll < ApplicationRecord
   def published_debates
     debates.where(published: true)
   end
+  def import_csv
+    # ToDo csv reader
+    # format: email1, email2, ... ,emailN
+    raise NotImplementedError
+  end
   private
     def closing_date_validation
       if closing_date < Date.today
