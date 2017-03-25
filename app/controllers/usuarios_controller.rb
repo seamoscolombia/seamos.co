@@ -104,11 +104,11 @@ class UsuariosController < ApplicationController
       Usuario.all.page(params[:page]).per(4)
     when '0'
       Usuario
-        .where('valido= ? and role_type!= ?', false, 'administrador')
+        .where('valido= ? and role_type!= ?', false, 2)
         .page(params[:page]).per(4)
     else
       Usuario
-        .where('valido= ? and role_type!= ?', false, 'administrador')
+        .where('valido= ? and role_type!= ?', false, 2)
         .page(params[:page]).per(4)
     end
   end

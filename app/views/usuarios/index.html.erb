@@ -52,7 +52,7 @@
                       <%= usuario.segundo_apellido %>
                     </a>
                     </h4>
-                    <%if usuario.role_type == 'administrador'%>
+                    <%if usuario.administrador? %>
                       <p><small><b><%= Usuario.human_attribute_name("tipo_de_documento_id") %>: </b><%= usuario.tipo_de_documento.code_view if usuario.tipo_de_documento %></small></p>
                       <p><small><b><%= Usuario.human_attribute_name("numero_documento") %>: </b><%= usuario.numero_documento %></small></p>
                       <p><small><b><%= Usuario.human_attribute_name("fecha_expedicion") %>: </b><%= usuario.fecha_expedicion %></small></p>
