@@ -68,7 +68,23 @@ RSpec.describe Usuario, type: :model do
     let(:non_voted_poll) { FactoryGirl.create(:poll) }
     context 'when usuario has already voted for a poll' do
       it 'returns true' do
-        # voted_poll.votes.first.usuario = user
+        user.votes << voted_poll.votes.first
+        expect(user.already_voted?(voted_poll)).to be true
+      end
+    end
+    context 'when usuario has not voted for a poll' do
+      it 'returns false' do
+        expect(user.already_voted?(non_voted_poll)).to be false
+      end
+    end
+  end
+
+  describe 'Usuario#debate_already_voted?' do
+    let(:user) { FactoryGirl.create(:usuario) }
+    let(:voted_poll) { FactoryGirl.create(:poll_with_votes) }
+    let(:non_voted_poll) { FactoryGirl.create(:poll) }
+    context 'when usuario has already voted for a poll' do
+      it 'returns true' do
         user.votes << voted_poll.votes.first
         expect(user.already_voted?(voted_poll)).to be true
       end
