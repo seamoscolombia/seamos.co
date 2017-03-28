@@ -4,7 +4,7 @@
 <br><br>
 <div>
   <%=form_tag({controller: "polls", action: "index_admin"}, method: "get", class: "")%>
-  <%= select_tag(:status, options_for_select([['Todas', "all"], ['Activas', "active"], ['Inactivas', "inactive"]]), {class: "form-control", :include_blank =>t(params[:status]), :onchange => "this.form.submit();"}) %>
+  <%= select_tag(:status, options_for_select({'Todas': "all", 'Activas': "active", 'Inactivas': "inactive"}, params[:status] ), {class: "form-control", :onchange => "this.form.submit();"}) %>
 </div>
 <h2>
     <%= paginate @polls %>
