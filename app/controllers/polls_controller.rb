@@ -39,7 +39,7 @@ class PollsController < ApplicationController
 
       # publish_facebook(@poll)
     end
-    #ActionCable.server.broadcast 'polls_channel', 'changed'
+    # ActionCable.server.broadcast 'polls_channel', 'changed'
     flash[:success] = I18n.t(:accion_exitosa)
     redirect_to dashboard_index_path
   rescue Exception => e
@@ -52,7 +52,7 @@ class PollsController < ApplicationController
   def destroy
     @poll = Poll.find_by(id: params[:id])
     @poll.destroy
-    #ActionCable.server.broadcast 'polls_channel', 'changed'
+    # ActionCable.server.broadcast 'polls_channel', 'changed'
     redirect_to admin_polls_path
   end
 
@@ -64,7 +64,6 @@ class PollsController < ApplicationController
     respond_to do |format|
       format.html do
         @polls = Poll.order('id desc').all.last(10)
-        @polls
       end
       format.json do
         @polls = Poll.where('closing_date >= ?', Date.today).includes(:vote_types)
@@ -74,10 +73,12 @@ class PollsController < ApplicationController
   end
 
   def index_admin
+    params[:status] = "all" unless params[:status]
+    @filtered_polls = Poll.by_status(params[:status])
     @polls = if current_user.politico?
-               Poll.order('id desc').where(usuario_id: current_user.id).page(params[:page]).per(4)
+               @filtered_polls.order('id desc').where(usuario_id: current_user.id).page(params[:page]).per(4)
              else
-               Poll.order('id desc').all.page(params[:page]).per(4)
+               @filtered_polls.order('id desc').all.page(params[:page]).per(4)
              end
     render :index
   end
@@ -139,7 +140,7 @@ class PollsController < ApplicationController
     @poll = Poll.find_by(id: params[:id])
     get_radiobutton_private
     if @poll.update(http_params)
-      #ActionCable.server.broadcast 'polls_channel', 'changed'
+      # ActionCable.server.broadcast 'polls_channel', 'changed'
       redirect_to dashboard_index_path
     else
       render :edit
@@ -178,6 +179,7 @@ class PollsController < ApplicationController
       :poll_image_cache,
       :private,
       :title,
+      :status,
       vote_types_attributes: [:name]
     )
   end
