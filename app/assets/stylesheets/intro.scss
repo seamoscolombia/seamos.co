@@ -4,4 +4,27 @@
 #intro {
   height: 85vh;
   background-image: url('/assets/introBackgroundImage.png');
+  .row {
+    /* Extra Small Devices, Phones */
+    @media only screen and (min-width : 480px) {
+      margin-top: 30px;
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+      margin-top: 60px;
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+      margin-top: 90px;
+    }
+  }
+  .row:first-child {
+    #cloud {
+      color: #fff;
+      width: 100%;
+      // background-image: url('/assets/cloudForm.png');
+    }
+  }
 }
