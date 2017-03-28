@@ -73,7 +73,6 @@ class PollsController < ApplicationController
   end
 
   def index_admin
-    params[:status] = "all" unless params[:status]
     @filtered_polls = Poll.by_status(params[:status])
     @polls = if current_user.politico?
                @filtered_polls.order('id desc').where(usuario_id: current_user.id).page(params[:page]).per(4)
