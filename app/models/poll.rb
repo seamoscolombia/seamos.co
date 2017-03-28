@@ -21,9 +21,8 @@ class Poll < ApplicationRecord
   belongs_to :usuario
   has_many :vote_types, inverse_of: :poll, dependent: :destroy
   has_many :votes, dependent: :destroy
-  has_many :debates,  dependent: :destroy
+  has_many :debates, dependent: :destroy
   accepts_nested_attributes_for :vote_types
-
 
   validates :title, presence: true
   validates :closing_date, presence: true
@@ -32,6 +31,19 @@ class Poll < ApplicationRecord
 
   validate :closing_date_validation
 
+  scope :active, -> { where('active ==  ? AND closing_date >= ?', true, Date.today) }
+  scope :inactive, -> { where('active == ? OR closing_date < ?', false, Date.today) }
+
+  def self.by_status(status)
+    if status == 'inactive'
+      inactive
+    elsif status == 'active'
+      active
+    else
+      all
+    end
+  end
+
   def closed?
     closing_date < Date.today
   end
@@ -39,21 +51,24 @@ class Poll < ApplicationRecord
   def published_debates
     debates.where(published: true)
   end
+
   def import_csv
-    # ToDo csv reader
+    # TODO: csv reader
     # format: email1, email2, ... ,emailN
     raise NotImplementedError
   end
-  private
-    def closing_date_validation
-      if closing_date < Date.today
-        errors.add(:closing_date, I18n.t(:fecha_invalida))
-      end
-    end
 
-    def has_at_least_two_vote_types
-      if vote_types.length < 2
-        errors.add(:base, I18n.t( :at_least_two_options, scope: :polls))
-      end
+  private
+
+  def closing_date_validation
+    if closing_date < Date.today
+      errors.add(:closing_date, I18n.t(:fecha_invalida))
     end
+  end
+
+  def has_at_least_two_vote_types
+    if vote_types.length < 2
+      errors.add(:base, I18n.t(:at_least_two_options, scope: :polls))
+    end
+  end
 end

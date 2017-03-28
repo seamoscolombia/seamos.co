@@ -8,6 +8,8 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://www.google.com/jsapi" %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag 'favicon' %>
+
   </head>
 
   <body>
@@ -21,17 +23,19 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <%= link_to 'SEAMOS',root_path, class: "navbar-brand" %>
+            <%= link_to root_path, class:'navbar-brand', id: 'logo'  do %>
+              <%= image_tag "LogoSeamos.png", class: "center-block"  %>
+            <% end %>
           </div>
 
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li>  <%= link_to t('.create_admin'),new_admin_path %></li>
-              <li>  <%= link_to t('.polls'),admin_polls_path %></li>
-              <li>  <%= link_to t('.usuarios'),validate_users_path %> </li>
+              <li class="<%= 'nav-li-border' if params[:controller] == 'admin' %>">  <%= link_to t('.create_admin'),new_admin_path %></li>
+              <li class="<%= 'nav-li-border' if params[:controller] == 'polls' %>">  <%= link_to t('.polls'),admin_polls_path %></li>
+              <li class="<%= 'nav-li-border' if params[:controller] == 'usuarios' %>">  <%= link_to t('.usuarios'),validate_users_path %> </li>
 
               <% if is_admin? %>
-                <li>  <%= link_to t(:admin),dashboard_index_path %></li
+                <li class="<%= 'nav-li-border' if params[:controller] == 'dashboard' %>">  <%= link_to t(:admin),dashboard_index_path %></li
               <% end %>
               <li> </li>
               <li class="dropdown">
@@ -52,20 +56,21 @@
       </nav>
     <% end %>
 
-    <div class="container  col-md-12">
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
-    </div>
-
-
-
-
-    <div class="container">
+    <div id='primary-container' class="container">
+      <div class="">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
+      </div>
       <%= yield %>
     </div>
-    <!-- <div class="container"> -->
-     <!-- debug(params) if Rails.env.development? %> -->
-    <!-- </div> -->
+
+    <footer id="footer-seamos" >
+      <div class="container">
+        <p class="text-muted">POWERED BY SEAMOS – DEMOCRACIA DIGITAL</p>
+        <p><%= image_tag("favicon") %></p>
+      </div>
+    </footer>
+
   </body>
 </html>
