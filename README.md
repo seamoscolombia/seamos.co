@@ -7,6 +7,11 @@ application up and running.
 Run the test suite
 --------
 
+Check for pending migrations and, and load the test schema:
+```
+bundle exec rake db:test:prepare
+```
+
 Use the `rspec` command to run your specs:
 
 ```
