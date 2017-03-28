@@ -2,14 +2,16 @@
   <div>
     <div class="col-sm-6 my-buttons-container">
       <center>
-        <%= link_to t(".validate_users"), validate_users_path,
-          class: "btn btn-info btn-lg" %>
+        <%= link_to validate_users_path do %>
+          <%= image_tag("validate_users_button", class: '')  %>
+        <% end %>
       </center>
     </div>
     <div class="col-sm-6 my-buttons-container">
       <center>
-        <%= link_to "#{t(:create)} #{Poll.model_name.human}",
-          new_poll_path, class: "btn btn-info btn-lg" %>
+        <%= link_to new_poll_path do %>
+          <%= image_tag("create_poll_button", class: '')  %>
+        <% end %>
       </center>
     </div>
   </div>
