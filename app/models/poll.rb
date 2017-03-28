@@ -46,7 +46,7 @@ class Poll < ApplicationRecord
   end
   private
     def closing_date_validation
-      if closing_date < Date.today
+      if closing_date && closing_date < Date.today
         errors.add(:closing_date, I18n.t(:fecha_invalida))
       end
     end
