@@ -56,7 +56,7 @@
       </nav>
     <% end %>
 
-    <div class="container">
+    <div id='primary-container' class="container">
       <div class="">
         <% flash.each do |message_type, message| %>
           <div class="alert alert-<%= message_type %>"><%= message %></div>
