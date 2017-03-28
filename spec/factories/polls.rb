@@ -13,5 +13,13 @@ FactoryGirl.define do
         end
       end
     end
+    factory :poll_with_votes_and_debates do
+      after(:create) do |poll|
+        5.times do
+          poll.votes << FactoryGirl.create(:vote)
+          poll.debates << FactoryGirl.create(:debate_with_questions)
+        end
+      end
+    end
   end
 end
