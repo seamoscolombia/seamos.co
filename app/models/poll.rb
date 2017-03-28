@@ -31,8 +31,8 @@ class Poll < ApplicationRecord
 
   validate :closing_date_validation
 
-  scope :active, -> { where('closing_date >= ?', Date.today) }
-  scope :inactive, -> { where('closing_date < ?', Date.today) }
+  scope :active, -> { where('active ==  ? AND closing_date >= ?', true, Date.today) }
+  scope :inactive, -> { where('active == ? OR closing_date < ?', false, Date.today) }
 
   def self.by_status(status)
     if status == 'inactive'
