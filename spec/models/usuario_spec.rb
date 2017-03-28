@@ -24,8 +24,8 @@ RSpec.describe Usuario, type: :model do
         expect(user.errors[:numero_documento]).to include('no puede estar en blanco')
         expect(user.errors[:tipo_de_documento]).to include('no puede estar en blanco')
       end
-      let(:pre_invalid_user) { FactoryGirl.create(:usuario, uid: Usuario.last.uid + rand(30), numero_documento: 'abc') }
-      let(:invalid_user) { Usuario.new(role_type: 0, uid: '1', numero_documento: 'abc') }
+      let(:pre_invalid_user) { FactoryGirl.create(:usuario, uid: '1', numero_documento: 'abc') }
+      let(:invalid_user) { Usuario.new(role_type: 0, uid: pre_invalid_user.uid, numero_documento: 'abc') }
       it 'should validate numericality' do
         invalid_user.valid?
         expect(invalid_user.errors[:numero_documento]).to include('no es un número')
