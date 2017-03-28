@@ -2,8 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #intro {
+  background-image: url(<%= asset_path 'introBackgroundImage.png' %>);
   height: 85vh;
-  background-image: url('/assets/introBackgroundImage.png');
   .row {
     /* Extra Small Devices, Phones */
     @media only screen and (min-width : 480px) {
@@ -32,7 +32,8 @@
       text-align: center;
       #infography{
         width: 90%;
-        background-image: url('/assets/infographyBackgroundImage.png');
+        // background-image: url('/assets/infographyBackgroundImage.png');
+        background-image: url(<%= asset_path 'infographyBackgroundImage.png' %>);
         background-size: 100% 100%;
       }
     }
