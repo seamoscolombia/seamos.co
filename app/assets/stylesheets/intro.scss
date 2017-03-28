@@ -27,4 +27,11 @@
       // background-image: url('/assets/cloudForm.png');
     }
   }
+  .row:nth-child(2) {
+    #infography{
+      width: 100%;
+      background-image: url('/assets/infographyBackgroundImage.png');
+      background-size: 100% 100%;
+    }
+  }
 }
