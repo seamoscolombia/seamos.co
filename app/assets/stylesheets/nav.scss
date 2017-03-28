@@ -1,0 +1,21 @@
+.navbar.navbar-default.navbar-static-top{
+  margin-bottom: 0px;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  #logo {
+    padding-top: 0;
+    margin-left: 24px;
+    img {
+      height: 54px;
+      width: 186px;
+    }
+  }
+  li.nav-li-border{
+    border-bottom: 2px solid red;
+    a {
+      padding-bottom: 3px !important;
+    }
+  }
+}
