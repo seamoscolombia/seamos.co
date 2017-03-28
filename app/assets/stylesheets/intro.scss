@@ -17,7 +17,7 @@
 
     /* Medium Devices, Desktops */
     @media only screen and (min-width : 992px) {
-      margin-top: 90px;
+      margin-top: 36px;
     }
   }
   .row:first-child {
@@ -28,10 +28,20 @@
     }
   }
   .row:nth-child(2) {
-    #infography{
-      width: 100%;
-      background-image: url('/assets/infographyBackgroundImage.png');
-      background-size: 100% 100%;
+    div {
+      text-align: center;
+      #infography{
+        width: 90%;
+        background-image: url('/assets/infographyBackgroundImage.png');
+        background-size: 100% 100%;
+      }
     }
+  }
+  .row:nth-child(3) {
+      img {
+        width: 40%;
+        float: right;
+      }
+
   }
 }
