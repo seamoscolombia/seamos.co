@@ -17,23 +17,23 @@ RSpec.describe Usuario, type: :model do
 
   describe 'validations' do
     describe 'not an admin validations' do
-      let(:empty_record) { Usuario.new(role_type: 0, uid: '', numero_documento: '') }
+      let(:user) { Usuario.new(role_type: 0, uid: '', numero_documento: '') }
       it 'should validate presence' do
-        empty_record.valid?
-        expect(empty_record.errors[:uid]).to include('no puede estar en blanco')
-        expect(empty_record.errors[:numero_documento]).to include('no puede estar en blanco')
-        expect(empty_record.errors[:tipo_de_documento]).to include('no puede estar en blanco')
+        user.valid?
+        expect(user.errors[:uid]).to include('no puede estar en blanco')
+        expect(user.errors[:numero_documento]).to include('no puede estar en blanco')
+        expect(user.errors[:tipo_de_documento]).to include('no puede estar en blanco')
       end
-      let(:pre_invalid_record) { FactoryGirl.create(:usuario, uid: Usuario.last.uid + rand(30), numero_documento: 'abc') }
-      let(:invalid_record) { Usuario.new(role_type: 0, uid: '1', numero_documento: 'abc') }
+      let(:pre_invalid_user) { FactoryGirl.create(:usuario, uid: Usuario.last.uid + rand(30), numero_documento: 'abc') }
+      let(:invalid_user) { Usuario.new(role_type: 0, uid: '1', numero_documento: 'abc') }
       it 'should validate numericality' do
-        invalid_record.valid?
-        expect(invalid_record.errors[:numero_documento]).to include('no es un número')
+        invalid_user.valid?
+        expect(invalid_user.errors[:numero_documento]).to include('no es un número')
       end
       it 'should validate uniqueness' do
-        invalid_record.valid?
-        expect(invalid_record.errors[:uid]).to include('ya ha sido tomado')
-        expect(invalid_record.errors[:numero_documento]).to include('ya ha sido tomado')
+        invalid_user.valid?
+        expect(invalid_user.errors[:uid]).to include('ya ha sido tomado')
+        expect(invalid_user.errors[:numero_documento]).to include('ya ha sido tomado')
       end
     end
     it { should validate_presence_of(:primer_apellido) }
