@@ -11,5 +11,13 @@ FactoryGirl.define do
         end
       end
     end
+    factory :debate_with_debate_votes do
+      after(:create) do |debate|
+        2.times do
+          debate.questions << FactoryGirl.create(:question, debate: debate)
+        end
+        debate.debate_votes << FactoryGirl.create(:debate_vote)
+      end
+    end
   end
 end
