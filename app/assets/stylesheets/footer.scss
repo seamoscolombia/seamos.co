@@ -1,7 +1,7 @@
 #footer-seamos {
   background-color: #F8F8F8;
   bottom: 1px;
-  height: 88px;
+  height: 108px;
   position: fixed;
   display: flex;
   justify-content: center;
@@ -9,5 +9,8 @@
   div.container {
     text-align: center;
     align-self: center;
+    p:first-child{
+      margin-bottom: 0;
+    }
   }
 }
