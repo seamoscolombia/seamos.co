@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322160021) do
+ActiveRecord::Schema.define(version: 20170328161549) do
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20170322160021) do
     t.datetime "updated_at",                  null: false
     t.string   "url_image"
     t.string   "poll_image"
+    t.boolean  "active",       default: true
     t.index ["title"], name: "index_polls_on_title"
     t.index ["usuario_id"], name: "index_polls_on_usuario_id"
   end
