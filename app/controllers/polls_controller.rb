@@ -39,7 +39,7 @@ class PollsController < ApplicationController
 
       # publish_facebook(@poll)
     end
-    # ActionCable.server.broadcast 'polls_channel', 'changed'
+    ActionCable.server.broadcast 'polls_channel', 'changed'
     flash[:success] = I18n.t(:accion_exitosa)
     redirect_to dashboard_index_path
   rescue Exception => e
@@ -52,7 +52,7 @@ class PollsController < ApplicationController
   def destroy
     @poll = Poll.find_by(id: params[:id])
     @poll.destroy
-    # ActionCable.server.broadcast 'polls_channel', 'changed'
+    ActionCable.server.broadcast 'polls_channel', 'changed'
     redirect_to admin_polls_path
   end
 
@@ -139,7 +139,7 @@ class PollsController < ApplicationController
     @poll = Poll.find_by(id: params[:id])
     get_radiobutton_private
     if @poll.update(http_params)
-      # ActionCable.server.broadcast 'polls_channel', 'changed'
+      ActionCable.server.broadcast 'polls_channel', 'changed'
       redirect_to dashboard_index_path
     else
       render :edit
