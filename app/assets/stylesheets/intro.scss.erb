@@ -3,23 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #intro {
   background-image: url(<%= asset_path 'introBackgroundImage.png' %>);
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;;
+  justify-content: space-around;
+  min-height: 600px;
   height: 85vh;
-  .row {
-    /* Extra Small Devices, Phones */
-    @media only screen and (min-width : 480px) {
-      margin-top: 30px;
-    }
-
-    /* Small Devices, Tablets */
-    @media only screen and (min-width : 768px) {
-      margin-top: 60px;
-    }
-
-    /* Medium Devices, Desktops */
-    @media only screen and (min-width : 992px) {
-      margin-top: 36px;
-    }
-  }
   .row:first-child {
     #cloud {
       color: #fff;
