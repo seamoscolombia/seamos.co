@@ -66,7 +66,7 @@ class Usuario < ApplicationRecord
 
   def self.get_admin(params)
     user = find_by_email(params[:email])
-    if user && user.password_hash == BCrypt::Engine.hash_secret( params[:password], user.password_salt)
+    if user && user.password_hash && user.password_hash == BCrypt::Engine.hash_secret( params[:password], user.password_salt)
       user
     else
       nil
