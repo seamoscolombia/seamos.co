@@ -1,4 +1,3 @@
-# Sidekiq interaction and startup script
 commands:
   create_post_dir:
     command: "mkdir -p /opt/elasticbeanstalk/hooks/appdeploy/post"
