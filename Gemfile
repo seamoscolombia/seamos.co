@@ -44,7 +44,7 @@ gem 'material_design_lite-rails', '~> 1.2'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'koala', '~>2.4.0'
 gem 'kaminari', '~> 1.0.1'
-
+gem 'sidekiq', '~> 4.2.10'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
