@@ -24,9 +24,9 @@
               <li class="span5 clearfix">
                 <div class="thumbnail clearfix">
 									<a class="profile pull-left span2 clearfix" href="#thumb">
-										<img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" border="0" style='margin-right:10px; height: 150px;'/>
+										<img src="<%= get_photo_url(usuario) if usuario.document_photo%>"  alt="ALT NAME" border="0" style='margin-right:10px; height: 150px;'/>
 										<span>
-											<img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" style='height: 450px;'/>
+											<img src="<%= get_photo_url(usuario) if usuario.document_photo%>"  alt="ALT NAME" style='height: 450px;'/>
 										</span>
 									</a>
                   <div class="caption" class="pull-left">
