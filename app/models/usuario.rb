@@ -38,7 +38,7 @@ class Usuario < ApplicationRecord
   validates  :nombres, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :document_photo_id, presence: true
   validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres, :role_type]
-  validates :uid, uniqueness: true
+  validates :uid, uniqueness: true, unless: :admin?
   validate :fecha_de_expedicion_razonable, unless: :admin?
 
   validate :validar_cedula, unless: :admin?
