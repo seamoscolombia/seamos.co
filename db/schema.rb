@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328161549) do
+ActiveRecord::Schema.define(version: 20170403163012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,7 +143,6 @@ ActiveRecord::Schema.define(version: 20170328161549) do
     t.integer  "tipo_de_documento_id"
     t.string   "numero_documento"
     t.date     "fecha_expedicion"
-    t.integer  "role_type"
     t.string   "uid"
     t.boolean  "valido"
     t.datetime "created_at",           null: false
@@ -152,9 +151,9 @@ ActiveRecord::Schema.define(version: 20170328161549) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.integer  "role_type"
     t.index ["document_photo_id"], name: "index_usuarios_on_document_photo_id", using: :btree
     t.index ["numero_documento"], name: "index_usuarios_on_numero_documento", using: :btree
-    t.index ["role_type"], name: "index_usuarios_on_role_type", using: :btree
     t.index ["tipo_de_documento_id", "numero_documento"], name: "index_usuarios_on_tipo_de_documento_id_and_numero_documento", unique: true, using: :btree
     t.index ["tipo_de_documento_id"], name: "index_usuarios_on_tipo_de_documento_id", using: :btree
     t.index ["uid"], name: "index_usuarios_on_uid", unique: true, using: :btree
@@ -191,7 +190,6 @@ ActiveRecord::Schema.define(version: 20170328161549) do
   add_foreign_key "polls", "usuarios"
   add_foreign_key "questions", "debates"
   add_foreign_key "usuarios", "document_photos"
-  add_foreign_key "usuarios", "roles", column: "role_type"
   add_foreign_key "usuarios", "tipo_de_documentos"
   add_foreign_key "vote_types", "polls"
   add_foreign_key "votes", "polls"
