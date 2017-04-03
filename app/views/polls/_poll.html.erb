@@ -12,6 +12,15 @@
           </strong>
         </h4>
       </div>
+      <div id="poll-status" class="col-md-12">
+        <% if poll.active %>
+        <i class="material-icons mdl-list__item-avatar active">done</i>
+          <span><%= t('.active_poll') %></span>
+        <% else %>
+          <i class="material-icons mdl-list__item-avatar inactive">clear</i>
+          <span><%= t('.inactive_poll') %></span>
+        <% end %>
+      </div>
     </div>
     <br>
     <div class="row">
