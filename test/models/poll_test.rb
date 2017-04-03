@@ -13,6 +13,7 @@
 #  updated_at   :datetime         not null
 #  url_image    :string
 #  poll_image   :string
+#  active       :boolean          default(TRUE)
 #
 
 require 'test_helper'

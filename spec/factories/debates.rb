@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: debates
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  published  :boolean          default(FALSE)
+#  poll_id    :integer
+#  usuario_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 FactoryGirl.define do
   factory :debate do
     title { Faker::Lorem.paragraph }
