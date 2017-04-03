@@ -2,15 +2,27 @@
   background-color: #F8F8F8;
   bottom: 1px;
   height: 108px;
-  position: fixed;
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-top: 0px;
+  @media only screen and (min-width : 768px) {
+    margin-top: 15px;
+    position: fixed;
+  }
+
   div.container {
     text-align: center;
     align-self: center;
     p:first-child{
       margin-bottom: 0;
+      font-size: 9px;
+    }
+    img {
+      width: 15%;
+      @media only screen and (min-width : 768px) {
+        width: 65px;
+      }
     }
   }
 }
