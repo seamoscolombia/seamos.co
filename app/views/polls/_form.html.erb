@@ -6,9 +6,10 @@
       <%= f.text_field :title, class: 'form-control' %>
     </div>
 
-    <div class="field">
+    <div class="field description" >
       <%= f.label :description %>
-      <%= f.text_area :description, class: 'form-control' %>
+      <%= f.text_area :description, id: 'poll-description',class: 'form-control', maxlength: 500 %>
+      <label id='counter-label' class='char-left'>500</label>
     </div>
 
     <div class="field">
@@ -19,7 +20,6 @@
         data-provide='datepicker' data-date-language="es"
         data-date-autoclose="true" data-date-format="yyyy/mm/dd"
         class="input-sm form-control" name="poll[closing_date]"
-
       />
     </div>
 
