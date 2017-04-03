@@ -311,6 +311,8 @@ es:
       delete_poll: Borrar Propuesta
       edit_poll: Editar Propuesta
       "false": Votación Pública.
+      activate: Activar
+      deactivate: Desactivar
       fb_publish:
         no_button: No, gracias
         "share_message": Has invitado a tus amigos a participar
