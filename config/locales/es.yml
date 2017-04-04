@@ -131,6 +131,7 @@ es:
       not_an_integer: debe ser un entero
       odd: debe ser un número impar
       record_invalid: ! 'La validación falló: %{errors}'
+      extension_white_list_error: 'Formato de documento no admitido'
       taken: ya ha sido tomado
       too_long:
         one: es demasiado largo (máximo 1 caracter)
@@ -221,6 +222,7 @@ es:
         description: Descripción
         totals: Totales
         private: Secreto
+        poll_document: Documento de la Propuesta
       usuario:
         fecha_expedicion: Fecha de expedición
         nombre: 'Nombre'
