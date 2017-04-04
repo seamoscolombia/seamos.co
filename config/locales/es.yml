@@ -289,6 +289,7 @@ es:
     form:
       add: Agregar
       csv_field: Archivo CSV
+      document_field: Documento de la propuesta
       has_image: La propuesta ya tiene la imagen %{filename}. Si desea cambiar, por favor escoja otra. En caso contrario dejarla vacia.
       list_of_options: Lista de opciones
       new_option: Ingrese una opción
