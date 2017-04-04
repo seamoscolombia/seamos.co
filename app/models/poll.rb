@@ -18,6 +18,7 @@
 
 class Poll < ApplicationRecord
   mount_uploader :poll_image, PollImageUploader
+  mount_uploader :poll_document, PollDocumentUploader
 
   belongs_to :usuario
   has_many :vote_types, inverse_of: :poll, dependent: :destroy
@@ -29,6 +30,7 @@ class Poll < ApplicationRecord
   validates :closing_date, presence: true
   validates :description, presence: true
   validates :poll_image, presence: true, on: :create
+  validates :poll_document, presence: true, on: :create
 
   validate :closing_date_validation
 

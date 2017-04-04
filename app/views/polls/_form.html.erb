@@ -26,12 +26,22 @@
     <div class="field">
      <%= f.label t('.poll_image') %>
      <% if poll.poll_image.file %>
-      <p id="has_image">
+      <p class="has_media">
         <%= t('.has_image', filename: poll.poll_image.file.filename) %>
       </p>
      <% end %>
      <%= f.file_field :poll_image %>
      <%= f.hidden_field :poll_image_cache %>
+   </div>
+
+   <div id='document_field' class="field">
+     <%= f.label t('.document_field') %>
+     <% if poll.poll_document.file %>
+     <p class="has_media">
+       <%= t('.has_document', filename: poll.poll_document.file.filename) %>
+     </p>
+     <% end %>
+     <%= f.file_field :poll_document%>
    </div>
 
      <%= f.label t('.secret_public') %>
@@ -40,10 +50,12 @@
        <%= f.label t('.public')  %>
     </div>
 
+
     <div class=" field radio">
        <%= f.radio_button :private, "true", checked: false %>
        <%= f.label t('.private')  %>
     </div>
+
 
     <div id='csv-field' class="field" style='display: none'>
        <%= f.label t('.csv_field') %>
