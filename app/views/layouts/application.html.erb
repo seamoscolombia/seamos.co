@@ -35,7 +35,8 @@
               <li class="<%= 'nav-li-border' if params[:controller] == 'usuarios' %>">  <%= link_to t('.usuarios'),validate_users_path %> </li>
 
               <% if is_admin? %>
-                <li class="<%= 'nav-li-border' if params[:controller] == 'dashboard' %>">  <%= link_to t(:admin),dashboard_index_path %></li
+                <li class="<%= 'nav-li-border' if params[:controller] == 'tags' %>">  <%= link_to t(:tags),new_tags_path %></li>
+                <li class="<%= 'nav-li-border' if params[:controller] == 'dashboard' %>">  <%= link_to t(:admin),dashboard_index_path %></li>
               <% end %>
               <li> </li>
               <li class="dropdown">

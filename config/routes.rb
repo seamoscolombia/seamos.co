@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   scope '/admin' do
     # get '/', to: 'sessions#new'
     post '/tags', to: 'tags#create'
-    get '/tags/new', to: 'tags#new'
+    get '/tags/new', to: 'tags#new', as: :new_tags
     get 'polls', to:  'polls#index_admin', as: :admin_polls
     get '/', to: 'sessions#new', as: :admin_login
     post '/sessions', to: 'sessions#admin_create', as: :admin_session
