@@ -26,7 +26,7 @@
     <div class="field">
      <%= f.label t('.poll_image') %>
      <% if poll.poll_image.file %>
-      <p id="has_image">
+      <p class="has_media">
         <%= t('.has_image', filename: poll.poll_image.file.filename) %>
       </p>
      <% end %>
