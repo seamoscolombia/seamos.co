@@ -11,7 +11,7 @@ class TagsController < ApplicationController
     @created_tags = 0
     @already_created_tags = 0
     @tags.map do |name|
-      if @existing_tags.include? name
+      if @existing_tags.include? name.delete(' ')
         @already_created_tags += 1
       else
       @tag = Tag.new(name: name)
@@ -23,8 +23,6 @@ class TagsController < ApplicationController
     end
     if @created_tags + @already_created_tags == @tags.count
       redirect_to :back
-    else
-      debugger
     end
   end
 
