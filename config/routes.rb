@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   resources :votes, only: :create
   resources :debate_votes, only: :create
 
+  resources :tags do
+    # post 'create', on: :collection
+  end
 
   resources :admin, only: [:create, :new]
   scope '/admin' do
