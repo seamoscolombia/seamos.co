@@ -26,13 +26,11 @@ Rails.application.routes.draw do
   resources :votes, only: :create
   resources :debate_votes, only: :create
 
-  resources :tags do
-    # post 'create', on: :collection
-  end
-
   resources :admin, only: [:create, :new]
   scope '/admin' do
     # get '/', to: 'sessions#new'
+    post '/tags', to: 'tags#create'
+    get '/tags/new', to: 'tags#new'
     get 'polls', to:  'polls#index_admin', as: :admin_polls
     get '/', to: 'sessions#new', as: :admin_login
     post '/sessions', to: 'sessions#admin_create', as: :admin_session

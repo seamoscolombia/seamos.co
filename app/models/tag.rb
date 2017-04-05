@@ -1,5 +1,5 @@
 class Tag < ApplicationRecord
-  has_many :taggings
-  has_many :polls, through: :taggings
+  has_many :taggings, dependent: :destroy
+  has_many :polls, -> { distinct }, through: :taggings
   validates :name, presence: true
 end
