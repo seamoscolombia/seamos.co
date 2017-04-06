@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/auth/sessions', to: 'sessions#error'
 
   patch 'debate/:id', to: 'debates#publish', as: :publish_debate
+  patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
 
   resources :polls do
     get 'last', on: :collection
