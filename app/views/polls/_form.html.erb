@@ -12,6 +12,10 @@
       <label id='counter-label' class='char-left'>500</label>
     </div>
 
+    <div class="field" style="display:none">
+      <%= f.text_field :tags, id: 'tags-field'%>
+    </div>
+
     <div class="field">
       <%= f.label :closing_date %>
       <input
@@ -62,15 +66,16 @@
        <p>El formato será los correos electronicos separados por coma ej: </p>
        <p><small>correo_a@correo.com<strong>,</strong>correo_b@correo.com<strong>,</strong>correo_c@correo.com</small></p>
        <%= f.file_field :poll_csv, accept: 'text/csv'%>
-    </div>
+    </div><br>
+    <%= f.label t('.tags_picker') %><br>
+    <%= render '/tags/tag_list', tags: Tag.all.map(&:name) %>
 
-
+    <br><br>
     <div class="actions">
       <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
     </div>
 
 <% end %>
-
 <script type="text/javascript">
   function addOption (){
     var optionsContainer = $("#vote_types_attributes");

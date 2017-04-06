@@ -12,15 +12,15 @@ class TagsController < ApplicationController
     @created_tags = 0
     @already_created_tags = 0
     @tags.map do |name|
-      if @existing_tags.include? name.delete(' ')
+      if @existing_tags.include? name.delete(' ').downcase
         @already_created_tags += 1
       else
-        @tag = Tag.new(name: name)
+        @tag = Tag.new(name: name.delete(' ').downcase)
         if @tag.save
           @existing_tags.push(name)
           @created_tags += 1
         end
-       end
+      end
     end
     redirect_to :back if @created_tags + @already_created_tags == @tags.count
   end
@@ -40,6 +40,6 @@ class TagsController < ApplicationController
   end
 
   def validate_superadmin
-    redirect_to :root if current_user.role_type != "administrador"
+    redirect_to :root if current_user.role_type != 'administrador'
   end
 end

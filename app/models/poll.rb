@@ -26,7 +26,7 @@ class Poll < ApplicationRecord
   has_many :debates, dependent: :destroy
   accepts_nested_attributes_for :vote_types
   has_many :taggings
-  has_many :tags,  -> { distinct }, through: :taggings
+  has_many :tags, -> { distinct }, through: :taggings
 
   validates :title, presence: true
   validates :closing_date, presence: true
@@ -65,6 +65,10 @@ class Poll < ApplicationRecord
     # TODO: csv reader
     # format: email1, email2, ... ,emailN
     raise NotImplementedError
+  end
+
+  def set_tags(tag_list)
+    tags << Tag.where(name: tag_list.split(','))
   end
 
   private
