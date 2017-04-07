@@ -34,6 +34,7 @@ class PollsController < ApplicationController
     @poll.private = get_radiobutton_private
     @poll.import(params[:poll][:poll_csv]) if @poll.private
     @poll.usuario = current_user
+    @poll.set_tags(tags_param)
     totals_hash = {}
     Poll.transaction do
       @poll.vote_types.build(name: 'SI')
@@ -178,6 +179,9 @@ class PollsController < ApplicationController
     )
   end
 
+  def tags_param
+    params[:poll][:tags]
+  end
   def http_params
     params.require(:poll).permit(
       :closing_date,

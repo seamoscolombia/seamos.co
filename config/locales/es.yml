@@ -283,12 +283,14 @@ es:
       no_debates_available: No hay debates para esta Propuesta.
     show:
       debate_results: "Resultados de: %{debate_title}"
+
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
     edit: Editar
     form:
       add: Agregar
       csv_field: Archivo CSV
+      tags_picker: Etiquetas
       document_field: Documento de la propuesta
       has_image: La propuesta ya tiene la imagen %{filename}. Si desea cambiar, por favor escoja otra. En caso contrario dejarla vacia.
       has_document: La propuesta ya tiene el documento %{filename}. Si desea cambiarlo, por favor escoja otro. En caso contrario deje el campo vacío.
@@ -372,6 +374,7 @@ es:
   accion_no_realizada: "No se pudo realizar la acción."
   actual_password: "Contraseña actual"
   actualizacion_exitosa: "Actualización exitosa."
+  tags: Etiquetas
   admin: Menú administración
   admin_invalid: Comunicate con la administración de seamos
   cedula_invalida: Lo sentimos esta cédula no es válida
