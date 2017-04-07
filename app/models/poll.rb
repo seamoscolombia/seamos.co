@@ -25,7 +25,7 @@ class Poll < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :debates, dependent: :destroy
   accepts_nested_attributes_for :vote_types
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :tags, -> { distinct }, through: :taggings
 
   validates :title, presence: true

@@ -1,5 +1,11 @@
 <div class="tag-list">
-<% tags.reverse_each do |tag_name|%>
-  <span class="label label-default tag"><%= tag_name %></span></h1>
-<%end%>
+  <% tags.reverse_each do |tag|%>
+    <%if location_from == "new_tags"%>
+    <%= link_to tag.name + " x", delete_tag_path(tag.id), class: "label label-default tag",
+                                                   method: :delete,
+                                                   data: {confirm: t(".confirmation")}  %>
+      <%elsif location_from == "new_poll" %>
+      <span class="label label-default tag"><%= tag.name %></span>
+    <%end%>
+  <%end%>
 </div>
