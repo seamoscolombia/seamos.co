@@ -68,7 +68,7 @@
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Selecciona las etiquetas que más se adecúen a tu propuesta.
     </div>
-    <%= render '/tags/tag_list', tags: Tag.all.map(&:name) %>
+    <%= render '/tags/tag_list', tags: Tag.all, location_from: "new_poll" %>
 </div>
 
 <div class="actions">

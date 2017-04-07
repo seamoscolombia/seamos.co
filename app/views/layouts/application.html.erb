@@ -35,7 +35,7 @@
               <li class="<%= 'nav-li-border' if params[:controller] == 'usuarios' %>">  <%= link_to t('.usuarios'),validate_users_path %> </li>
 
               <% if is_admin? %>
-                <li class="<%= 'nav-li-border' if params[:controller] == 'tags' %>">  <%= link_to t(:tags),new_tags_path %></li>
+                <li class="<%= 'nav-li-border' if params[:controller] == 'tags' %>">  <%= link_to t(:tags_menu),new_tags_path %></li>
                 <li class="<%= 'nav-li-border' if params[:controller] == 'dashboard' %>">  <%= link_to t(:admin),dashboard_index_path %></li>
               <% end %>
               <li> </li>
@@ -60,7 +60,9 @@
     <div id='primary-container' class="container">
       <div class="">
         <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>"><%= message %></div>
+          <div class="alert alert-<%= message_type %> alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <%= message %></div>
         <% end %>
       </div>
       <%= yield %>
