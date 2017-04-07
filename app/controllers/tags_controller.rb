@@ -8,6 +8,19 @@ class TagsController < ApplicationController
     @tag = Tag.new
   end
 
+  def index
+    respond_to do |format|
+      format.html do
+        @tags = Tag.all.map(&:name)
+      end
+      format.json do
+        @tags = Tag.all
+        render json: @tags
+      end
+    end
+
+  end
+
   def create
     @created_tags = 0
     @already_created_tags = 0
