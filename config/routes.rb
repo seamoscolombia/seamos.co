@@ -26,12 +26,11 @@ Rails.application.routes.draw do
   resources :tipo_de_documentos, only: :index
   resources :votes, only: :create
   resources :debate_votes, only: :create
-
+  get '/tags', to: 'tags#index'
   resources :admin, only: [:create, :new]
   scope '/admin' do
     # get '/', to: 'sessions#new'
     post '/tags', to: 'tags#create'
-    get '/tags', to: 'tags#index'
     get '/tags/new', to: 'tags#new', as: :new_tags
     get 'polls', to:  'polls#index_admin', as: :admin_polls
     get '/', to: 'sessions#new', as: :admin_login
