@@ -22,20 +22,22 @@ class TagsController < ApplicationController
   end
 
   def create
-    @created_tags = 0
-    @already_created_tags = 0
-    @tags.map do |name|
-      if @existing_tags.include? name.delete(' ').downcase
-        @already_created_tags += 1
-      else
-        @tag = Tag.new(name: name.delete(' ').downcase)
-        if @tag.save
-          @existing_tags.push(name)
-          @created_tags += 1
-        end
-      end
+    @new_tags = 0
+    @dup_tags = 0
+    @tags.each do |name|
+      name.delete!(' ')
+      @tag = Tag.new(name: name.downcase)
+      (@tag.save ? @new_tags += 1 : @dup_tags += 1) unless name == ''
     end
-    redirect_to :back if @created_tags + @already_created_tags == @tags.count
+    flash[:danger] = 'el nombre de ' + @dup_tags.to_s + ' etiquetas ya ha sido tomado' if @dup_tags > 0
+    flash[:success] = I18n.t(:tags_creados, created: @new_tags.to_s + ' etiquetas') if @new_tags > 0
+    redirect_to :back
+  end
+
+  def delete
+    @tag = Tag.find(params[:id])
+    @tag.destroy
+    redirect_to :back
   end
 
   private
@@ -45,7 +47,7 @@ class TagsController < ApplicationController
   end
 
   def existing_tags
-    @existing_tags = Tag.all.map(&:name)
+    @existing_tags = Tag.all
   end
 
   def tag_params

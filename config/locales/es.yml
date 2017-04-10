@@ -245,6 +245,7 @@ es:
           attributes:
             debate:
               required: descripción requerido en preguntas de Debate
+
   intro:
     inicio:
       sign_in_invitation: "¡Te invitamos, Regístrate!"
@@ -283,7 +284,6 @@ es:
       no_debates_available: No hay debates para esta Propuesta.
     show:
       debate_results: "Resultados de: %{debate_title}"
-
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
     edit: Editar
@@ -374,7 +374,7 @@ es:
   accion_no_realizada: "No se pudo realizar la acción."
   actual_password: "Contraseña actual"
   actualizacion_exitosa: "Actualización exitosa."
-  tags: Etiquetas
+  tags_menu: Etiquetas
   admin: Menú administración
   admin_invalid: Comunicate con la administración de seamos
   cedula_invalida: Lo sentimos esta cédula no es válida
@@ -390,6 +390,11 @@ es:
     - Político
     - Administrador
   success: "Acción exitosa."
+  tags:
+    name: El nombre de la etiqueta
+    tag_list:
+      confirmation: ¿Esta seguro de borrar la etiqueta?
+  :tags_creados: "%{created} creadas con éxito"
   tipo_de_documento:
     cedula: Cédula
     cedula_extranjeria: Cédula de extranjería
