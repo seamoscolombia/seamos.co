@@ -12,7 +12,7 @@
 
 class Vote < ApplicationRecord
   belongs_to :poll
-  belongs_to :usuario
+  belongs_to :user
   belongs_to :vote_type, optional: true
 
   validate :vote_date, on: :create

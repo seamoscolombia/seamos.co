@@ -20,7 +20,7 @@
 #  password_salt        :string
 #
 
-class Usuario < ApplicationRecord
+class User < ApplicationRecord
   attr_accessor :password, :password_confirmation
 
   belongs_to :tipo_de_documento, required: !:admin?
@@ -33,22 +33,22 @@ class Usuario < ApplicationRecord
   has_many  :votes, dependent: :destroy
   has_many  :debate_votes, dependent: :destroy
 
-  validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
-  validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
-  validates  :nombres, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
+  validates  :fst_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
+  validates  :snd_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
+  validates  :names, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :document_photo_id, presence: true
-  validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres, :role_type]
-  validates :uid, uniqueness: true, unless: :admin?
-  validate :fecha_de_expedicion_razonable, unless: :admin?
+  validates_presence_of  [:fst_surname, :snd_surname, :names, :role_type]
+  validates :uid, uniqueness: true, unless: :admin? 
+  validate :date_range_validation, unless: :admin? #Porque no se valida la fecha para el admin
 
-  validate :validar_cedula, unless: :admin?
+  validate :document_validation, unless: :admin?
   validate :email_for_admin, if: :admin?
   validate :password_for_admin, on: :create, if: :admin?
   validate :password_for_admin_update, on: :update, if: :admin?
-  validates :numero_documento, numericality: { only_integer: true }, uniqueness: true, unless: :admin?
+  validates :document_number, numericality: { only_integer: true }, uniqueness: true, unless: :admin?
   validates :tipo_de_documento, presence: true, unless: :admin?
   validates :uid, presence: true, unless: :admin?
-  validates :numero_documento, presence: true,  unless: :admin?
+  validates :document_number, presence: true,  unless: :admin?
 
   enum role_type: {ciudadano: 0, politico: 1, administrador: 2}
 
@@ -61,7 +61,7 @@ class Usuario < ApplicationRecord
   end
 
   def full_name
-    "#{nombres} #{primer_apellido} #{segundo_apellido}"
+    "#{names} #{fst_surname} #{snd_surname}"
   end
 
   def self.get_admin(params)
@@ -82,8 +82,8 @@ class Usuario < ApplicationRecord
       end
     end
 
-    def fecha_de_expedicion_razonable
-      if fecha_expedicion.blank? || (fecha_expedicion > Date.today)
+    def date_range_validation #Tambien validar que sea menor de 100 años
+      if fecha_expedicion.blank? || (fecha_expedicion > Date.today) 
         errors.add(:fecha_expedicion, I18n.t(:fecha_invalida))
       end
     end
@@ -106,9 +106,9 @@ class Usuario < ApplicationRecord
       end
     end
 
-    def validar_cedula
-      if !(/^\d+$/.match(numero_documento)) || Coldocument.find_by(doc_num: numero_documento.to_i).nil?
-        errors.add(:numero_documento, I18n.t(:cedula_invalida))
+    def document_validation
+      if !(/^\d+$/.match(document_number)) || Coldocument.find_by(doc_num: document_number.to_i).nil?
+        errors.add(:document_number, I18n.t(:cedula_invalida))
       end
     end
 

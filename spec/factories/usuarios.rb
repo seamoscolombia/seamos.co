@@ -21,14 +21,14 @@
 #
 
 FactoryGirl.define do
-  factory :usuario do
+  factory :user do
 
-    primer_apellido { Faker::Name.last_name }
-    segundo_apellido { Faker::Name.last_name }
-    nombres { Faker::Name.first_name }
-    tipo_de_documento { FactoryGirl.create(:tipo_de_documento) }
-    fecha_expedicion { Date.today - 1000.days }
-    valido false
+    fst_surname { Faker::Name.last_name }
+    snd_surname { Faker::Name.last_name }
+    names { Faker::Name.first_name }
+    document_type { FactoryGirl.create(:tipo_de_documento) }
+    expedition_date { Date.today - 1000.days }
+    valid false
     email { Faker::Internet.email }
     password "password123@"
     password_confirmation "password123@"

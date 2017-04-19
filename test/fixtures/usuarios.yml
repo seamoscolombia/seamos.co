@@ -30,7 +30,7 @@ one:
   numero_documento: "1113645710"
   fecha_expedicion: 2008-05-28
   uid: uidString1
-  role: ciudadano
+  role_type: 0
   valido: false
   document_photo: one
 
@@ -42,7 +42,7 @@ two:
   numero_documento: "123123123"
   fecha_expedicion: 2016-07-19
   uid: uidString2
-  role: politico
+  role_type: 1
   valido: false
   document_photo: two
 
@@ -54,6 +54,6 @@ three:
   numero_documento: "123456789"
   fecha_expedicion: 2016-07-19
   uid: uidString3
-  role: administrador
+  role_type: 2
   valido: true
   document_photo: two

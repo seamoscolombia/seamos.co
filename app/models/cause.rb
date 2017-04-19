@@ -11,7 +11,7 @@
 #
 
 class Cause < ApplicationRecord
-  belongs_to :usuario
+  belongs_to :user
 
   validates_presence_of  [:description, :title]
 end
