@@ -12,6 +12,6 @@
 
 class DebateVote < ApplicationRecord
   belongs_to :debate
-  belongs_to :usuario
+  belongs_to :user
   belongs_to :question
 end

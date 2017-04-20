@@ -20,7 +20,7 @@ require 'rails_helper'
 
 RSpec.describe Poll, type: :model do
   describe 'relations' do
-    it { should belong_to(:usuario) }
+    it { should belong_to(:user) }
     it { should have_many(:vote_types) }
     it { should have_many(:votes) }
     it { should have_many(:debates) }

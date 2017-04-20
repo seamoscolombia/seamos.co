@@ -13,7 +13,7 @@
 FactoryGirl.define do
   factory :vote do
     poll { FactoryGirl.create(:poll)}
-    usuario { FactoryGirl.create(:usuario)}
+    user { FactoryGirl.create(:user)}
     vote_type { FactoryGirl.build(:vote_type)}
   end
 end

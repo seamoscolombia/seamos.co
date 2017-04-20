@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419191527) do
+ActiveRecord::Schema.define(version: 20170420150447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 20170419191527) do
   create_table "causes", force: :cascade do |t|
     t.text     "description"
     t.string   "title"
-    t.integer  "usuario_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["usuario_id"], name: "index_causes_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_causes_on_user_id", using: :btree
   end
 
   create_table "coldocuments", id: false, force: :cascade do |t|
@@ -33,13 +33,13 @@ ActiveRecord::Schema.define(version: 20170419191527) do
 
   create_table "debate_votes", force: :cascade do |t|
     t.integer  "question_id"
-    t.integer  "usuario_id"
+    t.integer  "user_id"
     t.integer  "debate_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["debate_id"], name: "index_debate_votes_on_debate_id", using: :btree
     t.index ["question_id"], name: "index_debate_votes_on_question_id", using: :btree
-    t.index ["usuario_id"], name: "index_debate_votes_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_debate_votes_on_user_id", using: :btree
   end
 
   create_table "debates", force: :cascade do |t|
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20170419191527) do
     t.text     "description",                  null: false
     t.boolean  "private",       default: true, null: false
     t.date     "closing_date",                 null: false
-    t.integer  "usuario_id"
+    t.integer  "user_id"
     t.string   "totals"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20170419191527) do
     t.boolean  "active",        default: true
     t.string   "poll_document"
     t.index ["title"], name: "index_polls_on_title", using: :btree
-    t.index ["usuario_id"], name: "index_polls_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_polls_on_user_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
@@ -138,12 +138,12 @@ ActiveRecord::Schema.define(version: 20170419191527) do
   create_table "users", force: :cascade do |t|
     t.string   "fst_surname"
     t.string   "snd_surname"
-    t.string   "name"
+    t.string   "names"
     t.integer  "tipo_de_documento_id"
     t.string   "document_number"
     t.date     "expedition_date"
     t.string   "uid"
-    t.boolean  "valid"
+    t.boolean  "approved"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "document_photo_id"
@@ -168,22 +168,22 @@ ActiveRecord::Schema.define(version: 20170419191527) do
 
   create_table "votes", force: :cascade do |t|
     t.integer  "poll_id"
-    t.integer  "usuario_id"
+    t.integer  "user_id"
     t.integer  "vote_type_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["poll_id"], name: "index_votes_on_poll_id", using: :btree
-    t.index ["usuario_id"], name: "index_votes_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_votes_on_user_id", using: :btree
     t.index ["vote_type_id"], name: "index_votes_on_vote_type_id", using: :btree
   end
 
-  add_foreign_key "causes", "users", column: "usuario_id"
+  add_foreign_key "causes", "users"
   add_foreign_key "debate_votes", "debates"
-  add_foreign_key "debate_votes", "users", column: "usuario_id"
+  add_foreign_key "debate_votes", "users"
   add_foreign_key "debates", "polls"
   add_foreign_key "debates", "users", column: "usuario_id"
   add_foreign_key "municipios", "departamentos"
-  add_foreign_key "polls", "users", column: "usuario_id"
+  add_foreign_key "polls", "users"
   add_foreign_key "questions", "debates"
   add_foreign_key "taggings", "polls"
   add_foreign_key "taggings", "tags"
@@ -191,5 +191,5 @@ ActiveRecord::Schema.define(version: 20170419191527) do
   add_foreign_key "users", "tipo_de_documentos"
   add_foreign_key "vote_types", "polls"
   add_foreign_key "votes", "polls"
-  add_foreign_key "votes", "users", column: "usuario_id"
+  add_foreign_key "votes", "users"
 end
