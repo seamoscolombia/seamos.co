@@ -26,9 +26,9 @@ FactoryGirl.define do
     fst_surname { Faker::Name.last_name }
     snd_surname { Faker::Name.last_name }
     names { Faker::Name.first_name }
-    document_type { FactoryGirl.create(:tipo_de_documento) }
+    tipo_de_documento { FactoryGirl.create(:tipo_de_documento) }
     expedition_date { Date.today - 1000.days }
-    valid false
+    approved false
     email { Faker::Internet.email }
     password "password123@"
     password_confirmation "password123@"

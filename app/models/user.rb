@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: usuarios
+# Table name: users
 #
 #  id                   :integer          not null, primary key
 #  primer_apellido      :string
@@ -9,7 +9,6 @@
 #  tipo_de_documento_id :integer
 #  numero_documento     :string
 #  fecha_expedicion     :date
-#  role_type            :integer
 #  uid                  :string
 #  valido               :boolean
 #  created_at           :datetime         not null
@@ -18,6 +17,7 @@
 #  email                :string
 #  password_hash        :string
 #  password_salt        :string
+#  role_type            :integer
 #
 
 class User < ApplicationRecord
@@ -36,6 +36,7 @@ class User < ApplicationRecord
   validates  :fst_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
   validates  :snd_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :names, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
+  validates  :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}, if: :admin?
   validates  :document_photo_id, presence: true
   validates_presence_of  [:fst_surname, :snd_surname, :names, :role_type]
   validates :uid, uniqueness: true, unless: :admin? 
@@ -83,8 +84,8 @@ class User < ApplicationRecord
     end
 
     def date_range_validation #Tambien validar que sea menor de 100 años
-      if fecha_expedicion.blank? || (fecha_expedicion > Date.today) 
-        errors.add(:fecha_expedicion, I18n.t(:fecha_invalida))
+      if expedition_date.blank? || (expedition_date > Date.today) 
+        errors.add(:expedition_date, I18n.t(:fecha_invalida))
       end
     end
 

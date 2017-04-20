@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: usuarios
+# Table name: users
 #
 #  id                   :integer          not null, primary key
 #  primer_apellido      :string
@@ -9,7 +9,6 @@
 #  tipo_de_documento_id :integer
 #  numero_documento     :string
 #  fecha_expedicion     :date
-#  role_type            :integer
 #  uid                  :string
 #  valido               :boolean
 #  created_at           :datetime         not null
@@ -18,6 +17,7 @@
 #  email                :string
 #  password_hash        :string
 #  password_salt        :string
+#  role_type            :integer
 #
 
 require 'rails_helper'
@@ -39,34 +39,26 @@ RSpec.describe User, type: :model do
 
   describe 'validations' do
     describe 'not an admin validations' do
-      let(:user) { User.new(role_type: 0, uid: '', document_number: '') }
+      let(:l_user) { User.new(role_type: 0, uid: '', document_number: '') }
       it 'should validate presence' do
-        user.valid?
-        expect(user.errors[:uid]).to include('couldn\'t be empty')
-        expect(user.errors[:document_number]).to include('couldn\'t be empty')
-        expect(user.errors[:document_type]).to include('couldn\'t be empty')
+        l_user.valid?
+        expect(l_user.errors[:uid]).to include('no puede estar en blanco')
+        expect(l_user.errors[:document_number]).to include('no puede estar en blanco')
+        expect(l_user.errors[:tipo_de_documento]).to include('no puede estar en blanco')
       end
       let(:pre_invalid_user) { FactoryGirl.create(:user, uid: '1', document_number: 'abc') }
       let(:invalid_user) { User.new(role_type: 0, uid: pre_invalid_user.uid, document_number: 'abc') }
       it 'should validate numericality' do
         invalid_user.valid?
-        expect(invalid_user.errors[:document_number]).to include('it\'s not a number')
+        expect(invalid_user.errors[:document_number]).to include('no es un número')
       end
       it 'should validate uniqueness' do
         invalid_user.valid?
-        expect(invalid_user.errors[:uid]).to include('uid already exist')
-        expect(invalid_user.errors[:document_number]).to include('document_number already exist')
+        expect(invalid_user.errors[:uid]).to include('ya ha sido tomado')
+        expect(invalid_user.errors[:document_number]).to include('ya ha sido tomado')
       end    
     end
     
-    describe 'admin validations' do
-      let(:invalid_admin_user) { User.new(role_type: 2, email: 'abcd') }
-      
-      it 'should validate well formed email' do
-        invalid_admin_user.valid?
-        expect(invalid_admin_user.errors[:email]).to include('it\'s not a valid email')
-      end       
-    end
     it { should validate_presence_of(:fst_surname) }
     it { should validate_presence_of(:snd_surname) }
     it { should validate_presence_of(:names) }
@@ -82,6 +74,9 @@ RSpec.describe User, type: :model do
     describe '#names' do
       it { should_not allow_value('name123').for(:names) }
     end
+    describe '#email' do
+      it { should_not allow_value('abcd').for(:email) }
+    end    
   end
 
   describe 'User#full_name' do

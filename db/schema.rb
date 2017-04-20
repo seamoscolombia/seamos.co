@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 20170420150447) do
     t.string   "title"
     t.boolean  "published",  default: false
     t.integer  "poll_id"
-    t.integer  "usuario_id"
+    t.integer  "user_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["poll_id"], name: "index_debates_on_poll_id", using: :btree
-    t.index ["usuario_id"], name: "index_debates_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_debates_on_user_id", using: :btree
   end
 
   create_table "departamentos", force: :cascade do |t|
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(version: 20170420150447) do
   add_foreign_key "debate_votes", "debates"
   add_foreign_key "debate_votes", "users"
   add_foreign_key "debates", "polls"
-  add_foreign_key "debates", "users", column: "usuario_id"
+  add_foreign_key "debates", "users"
   add_foreign_key "municipios", "departamentos"
   add_foreign_key "polls", "users"
   add_foreign_key "questions", "debates"

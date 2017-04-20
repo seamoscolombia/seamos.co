@@ -32,6 +32,7 @@ class AdminController < ApplicationController
   private
 
     def validate_administrator
+      puts "CURRENT USER: #{current_user}"
       if current_user.nil? || current_user.role_type != "administrador"
         redirect_to root_path
       end

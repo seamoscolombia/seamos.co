@@ -12,7 +12,7 @@
 #
 
 class Debate < ApplicationRecord
-  belongs_to :usuario
+  belongs_to :user
   belongs_to :poll
   has_many :questions, inverse_of: :debate, dependent: :destroy
   has_many :debate_votes, inverse_of: :debate, dependent: :destroy
