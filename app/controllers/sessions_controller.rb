@@ -3,10 +3,11 @@ class SessionsController < ApplicationController
   include SessionsHelper
 
   def admin_create
-    usuario = Usuario.get_admin(http_params)
-    if usuario
+    user = User.get_admin(http_params)
+    byebug
+    if user
       session[:session_type] = 'web'
-      session[:email] = usuario.email
+      session[:email] = user.email
       redirect_to dashboard_index_path
     else
       flash[:warning] = I18n.t(:admin_invalid)
@@ -27,9 +28,9 @@ class SessionsController < ApplicationController
       session[:session_type] = "web"
     end
     session[:uid] = uid
-    @usuario = Usuario.find_by(uid: uid)
+    @user = User.find_by(uid: uid)
     respond_to do |format|
-      if (@usuario)
+      if (@user)
         format.html do
           if session[:session_type] == 'web' && is_admin?
             redirect_to dashboard_index_path
