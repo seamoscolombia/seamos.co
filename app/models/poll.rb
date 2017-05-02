@@ -35,6 +35,7 @@ class Poll < ApplicationRecord
   validates :poll_document, presence: true, on: :create
 
   validate :closing_date_validation
+  validate :at_least_one_tag
 
   scope :active, -> {
     where('active IS TRUE AND closing_date >= ?', Date.today)
@@ -79,9 +80,16 @@ class Poll < ApplicationRecord
     end
   end
 
+
   def has_at_least_two_vote_types
     if vote_types.length < 2
       errors.add(:base, I18n.t(:at_least_two_options, scope: :polls))
+    end
+  end
+
+  def at_least_one_tag
+    unless tags.present?
+      errors.add(:base, I18n.t(:at_least_one_tag, scope: :polls))
     end
   end
 end

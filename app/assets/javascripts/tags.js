@@ -1,5 +1,6 @@
 var ready = function() {
-    if (window.location.pathname == "/polls/new") {
+    var pathn = window.location.pathname
+    if (pathn == "/polls/new" || pathn == "/polls") {
         var taglist = []
         $(".tag").click(function() {
             var tagname = $(this).html()
