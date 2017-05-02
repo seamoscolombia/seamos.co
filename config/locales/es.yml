@@ -219,6 +219,7 @@ es:
       poll:
         title: Título
         closing_date: Fecha de cierre
+        at_least_one_tag: Ningún tema seleccionado,
         description: Descripción
         totals: Totales
         private: Secreto

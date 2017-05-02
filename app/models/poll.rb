@@ -55,7 +55,7 @@ class Poll < ApplicationRecord
   end
 
   def closed?
-    closing_date < Date.today
+    closing_date && closing_date < Date.today
   end
 
   def published_debates
@@ -75,7 +75,7 @@ class Poll < ApplicationRecord
   private
 
   def closing_date_validation
-    if closing_date && closing_date < Date.today
+    if closed?
       errors.add(:closing_date, I18n.t(:fecha_invalida))
     end
   end
@@ -89,7 +89,7 @@ class Poll < ApplicationRecord
 
   def at_least_one_tag
     unless tags.present?
-      errors.add(:base, I18n.t(:at_least_one_tag, scope: :polls))
+      errors.add(:at_least_one_tag, I18n.t(:at_least_one_tag, scope: :polls))
     end
   end
 end
