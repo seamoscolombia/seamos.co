@@ -5,7 +5,6 @@
 #  id           :integer          not null, primary key
 #  title        :string           not null
 #  description  :text             not null
-#  private      :boolean          default(TRUE), not null
 #  closing_date :date             not null
 #  usuario_id   :integer
 #  totals       :string
