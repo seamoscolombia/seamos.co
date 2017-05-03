@@ -26,12 +26,17 @@ RSpec.describe Poll, type: :model do
     it { should accept_nested_attributes_for(:vote_types) }
   end
 
-
   describe 'validations' do
-    let(:poll) { Poll.new(closing_date: Date.today - 3.days) }
+    let(:poll) { FactoryGirl.create(:poll) }
     it 'should validate closing_date' do
+      poll.update(closing_date: Date.today - 3.days)
       poll.valid?
-      expect(poll.errors[:closing_date]).to include('Fecha Inválida')
+      expect(poll.errors[:closing_date].empty?).to be false
+    end
+    let(:poll) { FactoryGirl.create(:poll) }
+    it 'should validate at least one tag selected' do
+      poll.valid?
+      expect(poll.errors[:at_least_one_tag].empty?).to be false
     end
     it { should validate_presence_of(:title) }
     it { should validate_presence_of(:closing_date) }
