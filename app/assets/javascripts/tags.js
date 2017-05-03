@@ -10,12 +10,10 @@ var ready = function() {
                     taglist.splice(itr, 1);
                 }
                 $(this).removeClass("added_tag");
-                console.log(`remove class ${taglist}`);
             } else {
                 taglist.push(tagname);
                 $(this).addClass("added_tag");
                 $("#tags-field").val(taglist.toString());
-                console.log(`add class ${taglist}`);
             }
         });
     }
