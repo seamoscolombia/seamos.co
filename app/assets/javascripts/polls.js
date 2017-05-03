@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-    if (window.location.pathname == "/polls/new") {
+    if (window.location.pathname === "/polls/new") {
         function charLeft() {
             counterLabel.text(500 - (this.value.length));
         }
