@@ -1,5 +1,5 @@
 
-<%= form_for @tag, {url: "/admin/tags"} do |f| %>
+<%= form_for [:admin, @tag] do |f| %>
     <div class="field">
       <p class="has_media center">puedes agregar más de un tag a la vez separandolos por coma ( ej: tag1, tag2, tag3)</p>
       <%= f.label :tag_names %>

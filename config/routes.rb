@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :admin, only: [:create, :new]
   scope '/admin' do
     # get '/', to: 'sessions#new'
-    post '/tags', to: 'tags#create'
+    post '/tags', to: 'tags#create', as: :admin_tags
     get '/tags/new', to: 'tags#new', as: :new_tags
     delete '/tags/:id', to: 'tags#delete', as: :delete_tag
     get 'polls', to:  'polls#index_admin', as: :admin_polls
