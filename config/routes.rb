@@ -28,14 +28,14 @@ Rails.application.routes.draw do
   resources :debate_votes, only: :create
   get '/tags', to: 'tags#index'
   resources :admin, only: [:create, :new]
-  scope '/admin' do
+  scope '/admin', as: :admin do
     # get '/', to: 'sessions#new'
-    post '/tags', to: 'tags#create', as: :admin_tags
-    get '/tags/new', to: 'tags#new', as: :new_tags
-    delete '/tags/:id', to: 'tags#delete', as: :delete_tag
-    get 'polls', to:  'polls#index_admin', as: :admin_polls
-    get '/', to: 'sessions#new', as: :admin_login
-    post '/sessions', to: 'sessions#admin_create', as: :admin_session
+    post '/tags', to: 'tags#create'
+    get '/tags/new', to: 'tags#new'
+    delete '/tags/:id', to: 'tags#delete'
+    get 'polls', to:  'polls#index_admin'
+    get '/', to: 'sessions#new', as: :login
+    post '/sessions', to: 'sessions#admin_create'
     get 'validate-users', to: 'usuarios#index'
     resources 'dashboard', only: :index
   end

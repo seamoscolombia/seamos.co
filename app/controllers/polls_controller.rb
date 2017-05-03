@@ -47,7 +47,7 @@ class PollsController < ApplicationController
     end
     # ActionCable.server.broadcast 'polls_channel', 'changed'
     flash[:success] = I18n.t(:accion_exitosa)
-    redirect_to dashboard_index_path
+    redirect_to admin_dashboard_index_path
   rescue Exception => e
     puts "ERROR POLL CREATION: #{e.inspect}"
     logger.debug "ERROR POLL CREATION: #{e.inspect}"
@@ -145,7 +145,7 @@ class PollsController < ApplicationController
     @poll = Poll.find_by(id: params[:id])
     if @poll.update(http_params)
       # ActionCable.server.broadcast 'polls_channel', 'changed'
-      redirect_to dashboard_index_path
+      redirect_to admin_dashboard_index_path
     else
       render :edit
     end
