@@ -221,7 +221,6 @@ es:
         closing_date: Fecha de cierre
         description: Descripción
         totals: Totales
-        private: Secreto
         poll_document: Documento de la Propuesta
       usuario:
         fecha_expedicion: Fecha de expedición
@@ -298,7 +297,6 @@ es:
       new_option: Ingrese una opción
       poll_image: Imagen de la propuesta
       public: Pública
-      private: Privada
       secret_public: Indique si la propuesta tendrá votación anónima o pública.
     index:
       "false": Pública

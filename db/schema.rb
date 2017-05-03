@@ -10,19 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404150252) do
+ActiveRecord::Schema.define(version: 20170502203516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "causes", force: :cascade do |t|
-    t.text     "description",    null: false
-    t.string   "title",          null: false
-    t.integer  "state_cause_id", null: false
-    t.integer  "usuario_id",     null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["state_cause_id"], name: "index_causes_on_state_cause_id", using: :btree
+    t.text     "description"
+    t.string   "title"
+    t.integer  "usuario_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["usuario_id"], name: "index_causes_on_usuario_id", using: :btree
   end
 
@@ -31,16 +29,6 @@ ActiveRecord::Schema.define(version: 20170404150252) do
     t.bigint "divipol_id"
     t.index ["divipol_id"], name: "index_coldocuments_on_divipol_id", using: :btree
     t.index ["doc_num"], name: "index_coldocuments_on_doc_num", using: :btree
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.text     "description", null: false
-    t.integer  "usuario_id",  null: false
-    t.integer  "cause_id",    null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["cause_id"], name: "index_comments_on_cause_id", using: :btree
-    t.index ["usuario_id"], name: "index_comments_on_usuario_id", using: :btree
   end
 
   create_table "debate_votes", force: :cascade do |t|
@@ -96,7 +84,6 @@ ActiveRecord::Schema.define(version: 20170404150252) do
   create_table "polls", force: :cascade do |t|
     t.string   "title",                        null: false
     t.text     "description",                  null: false
-    t.boolean  "private",       default: true, null: false
     t.date     "closing_date",                 null: false
     t.integer  "usuario_id"
     t.string   "totals"
@@ -124,10 +111,20 @@ ActiveRecord::Schema.define(version: 20170404150252) do
     t.index ["code"], name: "index_roles_on_code", unique: true, using: :btree
   end
 
-  create_table "state_causes", force: :cascade do |t|
-    t.string   "code"
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "poll_id"
+    t.integer  "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_taggings_on_poll_id", using: :btree
+    t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
   create_table "tipo_de_documentos", force: :cascade do |t|
@@ -179,10 +176,7 @@ ActiveRecord::Schema.define(version: 20170404150252) do
     t.index ["vote_type_id"], name: "index_votes_on_vote_type_id", using: :btree
   end
 
-  add_foreign_key "causes", "state_causes"
   add_foreign_key "causes", "usuarios"
-  add_foreign_key "comments", "causes"
-  add_foreign_key "comments", "usuarios"
   add_foreign_key "debate_votes", "debates"
   add_foreign_key "debate_votes", "usuarios"
   add_foreign_key "debates", "polls"
@@ -190,6 +184,8 @@ ActiveRecord::Schema.define(version: 20170404150252) do
   add_foreign_key "municipios", "departamentos"
   add_foreign_key "polls", "usuarios"
   add_foreign_key "questions", "debates"
+  add_foreign_key "taggings", "polls"
+  add_foreign_key "taggings", "tags"
   add_foreign_key "usuarios", "document_photos"
   add_foreign_key "usuarios", "tipo_de_documentos"
   add_foreign_key "vote_types", "polls"
