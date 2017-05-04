@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   before_action :set_tags, only: :create
   before_action :tag_params, only: :set_tags
   before_action :existing_tags, only: %i(create new)
-  before_action :validate_superadmin, only: %i(create new)
+  before_action :validate_superadmin, only: %i(create new delete)
 
   def new
     @tag = Tag.new
@@ -18,7 +18,6 @@ class TagsController < ApplicationController
         render json: @tags
       end
     end
-
   end
 
   def create
@@ -37,7 +36,7 @@ class TagsController < ApplicationController
   def delete
     @tag = Tag.find(params[:id])
     @tag.destroy
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private

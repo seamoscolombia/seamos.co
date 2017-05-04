@@ -10,6 +10,6 @@
 
 FactoryGirl.define do
   factory :tag do
-    name { Faker::Lorem.word }
+    name { Faker::Lorem.word + SecureRandom.hex }
   end
 end
