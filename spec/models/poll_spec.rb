@@ -83,10 +83,21 @@ RSpec.describe Poll, type: :model do
     let(:tag_1) { FactoryGirl.create(:tag) }
     let(:tag_2) { FactoryGirl.create(:tag) }
     let(:tag_3) { FactoryGirl.create(:tag) }
-    it 'adds tags to poll' do
-      poll.set_tags("#{tag_1.name},#{tag_3.name}")
-      expect(poll.tags).to match_array([tag_1, tag_3])
-      expect(poll.tags).not_to include(tag_2)
+    context 'when coma separated tag names are passed as argument to the method' do
+      it 'adds tags to poll' do
+        poll.set_tags("#{tag_1.name},#{tag_3.name}")
+        expect(poll.tags).to match_array([tag_1, tag_3])
+      end
+      it 'adds the right amount of tags' do
+        poll.set_tags("#{tag_1.name},#{tag_3.name}")
+        expect(poll.tags.count).to eq 2
+      end
+    end
+    context 'when a tag is not passed as argument to the method' do
+      it 'should not add the tag' do
+        poll.set_tags("#{tag_1.name},#{tag_3.name}")
+        expect(poll.tags).not_to include(tag_2)
+      end
     end
   end
 
