@@ -30,7 +30,7 @@ class TagsController < ApplicationController
     end
     flash[:danger] = 'el nombre de ' + @dup_tags.to_s + ' etiquetas ya ha sido tomado' if @dup_tags > 0
     flash[:success] = I18n.t(:tags_creados, created: @new_tags.to_s + ' etiquetas') if @new_tags > 0
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   def delete

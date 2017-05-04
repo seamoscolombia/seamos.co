@@ -27,6 +27,15 @@ RSpec.describe TagsController, type: :controller do
     end
   end
 
+  describe 'POST create' do
+    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
+    it 'Creates a new tag' do
+      session[:email] = user.email
+      post :create, params: { tag: { name: 'new_tag' } }
+      expect(Tag.find_by(name: 'new_tag')).not_to be nil
+    end
+  end
+
   describe 'GET new' do
     let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
     it 'assigns a new tag to @tag' do
@@ -45,12 +54,9 @@ RSpec.describe TagsController, type: :controller do
   describe 'DELETE delete' do
     let(:tag) { FactoryGirl.create(:tag) }
     let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
-    setup do
-      session[:email] = user.email
-      @request.env['HTTP_REFERER'] = root_path
-      delete :delete, params: { id: tag.id }
-    end
     it 'deletes the tag' do
+      session[:email] = user.email
+      delete :delete, params: { id: tag.id }
       expect(Tag.exists?(tag.id)).to eq false
     end
   end
