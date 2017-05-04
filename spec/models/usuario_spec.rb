@@ -58,6 +58,17 @@ RSpec.describe Usuario, type: :model do
         expect(invalid_user.errors[:numero_documento]).to include('ya ha sido tomado')
       end
     end
+    describe 'admin validations' do
+      let(:invalid_admin) { Usuario.new(role_type: 2, uid: '', email: nil) }
+      it 'should validate email' do
+        invalid_admin.valid?
+        expect(invalid_admin.errors[:email].empty?).to be false
+      end
+      it 'should validate password' do
+        invalid_admin.valid?
+        expect(invalid_admin.errors[:contraseña].empty?).to be false
+      end
+    end
     it { should validate_presence_of(:primer_apellido) }
     it { should validate_presence_of(:segundo_apellido) }
     it { should validate_presence_of(:nombres) }
