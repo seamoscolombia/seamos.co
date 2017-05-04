@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if usuario
       session[:session_type] = 'web'
       session[:email] = usuario.email
-      redirect_to dashboard_index_path
+      redirect_to admin_dashboard_index_path
     else
       flash[:warning] = I18n.t(:admin_invalid)
       redirect_to admin_login_path
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
       if (@usuario)
         format.html do
           if session[:session_type] == 'web' && is_admin?
-            redirect_to dashboard_index_path
+            redirect_to admin_dashboard_index_path
           elsif session[:session_type] == 'mobile'
             redirect_to polls_path
           else
@@ -60,7 +60,7 @@ class SessionsController < ApplicationController
 
   def new
     if current_user
-      redirect_to dashboard_index_path
+      redirect_to admin_dashboard_index_path
     end
   end
 
