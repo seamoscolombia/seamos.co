@@ -42,6 +42,25 @@ RSpec.describe Poll, type: :model do
     it { should validate_presence_of(:closing_date) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:poll_image) }
+    it { should validate_presence_of(:poll_document) }
+  end
+
+  describe 'named scopes' do
+    let(:poll_1) { FactoryGirl.create(:poll, closing_date: Date.today - 3.days) }
+    let(:poll_2) { FactoryGirl.create(:poll, closing_date: Date.today + 3.days) }
+    let(:poll_3) { FactoryGirl.create(:poll, closing_date: Date.today + 3.days, active: false) }
+    describe 'active' do
+      it 'returns only polls that are active and non closed' do
+        expect(Poll.active).to include(poll_2)
+        expect(Poll.active).not_to include(poll_1, poll_3)
+      end
+    end
+    describe 'inactive' do
+      it 'returns only polls that are inactive or closed' do
+        expect(Poll.inactive).not_to include(poll_2)
+        expect(Poll.inactive).to include(poll_1, poll_3)
+      end
+    end
   end
 
   describe 'poll#closed?' do
@@ -72,6 +91,22 @@ RSpec.describe Poll, type: :model do
         debates.first.update(published: true)
         debates.last.update(published: true)
         expect(poll.published_debates).to include(debates.first, debates.last)
+      end
+    end
+  end
+
+  describe 'Poll.by_status()' do
+    let(:poll_1) { FactoryGirl.create(:poll, closing_date: Date.today - 3.days) }
+    let(:poll_2) { FactoryGirl.create(:poll, closing_date: Date.today + 3.days) }
+    let(:poll_3) { FactoryGirl.create(:poll, closing_date: Date.today + 3.days, active: false) }
+    context 'when the passed status is inactive' do
+      it 'returns inactive polls' do
+        expect(Poll.by_status("inactive")).to match_array([poll_1, poll_3])
+      end
+    end
+    context 'when the passed status is active' do
+      it 'returns active polls' do
+        expect(Poll.by_status("active")).to match_array(poll_2)
       end
     end
   end
