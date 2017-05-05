@@ -25,39 +25,58 @@ RSpec.describe TagsController, type: :controller do
       get :index
       expect(response).to render_template('index')
     end
+
+    it 'should return status ok' do
+      get :index
+      expect(response).to have_http_status(:ok)
+    end
   end
 
   describe 'POST create' do
-    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
-    it 'Creates a new tag' do
+    before(:each) do
       session[:email] = user.email
       post :create, params: { tag: { name: 'new_tag' } }
+    end
+    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
+    it 'Creates a new tag' do
       expect(Tag.find_by(name: 'new_tag')).not_to be nil
+    end
+    it 'should return status found' do
+      expect(response).to have_http_status(:found)
     end
   end
 
   describe 'GET new' do
-    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
-    it 'assigns a new tag to @tag' do
+    before(:each) do
       session[:email] = user.email
       get :new
+    end
+    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
+    it 'assigns a new tag to @tag' do
       expect(assigns(:tag).new_record?).to be true
     end
 
     it 'renders the new template' do
-      session[:email] = user.email
-      get :new
       expect(response).to render_template('new')
+    end
+
+    it 'should return status ok' do
+      expect(response).to have_http_status(:ok)
     end
   end
 
   describe 'DELETE delete' do
+    before(:each) do
+      session[:email] = user.email
+      delete :delete, params: { id: tag.id }
+    end
     let(:tag) { FactoryGirl.create(:tag) }
     let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
     it 'deletes the tag' do
-      session[:email] = user.email
-      delete :delete, params: { id: tag.id }
       expect(Tag.exists?(tag.id)).to eq false
+    end
+    it 'should return status found' do
+      expect(response).to have_http_status(:found)
     end
   end
 end
