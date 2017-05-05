@@ -10,8 +10,7 @@ RSpec.describe VotesController, type: :controller do
     let(:poll) { FactoryGirl.create(:poll) }
     let(:vote_type) { FactoryGirl.create(:vote_type, poll: poll) }
     it 'creates a vote' do
-      params = { vote: { vote_type_id: vote_type.id } }
-      post :create, params
+      post :create, params: { vote: { vote_type_id: vote_type.id } }
       expect(response).to have_http_status(:found)
     end
   end
