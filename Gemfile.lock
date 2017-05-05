@@ -230,10 +230,18 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    rainbow (2.2.2)
+      rake
     rake (11.3.0)
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    react_on_rails (7.0.4)
+      addressable
+      connection_pool
+      execjs (~> 2.5)
+      rails (>= 3.2)
+      rainbow (~> 2.1)
     redis (3.3.3)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
@@ -333,6 +341,7 @@ DEPENDENCIES
   pg (= 0.18.4)
   puma (~> 3.0)
   rails (~> 5.0.0)
+  react_on_rails (~> 7.0.4)
   redis (~> 3.3.3)
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
