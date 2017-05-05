@@ -30,3 +30,9 @@ erl_crash.dump
 !.elasticbeanstalk/*.global.yml
 
 \.env
+# React on Rails
+npm-debug.log*
+node_modules
+
+# Generated js bundles
+/app/assets/webpack/*
