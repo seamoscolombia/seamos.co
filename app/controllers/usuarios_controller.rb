@@ -19,13 +19,6 @@ class UsuariosController < ApplicationController
     @usuario.document_photo_id = params[:photo_id]
     @usuario.email = params[:usuario_email]
     respond_to do |format|
-      format.html do
-        if @usuario.save
-          redirect_to polls_path, notice: I18n.t(:success)
-        else
-          render :new
-          end
-      end
 
       format.json do
         # server Date format 2015-05-28 YYYY-MM-DD

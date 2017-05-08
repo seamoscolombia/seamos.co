@@ -33,11 +33,11 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe 'POST create' do
+    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
     before(:each) do
       session[:email] = user.email
       post :create, params: { tag: { name: 'new_tag' } }
     end
-    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
     it 'Creates a new tag' do
       expect(Tag.find_by(name: 'new_tag')).not_to be nil
     end
