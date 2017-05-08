@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'hello_world', to: 'hello_world#index'
-  root 'intro#inicio'
+  root 'hello_world#index'
+  # root 'intro#inicio'
 
   resources :photos, only: :create
 
