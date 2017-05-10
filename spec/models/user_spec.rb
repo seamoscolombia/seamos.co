@@ -30,7 +30,6 @@ RSpec.describe User, type: :model do
     it { should have_many(:votes) }
     it { should have_many(:debate_votes) }
     it { should belong_to(:tipo_de_documento) }
-    it { should belong_to(:document_photo) }
   end
 
   describe 'enums' do
@@ -39,49 +38,56 @@ RSpec.describe User, type: :model do
 
   describe 'validations' do
     describe 'not an admin validations' do
-      let(:l_user) { User.new(role_type: 0, uid: '', document_number: '') }
+      let(:user) { User.new(role_type: 0, uid: '', numero_documento: '') }
       it 'should validate presence' do
-        l_user.valid?
-        expect(l_user.errors[:uid]).to include('no puede estar en blanco')
-        expect(l_user.errors[:document_number]).to include('no puede estar en blanco')
-        expect(l_user.errors[:tipo_de_documento]).to include('no puede estar en blanco')
+        user.valid?
+        expect(user.errors[:uid]).to include('no puede estar en blanco')
+        expect(user.errors[:numero_documento]).to include('no puede estar en blanco')
+        expect(user.errors[:tipo_de_documento]).to include('no puede estar en blanco')
       end
-      let(:pre_invalid_user) { FactoryGirl.create(:user, uid: '1', document_number: 'abc') }
-      let(:invalid_user) { User.new(role_type: 0, uid: pre_invalid_user.uid, document_number: 'abc') }
+      let(:pre_invalid_user) { FactoryGirl.create(:user, uid: '1', numero_documento: 'abc') }
+      let(:invalid_user) { User.new(role_type: 0, uid: pre_invalid_user.uid, numero_documento: 'abc') }
       it 'should validate numericality' do
         invalid_user.valid?
-        expect(invalid_user.errors[:document_number]).to include('no es un número')
+        expect(invalid_user.errors[:numero_documento]).to include('no es un número')
       end
       it 'should validate uniqueness' do
         invalid_user.valid?
         expect(invalid_user.errors[:uid]).to include('ya ha sido tomado')
-        expect(invalid_user.errors[:document_number]).to include('ya ha sido tomado')
-      end    
+        expect(invalid_user.errors[:numero_documento]).to include('ya ha sido tomado')
+      end
     end
-    
-    it { should validate_presence_of(:fst_surname) }
-    it { should validate_presence_of(:snd_surname) }
-    it { should validate_presence_of(:names) }
+    describe 'admin validations' do
+      let(:invalid_admin) { User.new(role_type: 2, uid: '', email: nil) }
+      it 'should validate email' do
+        invalid_admin.valid?
+        expect(invalid_admin.errors[:email].empty?).to be false
+      end
+      it 'should validate password' do
+        invalid_admin.valid?
+        expect(invalid_admin.errors[:contraseña].empty?).to be false
+      end
+    end
+    it { should validate_presence_of(:primer_apellido) }
+    it { should validate_presence_of(:segundo_apellido) }
+    it { should validate_presence_of(:nombres) }
     it { should validate_presence_of(:role_type) }
     it { should validate_presence_of(:document_photo_id) }
 
-    describe '#fst_surname' do
-      it { should_not allow_value('surname123').for(:fst_surname) }
+    describe '#primer_apellido' do
+      it { should_not allow_value('surname123').for(:primer_apellido) }
     end
-    describe '#snd_surname' do
-      it { should_not allow_value('surname123').for(:snd_surname) }
+    describe '#segundo_apellido' do
+      it { should_not allow_value('surname123').for(:segundo_apellido) }
     end
-    describe '#names' do
-      it { should_not allow_value('name123').for(:names) }
+    describe '#nombres' do
+      it { should_not allow_value('name123').for(:segundo_apellido) }
     end
-    describe '#email' do
-      it { should_not allow_value('abcd').for(:email) }
-    end    
   end
 
   describe 'User#full_name' do
-    let(:user) { FactoryGirl.build(:user, names: 'John', fst_surname: 'Dummy', snd_surname: 'Doe') }
-    context 'when user has name, fst_surname and snd_surname' do
+    let(:user) { FactoryGirl.build(:user, nombres: 'John', primer_apellido: 'Dummy', segundo_apellido: 'Doe') }
+    context 'when user has nombres, primer_apellido y segundo_apellido' do
       it 'returns user full name' do
         expect(user.full_name).to eq('John Dummy Doe')
       end
@@ -106,19 +112,19 @@ RSpec.describe User, type: :model do
   end
 
   describe 'User#debate_already_voted?' do
-    let(:l_user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user) }
     let(:voted_debate) { FactoryGirl.create(:debate_with_debate_votes) }
     let(:non_voted_debate) { FactoryGirl.create(:debate_with_debate_votes) }
     context 'when user has already votes for in a debate' do
       it 'returns true' do
         debate_votes = voted_debate.debate_votes
-        debate_votes.first.update(user: l_user)
-        expect(l_user.debate_already_voted?(voted_debate)).to be true
+        debate_votes.first.update(user: user)
+        expect(user.debate_already_voted?(voted_debate)).to be true
       end
     end
     context 'when user has not voted for in a debate' do
       it 'returns false' do
-        expect(l_user.debate_already_voted?(:non_voted_debate)).to be false
+        expect(user.debate_already_voted?(:non_voted_debate)).to be false
       end
     end
   end
