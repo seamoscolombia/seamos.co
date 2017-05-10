@@ -24,7 +24,6 @@ class Usuario < ApplicationRecord
   attr_accessor :password, :password_confirmation
 
   belongs_to :tipo_de_documento, required: !:admin?
-  belongs_to  :document_photo
   before_save :encrypt_password_for_admin
 
   has_many  :causes
@@ -36,7 +35,6 @@ class Usuario < ApplicationRecord
   validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
   validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :nombres, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
-  validates  :document_photo_id, presence: true
   validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres, :role_type]
   validates :uid, uniqueness: true, unless: :admin?
   validate :fecha_de_expedicion_razonable, unless: :admin?

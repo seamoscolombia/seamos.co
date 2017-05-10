@@ -30,7 +30,6 @@ RSpec.describe Usuario, type: :model do
     it { should have_many(:votes) }
     it { should have_many(:debate_votes) }
     it { should belong_to(:tipo_de_documento) }
-    it { should belong_to(:document_photo) }
   end
 
   describe 'enums' do
