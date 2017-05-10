@@ -24,7 +24,7 @@ RSpec.describe SessionsController, type: :controller do
 
     it "calls Subscription.create_and_request_confirmation(params)" do
       post :admin_create, params: registered_user
-      expect(response).to redirect_to(dashboard_index_path)
+      expect(response).to redirect_to(admin_dashboard_index_path)
     end
   end
 end

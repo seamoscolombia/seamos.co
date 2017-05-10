@@ -33,7 +33,7 @@ RSpec.describe TagsController, type: :controller do
   end
 
   describe 'POST create' do
-    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
+    let(:user) { FactoryGirl.create(:user, role_type: 2) }
     before(:each) do
       session[:email] = user.email
       post :create, params: { tag: { name: 'new_tag' } }
@@ -51,7 +51,7 @@ RSpec.describe TagsController, type: :controller do
       session[:email] = user.email
       get :new
     end
-    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
+    let(:user) { FactoryGirl.create(:user, role_type: 2) }
     it 'assigns a new tag to @tag' do
       expect(assigns(:tag).new_record?).to be true
     end
@@ -71,7 +71,7 @@ RSpec.describe TagsController, type: :controller do
       delete :delete, params: { id: tag.id }
     end
     let(:tag) { FactoryGirl.create(:tag) }
-    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
+    let(:user) { FactoryGirl.create(:user, role_type: 2) }
     it 'deletes the tag' do
       expect(Tag.exists?(tag.id)).to eq false
     end

@@ -3,12 +3,12 @@ class AdminController < ApplicationController
   before_action :validate_administrator
 
   def new
-    @usuario = Usuario.new()
+    @usuario = User.new()
     render :new
   end
 
   def create
-      @usuario = Usuario.new(usuario_params)
+      @usuario = User.new(usuario_params)
       document_photo_param = params[:usuario][:document_photo]
       document_photo = DocumentPhoto.create!(url: document_photo_param);
       @usuario.document_photo = document_photo
@@ -39,7 +39,7 @@ class AdminController < ApplicationController
     end
 
     def usuario_params
-      params.require(:usuario).permit(:primer_apellido, :segundo_apellido, :nombres,
+      params.require(:usuario).permit(:first_surname, :segundo_apellido, :nombres,
                                       :tipo_de_documento_id, :numero_documento,
                                       :fecha_expedicion, :email, :password, :password_confirmation, :role_type)
     end

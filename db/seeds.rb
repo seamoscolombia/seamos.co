@@ -7,7 +7,7 @@ Role.create!(code: 'politico')
 Role.create!(code: 'administrador')
 
 
-user = Usuario.create!(primer_apellido: "Molina", segundo_apellido: "Orbe", nombres: "Jaime Santiago", tipo_de_documento_id: 1, numero_documento: "1113645710", fecha_expedicion: "2011-05-28", role_id: 3, uid: "10152902624895489", valido: false, document_photo_id: 24)
+user = User.create!(first_surname: "Molina", segundo_apellido: "Orbe", nombres: "Jaime Santiago", tipo_de_documento_id: 1, numero_documento: "1113645710", fecha_expedicion: "2011-05-28", role_id: 3, uid: "10152902624895489", valido: false, document_photo_id: 24)
 
 # poll = Poll.create!(
 #     title: Faker::Lorem.sentence,
@@ -21,7 +21,7 @@ user = Usuario.create!(primer_apellido: "Molina", segundo_apellido: "Orbe", nomb
 #   cc = coldocuemts[index].doc_num
 #   puts "cc: #{cc}"
 #   u = Usuario.create!(
-#       primer_apellido: Faker::Lorem.word,
+#       first_surname: Faker::Lorem.word,
 #       segundo_apellido: Faker::Lorem.word,
 #       nombres: Faker::Lorem.word,
 #       tipo_de_documento_id: 1,

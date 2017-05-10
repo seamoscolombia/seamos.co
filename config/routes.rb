@@ -3,10 +3,10 @@ Rails.application.routes.draw do
 
   resources :photos, only: :create
 
-  resources :usuarios , except: [:new, :show] do
+  resources :users , except: [:new, :show] do
     get 'already_voted', on: :member
     get 'validate', on: :member
-    patch 'update_valid_usuario', on: :member
+    patch 'update_valid_user', on: :member
   end
 
   get '/auth/:provider/callback', to: 'sessions#create'
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     get 'polls', to:  'polls#index_admin'
     get '/', to: 'sessions#new', as: :login
     post '/sessions', to: 'sessions#admin_create'
-    get 'validate-users', to: 'usuarios#index'
+    get 'validate-users', to: 'users#index'
     resources 'dashboard', only: :index
   end
 

@@ -3,7 +3,7 @@
 # Table name: usuarios
 #
 #  id                   :integer          not null, primary key
-#  primer_apellido      :string
+#  first_surname      :string
 #  segundo_apellido     :string
 #  nombres              :string
 #  tipo_de_documento_id :integer
@@ -32,10 +32,10 @@ class Usuario < ApplicationRecord
   has_many  :votes, dependent: :destroy
   has_many  :debate_votes, dependent: :destroy
 
-  validates  :primer_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
+  validates  :first_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
   validates  :segundo_apellido, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :nombres, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
-  validates_presence_of  [:primer_apellido, :segundo_apellido, :nombres, :role_type]
+  validates_presence_of  [:first_surname, :segundo_apellido, :nombres, :role_type]
   validates :uid, uniqueness: true, unless: :admin?
   validate :fecha_de_expedicion_razonable, unless: :admin?
 
@@ -59,7 +59,7 @@ class Usuario < ApplicationRecord
   end
 
   def full_name
-    "#{nombres} #{primer_apellido} #{segundo_apellido}"
+    "#{nombres} #{first_surname} #{segundo_apellido}"
   end
 
   def self.get_admin(params)

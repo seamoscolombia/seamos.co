@@ -2,22 +2,22 @@
   <i class="material-icons">navigate_before</i>
 <% end %>
 
-<h1><%= t('.validate_user') %> <%= Usuario.model_name.human %></h1>
+<h1><%= t('.validate_user') %> <%= User.model_name.human %></h1>
 
 <table class="table">
   <tr>
-    <th> <%= Usuario.human_attribute_name("nombres") %> </th>
-    <th> <%= Usuario.human_attribute_name("tipo_de_documento_id") %> </th>
-    <th> <%= Usuario.human_attribute_name("numero_documento") %> </th>
+    <th> <%= User.human_attribute_name("nombres") %> </th>
+    <th> <%= User.human_attribute_name("tipo_de_documento_id") %> </th>
+    <th> <%= User.human_attribute_name("numero_documento") %> </th>
     <th> ID de Facebook </th>
-    <th> <%= Usuario.human_attribute_name("email") %> </th>
-    <th> <%= Usuario.human_attribute_name("fecha_expedicion") %> </th>
+    <th> <%= User.human_attribute_name("email") %> </th>
+    <th> <%= User.human_attribute_name("fecha_expedicion") %> </th>
     <th colspan="2"></th>
   </tr>
   <tr>
     <td>
       <%= @usuario.nombres %>
-      <%= @usuario.primer_apellido %>
+      <%= @usuario.first_surname %>
       <%= @usuario.segundo_apellido %>
     </td>
     <td> <%= @usuario.tipo_de_documento.code_view %> </td>

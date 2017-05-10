@@ -6,7 +6,7 @@ RSpec.describe VotesController, type: :controller do
     before(:each) do
       session[:email] = user.email
     end
-    let(:user) { FactoryGirl.create(:usuario, role_type: 2) }
+    let(:user) { FactoryGirl.create(:user, role_type: 2) }
     let(:poll) { FactoryGirl.create(:poll) }
     let(:vote_type) { FactoryGirl.create(:vote_type, poll: poll) }
     it 'creates a vote' do

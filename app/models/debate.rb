@@ -6,7 +6,7 @@
 #  title      :string
 #  published  :boolean          default(FALSE)
 #  poll_id    :integer
-#  usuario_id :integer
+#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

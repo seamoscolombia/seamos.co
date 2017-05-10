@@ -3,14 +3,14 @@
 # Table name: users
 #
 #  id                   :integer          not null, primary key
-#  primer_apellido      :string
-#  segundo_apellido     :string
-#  nombres              :string
+#  first_surname        :string
+#  second_surname       :string
+#  names                :string
 #  tipo_de_documento_id :integer
-#  numero_documento     :string
-#  fecha_expedicion     :date
+#  document_number      :string
+#  expedition_date      :date
 #  uid                  :string
-#  valido               :boolean
+#  approved             :boolean
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  document_photo_id    :integer

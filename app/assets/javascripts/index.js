@@ -5,7 +5,7 @@ $( document ).on('turbolinks:load', function() {
   var bDebate = $("#button_questions_attributes");
   loginScreen();
   if(fU.length > 0){
-    fU.change(filterUsuario);
+    fU.change(filterUser);
   }
   // .button-sender only renders in partial _poll.html.erb
   if(bS.length > 0){

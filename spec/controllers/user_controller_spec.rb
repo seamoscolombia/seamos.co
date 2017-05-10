@@ -1,11 +1,11 @@
 require 'rails_helper'
 include SessionsHelper
 
-RSpec.describe UsuariosController, type: :controller do
+RSpec.describe UsersController, type: :controller do
   describe 'GET index' do
     context 'when the request format is HTML' do
-      it 'get usuarios' do
-        5.times { FactoryGirl.create(:usuario) }
+      it 'get users' do
+        5.times { FactoryGirl.create(:user) }
         get :index
         expect(response).to have_http_status(:found)
       end
@@ -16,10 +16,10 @@ RSpec.describe UsuariosController, type: :controller do
     context 'request as json' do
      let(:tipo_de_documento) { FactoryGirl.create(:tipo_de_documento) }
      let(:coldocument) { FactoryGirl.create(:coldocument) }
-      it 'An citizen usuario is created' do
+      it 'An citizen user is created' do
           session[:uid] = rand(300).to_s
-          post :create, params: { usuario: {
-              primer_apellido:  Faker::Name.last_name,
+          post :create, params: { user: {
+              first_surname:  Faker::Name.last_name,
               segundo_apellido: Faker::Name.last_name,
               nombres: Faker::Name.first_name,
               tipo_de_documento_id: tipo_de_documento.id,

@@ -3,14 +3,14 @@
 # Table name: users
 #
 #  id                   :integer          not null, primary key
-#  primer_apellido      :string
-#  segundo_apellido     :string
-#  nombres              :string
+#  first_surname        :string
+#  second_surname       :string
+#  names                :string
 #  tipo_de_documento_id :integer
-#  numero_documento     :string
-#  fecha_expedicion     :date
+#  document_number      :string
+#  expedition_date      :date
 #  uid                  :string
-#  valido               :boolean
+#  approved             :boolean
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  document_photo_id    :integer
@@ -68,14 +68,14 @@ RSpec.describe User, type: :model do
         expect(invalid_admin.errors[:contraseña].empty?).to be false
       end
     end
-    it { should validate_presence_of(:primer_apellido) }
+    it { should validate_presence_of(:first_surname) }
     it { should validate_presence_of(:segundo_apellido) }
     it { should validate_presence_of(:nombres) }
     it { should validate_presence_of(:role_type) }
     it { should validate_presence_of(:document_photo_id) }
 
-    describe '#primer_apellido' do
-      it { should_not allow_value('surname123').for(:primer_apellido) }
+    describe '#first_surname' do
+      it { should_not allow_value('surname123').for(:first_surname) }
     end
     describe '#segundo_apellido' do
       it { should_not allow_value('surname123').for(:segundo_apellido) }
@@ -86,8 +86,8 @@ RSpec.describe User, type: :model do
   end
 
   describe 'User#full_name' do
-    let(:user) { FactoryGirl.build(:user, nombres: 'John', primer_apellido: 'Dummy', segundo_apellido: 'Doe') }
-    context 'when user has nombres, primer_apellido y segundo_apellido' do
+    let(:user) { FactoryGirl.build(:user, nombres: 'John', first_surname: 'Dummy', segundo_apellido: 'Doe') }
+    context 'when user has nombres, first_surname y segundo_apellido' do
       it 'returns user full name' do
         expect(user.full_name).to eq('John Dummy Doe')
       end

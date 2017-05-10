@@ -3,9 +3,9 @@ new_coldoc = Coldocument.create!(doc_num: coldoc.doc_num + 1,divipol_id: coldoc.
 
 document_photo = DocumentPhoto.create!(:url => "/uploads/document_photo/url/25/photo.png")
 
-usuario_last = Usuario.last
-usuario = Usuario.create!(
-  primer_apellido: "firstSurname",
+usuario_last = User.last
+usuario = User.create!(
+  first_surname: "firstSurname",
   segundo_apellido: "secondSurname",
   nombres: "Names",
   tipo_de_documento_id: 1,

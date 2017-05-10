@@ -1,9 +1,9 @@
 # == Schema Information
 #
-# Table name: usuarios
+# Table name: users
 #
 #  id                   :integer          not null, primary key
-#  primer_apellido      :string
+#  first_surname      :string
 #  segundo_apellido     :string
 #  nombres              :string
 #  tipo_de_documento_id :integer

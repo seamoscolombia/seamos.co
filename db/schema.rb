@@ -16,12 +16,14 @@ ActiveRecord::Schema.define(version: 20170502203516) do
   enable_extension "plpgsql"
 
   create_table "causes", force: :cascade do |t|
-    t.text     "description"
-    t.string   "title"
-    t.integer  "usuario_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["usuario_id"], name: "index_causes_on_usuario_id", using: :btree
+    t.text     "description",    null: false
+    t.string   "title",          null: false
+    t.integer  "state_cause_id", null: false
+    t.integer  "user_id",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["state_cause_id"], name: "index_causes_on_state_cause_id", using: :btree
+    t.index ["user_id"], name: "index_causes_on_user_id", using: :btree
   end
 
   create_table "coldocuments", id: false, force: :cascade do |t|
@@ -29,6 +31,16 @@ ActiveRecord::Schema.define(version: 20170502203516) do
     t.bigint "divipol_id"
     t.index ["divipol_id"], name: "index_coldocuments_on_divipol_id", using: :btree
     t.index ["doc_num"], name: "index_coldocuments_on_doc_num", using: :btree
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "description", null: false
+    t.integer  "usuario_id",  null: false
+    t.integer  "cause_id",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["cause_id"], name: "index_comments_on_cause_id", using: :btree
+    t.index ["usuario_id"], name: "index_comments_on_usuario_id", using: :btree
   end
 
   create_table "debate_votes", force: :cascade do |t|
@@ -111,6 +123,12 @@ ActiveRecord::Schema.define(version: 20170502203516) do
     t.index ["code"], name: "index_roles_on_code", unique: true, using: :btree
   end
 
+  create_table "state_causes", force: :cascade do |t|
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.integer  "poll_id"
     t.integer  "tag_id"
@@ -135,8 +153,8 @@ ActiveRecord::Schema.define(version: 20170502203516) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "fst_surname"
-    t.string   "snd_surname"
+    t.string   "first_surname"
+    t.string   "second_surname"
     t.string   "names"
     t.integer  "tipo_de_documento_id"
     t.string   "document_number"
@@ -176,7 +194,10 @@ ActiveRecord::Schema.define(version: 20170502203516) do
     t.index ["vote_type_id"], name: "index_votes_on_vote_type_id", using: :btree
   end
 
+  add_foreign_key "causes", "state_causes"
   add_foreign_key "causes", "users"
+  add_foreign_key "comments", "causes"
+  add_foreign_key "comments", "users", column: "usuario_id"
   add_foreign_key "debate_votes", "debates"
   add_foreign_key "debate_votes", "users"
   add_foreign_key "debates", "polls"
@@ -184,10 +205,6 @@ ActiveRecord::Schema.define(version: 20170502203516) do
   add_foreign_key "municipios", "departamentos"
   add_foreign_key "polls", "users"
   add_foreign_key "questions", "debates"
-  add_foreign_key "taggings", "polls"
-  add_foreign_key "taggings", "tags"
-  add_foreign_key "usuarios", "document_photos"
-  add_foreign_key "usuarios", "tipo_de_documentos"
   add_foreign_key "taggings", "polls"
   add_foreign_key "taggings", "tags"
   add_foreign_key "users", "document_photos"
