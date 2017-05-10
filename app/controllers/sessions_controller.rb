@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 
   def admin_create
     user = User.get_admin(http_params)
-    byebug
     if user
       session[:session_type] = 'web'
       session[:email] = user.email
