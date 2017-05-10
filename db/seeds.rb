@@ -12,7 +12,6 @@ user = Usuario.create!(primer_apellido: "Molina", segundo_apellido: "Orbe", nomb
 # poll = Poll.create!(
 #     title: Faker::Lorem.sentence,
 #     description: Faker::Lorem.paragraph,
-#     private: false,
 #     closing_date: 1.day.from_now,
 #     usuario_id: user.id
 # )

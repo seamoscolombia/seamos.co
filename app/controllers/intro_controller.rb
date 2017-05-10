@@ -5,7 +5,7 @@ class IntroController < ApplicationController
 
   def index
     if current_user
-      redirect_to dashboard_index_path
+      redirect_to admin_dashboard_index_path
     end
   end
 end

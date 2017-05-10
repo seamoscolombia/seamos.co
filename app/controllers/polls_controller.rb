@@ -5,7 +5,6 @@
 #  id           :integer          not null, primary key
 #  title        :string           not null
 #  description  :text             not null
-#  private      :boolean          default(TRUE), not null
 #  closing_date :date             not null
 #  usuario_id   :integer
 #  totals       :string
@@ -31,8 +30,6 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new http_params
-    @poll.private = get_radiobutton_private
-    @poll.import(params[:poll][:poll_csv]) if @poll.private
     @poll.usuario = current_user
     @poll.set_tags(tags_param)
     totals_hash = {}
@@ -50,7 +47,7 @@ class PollsController < ApplicationController
     end
     # ActionCable.server.broadcast 'polls_channel', 'changed'
     flash[:success] = I18n.t(:accion_exitosa)
-    redirect_to dashboard_index_path
+    redirect_to admin_dashboard_index_path
   rescue Exception => e
     puts "ERROR POLL CREATION: #{e.inspect}"
     logger.debug "ERROR POLL CREATION: #{e.inspect}"
@@ -146,10 +143,9 @@ class PollsController < ApplicationController
 
   def update
     @poll = Poll.find_by(id: params[:id])
-    get_radiobutton_private
     if @poll.update(http_params)
       # ActionCable.server.broadcast 'polls_channel', 'changed'
-      redirect_to dashboard_index_path
+      redirect_to admin_dashboard_index_path
     else
       render :edit
     end
@@ -189,15 +185,10 @@ class PollsController < ApplicationController
       :poll_image,
       :poll_image_cache,
       :poll_document,
-      :private,
       :title,
       :status,
       vote_types_attributes: [:name]
     )
-  end
-
-  def get_radiobutton_private
-    params[:poll][:private] = params[:poll][:private] == 'true' ? true : false
   end
 
   def validate_admin_user
