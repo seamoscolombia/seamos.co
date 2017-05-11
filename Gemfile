@@ -43,7 +43,6 @@ gem 'material_design_lite-rails', '~> 1.2'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'pg', '0.18.4'
 gem 'sidekiq', '~> 4.2.10'
-gem 'active_model_serializers', '~> 0.10.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

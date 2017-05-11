@@ -50,14 +50,8 @@ class UsersController < ApplicationController
 
   def update
     @user.transaction do
-      document_photo_param = params[:user][:document_photo]
       @user = User.find_by(id: params[:id])
       @user.attributes = users_params
-      if document_photo_param
-        @user.document_photo.delete
-        document_photo = DocumentPhoto.create!(url: document_photo_param)
-        @user.document_photo = document_photo
-      end
       @user.save!
     end
     flash[:notice] = I18n.t(:accion_exitosa)
