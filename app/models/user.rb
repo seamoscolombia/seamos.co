@@ -23,8 +23,6 @@
 class User < ApplicationRecord
   attr_accessor :password, :password_confirmation
 
-  belongs_to :tipo_de_documento, required: !:admin?
-  belongs_to  :document_photo
   before_save :encrypt_password_for_admin
 
   has_many  :causes
@@ -39,16 +37,11 @@ class User < ApplicationRecord
   validates  :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}, if: :admin?
   validates_presence_of  [:first_surname, :second_surname, :names, :role_type]
   validates :uid, uniqueness: true, unless: :admin?
-  validate :date_range_validation, unless: :admin? #Porque no se valida la fecha para el admin
 
-  validate :document_validation, unless: :admin?
   validate :email_for_admin, if: :admin?
   validate :password_for_admin, on: :create, if: :admin?
   validate :password_for_admin_update, on: :update, if: :admin?
-  validates :document_number, numericality: { only_integer: true }, uniqueness: true, unless: :admin?
-  validates :tipo_de_documento, presence: true, unless: :admin?
   validates :uid, presence: true, unless: :admin?
-  validates :document_number, presence: true,  unless: :admin?
 
   enum role_type: {ciudadano: 0, politico: 1, administrador: 2}
 
@@ -82,12 +75,6 @@ class User < ApplicationRecord
       end
     end
 
-    def date_range_validation #Tambien validar que sea menor de 100 años
-      if expedition_date.blank? || (expedition_date > Date.today)
-        errors.add(:expedition_date, I18n.t(:fecha_invalida))
-      end
-    end
-
     def password_for_admin
       if (password.nil? || password.present? != password_confirmation.present?)
         errors.add(:contraseña, I18n.t(:password))
@@ -103,12 +90,6 @@ class User < ApplicationRecord
     def email_for_admin
       if email.nil?
         errors.add(:email, I18n.t(:email))
-      end
-    end
-
-    def document_validation
-      if !(/^\d+$/.match(document_number)) || Coldocument.find_by(doc_num: document_number.to_i).nil?
-        errors.add(:document_number, I18n.t(:cedula_invalida))
       end
     end
 

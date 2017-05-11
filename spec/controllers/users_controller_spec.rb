@@ -14,21 +14,16 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'POST create' do
     context 'request as json' do
-     let(:tipo_de_documento) { FactoryGirl.create(:tipo_de_documento) }
-     let(:coldocument) { FactoryGirl.create(:coldocument) }
       it 'An citizen user is created' do
           session[:uid] = rand(300).to_s
-          post :create, params: { user: {
+          my_params =  {
               first_surname:  Faker::Name.last_name,
               second_surname: Faker::Name.last_name,
               names: Faker::Name.first_name,
-              tipo_de_documento_id: tipo_de_documento.id,
-              document_number: coldocument.doc_num,
-              expedition_day: Date.today - 1000.days,
               email: Faker::Internet.email,
-              role_type: 0
             }
-          }, format: :json
+
+          post :create, params: { user: my_params }, format: :json
           expect(response).to have_http_status(:created)
       end
     end

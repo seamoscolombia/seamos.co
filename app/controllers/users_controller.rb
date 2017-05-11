@@ -16,7 +16,6 @@ class UsersController < ApplicationController
     @user.role_type = 0
     @user.uid = session[:uid]
 
-    @user.document_photo_id = params[:photo_id]
     @user.email = params[:user_email]
     respond_to do |format|
 
@@ -111,9 +110,9 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_surname, :segundo_apellido, :nombres,
-                                    :tipo_de_documento_id, :numero_documento,
-                                    :fecha_expedicion, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_surname, :second_surname, :names,
+                                    :tipo_de_documento_id, :document_number,
+                                    :expedition_date, :email, :password, :password_confirmation)
   end
 
   def user_exist
