@@ -3,8 +3,8 @@ new_coldoc = Coldocument.create!(doc_num: coldoc.doc_num + 1,divipol_id: coldoc.
 
 document_photo = DocumentPhoto.create!(:url => "/uploads/document_photo/url/25/photo.png")
 
-usuario_last = User.last
-usuario = User.create!(
+user_last = User.last
+user = User.create!(
   first_surname: "firstSurname",
   segundo_apellido: "secondSurname",
   nombres: "Names",
@@ -12,7 +12,7 @@ usuario = User.create!(
   numero_documento: new_coldoc.doc_num,
   fecha_expedicion: "2011-05-28",
   role_id: 1,
-  uid: (usuario_last.uid.to_i + 1).to_s,
+  uid: (user_last.uid.to_i + 1).to_s,
   approved: false,
   document_photo_id: document_photo.id
 )
@@ -25,9 +25,9 @@ if poll_last.private?
   totals[vote_type.id] += 1
   poll_last.totals = totals
   poll_last.save!
-  vote = usuario.votes.build( poll_id: @poll.id )
+  vote = user.votes.build( poll_id: @poll.id )
 else
-  vote = usuario.votes.build(
+  vote = user.votes.build(
       poll_id: poll_last.id,
       vote_type: vote_type
   )

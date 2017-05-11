@@ -6,7 +6,7 @@
 #  title         :string           not null
 #  description   :text             not null
 #  closing_date  :date             not null
-#  user_id       :integer
+#  users_id       :integer
 #  totals        :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null

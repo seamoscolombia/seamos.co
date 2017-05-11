@@ -1,5 +1,5 @@
 $( document ).on('turbolinks:load', function() {
-  var fU = $("#usuarios_filter");
+  var fU = $("#users_filter");
   var bS = $(".button-sender");
   var bVTA = $("#button_vote_types_attributes");
   var bDebate = $("#button_questions_attributes");

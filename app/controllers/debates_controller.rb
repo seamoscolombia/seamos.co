@@ -35,7 +35,7 @@ class DebatesController < ApplicationController
 
   def create
     @debate = Debate.new(http_params)
-    @debate.usuario = current_user
+    @debate.user = current_user
     if @debate.save
       redirect_to poll_debates_path @debate.poll
     else

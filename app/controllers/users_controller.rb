@@ -11,12 +11,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(users_params)
     @user.approved = false
     @user.role_type = 0
     @user.uid = session[:uid]
 
-    @user.email = params[:user_email]
+    @user.email = params[:users_email]
     respond_to do |format|
 
       format.json do
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    user_exist
+    users_exist
   end
 
   def index
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     @user.transaction do
       document_photo_param = params[:user][:document_photo]
       @user = User.find_by(id: params[:id])
-      @user.attributes = user_params
+      @user.attributes = users_params
       if document_photo_param
         @user.document_photo.delete
         document_photo = DocumentPhoto.create!(url: document_photo_param)
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   rescue ActiveRecord::RecordInvalid => e
     puts "update user: #{e}"
     flash[:danger] = " #{e}"
-    redirect_to edit_user_path @user
+    redirect_to edit_users_path @user
   end
 
   def destroy
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
   end
 
   def validate
-    user_exist
+    users_exist
   end
 
   def update_valid_user
@@ -109,13 +109,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def user_params
+  def users_params
     params.require(:user).permit(:first_surname, :second_surname, :names,
                                     :tipo_de_documento_id, :document_number,
                                     :expedition_date, :email, :password, :password_confirmation)
   end
 
-  def user_exist
+  def users_exist
     @user = User.find_by(id: params[:id])
     redirect_to users_path if @user.nil?
   end

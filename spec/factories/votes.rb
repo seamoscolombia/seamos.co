@@ -4,7 +4,7 @@
 #
 #  id           :integer          not null, primary key
 #  poll_id      :integer
-#  user_id      :integer
+#  users_id      :integer
 #  vote_type_id :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
