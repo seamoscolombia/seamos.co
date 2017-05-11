@@ -45,16 +45,11 @@
                     </div>
                     <h4>
                     <a href="#" >
-                      <%= user.nombres %>
+                      <%= user.names %>
                       <%= user.first_surname %>
-                      <%= user.segundo_apellido %>
+                      <%= user.second_surname %>
                     </a>
                     </h4>
-                    <%if user.administrador? %>
-                      <p><small><b><%= User.human_attribute_name("tipo_de_documento_id") %>: </b><%= user.tipo_de_documento.code_view if user.tipo_de_documento %></small></p>
-                      <p><small><b><%= User.human_attribute_name("numero_documento") %>: </b><%= user.numero_documento %></small></p>
-                      <p><small><b><%= User.human_attribute_name("fecha_expedicion") %>: </b><%= user.fecha_expedicion %></small></p>
-                    <% end %>
                     <p><small><b><%= User.human_attribute_name("email") %>: </b><%= user.email %></small></p>
                     <p><small><b>ID de Facebook: </b><%= user.uid %></small></p>
                   </div>
