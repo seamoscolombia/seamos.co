@@ -33,13 +33,12 @@ class User < ApplicationRecord
   has_many  :votes, dependent: :destroy
   has_many  :debate_votes, dependent: :destroy
 
-  validates  :fst_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
-  validates  :snd_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
+  validates  :first_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
+  validates  :second_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :names, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}, if: :admin?
-  validates  :document_photo_id, presence: true
-  validates_presence_of  [:fst_surname, :snd_surname, :names, :role_type]
-  validates :uid, uniqueness: true, unless: :admin? 
+  validates_presence_of  [:first_surname, :second_surname, :names, :role_type]
+  validates :uid, uniqueness: true, unless: :admin?
   validate :date_range_validation, unless: :admin? #Porque no se valida la fecha para el admin
 
   validate :document_validation, unless: :admin?
@@ -62,7 +61,7 @@ class User < ApplicationRecord
   end
 
   def full_name
-    "#{names} #{fst_surname} #{snd_surname}"
+    "#{names} #{first_surname} #{second_surname}"
   end
 
   def self.get_admin(params)
@@ -84,7 +83,7 @@ class User < ApplicationRecord
     end
 
     def date_range_validation #Tambien validar que sea menor de 100 años
-      if expedition_date.blank? || (expedition_date > Date.today) 
+      if expedition_date.blank? || (expedition_date > Date.today)
         errors.add(:expedition_date, I18n.t(:fecha_invalida))
       end
     end

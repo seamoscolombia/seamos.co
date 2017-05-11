@@ -20,12 +20,11 @@ RSpec.describe UsersController, type: :controller do
           session[:uid] = rand(300).to_s
           post :create, params: { user: {
               first_surname:  Faker::Name.last_name,
-              segundo_apellido: Faker::Name.last_name,
-              nombres: Faker::Name.first_name,
+              second_surname: Faker::Name.last_name,
+              names: Faker::Name.first_name,
               tipo_de_documento_id: tipo_de_documento.id,
-              numero_documento: coldocument.doc_num,
-              document_photo: 'docphoto',
-              fecha_expedicion: Date.today - 1000.days,
+              document_number: coldocument.doc_num,
+              expedition_day: Date.today - 1000.days,
               email: Faker::Internet.email,
               role_type: 0
             }

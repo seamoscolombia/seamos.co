@@ -5,13 +5,13 @@
 #  id                   :integer          not null, primary key
 #  first_surname      :string
 #  segundo_apellido     :string
-#  nombres              :string
+#  names              :string
 #  tipo_de_documento_id :integer
-#  numero_documento     :string
+#  document_number     :string
 #  fecha_expedicion     :date
 #  role_type            :integer
 #  uid                  :string
-#  valido               :boolean
+#  approved               :boolean
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #  document_photo_id    :integer
@@ -23,8 +23,8 @@
 FactoryGirl.define do
   factory :user do
 
-    fst_surname { Faker::Name.last_name }
-    snd_surname { Faker::Name.last_name }
+    first_surname { Faker::Name.last_name }
+    second_surname { Faker::Name.last_name }
     names { Faker::Name.first_name }
     tipo_de_documento { FactoryGirl.create(:tipo_de_documento) }
     expedition_date { Date.today - 1000.days }

@@ -7,7 +7,7 @@ Role.create!(code: 'politico')
 Role.create!(code: 'administrador')
 
 
-user = User.create!(first_surname: "Molina", segundo_apellido: "Orbe", nombres: "Jaime Santiago", tipo_de_documento_id: 1, numero_documento: "1113645710", fecha_expedicion: "2011-05-28", role_id: 3, uid: "10152902624895489", valido: false, document_photo_id: 24)
+user = User.create!(first_surname: "Molina", segundo_apellido: "Orbe", nombres: "Jaime Santiago", tipo_de_documento_id: 1, numero_documento: "1113645710", fecha_expedicion: "2011-05-28", role_id: 3, uid: "10152902624895489", approved: false, document_photo_id: 24)
 
 # poll = Poll.create!(
 #     title: Faker::Lorem.sentence,
@@ -29,7 +29,7 @@ user = User.create!(first_surname: "Molina", segundo_apellido: "Orbe", nombres: 
 #       fecha_expedicion: Faker::Time.between(3.years.ago, 1.year.ago),
 #       role_id: 1,
 #       uid: Faker::Number.number(10).to_s ,
-#       valido: false
+#       approved: false
 #   )
 #
 #

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.valido = false
+    @user.approved = false
     @user.role_type = 0
     @user.uid = session[:uid]
 
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
   end
 
   def update_valid_user
-    if @user.update(valido: true)
+    if @user.update(approved: true)
       redirect_to users_path, notice: I18n.t(:success)
     end
   end
@@ -97,11 +97,11 @@ class UsersController < ApplicationController
       User.all.page(params[:page]).per(4)
     when '0'
       User
-        .where('valido= ? and role_type!= ?', false, 2)
+        .where('approved= ? and role_type!= ?', false, 2)
         .page(params[:page]).per(4)
     else
       User
-        .where('valido= ? and role_type!= ?', false, 2)
+        .where('approved= ? and role_type!= ?', false, 2)
         .page(params[:page]).per(4)
     end
   end

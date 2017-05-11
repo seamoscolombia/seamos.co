@@ -38,23 +38,23 @@ RSpec.describe User, type: :model do
 
   describe 'validations' do
     describe 'not an admin validations' do
-      let(:user) { User.new(role_type: 0, uid: '', numero_documento: '') }
+      let(:user) { User.new(role_type: 0, uid: '', document_number: '') }
       it 'should validate presence' do
         user.valid?
         expect(user.errors[:uid]).to include('no puede estar en blanco')
-        expect(user.errors[:numero_documento]).to include('no puede estar en blanco')
+        expect(user.errors[:document_number]).to include('no puede estar en blanco')
         expect(user.errors[:tipo_de_documento]).to include('no puede estar en blanco')
       end
-      let(:pre_invalid_user) { FactoryGirl.create(:user, uid: '1', numero_documento: 'abc') }
-      let(:invalid_user) { User.new(role_type: 0, uid: pre_invalid_user.uid, numero_documento: 'abc') }
+      let(:pre_invalid_user) { FactoryGirl.create(:user, uid: '1', document_number: 'abc') }
+      let(:invalid_user) { User.new(role_type: 0, uid: pre_invalid_user.uid, document_number: 'abc') }
       it 'should validate numericality' do
         invalid_user.valid?
-        expect(invalid_user.errors[:numero_documento]).to include('no es un número')
+        expect(invalid_user.errors[:document_number]).to include('no es un número')
       end
       it 'should validate uniqueness' do
         invalid_user.valid?
         expect(invalid_user.errors[:uid]).to include('ya ha sido tomado')
-        expect(invalid_user.errors[:numero_documento]).to include('ya ha sido tomado')
+        expect(invalid_user.errors[:document_number]).to include('ya ha sido tomado')
       end
     end
     describe 'admin validations' do
@@ -69,25 +69,24 @@ RSpec.describe User, type: :model do
       end
     end
     it { should validate_presence_of(:first_surname) }
-    it { should validate_presence_of(:segundo_apellido) }
-    it { should validate_presence_of(:nombres) }
+    it { should validate_presence_of(:second_surname) }
+    it { should validate_presence_of(:names) }
     it { should validate_presence_of(:role_type) }
-    it { should validate_presence_of(:document_photo_id) }
 
     describe '#first_surname' do
       it { should_not allow_value('surname123').for(:first_surname) }
     end
-    describe '#segundo_apellido' do
-      it { should_not allow_value('surname123').for(:segundo_apellido) }
+    describe '#second_surname' do
+      it { should_not allow_value('surname123').for(:second_surname) }
     end
-    describe '#nombres' do
-      it { should_not allow_value('name123').for(:segundo_apellido) }
+    describe '#names' do
+      it { should_not allow_value('name123').for(:second_surname) }
     end
   end
 
   describe 'User#full_name' do
-    let(:user) { FactoryGirl.build(:user, nombres: 'John', first_surname: 'Dummy', segundo_apellido: 'Doe') }
-    context 'when user has nombres, first_surname y segundo_apellido' do
+    let(:user) { FactoryGirl.build(:user, names: 'John', first_surname: 'Dummy', second_surname: 'Doe') }
+    context 'when user has names, first_surname y second_surname' do
       it 'returns user full name' do
         expect(user.full_name).to eq('John Dummy Doe')
       end

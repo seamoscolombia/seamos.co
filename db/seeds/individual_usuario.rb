@@ -13,7 +13,7 @@ usuario = User.create!(
   fecha_expedicion: "2011-05-28",
   role_id: 1,
   uid: (usuario_last.uid.to_i + 1).to_s,
-  valido: false,
+  approved: false,
   document_photo_id: document_photo.id
 )
 

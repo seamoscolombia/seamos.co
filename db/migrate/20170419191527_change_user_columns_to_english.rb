@@ -1,6 +1,6 @@
 class ChangeUserColumnsToEnglish < ActiveRecord::Migration[5.0]
   def change
-    rename_column :users, :first_surname,  :first_surname
+    rename_column :users, :primer_apellido,  :first_surname
     rename_column :users, :segundo_apellido, :second_surname
     rename_column :users, :nombres, :names
     rename_column :users, :numero_documento, :document_number
