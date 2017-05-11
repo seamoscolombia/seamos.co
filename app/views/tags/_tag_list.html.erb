@@ -1,10 +1,10 @@
 <div class="tag-list">
   <% tags.reverse_each do |tag|%>
-    <%if location_from == "new_tags"%>
+    <%if @location_from == "new_tags"%>
     <%= link_to tag.name + " x", admin_path(tag.id), class: "label label-default tag",
                                                    method: :delete,
                                                    data: {confirm: t(".confirmation")}  %>
-      <%elsif location_from == "new_poll" %>
+      <%elsif @location_from == "new_poll" || @location_from.blank? %>
       <span class="label label-default tag"><%= tag.name %></span>
     <%end%>
   <%end%>

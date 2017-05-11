@@ -11,11 +11,11 @@ class TagsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @tags = Tag.all.map(&:name)
+        @location_from = ''
+        @tags = Tag.all
       end
       format.json do
         @tags = Tag.all
-        render json: @tags
       end
     end
   end
