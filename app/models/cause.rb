@@ -6,7 +6,7 @@
 #  description    :text             not null
 #  title          :string           not null
 #  state_cause_id :integer          not null
-#  users_id        :integer          not null
+#  user_id        :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
