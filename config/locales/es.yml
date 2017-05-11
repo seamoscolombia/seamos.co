@@ -249,6 +249,8 @@ es:
           attributes:
             user:
               required: es requerido
+            poll:
+              required: Propuesta es requerido
   intro:
     inicio:
       sign_in_invitation: "¡Te invitamos, Regístrate!"
