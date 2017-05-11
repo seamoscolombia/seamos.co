@@ -17,17 +17,14 @@ RSpec.describe ExternalLink, type: :model do
     end
 
     describe 'validations' do
-      let(:poll) { FactoryGirl.create(:poll) }
       context 'custom url field' do
         let(:external_link) { FactoryGirl.build(:external_link) }
         it 'has invalid URL' do
           external_link.url = 'not an url'
-          external_link.poll = poll
           external_link.valid?
           expect(external_link.errors[:url]).to include('es inválido')
         end
         it 'has valid URL' do
-          external_link.poll = poll
           expect(external_link.valid?).to be true
         end
       end
