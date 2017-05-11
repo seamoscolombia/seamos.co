@@ -5,10 +5,10 @@
 <h1>
 	Usuarios
 	<small class='select-users'>
-    <%= form_for(:users_ios_filter, uusers_suarios_path, method: :get) do |f|  %>
-      <select class="form-control" name="users_ios_filter_select" users_suarios_filter">
+    <%= form_for(:users_filter, uusers_suarios_path, method: :get) do |f|  %>
+      <select class="form-control" name="users_filter_select" users_suarios_filter">
         <option value="0"><%= t('.filter_options')[0]%></option>
-        <option value="1" <%= 'selected' if @users_ios_filter == "1" %>><%= t('.filter_options')[1]%></option>
+        <option value="1" <%= 'selected' if @users_filter == "1" %>><%= t('.filter_options')[1]%></option>
       </select>
     <% end %>
 	</small>

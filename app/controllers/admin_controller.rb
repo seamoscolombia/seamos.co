@@ -9,13 +9,10 @@ class AdminController < ApplicationController
 
   def create
       @user = User.new(user_params)
-      document_photo_param = params[:user][:document_photo]
-      document_photo = DocumentPhoto.create!(url: document_photo_param);
-      @user.document_photo = document_photo
 
       if @user.save
         flash[:notice] = I18n.t(:accion_exitosa)
-        redirect_to users_ios_path
+        redirect_to users_path
       else
         errs = @user.errors.map{ |k,v| "#{k}: #{v};   " }
         flash[:danger] = errs
@@ -39,8 +36,8 @@ class AdminController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:first_surname, :segundo_apellido, :nombres,
-                                      :tipo_de_documento_id, :numero_documento,
-                                      :fecha_expedicion, :email, :password, :password_confirmation, :role_type)
+      params.require(:user).permit(:first_surname, :second_surname, :names,
+                                      :email, :password, 
+                                      :password_confirmation, :role_type)
     end
 end
