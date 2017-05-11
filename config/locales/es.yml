@@ -245,7 +245,10 @@ es:
           attributes:
             debate:
               required: descripción requerido en preguntas de Debate
-
+        external_link:
+          attributes:
+            user:
+              required: es requerido
   intro:
     inicio:
       sign_in_invitation: "¡Te invitamos, Regístrate!"
