@@ -6,7 +6,7 @@
 #  title         :string           not null
 #  description   :text             not null
 #  closing_date  :date             not null
-#  usuario_id    :integer
+#  user_id       :integer
 #  totals        :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -19,7 +19,7 @@ class Poll < ApplicationRecord
   mount_uploader :poll_image, PollImageUploader
   mount_uploader :poll_document, PollDocumentUploader
 
-  belongs_to :usuario
+  belongs_to :user
   has_many :vote_types, inverse_of: :poll, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :debates, dependent: :destroy

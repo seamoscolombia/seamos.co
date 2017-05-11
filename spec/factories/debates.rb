@@ -6,7 +6,7 @@
 #  title      :string
 #  published  :boolean          default(FALSE)
 #  poll_id    :integer
-#  usuario_id :integer
+#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -14,7 +14,7 @@
 FactoryGirl.define do
   factory :debate do
     title { Faker::Lorem.paragraph }
-    usuario { FactoryGirl.create(:usuario) }
+    user { FactoryGirl.create(:user) }
     poll { FactoryGirl.create(:poll) }
     to_create { |instance| instance.save(validate: false) }
     factory :debate_with_questions do

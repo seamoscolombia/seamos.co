@@ -30,3 +30,7 @@ erl_crash.dump
 !.elasticbeanstalk/*.global.yml
 
 \.env
+
+client/node_modules/
+
+node_modules/

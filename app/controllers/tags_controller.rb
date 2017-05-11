@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   before_action :set_tags, only: :create
   before_action :tag_params, only: :set_tags
   before_action :existing_tags, only: %i(create new)
-  before_action :validate_superadmin, only: %i(create new)
+  before_action :validate_superadmin, only: %i(create new delete)
 
   def new
     @tag = Tag.new
@@ -18,7 +18,6 @@ class TagsController < ApplicationController
         render json: @tags
       end
     end
-
   end
 
   def create
@@ -31,13 +30,13 @@ class TagsController < ApplicationController
     end
     flash[:danger] = 'el nombre de ' + @dup_tags.to_s + ' etiquetas ya ha sido tomado' if @dup_tags > 0
     flash[:success] = I18n.t(:tags_creados, created: @new_tags.to_s + ' etiquetas') if @new_tags > 0
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   def delete
     @tag = Tag.find(params[:id])
     @tag.destroy
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private

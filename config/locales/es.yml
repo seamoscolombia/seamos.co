@@ -223,7 +223,7 @@ es:
         description: Descripción
         totals: Totales
         poll_document: Documento de la Propuesta
-      usuario:
+      user:
         fecha_expedicion: Fecha de expedición
         nombre: 'Nombre'
         numero_documento: Número del documento
@@ -233,7 +233,7 @@ es:
         question: Pregunta
     errors:
       models:
-        usuario:
+        user:
           attributes:
             tipo_de_documento:
              required: Requerida
@@ -256,7 +256,7 @@ es:
     application:
       polls: Propuestas
       logout: Salir
-      usuarios: Lista de Usuarios
+      users: Lista de Usuarios
 
   dashboard:
     index:
@@ -338,11 +338,11 @@ es:
     voted:
       no_voted_polls: Aún no ha votado por alguna propuesta.
 
-  sesion_usuarios:
+  sesion_users:
     new:
       log_in: Iniciar sesión
 
-  usuarios:
+  users:
     form:
       password: Contraseña
       password_confirmation: Confirmación de contraseña
@@ -385,7 +385,7 @@ es:
   fecha_invalida: Fecha Inválida
   processing: Procesando...
   regresar: Regresar
-  rol_usuario:
+  rol_user:
     - Ciudadano
     - Político
     - Administrador
