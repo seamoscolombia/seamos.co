@@ -17,9 +17,9 @@ RSpec.describe ExternalLink, type: :model do
     end
 
     describe 'validations' do
-      context 'custom url field' do
+      context 'when creating external link with a custom validation' do
         let(:external_link) { FactoryGirl.build(:external_link) }
-        it 'has invalid URL' do
+        it 'returns invalid url field error' do
           external_link.url = 'not an url'
           external_link.valid?
           expect(external_link.errors[:url]).to include('es inválido')
@@ -29,9 +29,9 @@ RSpec.describe ExternalLink, type: :model do
         end
       end
     end
-    context 'predeterminates' do
+    context 'when creating external link with a predetermine validation' do
       let(:external_link) { FactoryGirl.create(:external_link) }
-      it 'user reference field is invalid' do
+      it 'return poll reference field invalid' do
         external_link.poll = nil
         external_link.valid?
         expect(external_link.errors[:poll]).to include('Propuesta es requerido')
