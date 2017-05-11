@@ -6,7 +6,7 @@
 #  title        :string           not null
 #  description  :text             not null
 #  closing_date :date             not null
-#  usuario_id   :integer
+#  user_id   :integer
 #  totals       :string
 #  url_image    :string
 #  created_at   :datetime         not null
@@ -30,7 +30,7 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new http_params
-    @poll.usuario = current_user
+    @poll.user = current_user
     @poll.set_tags(tags_param)
     totals_hash = {}
     Poll.transaction do
@@ -81,7 +81,7 @@ class PollsController < ApplicationController
   def index_admin
     @filtered_polls = Poll.by_status(params[:status])
     @polls = if current_user.politico?
-               @filtered_polls.order('id desc').where(usuario_id: current_user.id).page(params[:page]).per(4)
+               @filtered_polls.order('id desc').where(user_id: current_user.id).page(params[:page]).per(4)
              else
                @filtered_polls.order('id desc').all.page(params[:page]).per(4)
              end
@@ -162,8 +162,8 @@ class PollsController < ApplicationController
   private
 
   def publish_facebook(poll)
-    user_graph = Koala::Facebook::API.new(session[:fb_token])
-    tvtd_page_token = user_graph.get_page_access_token(Rails.application.secrets.tvtd_page_id.to_s)
+    users_graph = Koala::Facebook::API.new(session[:fb_token])
+    tvtd_page_token = users_graph.get_page_access_token(Rails.application.secrets.tvtd_page_id.to_s)
     logger.debug "Token in publish_facebook: #{tvtd_page_token} "
     page_graph = Koala::Facebook::API.new(tvtd_page_token)
     logger.debug "page_graph in publish_facebook: #{page_graph} "

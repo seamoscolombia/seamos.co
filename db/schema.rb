@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 20170502203516) do
   create_table "causes", force: :cascade do |t|
     t.text     "description"
     t.string   "title"
-    t.integer  "usuario_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["usuario_id"], name: "index_causes_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_causes_on_user_id", using: :btree
   end
 
   create_table "coldocuments", id: false, force: :cascade do |t|
@@ -33,24 +33,24 @@ ActiveRecord::Schema.define(version: 20170502203516) do
 
   create_table "debate_votes", force: :cascade do |t|
     t.integer  "question_id"
-    t.integer  "usuario_id"
+    t.integer  "user_id"
     t.integer  "debate_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["debate_id"], name: "index_debate_votes_on_debate_id", using: :btree
     t.index ["question_id"], name: "index_debate_votes_on_question_id", using: :btree
-    t.index ["usuario_id"], name: "index_debate_votes_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_debate_votes_on_user_id", using: :btree
   end
 
   create_table "debates", force: :cascade do |t|
     t.string   "title"
     t.boolean  "published",  default: false
     t.integer  "poll_id"
-    t.integer  "usuario_id"
+    t.integer  "user_id"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["poll_id"], name: "index_debates_on_poll_id", using: :btree
-    t.index ["usuario_id"], name: "index_debates_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_debates_on_user_id", using: :btree
   end
 
   create_table "departamentos", force: :cascade do |t|
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20170502203516) do
     t.string   "title",                        null: false
     t.text     "description",                  null: false
     t.date     "closing_date",                 null: false
-    t.integer  "usuario_id"
+    t.integer  "user_id"
     t.string   "totals"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20170502203516) do
     t.boolean  "active",        default: true
     t.string   "poll_document"
     t.index ["title"], name: "index_polls_on_title", using: :btree
-    t.index ["usuario_id"], name: "index_polls_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_polls_on_user_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
@@ -134,15 +134,15 @@ ActiveRecord::Schema.define(version: 20170502203516) do
     t.index ["codigo"], name: "index_tipo_de_documentos_on_codigo", unique: true, using: :btree
   end
 
-  create_table "usuarios", force: :cascade do |t|
-    t.string   "primer_apellido"
-    t.string   "segundo_apellido"
-    t.string   "nombres"
+  create_table "users", force: :cascade do |t|
+    t.string   "first_surname"
+    t.string   "second_surname"
+    t.string   "names"
     t.integer  "tipo_de_documento_id"
-    t.string   "numero_documento"
-    t.date     "fecha_expedicion"
+    t.string   "document_number"
+    t.date     "expedition_date"
     t.string   "uid"
-    t.boolean  "valido"
+    t.boolean  "approved"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "document_photo_id"
@@ -150,11 +150,11 @@ ActiveRecord::Schema.define(version: 20170502203516) do
     t.string   "password_hash"
     t.string   "password_salt"
     t.integer  "role_type"
-    t.index ["document_photo_id"], name: "index_usuarios_on_document_photo_id", using: :btree
-    t.index ["numero_documento"], name: "index_usuarios_on_numero_documento", using: :btree
-    t.index ["tipo_de_documento_id", "numero_documento"], name: "index_usuarios_on_tipo_de_documento_id_and_numero_documento", unique: true, using: :btree
-    t.index ["tipo_de_documento_id"], name: "index_usuarios_on_tipo_de_documento_id", using: :btree
-    t.index ["uid"], name: "index_usuarios_on_uid", unique: true, using: :btree
+    t.index ["document_number"], name: "index_users_on_document_number", using: :btree
+    t.index ["document_photo_id"], name: "index_users_on_document_photo_id", using: :btree
+    t.index ["tipo_de_documento_id", "document_number"], name: "index_users_on_tipo_de_documento_id_and_document_number", unique: true, using: :btree
+    t.index ["tipo_de_documento_id"], name: "index_users_on_tipo_de_documento_id", using: :btree
+    t.index ["uid"], name: "index_users_on_uid", unique: true, using: :btree
   end
 
   create_table "vote_types", force: :cascade do |t|
@@ -167,28 +167,28 @@ ActiveRecord::Schema.define(version: 20170502203516) do
 
   create_table "votes", force: :cascade do |t|
     t.integer  "poll_id"
-    t.integer  "usuario_id"
+    t.integer  "user_id"
     t.integer  "vote_type_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.index ["poll_id"], name: "index_votes_on_poll_id", using: :btree
-    t.index ["usuario_id"], name: "index_votes_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_votes_on_user_id", using: :btree
     t.index ["vote_type_id"], name: "index_votes_on_vote_type_id", using: :btree
   end
 
-  add_foreign_key "causes", "usuarios"
+  add_foreign_key "causes", "users"
   add_foreign_key "debate_votes", "debates"
-  add_foreign_key "debate_votes", "usuarios"
+  add_foreign_key "debate_votes", "users"
   add_foreign_key "debates", "polls"
-  add_foreign_key "debates", "usuarios"
+  add_foreign_key "debates", "users"
   add_foreign_key "municipios", "departamentos"
-  add_foreign_key "polls", "usuarios"
+  add_foreign_key "polls", "users"
   add_foreign_key "questions", "debates"
   add_foreign_key "taggings", "polls"
   add_foreign_key "taggings", "tags"
-  add_foreign_key "usuarios", "document_photos"
-  add_foreign_key "usuarios", "tipo_de_documentos"
+  add_foreign_key "users", "document_photos"
+  add_foreign_key "users", "tipo_de_documentos"
   add_foreign_key "vote_types", "polls"
   add_foreign_key "votes", "polls"
-  add_foreign_key "votes", "usuarios"
+  add_foreign_key "votes", "users"
 end

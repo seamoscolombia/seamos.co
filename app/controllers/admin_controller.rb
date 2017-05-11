@@ -3,42 +3,43 @@ class AdminController < ApplicationController
   before_action :validate_administrator
 
   def new
-    @usuario = Usuario.new()
+    @user = User.new()
     render :new
   end
 
   def create
-      @usuario = Usuario.new(usuario_params)
-      document_photo_param = params[:usuario][:document_photo]
+      @user = User.new(user_params)
+      document_photo_param = params[:user][:document_photo]
       document_photo = DocumentPhoto.create!(url: document_photo_param);
-      @usuario.document_photo = document_photo
+      @user.document_photo = document_photo
 
-      if @usuario.save
+      if @user.save
         flash[:notice] = I18n.t(:accion_exitosa)
-        redirect_to usuarios_path
+        redirect_to users_ios_path
       else
-        errs = @usuario.errors.map{ |k,v| "#{k}: #{v};   " }
+        errs = @user.errors.map{ |k,v| "#{k}: #{v};   " }
         flash[:danger] = errs
-        redirect_to new_admin_path @usuario
+        redirect_to new_admin_path @user
       end
   end
 
   # def index
-  #   @usuarios = filter_usuarios_option
-  #   @usuarios_filter = params[:usuarios_filter_select]
+  #   @users = filter_users_option
+  #   @users_filter = params[:users_filter_select]
   # end
 
 
   private
 
     def validate_administrator
+      puts "CURRENT USER: #{current_user}"
       if current_user.nil? || current_user.role_type != "administrador"
         redirect_to root_path
       end
     end
 
-    def usuario_params
-      params.require(:usuario).permit(:primer_apellido, :segundo_apellido, :nombres,
+    def user_params
+      params.require(:user).permit(:first_surname, :segundo_apellido, :nombres,
                                       :tipo_de_documento_id, :numero_documento,
                                       :fecha_expedicion, :email, :password, :password_confirmation, :role_type)
     end
