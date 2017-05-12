@@ -36,10 +36,6 @@ class TagsController < ApplicationController
 
   private
 
-  def existing_tags
-    @existing_tags = Tag.all
-  end
-
   def tag_params
     params.require(:tag).permit(:name, :image_tag)
   end
