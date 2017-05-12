@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170511203218) do
+ActiveRecord::Schema.define(version: 20170512155025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "causes", force: :cascade do |t|
-    t.text     "description"
-    t.string   "title"
-    t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "description",    null: false
+    t.string   "title",          null: false
+    t.integer  "state_cause_id", null: false
+    t.integer  "user_id",        null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["state_cause_id"], name: "index_causes_on_state_cause_id", using: :btree
     t.index ["user_id"], name: "index_causes_on_user_id", using: :btree
   end
 
@@ -29,6 +31,16 @@ ActiveRecord::Schema.define(version: 20170511203218) do
     t.bigint "divipol_id"
     t.index ["divipol_id"], name: "index_coldocuments_on_divipol_id", using: :btree
     t.index ["doc_num"], name: "index_coldocuments_on_doc_num", using: :btree
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "description", null: false
+    t.integer  "usuario_id",  null: false
+    t.integer  "cause_id",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["cause_id"], name: "index_comments_on_cause_id", using: :btree
+    t.index ["usuario_id"], name: "index_comments_on_usuario_id", using: :btree
   end
 
   create_table "debate_votes", force: :cascade do |t|
@@ -119,6 +131,12 @@ ActiveRecord::Schema.define(version: 20170511203218) do
     t.index ["code"], name: "index_roles_on_code", unique: true, using: :btree
   end
 
+  create_table "state_causes", force: :cascade do |t|
+    t.string   "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.integer  "poll_id"
     t.integer  "tag_id"
@@ -132,6 +150,7 @@ ActiveRecord::Schema.define(version: 20170511203218) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "tag_image"
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
@@ -143,6 +162,7 @@ ActiveRecord::Schema.define(version: 20170511203218) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "first_surname"
     t.string   "second_surname"
     t.string   "names"
     t.integer  "tipo_de_documento_id"
@@ -150,14 +170,13 @@ ActiveRecord::Schema.define(version: 20170511203218) do
     t.date     "expedition_date"
     t.string   "uid"
     t.boolean  "approved"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.integer  "document_photo_id"
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
     t.integer  "role_type"
-    t.string   "first_surname",        limit: 2044
     t.index ["document_number"], name: "index_users_on_document_number", using: :btree
     t.index ["document_photo_id"], name: "index_users_on_document_photo_id", using: :btree
     t.index ["tipo_de_documento_id", "document_number"], name: "index_users_on_tipo_de_documento_id_and_document_number", unique: true, using: :btree
@@ -184,7 +203,10 @@ ActiveRecord::Schema.define(version: 20170511203218) do
     t.index ["vote_type_id"], name: "index_votes_on_vote_type_id", using: :btree
   end
 
+  add_foreign_key "causes", "state_causes"
   add_foreign_key "causes", "users"
+  add_foreign_key "comments", "causes"
+  add_foreign_key "comments", "users", column: "usuario_id"
   add_foreign_key "debate_votes", "debates"
   add_foreign_key "debate_votes", "users"
   add_foreign_key "debates", "polls"
