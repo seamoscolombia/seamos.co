@@ -15,7 +15,7 @@ RSpec.describe TagsController, type: :controller do
     context 'when the request format is html' do
       it 'assigns @tags' do
         5.times { FactoryGirl.create(:tag) }
-        all_tags = Tag.all.map(&:name)
+        all_tags = Tag.all
         get :index
         expect(assigns(:tags)).to eq(all_tags)
       end
@@ -35,8 +35,14 @@ RSpec.describe TagsController, type: :controller do
   describe 'POST create' do
     let(:user) { FactoryGirl.create(:user, role_type: 2) }
     before(:each) do
+      Tag.destroy_all
       session[:email] = user.email
-      post :create, params: { tag: { name: 'new_tag' } }
+      post :create, params: { 
+        tag: { 
+          name: "new_tag#{rand(0..99)}",
+          image_tag: File.open("#{Rails.root}/spec/support/image.png", 'r') 
+        }
+      }
     end
     it 'Creates a new tag' do
       expect(Tag.find_by(name: 'new_tag')).not_to be nil

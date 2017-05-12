@@ -6,10 +6,13 @@
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  tag_image  :string
 #
 
 FactoryGirl.define do
   factory :tag do
     name { Faker::Lorem.word + SecureRandom.hex }
+    tag_image { File.open("#{Rails.root}/spec/support/image.png", 'r') }
+
   end
 end
