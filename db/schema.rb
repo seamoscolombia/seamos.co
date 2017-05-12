@@ -65,6 +65,14 @@ ActiveRecord::Schema.define(version: 20170511221408) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "external_links", force: :cascade do |t|
+    t.string   "url"
+    t.integer  "poll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_external_links_on_poll_id", using: :btree
+  end
+
   create_table "globals", force: :cascade do |t|
     t.string   "code",       null: false
     t.string   "value",      null: false
@@ -144,7 +152,6 @@ ActiveRecord::Schema.define(version: 20170511221408) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_surname"
     t.string   "second_surname"
     t.string   "names"
     t.integer  "tipo_de_documento_id"
@@ -152,13 +159,14 @@ ActiveRecord::Schema.define(version: 20170511221408) do
     t.date     "expedition_date"
     t.string   "uid"
     t.boolean  "approved"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "document_photo_id"
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
     t.integer  "role_type"
+    t.string   "first_surname",        limit: 2044
     t.index ["document_number"], name: "index_users_on_document_number", using: :btree
     t.index ["document_photo_id"], name: "index_users_on_document_photo_id", using: :btree
     t.index ["tipo_de_documento_id", "document_number"], name: "index_users_on_tipo_de_documento_id_and_document_number", unique: true, using: :btree
@@ -190,8 +198,6 @@ ActiveRecord::Schema.define(version: 20170511221408) do
   add_foreign_key "debate_votes", "users"
   add_foreign_key "debates", "polls"
   add_foreign_key "debates", "users"
-  add_foreign_key "interests", "tags"
-  add_foreign_key "interests", "users"
   add_foreign_key "municipios", "departamentos"
   add_foreign_key "polls", "users"
   add_foreign_key "questions", "debates"
