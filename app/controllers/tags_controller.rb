@@ -20,8 +20,8 @@ class TagsController < ApplicationController
 
   def create
     @tag = Tag.new(tag_params)
-    if @tag.save 
-      flash[:success] = I18n.t(:tags_creados, created: "#{@tags.to_s} etiquetas") 
+    if @tag.save
+      flash[:success] = I18n.t(:tags_creados, created: "#{@tags.to_s} etiquetas")
     else
       logger.debug "ERROR TAG CREATION: #{@tag.errors.messages}"
     end
@@ -37,7 +37,7 @@ class TagsController < ApplicationController
   private
 
   def tag_params
-    params.require(:tag).permit(:name, :image_tag)
+    params.require(:tag).permit(:name, :tag_image)
   end
 
   def validate_superadmin

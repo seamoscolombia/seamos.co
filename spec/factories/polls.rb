@@ -13,6 +13,8 @@
 #  poll_image    :string
 #  active        :boolean          default(TRUE)
 #  poll_document :string
+#  poll_type     :integer
+#  objective     :string
 #
 
 FactoryGirl.define do
@@ -21,6 +23,7 @@ FactoryGirl.define do
     description { Faker::Lorem.paragraph }
     closing_date { Date.tomorrow }
     totals "{1=>#{Faker::Number.number(3)}, 2=>#{Faker::Number.number(3)}}"
+    poll_type 0
     to_create { |instance| instance.save(validate: false) }
 
     factory :poll_with_votes do

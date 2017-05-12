@@ -13,6 +13,8 @@
 #  poll_image    :string
 #  active        :boolean          default(TRUE)
 #  poll_document :string
+#  poll_type     :integer
+#  objective     :string
 #
 
 require 'rails_helper'
@@ -26,6 +28,10 @@ RSpec.describe Poll, type: :model do
     it { should have_many(:external_links) }
     it { should have_many(:poll_states) }
     it { should accept_nested_attributes_for(:vote_types) }
+  end
+
+  describe 'enums' do
+    it { should define_enum_for(:poll_type) }
   end
 
   describe 'validations' do

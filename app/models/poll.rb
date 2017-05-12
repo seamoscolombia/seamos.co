@@ -13,6 +13,8 @@
 #  poll_image    :string
 #  active        :boolean          default(TRUE)
 #  poll_document :string
+#  poll_type     :integer
+#  objective     :string
 #
 
 class Poll < ApplicationRecord
@@ -37,6 +39,8 @@ class Poll < ApplicationRecord
 
   validate :closing_date_validation
   validate :at_least_one_tag
+  
+  enum poll_type: {voting: 0, participation: 1, signing: 2}
 
   scope :active, -> {
     where('active IS TRUE AND closing_date >= ?', Date.today)
