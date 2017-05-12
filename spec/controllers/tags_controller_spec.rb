@@ -15,7 +15,7 @@ RSpec.describe TagsController, type: :controller do
     context 'when the request format is html' do
       it 'assigns @tags' do
         5.times { FactoryGirl.create(:tag) }
-        all_tags = Tag.all.map(&:name)
+        all_tags = Tag.all
         get :index
         expect(assigns(:tags)).to eq(all_tags)
       end
