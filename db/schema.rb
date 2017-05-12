@@ -93,6 +93,15 @@ ActiveRecord::Schema.define(version: 20170512155025) do
     t.index ["code"], name: "index_globals_on_code", unique: true, using: :btree
   end
 
+  create_table "interests", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_interests_on_tag_id", using: :btree
+    t.index ["user_id"], name: "index_interests_on_user_id", using: :btree
+  end
+
   create_table "municipios", force: :cascade do |t|
     t.string   "nombre"
     t.integer  "departamento_id"
@@ -211,7 +220,6 @@ ActiveRecord::Schema.define(version: 20170512155025) do
   add_foreign_key "debate_votes", "users"
   add_foreign_key "debates", "polls"
   add_foreign_key "debates", "users"
-  add_foreign_key "external_links", "polls"
   add_foreign_key "municipios", "departamentos"
   add_foreign_key "polls", "users"
   add_foreign_key "questions", "debates"
