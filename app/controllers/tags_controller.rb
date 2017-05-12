@@ -1,7 +1,5 @@
 class TagsController < ApplicationController
-  before_action :set_tags, only: :create
   before_action :tag_params, only: :set_tags
-  before_action :existing_tags, only: %i(create new)
   before_action :validate_superadmin, only: %i(create new delete)
 
   def new
@@ -21,15 +19,12 @@ class TagsController < ApplicationController
   end
 
   def create
-    @new_tags = 0
-    @dup_tags = 0
-    @tags.each do |name|
-      name.delete!(' ')
-      @tag = Tag.new(name: name.downcase)
-      (@tag.save ? @new_tags += 1 : @dup_tags += 1) unless name == ''
+    @tag = Tag.new(tag_params)
+    if @tag.save 
+      flash[:success] = I18n.t(:tags_creados, created: "#{@tags.to_s} etiquetas") 
+    else
+      logger.debug "ERROR TAG CREATION: #{@tag.errors.messages}"
     end
-    flash[:danger] = 'el nombre de ' + @dup_tags.to_s + ' etiquetas ya ha sido tomado' if @dup_tags > 0
-    flash[:success] = I18n.t(:tags_creados, created: @new_tags.to_s + ' etiquetas') if @new_tags > 0
     redirect_back(fallback_location: root_path)
   end
 
@@ -41,16 +36,8 @@ class TagsController < ApplicationController
 
   private
 
-  def set_tags
-    @tags = tag_params[:name].split(',')
-  end
-
-  def existing_tags
-    @existing_tags = Tag.all
-  end
-
   def tag_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:name, :image_tag)
   end
 
   def validate_superadmin
