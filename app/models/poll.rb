@@ -27,6 +27,7 @@ class Poll < ApplicationRecord
   has_many :taggings, dependent: :destroy
   has_many :tags, -> { distinct }, through: :taggings
   has_many :external_link
+  has_many :poll_states
 
   validates :title, presence: true
   validates :closing_date, presence: true
