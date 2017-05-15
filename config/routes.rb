@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :debates, on: :collection
     get '/debates/:id/change_debate_state', to: 'debates#change_debate_state', as: :change_debate_state
   end
+
+  resources :interests, exclude: [:new, :edit]
   resources :tipo_de_documentos, only: :index
   resources :votes, only: :create
   resources :debate_votes, only: :create
