@@ -36,14 +36,6 @@ RSpec.describe InterestsController, type: :controller do
   # InterestsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all interests as @interests" do
-      interest = Interest.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:interests)).to eq([interest])
-    end
-  end
-
   describe "GET #show" do
     it "assigns the requested interest as @interest" do
       interest = Interest.create! valid_attributes
