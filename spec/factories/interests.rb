@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :interest do
-    tag nil
-    user nil
+    tag { FactoryGirl.create(:tag) }
+    user { FactoryGirl.create(:user)}
   end
 end
