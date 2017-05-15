@@ -12,8 +12,12 @@
     <label id='counter-label' class='char-left'>500</label>
 </div>
 
-<div class="field" style="display:none">
-    <%= f.text_field :tags, id: 'tags-field'%>
+<div class="field" style="display: none">
+    <% if @used_tags %>
+      <%= f.text_field :tags, id: 'tags-field', value: @used_tags%>
+    <% else %>
+      <%= f.text_field :tags, id: 'tags-field'%>
+    <% end %>
 </div>
 
 <div class="field">

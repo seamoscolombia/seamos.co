@@ -17,6 +17,7 @@ class PollsController < ApplicationController
   include SessionsHelper
 
   before_action :validate_poll_closed?, only: :show
+  before_action :validate_closing_date, only: :edit
   before_action :validate_session, except: :index
   before_action :validate_admin_user, except: [:index, :show, :voted]
 
@@ -64,6 +65,7 @@ class PollsController < ApplicationController
 
   def edit
     @poll = Poll.find_by(id: params[:id])
+    @used_tags = @poll.tags.map(&:name).join(',')
   end
 
   def index
@@ -143,8 +145,11 @@ class PollsController < ApplicationController
 
   def update
     @poll = Poll.find_by(id: params[:id])
+    @poll.tags = []
+    @poll.set_tags(tags_param)
     if @poll.update(http_params)
       # ActionCable.server.broadcast 'polls_channel', 'changed'
+      flash[:success] = I18n.t(:accion_exitosa)
       redirect_to admin_dashboard_index_path
     else
       render :edit
@@ -198,5 +203,10 @@ class PollsController < ApplicationController
   def validate_poll_closed?
     poll = Poll.find_by(id: params[:id])
     redirect_to polls_path unless poll
+  end
+
+  def validate_closing_date
+    poll = Poll.find_by(id: params[:id])
+    redirect_to root_path and return if poll.closing_date < Date.today
   end
 end

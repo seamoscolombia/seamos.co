@@ -218,6 +218,7 @@ es:
     attributes:
       poll:
         title: Título
+        user: Usuario
         closing_date: Fecha de cierre
         at_least_one_tag: Ningún tema seleccionado,
         description: Descripción
@@ -235,6 +236,10 @@ es:
         question: Pregunta
     errors:
       models:
+        poll:
+          attributes:
+            user:
+              required: Requerido
         user:
           attributes:
             tipo_de_documento:
