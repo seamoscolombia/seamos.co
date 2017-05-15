@@ -223,6 +223,8 @@ es:
         description: Descripción
         totals: Totales
         poll_document: Documento de la Propuesta
+      tag:
+        tag_image: Imagen del Tema
       user:
         fecha_expedicion: Fecha de expedición
         nombre: 'Nombre'
@@ -379,7 +381,7 @@ es:
   accion_no_realizada: "No se pudo realizar la acción."
   actual_password: "Contraseña actual"
   actualizacion_exitosa: "Actualización exitosa."
-  tags_menu: Etiquetas
+  tags_menu: Temas
   admin: Menú administración
   admin_invalid: Comunicate con la administración de seamos
   cedula_invalida: Lo sentimos esta cédula no es válida
@@ -396,9 +398,16 @@ es:
     - Administrador
   success: "Acción exitosa."
   tags:
-    name: El nombre de la etiqueta
+    name: El nombre del tema
+    edit: Editar
     tag_list:
-      confirmation: ¿Esta seguro de borrar la etiqueta?
+      confirmation: ¿Esta seguro de borrar la tema?
+    new:
+      available_tags: Temas disponibles
+    form:
+      tag_image: Imagen del tema
+      tag_name: Nombre del Tema
+      has_image: El tema ya tiene la imagen %{filename}. Si desea cambiarla, por favor escoja otra. En caso contrario deje el campo vacío.
   :tags_creados: "%{created} creadas con éxito"
   tipo_de_documento:
     cedula: Cédula

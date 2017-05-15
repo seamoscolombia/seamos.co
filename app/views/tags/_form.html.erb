@@ -1,12 +1,19 @@
-
 <%= form_for [:admin, @tag] do |f| %>
+  <%= render 'shared/mensajes_de_error',  object: f.object %>
+  <div class="field">
+    <%= f.label t(".tag_name") %>
+    <%= f.text_field :name, class: 'form-control',  autofocus: true %>
     <div class="field">
-      <p class="has_media center">puedes agregar más de un tag a la vez separandolos por coma ( ej: tag1, tag2, tag3)</p>
-      <%= f.label :tag_names %>
-      <%= f.text_field :name, class: 'form-control',  autofocus: true %>
+        <%= f.label t(".tag_image") %>    <% if tag.tag_image.file %>
+          <p class="has_media">
+              <%= t('.has_image', filename: tag.tag_image.file.filename) %>
+          </p>
+          <% end %>
+          <%= f.file_field :tag_image %>
+      </div>
     </div>
     <div class="actions">
-      <input type="submit" class="btn btn-primary" value="Create Tags">
+        <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
     </div>
 <% end %>
 <br><hr>
