@@ -60,5 +60,15 @@ RSpec.describe PollsController, type: :controller do
         expect(response).to render_template(:edit)
       end
     end
+
+    context 'when the poll is closed' do
+      let(:poll) { FactoryGirl.create(:poll, closing_date: Date.today - 30.days) }
+      let(:user) { FactoryGirl.create(:user, role_type: 2)}
+      it 'renders the edit template' do
+        session[:email] = user.email
+        get :edit, params: {id: poll.id}
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
 end
