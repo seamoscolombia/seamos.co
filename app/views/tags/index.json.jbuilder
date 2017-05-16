@@ -4,5 +4,6 @@ json.tags do
   json.array! @tags do |tag|
     json.id tag.id
     json.name tag.name
+    json.tag_image tag.tag_image.url
   end
 end
