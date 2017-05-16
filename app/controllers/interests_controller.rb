@@ -1,40 +1,35 @@
 class InterestsController < ApplicationController
   before_action :set_interest, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: :index
+  # this skip probably needs to be removed in the future
+  skip_before_action :verify_authenticity_token
 
-  # GET /interests
-  # GET /interests.json
   def index
     @interests = Interest.all
+    respond_to do |format|
+      format.json
+    end
   end
 
-  # GET /interests/1
-  # GET /interests/1.json
   def show
   end
 
-  # GET /interests/1/edit
   def edit
   end
 
-  # POST /interests
-  # POST /interests.json
   def create
     @interest = Interest.new(interest_params)
-
     respond_to do |format|
       format.json do
         if @interest.save
-          render :show, status: :created, location: @interest 
+          render json: @interest, status: :created
         else
-          f
-          render json: @interest.errors, status: :unprocessable_entity 
+          render json: @interest.errors, status: :unprocessable_entity
         end
       end
     end
   end
 
-  # PATCH/PUT /interests/1
-  # PATCH/PUT /interests/1.json
   def update
     respond_to do |format|
       format.json do
@@ -47,8 +42,6 @@ class InterestsController < ApplicationController
     end
   end
 
-  # DELETE /interests/1
-  # DELETE /interests/1.json
   def destroy
     @interest.destroy
     respond_to do |format|
@@ -57,13 +50,16 @@ class InterestsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_interest
       @interest = Interest.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def set_user
+      @user = User.find(params[:user_id])
+    end
+
     def interest_params
-      params.fetch(:interest, {})
+      params.permit(:user_id, :tag_id)
     end
 end
