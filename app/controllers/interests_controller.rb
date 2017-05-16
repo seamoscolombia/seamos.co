@@ -5,7 +5,7 @@ class InterestsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @interests = Interest.all
+    @tags = Tag.all
     respond_to do |format|
       format.json
     end
@@ -34,9 +34,9 @@ class InterestsController < ApplicationController
     respond_to do |format|
       format.json do
         if @interest.update(interest_params)
-          render :show, status: :ok, location: @interest
+          render json: @interest, status: :ok, location: @interest
         else
-          render json: @interest.errors, status: :unprocessable_entit
+          render json: @interest.errors, status: :unprocessable_entity
         end
       end
     end

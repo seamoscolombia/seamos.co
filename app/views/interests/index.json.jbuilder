@@ -1,9 +1,9 @@
 json.interests do
-  json.array! @interests do |interest|
-    json.interest_id interest.tag.id
-    json.tag_name interest.tag.name
-    json.tag_image interest.tag.tag_image.url
-    if interest.user == @user
+  json.array! @tags do |tag|
+    json.tag_id tag.id
+    json.tag_name tag.name
+    json.tag_image tag.tag_image.url
+    if tag.interests.map(&:user).include?(@user)
       json.selected true
     else
       json.selected false
