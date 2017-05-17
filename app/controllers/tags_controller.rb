@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   before_action :tag_params, only: :set_tags
   before_action :validate_superadmin, only: %i(create new delete)
+  before_action :set_user, only: :user_interests
 
   def new
     @tag = Tag.new
@@ -18,10 +19,18 @@ class TagsController < ApplicationController
     end
   end
 
+  def user_interests
+    respond_to do |format|
+      format.json do
+        @tags = Tag.all
+      end
+    end
+  end
+
   def create
     @tag = Tag.new(tag_params)
-    if @tag.save 
-      flash[:success] = I18n.t(:tags_creados, created: "#{@tags.to_s} etiquetas") 
+    if @tag.save
+      flash[:success] = I18n.t(:tags_creados, created: "#{@tags.to_s} etiquetas")
     else
       logger.debug "ERROR TAG CREATION: #{@tag.errors.messages}"
     end
@@ -38,6 +47,10 @@ class TagsController < ApplicationController
 
   def tag_params
     params.require(:tag).permit(:name, :image_tag)
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   def validate_superadmin

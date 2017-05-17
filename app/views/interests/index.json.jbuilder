@@ -1,12 +1,7 @@
 json.interests do
-  json.array! @tags do |tag|
-    json.tag_id tag.id
-    json.tag_name tag.name
-    json.tag_image tag.tag_image.url
-    if tag.interests.map(&:user).include?(@user)
-      json.selected true
-    else
-      json.selected false
-    end
+  json.array! @interests do |interest|
+    json.id interest.id
+    json.user interest.user
+    json.tag interest.tag
   end
 end

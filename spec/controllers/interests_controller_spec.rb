@@ -20,40 +20,26 @@ include SessionsHelper
 # that an instance is receiving a specific message.
 
 RSpec.describe InterestsController, type: :controller do
+  describe 'GET index' do
+    let(:user) { FactoryGirl.create(:user) }
+    context 'when the request format is JSON' do
+      it 'assigns @interests' do
+        5.times { FactoryGirl.create(:interest) }
+        all_interests = Interest.all
+        get :index, params: { user_id: user.id}
+        expect(assigns(:interests)).to eq(all_interests)
+      end
+    end
+  end
 
-  # This should return the minimal set of attributes required to create a valid
-  # Interest. As you add validations to Interest, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) {
-    {
-      :tag => FactoryGirl.create(:tag),
-      :user => FactoryGirl.create(:user)
-    }
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # InterestsController. Be sure to keep this updated too.
-  let(:valid_session) { {
-    uid: rand(300).to_s,
-  }}
-
-  let(:url_user_prefix){
-    "users"
-  }
-
-  describe "GET #index" do 
-    it "assigns all interests as @interests" do 
-      user = FactoryGirl.create(:user)
-      interest = Interest.create! valid_attributes 
-      get "#{url_user_prefix}/#{user.id}/interests" => 'interest#index', format: :json
-      expect(assigns(:interests)).to eq([interest]) 
-    end 
-  end 
+  # describe "GET #index" do
+  #   it "assigns all interests as @interests" do
+  #     user = FactoryGirl.create(:user)
+  #     interest = Interest.create! valid_attributes
+  #     get "#{url_user_prefix}/#{user.id}/interests" => 'interest#index', format: :json
+  #     expect(assigns(:interests)).to eq([interest])
+  #   end
+  # end
   # describe "GET #show" do
   #   it "assigns the requested interest as @interest" do
   #     interest = Interest.create! valid_attributes

@@ -5,9 +5,10 @@ class InterestsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @tags = Tag.all
     respond_to do |format|
-      format.json
+      format.json do
+        @interests = Interest.all
+      end
     end
   end
 
