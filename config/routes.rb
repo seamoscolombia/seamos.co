@@ -7,11 +7,14 @@ Rails.application.routes.draw do
     get 'already_voted', on: :member
     get 'validate', on: :member
     patch 'update_valid_user', on: :member
+    resources :interests, exclude: [:new, :edit], format: 'json'
+    resources :tags, only: :index, to: 'tags#user_interests', format: 'json'
   end
 
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/sessions', to: 'sessions#destroy', as: 'session'
   post '/sessions', to: 'sessions#create', format: 'json'
+
   get '/auth/sessions', to: 'sessions#error'
 
   patch 'debate/:id', to: 'debates#publish', as: :publish_debate
@@ -23,6 +26,7 @@ Rails.application.routes.draw do
     resources :debates, on: :collection
     get '/debates/:id/change_debate_state', to: 'debates#change_debate_state', as: :change_debate_state
   end
+
   resources :tipo_de_documentos, only: :index
   resources :votes, only: :create
   resources :debate_votes, only: :create

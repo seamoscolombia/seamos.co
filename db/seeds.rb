@@ -1,13 +1,4 @@
-
-TipoDeDocumento.create!(codigo: 'cedula')
-TipoDeDocumento.create!(codigo: 'cedula_extranjeria')
-
-Role.create!(code: 'ciudadano')
-Role.create!(code: 'politico')
-Role.create!(code: 'administrador')
-
-
-user = User.create!(first_surname: "Molina", segundo_apellido: "Orbe", nombres: "Jaime Santiago", tipo_de_documento_id: 1, numero_documento: "1113645710", fecha_expedicion: "2011-05-28", role_id: 3, uid: "10152902624895489", approved: false, document_photo_id: 24)
+user = User.create!(email: 'jasmo@gmail.com', password: "123456", password_confirmation: "123456", first_surname: "Molina", second_surname: "Orbe", names: "Jaime Santiago", role_type: 2, uid: "10152902624895489", approved: false)
 
 # poll = Poll.create!(
 #     title: Faker::Lorem.sentence,

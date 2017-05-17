@@ -32,6 +32,17 @@ RSpec.describe TagsController, type: :controller do
     end
   end
 
+  describe 'GET user_interests' do
+    context 'when the request format is JSON' do
+      it 'assigns @tags' do
+        5.times { FactoryGirl.create(:interest) }
+        all_tags = Tag.all
+        get :index, format: :json
+        expect(assigns(:tags)).to eq(all_tags)
+      end
+    end
+  end
+
   describe 'POST create' do
     let(:user) { FactoryGirl.create(:user, role_type: 2) }
     before(:each) do

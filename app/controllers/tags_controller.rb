@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   before_action :tag_params, only: :set_tags
   before_action :validate_superadmin, only: %i(create new delete edit)
+  before_action :set_user, only: :user_interests
 
   def new
     @tag = Tag.new
@@ -12,6 +13,14 @@ class TagsController < ApplicationController
         @location_from = ''
         @tags = Tag.all
       end
+      format.json do
+        @tags = Tag.all
+      end
+    end
+  end
+
+  def user_interests
+    respond_to do |format|
       format.json do
         @tags = Tag.all
       end
@@ -53,6 +62,10 @@ class TagsController < ApplicationController
 
   def tag_params
     params.require(:tag).permit(:name, :tag_image)
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   def validate_superadmin
