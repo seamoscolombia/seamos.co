@@ -34,7 +34,23 @@ bundle exec rspec spec/controllers/accounts_controller_spec.rb:8
 Specs can also be run via `rake spec`, though this command may be slower to
 start than the `rspec` command.
 
+# API endpoints
 
+### Tags List:
+
+**explanation**: This endpoint returns a JSON with the list of all tags.
+
+**endpoint**: `GET /tags.json`
+
+**Returned attributes**: id, name, tag_image
+
+### User Interests List:
+
+**explanation**: This endpoint returns a JSON with the list of all tags and an extra atribute ( selected ) that is set to true of false; true if user has a related interest, false if user doesn't have a related interest.
+
+**endpoint**: `GET /users/:user_id/tags`
+
+**Returned attributes**: id, name, tag_image, selected
 
 # COPY coldocuments (divipol_id, doc_num)  FROM 'pth to CSV' DELIMITER ',' CSV;
 
