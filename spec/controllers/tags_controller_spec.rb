@@ -50,13 +50,13 @@ RSpec.describe TagsController, type: :controller do
       session[:email] = user.email
       post :create, params: {
         tag: {
-          name: "new_tag#{rand(0..99)}",
-          image_tag: File.open("#{Rails.root}/spec/support/image.png", 'r')
+          name: 'newtag',
+          tag_image: File.open("#{Rails.root}/spec/support/image.png", 'r')
         }
       }
     end
     it 'Creates a new tag' do
-      expect(Tag.find_by(name: 'new_tag')).not_to be nil
+      expect(Tag.find_by(name: 'newtag')).not_to be nil
     end
     it 'should return status found' do
       expect(response).to have_http_status(:found)
