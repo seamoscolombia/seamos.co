@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     post '/tags', to: 'tags#create'
     get '/tags/new', to: 'tags#new'
     delete '/tags/:id', to: 'tags#delete'
+    get '/tags/:id', to: 'tags#edit', as: :tag
+    patch '/tags/:id', to: 'tags#update'
     get 'polls', to:  'polls#index_admin'
     get '/', to: 'sessions#new', as: :login
     post '/sessions', to: 'sessions#admin_create'
