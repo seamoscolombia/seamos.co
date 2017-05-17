@@ -12,11 +12,11 @@ RSpec.describe PollsController, type: :controller do
       end
     end
 
-    context 'when the request format is JSON' do
+    context 'when the request format is HTML' do
       it 'assigns @polls' do
-        5.times { FactoryGirl.create(:poll) }
+        4.times { FactoryGirl.create(:poll) }
         all_polls = Poll.all
-        get :index
+        get :index, format: :html
         expect(assigns(:polls)).to match_array(all_polls)
       end
     end
@@ -42,6 +42,52 @@ RSpec.describe PollsController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe 'GET filtered_by_tag' do
+    context 'when the request format is JSON' do
+      let(:user) { FactoryGirl.create(:user, role_type: 2) }
+      let(:tag) { FactoryGirl.create(:tag) }
+      it 'assigns @polls' do
+        session[:email] = user.email
+        @by_tag_polls = []
+        3.times do
+          poll = FactoryGirl.create(:poll)
+          poll.tags << tag
+          @by_tag_polls << poll
+        end
+        @other_polls = []
+        3.times do
+          poll = FactoryGirl.create(:poll)
+          @other_polls << poll
+        end
+        get :filtered_by_tag, params: { tag_id: tag.id }, format: :json
+        expect(assigns(:polls)).to match_array(@by_tag_polls)
+      end
+    end
+
+    describe "responds to" do
+      let(:tag) { FactoryGirl.create(:tag) }
+      it "responds to JSON by default" do
+        get :filtered_by_tag, params: { tag_id: tag.id }, format: :json
+        expect(response.content_type).to eq "application/json"
+      end
+    end
+
+    let(:tag) { FactoryGirl.create(:tag) }
+    let(:user) { FactoryGirl.create(:user, role_type: 2) }
+    it 'renders the filtered_by_tag template' do
+      session[:email] = user.email
+      get :filtered_by_tag, params: { tag_id: tag.id }, format: :json
+      expect(response).to render_template('filtered_by_tag')
+    end
+
+    it 'should return status ok' do
+      session[:email] = user.email
+      get :filtered_by_tag, params: { tag_id: tag.id }, format: :json
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe 'GET edit' do
     context 'when the user is not an admin' do
       let(:poll) { FactoryGirl.create(:poll) }
