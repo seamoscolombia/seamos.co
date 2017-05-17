@@ -52,6 +52,16 @@ start than the `rspec` command.
 
 **Returned attributes**: id, name, tag_image, selected
 
+### Polls list by tag:
+
+** explanation **: This endpoint returns JSON with a list of all polls arranged by vote count from major to minor for a determined Tag. 
+
+**endpoint**: `GET /tags/:tag_id/polls`
+
+**Returned attributes**: id, title, description, type
+
+
+
 # COPY coldocuments (divipol_id, doc_num)  FROM 'pth to CSV' DELIMITER ',' CSV;
 
 Things you may want to cover:
