@@ -3,12 +3,40 @@ include SessionsHelper
 
 RSpec.describe PollsController, type: :controller do
   describe 'GET index' do
+    let(:user) { FactoryGirl.create(:user, role_type: 0)}
+    let(:closed_poll) { FactoryGirl.create(:poll, closing_date: Date.today - 3.days) }
     context 'when the request format is JSON' do
-      it 'assigns @polls' do
-        5.times { FactoryGirl.create(:poll) }
-        all_polls = Poll.all
+      it 'assigns open and non voted polls to @polls' do
+        session[:email] = user.email
+        voted_polls = []
+        open_and_non_voted_polls = []
+        closed_polls = []
+        3.times { open_and_non_voted_polls << FactoryGirl.create(:poll) }
+        3.times do
+          poll = FactoryGirl.create(:poll)
+          user.votes << FactoryGirl.create(:vote, poll: poll)
+          voted_polls << poll
+        end
+        3.times { closed_polls << FactoryGirl.create(:poll, closing_date: Date.today - 3.days) }
         get :index, format: :json
-        expect(assigns(:polls)).to match_array(all_polls)
+        expect(assigns(:polls)).to match_array(open_and_non_voted_polls)
+      end
+
+      it 'does not assign closed polls to @polls' do
+        open_polls = []
+        3.times { open_polls << FactoryGirl.create(:poll) }
+        get :index, format: :json
+        expect(assigns(:polls)).not_to include(closed_poll)
+      end
+
+      it 'does not assign voted polls to @polls' do
+        session[:email] = user.email
+        voted_poll = FactoryGirl.create(:poll)
+        user.votes << FactoryGirl.create(:vote, poll: voted_poll)
+        open_polls = []
+        3.times { open_polls << FactoryGirl.create(:poll) }
+        get :index, format: :json
+        expect(assigns(:polls)).not_to include(voted_poll)
       end
     end
 
