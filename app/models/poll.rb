@@ -39,7 +39,7 @@ class Poll < ApplicationRecord
 
   validate :closing_date_validation
   validate :at_least_one_tag
-  
+
   enum poll_type: {voting: 0, participation: 1, signing: 2}
 
   scope :active, -> {
@@ -47,6 +47,10 @@ class Poll < ApplicationRecord
   }
   scope :inactive, -> {
     where('active IS FALSE OR closing_date < ?', Date.today)
+  }
+
+  scope :open, -> {
+    where('closing_date >= ?', Date.today)
   }
 
   def self.by_status(status)

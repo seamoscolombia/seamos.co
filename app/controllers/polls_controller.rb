@@ -18,8 +18,9 @@ class PollsController < ApplicationController
 
   before_action :validate_poll_closed?, only: :show
   before_action :validate_closing_date, only: :edit
-  before_action :validate_session, except: :index
-  before_action :validate_admin_user, except: [:index, :show, :voted]
+  before_action :validate_session, except: [:index]
+  before_action :validate_admin_user, except: [:index, :filtered_by_tag, :show, :voted]
+  before_action :set_tag, only: :filtered_by_tag
 
   def toggle_status
     @poll = Poll.find_by(id: params[:id])
@@ -71,11 +72,18 @@ class PollsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @polls = Poll.order('id desc').all.last(10)
+        @polls = Poll.order('id desc').all.page(params[:page]).per(4)
       end
       format.json do
-        @polls = Poll.where('closing_date >= ?', Date.today).includes(:vote_types)
-        @polls
+        @polls = Poll.open.includes(:vote_types).sort_by {|poll| - poll.votes.count}
+      end
+    end
+  end
+
+  def filtered_by_tag
+    respond_to do |format|
+      format.json do
+        @polls = @tag.polls.open.includes(:vote_types).sort_by {|poll| - poll.votes.count}
       end
     end
   end
@@ -165,6 +173,10 @@ class PollsController < ApplicationController
   end
 
   private
+
+  def set_tag
+    @tag = Tag.find(params[:tag_id])
+  end
 
   def publish_facebook(poll)
     users_graph = Koala::Facebook::API.new(session[:fb_token])

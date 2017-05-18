@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create', format: 'json'
 
   get '/auth/sessions', to: 'sessions#error'
+  get '/tags/:tag_id/polls', to: 'polls#filtered_by_tag', format: 'json'
 
   patch 'debate/:id', to: 'debates#publish', as: :publish_debate
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
