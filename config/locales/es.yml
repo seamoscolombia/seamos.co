@@ -300,6 +300,8 @@ es:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
     at_least_one_tag: La propuesta debe estar asociada por lo menos a un tema.
     edit: Editar
+    filtered_by_politician:
+      not_a_politician: El id suministrado no pertenece a ningún usuario con un tipo de rol político
     form:
       add: Agregar
       csv_field: Archivo CSV
