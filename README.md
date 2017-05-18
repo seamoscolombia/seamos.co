@@ -52,14 +52,31 @@ start than the `rspec` command.
 
 **Returned attributes**: id, name, tag_image, selected
 
+### Polls list:
+
+** explanation **: This endpoint returns JSON with a list of all open polls were the user has not yet voted, arranged by vote count from major to minor 
+
+**endpoint**: `GET /polls.json` 
+
+**Returned attributes**: id, title, description, type
+
+
 ### Polls list by tag:
 
-** explanation **: This endpoint returns JSON with a list of all polls arranged by vote count from major to minor for a determined Tag. 
+** explanation **: This endpoint returns JSON with a list of all open polls arranged by vote count from major to minor for a determined Tag. 
 
 **endpoint**: `GET /tags/:tag_id/polls`
 
 **Returned attributes**: id, title, description, type
 
+
+### Polls list by politician:
+
+** explanation **: This endpoint returns JSON with a list of all open polls arranged by vote count from major to minor that were created by a determined politician. 
+
+**endpoint**: `GET /politician/:politician_id/polls` 
+
+**Returned attributes**: id, title, description, type
 
 
 # COPY coldocuments (divipol_id, doc_num)  FROM 'pth to CSV' DELIMITER ',' CSV;
