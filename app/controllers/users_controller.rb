@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @participations = @user.votes.map(&:poll)
   end
 
   def update

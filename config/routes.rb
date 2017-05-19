@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :photos, only: :create
 
-  resources :users , except: [:new, :show] do
+  resources :users , except: [:new] do
     get 'already_voted', on: :member
     get 'validate', on: :member
     patch 'update_valid_user', on: :member

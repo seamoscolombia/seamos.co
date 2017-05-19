@@ -81,6 +81,10 @@ class Poll < ApplicationRecord
     tags << Tag.where(name: tag_list.split(','))
   end
 
+  def remaining_time_in_seconds
+    (closing_date - Date.today) * 1.days
+  end
+
   private
 
   def closing_date_validation
