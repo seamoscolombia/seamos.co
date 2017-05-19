@@ -18,7 +18,7 @@ class PollsController < ApplicationController
 
   before_action :validate_poll_closed?, only: :show
   before_action :validate_closing_date, only: :edit
-  before_action :validate_session, except: [:index]
+  before_action :validate_session, except: [:index, :show]
   before_action :validate_admin_user, except: [:index, :filtered_by_tag, :show, :voted]
   before_action :set_tag, only: :filtered_by_tag
 
@@ -118,37 +118,8 @@ class PollsController < ApplicationController
   end
 
   def show
-    @poll = Poll.find_by(id: params[:id])
-    chart_type = 'pie'
-
-    if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
-      @vote_types = @poll.votes.joins(:vote_type)
-                         .group('vote_types.name')
-                         .count('vote_types.id')
-    else
-      i_date = params[:poll][:initial_date]
-      f_date = params[:poll][:final_date]
-      @vote_types = @poll.votes.joins(:vote_type)
-                         .where(created_at: i_date...f_date)
-      unless @vote_types.empty?
-        @vote_types = @vote_types.group('vote_types.name')
-                                 .count('vote_types.id')
-      end
-    end
-
-    puts "@vote_types: #{@vote_types}"
-
-    respond_to do |format|
-      format.html do
-      end
-      format.json do
-        if @vote_types['SI'].nil? || @vote_types['NO'].nil?
-          chart_type = 'circle'
-        end
-        @vote_types = @vote_types.to_a.map { |v| { name: "#{v[0]} \n#{v[1]}", votes: v[1] } }
-        render json: { vote_types: @vote_types, chart_type: chart_type }
-      end
-    end
+    @poll = Poll.find(params[:id])
+    @remaining_time_in_seconds = (@poll.closing_date - Date.today) * 1.days
   end
 
   def update
