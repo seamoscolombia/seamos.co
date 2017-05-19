@@ -118,8 +118,34 @@ class PollsController < ApplicationController
   end
 
   def show
-    @poll = Poll.find(params[:id])
-    @remaining_time_in_seconds = (@poll.closing_date - Date.today) * 1.days
+    @poll = Poll.find_by(id: params[:id])
+    chart_type = 'pie'
+
+    if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
+      @vote_types = @poll.votes.joins(:vote_type)
+                         .group('vote_types.name')
+                         .count('vote_types.id')
+    else
+      i_date = params[:poll][:initial_date]
+      f_date = params[:poll][:final_date]
+      @vote_types = @poll.votes.joins(:vote_type)
+                         .where(created_at: i_date...f_date)
+      unless @vote_types.empty?
+        @vote_types = @vote_types.group('vote_types.name')
+                                 .count('vote_types.id')
+      end
+    end
+
+    puts "@vote_types: #{@vote_types}"
+
+    respond_to do |format|
+      format.html do
+      end
+      format.json do
+        @poll = Poll.find(params[:id])
+        @remaining_time_in_seconds = (@poll.closing_date - Date.today) * 1.days
+      end
+    end
   end
 
   def update
