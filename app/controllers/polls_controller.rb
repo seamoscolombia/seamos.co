@@ -18,7 +18,7 @@ class PollsController < ApplicationController
 
   before_action :validate_poll_closed?, only: :show
   before_action :validate_closing_date, only: :edit
-  before_action :validate_session, except: [:index]
+  before_action :validate_session, except: [:index, :show]
   before_action :validate_admin_user, except: [:index, :filtered_by_tag, :show, :voted]
   before_action :set_tag, only: :filtered_by_tag
 
@@ -142,11 +142,8 @@ class PollsController < ApplicationController
       format.html do
       end
       format.json do
-        if @vote_types['SI'].nil? || @vote_types['NO'].nil?
-          chart_type = 'circle'
-        end
-        @vote_types = @vote_types.to_a.map { |v| { name: "#{v[0]} \n#{v[1]}", votes: v[1] } }
-        render json: { vote_types: @vote_types, chart_type: chart_type }
+        @poll = Poll.find(params[:id])
+        @remaining_time_in_seconds = (@poll.closing_date - Date.today) * 1.days
       end
     end
   end

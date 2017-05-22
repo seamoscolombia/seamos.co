@@ -43,6 +43,38 @@ RSpec.describe PollsController, type: :controller do
     end
   end
 
+  describe 'GET show' do
+    let(:poll) { FactoryGirl.create(:poll_with_votes)}
+    context 'when the request format is JSON' do
+      it 'assigns @poll' do
+        get :show, params: { id: poll.id }, format: :json
+        expect(assigns(:poll)).to eq(poll)
+      end
+
+      it 'renders the show template' do
+        get :show, params: { id: poll.id }, format: :json
+        expect(response).to render_template('show')
+      end
+
+      it 'should return status ok' do
+        get :show, params: { id: poll.id }, format: :json
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    describe "responds to" do
+      it "responds to html by default" do
+        get :show, params: { id: poll.id }
+        expect(response.content_type).to eq "text/html"
+      end
+
+      it "responds to custom formats when provided in the params" do
+        get :show, params: { id: poll.id }, format: :json
+        expect(response.content_type).to eq "application/json"
+      end
+    end
+  end
+
   describe 'GET filtered_by_tag' do
     context 'when the request format is JSON' do
       let(:user) { FactoryGirl.create(:user, role_type: 2) }
