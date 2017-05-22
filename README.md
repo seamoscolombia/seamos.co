@@ -59,7 +59,7 @@ start than the `rspec` command.
 
 **explanation**: This endpoint returns a JSON with the necessary information for the user's profile view
 
-**endpoint**: `GET /users/:id`
+**endpoint**: `GET /profile`
 
 **Returned attributes**: id, full_name, interests_count, participations( count, polls), authenticity_token
 
