@@ -69,6 +69,6 @@ class TagsController < ApplicationController
   end
 
   def validate_superadmin
-    redirect_to :root if current_user.role_type != 'administrador'
+    redirect_to :root unless current_user && current_user.role_type = 'administrador'
   end
 end
