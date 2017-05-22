@@ -62,6 +62,7 @@ start than the `rspec` command.
 **endpoint**: `GET /users/:id`
 
 **Returned attributes**: id, full_name, interests_count, participations( count, polls), authenticity_token
+
 ## Polls
 
 ### Polls list:
@@ -71,6 +72,14 @@ start than the `rspec` command.
 **endpoint**: `GET /polls.json` 
 
 **Returned attributes**: id, title, description, type
+
+### Poll details:
+
+** explanation **: This endpoint returns JSON with the poll details. 
+
+**endpoint**: `GET /poll/:id.json` 
+
+**Returned attributes**: id, title, description, type, objective, remaining, vote_count, links, politician
 
 
 ### Polls list by tag:
