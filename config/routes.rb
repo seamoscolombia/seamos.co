@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :photos, only: :create
 
-  resources :users , except: [:new] do
+  resources :users , except: [:new, :show] do
     get 'already_voted', on: :member
     get 'validate', on: :member
     patch 'update_valid_user', on: :member
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '/auth/sessions', to: 'sessions#error'
   get '/tags/:tag_id/polls', to: 'polls#filtered_by_tag', format: 'json'
+  get '/profile', to: 'users#show', format: 'json'
 
   patch 'debate/:id', to: 'debates#publish', as: :publish_debate
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status

@@ -375,6 +375,8 @@ es:
       destroy_user: Eliminar Usuario
     new:
       registrar: Registro de
+    show:
+      not_logged_in: El usuario debe iniciar sesión para ver su informacion de perfil
 
   votes:
     poll_does_not_exist: La propuesta no existe.
