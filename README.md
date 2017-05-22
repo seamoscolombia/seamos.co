@@ -34,7 +34,7 @@ bundle exec rspec spec/controllers/accounts_controller_spec.rb:8
 Specs can also be run via `rake spec`, though this command may be slower to
 start than the `rspec` command.
 
-# API endpoints
+[# API endpoints](Link URL)
 
 ### Tags List:
 
@@ -44,6 +44,9 @@ start than the `rspec` command.
 
 **Returned attributes**: id, name, tag_image
 
+
+## Users 
+
 ### User Interests List:
 
 **explanation**: This endpoint returns a JSON with the list of all tags and an extra atribute ( selected ) that is set to true of false; true if user has a related interest, false if user doesn't have a related interest.
@@ -51,6 +54,15 @@ start than the `rspec` command.
 **endpoint**: `GET /users/:user_id/tags`
 
 **Returned attributes**: id, name, tag_image, selected
+
+### User's Profile:
+
+**explanation**: This endpoint returns a JSON with the necessary information for the user's profile view
+
+**endpoint**: `GET /users/:id`
+
+**Returned attributes**: id, full_name, interests_count, participations( count, polls), authenticity_token
+## Polls
 
 ### Polls list:
 
