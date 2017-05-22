@@ -75,7 +75,7 @@ class PollsController < ApplicationController
         @polls = Poll.order('id desc').all.page(params[:page]).per(4)
       end
       format.json do
-        @polls = Poll.open.includes(:vote_types).sort_by {|poll| - poll.votes.count}
+        @polls = Poll.open.not_yet_voted(current_user).sort_by {|poll| - poll.votes.count}
       end
     end
   end

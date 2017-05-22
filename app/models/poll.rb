@@ -53,6 +53,10 @@ class Poll < ApplicationRecord
     where('closing_date >= ?', Date.today)
   }
 
+  scope :not_yet_voted, -> (user) {
+    select{|p| p.votes.map(&:user).include?(user) == false}
+  }
+
   def self.by_status(status)
     if status == 'inactive'
       inactive
