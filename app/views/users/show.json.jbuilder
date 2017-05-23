@@ -1,8 +1,6 @@
 json.user do
   json.id @user.id
   json.full_name @user.full_name
-  # TODO decide if we are going to implement this becuse it requires to add facebook permissions
-  # json.location @user.location
   json.interests_count @user.tags.count
   json.participations do
     json.count @participations.count
