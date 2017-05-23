@@ -18,9 +18,10 @@ class PollsController < ApplicationController
 
   before_action :validate_poll_closed?, only: :show
   before_action :validate_closing_date, only: :edit
-  before_action :validate_session, except: [:index, :show, :filtered_by_tag]
-  before_action :validate_admin_user, except: [:index, :filtered_by_tag, :show, :voted]
+  before_action :validate_session, except: [:index, :show, :filtered_by_politician, :filtered_by_tag]
+  before_action :validate_admin_user, except: [:index, :show, :voted, :filtered_by_politician, :filtered_by_tag]
   before_action :set_tag, only: :filtered_by_tag
+  before_action :set_politician, only: :filtered_by_politician
 
   def toggle_status
     @poll = Poll.find_by(id: params[:id])
@@ -83,8 +84,20 @@ class PollsController < ApplicationController
   def filtered_by_tag
     respond_to do |format|
       format.json do
-        @polls = @tag.polls.open.includes(:vote_types).sort_by {|poll| - poll.votes.count}
+        @polls = @tag.polls.open.sort_by {|poll| - poll.votes.count}
       end
+    end
+  end
+
+  def filtered_by_politician
+    if @politician
+      respond_to do |format|
+        format.json do
+          @polls = @politician.polls.includes(:votes).open.sort_by {|poll| - poll.votes.size}
+        end
+      end
+    else
+      render :json => { :errors => t(".not_a_politician") }, :status => 400
     end
   end
 
@@ -173,6 +186,11 @@ class PollsController < ApplicationController
 
   def set_tag
     @tag = Tag.find(params[:tag_id])
+  end
+
+  def set_politician
+    @user = User.find_by(id: params[:politician_id])
+    ( @user.present? && @user.politico? ) ? @politician = @user : @politician = nil
   end
 
   def publish_facebook(poll)

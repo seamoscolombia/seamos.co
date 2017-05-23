@@ -148,6 +148,65 @@ RSpec.describe PollsController, type: :controller do
     end
   end
 
+
+  describe 'GET filtered_by_politician' do
+    let(:politician) { FactoryGirl.create(:user, role_type: 1) }
+    let(:other_politician) { FactoryGirl.create(:user, role_type: 1) }
+    let(:citizen) { FactoryGirl.create(:user, role_type: 0) }
+    let(:poll_1) { FactoryGirl.create(:poll, user: politician) }
+    let(:poll_2) { FactoryGirl.create(:poll, user: politician) }
+    let(:poll_3) { FactoryGirl.create(:poll, user: politician) }
+    let(:poll_4) { FactoryGirl.create(:poll, user: other_politician) }
+    it 'assigns only the specific politician polls to @polls' do
+      session[:email] = citizen.email
+      @by_politician_polls = [poll_1, poll_2, poll_3]
+      get :filtered_by_politician, params: { politician_id: politician.id }, format: :json
+      expect(assigns(:polls)).to match_array(@by_politician_polls)
+    end
+
+    it 'does not assign other politicians polls to @polls' do
+      session[:email] = citizen.email
+      @by_politician_polls = [poll_1, poll_2, poll_3]
+      get :filtered_by_politician, params: { politician_id: politician.id }, format: :json
+      expect(assigns(:polls)).not_to include(poll_4)
+    end
+
+    context 'when the provided id does not belong to any user with a politician role type' do
+
+      it 'renders an error' do
+        session[:email] = citizen.email
+        get :filtered_by_politician, params: { politician_id: citizen.id }, format: :json
+        expect(JSON.parse(response.body)["errors"]).to eq("El id suministrado no pertenece a ningún usuario con un tipo de rol político")
+      end
+
+      it 'returns bad request http status' do
+        session[:email] = citizen.email
+        get :filtered_by_politician, params: { politician_id: citizen.id }, format: :json
+        expect(response).to have_http_status(:bad_request)
+      end
+
+    end
+
+    describe "responds to" do
+      it "responds to JSON" do
+        get :filtered_by_politician, params: { politician_id: politician.id }, format: :json
+        expect(response.content_type).to eq "application/json"
+      end
+    end
+
+    it 'renders the filtered_by_politician template' do
+      session[:email] = citizen.email
+      get :filtered_by_politician, params: { politician_id: politician.id }, format: :json
+      expect(response).to render_template('filtered_by_politician')
+    end
+
+    it 'should return status ok' do
+      session[:email] = citizen.email
+      get :filtered_by_politician, params: { politician_id: politician.id }, format: :json
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe 'GET edit' do
     context 'when the user is not an admin' do
       let(:poll) { FactoryGirl.create(:poll) }
