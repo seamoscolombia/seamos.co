@@ -6,13 +6,13 @@
 #  title      :string
 #  published  :boolean          default(FALSE)
 #  poll_id    :integer
-#  usuario_id :integer
+#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 class Debate < ApplicationRecord
-  belongs_to :usuario
+  belongs_to :user
   belongs_to :poll
   has_many :questions, inverse_of: :debate, dependent: :destroy
   has_many :debate_votes, inverse_of: :debate, dependent: :destroy

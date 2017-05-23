@@ -41,15 +41,15 @@
         <ul class="list-inline list-unstyled">
           <li><span><i class="icon-calendar"></i> <%= poll.closing_date %></span></li>
           <% if is_admin? %>
-            <li>|</li>
-            <span> <%= link_to t('.edit_poll'), edit_poll_path(poll.id), class: "btn btn-default" %></span>
-            <li>|</li>
-            <span> <%= link_to t('.poll_debates'), poll_debates_path(poll.id), class: "btn btn-default", method: :get %></span>
             <% unless poll.closed? %>
+              <li>|</li>
+              <span> <%= link_to t('.edit_poll'), edit_poll_path(poll.id), class: "btn btn-default" %></span>
               <li>|</li>
               <%toggle_status_button_text = poll.active ? "deactivate" : "activate" %>
               <span> <%= link_to t(".#{toggle_status_button_text}"), toggle_poll_status_path(poll.id), class: "btn btn-default", method: :patch %></span>
             <%end%>
+            <li>|</li>
+            <span> <%= link_to t('.poll_debates'), poll_debates_path(poll.id), class: "btn btn-default", method: :get %></span>
             <li>|</li>
             <span> <%= link_to t('.delete_poll'), poll, class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></span>
           <% end %>

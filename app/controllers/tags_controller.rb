@@ -1,8 +1,7 @@
 class TagsController < ApplicationController
-  before_action :set_tags, only: :create
   before_action :tag_params, only: :set_tags
-  before_action :existing_tags, only: %i(create new)
-  before_action :validate_superadmin, only: %i(create new)
+  before_action :validate_superadmin, only: %i(create new delete edit)
+  before_action :set_user, only: :user_interests
 
   def new
     @tag = Tag.new
@@ -11,50 +10,65 @@ class TagsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @tags = Tag.all.map(&:name)
+        @location_from = ''
+        @tags = Tag.all
       end
       format.json do
         @tags = Tag.all
-        render json: @tags
       end
     end
+  end
 
+  def user_interests
+    respond_to do |format|
+      format.json do
+        @tags = Tag.all
+      end
+    end
   end
 
   def create
-    @new_tags = 0
-    @dup_tags = 0
-    @tags.each do |name|
-      name.delete!(' ')
-      @tag = Tag.new(name: name.downcase)
-      (@tag.save ? @new_tags += 1 : @dup_tags += 1) unless name == ''
+    @tag = Tag.new(tag_params)
+    if @tag.save
+      flash[:success] = I18n.t(:tags_creados, created: "#{@tags.to_s} etiquetas")
+      redirect_to admin_tags_new_path and return
+    else
+      logger.debug "ERROR TAG CREATION: #{@tag.errors.messages}"
+      render :new and return
     end
-    flash[:danger] = 'el nombre de ' + @dup_tags.to_s + ' etiquetas ya ha sido tomado' if @dup_tags > 0
-    flash[:success] = I18n.t(:tags_creados, created: @new_tags.to_s + ' etiquetas') if @new_tags > 0
-    redirect_to :back
+  end
+
+  def edit
+    @tag = Tag.find(params[:id])
+  end
+
+  def update
+    @tag = Tag.find(params[:id])
+    if @tag.update(tag_params)
+      flash[:success] = I18n.t(:accion_exitosa)
+      redirect_to admin_tags_new_path
+    else
+      render :edit
+    end
   end
 
   def delete
     @tag = Tag.find(params[:id])
     @tag.destroy
-    redirect_to :back
+    redirect_back(fallback_location: root_path)
   end
 
   private
 
-  def set_tags
-    @tags = tag_params[:name].split(',')
-  end
-
-  def existing_tags
-    @existing_tags = Tag.all
-  end
-
   def tag_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:name, :tag_image)
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   def validate_superadmin
-    redirect_to :root if current_user.role_type != 'administrador'
+    redirect_to :root unless current_user && current_user.role_type = 'administrador'
   end
 end

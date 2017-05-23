@@ -6,26 +6,30 @@
 #  title         :string           not null
 #  description   :text             not null
 #  closing_date  :date             not null
-#  usuario_id    :integer
+#  user_id       :integer
 #  totals        :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  poll_image    :string
 #  active        :boolean          default(TRUE)
 #  poll_document :string
+#  poll_type     :integer
+#  objective     :string
 #
 
 class Poll < ApplicationRecord
   mount_uploader :poll_image, PollImageUploader
   mount_uploader :poll_document, PollDocumentUploader
 
-  belongs_to :usuario
+  belongs_to :user
   has_many :vote_types, inverse_of: :poll, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :debates, dependent: :destroy
   accepts_nested_attributes_for :vote_types
   has_many :taggings, dependent: :destroy
   has_many :tags, -> { distinct }, through: :taggings
+  has_many :external_links
+  has_many :poll_states
 
   validates :title, presence: true
   validates :closing_date, presence: true
@@ -36,11 +40,21 @@ class Poll < ApplicationRecord
   validate :closing_date_validation
   validate :at_least_one_tag
 
+  enum poll_type: {voting: 0, participation: 1, signing: 2}
+
   scope :active, -> {
     where('active IS TRUE AND closing_date >= ?', Date.today)
   }
   scope :inactive, -> {
     where('active IS FALSE OR closing_date < ?', Date.today)
+  }
+
+  scope :open, -> {
+    where('closing_date >= ?', Date.today)
+  }
+
+  scope :get_user_participations, -> (user) {
+    joins(:votes).where("votes.user_id = ?", user.id)
   }
 
   def self.by_status(status)
@@ -69,6 +83,10 @@ class Poll < ApplicationRecord
 
   def set_tags(tag_list)
     tags << Tag.where(name: tag_list.split(','))
+  end
+
+  def remaining_time_in_seconds
+    (closing_date - Date.today) * 1.days
   end
 
   private

@@ -4,57 +4,55 @@
 <% end %>
 <h1>
 	Usuarios
-	<small class='select-usuarios'>
-    <%= form_for(:usuarios_filter, url: usuarios_path, method: :get) do |f|  %>
-      <select class="form-control" name="usuarios_filter_select" id="usuarios_filter">
+	<small class='select-users'>
+    <%= form_for(:users_filter, uusers_suarios_path, method: :get) do |f|  %>
+      <select class="form-control" name="users_filter_select" users_suarios_filter">
         <option value="0"><%= t('.filter_options')[0]%></option>
-        <option value="1" <%= 'selected' if @usuarios_filter == "1" %>><%= t('.filter_options')[1]%></option>
+        <option value="1" <%= 'selected' if @users_filter == "1" %>><%= t('.filter_options')[1]%></option>
       </select>
     <% end %>
 	</small>
 </h1>
 
 
-<div class="container" id="usuarios-list" >
-  <h2> <%= paginate @usuarios %> </h2>
+<div class="container" id="users-list" >
+  <h2> <%= paginate @users %> </h2>
 	<div class="row">
     <div class="span12">
   		<ul class="thumbnails" style="list-style-type: none;">
-          <% @usuarios.each do |usuario| %>
+          <% @users.each do |user| %>
               <li class="span5 clearfix">
                 <div class="thumbnail clearfix">
 									<a class="profile pull-left span2 clearfix" href="#thumb">
-										<img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" border="0" style='margin-right:10px; height: 150px;'/>
 										<span>
-											<img src="<%= get_photo_url(usuario) %>"  alt="ALT NAME" style='height: 450px;'/>
 										</span>
 									</a>
                   <div class="caption" class="pull-left">
                     <div class="pull-right">
                       <div>
-                        <%= link_to usuario.valido ? t(".validated_user") : t(".validate_user") ,validate_usuario_path(usuario), class:"btn btn-primary icon #{'disabled' if usuario.valido}"%>
+                        <%= link_to user.valido ? t(".validated_user") : t(".validate_user") ,validate_user_path(user), class:"btn btn-primary icon #{'disabled' if user.valido}"%>
                       </div>
                       <br>
                       <div>
-                        <%= link_to t(".details") , edit_usuario_path(usuario), class:"btn btn-info icon" %>
+                        <%= link_to t(".details") , edit_user_path(user), class:"btn btn-info icon" %>
                       </div>
                       <br>
                       <div>
-                        <%= link_to t(".destroy_user"), usuario_path(usuario), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")} %>
+                        <%= link_to t(".destroy_user"), user_path(user), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")} %>
                       </div>
                     </div>
                     <h4>
                     <a href="#" >
-                      <%= usuario.nombres %>
-                      <%= usuario.primer_apellido %>
-                      <%= usuario.segundo_apellido %>
+                      <%= user.nombres %>
+                      <%= user.first_surname %>
+                      <%= user.segundo_apellido %>
                     </a>
                     </h4>
-                    <p><small><b><%= Usuario.human_attribute_name("tipo_de_documento_id") %>: </b><%= usuario.tipo_de_documento.code_view %></small></p>
-                    <p><small><b><%= Usuario.human_attribute_name("numero_documento") %>: </b><%= usuario.numero_documento %></small></p>
-                    <p><small><b><%= Usuario.human_attribute_name("email") %>: </b><%= usuario.email %></small></p>
-                    <p><small><b><%= Usuario.human_attribute_name("fecha_expedicion") %>: </b><%= usuario.fecha_expedicion %></small></p>
-                    <p><small><b>ID de Facebook: </b><%= usuario.uid %></small></p>
+                    <p><small><b><%= User.human_attribute_name("tipo_de_documento_id") %>: </b><%= user.tipo_de_documento.code_view %></small></p>
+                    <p><small><b><%= User.human_attribute_name("numero_documento") %>: </b><%= user.numero_documento %></small></p>
+                    <p><small><b><%= User.human_attribute_name("email") %>: </b><%= user.email %></small></p>
+                    <p><small><b><%= User.human_attribute_name("fecha_expedicion") %>: </b><%= user.fecha_expedicion %></small></p>
+                    <p><small><b>ID de Facebook: </b><%= user.uid %></small></p>
                   </div>
                 </div>
               </li>
@@ -65,9 +63,9 @@
 </div>
 
 <script>
-function filterUsuario (event) {
+function filterUser (event) {
    $(this).parent().trigger('submit');
 };
 </script>
 
-<!-- # link_to 'Validar', edit_usuario_path(usuario) -->
+<!-- # link_to 'Validar', edit_user_path(user) -->

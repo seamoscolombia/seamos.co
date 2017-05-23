@@ -36,3 +36,7 @@ node_modules
 
 # Generated js bundles
 /app/assets/webpack/*
+
+client/node_modules/
+
+node_modules/
