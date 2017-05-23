@@ -18,8 +18,8 @@ class PollsController < ApplicationController
 
   before_action :validate_poll_closed?, only: :show
   before_action :validate_closing_date, only: :edit
-  before_action :validate_session, except: [:index, :show, :filtered_by_politician]
-  before_action :validate_admin_user, except: [:index, :filtered_by_politician, :filtered_by_tag, :show, :voted]
+  before_action :validate_session, except: [:index, :show, :filtered_by_politician, :filtered_by_tag]
+  before_action :validate_admin_user, except: [:index, :show, :voted, :filtered_by_politician, :filtered_by_tag]
   before_action :set_tag, only: :filtered_by_tag
   before_action :set_politician, only: :filtered_by_politician
 
