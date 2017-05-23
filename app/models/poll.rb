@@ -53,8 +53,8 @@ class Poll < ApplicationRecord
     where('closing_date >= ?', Date.today)
   }
 
-  scope :not_yet_voted, -> (user) {
-    select{|p| p.votes.map(&:user).include?(user) == false}
+  scope :get_user_participations, -> (user) {
+    joins(:votes).where("votes.user_id = ?", user.id)
   }
 
   def self.by_status(status)
@@ -83,6 +83,10 @@ class Poll < ApplicationRecord
 
   def set_tags(tag_list)
     tags << Tag.where(name: tag_list.split(','))
+  end
+
+  def remaining_time_in_seconds
+    (closing_date - Date.today) * 1.days
   end
 
   private

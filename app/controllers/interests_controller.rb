@@ -1,15 +1,8 @@
 class InterestsController < ApplicationController
   before_action :set_interest, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: :index
-  # this skip probably needs to be removed in the future
-  skip_before_action :verify_authenticity_token
 
   def index
-    respond_to do |format|
-      format.json do
-        @interests = Interest.all
-      end
-    end
   end
 
   def show
