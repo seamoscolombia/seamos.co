@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   get '/auth/sessions', to: 'sessions#error'
   get '/tags/:tag_id/polls', to: 'polls#filtered_by_tag', format: 'json'
+  get '/profile', to: 'users#show', format: 'json'
 
   patch 'debate/:id', to: 'debates#publish', as: :publish_debate
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
