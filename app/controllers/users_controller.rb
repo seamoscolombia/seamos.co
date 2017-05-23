@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   def show
     if current_user
       @user = current_user
-      @participations = @user.votes.map(&:poll)
+      @participations = Poll.get_user_participations(current_user)
     else
       render :json => { errors: t(".not_logged_in") }, status: 401
     end

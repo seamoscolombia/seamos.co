@@ -1,9 +1,9 @@
 json.user do
   json.id @user.id
   json.full_name @user.full_name
-  json.interests_count @user.tags.count
+  json.interests_count @user.tags.size
   json.participations do
-    json.count @participations.count
+    json.count @participations.size
       json.polls do
       json.array! @participations do |poll|
       json.id poll.id

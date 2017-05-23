@@ -53,6 +53,10 @@ class Poll < ApplicationRecord
     where('closing_date >= ?', Date.today)
   }
 
+  scope :get_user_participations, -> (user) {
+    joins(:votes).where("votes.user_id = ?", user.id)
+  }
+
   def self.by_status(status)
     if status == 'inactive'
       inactive
