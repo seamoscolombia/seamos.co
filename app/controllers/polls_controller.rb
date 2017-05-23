@@ -93,7 +93,7 @@ class PollsController < ApplicationController
     if @politician
       respond_to do |format|
         format.json do
-          @polls = @politician.polls.open.sort_by {|poll| - poll.votes.count}
+          @polls = @politician.polls.includes(:votes).open.sort_by {|poll| - poll.votes.size}
         end
       end
     else
