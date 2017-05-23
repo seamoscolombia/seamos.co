@@ -20,18 +20,6 @@ include SessionsHelper
 # that an instance is receiving a specific message.
 
 RSpec.describe InterestsController, type: :controller do
-  describe 'GET index' do
-    let(:user) { FactoryGirl.create(:user) }
-    context 'when the request format is JSON' do
-      it 'assigns @interests' do
-        5.times { FactoryGirl.create(:interest) }
-        all_interests = Interest.all
-        get :index, params: { user_id: user.id}
-        expect(assigns(:interests)).to eq(all_interests)
-      end
-    end
-  end
-
   # describe "GET #index" do
   #   it "assigns all interests as @interests" do
   #     user = FactoryGirl.create(:user)
