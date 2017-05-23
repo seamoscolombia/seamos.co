@@ -43,6 +43,9 @@ gem 'material_design_lite-rails', '~> 1.2'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'pg', '0.18.4'
 gem 'sidekiq', '~> 4.2.10'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'react_on_rails', '~> 7.0.4'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -70,3 +73,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mini_racer', platforms: :ruby
