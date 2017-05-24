@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import configureStore from '../store/helloWorldStore';
-import PollsContainer from '../containers/PollsContainer';
+import configureStore from '../store';
+import PollsContainer from '../containers/pollsContainer';
 
 // See documentation for https://github.com/reactjs/react-redux.
 // This is how you get props from the Rails view into the redux store.
