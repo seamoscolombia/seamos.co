@@ -10,8 +10,7 @@ const myInitialState = [{
     type: null
 }]
 describe('pollsReducers test',()=>{
-
-    it(`+++ reducer for ${UPDATE_POLLS}`, () => {
+    it('update polls', () => {
         const state = pollsReducer(myInitialState, {type: UPDATE_POLLS, polls: pollsMock })
         expect(state).toEqual(pollsMock);
     });
