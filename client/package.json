@@ -42,5 +42,12 @@
     "redux-thunk": "^2.2.0",
     "webpack": "^2.3.3"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "faker": "^4.1.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/client/__tests__/__mocks__/"
+    ]
+  }
 }
