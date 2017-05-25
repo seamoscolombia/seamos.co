@@ -10,9 +10,8 @@ const mapStateToProps = (state) => {
     return { polls };
 };
 
-const mapDispatchToProps = {
-    getPolls
-}
+const mapDispatchToProps = { getPolls };
+
 class PollsContainer extends Component {
 
     componentWillMount(){
