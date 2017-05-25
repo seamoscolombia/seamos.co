@@ -3,11 +3,11 @@ import { UPDATE_POLLS } from '../../app/bundles/Seamos/constants/';
 import { pollsMock } from '../__mocks__/polls';
 
 const myInitialState = [{
-    already_voted: false,
-    description: "El alex y sus propuestas",
-    id: 1,
-    title: "El Alex",
-    type: null,
+    already_voted: null,
+    description: null,
+    id: null,
+    title: null,
+    type: null
 }]
 describe('pollsReducers test',()=>{
 

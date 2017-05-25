@@ -44,5 +44,10 @@
   },
   "devDependencies": {
     "faker": "^4.1.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/client/__tests__/__mocks__/"
+    ]
   }
 }
