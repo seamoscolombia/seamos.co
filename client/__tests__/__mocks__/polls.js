@@ -1,8 +1,15 @@
-export const pollsMock =  [
-    {
-        "already_voted": false, "description": "El alex y sus propuestas", "id": 1, "title": "El Alex", "type": null
-    },
-    {
-        "already_voted": false, "description": "description", "id": 2, "title": "James", "type": null
-    }
-]
+import faker from 'faker';
+
+const polls = [];
+const pollsArraySize = 3;
+
+for (let i = 0, l = pollsArraySize; i < l; i += 1) {
+    polls.push({
+        already_voted: false, 
+        description: faker.lorem.sentence(), 
+        id: 1, 
+        title: faker.lorem.words(3), 
+        type: null
+    });
+}
+export const pollsMock = polls;

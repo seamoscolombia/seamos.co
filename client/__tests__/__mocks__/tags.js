@@ -1,5 +1,6 @@
 import faker from 'faker';
-let tags = [] , tagsArraySize = 3;
+
+const tags = [] , tagsArraySize = 3;
 for (let i = 0, l = tagsArraySize; i < l; i+=1) {
     tags.push({ 
         name: faker.internet.userName(),

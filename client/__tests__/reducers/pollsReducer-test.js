@@ -8,10 +8,11 @@ const myInitialState = [{
     id: null,
     title: null,
     type: null
-}]
-describe('pollsReducers test',()=>{
+}];
+
+describe('pollsReducers test', () => {
     it('update polls', () => {
-        const state = pollsReducer(myInitialState, {type: UPDATE_POLLS, polls: pollsMock })
+        const state = pollsReducer(myInitialState, { type: UPDATE_POLLS, polls: pollsMock });
         expect(state).toEqual(pollsMock);
     });
 });
