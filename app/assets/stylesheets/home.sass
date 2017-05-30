@@ -1,0 +1,123 @@
+#homepage
+  $break-small: 320px
+  $break-medium: 720px
+  $break-large: 1200px
+  .flex-container
+    width: 75%
+    margin: auto
+    @media screen and (max-width: $break-medium)
+      width: 90%
+  .top-container
+    background-image: url(asset_path('forest.jpg'))
+    background-size: cover
+    padding-top: 40px
+    padding-bottom: 20px
+    .top-text-container
+      text-align: center
+      color: white
+      text-transform: uppercase
+      padding-top: 30px
+      // margin: auto
+      .welcome
+        transform: scale(.7, 1)
+        letter-spacing: 5px
+        font-weight: bold
+        margin-bottom: 10px
+        font-size: 70px
+        @media screen and (max-width: $break-medium)
+          font-size: 30px
+      .to
+        font-size: 15px
+        letter-spacing: 1px
+        line-height: 1.2em
+        font-weight: bold
+        text-align: center
+      .action
+        margin-top: 50px
+        // background-color: rgba(83, 197, 203, 1)
+        font-weight: bold
+        padding: 5px
+        display: inline-block
+      .hand-image-container
+        background-color: rgba(83, 197, 203, 0.5)
+        // background-color: rgba(83, 197, 203, 1)
+        padding: 15px 0 15px 0
+        width: 40px
+        position: relative
+        // top: -15px
+        margin: auto
+        border-radius: 30px
+        .hand-image
+          text-align: center
+          background-image: url(asset_path('hand_down.png'))
+          background-size: contain
+  .how
+    .how-title
+      font-size: 60px
+      text-align: center
+      // margin: auto
+      margin-top: 50px
+      word-break: normal
+      transform: scale(.7, 1)
+      text-transform: uppercase
+      line-height: 1em
+      letter-spacing: 5px
+      font-weight: bold
+      margin-bottom: 0
+      @media screen and (max-width: $break-medium)
+        font-size: 30px
+      h1
+        font-size: 60px
+        letter-spacing: 5px
+        white-space: nowrap
+        font-weight: bold
+        // margin: auto
+        display: inline
+        text-transform: uppercase
+    .how-text
+      margin-top: 20px
+      font-size: 18px
+      text-align: justify
+  .steps-container
+    display: -webkit-flex
+    display: flex
+    -webkit-justify-content: center
+    flex-wrap: wrap
+    justify-content: center
+    .step
+      width: 250px
+      font-weight: bold
+      text-transform: uppercase
+      text-align: justify
+      margin: 20px 5px 30px 5px
+      .step-info
+        display: flex
+        display: -webkit-flex
+        flex-wrap: wrap
+        align-items: center
+        .step-number
+          width: 15%
+          font-size: 40px
+          font-weight: bold
+        .step-text
+          height: 100px
+          width: 85%
+      .step-image
+        width: 100%
+        height: 180px
+        background-size: contain
+        background-origin: content-box
+        background-image: url(asset_path('eyes.png'))
+        background-position: center center
+        background-repeat: no-repeat
+  .fb-button-container
+    text-align: center
+    margin-top: 60px
+    .one-click
+      font-weight: bold
+      font-size: 18px
+    button
+      background-color: #2d60a0
+      padding: 8px
+      border-radius: 5px
+      color: white
