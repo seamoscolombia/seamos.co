@@ -44,3 +44,6 @@ node_modules/
 \.vscode/launch\.json
 
 client/yarn\.lock
+
+DESKTOP_SEAMOS/
+MOV_SEAMOS/
