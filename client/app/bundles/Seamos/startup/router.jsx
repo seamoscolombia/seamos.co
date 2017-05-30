@@ -8,12 +8,16 @@ import {
 
 // import Home from '../containers/homeContainer';
 import Polls from '../containers/pollsContainer';
+import Navbar from '../components/navbar';
 
 const AppRouter = () => (
     <Router >
-        <Switch>
-            <Route exact path="/" component={Polls} />
-        </Switch>
+        <div>
+            <Navbar />
+            <Switch>
+                <Route exact path="/" component={Polls} />
+            </Switch>
+        </div>
     </Router>
 );
 
