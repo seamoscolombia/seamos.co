@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import PollReducer from './pollReducer';
+import PollDetailReducer from './pollDetailReducer';
 import PollsReducer from './pollsReducer';
 import VotedPollReducer from './votedPollReducer';
 import VotedPollsReducer from './votedPollsReducer';
 
 export default combineReducers({
-  actualPoll: PollReducer,
+  PollDetailReducer,
   actualVotedPoll: VotedPollReducer,
   polls: PollsReducer,
   votedPolls: VotedPollsReducer,

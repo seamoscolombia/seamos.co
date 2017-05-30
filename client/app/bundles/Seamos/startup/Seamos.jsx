@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import configureStore from '../store';
-import PollsContainer from '../containers/pollsContainer';
+import HomeContainer from '../containers/homeContainer';
 
 // See documentation for https://github.com/reactjs/react-redux.
 // This is how you get props from the Rails view into the redux store.
@@ -10,8 +10,8 @@ import PollsContainer from '../containers/pollsContainer';
 // railsContext provides contextual information especially useful for server rendering, such as
 // knowing the locale. See the React on Rails documentation for more info on the railsContext
 const PollsApp = (props, _railsContext) => (
-  <Provider store={configureStore(props)}>
-    <PollsContainer />
+  <Provider store={configureStore(props, _railsContext)}>
+    <HomeContainer />
   </Provider>
 );
 

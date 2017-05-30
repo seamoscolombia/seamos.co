@@ -1,7 +1,7 @@
 // Simple example of a React "smart" component
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import Polls from '../components/Polls';
+import Polls from '../components/polls';
 import { getPolls } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
