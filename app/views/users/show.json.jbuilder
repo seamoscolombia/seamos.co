@@ -6,9 +6,9 @@ json.user do
     json.count @participations.size
       json.polls do
       json.array! @participations do |poll|
-      json.id poll.id
-      json.title poll.title
-      json.remaining poll.remaining_time_in_seconds
+        json.id poll.id
+        json.title poll.title
+        json.remaining poll.remaining_time_in_seconds
       end
     end
   end
