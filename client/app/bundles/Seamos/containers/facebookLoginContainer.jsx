@@ -22,7 +22,7 @@ class FacebookLoginContainer extends Component {
     return (
       <FacebookLogin
         appId="1790047761280618"
-        autoLoad
+        autoLoad={false}
         fields="id,first_name,last_name,email,picture"
         callback={this.responseFacebook}
         cssClass="my-facebook-button-class"
