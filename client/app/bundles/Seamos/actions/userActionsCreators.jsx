@@ -1,10 +1,10 @@
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable localStorage */
+/* eslint-disable window.localStorage */
 
 import axios from 'axios';
 import { SET_USER, URL } from '../constants';
 
-export const createUser = (fbUser) => dispatch => {
+export const createUser = (fbUser, authenticityToken) => dispatch => {
   const user = {
     names: fbUser.first_name,
     first_surname: fbUser.last_name,
@@ -12,7 +12,7 @@ export const createUser = (fbUser) => dispatch => {
     email: fbUser.email
   };
   axios.post(`${URL}/usuarios.json`, {
-    authenticity_token: localStorage.getItem('authenticityToken'), //eslint-disable-line
+    authenticity_token: authenticityToken, //eslint-disable-line
     user
   })
   .then(response => {
@@ -44,9 +44,7 @@ export const validateUserSession = (fbUser) => (dispatch) => {
     fb_token: fbUser.accessToken
   })
     .then(response => {
-      const authenticityToken = response.data.authenticity_token;
-      localStorage.setItem('authenticityToken', authenticityToken); //eslint-disable-line 
-      // localStorage.setItem('image', fbUser.picture.data.url); //eslint-disable-line
+      // dispatch(getSession(response.data.authenticity_token));
       dispatch(getUser());
     })
     .catch(e => {
@@ -54,12 +52,11 @@ export const validateUserSession = (fbUser) => (dispatch) => {
         //console.log(‘Error to Register’);
         e.response.json()
           .then(responseJson => {
-            //console.log(responseJson.authenticity_token);
-            localStorage.setItem('authenticityToken', responseJson.authenticity_token); //eslint-disable-line
-            dispatch(createUser(fbUser));
+            dispatch(createUser(fbUser, responseJson.authenticity_token));
           });
       } else {
         console.warn('Error != 422');
+        console.warn(e);
         if (!e.response) {
           throw e;
         }
