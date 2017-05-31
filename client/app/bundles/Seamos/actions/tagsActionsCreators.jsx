@@ -8,12 +8,12 @@ export const updateTags = (tags) => ({
   tags,
 });
 
-export const getTags = () => (dispatch) => {
+export const getTags = () => (dispatch) => (
     axios.get(`${URL}/tags.json`)
     .then(response => {
       dispatch(updateTags(response.data.tags));
     })
     .catch(error => {
       console.log(error);
-    });
-};
+    })
+);

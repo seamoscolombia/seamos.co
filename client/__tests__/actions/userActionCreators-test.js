@@ -40,12 +40,16 @@ describe('users actions', () => {
         status: 200,
         response: { data: { authenticityToken: 'authenticityToken' } }
       });  
-      const store = mockStore({ user: {} });
-      const expectedActions = { type: SET_USER };
-      store.dispatch(actions.validateUserSession(fbUserMock))
-        .then(() => { // return of async actions
-          expect(store.getActions()).toEqual(expectedActions);
-        }); 
+      // let request = moxios.requests.mostRecent;
+      console.log(`request: ${JSON.stringify(request)}`);
+      // expect(request.config.method).toEqual('post');
+      // expect(JSON.parse(request.config.data)).toDeepEqual(code);
+      // const store = mockStore({ user: {} });
+      // const expectedActions = { type: SET_USER };
+      // return store.dispatch(actions.validateUserSession(fbUserMock))
+      //   .then(() => { // return of async actions
+      //     expect(store.getActions()).toEqual(expectedActions);
+      //   }); 
     });
   });
 });
