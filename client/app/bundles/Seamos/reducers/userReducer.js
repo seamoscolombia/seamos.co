@@ -8,7 +8,7 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_USER: {
       const user = Object.assign({}, state, action.user);
-      localStorage.setItem('user', user); //eslint-disable-line
+      localStorage.setItem('user', JSON.stringify(user)); //eslint-disable-line
       return user;
     }
     default:
