@@ -24,6 +24,29 @@ describe('users actions', () => {
     expect(actions.setUser()).toEqual(expectedAction);
   });
 
+  describe('async actions', () => {
+    beforeEach(() => {
+      // import and pass your custom axios instance to this method
+      moxios.install();
+    });
 
+    afterEach(() => {
+      // import and pass your custom axios instance to this method
+      moxios.uninstall();
+    });
+
+    it('validate user is register in platform', () => {
+       moxios.stubRequest(`${API_END_POINT}/sessions.jso`, {
+        status: 200,
+        response: { data: { authenticityToken: 'authenticityToken' } }
+      });  
+      const store = mockStore({ user: {} });
+      const expectedActions = { type: SET_USER };
+      store.dispatch(actions.validateUserSession(fbUserMock))
+        .then(() => { // return of async actions
+          expect(store.getActions()).toEqual(expectedActions);
+        }); 
+    });
+  });
 });
 
