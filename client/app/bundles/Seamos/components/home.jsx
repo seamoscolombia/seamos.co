@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import FacebookLogin from '../containers/facebookLoginContainer';
+import Tags from '../containers/tagsContainer';
 const Home = (props) => (
   <div id="homepage">
     <div className='top-container'>
@@ -67,6 +68,7 @@ const Home = (props) => (
       <div className="one-click"> Sin registros, solo un click </div>
       <FacebookLogin />
     </div>
+    <Tags />
   </div>
 );
 
