@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
+import FacebookLogin from '../containers/facebookLoginContainer';
 const Home = (props) => (
   <div id="homepage">
     <div className='top-container'>
@@ -65,7 +65,7 @@ const Home = (props) => (
     </div>
     <div className="fb-button-container">
       <div className="one-click"> Sin registros, solo un click </div>
-      <button type='button'>Connect with facebook</button>
+      <FacebookLogin />
     </div>
   </div>
 );
