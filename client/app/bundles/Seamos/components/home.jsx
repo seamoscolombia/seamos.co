@@ -39,7 +39,7 @@ const Home = (props) => (
           <div className="step-text">
             Descubre propuestas de acuerdo a tus temas de interés.
           </div>
-          <div className="step-image"></div>
+          <div className="step-image step-image-1"></div>
         </div>
       </div>
       <div className="step">
@@ -50,7 +50,7 @@ const Home = (props) => (
             te interesan y aporta para fortalecerlas.
           </div>
         </div>
-        <div className="step-image"></div>
+        <div className="step-image step-image-2"></div>
       </div>
       <div className="step">
         <div className="step-info">
@@ -60,7 +60,7 @@ const Home = (props) => (
             y dile al político si crees o no en esa propuesta.
           </div>
         </div>
-        <div className="step-image"></div>
+        <div className="step-image step-image-3"></div>
       </div>
     </div>
     <div className="fb-button-container">

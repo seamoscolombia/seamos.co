@@ -8,7 +8,7 @@
     @media screen and (max-width: $break-medium)
       width: 90%
   .top-container
-    background-image: url(asset_path('forest.jpg'))
+    background-image: url(asset_path('inicio.jpg'))
     background-size: cover
     padding-top: 40px
     padding-bottom: 20px
@@ -19,50 +19,62 @@
       padding-top: 30px
       // margin: auto
       .welcome
-        transform: scale(.7, 1)
-        letter-spacing: 5px
+        // transform: scale(.7, 1)
+        font-family: 'RobotoCondensed'
+        letter-spacing: 7px
         font-weight: bold
         margin-bottom: 10px
-        font-size: 70px
+        font-size: 90px
         @media screen and (max-width: $break-medium)
           font-size: 30px
       .to
         font-size: 15px
         letter-spacing: 1px
+        font-family: 'GothamMedium'
         line-height: 1.2em
         font-weight: bold
         text-align: center
       .action
         margin-top: 50px
         // background-color: rgba(83, 197, 203, 1)
+        font-family: 'RobotoCondensed'
         font-weight: bold
         padding: 5px
         display: inline-block
       .hand-image-container
         background-color: rgba(83, 197, 203, 0.5)
         // background-color: rgba(83, 197, 203, 1)
-        padding: 15px 0 15px 0
-        width: 40px
+        padding: 5px 0 5px 0
+        width: 50px
+        height: 90px
         position: relative
         // top: -15px
         margin: auto
         border-radius: 30px
+        @media screen and (max-width: $break-medium)
+          width: 34px
+          height: 65px
         .hand-image
           text-align: center
-          background-image: url(asset_path('hand_down.png'))
+          background-image: url(asset_path('iconos_pasemosAlaAccion.png'))
           background-size: contain
+          height: 100%
+          margin: auto
+          background-repeat: no-repeat
+          background-position: center center
   .how
     .how-title
-      font-size: 60px
       text-align: center
       // margin: auto
       margin-top: 50px
       word-break: normal
-      transform: scale(.7, 1)
+      font-family: 'RobotoCondensed'
+      font-weight: bold
+      font-size: 70px
       text-transform: uppercase
       line-height: 1em
       letter-spacing: 5px
-      font-weight: bold
+      color: black
       margin-bottom: 0
       @media screen and (max-width: $break-medium)
         font-size: 30px
@@ -78,26 +90,31 @@
       margin-top: 20px
       font-size: 18px
       text-align: justify
+      font-family: 'GothamMedium'
   .steps-container
     display: -webkit-flex
     display: flex
     -webkit-justify-content: center
     flex-wrap: wrap
     justify-content: center
+    color: black
     .step
-      width: 250px
+      width: 300px
+      font-family: 'RobotoCondensed'
       font-weight: bold
       text-transform: uppercase
       text-align: justify
-      margin: 20px 5px 30px 5px
+      margin: 10px 5px 10px 5px
       .step-info
         display: flex
         display: -webkit-flex
         flex-wrap: wrap
         align-items: center
         .step-number
+          position: relative
+          top: 0
           width: 15%
-          font-size: 40px
+          font-size: 80px
           font-weight: bold
         .step-text
           height: 100px
@@ -107,9 +124,14 @@
         height: 180px
         background-size: contain
         background-origin: content-box
-        background-image: url(asset_path('eyes.png'))
         background-position: center center
         background-repeat: no-repeat
+      .step-image-1
+        background-image: url(asset_path('pasoapaso-01.png'))
+      .step-image-2
+        background-image: url(asset_path('pasoapaso-02.png'))
+      .step-image-3
+        background-image: url(asset_path('pasoapaso-03.png'))
   .fb-button-container
     text-align: center
     margin-top: 60px
