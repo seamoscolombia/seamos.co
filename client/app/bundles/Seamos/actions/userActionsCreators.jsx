@@ -38,29 +38,29 @@ export const setUser = (user) => ({
   user
 });
 
-export const validateUserSession = (fbUser) => (dispatch) => {
+export const validateUserSession = (fbUser) => (dispatch) => (
   axios.post(`${URL}/sessions.json`, {
     uid: fbUser.id,
     fb_token: fbUser.accessToken
   })
-    .then(response => {
-      // dispatch(getSession(response.data.authenticity_token));
-      dispatch(getUser());
-    })
-    .catch(e => {
-      if (e.response && e.response.status === 422) {
-        //console.log(‘Error to Register’);
-        e.response.json()
-          .then(responseJson => {
-            dispatch(createUser(fbUser, responseJson.authenticity_token));
-          });
-      } else {
-        console.warn('Error != 422');
-        console.warn(e);
-        if (!e.response) {
-          throw e;
-        }
-        alert('Ah ocurrido un error por favor reporta a nuestro equipo');
+  .then(response => {
+    // dispatch(getSession(response.data.authenticity_token));
+    dispatch(getUser());
+  })
+  .catch(e => {
+    if (e.response && e.response.status === 422) {
+      //console.log(‘Error to Register’);
+      e.response.json()
+        .then(responseJson => {
+          dispatch(createUser(fbUser, responseJson.authenticity_token));
+        });
+    } else {
+      console.warn('Error != 422');
+      console.warn(e);
+      if (!e.response) {
+        throw e;
       }
-    });
-};
+      alert('Ah ocurrido un error por favor reporta a nuestro equipo');
+    }
+  })
+);
