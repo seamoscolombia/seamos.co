@@ -1,7 +1,7 @@
 // Simple example of a React "smart" component
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Tags from '../components/Tags';
+import Tags from '../components/tags';
 import { getTags } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -14,13 +14,12 @@ const mapDispatchToProps = { getTags };
 
 class TagsContainer extends Component {
 
-    componentWillMount(){
+    componentWillMount() {
         this.props.getTags();
     }
 
     render() {
-        const { tags } = this.props;
-        return null;
+        return <Tags {...this.props} />;
     }
 }
 // Don't forget to actually use connect!

@@ -6,6 +6,11 @@ json.poll do
     json.objective @poll.objective
     json.remaining @remaining_time_in_seconds
     json.vote_count @poll.votes.count
+    if current_user
+      json.user_already_voted current_user.already_voted?(@poll)
+    else
+      json.user_already_voted false
+    end
     json.links do
       json.array! @poll.external_links do |external_link|
         json.url external_link.url

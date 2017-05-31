@@ -1,5 +1,5 @@
 // Simple example of a React "smart" component
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Polls from '../components/polls';
 import { getPolls } from '../actions';
@@ -13,14 +13,13 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = { getPolls };
 
 class PollsContainer extends Component {
-
-    componentWillMount(){
+    componentWillMount() {
         this.props.getPolls();
     }
 
     render() {
         const { polls } = this.props;
-        return <Polls polls={polls} />
+        return <Polls polls={polls} />;
     }
 }
 // Don't forget to actually use connect!

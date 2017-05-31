@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux';
-import PollDetailReducer from './pollDetailReducer';
-import PollsReducer from './pollsReducer';
+import poll from './pollDetailReducer';
+import polls from './pollsReducer';
+import user from './userReducer';
+import tags from './tagsReducer';
 import VotedPollReducer from './votedPollReducer';
 import VotedPollsReducer from './votedPollsReducer';
 
 export default combineReducers({
-  PollDetailReducer,
+  poll,
   actualVotedPoll: VotedPollReducer,
-  polls: PollsReducer,
+  polls,
+  user,
+  tags,
   votedPolls: VotedPollsReducer,
 });
