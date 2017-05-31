@@ -4,6 +4,7 @@
           <% tags.reverse_each do |tag|%>
             <div class="content">
                 <img src="<%= tag.tag_image.url %>">
+                <img class="tag-icon" src="<%= tag.tag_icon.url %>">
                 <div>
                     <div class="name">
                         <%=tag.name%>
@@ -19,6 +20,9 @@
                             <i class="edit glyphicon glyphicon-edit"></i>
                             <% end %>
                         </span>
+                    </div>
+                    <div class="color-separator" style="background-color: <%=tag.tag_color%>">
+                      <%= tag.tag_color %>
                     </div>
                 </div>
             </div>
