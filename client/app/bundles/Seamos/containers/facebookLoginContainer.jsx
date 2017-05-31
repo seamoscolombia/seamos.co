@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FacebookLogin from 'react-facebook-login';
 
-import { setUser } from '../actions';
+import { validateUserSession } from '../actions';
 
-// const mapStateToProps = (state) => { };
-
-const mapDispatchToProps = { setUser };
+// const mapStateToProps = state => ({});
+const mapDispatchToProps = { validateUserSession };
 
 class FacebookLoginContainer extends Component {
   constructor(props) {
@@ -14,9 +13,7 @@ class FacebookLoginContainer extends Component {
     this.responseFacebook = this.responseFacebook.bind(this);
   }
 
-  responseFacebook(response) {
-    console.log(response);
-  }
+  responseFacebook(fbUser) { this.props.validateUserSession(fbUser); }
 
   render() {
     return (

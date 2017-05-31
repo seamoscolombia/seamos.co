@@ -11,5 +11,6 @@ export const UPDATE_POLL = 'update_poll';
 export const UPDATE_POLLS = 'UPDATE_POLLS';
 export const UPDATE_TAGS = 'UPDATE_TAGS';
 export const URL = 'http://localhost:3000';
+export const SET_USER = 'SET_USER';
 export const VALIDATE_ACTUAL_POLL = 'validate_actual_poll';
 export const VOTED_POLLS = 'voted_polls';
