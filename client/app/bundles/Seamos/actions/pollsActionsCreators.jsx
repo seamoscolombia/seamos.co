@@ -8,12 +8,22 @@ export const updatePolls = (polls) => ({
   polls,
 });
 
-export const getPolls = () => (dispatch) => {
+export const getPolls = () => (dispatch) => (
     axios.get(`${URL}/polls.json`)
     .then(response => {
       dispatch(updatePolls(response.data.polls));
     })
     .catch(error => {
       console.log(error);
-    });
-  };
+    })
+);
+
+export const pollsFilteredByTag = (tagId) => (dispatch) => (
+  axios.get(`${URL}/tags/${tagId}/polls.json`)
+  .then(response => {
+    dispatch(updatePolls(response.data.polls));
+  })
+  .catch(error => {
+    console.log(error);
+  })
+);
