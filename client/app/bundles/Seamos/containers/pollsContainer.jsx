@@ -18,8 +18,7 @@ class PollsContainer extends Component {
     }
 
     render() {
-        const { polls } = this.props;
-        return <Polls polls={polls} />;
+        return <Polls {...this.props} />;
     }
 }
 // Don't forget to actually use connect!
