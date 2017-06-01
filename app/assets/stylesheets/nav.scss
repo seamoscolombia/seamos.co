@@ -25,6 +25,17 @@
 }
 
 #navbar-client{
+  #brand-logo {
+    background: url(asset_path('LogoSeamos_blanco.png'));
+    min-height: 30px;
+    min-width: 90px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .navbar-toggle .icon-bar { 
+    background-color: whitesmoke;
+  }
+
   @media screen and (max-width: 768px) {
     .side-collapse-container {
         width: 100%;
