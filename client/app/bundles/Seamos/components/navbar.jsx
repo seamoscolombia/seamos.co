@@ -3,7 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => (
-      <header id='navbar-client' className='navbar navbar-fixed-top navbar-inverse' role='banner'>
+      <header 
+        id='navbar-client' className='navbar navbar-fixed-top navbar-inverse' role='banner'
+      >
         <div className='container'>
             <div className='navbar-header'>
               <button 
