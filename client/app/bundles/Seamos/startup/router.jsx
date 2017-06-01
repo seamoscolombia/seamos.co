@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import {
     // Redirect,
     HashRouter as Router,
@@ -7,13 +7,18 @@ import {
 } from 'react-router-dom';
 
 import Home from '../containers/homeContainer';
+import Navbar from '../containers/navbarContainer'; 
 
 const AppRouter = () => (
     <Router >
-        <Switch>
-            <Route exact path="/" component={Home} />
-        </Switch>
+         <div> 
+            <Navbar /> 
+            <Switch> 
+                <Route exact path="/" component={Home} />
+            </Switch> 
+        </div> 
     </Router>
 );
 
 export default AppRouter;
+

@@ -74,7 +74,7 @@ const Home = (props) => (
 );
 
 Home.propTypes = {
-  Home: PropTypes.array.isRequired
+  // tags: PropTypes.array.isRequired
   // name: PropTypes.string.isRequired,
   // updateName: PropTypes.func.isRequired,
 };
