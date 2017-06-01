@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'hello_world#index'
+  root 'frontend#index'
   # root 'intro#inicio'
 
   resources :photos, only: :create

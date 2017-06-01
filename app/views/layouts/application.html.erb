@@ -70,12 +70,14 @@
       <%= yield %>
     </div>
 
-    <footer id="footer-seamos" >
-      <div class="container">
-        <p class="text-muted">POWERED BY SEAMOS – DEMOCRACIA DIGITAL</p>
-        <p><%= image_tag("favicon.png") %></p>
-      </div>
-    </footer>
+    <% unless params[:controller] == 'frontend' %>
+      <footer id="footer-seamos" >
+        <div class="container">
+          <p class="text-muted">POWERED BY SEAMOS – DEMOCRACIA DIGITAL</p>
+          <p><%= image_tag("favicon.png") %></p>
+        </div>
+      </footer>
+    <% end %>
 
   </body>
 </html>

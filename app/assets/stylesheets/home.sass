@@ -1,0 +1,158 @@
+#homepage
+  $break-small: 320px
+  $break-medium: 720px
+  $break-large: 1200px
+  .flex-container
+    width: 75%
+    margin: auto
+    @media screen and (max-width: $break-medium)
+      width: 90%
+  .top-container
+    background-image: url(asset_path('inicio.jpg'))
+    background-size: cover
+    padding-top: 40px
+    padding-bottom: 20px
+    .top-text-container
+      text-align: center
+      color: white
+      text-transform: uppercase
+      padding-top: 30px
+      // margin: auto
+      .welcome
+        // transform: scale(.7, 1)
+        font-family: 'RobotoCondensed'
+        letter-spacing: 7px
+        font-weight: bold
+        margin-bottom: 10px
+        font-size: 90px
+        @media screen and (max-width: $break-medium)
+          font-size: 30px
+      .to
+        font-size: 15px
+        letter-spacing: 1px
+        font-family: 'GothamMedium'
+        line-height: 1.2em
+        font-weight: bold
+        text-align: center
+      .action
+        letter-spacing: 0.08em
+        margin-top: 50px
+        // background-color: rgba(83, 197, 203, 1)
+        font-family: 'RobotoCondensed'
+        font-weight: bold
+        padding: 5px
+        display: inline-block
+        @media screen and (max-width: $break-medium)
+          margin-top: 30px
+      .hand-image-container
+        background-color: rgba(83, 197, 203, 0.5)
+        // background-color: rgba(83, 197, 203, 1)
+        padding: 5px 0 5px 0
+        width: 40px
+        height: 75px
+        position: relative
+        // top: -15px
+        margin: auto
+        border-radius: 30px
+        @media screen and (max-width: $break-medium)
+          width: 30px
+          height: 55px
+        .hand-image
+          text-align: center
+          background-image: url(asset_path('iconos_pasemosAlaAccion.png'))
+          background-size: contain
+          height: 100%
+          margin: auto
+          background-repeat: no-repeat
+          background-position: center center
+  #how
+    .title
+      text-align: center
+      // margin: auto
+      margin-top: 50px
+      word-break: normal
+      font-family: 'RobotoCondensed'
+      font-weight: bold
+      font-size: 70px
+      text-transform: uppercase
+      line-height: 1em
+      letter-spacing: 5px
+      color: black
+      margin-bottom: 0
+      @media screen and (max-width: $break-medium)
+        font-size: 30px
+      h1
+        font-size: 60px
+        letter-spacing: 5px
+        white-space: nowrap
+        font-weight: bold
+        // margin: auto
+        display: inline
+        text-transform: uppercase
+    .text
+      margin-top: 20px
+      font-size: 18px
+      text-align: justify
+      font-family: 'GothamMedium'
+  #steps-container
+    display: -webkit-flex
+    display: flex
+    -webkit-justify-content: center
+    flex-wrap: wrap
+    justify-content: center
+    color: black
+    width: 82%
+    .step
+      width: 300px
+      font-family: 'RobotoCondensed'
+      font-weight: bold
+      text-transform: uppercase
+      text-align: justify
+      margin: 10px 5px 10px 5px
+      .step-info
+        display: flex
+        display: -webkit-flex
+        flex-wrap: wrap
+        align-items: center
+        .step-number
+          position: relative
+          top: 0
+          width: 15%
+          font-size: 80px
+          font-weight: bold
+        .step-text
+          height: 100px
+          width: 85%
+          line-height: 1.2em
+          letter-spacing: 0.04em
+          display: flex
+          flex: 1
+          align-items: center
+          padding: 0 10px 0 10px
+      .step-image
+        width: 100%
+        height: 190px
+        background-size: contain
+        background-origin: content-box
+        background-position: center center
+        background-repeat: no-repeat
+      .step-image-1
+        background-image: url(asset_path('pasoapaso-01.png'))
+      .step-image-2
+        background-image: url(asset_path('pasoapaso-02.png'))
+      .step-image-3
+        background-image: url(asset_path('pasoapaso-03.png'))
+  .fb-button-container
+    text-align: center
+    margin-top: 20px
+    .one-click
+      font-weight: bold
+      font-size: 18px
+      margin-bottom: 0.8em
+    button
+      background-color: #2d60a0
+      padding: 8px
+      border-radius: 5px
+      color: white
+
+
