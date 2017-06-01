@@ -31,8 +31,8 @@ const Navbar = () => (
             
             <div className='navbar-transparent side-collapse in'>
               <nav className='navbar-collapse' role='navigation'>
-                <ul className='nav navbar-nav'>
-                  <li><Link to='/'> inicio </Link></li>
+                <ul className='nav navbar-nav navbar-right'>
+                  <li><Link to='/'> ¿COMO LO HACEMOS? </Link></li>
                 </ul>
               </nav>
             </div>
