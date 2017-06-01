@@ -415,6 +415,8 @@ es:
       available_tags: Temas disponibles
     form:
       tag_image: Imagen del tema
+      tag_icon: Icono del tema
+      tag_color: Color del tema
       tag_name: Nombre del Tema
       has_image: El tema ya tiene la imagen %{filename}. Si desea cambiarla, por favor escoja otra. En caso contrario deje el campo vacío.
   :tags_creados: "%{created} creadas con éxito"

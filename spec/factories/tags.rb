@@ -7,6 +7,8 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  tag_image  :string
+#  tag_icon   :string
+#  tag_color  :string
 #
 
 FactoryGirl.define do
