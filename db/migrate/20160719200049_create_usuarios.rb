@@ -1,7 +1,7 @@
 class CreateUsuarios < ActiveRecord::Migration[5.0]
   def change
     create_table :usuarios do |t|
-      t.string :first_surname
+      t.string :primer_apellido
       t.string :segundo_apellido
       t.string :nombres
       t.references :tipo_de_documento, foreign_key: true
