@@ -6,18 +6,13 @@ import {
     Switch
 } from 'react-router-dom';
 
-// import Home from '../containers/homeContainer';
-import Polls from '../containers/pollsContainer';
-import Navbar from '../components/navbar';
+import Home from '../containers/homeContainer';
 
 const AppRouter = () => (
     <Router >
-        <div>
-            <Navbar />
-            <Switch>
-                <Route exact path="/" component={Polls} />
-            </Switch>
-        </div>
+        <Switch>
+            <Route exact path="/" component={Home} />
+        </Switch>
     </Router>
 );
 

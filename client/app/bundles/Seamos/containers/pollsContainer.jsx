@@ -1,7 +1,6 @@
 // Simple example of a React "smart" component
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Polls from '../components/polls';
 import { getPolls } from '../actions';
 
