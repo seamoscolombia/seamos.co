@@ -2,11 +2,6 @@
   $break-small: 320px
   $break-medium: 720px
   $break-large: 1200px
-  .flex-container
-    width: 75%
-    margin: auto
-    @media screen and (max-width: $break-medium)
-      width: 90%
   .top-container
     background-image: url(asset_path('inicio.jpg'))
     background-size: cover
@@ -25,6 +20,14 @@
         font-weight: bold
         margin-bottom: 10px
         font-size: 90px
+        @media screen and (max-width: $break-medium)
+          font-size: 30px
+      .question
+        font-family: 'RobotoCondensed'
+        letter-spacing: 7px
+        font-weight: bold
+        margin-bottom: 10px
+        font-size: 30px
         @media screen and (max-width: $break-medium)
           font-size: 30px
       .to
@@ -154,5 +157,3 @@
       padding: 8px
       border-radius: 5px
       color: white
-
-

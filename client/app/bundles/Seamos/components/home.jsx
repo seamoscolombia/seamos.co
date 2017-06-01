@@ -69,6 +69,11 @@ const Home = (props) => (
       <div className="one-click"> Sin registros, solo un click </div>
       <FacebookLogin />
     </div>
+    <div className='top-container'>
+      <div className='flex-container top-text-container'>
+        <h1 className='question'>¿De qué quieres hablar?</h1>
+      </div>
+    </div>
     <Tags />
   </div>
 );
