@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Tag from './tag';
 
 const Tags = ({ tags }) => (
-  <h2>{JSON.stringify(tags)}</h2>
+    <section id='tags-component'>
+      <div className='flex-container tags-box'>
+        { tags.map(tag => (
+            <Tag {...tag} key={tag.id} />
+          ))
+        }
+      </div>
+    </section>
 );
 
 Tags.propTypes = {
   tags: PropTypes.array.isRequired
-  // name: PropTypes.string.isRequired,
-  // updateName: PropTypes.func.isRequired,
 };
 
 export default Tags;

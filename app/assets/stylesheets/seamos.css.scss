@@ -12,6 +12,9 @@ $color-rojo: #DB1919;
 $color-verde: #34B953;
 $color-azul: #428BCA;
 $color-azul-oscuro: #285E8E;
+$break-small: 320px;
+$break-medium: 720px;
+$break-large: 1200px;
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -137,6 +140,14 @@ footer {
 
 
 /* miscellaneous */
+
+.flex-container {
+  width: 75%;
+  margin: auto;
+  @media screen and (max-width: $break-medium) {
+    width: 90%;
+  }
+}
 
 .debug_dump {
   clear: both;

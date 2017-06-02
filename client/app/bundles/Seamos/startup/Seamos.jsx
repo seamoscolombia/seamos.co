@@ -3,8 +3,6 @@ import { Provider } from 'react-redux';
 
 import AppRouter from './router';
 import configureStore from '../store';
-import HomeContainer from '../containers/homeContainer';
-
 
 // See documentation for https://github.com/reactjs/react-redux.
 // This is how you get props from the Rails view into the redux store.
