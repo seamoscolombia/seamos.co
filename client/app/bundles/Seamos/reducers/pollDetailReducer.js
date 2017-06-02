@@ -1,4 +1,4 @@
-import {  UPDATE_POLL } from '../constants';
+import { UPDATE_POLL } from '../constants';
 
 const INITIAL_STATE = {
   id: null,

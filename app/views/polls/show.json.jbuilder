@@ -6,6 +6,7 @@ json.poll do
     json.objective @poll.objective
     json.remaining @remaining_time_in_seconds
     json.vote_count @poll.votes.count
+    json.poll_type @poll.poll_type
     if current_user
       json.user_already_voted current_user.already_voted?(@poll)
     else
