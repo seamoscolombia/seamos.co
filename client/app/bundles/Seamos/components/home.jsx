@@ -5,7 +5,7 @@ import Tags from '../containers/tagsContainer';
 
 const Home = (props) => (
   <div id="homepage">
-    <div className='top-container'>
+    <div className='background-container top'>
       <div className='flex-container top-text-container'>
         <h1 className='welcome'>Bienvenido</h1>
         <p className='to'>
@@ -69,10 +69,18 @@ const Home = (props) => (
       <div className="one-click"> Sin registros, solo un click </div>
       <FacebookLogin />
     </div>
-    <div className='top-container'>
+    <div className='background-container mid'>
       <div className='flex-container top-text-container'>
-        <h1 className='question'>¿De qué quieres hablar?</h1>
+        <h1 className='welcome question'>
+        ¿De qué <br />
+        quieres hablar?
+        </h1>
       </div>
+    </div>
+    <div className="mid-paragraph">
+    ¿En qué estás pensando ahora? <br />
+    Encuetra las propuestas vigentes <br />
+    de acuerdo a tus intereses
     </div>
     <Tags />
   </div>
