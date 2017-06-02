@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170512194658) do
+ActiveRecord::Schema.define(version: 20170531214121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20170512194658) do
     t.text     "description",    null: false
     t.string   "title",          null: false
     t.integer  "state_cause_id", null: false
-    t.integer  "usuario_id",     null: false
+    t.integer  "user_id",        null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["state_cause_id"], name: "index_causes_on_state_cause_id", using: :btree
-    t.index ["usuario_id"], name: "index_causes_on_usuario_id", using: :btree
+    t.index ["user_id"], name: "index_causes_on_user_id", using: :btree
   end
 
   create_table "coldocuments", id: false, force: :cascade do |t|
@@ -172,6 +172,8 @@ ActiveRecord::Schema.define(version: 20170512194658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "tag_image"
+    t.string   "tag_icon"
+    t.string   "tag_color"
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
@@ -225,9 +227,9 @@ ActiveRecord::Schema.define(version: 20170512194658) do
   end
 
   add_foreign_key "causes", "state_causes"
-  add_foreign_key "causes", "usuarios"
+  add_foreign_key "causes", "users"
   add_foreign_key "comments", "causes"
-  add_foreign_key "comments", "usuarios"
+  add_foreign_key "comments", "users", column: "usuario_id"
   add_foreign_key "debate_votes", "debates"
   add_foreign_key "debate_votes", "users"
   add_foreign_key "debates", "polls"
