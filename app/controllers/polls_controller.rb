@@ -152,8 +152,7 @@ class PollsController < ApplicationController
     puts "@vote_types: #{@vote_types}"
 
     respond_to do |format|
-      format.html do
-      end
+      format.html {}
       format.json do
         @poll = Poll.find(params[:id])
         @remaining_time_in_seconds = (@poll.closing_date - Date.today) * 1.days
