@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import React from 'react';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
 
-const Home = (props) => (
+const Home = () => (
   <div id="homepage">
     <div className='background-container top'>
       <div className='flex-container top-text-container'>
@@ -87,7 +87,7 @@ const Home = (props) => (
 );
 
 Home.propTypes = {
-  Home: PropTypes.array.isRequired
+  // Home: PropTypes.array.isRequired
   // name: PropTypes.string.isRequired,
   // updateName: PropTypes.func.isRequired,
 };
