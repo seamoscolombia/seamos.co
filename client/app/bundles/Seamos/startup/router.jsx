@@ -9,6 +9,7 @@ import {
 import Home from '../containers/homeContainer';
 import Navbar from '../containers/navbarContainer';
 import PollsByTag from '../components/pollsByTag';
+import PollDetail from '../containers/pollDetailContainer'; 
 
 const AppRouter = () => (
     <Router >
@@ -17,8 +18,9 @@ const AppRouter = () => (
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="tag/:tagId/polls" component={PollsByTag} />
-            </Switch>
-        </div>
+                <Route exact path="poll/pollId" component={PollDetail} />
+            </Switch> 
+        </div> 
     </Router>
 );
 
