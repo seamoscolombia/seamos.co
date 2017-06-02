@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import {
     // Redirect,
     HashRouter as Router,
@@ -7,20 +7,19 @@ import {
 } from 'react-router-dom';
 
 import Home from '../containers/homeContainer';
-import Navbar from '../containers/navbarContainer'; 
-import PollsByTag from '../component/pollsByTag'; 
+import Navbar from '../containers/navbarContainer';
+import PollsByTag from '../components/pollsByTag';
 
 const AppRouter = () => (
     <Router >
-         <div> 
-            <Navbar /> 
-            <Switch> 
+         <div>
+            <Navbar />
+            <Switch>
                 <Route exact path="/" component={Home} />
-                <Route exact path="tag/:tagId/polls" component={Home} />
-            </Switch> 
-        </div> 
+                <Route exact path="tag/:tagId/polls" component={PollsByTag} />
+            </Switch>
+        </div>
     </Router>
 );
 
 export default AppRouter;
-
