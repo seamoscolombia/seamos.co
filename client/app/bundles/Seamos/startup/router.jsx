@@ -8,8 +8,8 @@ import {
 
 import Home from '../containers/homeContainer';
 import Navbar from '../containers/navbarContainer';
-import PollsByTag from '../components/pollsByTag';
-import PollDetail from '../containers/pollDetailContainer'; 
+import PollsByTag from '../containers/pollsByTagContainer';
+import PollDetail from '../containers/pollDetailContainer';
 
 const AppRouter = () => (
     <Router >
@@ -17,10 +17,10 @@ const AppRouter = () => (
             <Navbar />
             <Switch>
                 <Route exact path="/" component={Home} />
-                <Route exact path="tag/:tagId/polls" component={PollsByTag} />
+                <Route exact path="/tag/:tagId/polls" component={PollsByTag} />
                 <Route exact path="poll/pollId" component={PollDetail} />
-            </Switch> 
-        </div> 
+            </Switch>
+        </div>
     </Router>
 );
 

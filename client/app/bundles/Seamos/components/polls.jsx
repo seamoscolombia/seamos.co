@@ -1,8 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Poll from './poll';
+
 
 const Polls = ({ polls }) => (
-  <h2>{JSON.stringify(polls)}</h2>
+  <div className=''>
+    { polls.map(poll => (
+        <Poll {...poll} key={poll.id} />
+      ))
+    }
+  </div>
 );
 
 Polls.propTypes = {
