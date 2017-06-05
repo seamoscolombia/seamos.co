@@ -10,7 +10,7 @@ export const updatePoll = (poll) => ({
 
 export const getPoll = (pollId) => {
   return (dispatch) => {
-    axios.get(`${URL}/poll/${pollId}.json`)
+    axios.get(`${URL}/polls/${pollId}.json`)
     .then(response => {
       dispatch(updatePoll(response.data.poll));
     })

@@ -1,7 +1,7 @@
 // Simple example of a React "smart" component
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PollDetail from '../components/pollDetail';
+import PollDetail from '../components/pollDetail/index';
 import { getPoll } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -20,18 +20,18 @@ class PollsDetailContainer extends Component {
     }
 
     componentWillMount() {
-        this.props.getPoll(this.props.id);
+        this.props.getPoll(this.props.match.params.pollId);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.remaining !== 0) { return true; }
-        return false;
-    }
-    componentDidUpdate(prevProps, prevState) {
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     if (nextProps.remaining !== 0) { return true; }
+    //     return false;
+    // }
+    componentDidMount() {
         setInterval(this.countdown(), 1000);
     }
 
-    setMoreInfo() { this.setState({ moreInfo: true }); }
+    setMoreInfo() { this.setState({ moreInfo: !this.state.moreInfo }); }
 
     countdown() {
         const seconds = this.state.seconds - 1;
@@ -50,10 +50,9 @@ class PollsDetailContainer extends Component {
     }
 
     render() {
-        this.state.countdown();
         return (
             <PollDetail
-                {...this.props}
+                {...this.props.poll}
                 setMoreInfo={this.setMoreInfo}
                 moreInfo={this.state.moreInfo}
                 remainingTime={this.state.remainingTime}

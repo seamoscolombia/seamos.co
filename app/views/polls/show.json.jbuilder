@@ -18,6 +18,11 @@ json.poll do
         json.url external_link.url
       end
     end
+    json.vote_types do
+      json.array! @poll.vote_types do |vote_type|
+        json.name vote_type.name
+      end
+    end
     json.politician do
       json.id @poll.user.id
       json.full_name @poll.user.full_name
