@@ -1,0 +1,65 @@
+#poll-component
+  $break-medium: 720px
+  display: inline-flex
+  flex-wrap: wrap
+  width: 590px
+  margin: 0 30px 0 30px
+  @media screen and (max-width: $break-medium)
+    width: 100%
+    margin: 0
+    margin-bottom: 30px
+  .poll-image-container
+    width: 240px
+    height: 150px
+    position: relative
+    overflow: hidden
+    margin: auto
+    display: flex
+    align-items: center
+    @media screen and (max-width: $break-medium)
+      width: 30%
+    img
+      position: absolute
+      max-height: 200px
+      left: -9999px
+      right: -9999px
+      margin: auto
+      @media screen and (max-width: $break-medium)
+        max-height: 100px
+  .poll-infos-container
+    position: relative
+    width: 350px
+    padding: 10px
+    padding-left: 20px
+    @media screen and (max-width: $break-medium)
+      width: 70%
+      margin: auto
+      margin-top: 0
+      padding: 0
+      padding-left: 20px
+      max-height: 150px
+      overflow: hidden
+    .poll-details
+      background-color: yellow
+      position: absolute
+      bottom: 0
+    .poll-info
+      // position: relative
+      .poll-description
+        font-size: 12px
+        font-family: 'GothamMedium'
+        line-height: 1.2em
+        overflow: hidden
+        max-height: 90px
+        text-align: justify
+        @media screen and (max-width: $break-medium)
+          margin-bottom: 30px
+      .poll-title
+        font-size: 14px
+        font-family: 'HKNovaBold'
+        text-transform: uppercase
+        line-height: 1em
+        @media screen and (max-width: $break-medium)
+          text-align: center
+          margin: 0 0 10px 0
+          font-size: 14px

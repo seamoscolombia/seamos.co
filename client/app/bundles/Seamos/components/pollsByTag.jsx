@@ -3,8 +3,10 @@ import React from 'react';
 import Polls from './polls';
 
 const PollsByTag = (props) => (
-  <section>
-    <Polls {...props} />
+  <section id='polls-component'>
+    <div className='polls-box'>
+      <Polls {...props} />
+    </div>
   </section>
 );
 
