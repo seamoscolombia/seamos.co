@@ -76,7 +76,7 @@ class PollsController < ApplicationController
         @polls = Poll.order('id desc').all.page(params[:page]).per(4)
       end
       format.json do
-        @polls = Poll.includes(:votes).open.sort_by {|poll| - poll.votes.size}
+        @polls = Poll.includes(:votes, :tags).open.sort_by {|poll| - poll.votes.size}
       end
     end
   end

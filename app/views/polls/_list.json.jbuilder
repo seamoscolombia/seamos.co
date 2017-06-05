@@ -12,5 +12,6 @@ json.polls do
     else
       json.already_voted false
     end
+    json.tag_color poll.tags.first.tag_color
   end
 end
