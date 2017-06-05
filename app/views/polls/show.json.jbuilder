@@ -22,6 +22,7 @@ json.poll do
       json.array! @poll.vote_types do |vote_type|
         json.id vote_type.id
         json.name vote_type.name
+        json.count @vote_types[vote_type.name]
       end
     end
     json.politician do

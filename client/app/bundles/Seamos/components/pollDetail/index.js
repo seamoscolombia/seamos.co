@@ -27,13 +27,22 @@ function voteButton(pollType, voteTypes, voteAction) {
   }
 }
 
-function votedButton(pollType, voteTypes) {
+function votedButton(pollType, voteTypes, vote_count) {
     switch (pollType) {
     case 'signing': //2
-      return <VotedButton name={voteTypes[0].name} />; 
+      return (<VotedButton 
+          count={voteTypes[0].count}
+          name={voteTypes[0].name}
+          total={vote_count}
+      />); 
     case 'voting': //0
       return voteTypes.map(voteType => 
-        <VotedButton key={`${voteType.name}`} name={voteType.name} />
+        <VotedButton 
+          key={`${voteType.name}`} 
+          count={voteType.count}
+          name={voteType.name} 
+          total={vote_count}
+        />
       ); 
     default:
       return null;
@@ -69,7 +78,7 @@ const PollDetail = ({
         </button>
         <br /><br />
         { user_already_voted ?
-          votedButton(poll_type, vote_types) :
+          votedButton(poll_type, vote_types, vote_count) :
           voteButton(poll_type, vote_types, voteAction) 
         }
       </div>
@@ -85,12 +94,12 @@ PollDetail.propTypes = {
   objective: PropTypes.string.isRequired,
   remaining: PropTypes.number.isRequired,
   vote_count: PropTypes.number.isRequired,
-  poll_type: PropTypes.number.isRequired,
+  poll_type: PropTypes.string.isRequired,
   user_already_voted: PropTypes.bool.isRequired,
   links: PropTypes.array.isRequired,
   politician: PropTypes.object.isRequired,
-  moreInfo: PropTypes.bool.isrequired,
-  vote_types: PropTypes.array.isrequired,
+  moreInfo: PropTypes.bool,
+  vote_types: PropTypes.array,
   voteAction: PropTypes.func.isRequired
 };
 

@@ -76,6 +76,19 @@
                     width: 80%;
                     text-align: left;
                 }
+                .voted-button {
+                    min-height: 60px;
+                    padding: 0;
+                    margin-bottom: 1em;
+                    background-color: gray;
+                    color: whitesmoke;
+                    width: 80% ;
+                    .progress-bar {
+                        font-family: RobotoBoldCondenced;
+                        text-align: left;
+                        vertical-align: middle;
+                    }
+                }
             }
         }
 }
