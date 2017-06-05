@@ -3,6 +3,7 @@
 
 import axios from 'axios';
 import { SET_USER, URL } from '../constants';
+import { setSession } from './sessionActionsCreators';
 
 export const createUser = (fbUser, authenticityToken) => dispatch => {
   const user = {
@@ -44,7 +45,7 @@ export const validateUserSession = (fbUser) => (dispatch) => (
     fb_token: fbUser.accessToken
   })
   .then(response => {
-    // dispatch(getSession(response.data.authenticity_token));
+    dispatch(setSession(response.data.authenticity_token));
     dispatch(getUser());
   })
   .catch(e => {
