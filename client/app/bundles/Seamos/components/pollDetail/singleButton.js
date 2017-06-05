@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SingleButton = ({ name }) => (
-    <button className='btn single-button'>
-        { name }
+const SingleButton = (props) => (
+    <button onClick={props.onClick} className='btn single-button'>
+        { props.name }
     </button>
 );
 export default SingleButton;

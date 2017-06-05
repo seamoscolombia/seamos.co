@@ -1,29 +1,51 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import SingleButton from './singleButton';
+import VotedButton from './votedButton';
 
 const moreInfoStyle = { maxHeight: 150, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
 
-function getPollType(pollType, voteTypes) {
+function voteButton(pollType, voteTypes, voteAction) {
   switch (pollType) {
     case 'signing': //2
-      return <SingleButton name={voteTypes[0].name} />; 
+      return (<SingleButton 
+        name={voteTypes[0].name}
+        onClick={() => { voteAction(voteTypes.id); }}
+      />); 
     case 'voting': //0
       return voteTypes.map(voteType => 
-        <SingleButton key={`${voteType.name}`} name={voteType.name} />
+        <SingleButton 
+          key={`${voteType.name}`}
+          name={voteType.name}
+          onClick={() => { voteAction(voteType.id); }}
+        />
       ); 
-    case 'participation': //1
-      return null; 
     default:
       return null;
   }
 }
+
+function votedButton(pollType, voteTypes) {
+    switch (pollType) {
+    case 'signing': //2
+      return <VotedButton name={voteTypes[0].name} />; 
+    case 'voting': //0
+      return voteTypes.map(voteType => 
+        <VotedButton key={`${voteType.name}`} name={voteType.name} />
+      ); 
+    default:
+      return null;
+  }
+}
+
 const PollDetail = ({ 
-  id, title, image,
-  description, objective, remainingTime,
-  vote_count, user_already_voted, links,
-  politician, poll_type, moreInfo, setMoreInfo, vote_types
+  id, title, image, remaining,
+  description, objective, vote_count,
+  user_already_voted, links, politician, 
+  poll_type, moreInfo, setMoreInfo, vote_types,
+  voteAction
 }) => (
   <section id='poll-detail'>
     <header>{ title }</header> 
@@ -34,6 +56,7 @@ const PollDetail = ({
     <section id='poll-section'>
       <div className='poll-section-containers' >
         <img id='poll-thumbnail' src={image} role='presentation' alt='poll thumbnail' />
+        <br />
          <small>Objetivo: {objective}</small>
       </div>
       <div className='poll-section-containers' >
@@ -45,7 +68,10 @@ const PollDetail = ({
           { moreInfo ? '-INFO' : '+INFO' }
         </button>
         <br /><br />
-        { getPollType(poll_type, vote_types) }
+        { user_already_voted ?
+          votedButton(poll_type, vote_types) :
+          voteButton(poll_type, vote_types, voteAction) 
+        }
       </div>
     </section> 
   </section>
@@ -57,7 +83,7 @@ PollDetail.propTypes = {
   image: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   objective: PropTypes.string.isRequired,
-  remainingTime: PropTypes.number.isRequired,
+  remaining: PropTypes.number.isRequired,
   vote_count: PropTypes.number.isRequired,
   poll_type: PropTypes.number.isRequired,
   user_already_voted: PropTypes.bool.isRequired,
@@ -65,6 +91,7 @@ PollDetail.propTypes = {
   politician: PropTypes.object.isRequired,
   moreInfo: PropTypes.bool.isrequired,
   vote_types: PropTypes.array.isrequired,
+  voteAction: PropTypes.func.isRequired
 };
 
 export default PollDetail;
