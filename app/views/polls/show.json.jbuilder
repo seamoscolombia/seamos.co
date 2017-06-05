@@ -20,6 +20,7 @@ json.poll do
     end
     json.vote_types do
       json.array! @poll.vote_types do |vote_type|
+        json.id vote_type.id
         json.name vote_type.name
       end
     end
