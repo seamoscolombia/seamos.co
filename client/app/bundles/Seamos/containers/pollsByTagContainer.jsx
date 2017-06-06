@@ -6,8 +6,8 @@ import { pollsFilteredByTag } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
-    const { polls } = state;
-    return { polls };
+    const { polls, tag } = state;
+    return { polls, tag };
 };
 
 const mapDispatchToProps = { pollsFilteredByTag };

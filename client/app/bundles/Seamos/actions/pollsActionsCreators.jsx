@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import axios from 'axios';
+import { updateTag } from './tagActionsCreators';
 import { UPDATE_POLLS, URL } from '../constants';
 
 export const updatePolls = (polls) => ({
@@ -22,6 +23,7 @@ export const pollsFilteredByTag = (tagId) => (dispatch) => (
   axios.get(`${URL}/tags/${tagId}/polls.json`)
   .then(response => {
     dispatch(updatePolls(response.data.filtered_by_tag.polls));
+    dispatch(updateTag(response.data.filtered_by_tag.tag));
   })
   .catch(error => {
     console.log(error);
