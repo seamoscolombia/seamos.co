@@ -2,7 +2,7 @@
 /* eslint-disable window.localStorage */
 
 import axios from 'axios';
-import { SET_USER, URL } from '../constants';
+import { SET_USER, RESET_SESSION, URL } from '../constants';
 import { setSession } from './sessionActionsCreators';
 
 export const createUser = (fbUser, authenticityToken) => dispatch => {
@@ -24,9 +24,10 @@ export const createUser = (fbUser, authenticityToken) => dispatch => {
   });
 };
 
-export const getUser = () => (dispatch) => {
+export const getUser = (fbUser) => (dispatch) => {
   axios.get(`${URL}/profile.json`)
     .then(response => {
+      response.data.user.picture = fbUser.picture.data.url;
       dispatch(setUser(response.data.user));
     })
     .catch(e => {
@@ -39,6 +40,8 @@ export const setUser = (user) => ({
   user
 });
 
+export const resetUser = () => ({ type: RESET_SESSION });
+
 export const validateUserSession = (fbUser) => (dispatch) => (
   axios.post(`${URL}/sessions.json`, {
     uid: fbUser.id,
@@ -46,7 +49,7 @@ export const validateUserSession = (fbUser) => (dispatch) => (
   })
   .then(response => {
     dispatch(setSession(response.data.authenticity_token));
-    dispatch(getUser());
+    dispatch(getUser(fbUser));
   })
   .catch(e => {
     if (e.response && e.response.status === 422) {

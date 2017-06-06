@@ -21,7 +21,8 @@ class PollsDetailContainer extends Component {
     }
 
     componentWillMount() {
-        this.props.getPoll({ pollId: this.props.match.params.pollId,
+        this.props.getPoll({ 
+            pollId: this.props.match.params.pollId,
             errCallback: () => this.props.history.push('/404')
         });
     }

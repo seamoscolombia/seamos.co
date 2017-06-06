@@ -1,4 +1,4 @@
-import { SET_USER } from '../constants';
+import { SET_USER, RESET_SESSION } from '../constants';
 
 const INITIAL_STATE = localStorage.getItem('user') ? //eslint-disable-line
   JSON.parse(localStorage.getItem('user')) //eslint-disable-line
@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
       localStorage.setItem('user', JSON.stringify(user)); //eslint-disable-line
       return user;
     }
-    default:
-      return state;
+    case RESET_SESSION: return { };
+    default: return state;
   }
 };
