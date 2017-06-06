@@ -6,6 +6,7 @@ const Poll = ({ title, description, poll_image, vote_count, remaining }) => (
     <div className='poll-image-container'>
       <img alt="poll" src={poll_image} />
     </div>
+    <div className='color-separator' style={{"backgroundColor": "#333"}} />
     <div className='poll-infos-container'>
       <div className='poll-info'>
         <div className='poll-title'>
@@ -16,7 +17,7 @@ const Poll = ({ title, description, poll_image, vote_count, remaining }) => (
         </div>
       </div>
       <div className='poll-details'>
-        {vote_count} participations <span>| quedan {remaining / 3600 / 24} días</span>
+        {vote_count} participaciones  <span> | quedan {remaining / 3600 / 24} días</span>
       </div>
     </div>
   </div>

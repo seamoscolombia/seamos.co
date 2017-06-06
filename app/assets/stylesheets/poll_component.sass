@@ -4,10 +4,12 @@
   flex-wrap: wrap
   width: 590px
   margin: 0 30px 0 30px
+  margin-bottom: 30px
+  position: relative
   @media screen and (max-width: $break-medium)
     width: 100%
     margin: 0
-    margin-bottom: 30px
+    margin-bottom: 40px
   .poll-image-container
     width: 240px
     height: 150px
@@ -26,11 +28,17 @@
       margin: auto
       @media screen and (max-width: $break-medium)
         max-height: 100px
+  .color-separator
+    height: 30px
+    width: 8px
+    position: relative
+    top: 0
+    left: 3px
+    border-radius: 6px
   .poll-infos-container
     position: relative
-    width: 350px
+    width: 340px
     padding: 10px
-    padding-left: 20px
     @media screen and (max-width: $break-medium)
       width: 70%
       margin: auto
@@ -40,9 +48,13 @@
       max-height: 150px
       overflow: hidden
     .poll-details
-      background-color: yellow
       position: absolute
       bottom: 0
+      font-family: 'HKNovaBold'
+      font-size: 10px
+      color: rgba(30, 30, 30, 0.6)
+      line-height: 0.8em
+
     .poll-info
       // position: relative
       .poll-description
@@ -50,16 +62,17 @@
         font-family: 'GothamMedium'
         line-height: 1.2em
         overflow: hidden
-        max-height: 90px
+        max-height: 100px
         text-align: justify
         @media screen and (max-width: $break-medium)
           margin-bottom: 30px
+          max-height: 90px
       .poll-title
         font-size: 14px
         font-family: 'HKNovaBold'
         text-transform: uppercase
         line-height: 1em
+        text-align: left
         @media screen and (max-width: $break-medium)
-          text-align: center
           margin: 0 0 10px 0
           font-size: 14px
