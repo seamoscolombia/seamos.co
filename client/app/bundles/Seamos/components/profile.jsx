@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Tags from './tags';
+import Polls from './polls';
 
 const Profile = (props) => {
   const {
@@ -29,11 +30,12 @@ const Profile = (props) => {
           <div className='title'>
             <span>PARTICIPACIONES</span>
           </ div>
+          <Polls polls={participations.polls} />
         </section>
       </div>
     </div>
   );
-}
+};
 
 Profile.propTypes = {
    picture: PropTypes.string.isRequired,
