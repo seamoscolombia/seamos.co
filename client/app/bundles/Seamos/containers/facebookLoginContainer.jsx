@@ -25,6 +25,7 @@ class FacebookLoginContainer extends Component {
         textButton={this.props.fbText || 'Login'}
         appId="1790047761280618"
         autoLoad={false}
+        scope='user_location'
         fields="id,location,first_name,last_name,email,picture.width(100)"
         callback={(fbUser) => this.responseFacebook(fbUser)}
         cssClass={this.props.fbClass || 'my-facebook-button-class'}

@@ -4,10 +4,64 @@
 @import './variables.scss';
 #profile {
     margin-top: 5em;
-    display: flex;
-    flex: 1;
+    // display: flex;
+    // flex-direction: column;    
+    // flex: 1;
+    header {
+        img { 
+            margin-left: 2.5em;
+            border-radius: 50%;
+        }
+        .media-body {
+            vertical-align: middle;
+            h4 { margin-left: 1.2em; }
+        }
+    }
+    #profile-container {
+        section {
+            padding-left: 14em;            
+            .title {
+                min-height: 30px;
+                min-width: 90px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                 span {
+                    margin-left: 2.8em;
+                    font-weight: bold;
+                }
+            }
+        }
+        #my-subjects {
+            border-right: 4px solid black;
+            .title {
+                background-image: url(asset_path('TEMAS.png'));
+            }
+        }
+        #my-participations {
+            padding-left: 6em;
+            .title {
+                background-image: url(asset_path('PARTICIPACIONES.png'));
+            }
+        }
+
+    }
 }
 
 @media screen and (max-width: $break-medium) {
-    #profile {}
+    #profile {
+        #profile-container {
+            margin: 0 4em !important;
+            section {
+                &.col-sm-6{ 
+                    padding-left: 0 !important;
+                }
+                &#my-subjects {
+                    border-bottom: 4px solid black;
+                    border-right: none;
+                    padding-bottom: 2em;
+                    margin-bottom: 2em;
+                }
+            }
+        }
+    }
 }

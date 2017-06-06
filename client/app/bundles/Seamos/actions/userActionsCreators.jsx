@@ -17,6 +17,8 @@ export const createUser = (fbUser, authenticityToken) => dispatch => {
     user
   })
   .then(response => {
+    response.data.user.picture = fbUser.picture.data.url;
+    response.data.user.location = fbUser.location ? fbUser.location.name : null;
     dispatch(setUser(response.data.user));
     dispatch(setSession(response.data.user.authenticity_token));
   })
@@ -29,7 +31,7 @@ export const getUser = (fbUser) => (dispatch) => {
   axios.get(`${URL}/profile.json`)
     .then(response => {
       response.data.user.picture = fbUser.picture.data.url;
-      response.data.user.location = fbUser.location.name;
+      response.data.user.location = fbUser.location ? fbUser.location.name : null;
       dispatch(setUser(response.data.user));
     })
     .catch(e => {
