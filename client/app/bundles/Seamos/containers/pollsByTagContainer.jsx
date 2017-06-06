@@ -19,7 +19,10 @@ class PollsByTagContainer extends Component {
     }
 
     render() {
-        return <PollsByTag {...this.props} />;
+        if (this.props.polls.length !== 0 && this.props.tag) {
+            return <PollsByTag {...this.props} />;
+        }
+        return null;
     }
 }
 // Don't forget to actually use connect!

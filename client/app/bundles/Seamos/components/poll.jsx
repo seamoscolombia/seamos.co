@@ -33,7 +33,7 @@ Poll.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   poll_image: PropTypes.string.isRequired,
-  tag: PropTypes.tag.isRequired,
+  tag: PropTypes.object.isRequired,
   vote_count: PropTypes.number.isRequired,
   remaining: PropTypes.number.isRequired
 };
