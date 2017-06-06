@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import axios from 'axios';
+import { history } from 'react-router-dom';
 import { UPDATE_POLL, URL } from '../constants';
 
 export const updatePoll = (poll) => ({
@@ -8,16 +9,18 @@ export const updatePoll = (poll) => ({
   poll,
 });
 
-export const getPoll = (pollId) => {
-  return (dispatch) => {
+export const getPoll = ({ pollId, errCallback }) => (dispatch) => {
     axios.get(`${URL}/polls/${pollId}.json`)
     .then(response => {
       dispatch(updatePoll(response.data.poll));
     })
     .catch( error => {
-      console.log(error);
+      if (error.response.status === 404) {
+        errCallback();
+      } else {
+        console.error(error);
+      }
     });
-  };
 };
 
 export const votePoll = ({ voteTypeId, authenticityToken, poll }) => (dispatch) => (
@@ -26,7 +29,6 @@ export const votePoll = ({ voteTypeId, authenticityToken, poll }) => (dispatch) 
     authenticity_token: authenticityToken 
   })
   .then(() => {
-    debugger
     poll.user_already_voted = true;
     dispatch(updatePoll(poll));
   })
