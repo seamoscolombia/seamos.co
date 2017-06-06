@@ -4,8 +4,9 @@ import React from 'react';
 function getDays(remaining) {
   return ((remaining / 3600) / 24);
 }
-const Poll = ({ title, description, poll_image, vote_count, remaining, tag }) => {
-  const { tag_image, tag_icon, tag_color, tag_name } = tag;
+const Poll = (props) => {
+  const { title, description, poll_image, vote_count, remaining, tag } = props;
+  const { tag_color } = tag;
   return (
     <div id='poll-component'>
       <div className='poll-image-container'>
