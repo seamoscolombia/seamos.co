@@ -12,12 +12,13 @@ export const createUser = (fbUser, authenticityToken) => dispatch => {
     second_surname: 'N.A.',
     email: fbUser.email
   };
-  axios.post(`${URL}/usuarios.json`, {
+  axios.post(`${URL}/users.json`, {
     authenticity_token: authenticityToken, //eslint-disable-line
     user
   })
   .then(response => {
     dispatch(setUser(response.data.user));
+    dispatch(setSession(response.data.user.authenticity_token));
   })
   .catch(e => {
     alert('Ah ocurrido un error por favor reporta a nuestro equipo');
@@ -28,6 +29,7 @@ export const getUser = (fbUser) => (dispatch) => {
   axios.get(`${URL}/profile.json`)
     .then(response => {
       response.data.user.picture = fbUser.picture.data.url;
+      response.data.user.location = fbUser.location.name;
       dispatch(setUser(response.data.user));
     })
     .catch(e => {
@@ -53,11 +55,7 @@ export const validateUserSession = (fbUser) => (dispatch) => (
   })
   .catch(e => {
     if (e.response && e.response.status === 422) {
-      //console.log(‘Error to Register’);
-      e.response.json()
-        .then(responseJson => {
-          dispatch(createUser(fbUser, responseJson.authenticity_token));
-        });
+      dispatch(createUser(fbUser, e.response.data.authenticity_token));
     } else {
       console.warn('Error != 422');
       console.warn(e);

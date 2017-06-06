@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import FacebookLogin from '../containers/facebookLoginContainer';
 
 
-const Navbar = ({ session }) => (
+const Navbar = ({ session, user }) => (
       <header 
         id='navbar-client' 
         className='navbar navbar-fixed-top navbar-transparent'
@@ -34,7 +34,7 @@ const Navbar = ({ session }) => (
               <nav className='navbar-collapse' role='navigation'>
                 <ul className='nav navbar-nav navbar-right'>
                   <li>
-                    { session && session.authenticityToken ? 
+                    { session.authenticityToken && Object.keys(user).length !== 0 ? 
                       <button className='btn btn-primary'>Perfíl</button> : 
                       <FacebookLogin fbClass='nav-fb' fbText='CONÉCTATE' />
                     }

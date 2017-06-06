@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import Navbar from '../components/navbar';
 
 const mapStateToProps = (state) => {
-    const { session } = state;
-    return { session };
+    const { session, user } = state;
+    return { session, user };
 };
 
 
