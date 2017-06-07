@@ -3,11 +3,11 @@ import React from 'react';
 import shouldUpdate from 'recompose/shouldUpdate';
 import Tag from './tag';
 
-const Tags = ({ tags }) => (
+const Tags = ({ tags, action }) => (
     <section id='tags-component'>
       <div className='flex-container tags-box'>
         { tags.map(tag => (
-            <Tag {...tag} key={tag.id} />
+            <Tag {...tag} key={tag.id} action={action} />
           ))
         }
       </div>
