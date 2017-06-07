@@ -17,7 +17,10 @@ const PollsByTag = (props) => {
       </div>
     </div>
     <div className='polls-box'>
-      <Polls {...props} />
+      { props.polls.length !== 0 ?
+        <Polls {...props} /> :
+        <h3> Por el momento no hay propuestas para este tema </h3>
+       }
     </div>
   </section>
   );
