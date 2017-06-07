@@ -5,6 +5,25 @@ import FacebookLogin from '../containers/facebookLoginContainer';
 import ProfileButton from '../containers/profileButtonContainer';
 import LogoutButton from '../containers/logoutButtonContainer';
 
+const Menu = () => (
+  [<li key='1' >
+    <ProfileButton />
+  </li>,
+  <li key='2' >
+    <LogoutButton />
+  </li>]
+);
+
+function profile() {
+    return (
+      [<li key='1' >
+        <ProfileButton />
+      </li>,
+      <li key='2' >
+        <LogoutButton />
+      </li>]
+    );
+}
 
 const Navbar = ({ session, user }) => (
   <header
@@ -13,8 +32,6 @@ const Navbar = ({ session, user }) => (
     role='banner'
   >
     <div className='container'>
-
-
       <div className='navbar-header'>
         <Link to='/' className='navbar-brand'>
           <div id='brand-logo' />
@@ -37,25 +54,9 @@ const Navbar = ({ session, user }) => (
           <ul className='nav navbar-nav navbar-right'>
             <li><Link to='/'> ¿COMO LO HACEMOS? </Link></li>
             {session.authenticityToken && Object.keys(user).length !== 0 ?
-              <li className='dropdown'>
-                <button 
-                  className='dropdown-toggle nav-fb'
-                  data-toggle='dropdown'
-                  role='button'
-                  aria-haspopup='true'
-                  aria-expanded='false'
-                >PERFÍL <span className='caret' />
-                </button>
-                <ul className='dropdown-menu'>
-                  <ProfileButton />
-                  <LogoutButton />
-                </ul>
-              </li> :
-              <li>
-                <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' />
-              </li>
+              profile() : <li> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
             }
-                </ul>
+          </ul>
         </nav>
       </div>
     </div>

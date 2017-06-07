@@ -1,8 +1,13 @@
 // Simple example of a React "smart" component
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import ProfileButton from '../components/profile/profileButton';
 
+const mapStateToProps = (state) => {
+    const { user } = state;
+    return { user };
+}
 class ProfileButtonContainer extends Component {
     goToProfile() {
         this.props.history.push('/profile');
@@ -12,8 +17,9 @@ class ProfileButtonContainer extends Component {
             action={this.goToProfile.bind(this)}
             className={'nav-fb'}
             name={'Perfíl'}
+            user={this.props.user}
         />);
     }
 }
 
-export default withRouter(ProfileButtonContainer);
+export default withRouter(connect(mapStateToProps)(ProfileButtonContainer));
