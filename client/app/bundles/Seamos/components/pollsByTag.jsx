@@ -4,9 +4,9 @@ import Polls from './polls';
 
 const PollsByTag = (props) => {
   const { tag_image, tag_icon, tag_color, tag_name } = props.tag;
-  return(
+  return (
   <section id='polls-component'>
-    <div className='background-container'>
+    <div className='background-container' style={{ backgroundImage: `url(${tag_image})` }}>
       <div className='icon-name-wrapper'>
         <div className='tag-icon-container'>
           <img className='tag-icon' alt='tag icon' src={tag_icon} />
