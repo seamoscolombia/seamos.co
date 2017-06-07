@@ -6,7 +6,8 @@ function getDays(remaining) {
 }
 const Poll = (props) => {
   const { title, description, poll_image, vote_count, remaining, tag } = props;
-  const { tag_color } = tag;
+  let tag_color = 'none';
+  if (tag) {  tag_color = tag.tag_color; }
   return (
     <div id='poll-component'>
       <div className='poll-image-container'>
@@ -34,7 +35,7 @@ const Poll = (props) => {
       </div>
     </div>
   );
-}
+};
 
 Poll.propTypes = {
   title: PropTypes.string.isRequired,
