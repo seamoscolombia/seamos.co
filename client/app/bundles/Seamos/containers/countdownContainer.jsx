@@ -189,7 +189,7 @@ class CountDownContainer extends React.Component {
     if (this.timerDuration >= this.goalTimeMillis) {
       response = '00:00';
     } else {
-      const days = (`${Math.abs(duration.days())}`).slice(-2);
+      const days = `${Math.floor((((duration._milliseconds / 1000) / 60) / 60) / 24)}`;
       if (days !== '0') {
         response += (`${days} dias`);
       } else {
