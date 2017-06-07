@@ -227,4 +227,9 @@ CountDownContainer.propTypes = {
   timerDuration: PropTypes.func
 };
 
+CountDownContainer.defaultProps = {
+  completeTimer: () => {},
+  timerDuration: () => {}
+};
+
 export default CountDownContainer;
