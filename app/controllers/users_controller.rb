@@ -22,6 +22,7 @@ class UsersController < ApplicationController
       format.json do
         # server Date format 2015-05-28 YYYY-MM-DD
         if @user.save
+          @participations = Poll.get_user_participations(@user)
           render :show, status: :created, location: users_url(@user)
         else
           logger.debug "Create User Error: #{@user.errors.messages}"

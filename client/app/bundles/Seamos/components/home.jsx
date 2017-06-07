@@ -3,7 +3,7 @@ import React from 'react';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
 
-const Home = () => (
+const Home = ({ session }) => (
   <div id="homepage">
     <div className='background-container top'>
       <div className='flex-container top-text-container'>
@@ -67,7 +67,10 @@ const Home = () => (
     </div>
     <div className="fb-button-container">
       <div className="one-click"> Sin registros, solo un click </div>
-      <FacebookLogin />
+      { session && session.authenticityToken ? 
+        <button className='btn btn-primary'>Perfíl</button> : 
+        <FacebookLogin fbText='Conéctate' /> 
+      }
     </div>
     <div className='background-container mid'>
       <div className='flex-container top-text-container'>

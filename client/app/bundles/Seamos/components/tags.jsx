@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import shouldUpdate from 'recompose/shouldUpdate';
 import Tag from './tag';
 
 const Tags = ({ tags }) => (
@@ -17,4 +18,9 @@ Tags.propTypes = {
   tags: PropTypes.array.isRequired
 };
 
-export default Tags;
+const checkPropsChange = (props, nextProps) => 
+    (nextProps.tags !== props.tags 
+    || nextProps.tags.length !== 0);
+    
+
+export default shouldUpdate(checkPropsChange)(Tags);
