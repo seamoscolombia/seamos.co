@@ -23,7 +23,13 @@ const Poll = (props) => {
           </div>
         </div>
         <div className='poll-details'>
-          {vote_count} participaciones <span> | quedan {getDays(remaining)} días</span>
+          <span> {vote_count} participaciones </span>
+          <span className='separator'> | </span>
+          <span> quedan {getDays(remaining)} días</span>
+          <span className='separator'> | </span>
+          <a href='#' className='btn button btn-plus-read' style={{ backgroundColor: tag_color }}>
+            LEER +
+           </a>
         </div>
       </div>
     </div>

@@ -52,10 +52,29 @@
     .poll-details
       position: absolute
       bottom: 0
-      font-family: 'HKNovaBold'
+      right: 0
+      display: flex
+      font-family: "HKNovaBold"
       font-size: 10px
       color: rgba(30, 30, 30, 0.6)
       line-height: 0.8em
+      align-items: center
+      .btn-plus-read
+        color: white
+        font-size: 8px
+        line-height: 5px
+        float: right
+        font-family: 'HKNovaBold'
+        text-transform: uppercase
+        border-radius: 2px
+        padding: 3px
+        margin-right: 10px
+        @media screen and (max-width: $break-medium)
+          margin-right: 0
+
+      .separator
+        padding: 0 3px
+        font-size: 17px
 
     .poll-info
       // position: relative
