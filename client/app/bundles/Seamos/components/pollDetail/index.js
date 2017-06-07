@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import CountDown from '../../containers/countdownContainer';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
 
@@ -103,10 +104,22 @@ const PollDetail = ({
               </button>
             </div>
             <div className="col-sm-12">
-               { user_already_voted ? //eslint-disable-line
-                  votedButton(poll_type, vote_types, vote_count) :
-                  voteButton(poll_type, vote_types, voteAction) 
-                }
+              <div className="row">
+                <div className="col-xs-9">
+                  { user_already_voted ? //eslint-disable-line
+                      votedButton(poll_type, vote_types, vote_count) :
+                      voteButton(poll_type, vote_types, voteAction) 
+                    }
+                </div>
+                <div className="col-xs-3">
+                  <CountDown
+                      timerCount={remaining}
+                      countdownColor="#66CCCC"
+                      innerColor="#fff"
+                      outerColor="#747272"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
