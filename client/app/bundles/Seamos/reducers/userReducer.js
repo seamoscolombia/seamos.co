@@ -11,7 +11,10 @@ export default (state = INITIAL_STATE, action) => {
       localStorage.setItem('user', JSON.stringify(user)); //eslint-disable-line
       return user;
     }
-    case RESET_SESSION: return { };
+    case RESET_SESSION: {
+      localStorage.removeItem('user');
+      return { };
+    }
     default: return state;
   }
 };

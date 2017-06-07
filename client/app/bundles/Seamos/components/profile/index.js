@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Tags from './tags';
-import Polls from './polls';
+import Tags from '../tags';
+import Polls from '../polls';
 
 const Profile = (props) => {
   const {
