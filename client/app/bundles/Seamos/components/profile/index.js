@@ -23,13 +23,13 @@ const Profile = (props) => {
         <section id='my-subjects' className='col-sm-6'>
           <div className='title'>
             <span>MIS TEMAS</span>
-          </ div>
+          </div>
           <Tags tags={tags} />
         </section>
         <section id='my-participations' className='col-sm-6'>
           <div className='title'>
             <span>PARTICIPACIONES</span>
-          </ div>
+          </div>
           <Polls polls={participations.polls} />
         </section>
       </div>
@@ -41,7 +41,7 @@ Profile.propTypes = {
    picture: PropTypes.string.isRequired,
    location: PropTypes.string.isRequired,
    full_name: PropTypes.string.isRequired,
-   participations: PropTypes.object.isRequired, 
+   participations: PropTypes.object.isRequired,
    tags: PropTypes.array.isRequired
 };
 
