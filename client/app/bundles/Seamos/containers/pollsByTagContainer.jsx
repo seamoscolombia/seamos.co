@@ -19,7 +19,7 @@ class PollsByTagContainer extends Component {
     }
 
     render() {
-        if (this.props.polls.length !== 0 && this.props.tag) {
+        if (this.props.polls.length !== 0 || this.props.tag) {
             return <PollsByTag {...this.props} />;
         }
         return null;
