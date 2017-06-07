@@ -10,7 +10,6 @@ class CountDownContainer extends React.Component {
     super(props, context);
 
     const initialCounter = this.props.timerCount;
-
     // Constants for calculations of the SVG circle
     this.goalTimeMillis = initialCounter * 1000;
     this.degrees = 360 / (initialCounter * 1000);
@@ -188,12 +187,17 @@ class CountDownContainer extends React.Component {
     }
     // Handles when the timer reaches 0 and goes negative (displays + not -)
     if (this.timerDuration >= this.goalTimeMillis) {
-      duration = moment.duration(this.goalTimeMillis - this.timerDuration);
-      response = '+';
+      response = '00:00';
+    } else {
+      const days = (`${Math.abs(duration.days())}`).slice(-2);
+      if (days !== '0') {
+        response += (`${days} dias`);
+      } else {
+        const hours = (`00${Math.abs(duration.hours())}`).slice(-2);
+        const minutes = (`00${Math.abs(duration.minutes())}`).slice(-2);
+        response += (`${hours}h:${minutes}m`); 
+      }
     }
-    const minutes = (`00${Math.abs(duration.minutes())}`).slice(-2);
-    const seconds = (`00${Math.abs(duration.seconds())}`).slice(-2);
-    response += (`${minutes}:${seconds}`);
     return response;
   }
 
