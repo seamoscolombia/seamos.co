@@ -2,7 +2,7 @@ url = Rails.env.production? ? '' : 'http://localhost:3000'
 json.poll do
     json.id @poll.id
     json.title @poll.title
-    json.image "#{url}#{@poll.poll_image.url}"
+    json.image url.to_s + @poll.poll_image.url
     json.description @poll.description
     json.objective @poll.objective
     json.remaining @remaining_time_in_seconds

@@ -4,7 +4,7 @@ import React from 'react';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
 
-const moreInfoStyle = { maxHeight: 150, overflowY: 'hidden' };
+const moreInfoStyle = { height: 150, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
 
 function voteButton(pollType, voteTypes, voteAction) {
@@ -49,6 +49,13 @@ function votedButton(pollType, voteTypes, vote_count) {
   }
 }
 
+function getPicture(picture) {
+  // if (picture) {
+  //   return picture
+  // } 
+  return 'https://developers.google.com/experts/img/user/user-default.png'
+}
+
 const PollDetail = ({ 
   id, title, image, remaining,
   description, objective, vote_count,
@@ -57,35 +64,56 @@ const PollDetail = ({
   voteAction
 }) => (
   <section id='poll-detail'>
-    <header>{ title }</header> 
-    <section id='politician'>
-      <img src={politician.picture} role='presentation' alt='politician' />
-      <div className='author'>por {politician.full_name}</div>
-    </section> 
-    <section id='poll-section'>
-      <div className='poll-section-containers' >
-        <img id='poll-thumbnail' src={image} role='presentation' alt='poll thumbnail' />
-        <br />
-         <small>Objetivo: {objective}</small>
-      </div>
-      <div className='poll-section-containers' >
-        <p style={moreInfo ? lessInfoStyle : moreInfoStyle}>
-          { description }  
+    <div className='conatiner'>
+      <header className='row'>
+        <p className='col-sm-12'>
+          { title }
         </p>
-        <br />
-        <button onClick={setMoreInfo} id='plus-info'>
-          { moreInfo ? '-INFO' : '+INFO' }
-        </button>
-        <br /><br />
-        { user_already_voted ?
-          votedButton(poll_type, vote_types, vote_count) :
-          voteButton(poll_type, vote_types, voteAction) 
-        }
-      </div>
-    </section> 
+      </header> 
+      <section id='politician' className='row'>
+          <img 
+            src={getPicture(politician.picture)}
+            role='presentation'
+            alt='politician' 
+          />
+          <div id='author'>por {politician.full_name}</div>
+      </section>
+      <section id='poll' className='row'>
+        <div className="col-sm-6">
+          <img 
+            id='poll-thumbnail'
+            className='row'
+            src={image}
+            role='presentation'
+            alt='poll thumbnail' 
+          />
+          <br /><br />
+          <p id='objective' className='row'>Objetivo: {objective}</p>
+        </div>
+        <div className="col-sm-6">
+          <div className="row">
+            <div className="col-sm-12">
+               <p style={moreInfo ? lessInfoStyle : moreInfoStyle}>
+                { description }  
+              </p>
+            </div>
+            <div className="col-sm-12">
+              <button onClick={setMoreInfo} id='plus-info'>
+                { moreInfo ? '-INFO' : '+INFO' }
+              </button>
+            </div>
+            <div className="col-sm-12">
+               { user_already_voted ? //eslint-disable-line
+                  votedButton(poll_type, vote_types, vote_count) :
+                  voteButton(poll_type, vote_types, voteAction) 
+                }
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>      
   </section>
 );
-
 PollDetail.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
