@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import poll from './pollDetailReducer';
 import polls from './pollsReducer';
 import user from './userReducer';
+import tag from './tagReducer';
 import session from './sessionReducer';
 import tags from './tagsReducer';
 import VotedPollReducer from './votedPollReducer';
@@ -13,6 +14,7 @@ export default combineReducers({
   polls,
   user,
   session,
+  tag,
   tags,
   votedPolls: VotedPollsReducer,
 });

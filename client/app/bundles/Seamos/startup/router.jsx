@@ -12,10 +12,10 @@ import { isAuthenticated } from '../utils';
 
 import Home from '../containers/homeContainer';
 import Navbar from '../containers/navbarContainer';
-import PollsByTag from '../components/pollsByTag';
-import PollDetail from '../containers/pollDetailContainer'; 
 import Profile from '../containers/profileContainer'; 
 import Component404 from '../components/component404'; 
+import PollsByTag from '../containers/pollsByTagContainer';
+import PollDetail from '../containers/pollDetailContainer';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route 

@@ -1,0 +1,44 @@
+#polls-component
+  $break-medium: 720px
+  .background-container
+    background-size: cover
+    padding-top: 40px
+    padding-bottom: 20px
+    height: 350px
+    width: 100%
+    align-items: center
+    background-position: center center
+    display: inline-flex
+    @media screen and (max-width: $break-medium)
+      font-size: 250px
+    .icon-name-wrapper
+      margin: auto
+      display: flex
+      align-items: center
+      .tag-icon-container
+        width: 100px
+        .tag-icon
+          width: 100px
+          height: 100px
+      .tag-name
+        h1
+          color: white
+          font-size: 60px
+          font-family: 'RobotoCondensed'
+          text-transform: uppercase
+          font-weight: bold
+          letter-spacing: 4px
+          margin: 0
+          @media screen and (max-width: $break-medium)
+            font-size: 30px
+  .polls-box
+    margin-top: 50px
+    width: 100%
+    display: inline-flex
+    flex-wrap: wrap
+    justify-content: center
+    align-items: center
+    overflow: hidden
+    text-align: center
+    @media screen and (max-width: $break-medium)
+      padding: 0 20px 0 20px
