@@ -227,7 +227,12 @@ class PollsController < ApplicationController
 
   def validate_poll_closed?
     poll = Poll.find_by(id: params[:id])
-    redirect_to polls_path unless poll
+    unless poll
+      respond_to do |format|
+        format.html { redirect_to polls_path }
+        format.json { render json: { errors: '404' }, status: :not_found }
+      end
+    end
   end
 
   def validate_closing_date
