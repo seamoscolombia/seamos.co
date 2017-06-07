@@ -2,63 +2,58 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PollDetail from '../components/pollDetail';
-import { getPoll } from '../actions';
+import { getPoll, votePoll } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
-    const { poll } = state;
-    return { poll };
+    const { poll, session } = state;
+    return { poll, session };
 };
 
-const mapDispatchToProps = { getPoll };
+const mapDispatchToProps = { getPoll, votePoll };
 
 class PollsDetailContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = { moreInfo: false, remainingTime: '', seconds: 0 };
+        this.state = { moreInfo: false, timer: 0 };
         this.setMoreInfo = this.setMoreInfo.bind(this);
+        this.voteAction = this.voteAction.bind(this);
     }
 
     componentWillMount() {
-        this.props.getPoll(this.props.id);
+        this.props.getPoll({ 
+            pollId: this.props.match.params.pollId,
+            errCallback: () => this.props.history.push('/404')
+        });
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.remaining !== 0) { return true; }
-        return false;
-    }
-    componentDidUpdate(prevProps, prevState) {
-        setInterval(this.countdown(), 1000);
-    }
-
-    setMoreInfo() { this.setState({ moreInfo: true }); }
-
-    countdown() {
-        const seconds = this.state.seconds - 1;
-        if (seconds !== 0) {
-            this.setState({
-                remainingTime: this.secondsToTime(seconds),
-                seconds,
-            });
-        }
-    }
-    secondsToTime(secs) {
-        const days = secs / 86400;
-        if (days < 1) {
-            return `${Math.floor(days)}`;
+    setMoreInfo() { this.setState({ moreInfo: !this.state.moreInfo }); }
+    voteAction(id) { 
+        const { poll, session, votePoll } = this.props;
+        if (session.authenticityToken) {
+            votePoll({
+                voteTypeId: id,
+                authenticityToken: session.authenticityToken,
+                poll
+            }); 
+        } else {
+            alert('Por favor inicie sesión antes de votar'); //eslint-disable-line
         }
     }
 
     render() {
-        this.state.countdown();
-        return (
-            <PollDetail
-                {...this.props}
-                setMoreInfo={this.setMoreInfo}
-                moreInfo={this.state.moreInfo}
-                remainingTime={this.state.remainingTime}
-            />
-        );
+        const { poll } = this.props;
+        if (poll.id) {
+            return (
+                <PollDetail
+                    {...this.props.poll}
+                    setMoreInfo={this.setMoreInfo}
+                    moreInfo={this.state.moreInfo}
+                    voteAction={id => this.voteAction(id)}
+                />
+            );
+        }
+        return null;
     }
 }
 // Don't forget to actually use connect!

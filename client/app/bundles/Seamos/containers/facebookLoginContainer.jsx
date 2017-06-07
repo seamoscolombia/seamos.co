@@ -13,16 +13,22 @@ class FacebookLoginContainer extends Component {
     this.responseFacebook = this.responseFacebook.bind(this);
   }
 
-  responseFacebook(fbUser) { this.props.validateUserSession(fbUser); }
+  responseFacebook(fbUser) { 
+    if (fbUser.status !== 'unknown') {
+      this.props.validateUserSession(fbUser); 
+    }
+  }
 
   render() {
     return (
       <FacebookLogin
+        textButton={this.props.fbText || 'Login'}
         appId="1790047761280618"
         autoLoad={false}
-        fields="id,first_name,last_name,email,picture"
-        callback={this.responseFacebook}
-        cssClass="my-facebook-button-class"
+        scope='user_location'
+        fields="id,location,first_name,last_name,email,picture.width(100)"
+        callback={(fbUser) => this.responseFacebook(fbUser)}
+        cssClass={this.props.fbclassName || 'my-facebook-button-class'}
       />
     );
   }
