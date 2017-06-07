@@ -10,7 +10,7 @@ class ProfileButtonContainer extends Component {
     render() {
         return (<ProfileButton 
             action={this.goToProfile.bind(this)}
-            className={'btn-profile'}
+            className={'nav-fb'}
             name={'Perfíl'}
         />);
     }

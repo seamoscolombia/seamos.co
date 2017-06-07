@@ -39,7 +39,7 @@ const Navbar = ({ session, user }) => (
             {session.authenticityToken && Object.keys(user).length !== 0 ?
               <li className='dropdown'>
                 <button 
-                  className='dropdown-toggle'
+                  className='dropdown-toggle nav-fb'
                   data-toggle='dropdown'
                   role='button'
                   aria-haspopup='true'
