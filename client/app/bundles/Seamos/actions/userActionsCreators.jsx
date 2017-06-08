@@ -27,17 +27,19 @@ export const createUser = (fbUser, authenticityToken) => dispatch => {
   });
 };
 
-export const getUser = (fbUser) => (dispatch) => {
+export const getUser = (fbUser) => (dispatch) => (
   axios.get(`${URL}/profile.json`)
     .then(response => {
-      response.data.user.picture = fbUser.picture.data.url;
-      response.data.user.location = fbUser.location ? fbUser.location.name : null;
+      if (fbUser) {
+        response.data.user.picture = fbUser.picture.data.url;
+        response.data.user.location = fbUser.location ? fbUser.location.name : null;
+      }
       dispatch(setUser(response.data.user));
     })
     .catch(e => {
       alert('Ah ocurrido un error por favor reporta a nuestro equipo');
-    });
-};
+    })
+);
 
 export const setUser = (user) => ({
   type: SET_USER,
