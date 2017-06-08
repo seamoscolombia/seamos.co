@@ -27,6 +27,10 @@ class PollsDetailContainer extends Component {
         });
     }
 
+    componentWillUnmount() {
+        this.props.poll.id = null;
+    }
+
     setMoreInfo() { this.setState({ moreInfo: !this.state.moreInfo }); }
     voteAction(id) { 
         const { poll, session, votePoll } = this.props;
