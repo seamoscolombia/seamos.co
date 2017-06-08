@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function getDays(remaining) {
   return ((remaining / 3600) / 24);
 }
 const Poll = (props) => {
-  const { title, description, poll_image, vote_count, remaining, tag } = props;
+  const { id, title, description, poll_image, vote_count, remaining, tag } = props;
   let tag_color = 'none';
   if (tag) {  tag_color = tag.tag_color; }
   return (
@@ -28,9 +29,13 @@ const Poll = (props) => {
           <span className='separator'> | </span>
           <span> quedan {getDays(remaining)} días</span>
           <span className='separator'> | </span>
-          <a href='#' className='btn button btn-plus-read' style={{ backgroundColor: tag_color }}>
+          <Link 
+            to={`/poll/${id}`}
+            className='btn button btn-plus-read'
+            style={{ backgroundColor: tag_color }}
+          >
             LEER +
-           </a>
+          </Link>
         </div>
       </div>
     </div>
@@ -38,6 +43,7 @@ const Poll = (props) => {
 };
 
 Poll.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   poll_image: PropTypes.string.isRequired,
