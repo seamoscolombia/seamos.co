@@ -6,10 +6,10 @@ import CountDown from '../components/countdown';
 
 class CountDownContainer extends React.Component {
 
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
+    const initialCounter = props.timerCount;
 
-    const initialCounter = this.props.timerCount;
     // Constants for calculations of the SVG circle
     this.goalTimeMillis = initialCounter * 1000;
     this.degrees = 360 / (initialCounter * 1000);
@@ -61,6 +61,7 @@ class CountDownContainer extends React.Component {
       this.start();
     }
   }
+  componentWillUnmount() { this.reset(); }
   reset() {
     this.timerisReset = true;
     this.timerDuration = 0;
@@ -189,7 +190,8 @@ class CountDownContainer extends React.Component {
     if (this.timerDuration >= this.goalTimeMillis) {
       response = '00:00';
     } else {
-      const days = `${Math.floor((((duration._milliseconds / 1000) / 60) / 60) / 24)}`;
+      const mmS = duration._milliseconds;
+      const days = `${Math.floor((((mmS / 1000) / 60) / 60) / 24)}`;
       if (days !== '0') {
         response += (`${days} dias`);
       } else {
