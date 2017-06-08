@@ -15,7 +15,7 @@ function voteButton(pollType, voteTypes, voteAction) {
         name={voteTypes[0].name}
         onClick={() => { voteAction(voteTypes.id); }}
       />); 
-    case 'voting': //0
+    default:
       return voteTypes.map(voteType => 
         <SingleButton 
           key={`${voteType.name}`}
@@ -23,8 +23,6 @@ function voteButton(pollType, voteTypes, voteAction) {
           onClick={() => { voteAction(voteType.id); }}
         />
       ); 
-    default:
-      return null;
   }
 }
 
@@ -36,7 +34,7 @@ function votedButton(pollType, voteTypes, vote_count) {
           name={voteTypes[0].name}
           total={vote_count}
       />); 
-    case 'voting': //0
+    default:
       return voteTypes.map(voteType => 
         <VotedButton 
           key={`${voteType.name}`} 
@@ -45,8 +43,6 @@ function votedButton(pollType, voteTypes, vote_count) {
           total={vote_count}
         />
       ); 
-    default:
-      return null;
   }
 }
 
@@ -54,7 +50,7 @@ function getPicture(picture) {
   // if (picture) {
   //   return picture
   // } 
-  return 'https://developers.google.com/experts/img/user/user-default.png'
+  return 'https://developers.google.com/experts/img/user/user-default.png';
 }
 
 const PollDetail = ({ 
@@ -64,7 +60,7 @@ const PollDetail = ({
   poll_type, moreInfo, setMoreInfo, vote_types,
   voteAction
 }) => (
-  <section id='poll-detail'>
+    <section id='poll-detail'>
     <div className='conatiner'>
       <header className='row'>
         <p className='col-sm-12'>
