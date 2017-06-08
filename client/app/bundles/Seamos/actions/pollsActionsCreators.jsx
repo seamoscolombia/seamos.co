@@ -22,8 +22,8 @@ export const getPolls = () => (dispatch) => (
 export const pollsFilteredByTag = (tagId) => (dispatch) => (
   axios.get(`${URL}/tags/${tagId}/polls.json`)
   .then(response => {
-    dispatch(updatePolls(response.data.filtered_by_tag.polls));
     dispatch(updateTag(response.data.filtered_by_tag.tag));
+    dispatch(updatePolls(response.data.filtered_by_tag.polls));
   })
   .catch(error => {
     console.log(error);
