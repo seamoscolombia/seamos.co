@@ -20,14 +20,13 @@ const Profile = (props) => {
       </header>
       <br />
       <div id='profile-container' className='row' >
-        <div className='col-sm-1' />
-        <section id='my-subjects' className='col-sm-5'>
+        <section id='my-subjects' className='col-sm-push-1 col-sm-5'>
           <div className='title'>
             <span>MIS TEMAS</span>
           </div>
           <Tags tags={tags} />
         </section>
-        <section id='my-participations' className='col-sm-6'>
+        <section id='my-participations' className='col-sm-push-1 col-sm-6'>
           <div className='title'>
             <span>PARTICIPACIONES</span>
           </div>
