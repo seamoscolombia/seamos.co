@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def show
     if current_user
       @user = current_user
-      @participations = Poll.get_user_participations(current_user)
+      @participations = Poll.includes(:tags).get_user_participations(current_user)
     else
       render :json => { errors: t(".not_logged_in") }, status: 401
     end
