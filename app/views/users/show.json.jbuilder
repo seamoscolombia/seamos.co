@@ -16,7 +16,14 @@ json.user do
         json.array! @participations do |poll|
           json.id poll.id
           json.title poll.title
+          json.description poll.description
+          json.type poll.poll_type
+          json.poll_image poll.poll_image.url
+          json.vote_count poll.votes.size
           json.remaining poll.remaining_time_in_seconds
+          json.tag do
+            json.tag_color poll.tags.first.tag_color
+          end
         end
     end
   end
