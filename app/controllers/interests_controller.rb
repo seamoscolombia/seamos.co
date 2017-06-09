@@ -1,5 +1,4 @@
 class InterestsController < ApplicationController
-  before_action :set_interest, only: [:association]
 
   def association
     @interest = Interest.where('user_id=? AND tag_id=?',params[:user_id], params[:interest][:tag_id])

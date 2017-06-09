@@ -22,7 +22,7 @@ class ProfileContainer extends Component {
         
     }
     render() {
-        if (Object.keys(this.props.user)[0] !== 0) {
+        if (Object.keys(this.props.user) !== 0) {
             return <Profile {...this.props} />;
         }
         return null;

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get 'already_voted', on: :member
     get 'validate', on: :member
     patch 'update_valid_user', on: :member
-    post '/users/:user_id/interests', to: 'interests#association', format: 'json'
+    post 'interests', to: 'interests#association', format: 'json'
     resources :tags, only: :index, to: 'tags#user_interests', format: 'json'
   end
 

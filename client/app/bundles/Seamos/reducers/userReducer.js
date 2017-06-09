@@ -18,8 +18,8 @@ export default (state = INITIAL_STATE, action) => {
       return user;
     }
     case ADD_TAGS_ON_USER: {
-      const newState = state.tags.push(action.tag);
-      const user = Object.assign({}, newState);
+      state.tags.push(action.tag);
+      const user = Object.assign({}, state);
       localStorage.setItem('user', JSON.stringify(user)); //eslint-disable-line
       return user;
     }
