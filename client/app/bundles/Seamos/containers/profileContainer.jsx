@@ -19,9 +19,7 @@ class ProfileContainer extends Component {
     }
         
     render() {
-        // debugger
         if (Object.keys(this.props.user)[0] !== 0) {
-            
             return <Profile {...this.props} />;
         }
         return null;

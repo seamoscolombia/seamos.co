@@ -18,12 +18,12 @@ class ProfileContainer extends Component {
         this.props.getInterests();
     }
 
-    selectInterest(tagsProps) {
+    selectInterest(tag) {
         const { session, user, userInterests } = this.props;
         userInterests({ 
             authenticity_token: session.authenticityToken,
             user_id: user.id,
-            tag_id: tagsProps.id
+            tag
         });
     }
 
