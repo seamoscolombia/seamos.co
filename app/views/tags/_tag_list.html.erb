@@ -1,0 +1,37 @@
+<div class="tag-list">
+    <div class="tags-container">
+        <%if @location_from == "new_tags"%>
+          <% tags.reverse_each do |tag|%>
+            <div class="content">
+                <img src="<%= tag.tag_image.url %>">
+                <img class="tag-icon" src="<%= tag.tag_icon.url %>">
+                <div>
+                    <div class="name">
+                        <%=tag.name%>
+                    </div>
+                    <div class="options">
+                        <span class="delete">
+                            <%= link_to admin_path(tag.id), title: "Eliminar", method: :delete, data: {confirm: t(".confirmation")} do %>
+                            <i class="glyphicon glyphicon-remove-circle"></i>
+                            <% end %>
+                        </span>
+                        <span>
+                            <%= link_to admin_tag_path(tag.id), title: "Editar" do %>
+                            <i class="edit glyphicon glyphicon-edit"></i>
+                            <% end %>
+                        </span>
+                    </div>
+                    <div class="color-separator" style="background-color: <%=tag.tag_color%>">
+                      <%= tag.tag_color %>
+                    </div>
+                </div>
+            </div>
+          <%end%>
+        <%end%>
+    </div>
+    <%if @location_from == "new_poll" || @location_from.blank? %>
+      <% tags.reverse_each do |tag|%>
+        <span class="label label-default tag"><%= tag.name %></span>
+      <%end%>
+    <%end%>
+</div>

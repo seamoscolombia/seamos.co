@@ -20,7 +20,41 @@
     animation: highlight-fade 5s ;
   }
 }
-#has_image {
+.field.description {
+  position: relative;
+  .char-left {
+    position: absolute;
+    bottom: 3px;
+    right: 5px;
+  }
+}
+.has_media {
   color: #337ab7;
   font-size: 0.85em;
+}
+
+.tags-picker {
+  margin-top: 20px;
+  .tag-list {
+    text-align: center;
+    margin: 10px 0px 15px 0px;
+    .tag{
+      background: rgba(80, 133, 255, 1);
+      font-size: 14px;
+      line-height: 2em;
+      cursor: pointer;
+    }
+    .added_tag{
+      background: green;
+    }
+  }
+}
+
+.list-inline{
+  .tag{
+    background: rgba(80, 133, 255, 1);
+    font-size: 10px;
+    line-height: 1.2em;
+    cursor: default;
+  }
 }

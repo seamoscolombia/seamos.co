@@ -131,6 +131,7 @@ es:
       not_an_integer: debe ser un entero
       odd: debe ser un número impar
       record_invalid: ! 'La validación falló: %{errors}'
+      extension_white_list_error: 'Formato de documento no admitido'
       taken: ya ha sido tomado
       too_long:
         one: es demasiado largo (máximo 1 caracter)
@@ -217,11 +218,15 @@ es:
     attributes:
       poll:
         title: Título
+        user: Usuario
         closing_date: Fecha de cierre
+        at_least_one_tag: Ningún tema seleccionado,
         description: Descripción
         totals: Totales
-        private: Secreto
-      usuario:
+        poll_document: Documento de la Propuesta
+      tag:
+        tag_image: Imagen del Tema
+      user:
         fecha_expedicion: Fecha de expedición
         nombre: 'Nombre'
         numero_documento: Número del documento
@@ -231,7 +236,11 @@ es:
         question: Pregunta
     errors:
       models:
-        usuario:
+        poll:
+          attributes:
+            user:
+              required: Requerido
+        user:
           attributes:
             tipo_de_documento:
              required: Requerida
@@ -243,6 +252,12 @@ es:
           attributes:
             debate:
               required: descripción requerido en preguntas de Debate
+        external_link:
+          attributes:
+            user:
+              required: es requerido
+            poll:
+              required: Propuesta es requerido
   intro:
     inicio:
       sign_in_invitation: "¡Te invitamos, Regístrate!"
@@ -253,7 +268,7 @@ es:
     application:
       polls: Propuestas
       logout: Salir
-      usuarios: Lista de Usuarios
+      users: Lista de Usuarios
 
   dashboard:
     index:
@@ -283,16 +298,21 @@ es:
       debate_results: "Resultados de: %{debate_title}"
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
+    at_least_one_tag: La propuesta debe estar asociada por lo menos a un tema.
     edit: Editar
+    filtered_by_politician:
+      not_a_politician: Usuario no encontrado
     form:
       add: Agregar
       csv_field: Archivo CSV
+      tags_picker: Temas
+      document_field: Documento de la propuesta
       has_image: La propuesta ya tiene la imagen %{filename}. Si desea cambiar, por favor escoja otra. En caso contrario dejarla vacia.
+      has_document: La propuesta ya tiene el documento %{filename}. Si desea cambiarlo, por favor escoja otro. En caso contrario deje el campo vacío.
       list_of_options: Lista de opciones
       new_option: Ingrese una opción
       poll_image: Imagen de la propuesta
       public: Pública
-      private: Privada
       secret_public: Indique si la propuesta tendrá votación anónima o pública.
     index:
       "false": Pública
@@ -311,6 +331,10 @@ es:
       delete_poll: Borrar Propuesta
       edit_poll: Editar Propuesta
       "false": Votación Pública.
+      activate: Activar
+      deactivate: Desactivar
+      active_poll: Propuesta Activa
+      inactive_poll: Propuesta Inactiva
       fb_publish:
         no_button: No, gracias
         "share_message": Has invitado a tus amigos a participar
@@ -328,11 +352,11 @@ es:
     voted:
       no_voted_polls: Aún no ha votado por alguna propuesta.
 
-  sesion_usuarios:
+  sesion_users:
     new:
       log_in: Iniciar sesión
 
-  usuarios:
+  users:
     form:
       password: Contraseña
       password_confirmation: Confirmación de contraseña
@@ -353,6 +377,8 @@ es:
       destroy_user: Eliminar Usuario
     new:
       registrar: Registro de
+    show:
+      not_logged_in: El usuario debe iniciar sesión para ver su informacion de perfil
 
   votes:
     poll_does_not_exist: La propuesta no existe.
@@ -364,6 +390,7 @@ es:
   accion_no_realizada: "No se pudo realizar la acción."
   actual_password: "Contraseña actual"
   actualizacion_exitosa: "Actualización exitosa."
+  tags_menu: Temas
   admin: Menú administración
   admin_invalid: Comunicate con la administración de seamos
   cedula_invalida: Lo sentimos esta cédula no es válida
@@ -374,11 +401,25 @@ es:
   fecha_invalida: Fecha Inválida
   processing: Procesando...
   regresar: Regresar
-  rol_usuario:
+  rol_user:
     - Ciudadano
     - Político
     - Administrador
   success: "Acción exitosa."
+  tags:
+    name: El nombre del tema
+    edit: Editar
+    tag_list:
+      confirmation: ¿Esta seguro de borrar la tema?
+    new:
+      available_tags: Temas disponibles
+    form:
+      tag_image: Imagen del tema
+      tag_icon: Icono del tema
+      tag_color: Color del tema
+      tag_name: Nombre del Tema
+      has_image: El tema ya tiene la imagen %{filename}. Si desea cambiarla, por favor escoja otra. En caso contrario deje el campo vacío.
+  :tags_creados: "%{created} creadas con éxito"
   tipo_de_documento:
     cedula: Cédula
     cedula_extranjeria: Cédula de extranjería

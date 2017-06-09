@@ -1,0 +1,27 @@
+<%= link_to admin_validate_users_path, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
+  <i class="material-icons">navigate_before</i>
+<% end %>
+
+<h1><%= t('.validate_user') %> <%= User.model_name.human %></h1>
+
+<table class="table">
+  <tr>
+    <th> <%= User.human_attribute_name("names") %> </th>
+    <th> <%= User.human_attribute_name("numero_documento") %> </th>
+    <th> ID de Facebook </th>
+    <th> <%= User.human_attribute_name("email") %> </th>
+    <th colspan="2"></th>
+  </tr>
+  <tr>
+    <td>
+      <%= @user.names %>
+      <%= @user.first_surname %>
+      <%= @user.second_surname %>
+    </td>
+    <td> <%= @user.uid %> </td>
+    <td></td>
+    <td> <%= @user.email %> </td>
+    <td></td>
+    <td> <%= link_to t(".destroy_user"), user_path(@user), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")} %> </td>
+  </tr>
+</table>

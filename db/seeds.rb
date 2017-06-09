@@ -1,18 +1,8 @@
-
-TipoDeDocumento.create!(codigo: 'cedula')
-TipoDeDocumento.create!(codigo: 'cedula_extranjeria')
-
-Role.create!(code: 'ciudadano')
-Role.create!(code: 'politico')
-Role.create!(code: 'administrador')
-
-
-user = Usuario.create!(primer_apellido: "Molina", segundo_apellido: "Orbe", nombres: "Jaime Santiago", tipo_de_documento_id: 1, numero_documento: "1113645710", fecha_expedicion: "2011-05-28", role_id: 3, uid: "10152902624895489", valido: false, document_photo_id: 24)
+user = User.create!(email: 'jasmo@gmail.com', password: "123456", password_confirmation: "123456", first_surname: "Molina", second_surname: "Orbe", names: "Jaime Santiago", role_type: 2, uid: "10152902624895489", approved: false)
 
 # poll = Poll.create!(
 #     title: Faker::Lorem.sentence,
 #     description: Faker::Lorem.paragraph,
-#     private: false,
 #     closing_date: 1.day.from_now,
 #     usuario_id: user.id
 # )
@@ -22,7 +12,7 @@ user = Usuario.create!(primer_apellido: "Molina", segundo_apellido: "Orbe", nomb
 #   cc = coldocuemts[index].doc_num
 #   puts "cc: #{cc}"
 #   u = Usuario.create!(
-#       primer_apellido: Faker::Lorem.word,
+#       first_surname: Faker::Lorem.word,
 #       segundo_apellido: Faker::Lorem.word,
 #       nombres: Faker::Lorem.word,
 #       tipo_de_documento_id: 1,
@@ -30,7 +20,7 @@ user = Usuario.create!(primer_apellido: "Molina", segundo_apellido: "Orbe", nomb
 #       fecha_expedicion: Faker::Time.between(3.years.ago, 1.year.ago),
 #       role_id: 1,
 #       uid: Faker::Number.number(10).to_s ,
-#       valido: false
+#       approved: false
 #   )
 #
 #

@@ -1,0 +1,14 @@
+@import './variables';
+#component-404 {
+  height: 100vh;
+  background: url(asset_path('ERROR404.png'));
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  @media screen and (max-width: $break-medium) {
+    background: url(asset_path('ERROR404_MV.png'));
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+}

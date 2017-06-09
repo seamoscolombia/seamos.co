@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+<%= link_to admin_dashboard_index_path, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
+  <i class="material-icons">navigate_before</i>
+<% end %>
+<h1>
+	Usuarios
+	<small class='select-users'>
+    <%= form_for(:users_filter, url: users_path, method: :get) do |f|  %>
+      <select class="form-control" name="users_filter_select" id="users_filter">
+        <option value="0"><%= t('.filter_options')[0]%></option>
+        <option value="1" <%= 'selected' if @users_filter == "1" %>><%= t('.filter_options')[1]%></option>
+      </select>
+    <% end %>
+	</small>
+</h1>
+
+
+<div class="container" id="users-list" >
+  <h2> <%= paginate @users %> </h2>
+	<div class="row">
+    <div class="span12">
+  		<ul class="thumbnails" style="list-style-type: none;">
+          <% @users.each do |user| %>
+              <li class="span5 clearfix">
+                <div class="thumbnail clearfix">
+									<a class="profile pull-left span2 clearfix" href="#thumb">
+										<span>
+										</span>
+									</a>
+                  <div class="caption" class="pull-left">
+                    <div class="pull-right">
+                      <div>
+                        <% if admin_validator(user) %>
+                          <%= link_to user.approved ? t(".validated_user") : t(".validate_user") ,validate_user_path(user), class:"btn btn-primary icon #{'disabled' if user.approved}"%>
+                        <% end %>
+                      </div>
+                      <br>
+                      <div>
+                        <%= link_to t(".details") , edit_user_path(user), class:"btn btn-info icon" %>
+                      </div>
+                      <br>
+                      <div>
+                        <%= link_to t(".destroy_user"), user_path(user), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")} %>
+                      </div>
+                    </div>
+                    <h4>
+                    <a href="#" >
+                      <%= user.names %>
+                      <%= user.first_surname %>
+                      <%= user.second_surname %>
+                    </a>
+                    </h4>
+                    <p><small><b><%= User.human_attribute_name("email") %>: </b><%= user.email %></small></p>
+                    <p><small><b>ID de Facebook: </b><%= user.uid %></small></p>
+                  </div>
+                </div>
+              </li>
+          <% end %>
+        </ul>
+    </div>
+	</div>
+</div>
+
+<script>
+function filterUser (event) {
+   $(this).parent().trigger('submit');
+};
+</script>
+
+<!-- # link_to 'Validar', edit_user_path(user) -->

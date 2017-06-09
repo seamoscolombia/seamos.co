@@ -1,16 +1,11 @@
-
-$( document ).on('turbolinks:load', function() {
-  function csvField() {
-    if (pollPrivateTrue.checked) {
-      $('#csv-field').show();
-    } else {
-      $('#csv-field').hide();
+$(document).on('turbolinks:load', function() {
+    if (window.location.pathname === "/polls/new") {
+        function charLeft() {
+            counterLabel.text(500 - (this.value.length));
+        }
+        var textArea = $('#poll-description');
+        var counterLabel = $('#counter-label');
+        textArea.on('keydown', charLeft);
+        counterLabel.text(500 - (textArea.val().length));
     }
-  }
-  var pollPrivateTrue = document.getElementById('poll_private_true');
-  var pollPrivateFalse = document.getElementById('poll_private_false');
-  if (pollPrivateTrue && pollPrivateFalse) {
-    pollPrivateTrue.addEventListener('click', csvField, false);
-    pollPrivateFalse.addEventListener('click', csvField, false);
-  }
 });

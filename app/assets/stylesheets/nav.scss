@@ -19,3 +19,80 @@
     }
   }
 }
+
+#seamos-navbar {
+  margin-bottom: 5px;
+}
+
+#navbar-client{
+  .nav-fb {
+    padding: 15px;
+    font-family: 'RobotoCondensed';
+    font-size: 13px;
+    color: whitesmoke;
+    background-color: transparent;
+    border: 0px;
+     &:hover{
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    &:focus {
+      background-color: rgba(255,255,255, 0.6);
+    }
+  }
+  .navbar-nav > li > .dropdown-menu{
+      background-color: rgba(0, 0, 0, 0.6)
+  }
+  background-color: rgba(0, 0, 0, 0.2);
+  a {
+    font-family: 'RobotoCondensed';
+    font-size: 13px;
+    color: whitesmoke;
+    &:hover{
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    &:focus {
+      background-color: rgba(255,255,255, 0.6);
+    }
+  }
+  #brand-logo {
+    background: url(asset_path('LogoSeamos_blanco.png'));
+    min-height: 30px;
+    min-width: 90px;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .navbar-toggle .icon-bar { 
+    background-color: whitesmoke;
+  }
+
+  @media screen and (max-width: 768px) {
+    .nav-fb {
+      text-align: left;
+      width: 100%;
+    }
+    .side-collapse {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    .side-collapse-container {
+        width: 100%;
+        position: relative;
+        right: 0;
+        transition: right .4s;
+    }
+    .side-collapse-container.out {
+        right: 20px;
+    }
+    .side-collapse {
+        top: 50px;
+        bottom: 0;
+        right: 0;
+        width: 80%;
+        position: fixed;
+        overflow: hidden;
+        transition: width .4s;
+    }
+    .side-collapse.in {
+        width: 0;
+    }
+  }
+}
