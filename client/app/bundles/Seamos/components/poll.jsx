@@ -7,14 +7,14 @@ function getDays(remaining) {
 }
 const Poll = (props) => {
   const { id, title, description, poll_image, vote_count, remaining, tag } = props;
-  let tag_color = 'none';
-  if (tag) {  tag_color = tag.tag_color; }
+  let color = 'none';
+  if (tag) { color = tag.color; }
   return (
     <div id='poll-component'>
       <div className='poll-image-container'>
         <img alt="poll" src={poll_image} />
       </div>
-      <div className='color-separator' style={{ backgroundColor: tag_color }} />
+      <div className='color-separator' style={{ backgroundColor: color }} />
       <div className='poll-infos-container'>
         <div className='poll-info'>
           <div className='poll-title'>
@@ -32,7 +32,7 @@ const Poll = (props) => {
           <Link 
             to={`/poll/${id}`}
             className='btn button btn-plus-read'
-            style={{ backgroundColor: tag_color }}
+            style={{ backgroundColor: color }}
           >
             LEER +
           </Link>

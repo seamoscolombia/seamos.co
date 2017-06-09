@@ -85,17 +85,17 @@ export const validateUserSession = (fbUser) => (dispatch) => (
 
 export const userInterests = ({ authenticity_token, user_id, tag }) => (dispatch) => (
   axios.post(`${URL}/users/${user_id}/interests`, {
-    authenticity_token, tag_id: tag.tag_id
+    authenticity_token, tag_id: tag.id
   })
     .then((response) => {
       switch (response.status) {
         case 201:
           dispatch(addTagsOnUser(tag));
-          alert(`Tema ${tag.tag_name} agregado a tus intereses`);
+          alert(`Tema ${tag.name} agregado a tus intereses`);
           break;
         case 204:
           dispatch(deleteTagsOnUser(tag));
-          alert(`Tema ${tag.tag_name} desligado de tus intereses`);
+          alert(`Tema ${tag.name} desligado de tus intereses`);
           break;
         default:
           break;

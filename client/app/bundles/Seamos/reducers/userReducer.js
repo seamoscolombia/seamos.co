@@ -24,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
       return user;
     }
     case DELETE_TAGS_ON_USER: {
-      const tagIndex = state.tags.findIndex(tag => tag.tag_id === action.tag.tag_id);
+      const tagIndex = state.tags.findIndex(tag => tag.id === action.tag.id);
       state.tags.splice(tagIndex, 1);
       const user = Object.assign({}, state);
       localStorage.setItem('user', JSON.stringify(user)); //eslint-disable-line

@@ -7,7 +7,7 @@ function hasAction(action, props) {
   }
 }
 const Tag = (props) => {
-  const { id, name, tag_image, tag_icon, tag_color, action, selectedTagClass } = props;
+  const { id, name, image, icon, color, action, selectedTagClass } = props;
   return (
     <div 
       id='tag-component' 
@@ -15,10 +15,10 @@ const Tag = (props) => {
       onClick={() => hasAction(action, props)} 
     >
       <div className="tag-image">
-        <img alt={name} src={tag_image} />
+        <img alt={name} src={image} />
       </div>
       <div className="tag-icon">
-        <img alt={name} src={tag_icon} />
+        <img alt={name} src={icon} />
       </div>
       <div className="tag-name">{name}</div>
     </div>
@@ -29,9 +29,9 @@ Tag.propTypes = {
   id: PropTypes.number.isRequired,
   goTo: PropTypes.func,
   name: PropTypes.string.isRequired,
-  tag_image: PropTypes.string.isRequired,
-  tag_icon: PropTypes.string.isRequired,
-  tag_color: PropTypes.string.isRequired
+  image: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired
 };
 
 export default Tag;
