@@ -7,9 +7,13 @@ function hasAction(action, props) {
   }
 }
 const Tag = (props) => {
-  const { id, name, tag_image, tag_icon, tag_color, action } = props;
+  const { id, name, tag_image, tag_icon, tag_color, action, selectedTagClass } = props;
   return (
-    <div id='tag-component' onClick={() => hasAction(action, props)} >
+    <div 
+      id='tag-component' 
+      className={`${selectedTagClass}`} 
+      onClick={() => hasAction(action, props)} 
+    >
       <div className="tag-image">
         <img alt={name} src={tag_image} />
       </div>

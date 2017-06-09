@@ -2,11 +2,27 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Tags from '../tags';
 import Polls from '../polls';
+import SelectInterests from '../../containers/selectInterestsContainer';
+
+function myInterests(tags) {
+  return (
+     <section id='my-subjects' className='col-sm-6'>
+      <div className='title'>
+        <span>MIS TEMAS</span>
+      </ div>
+      <Tags tags={tags} />
+    </section>
+  );
+}
+
+function selectInterests() {
+  return <SelectInterests />;
+}
 
 const Profile = (props) => {
   const {
    picture, location, full_name,
-   participations, tags
+   participations, tags, interests
   } = props.user;
   return (
     <div id='profile' className='container'>
@@ -20,12 +36,9 @@ const Profile = (props) => {
       </header>
       <br />
       <div id='profile-container' className='row' >
-        <section id='my-subjects' className='col-sm-6'>
-          <div className='title'>
-            <span>MIS TEMAS</span>
-          </ div>
-          <Tags tags={tags} />
-        </section>
+        { interests ? 
+          selectInterests() : myInterests(tags)
+        }
         <section id='my-participations' className='col-sm-6'>
           <div className='title'>
             <span>PARTICIPACIONES</span>
@@ -38,6 +51,7 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
+   interests: PropTypes.bool.isRequired,
    picture: PropTypes.string.isRequired,
    location: PropTypes.string.isRequired,
    full_name: PropTypes.string.isRequired,

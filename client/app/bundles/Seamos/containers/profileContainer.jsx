@@ -6,8 +6,8 @@ import { getUser } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
-    const { user } = state;
-    return { user };
+    const { user, interests } = state;
+    return { user, interests };
 };
 
 const mapDispatchToProps = { getUser };
