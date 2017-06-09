@@ -3,7 +3,7 @@ import React from 'react';
 import shouldUpdate from 'recompose/shouldUpdate';
 import Tag from './tag';
 
-const SelectInterests = ({ tags, action }) => (
+const SelectInterests = ({ tags, action, returnToMySubjects }) => (
     <section id='select-tags-component'>
       <div className='flex-container tags-box'>
         { tags.map(tag => (
@@ -16,6 +16,7 @@ const SelectInterests = ({ tags, action }) => (
           ))
         }
       </div>
+      <button className='btn' onClick={returnToMySubjects}> regresar </button>
     </section>
 );
 

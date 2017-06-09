@@ -18,6 +18,9 @@ class ProfileContainer extends Component {
         this.props.getUser();
     }
         
+    interestsShow() {
+        
+    }
     render() {
         if (Object.keys(this.props.user)[0] !== 0) {
             return <Profile {...this.props} />;

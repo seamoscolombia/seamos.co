@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SelectInterests from '../components/selectInterests';
-import { getInterests, userInterests } from '../actions';
+import { getInterests, userInterests, updateInterestsShow } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
@@ -10,9 +10,14 @@ const mapStateToProps = (state) => {
     return { session, tags, user };
 };
 
-const mapDispatchToProps = { getInterests, userInterests };
+const mapDispatchToProps = { getInterests, userInterests, updateInterestsShow };
 
-class ProfileContainer extends Component {
+class SelectInterestsContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.selectInterest = this.selectInterest.bind(this);
+        this.returnToMySubjects = this.returnToMySubjects.bind(this);
+    }
 
     componentDidMount() {
         this.props.getInterests();
@@ -27,10 +32,18 @@ class ProfileContainer extends Component {
         });
     }
 
+    returnToMySubjects() {
+        this.props.updateInterestsShow();
+    }
+
     render() {
         const { tags } = this.props;
         if (tags.length !== 0) {
-            return <SelectInterests tags={tags} action={this.selectInterest.bind(this)} />;
+            return (<SelectInterests 
+                tags={tags} 
+                action={this.selectInterest} 
+                returnToMySubjects={this.returnToMySubjects}
+            />);
         }
         return null;
     }
@@ -38,4 +51,4 @@ class ProfileContainer extends Component {
 // Don't forget to actually use connect!
 // Note that we don't export Polls, but the redux "connected" version of it.
 // See https://github.com/reactjs/react-redux/blob/master/docs/api.md#examples
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectInterestsContainer);
