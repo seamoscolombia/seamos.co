@@ -33,7 +33,7 @@ export const createUser = (fbUser, authenticityToken) => dispatch => {
       dispatch(setSession(response.data.user.authenticity_token));
     })
     .catch(e => {
-      alert('Ah ocurrido un error por favor reporta a nuestro equipo');
+      alert('Ha ocurrido un error por favor reporta a nuestro equipo');
     });
 };
 
@@ -47,7 +47,7 @@ export const getUser = (fbUser) => (dispatch) => (
       dispatch(setUser(response.data.user));
     })
     .catch(e => {
-      alert('Ah ocurrido un error por favor reporta a nuestro equipo');
+      alert('Ha ocurrido un error por favor reporta a nuestro equipo');
     })
 );
 
@@ -78,7 +78,7 @@ export const validateUserSession = (fbUser) => (dispatch) => (
         if (!e.response) {
           throw e;
         }
-        alert('Ah ocurrido un error por favor reporta a nuestro equipo');
+        alert('Ha ocurrido un error por favor reporta a nuestro equipo');
       }
     })
 );
@@ -101,6 +101,6 @@ export const userInterests = ({ authenticity_token, user_id, tag }) => (dispatch
     })
     .catch(e => {
       console.error(e);
-      alert('Ah ocurrido un error por favor reporta a nuestro equipo');
+      alert('Ha ocurrido un error por favor reporta a nuestro equipo');
     })
 );

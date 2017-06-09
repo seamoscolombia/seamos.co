@@ -36,7 +36,7 @@ const Profile = (props) => {
       </header>
       <br />
       <div id='profile-container' className='row' >
-        { interests ? 
+        { !interests ? 
           selectInterests() : myInterests(tags)
         }
         <section id='my-participations' className='col-sm-6'>
