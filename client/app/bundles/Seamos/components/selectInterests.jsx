@@ -4,8 +4,12 @@ import shouldUpdate from 'recompose/shouldUpdate';
 import Tag from './tag';
 
 const SelectInterests = ({ tags, action, returnToMySubjects }) => (
-    <section id='select-tags-component'>
-      <div className='flex-container tags-box'>
+    <section id='my-subjects' className='col-sm-push-1 col-sm-5'>
+      <div className='title'>
+        <span>Seleciona tus intereses</span>
+      </div>
+      <section id='tags-component'>
+        <div className='flex-container tags-box'>
         { tags.map(tag => (
             <Tag 
               key={tag.id} 
@@ -15,7 +19,8 @@ const SelectInterests = ({ tags, action, returnToMySubjects }) => (
             />
           ))
         }
-      </div>
+        </div>
+      </section>
       <button className='btn' onClick={returnToMySubjects}> regresar </button>
     </section>
 );
