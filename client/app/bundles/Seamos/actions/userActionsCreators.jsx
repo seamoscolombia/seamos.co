@@ -91,9 +91,11 @@ export const userInterests = ({ authenticity_token, user_id, tag }) => (dispatch
       switch (response.status) {
         case 201:
           dispatch(addTagsOnUser(tag));
+          alert(`Tema ${tag.name} agregado a tus intereses`);
           break;
         case 204:
           dispatch(deleteTagsOnUser(tag));
+          alert(`Tema ${tag.name} desligado de tus intereses`);
           break;
         default:
           break;
