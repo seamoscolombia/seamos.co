@@ -12,7 +12,9 @@ const Poll = (props) => {
   return (
     <div id='poll-component'>
       <div className='poll-image-container'>
+      <Link to={`/poll/${id}`} >
         <img alt="poll" src={poll_image} />
+      </Link>
       </div>
       <div className='color-separator' style={{ backgroundColor: color }} />
       <div className='poll-infos-container'>

@@ -1,10 +1,10 @@
 json.filtered_by_tag do
   if @tag
     json.tag do
-      json.tag_image @tag.tag_image.url
-      json.tag_icon @tag.tag_icon.url
-      json.tag_color @tag.tag_color
-      json.tag_name @tag.name
+      json.image @tag.tag_image.url
+      json.icon @tag.tag_icon.url
+      json.color @tag.tag_color
+      json.name @tag.name
     end
   end
   json.polls do
