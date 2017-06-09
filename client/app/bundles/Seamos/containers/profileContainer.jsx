@@ -2,15 +2,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Profile from '../components/profile';
-import { getUser } from '../actions';
+import { getUser, updateInterestsShow } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
-    const { user } = state;
-    return { user };
+    const { user, interests } = state;
+    return { user, interests };
 };
 
-const mapDispatchToProps = { getUser };
+const mapDispatchToProps = { getUser, updateInterestsShow };
 
 class ProfileContainer extends Component {
 
@@ -18,11 +18,12 @@ class ProfileContainer extends Component {
         this.props.getUser();
     }
         
+    goToEdit() {
+        this.props.updateInterestsShow();
+    }
     render() {
-        // debugger
-        if (Object.keys(this.props.user)[0] !== 0) {
-            
-            return <Profile {...this.props} />;
+        if (Object.keys(this.props.user) !== 0) {
+            return <Profile {...this.props} goToEdit={this.goToEdit.bind(this)} />;
         }
         return null;
     }

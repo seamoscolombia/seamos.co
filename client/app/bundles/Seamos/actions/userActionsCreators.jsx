@@ -2,8 +2,18 @@
 /* eslint-disable window.localStorage */
 
 import axios from 'axios';
-import { SET_USER, RESET_SESSION, URL } from '../constants';
+import { ADD_TAGS_ON_USER, DELETE_TAGS_ON_USER, SET_USER, RESET_SESSION, URL } from '../constants';
 import { setSession } from './sessionActionsCreators';
+
+export const addTagsOnUser = (tag) => ({
+  type: ADD_TAGS_ON_USER,
+  tag,
+});
+
+export const deleteTagsOnUser = (tag) => ({
+  type: DELETE_TAGS_ON_USER,
+  tag,
+});
 
 export const createUser = (fbUser, authenticityToken) => dispatch => {
   const user = {
@@ -16,15 +26,15 @@ export const createUser = (fbUser, authenticityToken) => dispatch => {
     authenticity_token: authenticityToken, //eslint-disable-line
     user
   })
-  .then(response => {
-    response.data.user.picture = fbUser.picture.data.url;
-    response.data.user.location = fbUser.location ? fbUser.location.name : null;
-    dispatch(setUser(response.data.user));
-    dispatch(setSession(response.data.user.authenticity_token));
-  })
-  .catch(e => {
-    alert('Ah ocurrido un error por favor reporta a nuestro equipo');
-  });
+    .then(response => {
+      response.data.user.picture = fbUser.picture.data.url;
+      response.data.user.location = fbUser.location ? fbUser.location.name : null;
+      dispatch(setUser(response.data.user));
+      dispatch(setSession(response.data.user.authenticity_token));
+    })
+    .catch(e => {
+      alert('Ha ocurrido un error por favor reporta a nuestro equipo');
+    });
 };
 
 export const getUser = (fbUser) => (dispatch) => (
@@ -37,9 +47,11 @@ export const getUser = (fbUser) => (dispatch) => (
       dispatch(setUser(response.data.user));
     })
     .catch(e => {
-      alert('Ah ocurrido un error por favor reporta a nuestro equipo');
+      alert('Ha ocurrido un error por favor reporta a nuestro equipo');
     })
 );
+
+
 
 export const setUser = (user) => ({
   type: SET_USER,
@@ -53,20 +65,44 @@ export const validateUserSession = (fbUser) => (dispatch) => (
     uid: fbUser.id,
     fb_token: fbUser.accessToken
   })
-  .then(response => {
-    dispatch(setSession(response.data.authenticity_token));
-    dispatch(getUser(fbUser));
-  })
-  .catch(e => {
-    if (e.response && e.response.status === 422) {
-      dispatch(createUser(fbUser, e.response.data.authenticity_token));
-    } else {
-      console.warn('Error != 422');
-      console.warn(e);
-      if (!e.response) {
-        throw e;
+    .then(response => {
+      dispatch(setSession(response.data.authenticity_token));
+      dispatch(getUser(fbUser));
+    })
+    .catch(e => {
+      if (e.response && e.response.status === 422) {
+        dispatch(createUser(fbUser, e.response.data.authenticity_token));
+      } else {
+        console.warn('Error != 422');
+        console.warn(e);
+        if (!e.response) {
+          throw e;
+        }
+        alert('Ha ocurrido un error por favor reporta a nuestro equipo');
       }
-      alert('Ah ocurrido un error por favor reporta a nuestro equipo');
-    }
+    })
+);
+
+export const userInterests = ({ authenticity_token, user_id, tag }) => (dispatch) => (
+  axios.post(`${URL}/users/${user_id}/interests`, {
+    authenticity_token, tag_id: tag.id
   })
+    .then((response) => {
+      switch (response.status) {
+        case 201:
+          dispatch(addTagsOnUser(tag));
+          alert(`Tema ${tag.name} agregado a tus intereses`);
+          break;
+        case 204:
+          dispatch(deleteTagsOnUser(tag));
+          alert(`Tema ${tag.name} desligado de tus intereses`);
+          break;
+        default:
+          break;
+      }
+    })
+    .catch(e => {
+      console.error(e);
+      alert('Ha ocurrido un error por favor reporta a nuestro equipo');
+    })
 );

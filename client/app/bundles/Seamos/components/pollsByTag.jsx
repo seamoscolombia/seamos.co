@@ -3,16 +3,16 @@ import React from 'react';
 import Polls from './polls';
 
 const PollsByTag = (props) => {
-  const { tag_image, tag_icon, tag_color, tag_name } = props.tag;
+  const { image, icon, color, name } = props.tag;
   return (
     <section id='polls-component'>
-      <div className='background-container' style={{ backgroundImage: `url(${tag_image})` }}>
+      <div className='background-container' style={{ backgroundImage: `url(${image})` }}>
         <div className='icon-name-wrapper'>
           <div className='tag-icon-container'>
-            <img className='tag-icon' alt='tag icon' src={tag_icon} />
+            <img className='tag-icon' alt='tag icon' src={icon} />
           </div>
           <div className='tag-name'>
-            <h1> {tag_name}</h1>
+            <h1> {name}</h1>
           </div>
         </div>
       </div>

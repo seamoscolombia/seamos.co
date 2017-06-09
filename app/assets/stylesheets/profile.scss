@@ -66,6 +66,18 @@
             #poll-component{
               width: 240px;
               margin: 20px 10px 0 10px;
+              .poll-image-container{
+                a{
+                  left: 0;
+                  right: 0;
+                  img{
+                    max-height: 200px;
+                    @media screen and (max-width: $break-medium){
+                      max-height: 150px;
+                    }
+                  }
+                }
+              }
               .poll-infos-container{
                 margin-top: -30px;
                 .poll-info{
