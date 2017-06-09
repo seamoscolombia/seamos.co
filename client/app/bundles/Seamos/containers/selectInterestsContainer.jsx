@@ -20,7 +20,7 @@ class SelectInterestsContainer extends Component {
     }
 
     componentDidMount() {
-        this.props.getInterests();
+        this.props.getInterests(this.props.user.id);
     }
 
     selectInterest(tag) {

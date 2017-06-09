@@ -19,7 +19,7 @@ export const getTags = () => (dispatch) => (
     })
 );
 
-export const getInterests = ({ userId }) => (dispatch) => (
+export const getInterests = (userId) => (dispatch) => (
     axios.get(`${URL}/users/${userId}/tags.json`)
     .then(response => {
       dispatch(updateTags(response.data.interests));
