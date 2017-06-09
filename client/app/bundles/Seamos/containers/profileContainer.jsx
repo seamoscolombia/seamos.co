@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Profile from '../components/profile';
-import { getUser } from '../actions';
+import { getUser, updateInterestsShow } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     return { user, interests };
 };
 
-const mapDispatchToProps = { getUser };
+const mapDispatchToProps = { getUser, updateInterestsShow };
 
 class ProfileContainer extends Component {
 
@@ -18,12 +18,12 @@ class ProfileContainer extends Component {
         this.props.getUser();
     }
         
-    interestsShow() {
-        
+    goToEdit() {
+        this.props.updateInterestsShow();
     }
     render() {
         if (Object.keys(this.props.user) !== 0) {
-            return <Profile {...this.props} />;
+            return <Profile {...this.props} goToEdit={this.goToEdit.bind(this)} />;
         }
         return null;
     }
