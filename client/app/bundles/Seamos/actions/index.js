@@ -1,3 +1,4 @@
+export * from './interestsActionsCreators';
 export * from './pollsActionsCreators';
 export * from './tagActionsCreators';
 export * from './tagsActionsCreators';
