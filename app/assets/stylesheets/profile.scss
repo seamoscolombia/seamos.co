@@ -63,6 +63,34 @@
                    font-weight: bold;
                }
             }
+            #poll-component{
+              width: 240px;
+              margin: 20px 10px 0 10px;
+              .poll-infos-container{
+                margin-top: -30px;
+                .poll-info{
+                  .poll-description{
+                    display: none;
+                  }
+                  .poll-title{
+                    text-align: center;
+                    line-height: 1.2em;
+                  }
+                }
+                .poll-details{
+                  text-align: center;
+                  font-size: 12px;
+                  position: relative;
+                  margin-top: 5px;
+                  span:nth-child(4) {
+                      display: none;
+                  }
+                  .btn-plus-read{
+                    display: none;
+                  }
+                }
+              }
+            }
         }
     }
 }
