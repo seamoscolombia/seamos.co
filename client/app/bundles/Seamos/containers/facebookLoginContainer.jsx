@@ -23,7 +23,7 @@ class FacebookLoginContainer extends Component {
     return (
       <FacebookLogin
         textButton={this.props.fbText || 'Login'}
-        appId="1790047761280618"
+        appId="1790044307947630"
         autoLoad={false}
         scope='user_location'
         fields="id,location,first_name,last_name,email,picture.width(100)"
