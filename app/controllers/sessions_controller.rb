@@ -59,7 +59,7 @@ class SessionsController < ApplicationController
   end
 
   def new
-    if current_user
+    if current_user && current_user.administrador?
       redirect_to admin_dashboard_index_path
     end
   end
