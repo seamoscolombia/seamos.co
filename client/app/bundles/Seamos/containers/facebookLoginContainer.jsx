@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FacebookLogin from 'react-facebook-login';
+import { APP_ID } from '../constants';
 
 import { validateUserSession } from '../actions';
 
@@ -23,7 +24,7 @@ class FacebookLoginContainer extends Component {
     return (
       <FacebookLogin
         textButton={this.props.fbText || 'Login'}
-        appId="1541054365966079"
+        appId={APP_ID}
         autoLoad={false}
         scope='user_location'
         fields="id,location,first_name,last_name,email,picture.width(100)"
