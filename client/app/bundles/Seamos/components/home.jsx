@@ -67,9 +67,9 @@ const Home = ({ session }) => (
     </div>
     <div className="fb-button-container">
       <div className="one-click"> Sin registros, solo un click </div>
-      { session && session.authenticityToken ? 
-        <button className='btn btn-primary'>Perfíl</button> : 
-        <FacebookLogin fbText='Conéctate' /> 
+      { session && session.authenticityToken ?
+        <button className='btn btn-primary'> Perfíl </button> :
+        <FacebookLogin fbText=' | Conéctate con facebook' />
       }
     </div>
     <div className='background-container mid'>
