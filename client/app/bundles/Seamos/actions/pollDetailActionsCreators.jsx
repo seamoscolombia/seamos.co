@@ -30,6 +30,7 @@ export const votePoll = ({ voteTypeId, authenticityToken, poll }) => (dispatch) 
   })
   .then(() => {
     poll.user_already_voted = true;
+    poll.vote_types.find((vote) => {vote.id == voteTypeId; return vote.count += 1} );
     dispatch(updatePoll(poll));
   })
   .catch(error => {
