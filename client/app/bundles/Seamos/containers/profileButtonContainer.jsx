@@ -13,10 +13,10 @@ class ProfileButtonContainer extends Component {
         this.props.history.push('/profile');
     }
     render() {
-        return (<ProfileButton 
+        return (<ProfileButton
             action={this.goToProfile.bind(this)}
             className={'nav-fb'}
-            name={'Perfíl'}
+            name={'Perfil'}
             user={this.props.user}
         />);
     }
