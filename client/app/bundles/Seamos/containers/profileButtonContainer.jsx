@@ -7,13 +7,13 @@ import ProfileButton from '../components/profile/profileButton';
 const mapStateToProps = (state) => {
     const { user } = state;
     return { user };
-}
+};
 class ProfileButtonContainer extends Component {
     goToProfile() {
         this.props.history.push('/profile');
     }
     render() {
-        return (<ProfileButton 
+        return (<ProfileButton
             action={this.goToProfile.bind(this)}
             className={'nav-fb'}
             name={'Perfíl'}

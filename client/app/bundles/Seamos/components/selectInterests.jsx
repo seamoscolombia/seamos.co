@@ -21,7 +21,9 @@ const SelectInterests = ({ tags, action, returnToMySubjects }) => (
         }
         </div>
       </section>
-      <button className='btn btn-return' onClick={returnToMySubjects}> regresar </button>
+      <div className="btn-edit-container">
+        <button className='btn btn-return' onClick={returnToMySubjects}> regresar </button>
+      </div>
     </section>
 );
 
