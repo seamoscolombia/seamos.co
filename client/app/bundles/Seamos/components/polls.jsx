@@ -4,7 +4,7 @@ import Poll from './poll';
 
 
 const Polls = ({ polls, tag }) => (
-  <div className=''>
+  <div className='polls-wrapper'>
     { polls.map(poll => (
         <Poll {...poll} key={poll.id} tag={tag} />
       ))

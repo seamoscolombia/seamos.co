@@ -7,7 +7,7 @@ import ProfileButton from '../components/profile/profileButton';
 const mapStateToProps = (state) => {
     const { user } = state;
     return { user };
-}
+};
 class ProfileButtonContainer extends Component {
     goToProfile() {
         this.props.history.push('/profile');

@@ -1,0 +1,161 @@
+@import './variables.scss'
+#profile
+  .btn-return
+    margin-top: 20px
+    background-color: black
+    color: white
+    font-family: 'HKNovaBold'
+  $tag-size: 150px
+  margin-top: 80px
+  @media screen and (max-width: $break-medium)
+    margin-top: 60px
+  .profile-info-container
+    display: flex
+    align-items: center
+  .flex-container
+    width: 100%
+  #tags-component
+    .tags-box
+      margin-top: 18px
+      justify-content: left
+      @media screen and (max-width: $break-medium)
+        justify-content: center
+  #tag-component
+    height: $tag-size
+    @media screen and (max-width: $break-medium)
+      height: $tag-size - 20px
+    .tag-name
+      font-size: 14px
+      width: $tag-size
+      bottom: 190px
+      margin: auto
+      @media screen and (max-width: $break-medium)
+        bottom: 170px
+        width: $tag-size - 20px
+        font-size: 12px
+    .tag-image img
+      width: $tag-size
+      height: $tag-size
+      @media screen and (max-width: $break-medium)
+        height: $tag-size - 20px
+        width: $tag-size - 20px
+    .tag-icon img
+      width: $tag-size
+      height: $tag-size
+      bottom: 160px
+      @media screen and (max-width: $break-medium)
+        height: $tag-size - 20px
+        width: $tag-size - 20px
+        bottom: 140px
+  header
+    img
+      // margin-left: 2.5em
+      border-radius: 50%
+  .media-left
+    margin-left: $move-left
+    @media screen and (max-width: $break-medium)
+      margin-left: 0
+  .media-body
+    vertical-align: middle
+    width: auto
+    padding-left: 0
+    h4
+      margin-left: 1.2em
+      font-family: 'HKNovaBold'
+      text-transform: uppercase
+      font-size: 20px
+      @media screen and (max-width: $break-medium)
+        font-size: 14px
+        margin-left: 0
+    h6
+      margin-left: 1.8em
+      color: gray
+      font-family: 'HKNovaBold'
+      font-size: 13px
+      margin-bottom: 0
+      @media screen and (max-width: $break-medium)
+        font-size: 10px
+        margin-left: 0
+  #profile-container
+    #my-subjects
+      margin-left: $move-left
+      @media screen and (max-width: $break-medium)
+        margin-left: 0
+      .title
+        background-image: url(asset_path('TEMAS.png'))
+        min-height: 30px
+        min-width: 90px
+        margin-bottom: 20px
+        display: flex
+        align-items: center
+        background-size: contain
+        background-repeat: no-repeat
+        span
+          margin-left: 2.8em
+          font-weight: bold
+      .btn-edit-container
+        padding-left: 85px
+        @media screen and (max-width: $break-medium)
+          padding-left: 0
+          text-align: center
+          margin-bottom: 30px
+        .btn-edit
+          margin-top: 20px
+          background-color: black
+          color: white
+          font-family: 'HKNovaBold'
+    #my-participations
+      .title
+        background-image: url(asset_path('PARTICIPACIONES.png'))
+        min-height: 30px
+        min-width: 90px
+        margin-bottom: 20px
+        display: flex
+        align-items: center
+        background-size: contain
+        background-repeat: no-repeat
+        span
+          margin-left: 2.8em
+          font-weight: bold
+      .polls-wrapper
+        display: flex
+        flex-wrap: wrap
+        @media screen and (max-width: $break-medium)
+          align-items: center
+          text-align: center
+          justify-content: center
+        #poll-component
+          width: 240px
+          margin: 20px 10px 0 10px
+          .poll-image-container
+            @media screen and (max-width: $break-medium)
+              width: 100%
+            a
+              left: 0
+              right: 0
+              img
+                max-height: 200px
+                @media screen and (max-width: $break-medium)
+                  max-height: 150px
+          .poll-infos-container
+            margin-top: -30px
+            @media screen and (max-width: $break-medium)
+              margin-top: -20px
+              width: 100%
+            .poll-info
+              .poll-description
+                display: none
+              .poll-title
+                text-align: center
+                line-height: 1.2em
+            .poll-details
+              text-align: center
+              font-size: 12px
+              position: relative
+              margin-top: 5px
+              @media screen and (max-width: $break-medium)
+                justify-content: center
+              span:nth-child(4)
+                display: none
+              .btn-plus-read
+                display: none

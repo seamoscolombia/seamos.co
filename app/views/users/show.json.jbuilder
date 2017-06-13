@@ -1,6 +1,7 @@
 json.user do
   json.id @user.id
   json.full_name @user.full_name
+  json.short_name "#{@user.names}  #{@user.first_surname}"
   json.tags do
     json.array! @user.tags do |tag|
       json.id tag.id
