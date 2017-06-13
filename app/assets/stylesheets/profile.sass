@@ -1,0 +1,90 @@
+@import './variables.scss'
+#profile
+  .flex-container
+    width: 100%
+  .tags-box
+  #tag-component
+    height: 150px
+    .tag-image img
+      width: 150px
+      height: 150px
+    .tag-icon img
+      width: 150px
+      height: 150px
+      bottom: 150px
+  header
+    img
+      margin-left: 2.5em
+      border-radius: 50%
+  .media-body
+    vertical-align: middle
+    h4
+      margin-left: 1.2em
+  #profile-container
+    #my-subjects
+      border-right: 4px solid black
+      .title
+        background-image: url(asset_path('TEMAS.png'))
+        min-height: 30px
+        min-width: 90px
+        margin-bottom: 20px
+        display: flex
+        align-items: center
+        background-size: contain
+        background-repeat: no-repeat
+        span
+          margin-left: 2.8em
+          font-weight: bold
+    #my-participations
+      .title
+        background-image: url(asset_path('PARTICIPACIONES.png'))
+        min-height: 30px
+        min-width: 90px
+        margin-bottom: 20px
+        display: flex
+        align-items: center
+        background-size: contain
+        background-repeat: no-repeat
+        span
+          margin-left: 2.8em
+          font-weight: bold
+      #poll-component
+        width: 240px
+        margin: 20px 10px 0 10px
+        .poll-image-container
+          a
+            left: 0
+            right: 0
+            img
+              max-height: 200px
+              @media screen and (max-width: $break-medium)
+                max-height: 150px
+        .poll-infos-container
+          margin-top: -30px
+          .poll-info
+            .poll-description
+              display: none
+            .poll-title
+              text-align: center
+              line-height: 1.2em
+          .poll-details
+            text-align: center
+            font-size: 12px
+            position: relative
+            margin-top: 5px
+            span:nth-child(4)
+              display: none
+            .btn-plus-read
+              display: none
+    @media screen and (max-width: $break-medium)
+      #profile
+        #profile-container
+          margin: 0 4em !important
+          section
+            &.col-sm-6
+              padding-left: 0 !important
+            &#my-subjects
+              border-bottom: 4px solid black
+              border-right: none
+              padding-bottom: 2em
+              margin-bottom: 2em
