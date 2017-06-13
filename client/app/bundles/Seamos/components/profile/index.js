@@ -6,12 +6,14 @@ import SelectInterests from '../../containers/selectInterestsContainer';
 
 function myInterests(tags, goToEdit) {
   return (
-    <section id='my-subjects' className='col-sm-push-1 col-sm-5'>
+    <section id='my-subjects' className='col-sm-4'>
       <div className='title'>
         <span>MIS TEMAS</span>
       </div>
       <Tags tags={tags} />
-      <button onClick={goToEdit}> Editar mis temas</button>
+      <div className="btn-edit-container">
+        <button className="btn btn-edit"onClick={goToEdit}> Editar mis temas</button>
+      </div>
     </section>
   );
 }
@@ -22,18 +24,21 @@ function selectInterests() {
 
 const Profile = (props) => {
   const {
-    picture, location, full_name,
+    picture, location, short_name,
     participations, tags
   } = props.user;
   const { interests, goToEdit } = props;
   return (
     <div id='profile' className='container'>
       <header className="media">
-        <div className="media-left">
-          <img src={picture} className='media-object' role='presentation' />
-        </div>
-        <div className="media-body">
-          <h4 className="media-heading">{full_name}</h4>
+        <div className="row profile-info-container">
+          <div className="col-sm-1 media-left">
+            <img src={picture} className='media-object' role='presentation' />
+          </div>
+          <div className="media-body col-sm-10">
+            <h4 className="media-heading">{short_name}</h4>
+            <h6 className="media-heading">{location}</h6>
+          </div>
         </div>
       </header>
       <br />
@@ -41,7 +46,7 @@ const Profile = (props) => {
         {interests ?
           selectInterests() : myInterests(tags, goToEdit)
         }
-        <section id='my-participations' className='col-sm-push-1 col-sm-6'>
+        <section id='my-participations' className='col-sm-6'>
           <div className='title'>
             <span>PARTICIPACIONES</span>
           </div>

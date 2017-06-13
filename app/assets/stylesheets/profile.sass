@@ -1,28 +1,51 @@
 @import './variables.scss'
 #profile
+  margin-top: 80px
+  .profile-info-container
+    display: flex
+    align-items: center
   .flex-container
     width: 100%
-  .tags-box
+  #tags-component
+    .tags-box
+      margin-top: 18px
+      justify-content: left
   #tag-component
     height: 150px
+    .tag-name
+      font-size: 14px
+      width: 150px
+      bottom: 190px
+      margin: auto
     .tag-image img
       width: 150px
       height: 150px
     .tag-icon img
       width: 150px
       height: 150px
-      bottom: 150px
+      bottom: 160px
   header
     img
-      margin-left: 2.5em
+      // margin-left: 2.5em
       border-radius: 50%
+  .media-left
+    margin-left: $move-left
   .media-body
     vertical-align: middle
+    width: auto
     h4
       margin-left: 1.2em
+      font-family: 'HKNovaBold'
+      text-transform: uppercase
+      font-size: 20px
+    h6
+      margin-left: 1.8em
+      color: gray
+      font-family: 'HKNovaBold'
+      font-size: 13px
   #profile-container
     #my-subjects
-      border-right: 4px solid black
+      margin-left: $move-left
       .title
         background-image: url(asset_path('TEMAS.png'))
         min-height: 30px
@@ -35,6 +58,13 @@
         span
           margin-left: 2.8em
           font-weight: bold
+      .btn-edit-container
+        padding-left: 85px
+        .btn-edit
+          margin-top: 20px
+          background-color: black
+          color: white
+          font-family: 'HKNovaBold'
     #my-participations
       .title
         background-image: url(asset_path('PARTICIPACIONES.png'))
@@ -48,34 +78,37 @@
         span
           margin-left: 2.8em
           font-weight: bold
-      #poll-component
-        width: 240px
-        margin: 20px 10px 0 10px
-        .poll-image-container
-          a
-            left: 0
-            right: 0
-            img
-              max-height: 200px
-              @media screen and (max-width: $break-medium)
-                max-height: 150px
-        .poll-infos-container
-          margin-top: -30px
-          .poll-info
-            .poll-description
-              display: none
-            .poll-title
+      .polls-wrapper
+        display: flex
+        flex-wrap: wrap
+        #poll-component
+          width: 240px
+          margin: 20px 10px 0 10px
+          .poll-image-container
+            a
+              left: 0
+              right: 0
+              img
+                max-height: 200px
+                @media screen and (max-width: $break-medium)
+                  max-height: 150px
+          .poll-infos-container
+            margin-top: -30px
+            .poll-info
+              .poll-description
+                display: none
+              .poll-title
+                text-align: center
+                line-height: 1.2em
+            .poll-details
               text-align: center
-              line-height: 1.2em
-          .poll-details
-            text-align: center
-            font-size: 12px
-            position: relative
-            margin-top: 5px
-            span:nth-child(4)
-              display: none
-            .btn-plus-read
-              display: none
+              font-size: 12px
+              position: relative
+              margin-top: 5px
+              span:nth-child(4)
+                display: none
+              .btn-plus-read
+                display: none
     @media screen and (max-width: $break-medium)
       #profile
         #profile-container
