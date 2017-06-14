@@ -21,7 +21,7 @@ class PollsDetailContainer extends Component {
     }
 
     componentWillMount() {
-        this.props.getPoll({ 
+        this.props.getPoll({
             pollId: this.props.match.params.pollId,
             errCallback: () => this.props.history.push('/404')
         });
@@ -32,14 +32,15 @@ class PollsDetailContainer extends Component {
     }
 
     setMoreInfo() { this.setState({ moreInfo: !this.state.moreInfo }); }
-    voteAction(id) { 
+    
+    voteAction(id) {
         const { poll, session, votePoll } = this.props;
         if (session.authenticityToken) {
             votePoll({
                 voteTypeId: id,
                 authenticityToken: session.authenticityToken,
                 poll
-            }); 
+            });
         } else {
             alert('Por favor inicie sesión antes de votar'); //eslint-disable-line
         }
