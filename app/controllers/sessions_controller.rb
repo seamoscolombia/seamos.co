@@ -48,10 +48,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:email] = session[:uid] = session[:fb_token] = session[:fb_image] = session[:session_type] = nil
+    session[:email] = session[:uid] = session[:fb_token] = session[:fb_image] = session[:session_type] = current_user = nil
     respond_to do |format|
       format.html { redirect_to root_path }
-      format.json { render json: {} , stats: :ok }
+      format.json { render json: {} , status: :ok }
     end
   end
 
