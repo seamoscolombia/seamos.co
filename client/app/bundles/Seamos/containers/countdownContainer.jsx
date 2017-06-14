@@ -175,7 +175,7 @@ class CountDownContainer extends React.Component {
 
   timerText() {
     // Ideally we'd just use duration.format('mm:ss') but that is not yet supported in moment.js
-    // We could use utc().format('mm:ss'), but once the 
+    // We could use utc().format('mm:ss'), but once the
     // timer hits zero (and counts up), then UTC is not applicable.
 
     // This function does the job until duration.format() is supported.
@@ -197,7 +197,7 @@ class CountDownContainer extends React.Component {
       } else {
         const hours = (`00${Math.abs(duration.hours())}`).slice(-2);
         const minutes = (`00${Math.abs(duration.minutes())}`).slice(-2);
-        response += (`${hours}h:${minutes}m`); 
+        response += (`${hours}h:${minutes}m`);
       }
     }
     return response;
