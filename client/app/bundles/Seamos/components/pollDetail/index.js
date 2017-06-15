@@ -100,7 +100,7 @@ const PollDetail = ({
             </div>
             <div className="col-sm-12">
               <div className="row">
-                <div className="col-xs-9">
+                <div className="col-xs-9 buttons-wrapper">
                   { user_already_voted ? //eslint-disable-line
                       votedButton(poll_type, vote_types, vote_count) :
                       voteButton(poll_type, vote_types, voteAction)

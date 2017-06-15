@@ -6,6 +6,7 @@
     color: white
     font-family: 'HKNovaBold'
   $tag-size: 150px
+  $tag-size-mobile: $tag-size - 20px
   margin-top: 80px
   @media screen and (max-width: $break-medium)
     margin-top: 60px
@@ -20,10 +21,13 @@
       justify-content: left
       @media screen and (max-width: $break-medium)
         justify-content: center
+        // width: 130px
   #tag-component
     height: $tag-size
+    width: auto
     @media screen and (max-width: $break-medium)
-      height: $tag-size - 20px
+      width: 134px
+      height: $tag-size-mobile
     .tag-name
       font-size: 14px
       width: $tag-size
@@ -31,26 +35,34 @@
       margin: auto
       @media screen and (max-width: $break-medium)
         bottom: 170px
-        width: $tag-size - 20px
+        width: $tag-size-mobile
         font-size: 12px
-    .tag-image img
+    .tag-image
       width: $tag-size
-      height: $tag-size
+      overflow: hidden
+      display: flex
+      justify-content: center
       @media screen and (max-width: $break-medium)
-        height: $tag-size - 20px
-        width: $tag-size - 20px
-    .tag-icon img
+        width: $tag-size-mobile
+      img
+        height: $tag-size
+        @media screen and (max-width: $break-medium)
+          height: $tag-size-mobile
+    .tag-icon
       width: $tag-size
-      height: $tag-size
-      bottom: 160px
-      @media screen and (max-width: $break-medium)
-        height: $tag-size - 20px
-        width: $tag-size - 20px
-        bottom: 140px
+      img
+        height: $tag-size
+        bottom: 160px
+        @media screen and (max-width: $break-medium)
+          height: $tag-size-mobile
+          width: $tag-size-mobile
+          bottom: 140px
   header
     img
       // margin-left: 2.5em
       border-radius: 50%
+      width: 100px
+      height: 100px
   .media-left
     margin-left: $move-left
     @media screen and (max-width: $break-medium)
@@ -94,11 +106,14 @@
           margin-left: 2.8em
           font-weight: bold
       .btn-edit-container
-        padding-left: 85px
+        width: $tag-size * 2 + 12px
+        text-align: center
         @media screen and (max-width: $break-medium)
+          margin: auto
           padding-left: 0
           text-align: center
           margin-bottom: 30px
+          width: $tag-size-mobile * 2 + 12px
         .btn-edit
           margin-top: 20px
           background-color: black

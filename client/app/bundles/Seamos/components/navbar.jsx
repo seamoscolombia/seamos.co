@@ -52,10 +52,10 @@ const Navbar = ({ session, user }) => (
       <div className='navbar-transparent side-collapse in'>
         <nav className='navbar-collapse' role='navigation'>
           <ul className='nav navbar-nav navbar-right navbar-options'>
-            <li><Link to='/'> ¿COMO LO HACEMOS? </Link></li>
             {session.authenticityToken && Object.keys(user).length !== 0 ?
               profile() : <li> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
             }
+            <li><Link to='/'> ¿COMO LO HACEMOS? </Link></li>
           </ul>
         </nav>
       </div>

@@ -58,44 +58,52 @@
       font-weight: 700
       border-color: transparent
       background-color: transparent
-    .single-button
-      min-height: 60px
-      margin-bottom: 1em
-      background-color: $green-seamos
-      font-family: RobotoBoldCondenced
-      color: black
-      width: 100%
-      text-align: left
-    .voted-button
-      min-height: 60px
-      padding: 0
-      margin-bottom: 1em
-      background-color: gray
-      color: whitesmoke
-      width: 100%
-      background-color: rgb(200, 200, 200)
-      @media screen and (max-width: $break-medium)
-        min-height: 30px
+      margin: 10px 0
+    .buttons-wrapper
+      padding-right: 80px
+      .single-button
+        min-height: 60px
+        margin-bottom: 1em
+        background-color: $green-seamos
+        font-family: 'RobotoCondensed'
+        border-radius: 18px
+        color: black
+        width: 100%
+        text-align: center
+        color: white
+        font-size: 30px
+        margin-bottom: 0.5em
+      .voted-button
+        min-height: 60px
+        border-radius: 18px
+        padding: 0
+        margin-bottom: 1em
+        background-color: gray
+        color: whitesmoke
+        width: 100%
+        background-color: rgb(200, 200, 200)
+        @media screen and (max-width: $break-medium)
+          min-height: 30px
 
-      .progress-bar
-        background-color: rgb(102, 204, 204)
-        display: flex
-        justify-content: flex-end
-        align-items: center
-        span
-          font-family: 'RobotoCondensed'
-          font-size: 30px
-          vertical-align: middle
-          float: right
-          margin-right: 10px
-          position: absolute
-          right: 20px
-          @media screen and (max-width: $break-medium)
-            font-size: 15px
-            line-height: 0
+        .progress-bar
+          background-color: rgb(102, 204, 204)
+          display: flex
+          justify-content: flex-end
+          align-items: center
+          span
+            font-family: 'RobotoCondensed'
+            font-size: 30px
+            vertical-align: middle
+            float: right
+            margin-right: 80px
+            position: absolute
+            right: 20px
+            @media screen and (max-width: $break-medium)
+              font-size: 15px
+              line-height: 0
 
     .countdown-wrapper
       margin-top: 7px
       @media screen and (max-width: $break-medium)
         padding: 0
-        margin: -3px
+        margin: -14px

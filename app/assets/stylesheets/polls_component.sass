@@ -1,4 +1,6 @@
 #polls-component
+  h3
+    font-size: 20px
   $break-medium: 720px
   .background-container
     background-size: cover
@@ -10,11 +12,14 @@
     background-position: center center
     display: inline-flex
     @media screen and (max-width: $break-medium)
+      height: 206px
       font-size: 250px
     .icon-name-wrapper
       margin: auto
       display: flex
       align-items: center
+      @media screen and (max-width: $break-medium)
+        margin-top: 35px
       .tag-icon-container
         width: 100px
         .tag-icon
