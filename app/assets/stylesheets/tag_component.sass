@@ -6,11 +6,15 @@
   @media screen and (max-width: $break-medium)
     height: 134px
   .tag-image
+    width: 200px
+    overflow: hidden
+    display: flex
+    justify-content: center
+    @media screen and (max-width: $break-medium)
+      width: 134px
     img
-      width: 200px
       height: 200px
       @media screen and (max-width: $break-medium)
-        width: 134px
         height: 134px
   .tag-name
     color: white

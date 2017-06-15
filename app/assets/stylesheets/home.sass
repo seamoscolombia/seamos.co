@@ -20,6 +20,7 @@
           font-size: 30px
       .question
         font-size: 70px
+        line-height: 1.3em
         @media screen and (max-width: $break-medium)
           font-size: 30px
       .to
@@ -39,9 +40,8 @@
         @media screen and (max-width: $break-medium)
           margin-top: 30px
       .hand-image-container
-        background-color: rgba(83, 197, 203, 0.5)
-        // background-color: rgba(83, 197, 203, 1)
-        padding: 5px 0 5px 0
+        width: 143px
+        height: 102px
         width: 40px
         height: 75px
         position: relative
@@ -53,20 +53,21 @@
           height: 55px
         .hand-image
           text-align: center
-          background-image: url(asset_path('iconos_pasemosAlaAccion.png'))
-          background-size: contain
+          background-image: url(asset_path('pasemosA-02.png'))
+          background-size: cover
           height: 100%
           margin: auto
           background-repeat: no-repeat
           background-position: center center
   .top
-    background-image: url(asset_path('inicio.jpg'))
+    background-image: url(asset_path('inicio.png'))
     background-position: center top
   .mid
-    background-image: url(asset_path('temas.jpg'))
-    background-position: center center
+    background-image: url(asset_path('temas.png'))
+    background-position: center top
     padding: 120px 0 210px 0
     margin-top: 50px
+    height: 500px
     @media screen and (max-width: $break-medium)
       padding: 0 0 30px 0
       margin-top: 20px
