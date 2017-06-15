@@ -9,8 +9,8 @@ const Home = ({ session }) => (
       <div className='flex-container top-text-container'>
         <h1 className='welcome'>Bienvenido</h1>
         <p className='to'>
-          A la única plataforma ciudadana que le <br />
-          permite incidir las decisiones políticas en <br />
+          A la única plataforma ciudadana que le <br className='breaker' />
+          permite incidir las decisiones políticas en <br className='breaker' />
           tiempo real
         </p>
         <div className='action'>
@@ -77,7 +77,7 @@ const Home = ({ session }) => (
     <div className='background-container mid'>
       <div className='flex-container top-text-container'>
         <h1 className='welcome question'>
-        ¿De qué <br />
+        ¿De qué <br className='breaker' />
         quieres hablar?
         </h1>
       </div>

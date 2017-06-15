@@ -21,9 +21,12 @@
       justify-content: left
       @media screen and (max-width: $break-medium)
         justify-content: center
+        // width: 130px
   #tag-component
     height: $tag-size
+    width: auto
     @media screen and (max-width: $break-medium)
+      width: 134px
       height: $tag-size-mobile
     .tag-name
       font-size: 14px
@@ -45,14 +48,15 @@
         height: $tag-size
         @media screen and (max-width: $break-medium)
           height: $tag-size-mobile
-    .tag-icon img
+    .tag-icon
       width: $tag-size
-      height: $tag-size
-      bottom: 160px
-      @media screen and (max-width: $break-medium)
-        height: $tag-size-mobile
-        width: $tag-size-mobile
-        bottom: 140px
+      img
+        height: $tag-size
+        bottom: 160px
+        @media screen and (max-width: $break-medium)
+          height: $tag-size-mobile
+          width: $tag-size-mobile
+          bottom: 140px
   header
     img
       // margin-left: 2.5em
@@ -104,8 +108,8 @@
       .btn-edit-container
         width: $tag-size * 2 + 12px
         text-align: center
-        margin: auto
         @media screen and (max-width: $break-medium)
+          margin: auto
           padding-left: 0
           text-align: center
           margin-bottom: 30px

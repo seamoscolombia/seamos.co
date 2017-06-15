@@ -4,7 +4,10 @@
   .background-container
     background-size: cover
     padding-top: 40px
-    padding-bottom: 20px
+    padding-bottom: 35px
+    @media screen and (max-width: $break-medium)
+      padding-top: 20px
+      padding-bottom: 10px
     .top-text-container
       text-align: center
       color: white
@@ -18,47 +21,60 @@
         font-size: 90px
         @media screen and (max-width: $break-medium)
           font-size: 30px
+          letter-spacing: 2px
       .question
         font-size: 70px
         line-height: 1.3em
         @media screen and (max-width: $break-medium)
-          font-size: 30px
+          line-height: 1.1em
+          font-size: 22px
       .to
-        font-size: 15px
+        font-size: 16px
         letter-spacing: 1px
         font-family: 'GothamMedium'
-        line-height: 1.2em
         font-weight: bold
         text-align: center
+        @media screen and (max-width: $break-medium)
+          font-size: 10px
+
       .action
         letter-spacing: 0.08em
-        margin-top: 50px
+        margin-top: 10px
         font-family: 'RobotoCondensed'
         font-weight: bold
-        padding: 5px
+        padding-bottom: 30px
         display: inline-block
+        background-image: url(asset_path('pasemosA-01.png'))
+        background-position: center bottom
+        background-size: cover
+        background-repeat: no-repeat
         @media screen and (max-width: $break-medium)
-          margin-top: 30px
+          padding-bottom: 20px
+          font-size: 11px
+          margin-top: 0
       .hand-image-container
         width: 143px
-        height: 102px
-        width: 40px
-        height: 75px
+        height: 58px
         position: relative
-        // top: -15px
         margin: auto
         border-radius: 30px
+        top: -9px
         @media screen and (max-width: $break-medium)
-          width: 30px
-          height: 55px
+          width: 100px
+          height: 60px
+          overflow: hidden
         .hand-image
           text-align: center
           background-image: url(asset_path('pasemosA-02.png'))
-          background-size: cover
-          height: 100%
+          background-size: contain
+          height: 216%
           margin: auto
           background-repeat: no-repeat
-          background-position: center center
+          background-position: center -26px
+          @media screen and (max-width: $break-medium)
+            background-size: contain
+            background-position: center -14px
+            height: 145%
   .top
     background-image: url(asset_path('inicio.png'))
     background-position: center top
@@ -69,6 +85,7 @@
     margin-top: 50px
     height: 500px
     @media screen and (max-width: $break-medium)
+      height: 147px
       padding: 0 0 30px 0
       margin-top: 20px
 
@@ -95,14 +112,14 @@
       font-size: 70px
       text-transform: uppercase
       line-height: 1em
-      letter-spacing: 5px
+      letter-spacing: 1px
       color: black
       margin-bottom: 0
       @media screen and (max-width: $break-medium)
-        font-size: 30px
+        font-size: 22px
+        margin-top: 25px
       h1
-        font-size: 60px
-        letter-spacing: 5px
+        letter-spacing: 1px
         white-space: nowrap
         font-weight: bold
         // margin: auto
@@ -113,6 +130,9 @@
       font-size: 18px
       text-align: justify
       font-family: 'GothamMedium'
+      @media screen and (max-width: $break-medium)
+        font-size: 14px
+        line-height: 1.3em
   #steps-container
     display: -webkit-flex
     display: flex
@@ -173,3 +193,6 @@
       padding: 8px
       border-radius: 5px
       color: white
+  .breaker
+    @media screen and (max-width: $break-medium)
+      display: none

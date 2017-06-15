@@ -1,7 +1,14 @@
+@import './variables.scss'
 #client-navbar
   .navbar-header
+    @media screen and (max-width: $break-medium)
+      margin-left: 0
     .navbar-brand
       padding: 0px 0 10px 0
+      @media screen and (max-width: $break-medium)
+        padding: 0
+        display: flex
+        align-items: center
       &:hover
         background-color: rgba(0, 0, 0, 0) !important
         border-radius: 10px
@@ -9,10 +16,20 @@
         background-size: cover
         min-height: 50px
         min-width: 140px
+        @media screen and (max-width: $break-medium)
+          background-size: contain
+          min-height: 29px
+  .navbar-collapse
+    padding-left: 30px
+  .side-collapse
+    @media screen and (max-width: $break-medium)
+      width: 50%  
   .navbar-options
     display: flex
     align-items: center
     margin-top: 8px !important
+    @media screen and (max-width: $break-medium)
+      display: block
     li
       margin-right: 10px
     a
