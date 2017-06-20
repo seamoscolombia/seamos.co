@@ -46,10 +46,10 @@ function votedButton(pollType, voteTypes, vote_count) {
   }
 }
 
-function getPicture(politician) {
-  if (politician.picture !== 'null') {
-    return politician.picture
-  }
+function getPicture(picture) {
+  // if (picture) {
+  //   return picture
+  // }
   return 'https://developers.google.com/experts/img/user/user-default.png';
 }
 
@@ -69,7 +69,7 @@ const PollDetail = ({
       </header>
       <section id='politician' className='row'>
           <img
-            src={getPicture(politician)}
+            src={getPicture(politician.picture)}
             role='presentation'
             alt='politician'
           />
