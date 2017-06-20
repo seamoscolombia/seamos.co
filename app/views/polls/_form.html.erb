@@ -12,6 +12,11 @@
     <label id='counter-label' class='char-left'>500</label>
 </div>
 
+<div class="field">
+  <%= f.label :objective %>
+  <%= f.text_field :objective, class: 'form-control' %>
+</div>
+
 <div class="field" style="display: none">
     <% if @used_tags %>
       <%= f.text_field :tags, id: 'tags-field', value: @used_tags%>
@@ -40,7 +45,7 @@
     <%= f.label t('.tags_picker') %><br>
     <div class="alert alert-info alert-dismissable">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        Selecciona las etiquetas que más se adecúen a tu propuesta.
+        Selecciona el tema que mejor se adecúe a tu propuesta
     </div>
     <% @location_from = 'new_poll' %>
     <%= render '/tags/tag_list', tags: Tag.all%>

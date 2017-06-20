@@ -33,10 +33,12 @@ class Poll < ApplicationRecord
   validates :title, presence: true
   validates :closing_date, presence: true
   validates :description, presence: true
+  validates :objective, presence: true
   validates :poll_image, presence: true, on: :create
 
   validate :closing_date_validation
-  validate :at_least_one_tag
+  validate :has_one_tag
+  validate :has_only_one_tag
 
   enum poll_type: {voting: 0, participation: 1, signing: 2}
 
@@ -102,9 +104,15 @@ class Poll < ApplicationRecord
     end
   end
 
-  def at_least_one_tag
+  def has_only_one_tag
+    unless tags.size < 2
+      errors.add(:base, I18n.t(:only_one_tag, scope: :polls))
+    end
+  end
+
+  def has_one_tag
     unless tags.present?
-      errors.add(:at_least_one_tag, I18n.t(:at_least_one_tag, scope: :polls))
+      errors.add(:base, I18n.t(:one_tag, scope: :polls))
     end
   end
 end
