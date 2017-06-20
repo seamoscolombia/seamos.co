@@ -270,6 +270,7 @@ es:
       polls: Propuestas
       logout: Salir
       users: Lista de Usuarios
+      create_admin: Crear Admin
 
   dashboard:
     index:
