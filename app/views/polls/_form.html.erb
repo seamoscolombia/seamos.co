@@ -36,16 +36,6 @@
     <%= f.hidden_field :poll_image_cache %>
 </div>
 
-<div id='document_field' class="field">
-    <%= f.label t('.document_field') %>
-    <% if poll.poll_document.file %>
-    <p class="has_media">
-        <%= t('.has_document', filename: poll.poll_document.file.filename) %>
-    </p>
-    <% end %>
-    <%= f.file_field :poll_document%>
-</div>
-
 <div class="tags-picker">
     <%= f.label t('.tags_picker') %><br>
     <div class="alert alert-info alert-dismissable">

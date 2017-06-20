@@ -214,7 +214,6 @@ class PollsController < ApplicationController
       :description,
       :poll_image,
       :poll_image_cache,
-      :poll_document,
       :title,
       :status,
       vote_types_attributes: [:name]
