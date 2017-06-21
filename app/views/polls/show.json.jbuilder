@@ -28,7 +28,7 @@ json.poll do
     json.politician do
       json.id @poll.user.id
       json.full_name @poll.user.full_name
-      # TODO we need to inculde a picture field on users model to access each user profile images
-      json.picture "${url}${politician_profile_picture}"
+      json.picture url + @poll.user.admin_photo.url if @poll.user.admin_photo.url
+      # json.picture "${url}${politician_profile_picture}"
     end
 end
