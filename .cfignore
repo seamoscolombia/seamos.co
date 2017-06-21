@@ -1,10 +1,4 @@
 .DS_STORE
-# Ignore bundler config
-/.bundle
-
-# Ignore the default SQLite database.
-/db/*.sqlite3
-
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
@@ -12,21 +6,5 @@
 # Ignore coverage
 /spec
 
-# Tag file
-tags
-.idea/
-
-.swo
-.swp
-
-.envrc
-
-cscope*
-
-doc/*
 
 public/uploads
-
-.jira-url
-
-vendor/*
