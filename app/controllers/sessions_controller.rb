@@ -49,8 +49,9 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:email] = session[:uid] = session[:fb_token] = session[:fb_image] = session[:session_type] = current_user = nil
+    reset_session
     respond_to do |format|
-      format.html { redirect_to root_path }
+      format.html { redirect_to admin_login_path }
       format.json { render json: {} , status: :ok }
     end
   end

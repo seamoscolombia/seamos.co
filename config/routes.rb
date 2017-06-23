@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # root 'intro#inicio'
 
   resources :photos, only: :create
-
+  get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
   resources :users , except: [:new, :show] do
     get 'already_voted', on: :member
     get 'validate', on: :member

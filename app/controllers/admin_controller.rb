@@ -9,7 +9,6 @@ class AdminController < ApplicationController
 
   def create
       @user = User.new(user_params)
-
       if @user.save
         flash[:notice] = I18n.t(:accion_exitosa)
         redirect_to users_path

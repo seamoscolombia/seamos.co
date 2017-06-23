@@ -270,7 +270,8 @@ es:
       polls: Propuestas
       logout: Salir
       users: Lista de Usuarios
-      create_admin: Crear Admin
+      create_admin: Crear Admin / Político
+      create_poll: Crear Propuesta
 
   dashboard:
     index:
@@ -324,7 +325,7 @@ es:
         - Todas
         - Abiertas
         - Cerradas
-      no_polls_available: Seamos está en el proceso de definir cual será la próxima propuesta a discutir.
+      no_polls_available: Por el momento no hay propuestas para mostrar.
       "true": Anónima
     new:
       create: Crear
