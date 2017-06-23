@@ -47,9 +47,9 @@ function votedButton(pollType, voteTypes, vote_count) {
 }
 
 function getPicture(picture) {
-  // if (picture) {
-  //   return picture
-  // }
+  if (picture) {
+    return picture
+  }
   return 'https://developers.google.com/experts/img/user/user-default.png';
 }
 

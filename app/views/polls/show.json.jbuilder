@@ -28,7 +28,7 @@ json.poll do
     json.politician do
       json.id @poll.user.id
       json.full_name @poll.user.full_name
-      # json.picture url + @poll.user.admin_photo.url
+      json.picture url + @poll.user.admin_photo.url if @poll.user.admin_photo.url
       # json.picture "${url}${politician_profile_picture}"
     end
 end
