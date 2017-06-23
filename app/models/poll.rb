@@ -88,6 +88,10 @@ class Poll < ApplicationRecord
   def remaining_time_in_seconds
     (closing_date - Date.today) * 1.days
   end
+  
+  def remaining_time_in_seconds_from_created
+    (closing_date - created_at.to_datetime) * 1.days
+  end
 
   private
 

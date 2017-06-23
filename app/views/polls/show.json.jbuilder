@@ -5,6 +5,7 @@ json.poll do
     json.image url.to_s + @poll.poll_image.url
     json.description @poll.description
     json.objective @poll.objective
+    json.initial_time @poll.remaining_time_in_seconds_from_created
     json.remaining @poll.remaining_time_in_seconds
     json.vote_count @poll.votes.size
     json.poll_type @poll.poll_type
