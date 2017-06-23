@@ -21,6 +21,8 @@
 #
 
 class User < ApplicationRecord
+  mount_uploader :admin_photo, AdminPhotoUploader
+
   attr_accessor :password, :password_confirmation
 
   before_save :encrypt_password_for_admin
@@ -44,6 +46,7 @@ class User < ApplicationRecord
   validate :password_for_admin, on: :create, if: :admin?
   validate :password_for_admin_update, on: :update, if: :admin?
   validates :uid, presence: true, unless: :admin?
+  validates :admin_photo, presence: true, if: :admin?
 
   enum role_type: {ciudadano: 0, politico: 1, administrador: 2}
 
