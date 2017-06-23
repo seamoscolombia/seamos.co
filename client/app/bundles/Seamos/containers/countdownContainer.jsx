@@ -8,7 +8,7 @@ class CountDownContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    const initialCounter = props.timerCount;
+    const initialCounter = props.initialTime;
 
     // Constants for calculations of the SVG circle
     this.goalTimeMillis = initialCounter * 1000;
@@ -222,6 +222,7 @@ class CountDownContainer extends React.Component {
 }
 
 CountDownContainer.propTypes = {
+  initialTime: PropTypes.number.isRequired,
   timerCount: PropTypes.number.isRequired,
   outerColor: PropTypes.string,
   innerColor: PropTypes.string,
