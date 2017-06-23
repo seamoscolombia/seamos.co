@@ -2,6 +2,7 @@
 import React from 'react';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
+import Polls from '../containers/pollsFeatureContainer';
 
 const Home = ({ session }) => (
   <div id="homepage">
@@ -88,6 +89,9 @@ const Home = ({ session }) => (
     de acuerdo a tus intereses
     </div>
     <Tags />
+    <div id='feature-polls'>
+      <Polls />
+    </div>
   </div>
 );
 
