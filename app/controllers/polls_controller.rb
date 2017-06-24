@@ -76,7 +76,7 @@ class PollsController < ApplicationController
         @polls = Poll.order('id desc').all.page(params[:page]).per(4)
       end
       format.json do
-        @polls = Poll.includes(:votes, :tags).open.sort_by {|poll| - poll.votes.size}
+        @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| - poll.votes.size}
       end
     end
   end
@@ -84,7 +84,7 @@ class PollsController < ApplicationController
   def filtered_by_tag
     respond_to do |format|
       format.json do
-        @polls = @tag.polls.includes(:votes).open.sort_by {|poll| - poll.votes.size}
+        @polls = @tag.polls.includes(:votes).open.active.sort_by {|poll| - poll.votes.size}
       end
     end
   end
@@ -93,7 +93,7 @@ class PollsController < ApplicationController
     if @politician
       respond_to do |format|
         format.json do
-          @polls = @politician.polls.includes(:votes).open.sort_by {|poll| - poll.votes.size}
+          @polls = @politician.polls.includes(:votes).open.active.sort_by {|poll| - poll.votes.size}
         end
       end
     else
@@ -214,8 +214,8 @@ class PollsController < ApplicationController
       :description,
       :poll_image,
       :poll_image_cache,
-      :poll_document,
       :title,
+      :objective,
       :status,
       vote_types_attributes: [:name]
     )

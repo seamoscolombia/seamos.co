@@ -5,6 +5,7 @@ json.poll do
     json.image url.to_s + @poll.poll_image.url
     json.description @poll.description
     json.objective @poll.objective
+    json.initial_time @poll.remaining_time_in_seconds_from_created
     json.remaining @poll.remaining_time_in_seconds
     json.vote_count @poll.votes.size
     json.poll_type @poll.poll_type
@@ -28,7 +29,7 @@ json.poll do
     json.politician do
       json.id @poll.user.id
       json.full_name @poll.user.full_name
-      # TODO we need to inculde a picture field on users model to access each user profile images
-      json.picture "${url}${politician_profile_picture}"
+      json.picture url + @poll.user.admin_photo.url if @poll.user.admin_photo.url
+      # json.picture "${url}${politician_profile_picture}"
     end
 end
