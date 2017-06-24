@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  protect_from_forgery with: :exception, except: [:create]
+  protect_from_forgery with: :exception, except: [:create, :destroy]
   include SessionsHelper
 
   def admin_create
