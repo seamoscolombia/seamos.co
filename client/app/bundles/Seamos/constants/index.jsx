@@ -16,6 +16,7 @@ export const ADD_TAGS_ON_USER = 'ADD_TAGS_ON_USER';
 export const DELETE_TAGS_ON_USER = 'DELETE_TAGS_ON_USER';
 export const URL = (process.env.NODE_ENV === 'development') ? 'http://localhost:3000/' : 'https://seamos.herokuapp.com';
 export const APP_ID = (process.env.NODE_ENV === 'development') ? '1541054365966079' : '1707774202581080';
+export const SET_POLITICIAN = 'SET_POLITICIAN';
 export const SET_USER = 'SET_USER';
 export const SET_SESSION = 'SET_SESSION';
 export const RESET_SESSION = 'RESET_SESSION';

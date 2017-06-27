@@ -1,4 +1,5 @@
 export * from './interestsActionsCreators';
+export * from './politicianActionsCreators';
 export * from './pollsActionsCreators';
 export * from './tagActionsCreators';
 export * from './tagsActionsCreators';
