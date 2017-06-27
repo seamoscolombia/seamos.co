@@ -220,10 +220,11 @@ es:
         title: Título
         user: Usuario
         closing_date: Fecha de cierre
-        at_least_one_tag: Ningún tema seleccionado,
         description: Descripción
+        poll_image: Imagen de la propuesta
         totals: Totales
         poll_document: Documento de la Propuesta
+        objective: Objetivo
       tag:
         tag_image: Imagen del Tema
       user:
@@ -269,6 +270,8 @@ es:
       polls: Propuestas
       logout: Salir
       users: Lista de Usuarios
+      create_admin: Crear Admin / Político
+      create_poll: Crear Propuesta
 
   dashboard:
     index:
@@ -298,14 +301,15 @@ es:
       debate_results: "Resultados de: %{debate_title}"
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
-    at_least_one_tag: La propuesta debe estar asociada por lo menos a un tema.
+    one_tag: Debe seleccionar un tema para su propuesta
+    only_one_tag: Debe seleccionar únicamente un tema
     edit: Editar
     filtered_by_politician:
       not_a_politician: Usuario no encontrado
     form:
       add: Agregar
       csv_field: Archivo CSV
-      tags_picker: Temas
+      tags_picker: Tema
       document_field: Documento de la propuesta
       has_image: La propuesta ya tiene la imagen %{filename}. Si desea cambiar, por favor escoja otra. En caso contrario dejarla vacia.
       has_document: La propuesta ya tiene el documento %{filename}. Si desea cambiarlo, por favor escoja otro. En caso contrario deje el campo vacío.
@@ -321,7 +325,7 @@ es:
         - Todas
         - Abiertas
         - Cerradas
-      no_polls_available: Seamos está en el proceso de definir cual será la próxima propuesta a discutir.
+      no_polls_available: Por el momento no hay propuestas para mostrar.
       "true": Anónima
     new:
       create: Crear

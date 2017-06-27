@@ -19,7 +19,6 @@
 
 class Poll < ApplicationRecord
   mount_uploader :poll_image, PollImageUploader
-  mount_uploader :poll_document, PollDocumentUploader
 
   belongs_to :user
   has_many :vote_types, inverse_of: :poll, dependent: :destroy
@@ -34,11 +33,12 @@ class Poll < ApplicationRecord
   validates :title, presence: true
   validates :closing_date, presence: true
   validates :description, presence: true
+  validates :objective, presence: true
   validates :poll_image, presence: true, on: :create
-  validates :poll_document, presence: true, on: :create
 
   validate :closing_date_validation
-  validate :at_least_one_tag
+  validate :has_one_tag
+  validate :has_only_one_tag
 
   enum poll_type: {voting: 0, participation: 1, signing: 2}
 
@@ -88,6 +88,10 @@ class Poll < ApplicationRecord
   def remaining_time_in_seconds
     (closing_date - Date.today) * 1.days
   end
+  
+  def remaining_time_in_seconds_from_created
+    (closing_date - created_at.to_datetime) * 1.days
+  end
 
   private
 
@@ -104,9 +108,15 @@ class Poll < ApplicationRecord
     end
   end
 
-  def at_least_one_tag
+  def has_only_one_tag
+    unless tags.size < 2
+      errors.add(:base, I18n.t(:only_one_tag, scope: :polls))
+    end
+  end
+
+  def has_one_tag
     unless tags.present?
-      errors.add(:at_least_one_tag, I18n.t(:at_least_one_tag, scope: :polls))
+      errors.add(:base, I18n.t(:one_tag, scope: :polls))
     end
   end
 end

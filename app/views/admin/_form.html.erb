@@ -4,36 +4,41 @@
     <%= render 'shared/mensajes_de_error',  object: f.object %>
 
     <div class="field">
-        <%= f.label :first_surname %>
+        <%= f.label "Primer Apellido" %>
         <%= f.text_field :first_surname, class: 'form-control' %>
     </div>
 
     <div class="field">
-        <%= f.label :second_surname %>
+        <%= f.label "Segundo Apellido" %>
         <%= f.text_field :second_surname, class: 'form-control' %>
     </div>
 
     <div class="field">
-        <%= f.label :names %>
+        <%= f.label "Nombres" %>
         <%= f.text_field :names, class: 'form-control' %>
     </div>
 
     <div class="field">
-        <%= f.label :email %>
+        <%= f.label "Email" %>
         <%= f.email_field :email, class: 'form-control' %>
     </div>
 
     <div class="field">
-        <%= f.label :password %>
+        <%= f.label "Foto" %>
+        <%= f.file_field :admin_photo %>
+    </div>
+
+    <div class="field">
+        <%= f.label "Contraseña" %>
         <%= f.password_field :password, class: 'form-control' %>
     </div>
     <div class="field">
-        <%= f.label :password_confirmation %>
+        <%= f.label "Confirmación de contraseña" %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
 
     <div class="radio_button_field">
-        <%= f.label :role_type %><br/><br>
+        <%= f.label "Tipo de rol" %><br/><br>
         <%= f.radio_button :role_type, "administrador" %>
         <%= f.label :role_type, "Administrador"%><br>
         <%= f.radio_button :role_type, "politico" %>

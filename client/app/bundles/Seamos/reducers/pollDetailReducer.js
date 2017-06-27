@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   image: null,
   description: null,
   objective: null,
+  initial_time: null,
   remaining: null,
   vote_count: null,
   already_voted: null,
