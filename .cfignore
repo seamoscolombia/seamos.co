@@ -6,5 +6,6 @@
 # Ignore coverage
 /spec
 
+/vendor/*
 
 public/uploads
