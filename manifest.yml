@@ -1,7 +1,7 @@
 ---
 applications:
 - name: seamos
-  buildpack:  https://bitbucket.org/cf-utilities/cf-buildpack-multi
+  buildpack:  https://github.com/cloudfoundry/ruby-buildpack.git
   instances: 1
   random-route: true
   memory: 128M

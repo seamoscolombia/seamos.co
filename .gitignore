@@ -36,7 +36,7 @@ npm-debug.log*
 # Generated js bundles
 /app/assets/webpack/*
 
-
+/vendor/bundle
 
 \.vscode/launch\.json
 
