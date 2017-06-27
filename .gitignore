@@ -32,11 +32,16 @@ erl_crash.dump
 \.env
 # React on Rails
 npm-debug.log*
+node_modules
 
 # Generated js bundles
 /app/assets/webpack/*
 
-/vendor/bundle
+client/node_modules/
+
+node_modules/
+
+/vendor/*
 
 \.vscode/launch\.json
 
