@@ -41,6 +41,8 @@ client/node_modules/
 
 node_modules/
 
+/vendor/*
+
 \.vscode/launch\.json
 
 client/yarn\.lock
