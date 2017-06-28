@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { ShareButtons, generateShareIcon } from 'react-share';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
-import { URL } from '../constants';
+import { PRODUCTION_URL } from '../constants';
 
-const shareUrl = URL === 'http://localhost:3000' ? 'seamos.herokuapp.com' : URL;
+const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
 const shareDescription = 'somos una organización que ayuda a la democracía';
 const { FacebookShareButton } = ShareButtons;
 const FacebookIcon = generateShareIcon('facebook');
 
-const imgUrl = 'https://cdn.keycdn.com/img/cdn-network.svg';
+const imgUrl = `${PRODUCTION_URL}/assets/PARTICIPACIONES-4b76afbc5601851c4b5cf63c08a1a5a7c7b674ba643a7129e0147429d6be2d8c.png`;
 const title = 'Seamos pagina home';
 
 const Home = ({ session }) => (
@@ -101,21 +101,22 @@ const Home = ({ session }) => (
           <FacebookLogin fbText='Conéctate con facebook' />
         </div>
       }
-      <FacebookShareButton
-        url={shareUrl}
-        title={title}
-        picture={imgUrl}
-        description={shareDescription}
-        className="network__share-button"
-      >
-        <FacebookIcon
-          size={32}
-          round
-        >
-          Compartir
-            </ FacebookIcon>
-      </FacebookShareButton>
     </div>
+    <FacebookShareButton
+      url={shareUrl}
+      title={title}
+      picture={imgUrl}
+      description={shareDescription}
+      className="network__share-button"
+    >
+      <FacebookIcon
+        size={32}
+        margin={'auto'}
+        round
+      >
+      Compartir
+      </FacebookIcon>
+    </FacebookShareButton>
     <div className='background-container mid'>
       <div className='flex-container top-text-container'>
         <h1 className='welcome question'>

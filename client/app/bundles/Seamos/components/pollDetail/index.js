@@ -5,16 +5,12 @@ import { ShareButtons, generateShareIcon } from 'react-share';
 import CountDown from '../../containers/countdownContainer';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
-import { URL } from '../../constants';
+import { PRODUCTION_URL } from '../../constants';
 
-const shareUrl = URL === 'http://localhost:3000' ? 'seamos.herokuapp.com' : `${URL}/${window.location.hash}`;
-const shareDescription = 'somos una organización que ayuda a la democracía';
+
+const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
 const { FacebookShareButton } = ShareButtons;
 const FacebookIcon = generateShareIcon('facebook');
-
-const imgUrl = 'https://cdn.keycdn.com/img/cdn-network.svg';
-const title = 'Seamos pagina home';
-
 
 const moreInfoStyle = { height: 150, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
@@ -85,20 +81,6 @@ const PollDetail = ({
             alt='politician'
           />
           <div id='author'>por {politician.full_name}</div>
-          <FacebookShareButton
-            url={shareUrl}
-            title={title}
-            picture={imgUrl}
-            description={shareDescription}
-            className="network__share-button"
-          >
-            <FacebookIcon
-              size={32}
-              round
-            >
-              Compartir
-            </ FacebookIcon>
-          </FacebookShareButton>
         </section>
         <section id='poll' className='row'>
           <div className="col-sm-6">
@@ -108,7 +90,21 @@ const PollDetail = ({
               role='presentation'
               alt='poll thumbnail'
             />
-            <br /><br />
+            <span className='share-this'> COMPÁRTELA: </span>
+            <FacebookShareButton
+              url={shareUrl}
+              title={title}
+              picture={image}
+              description={description}
+              className="network__share-button"
+            >
+              <FacebookIcon
+                size={32}
+                round
+              >
+                Compartir
+              </FacebookIcon>
+            </FacebookShareButton>
             <p id='objective' className='row'><strong> Objetivo: </strong> {objective}</p>
           </div>
           <div className="col-sm-6">
