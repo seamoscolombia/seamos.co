@@ -1,8 +1,18 @@
 // import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ShareButtons, generateShareIcon } from 'react-share';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
+import { URL } from '../constants';
+
+const shareUrl = URL === 'http://localhost:3000/' ? 'http://github.com' : URL;
+const shareDescription = 'somos una organización que ayuda a la democracía';
+const { FacebookShareButton } = ShareButtons;
+const FacebookIcon = generateShareIcon('facebook');
+
+const imgUrl = 'https://cdn.keycdn.com/img/cdn-network.svg';
+const title = 'Seamos pagina home';
 
 const Home = ({ session }) => (
   <div id="homepage">
@@ -14,7 +24,7 @@ const Home = ({ session }) => (
           permite incidir en las decisiones políticas en <br className='breaker' />
           tiempo real
         </p>
-        <div onClick= {() => window.scrollTo(0, 391)} >
+        <div onClick={() => window.scrollTo(0, 391)} >
           <div className='action'>
             Pasemos a la acción
           </div>
@@ -40,9 +50,9 @@ const Home = ({ session }) => (
     <div id='steps-container' className="flex-container">
       <Link
         to="#"
-        onClick= {() => window.scrollTo(0, 1434)}
+        onClick={() => window.scrollTo(0, 1434)}
       >
-      <div className="step">
+        <div className="step">
           <div className="step-info">
             <div className="step-number">1</div>
             <div className="step-text">
@@ -84,26 +94,40 @@ const Home = ({ session }) => (
       </Link>
     </div>
     <div className="fb-button-container">
-      { session && session.authenticityToken ?
+      {session && session.authenticityToken ?
         <span /> :
         <div>
           <div className="one-click"> Sin registros, solo un click </div>
           <FacebookLogin fbText='Conéctate con facebook' />
         </div>
       }
+      <FacebookShareButton
+        url={shareUrl}
+        title={title}
+        picture={imgUrl}
+        description={shareDescription}
+        className="network__share-button"
+      >
+        <FacebookIcon
+          size={32}
+          round
+        >
+          Compartir
+            </ FacebookIcon>
+      </FacebookShareButton>
     </div>
     <div className='background-container mid'>
       <div className='flex-container top-text-container'>
         <h1 className='welcome question'>
-        ¿De qué <br className='breaker' />
-        quieres hablar?
+          ¿De qué <br className='breaker' />
+          quieres hablar?
         </h1>
       </div>
     </div>
     <div className="mid-paragraph">
-    ¿En qué estás pensando ahora? <br />
-    Encuentra las propuestas vigentes <br />
-    de acuerdo a tus intereses
+      ¿En qué estás pensando ahora? <br />
+      Encuentra las propuestas vigentes <br />
+      de acuerdo a tus intereses
     </div>
     <Tags />
   </div>
