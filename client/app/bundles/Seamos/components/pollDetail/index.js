@@ -1,9 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { ShareButtons, generateShareIcon } from 'react-share';
 
 import CountDown from '../../containers/countdownContainer';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
+import { URL } from '../../constants';
+
+const shareUrl = URL === 'http://localhost:3000' ? 'seamos.herokuapp.com' : `${URL}/${window.location.hash}`;
+const shareDescription = 'somos una organización que ayuda a la democracía';
+const { FacebookShareButton } = ShareButtons;
+const FacebookIcon = generateShareIcon('facebook');
+
+const imgUrl = 'https://cdn.keycdn.com/img/cdn-network.svg';
+const title = 'Seamos pagina home';
+
 
 const moreInfoStyle = { height: 150, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
@@ -27,12 +38,12 @@ function voteButton(pollType, voteTypes, voteAction) {
 }
 
 function votedButton(pollType, voteTypes, vote_count) {
-    switch (pollType) {
+  switch (pollType) {
     case 'signing': //2
       return (<VotedButton
-          count={voteTypes[0].count}
-          name={voteTypes[0].name}
-          total={vote_count}
+        count={voteTypes[0].count}
+        name={voteTypes[0].name}
+        total={vote_count}
       />);
     default:
       return voteTypes.map(voteType =>
@@ -61,68 +72,82 @@ const PollDetail = ({
   voteAction, initial_time
 }) => (
     <section id='poll-detail'>
-    <div className='container'>
-      <header className='row'>
-        <p className='col-sm-12 poll-title'>
-          { title }
-        </p>
-      </header>
-      <section id='politician' className='row'>
+      <div className='container'>
+        <header className='row'>
+          <p className='col-sm-12 poll-title'>
+            {title}
+          </p>
+        </header>
+        <section id='politician' className='row'>
           <img
             src={getPicture(politician)}
             role='presentation'
             alt='politician'
           />
           <div id='author'>por {politician.full_name}</div>
-      </section>
-      <section id='poll' className='row'>
-        <div className="col-sm-6">
-          <img
-            id='poll-thumbnail'
-            src={image}
-            role='presentation'
-            alt='poll thumbnail'
-          />
-          <br /><br />
-          <p id='objective' className='row'><strong> Objetivo: </strong> {objective}</p>
-        </div>
-        <div className="col-sm-6">
-          <div className="row">
-            <div className="poll-description-container col-sm-12">
-               <p className="poll-description" style={moreInfo ? lessInfoStyle : moreInfoStyle}>
-                { description }
-              </p>
-            </div>
-            <div className="col-sm-12">
-              <button onClick={setMoreInfo} id='plus-info'>
-                { moreInfo ? '-INFO' : '+INFO' }
-              </button>
-            </div>
-            <div className="col-sm-12">
-              <div className="row">
-                <div className="col-xs-9 buttons-wrapper">
-                  { user_already_voted ? //eslint-disable-line
+          <FacebookShareButton
+            url={shareUrl}
+            title={title}
+            picture={imgUrl}
+            description={shareDescription}
+            className="network__share-button"
+          >
+            <FacebookIcon
+              size={32}
+              round
+            >
+              Compartir
+            </ FacebookIcon>
+          </FacebookShareButton>
+        </section>
+        <section id='poll' className='row'>
+          <div className="col-sm-6">
+            <img
+              id='poll-thumbnail'
+              src={image}
+              role='presentation'
+              alt='poll thumbnail'
+            />
+            <br /><br />
+            <p id='objective' className='row'><strong> Objetivo: </strong> {objective}</p>
+          </div>
+          <div className="col-sm-6">
+            <div className="row">
+              <div className="poll-description-container col-sm-12">
+                <p className="poll-description" style={moreInfo ? lessInfoStyle : moreInfoStyle}>
+                  {description}
+                </p>
+              </div>
+              <div className="col-sm-12">
+                <button onClick={setMoreInfo} id='plus-info'>
+                  {moreInfo ? '-INFO' : '+INFO'}
+                </button>
+              </div>
+              <div className="col-sm-12">
+                <div className="row">
+                  <div className="col-xs-9 buttons-wrapper">
+                    {user_already_voted ? //eslint-disable-line
                       votedButton(poll_type, vote_types, vote_count) :
                       voteButton(poll_type, vote_types, voteAction)
                     }
-                </div>
-                <div className="countdown-wrapper col-xs-3">
-                  <CountDown
+                  </div>
+                  <div className="countdown-wrapper col-xs-3">
+                    <CountDown
                       timerCount={remaining}
                       initialTime={initial_time}
                       countdownColor="#66CCCC"
                       innerColor="#fff"
                       outerColor="#747272"
-                  />
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
-  </section>
-);
+        </section>
+      </div>
+    </section>
+  );
 PollDetail.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,

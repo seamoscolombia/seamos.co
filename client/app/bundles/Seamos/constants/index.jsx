@@ -14,7 +14,7 @@ export const UPDATE_TAG = 'UPDATE_TAG';
 export const UPDATE_TAGS = 'UPDATE_TAGS';
 export const ADD_TAGS_ON_USER = 'ADD_TAGS_ON_USER';
 export const DELETE_TAGS_ON_USER = 'DELETE_TAGS_ON_USER';
-export const URL = (process.env.NODE_ENV === 'development') ? 'http://localhost:3000/' : 'https://seamos-moity-indaba.mybluemix.net';
+export const URL = (process.env.NODE_ENV === 'development') ? 'http://localhost:3000' : 'https://seamos-moity-indaba.mybluemix.net';
 export const APP_ID = (process.env.NODE_ENV === 'development') ? '1790047761280618' : '1707774202581080';
 export const SET_USER = 'SET_USER';
 export const SET_SESSION = 'SET_SESSION';

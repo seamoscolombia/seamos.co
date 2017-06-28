@@ -4,7 +4,7 @@ import { ShareButtons, generateShareIcon } from 'react-share';
 import Polls from './polls';
 import { URL } from '../constants';
 
-const shareUrl = URL === 'http://localhost:3000/' ? 'seamos.herokuapp.com' : `${URL}${window.location.hash}`;
+const shareUrl = URL === 'http://localhost:3000' ? 'seamos.herokuapp.com' : `${URL}/${window.location.hash}`;
 const shareDescription = 'somos una organización que ayuda a la democracía';
 const { FacebookShareButton } = ShareButtons;
 const FacebookIcon = generateShareIcon('facebook');

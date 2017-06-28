@@ -6,7 +6,7 @@ import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
 import { URL } from '../constants';
 
-const shareUrl = URL === 'http://localhost:3000/' ? 'seamos.herokuapp.com' : URL;
+const shareUrl = URL === 'http://localhost:3000' ? 'seamos.herokuapp.com' : URL;
 const shareDescription = 'somos una organización que ayuda a la democracía';
 const { FacebookShareButton } = ShareButtons;
 const FacebookIcon = generateShareIcon('facebook');
