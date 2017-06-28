@@ -50,7 +50,11 @@ class Poll < ApplicationRecord
   }
 
   scope :open, -> {
-    where('closing_date >= ?', Date.today)
+    where('closing_date > ?', Date.today)
+  }
+
+  scope :closed, -> {
+    where('closing_date <= ?', Date.today)
   }
 
   scope :get_user_participations, -> (user) {
@@ -88,7 +92,7 @@ class Poll < ApplicationRecord
   def remaining_time_in_seconds
     (closing_date - Date.today) * 1.days
   end
-  
+
   def remaining_time_in_seconds_from_created
     (closing_date - created_at.to_datetime) * 1.days
   end
