@@ -2,23 +2,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getPolitician } from '../actions';
-
+import Politician from '../components/politician';
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
-    const { user, interests } = state;
-    return { user, interests };
+    const { politician } = state;
+    return { politician };
 };
 
 const mapDispatchToProps = { getPolitician };
 
 class ProfileContainer extends Component {
 
-    componentDidMount() {
-        this.props.getPolitician();
+    componentWillMount() {
+        const politicianId = this.props.match.params.politicianId;
+        this.props.getPolitician(politicianId);
     }
         
-  
     render() {
+        const { politician } = this.props;
+        if (politician.id !== null) {
+            return <Politician {...politician} />;
+        }
         return null;
     }
 }
