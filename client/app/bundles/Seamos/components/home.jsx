@@ -68,6 +68,7 @@ const Home = ({ session }) => (
           <div className="step-image step-image-2" />
         </div>
       </a>
+      {/* <<<< is bad*/ }
       <Link
         to='/tag/3/polls'
       >
