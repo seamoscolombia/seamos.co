@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # root 'intro#inicio'
 
   resources :photos, only: :create
-
+  get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
   resources :users , except: [:new, :show] do
     get 'already_voted', on: :member
     get 'validate', on: :member
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/tags/:tag_id/polls', to: 'polls#filtered_by_tag', format: 'json'
   get '/politician/:politician_id/polls', to: 'polls#filtered_by_politician', format: 'json'
   get '/profile', to: 'users#show', format: 'json'
+  get '/proponents/:id', to: 'users#politician_profile', format: 'json'
   patch 'debate/:id', to: 'debates#publish', as: :publish_debate
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
 
