@@ -10,9 +10,9 @@ export const setPolitician = (politician) => ({
 });
 
 export const getPolitician = (id) => (dispatch) => (
-  axios.get(`${URL}/${id}/politician.json`)
+  axios.get(`${URL}/proponents/${id}.json`)
     .then(response => {
-      dispatch(setPolitician(response.data.politician));
+      dispatch(setPolitician(response.data.user));
     })
     .catch(e => {
       alert('Ha ocurrido un error por favor reporta a nuestro equipo');
