@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import CountDown from '../../containers/countdownContainer';
 import SingleButton from './singleButton';
@@ -73,7 +74,10 @@ const PollDetail = ({
             role='presentation'
             alt='politician'
           />
-          <div id='author'>por {politician.full_name}</div>
+          <Link 
+            id='author'
+            to={`/proponents/${politician.id}`}
+          >por {politician.full_name} </ Link>
       </section>
       <section id='poll' className='row'>
         <div className="col-sm-6">
