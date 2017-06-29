@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.3.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use Puma as the app server
@@ -45,6 +45,8 @@ gem 'pg', '0.18.4'
 gem 'sidekiq', '~> 4.2.10'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'react_on_rails', '~> 7.0.4'
+gem 'rails_12factor', group: :production
+gem "cf-autoconfig", '~> 0.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

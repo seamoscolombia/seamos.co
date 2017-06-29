@@ -48,7 +48,7 @@ const Profile = (props) => {
         }
         <section id='my-participations' className='col-sm-6'>
           <div className='title'>
-            <span> PARTICIPACIONES</span>
+            <span> MIS PARTICIPACIONES</span>
           </div>
           <Polls polls={participations.polls} />
         </section>

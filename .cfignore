@@ -1,0 +1,13 @@
+.DS_STORE
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore coverage
+/spec
+
+/vendor/*
+
+/client/node_modules/*
+
+public/uploads
