@@ -6,8 +6,8 @@ import { getPoll, votePoll } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
-    const { poll, session } = state;
-    return { poll, session };
+    const { poll, session, user } = state;
+    return { poll, session, user };
 };
 
 const mapDispatchToProps = { getPoll, votePoll };
@@ -29,6 +29,13 @@ class PollsDetailContainer extends Component {
 
     componentWillUnmount() {
         this.props.poll.id = null;
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        if (this.props.user !== nextProps.user) {
+            this.props.poll.user_already_voted = !this.props.poll.user_already_voted;
+        } 
+        return true;
     }
 
     setMoreInfo() { this.setState({ moreInfo: !this.state.moreInfo }); }

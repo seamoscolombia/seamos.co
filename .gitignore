@@ -48,3 +48,5 @@ node_modules/
 client/yarn\.lock
 DESKTOP_SEAMOS/
 MOV_SEAMOS/
+
+\.DS_Store
