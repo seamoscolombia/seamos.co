@@ -14,6 +14,7 @@ import Home from '../containers/homeContainer';
 import Navbar from '../containers/navbarContainer';
 import Profile from '../containers/profileContainer'; 
 import Component404 from '../components/component404'; 
+import Polls from '../containers/pollsContainer';
 import PollsByTag from '../containers/pollsByTagContainer';
 import PollDetail from '../containers/pollDetailContainer';
 
@@ -38,6 +39,7 @@ const AppRouter = () => (
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/tag/:tagId/polls" component={PollsByTag} />
+                <Route path="/polls" component={Polls} />
                 <Route path="/poll/:pollId" component={PollDetail} />
                 <PrivateRoute path="/profile" component={Profile} />
                 <Route path='/404' component={Component404} />
