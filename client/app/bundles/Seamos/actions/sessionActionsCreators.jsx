@@ -10,15 +10,8 @@ export const setSession = (authenticityToken) => ({
 export const resetUserSession = () => ({ type: RESET_SESSION });
 
 export const resetSession = () => dispatch => (
-  axios.delete(`${URL}/sessions.json`)
-  .then(() => {
-    // debugger
-    // window.FB.logout(function(response) {
-    //   debugger
-
-    // });
-    dispatch(resetUserSession());
-  })
+  axios.delete(`${URL}/destroy_facebook_session.json`)
+  .then(() => dispatch(resetUserSession()))
   .catch(e => {
     alert('Ha ocurrido un error por favor reporta a nuestro equipo'); //eslint-disable-line
   })
