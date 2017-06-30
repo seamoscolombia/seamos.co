@@ -12,7 +12,7 @@ class ProfileButtonContainer extends Component {
         this.props.resetSession();
     }
     render() {
-        return (<ProfileButton 
+        return (<ProfileButton
             action={this.logout.bind(this)}
             className={'nav-fb'}
             name={'Logout'}
