@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/proponents/:id', to: 'users#politician_profile', format: 'json'
   patch 'debate/:id', to: 'debates#publish', as: :publish_debate
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
+  get 'polls/closed', to: 'polls#index_closed', format: 'json'
 
   resources :polls do
     get 'last', on: :collection
