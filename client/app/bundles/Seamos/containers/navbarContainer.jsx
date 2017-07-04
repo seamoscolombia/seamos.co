@@ -15,9 +15,16 @@ class NavbarContainer extends Component {
         const sideslider = jQuery('[data-toggle=collapse-side]');
         const sel = sideslider.attr('data-target');
         const sel2 = sideslider.attr('data-target-2');
-        sideslider.click(() => {
+        const body = document.getElementsByTagName('body')[0];
+
+        sideslider.click((e) => {
+            e.stopPropagation();
             jQuery(sel).toggleClass('in');
             jQuery(sel2).toggleClass('out');
+        });
+        body.addEventListener('click', () => { 
+            jQuery(sel).removeClass('out');
+            jQuery(sel).addClass('in');
         });
     }
 

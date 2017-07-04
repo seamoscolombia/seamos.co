@@ -52,6 +52,7 @@ const Navbar = ({ session, user }) => (
       <div className='navbar-transparent side-collapse in'>
         <nav className='navbar-collapse' role='navigation'>
           <ul className='nav navbar-nav navbar-right navbar-options'>
+            <li><Link to='/tags'> Temas </Link></li>
             <li><Link to='/'> ¿COMO LO HACEMOS? </Link></li>
             <li><Link to='/polls'> Las propuestas </Link></li>
             {session.authenticityToken && Object.keys(user).length !== 0 ?

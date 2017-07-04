@@ -6,7 +6,7 @@ json.polls do
     json.description poll.description
     json.type poll.poll_type
     json.poll_image url + poll.poll_image.url
-    json.vote_count poll.votes.size
+    json.vote_count poll.vote_count
     json.remaining poll.remaining_time_in_seconds
     if current_user
       json.already_voted current_user.already_voted?(poll)
