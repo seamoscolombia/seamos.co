@@ -107,7 +107,10 @@ const Home = ({ session }) => (
     de acuerdo a tus intereses
     </div>
     <Tags />
-    <div id='feature-polls'>
+    <div id='featured-polls-title'>
+      PROPUESTAS DESTACADAS POR LA CIUDADANÍA
+    </div>
+    <div id='featured-polls'>
       <Polls />
     </div>
   </div>

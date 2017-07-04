@@ -6,9 +6,13 @@ function getDays(remaining) {
   return ((remaining / 3600) / 24);
 }
 const Poll = (props) => {
-  const { id, title, description, poll_image, vote_count, remaining, tag } = props;
-  let color = 'none';
-  if (tag) { color = tag.color; }
+  const { id, title, description, poll_image, vote_count, remaining, tag, color } = props;
+  let tagColor = 'none';
+  if (tag) {
+    tagColor = tag.color;
+  } else {
+    tagColor = color;
+  }
   return (
     <div id='poll-component'>
       <div className='poll-image-container'>
@@ -16,7 +20,7 @@ const Poll = (props) => {
         <img alt="poll" src={poll_image} />
       </Link>
       </div>
-      <div className='color-separator' style={{ backgroundColor: color }} />
+      <div className='color-separator' style={{ backgroundColor: tagColor }} />
       <div className='poll-infos-container'>
         <div className='poll-info'>
           <div className='poll-title'>
@@ -31,10 +35,10 @@ const Poll = (props) => {
           <span className='separator'> | </span>
           <span> quedan {getDays(remaining)} días</span>
           <span className='separator'> | </span>
-          <Link 
+          <Link
             to={`/poll/${id}`}
             className='btn button btn-plus-read'
-            style={{ backgroundColor: color }}
+            style={{ backgroundColor: tagColor }}
           >
             LEER +
           </Link>

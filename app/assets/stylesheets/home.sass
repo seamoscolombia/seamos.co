@@ -212,5 +212,30 @@
   .breaker
     @media screen and (max-width: $break-medium)
       display: none
-  #feature-polls
-    background-color: red    
+  #featured-polls-title
+    margin-top: 60px
+    margin-bottom: 30px
+    color: black
+    text-align: center
+    font-family: 'RobotoCondensed'
+    font-weight: bold
+    font-size: 30px
+    line-height: 1.3em
+    @media screen and (max-width: $break-medium)
+      letter-spacing: 1px
+      line-height: 1.1em
+      font-size: 22px
+  #featured-polls
+    display: flex
+    align-items: center
+    justify-content: center
+    .polls-wrapper
+      text-align: center
+      #poll-component
+        .poll-image-container
+          justify-content: center
+          a
+            margin: 0
+            left: 0
+            right: 0
+            position: relative
