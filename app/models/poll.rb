@@ -97,6 +97,10 @@ class Poll < ApplicationRecord
     (closing_date - created_at.to_datetime) * 1.days
   end
 
+  def vote_count
+    votes.size
+  end
+
   private
 
   def closing_date_validation
