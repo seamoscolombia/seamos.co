@@ -12,7 +12,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = { getTags };
-const tagPage = { marginTop: 110 };
 class TagsContainer extends Component {
     componentWillMount() {
         this.props.getTags();
@@ -23,8 +22,18 @@ class TagsContainer extends Component {
     }
     render() {
         return (
-            <div style={tagPage}>
-                <Tags {...this.props} action={this.pollsByTag.bind(this)} />
+            <div id='tags-page'>
+              <div className='background-container'>
+                <div className='flex-container'>
+                  <h1 className='question'>
+                  ¿De qué <br className='breaker' />
+                  quieres hablar?
+                  </h1>
+                </div>
+              </div>
+              <div>
+                  <Tags {...this.props} action={this.pollsByTag.bind(this)} />
+              </div>
             </div>
         );
     }
