@@ -76,7 +76,8 @@ class PollsController < ApplicationController
         @polls = Poll.order('id desc').all.page(params[:page]).per(4)
       end
       format.json do
-        @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| poll.send(order_param)}
+        @polls = Poll.includes(:votes, :tags).joins(:votes, :user).open.active
+        @polls.sort_by {|poll| poll.send(order_param)}
         @polls.reverse! if @reverse
       end
     end
