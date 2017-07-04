@@ -76,7 +76,8 @@ class PollsController < ApplicationController
         @polls = Poll.order('id desc').all.page(params[:page]).per(4)
       end
       format.json do
-        @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| - poll.votes.size}
+        @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| poll.send(order_param)}
+        @polls.reverse! if @reverse
       end
     end
   end
@@ -184,6 +185,30 @@ class PollsController < ApplicationController
 
   def set_tag
     @tag = Tag.find(params[:tag_id])
+  end
+
+  def order_param
+    case params[:order_by]
+    when 'farest-closing-date-first'
+      @reverse = true
+      order_param = 'closing_date'
+    when 'closest-closing-date-first'
+      order_param = 'closing_date'
+    when 'oldest-first'
+      @reverse = true
+      order_param = 'created_at'
+    when 'newest-first'
+      order_param = 'created_at'
+    when 'most-voted-first'
+      @reverse = true
+      order_param = 'vote_count'
+    when 'less-voted-first'
+      order_param = 'vote_count'
+    else
+      @reverse = true
+      order_param = 'vote_count'
+    end
+    order_param
   end
 
   def set_politician
