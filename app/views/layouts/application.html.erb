@@ -30,9 +30,9 @@
 
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="<%= 'nav-li-border' if params[:controller] == 'polls' %>">  <%= link_to t('.polls'),admin_polls_path %></li>
+              <li class="<%= 'nav-li-border' if params[:controller] == 'polls' and params[:action] == 'index_admin'%>">  <%= link_to t('.polls'),admin_polls_path %></li>
               <% if current_user.politico? %>
-                <li class="<%= 'nav-li-border' if params[:controller] == 'users' %>">  <%= link_to t('.create_poll'), new_poll_path %> </li>
+                <li class="<%= 'nav-li-border' if params[:controller] == 'polls' and params[:action] == 'new' %>">  <%= link_to t('.create_poll'), new_poll_path %> </li>
               <% end %>
               <% if is_admin? %>
                 <li class="<%= 'nav-li-border' if params[:controller] == 'users' %>">  <%= link_to t('.users'),admin_validate_users_path %> </li>
@@ -78,6 +78,5 @@
         </div>
       </footer>
     <% end %>
-
   </body>
 </html>

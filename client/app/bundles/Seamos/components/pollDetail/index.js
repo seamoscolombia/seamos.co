@@ -46,10 +46,10 @@ function votedButton(pollType, voteTypes, vote_count) {
   }
 }
 
-function getPicture(picture) {
-  // if (picture) {
-  //   return picture
-  // }
+function getPicture(politician) {
+  if (politician.picture) {
+    return politician.picture
+  }
   return 'https://developers.google.com/experts/img/user/user-default.png';
 }
 
@@ -58,7 +58,7 @@ const PollDetail = ({
   description, objective, vote_count,
   user_already_voted, links, politician,
   poll_type, moreInfo, setMoreInfo, vote_types,
-  voteAction
+  voteAction, initial_time
 }) => (
     <section id='poll-detail'>
     <div className='container'>
@@ -69,7 +69,7 @@ const PollDetail = ({
       </header>
       <section id='politician' className='row'>
           <img
-            src={getPicture(politician.picture)}
+            src={getPicture(politician)}
             role='presentation'
             alt='politician'
           />
@@ -109,6 +109,7 @@ const PollDetail = ({
                 <div className="countdown-wrapper col-xs-3">
                   <CountDown
                       timerCount={remaining}
+                      initialTime={initial_time}
                       countdownColor="#66CCCC"
                       innerColor="#fff"
                       outerColor="#747272"
@@ -126,6 +127,7 @@ PollDetail.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  initial_time: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   objective: PropTypes.string.isRequired,
   remaining: PropTypes.number.isRequired,

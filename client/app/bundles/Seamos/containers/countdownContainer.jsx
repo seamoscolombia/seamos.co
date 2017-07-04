@@ -8,7 +8,7 @@ class CountDownContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    const initialCounter = props.timerCount;
+    const initialCounter = props.initialTime;
 
     // Constants for calculations of the SVG circle
     this.goalTimeMillis = initialCounter * 1000;
@@ -20,11 +20,10 @@ class CountDownContainer extends React.Component {
     might not actually be 1ms due to system load etc.), the time is tracked
     with moments.
     */
-    this.startDateMoment = null;
     // The milliseconds since the timer was started (without considering pauses)
     this.timerDuration = 0;
     // The 'official' milliseconds - excluding time during pauses
-    this.elapsedTime = 0;
+    this.elapsedTime = (initialCounter - props.timerCount) * 1000;
     // This property will store the Observable for the timer countdown
     this.timerObservable = null;
 
@@ -119,8 +118,8 @@ class CountDownContainer extends React.Component {
       .interval(1)
       .subscribe(t => {
         // Update the timer duration
-        let currentDate = new Date();
-        this.timerDuration = this.elapsedTime + moment(currentDate).diff(moment(this.startDateMoment));
+        const currentDate = new Date();
+        this.timerDuration = this.elapsedTime + moment(currentDate).diff(moment(this.startDateMoment)); 
 
         // Update the state and draw another segment in the SVG
         if (this.timerDuration < this.goalTimeMillis) {
@@ -222,6 +221,7 @@ class CountDownContainer extends React.Component {
 }
 
 CountDownContainer.propTypes = {
+  initialTime: PropTypes.number.isRequired,
   timerCount: PropTypes.number.isRequired,
   outerColor: PropTypes.string,
   innerColor: PropTypes.string,

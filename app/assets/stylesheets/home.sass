@@ -79,7 +79,7 @@
     background-image: url(asset_path('inicio.png'))
     background-position: center top
   .mid
-    background-image: url(asset_path('temas.png'))
+    background-image: url(asset_path('de_que_quieres_hablar.png'))
     background-position: center top
     padding: 120px 0 210px 0
     margin-top: 50px
@@ -181,6 +181,17 @@
         background-image: url(asset_path('pasoapaso-02.png'))
       .step-image-3
         background-image: url(asset_path('pasoapaso-03.png'))
+    a
+      color: black
+      text-decoration: none
+      -webkit-transition: width 0.5s, height 0.5s, -webkit-transform 0.5s
+      transition: width 0.5s, height 0.5s, transform 0.5s
+      &:hover
+        text-decoration: none
+        color: black
+        -webkit-transform: scale(1.03, 1.03)
+        transform: scale(1.03, 1.03)
+
   .fb-button-container
     text-align: center
     margin-top: 20px
@@ -190,9 +201,14 @@
       margin-bottom: 0.8em
     button
       background-color: #2d60a0
-      padding: 8px
+      padding: 6px 8px
       border-radius: 5px
       color: white
+      .fa
+        margin-right: 7px
+        padding-right: 7px
+        line-height: 20px
+        border-right: 1px solid white
   .breaker
     @media screen and (max-width: $break-medium)
       display: none

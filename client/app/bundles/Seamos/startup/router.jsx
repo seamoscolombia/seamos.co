@@ -16,6 +16,7 @@ import Profile from '../containers/profileContainer';
 import Component404 from '../components/component404'; 
 import PollsByTag from '../containers/pollsByTagContainer';
 import PollDetail from '../containers/pollDetailContainer';
+import Tags from '../containers/tagsContainerPage';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route 
@@ -23,7 +24,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
             isAuthenticated() ? <Component {...props} /> : 
             (<Redirect 
                 to={{
-                    pathname: '/',
+                    pathname: '/404',
                     state: { from: props.location }
                 }}
             />)
@@ -37,6 +38,7 @@ const AppRouter = () => (
             <Navbar />
             <Switch>
                 <Route exact path="/" component={Home} />
+                <Route path="/tags" component={Tags} />
                 <Route path="/tag/:tagId/polls" component={PollsByTag} />
                 <Route path="/poll/:pollId" component={PollDetail} />
                 <PrivateRoute path="/profile" component={Profile} />
