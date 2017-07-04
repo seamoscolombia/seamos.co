@@ -76,9 +76,8 @@ class PollsController < ApplicationController
         @polls = Poll.order('id desc').all.page(params[:page]).per(4)
       end
       format.json do
-        @polls = Poll.includes(:votes, :tags).joins(:votes, :user).open.active
-        @polls.sort_by {|poll| poll.send(order_param)}
-        @polls.reverse! if @reverse
+        @polls = Poll.joins(:votes).includes(:votes, :tags).open.active.sort_by {|poll| poll.send(order_param)}
+        @polls = @polls.reverse if @reverse
       end
     end
   end
@@ -193,7 +192,7 @@ class PollsController < ApplicationController
     when 'farest-closing-date-first'
       @reverse = true
       order_param = 'closing_date'
-    when 'closest-closing-date-first'
+    when 'nearest-closing-date-first'
       order_param = 'closing_date'
     when 'oldest-first'
       @reverse = true
