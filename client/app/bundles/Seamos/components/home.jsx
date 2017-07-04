@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
+import Polls from '../containers/pollsFeatureContainer';
 
 const Home = ({ session }) => (
   <div id="homepage">
@@ -106,6 +107,12 @@ const Home = ({ session }) => (
     de acuerdo a tus intereses
     </div>
     <Tags />
+    <div id='featured-polls-title'>
+      PROPUESTAS DESTACADAS POR LA CIUDADANÍA
+    </div>
+    <div id='featured-polls'>
+      <Polls />
+    </div>
   </div>
 );
 
