@@ -203,9 +203,9 @@ class PollsController < ApplicationController
     when 'nearest-closing-date-first'
       order_param = 'closing_date'
     when 'oldest-first'
-      @reverse = true
       order_param = 'created_at'
     when 'newest-first'
+      @reverse = true
       order_param = 'created_at'
     when 'most-voted-first'
       @reverse = true
