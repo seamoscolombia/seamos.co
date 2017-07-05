@@ -14,6 +14,7 @@ import Home from '../containers/homeContainer';
 import Navbar from '../containers/navbarContainer';
 import Profile from '../containers/profileContainer'; 
 import Component404 from '../components/component404'; 
+import PollsClosed from '../containers/pollsClosedContainer';
 import PollsByTag from '../containers/pollsByTagContainer';
 import PollDetail from '../containers/pollDetailContainer';
 import Tags from '../containers/tagsContainerPage';
@@ -41,6 +42,7 @@ const AppRouter = () => (
                 <Route path="/tags" component={Tags} />
                 <Route path="/tag/:tagId/polls" component={PollsByTag} />
                 <Route path="/poll/:pollId" component={PollDetail} />
+                <Route path="/polls/closed" component={PollsClosed} />
                 <PrivateRoute path="/profile" component={Profile} />
                 <Route path='/404' component={Component404} />
                 <Route component={Component404} />
