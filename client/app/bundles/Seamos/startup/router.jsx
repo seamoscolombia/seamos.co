@@ -14,7 +14,7 @@ import Home from '../containers/homeContainer';
 import Navbar from '../containers/navbarContainer';
 import Profile from '../containers/profileContainer'; 
 import Component404 from '../components/component404'; 
-import Polls from '../containers/pollsContainer';
+import Polls from '../containers/pollsPageContainer';
 import PollsByTag from '../containers/pollsByTagContainer';
 import PollDetail from '../containers/pollDetailContainer';
 import Tags from '../containers/tagsContainerPage';

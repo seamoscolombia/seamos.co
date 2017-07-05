@@ -9,8 +9,8 @@ export const updatePolls = (polls) => ({
   polls,
 });
 
-export const getPolls = () => (dispatch) => (
-    axios.get(`${URL}/polls.json`)
+export const getPolls = (val = 'most-voted-first') => (dispatch) => (
+    axios.get(`${URL}/polls.json?order_by=${val}`)
     .then(response => {
       dispatch(updatePolls(response.data.polls));
     })
