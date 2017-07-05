@@ -23,14 +23,17 @@ class PollsContainer extends Component {
     render() {
         return (
             <div id='poll-page'>
-                <select name='' onChange={this.changeOpc.bind(this)}>
-                    <option value='most-voted-first'> Más vistos</option>
-                    <option value='less-voted-first'> Menos vistas</option>
-                    <option value='newest-first'> Más nuevas</option>
-                    <option value='oldest-first'> Más viejas</option>
-                    <option value='nearest-closing-date'> Propuetas cercanas a cerrar</option>
-                    <option value='farest-closing-date'> Propuestas más lejanas al cierre</option>
+              <div className='order-select-wrapper'>
+                <span className='order-string'> Ordenar </span>
+                <select name='' className='order-select' onChange={this.changeOpc.bind(this)}>
+                    <option value='most-voted-first'> Más votadas </option>
+                    <option value='less-voted-first'> Menos votadas </option>
+                    <option value='newest-first'> Más recientes </option>
+                    <option value='oldest-first'> Menos recientes </option>
+                    <option value='nearest-closing-date-first'> Fecha de cierre próxima </option>
+                    <option value='farest-closing-date-first'> Fecha de cierre lejana </option>
                 </select>
+              </div>
                 <Polls {...this.props} />
             </div>
         );
