@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import CountDown from '../../containers/countdownContainer';
+import RelatedPolls from '../../containers/relatedPollsContainer';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
 
@@ -58,7 +59,7 @@ const PollDetail = ({
   description, objective, vote_count,
   user_already_voted, links, politician,
   poll_type, moreInfo, setMoreInfo, vote_types,
-  voteAction, initial_time
+  voteAction, initial_time, tag
 }) => (
     <section id='poll-detail'>
     <div className='container'>
@@ -121,6 +122,10 @@ const PollDetail = ({
         </div>
       </section>
     </div>
+    <section id='related-polls'>
+      <h3> Propuestas relacionadas </h3>
+      <RelatedPolls tagId={tag.id} />
+    </section>
   </section>
 );
 PollDetail.propTypes = {
@@ -137,6 +142,7 @@ PollDetail.propTypes = {
   links: PropTypes.array.isRequired,
   politician: PropTypes.object.isRequired,
   moreInfo: PropTypes.bool,
+  tag: PropTypes.object.isRequired,
   vote_types: PropTypes.array,
   voteAction: PropTypes.func.isRequired
 };
