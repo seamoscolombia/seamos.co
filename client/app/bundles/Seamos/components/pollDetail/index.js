@@ -101,19 +101,22 @@ const PollDetail = ({
             <div className="col-sm-12">
               <div className="row">
                 <div className="col-xs-9 buttons-wrapper">
-                  { user_already_voted ? //eslint-disable-line
+                  { user_already_voted || remaining < 0? //eslint-disable-line
                       votedButton(poll_type, vote_types, vote_count) :
                       voteButton(poll_type, vote_types, voteAction)
                     }
                 </div>
                 <div className="countdown-wrapper col-xs-3">
-                  <CountDown
-                      timerCount={remaining}
-                      initialTime={initial_time}
-                      countdownColor="#66CCCC"
-                      innerColor="#fff"
-                      outerColor="#747272"
-                  />
+                  { remaining > 0 ?
+                    <CountDown
+                        timerCount={remaining}
+                        initialTime={initial_time}
+                        countdownColor="#66CCCC"
+                        innerColor="#fff"
+                        outerColor="#747272"
+                    /> :
+                    <h4> Propuesta cerrada </h4>
+                  }
                 </div>
               </div>
             </div>
