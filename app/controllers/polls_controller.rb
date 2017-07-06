@@ -85,7 +85,7 @@ class PollsController < ApplicationController
   def index_closed
     respond_to do |format|
       format.json do
-        @polls = Poll.includes(:votes, :tags).closed.sort_by {|poll| - poll.vote_count}
+        @polls = Poll.includes(:votes, :tags).closed.sort_by {|poll| poll.closing_date}.reverse
       end
     end
   end

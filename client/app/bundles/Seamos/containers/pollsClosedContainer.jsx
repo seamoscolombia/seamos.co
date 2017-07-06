@@ -19,9 +19,19 @@ class PollsContainer extends Component {
 
     render() {
         return (
-            <div id="closed-polls">
+          <div id='closed-polls'>
+            <div className='background-container'>
+              <div className='flex-container'>
+                <h1 className='question'>
+                Los resultados <br className='breaker' />
+                Mas recientes
+                </h1>
+              </div>
+            </div>
+            <div id="">
                 <Polls {...this.props} />
             </div>
+          </div>
         );
     }
 }

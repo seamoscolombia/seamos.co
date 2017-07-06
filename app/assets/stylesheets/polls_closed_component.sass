@@ -1,5 +1,30 @@
+@import './variables'
 #closed-polls
-  margin-top: 60px  
+  .background-container
+    background-size: cover
+    padding-top: 40px
+    padding-bottom: 35px
+    margin-bottom: 30px
+    text-align: center
+    color: white
+    text-transform: uppercase
+    background-image: url(asset_path('de_que_quieres_hablar.png'))
+    background-position: center bottom
+    height: 300px
+    font-weight: bold
+    @media screen and (max-width: $break-medium)
+      height: 147px
+      padding-bottom: 10px
+    .question
+      font-size: 70px
+      line-height: 1.3em
+      font-weight: bold
+      font-family: 'RobotoCondensed'
+      letter-spacing: 2px
+      @media screen and (max-width: $break-medium)
+        line-height: 1.1em
+        font-size: 22px
+
   #polls-component
     h3
       font-size: 20px
@@ -49,3 +74,5 @@
       text-align: center
       @media screen and (max-width: $break-medium)
         padding: 0 20px 0 20px
+  .polls-wrapper
+    text-align: center
