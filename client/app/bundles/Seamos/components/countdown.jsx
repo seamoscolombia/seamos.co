@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /* A stateless component */
 
@@ -57,14 +58,14 @@ const CountDown = (props) =>
   </svg>;
 
 CountDown.propTypes = {
-  outerColor: React.PropTypes.string,
-  innerColor: React.PropTypes.string,
-  countdownColor: React.PropTypes.string,
-  displayCountdown: React.PropTypes.bool,
-  timerIsRunning: React.PropTypes.bool,
-  timerText: React.PropTypes.string,
-  draw: React.PropTypes.string,
-  clickStart: React.PropTypes.func
+  outerColor: PropTypes.string,
+  innerColor: PropTypes.string,
+  countdownColor: PropTypes.string,
+  displayCountdown: PropTypes.bool,
+  timerIsRunning: PropTypes.bool,
+  timerText: PropTypes.string,
+  draw: PropTypes.string,
+  clickStart: PropTypes.func
 };
 CountDown.defaultProps = {
   outerColor: '#333',

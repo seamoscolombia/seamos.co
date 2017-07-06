@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import CountDown from '../../containers/countdownContainer';
+import RelatedPolls from '../../containers/relatedPollsContainer';
 import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
@@ -65,7 +67,7 @@ const PollDetail = ({
   description, objective, vote_count,
   user_already_voted, links, politician,
   poll_type, moreInfo, setMoreInfo, vote_types,
-  voteAction, initial_time
+  voteAction, initial_time, tag
 }) => (
     <section id='poll-detail'>
     <div className='container'>
@@ -82,7 +84,7 @@ const PollDetail = ({
           />
           <div id='author'>por {politician.full_name}</div>
       </section>
-      <section id='poll' className='row'>
+      <section id='poll' className='row' style={{ borderBottom: `1px solid ${tag.color}` }}>
         <div className="col-sm-6">
           <img
             id='poll-thumbnail'
@@ -131,6 +133,10 @@ const PollDetail = ({
         </div>
       </section>
     </div>
+    <section id='related-polls'>
+      <h3> Tambien te podría interesar </h3>
+      <RelatedPolls tagId={tag.id} pollId={id}/>
+    </section>
   </section>
 );
 PollDetail.propTypes = {
@@ -147,6 +153,7 @@ PollDetail.propTypes = {
   links: PropTypes.array.isRequired,
   politician: PropTypes.object.isRequired,
   moreInfo: PropTypes.bool,
+  tag: PropTypes.object.isRequired,
   vote_types: PropTypes.array,
   voteAction: PropTypes.func.isRequired
 };
