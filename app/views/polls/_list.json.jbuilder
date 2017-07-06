@@ -1,4 +1,4 @@
-url = Rails.env.production? ? 'https://seamos-moity-indaba.mybluemix.net' : 'http://localhost:3000'
+url = Rails.env.production? ? '' : 'http://localhost:3000'
 json.polls do
   json.array! @polls do |poll|
     json.id poll.id
