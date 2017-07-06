@@ -2,12 +2,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import CountDown from '../../containers/countdownContainer';
+import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
 
 const moreInfoStyle = { height: 150, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
 
+function getColorDependingOnTime(initial_time, remaining) {
+  const startColor = '00FF92'; 
+  const endColor = 'ff0000'; 
+  const colorObj = new Color({ initial_time, remaining, startColor, endColor });
+  return colorObj.interpolate();
+}
 function voteButton(pollType, voteTypes, voteAction) {
   switch (pollType) {
     case 'signing': //2
@@ -109,8 +116,8 @@ const PollDetail = ({
                 <div className="countdown-wrapper col-xs-3">
                   <CountDown
                       timerCount={remaining}
+                      countdownColor={getColorDependingOnTime(initial_time, remaining)}
                       initialTime={initial_time}
-                      countdownColor="#66CCCC"
                       innerColor="#fff"
                       outerColor="#747272"
                   />
