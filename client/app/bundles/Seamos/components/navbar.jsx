@@ -53,6 +53,7 @@ const Navbar = ({ session, user }) => (
         <nav className='navbar-collapse' role='navigation'>
           <ul className='nav navbar-nav navbar-right navbar-options'>
             <li><Link to='/tags'> Temas </Link></li>
+            <li><Link to='/closed-polls'> Resultados </Link></li>
             <li><Link to='/polls'> Propuestas </Link></li>
             <li><Link to='/'> ¿COMO LO HACEMOS? </Link></li>
             {session.authenticityToken && Object.keys(user).length !== 0 ?

@@ -1,0 +1,78 @@
+@import './variables'
+#closed-polls
+  .background-container
+    background-size: cover
+    padding-top: 40px
+    padding-bottom: 35px
+    margin-bottom: 30px
+    text-align: center
+    color: white
+    text-transform: uppercase
+    background-image: url(asset_path('de_que_quieres_hablar.png'))
+    background-position: center bottom
+    height: 300px
+    font-weight: bold
+    @media screen and (max-width: $break-medium)
+      height: 147px
+      padding-bottom: 10px
+    .question
+      font-size: 70px
+      line-height: 1.3em
+      font-weight: bold
+      font-family: 'RobotoCondensed'
+      letter-spacing: 2px
+      @media screen and (max-width: $break-medium)
+        line-height: 1.1em
+        font-size: 22px
+
+  #polls-component
+    h3
+      font-size: 20px
+    $break-medium: 720px
+    .background-container
+      background-size: cover
+      padding-top: 40px
+      padding-bottom: 20px
+      height: 350px
+      width: 100%
+      align-items: center
+      background-position: center center
+      display: inline-flex
+      @media screen and (max-width: $break-medium)
+        height: 206px
+        font-size: 250px
+      .icon-name-wrapper
+        margin: auto
+        display: flex
+        align-items: center
+        @media screen and (max-width: $break-medium)
+          margin-top: 35px
+        .tag-icon-container
+          width: 100px
+          .tag-icon
+            width: 100px
+            height: 100px
+        .tag-name
+          h1
+            color: white
+            font-size: 60px
+            font-family: 'RobotoCondensed'
+            text-transform: uppercase
+            font-weight: bold
+            letter-spacing: 4px
+            margin: 0
+            @media screen and (max-width: $break-medium)
+              font-size: 30px
+    .polls-box
+      margin-top: 50px
+      width: 100%
+      display: inline-flex
+      flex-wrap: wrap
+      justify-content: center
+      align-items: center
+      overflow: hidden
+      text-align: center
+      @media screen and (max-width: $break-medium)
+        padding: 0 20px 0 20px
+  .polls-wrapper
+    text-align: center

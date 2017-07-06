@@ -19,6 +19,16 @@ export const getPolls = (val = 'most-voted-first') => (dispatch) => (
     })
 );
 
+export const getClosedPolls = () => (dispatch) => (
+    axios.get(`${URL}/polls/closed`)
+    .then(response => {
+      dispatch(updatePolls(response.data.polls));
+    })
+    .catch(error => {
+      console.log(error);
+    })
+);
+
 export const pollsFilteredByTag = (tagId) => (dispatch) => (
   axios.get(`${URL}/tags/${tagId}/polls.json`)
   .then(response => {
