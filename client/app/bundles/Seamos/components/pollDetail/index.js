@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import CountDown from '../../containers/countdownContainer';
 import RelatedPolls from '../../containers/relatedPollsContainer';
@@ -83,7 +84,7 @@ const PollDetail = ({
           />
           <div id='author'>por {politician.full_name}</div>
       </section>
-      <section id='poll' className='row'>
+      <section id='poll' className='row' style={{ borderBottom: `1px solid ${tag.color}` }}>
         <div className="col-sm-6">
           <img
             id='poll-thumbnail'
@@ -133,8 +134,8 @@ const PollDetail = ({
       </section>
     </div>
     <section id='related-polls'>
-      <h3> Propuestas relacionadas </h3>
-      <RelatedPolls tagId={tag.id} />
+      <h3> Tambien te podría interesar </h3>
+      <RelatedPolls tagId={tag.id} pollId={id}/>
     </section>
   </section>
 );

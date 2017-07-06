@@ -16,12 +16,17 @@ class RelatedPollsContainer extends Component {
 
     componentWillMount() {
         this.props.pollsFilteredByTag(this.props.tagId);
+        this.props.pollsFilteredByTag(this.props.pollId);
     }
 
     render() {
-        const { polls, tag } = this.props; 
+        const { polls, tag, pollId } = this.props;
         if (polls.length !== 0 || this.props.tag) {
-            return <Polls polls={polls.slice(0, 2)} tag={tag} />;
+            const relPolls = polls.slice(0, 3)
+            const relPollsWithoutDup=relPolls.filter(function(poll) {
+              return poll.id !== pollId;
+            });
+            return <Polls polls={relPollsWithoutDup.slice(0, 2)} tag={tag} />;
         }
         return null;
     }
