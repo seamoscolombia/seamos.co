@@ -27,11 +27,8 @@ class PollsContainer extends Component {
                 <span className='order-string'> Ordenar </span>
                 <select name='' className='order-select' onChange={this.changeOpc.bind(this)}>
                     <option value='most-voted-first'> Más votadas </option>
-                    <option value='less-voted-first'> Menos votadas </option>
                     <option value='newest-first'> Más recientes </option>
-                    <option value='oldest-first'> Menos recientes </option>
-                    <option value='nearest-closing-date-first'> Fecha de cierre próxima </option>
-                    <option value='farest-closing-date-first'> Fecha de cierre lejana </option>
+                    <option value='nearest-closing-date-first'> Cerca del cierre </option>
                 </select>
               </div>
                 <Polls {...this.props} />
