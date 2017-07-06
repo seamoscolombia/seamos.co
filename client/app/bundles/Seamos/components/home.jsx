@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
 import Polls from '../containers/pollsFeatureContainer';
-
+import Featured from '../containers/pollsPageContainer';
 const Home = ({ session }) => (
   <div id="homepage">
     <div className='background-container top'>
@@ -107,11 +107,13 @@ const Home = ({ session }) => (
     de acuerdo a tus intereses
     </div>
     <Tags />
-    <div id='featured-polls-title'>
-      PROPUESTAS DESTACADAS POR LA CIUDADANÍA
-    </div>
-    <div id='featured-polls'>
-      <Polls />
+    <div className='background-container down'>
+      <div className='flex-container top-text-container'>
+        <div id='featured-polls-title'>
+          PROPUESTAS DESTACADAS
+        </div>
+      </div>
+      <Featured />
     </div>
   </div>
 );
