@@ -10,8 +10,8 @@ const moreInfoStyle = { height: 150, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
 
 function getColorDependingOnTime(initial_time, remaining) {
-  const startColor = '00FF92'; 
-  const endColor = 'ff0000'; 
+  const startColor = '00FF92';
+  const endColor = 'ff0000';
   const colorObj = new Color({ initial_time, remaining, startColor, endColor });
   return colorObj.interpolate();
 }
@@ -108,19 +108,22 @@ const PollDetail = ({
             <div className="col-sm-12">
               <div className="row">
                 <div className="col-xs-9 buttons-wrapper">
-                  { user_already_voted ? //eslint-disable-line
+                  { user_already_voted || remaining < 0? //eslint-disable-line
                       votedButton(poll_type, vote_types, vote_count) :
                       voteButton(poll_type, vote_types, voteAction)
                     }
                 </div>
                 <div className="countdown-wrapper col-xs-3">
-                  <CountDown
-                      timerCount={remaining}
-                      countdownColor={getColorDependingOnTime(initial_time, remaining)}
-                      initialTime={initial_time}
-                      innerColor="#fff"
-                      outerColor="#747272"
-                  />
+                  { remaining > 0 ?
+                    <CountDown
+                        timerCount={remaining}
+                        initialTime={initial_time}
+                        countdownColor={getColorDependingOnTime(initial_time, remaining)}
+                        innerColor="#fff"
+                        outerColor="#747272"
+                    /> :
+                    <h4> Propuesta cerrada </h4>
+                  }
                 </div>
               </div>
             </div>

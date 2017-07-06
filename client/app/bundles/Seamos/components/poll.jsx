@@ -3,7 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function getDays(remaining) {
-  return ((remaining / 3600) / 24);
+  const remainingDays = ((remaining / 3600) / 24);
+  if (remainingDays < 0) {
+    return <span> propuesta cerrada</span>;  
+  }
+  return <span> quedan {remainingDays} días</span>;
 }
 const Poll = (props) => {
   const { id, title, description, poll_image, vote_count, remaining, tag, color } = props;
@@ -33,7 +37,7 @@ const Poll = (props) => {
         <div className='poll-details'>
           <span> {vote_count} participaciones </span>
           <span className='separator'> | </span>
-          <span> quedan {getDays(remaining)} días</span>
+          { getDays(remaining) }
           <span className='separator'> | </span>
           <Link
             to={`/poll/${id}`}
