@@ -23,8 +23,8 @@ class PollsContainer extends Component {
             <div className='background-container'>
               <div className='flex-container'>
                 <h1 className='question'>
-                Los resultados <br className='breaker' />
-                Mas recientes
+                La democracia representativa <br className='breaker' />
+                no ha muerto
                 </h1>
               </div>
             </div>

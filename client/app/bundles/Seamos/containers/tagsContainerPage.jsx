@@ -26,8 +26,8 @@ class TagsContainer extends Component {
               <div className='background-container'>
                 <div className='flex-container'>
                   <h1 className='question'>
-                  ¿De qué <br className='breaker' />
-                  quieres hablar?
+                  ¿En qué estás <br className='breaker' />
+                  pensando ahora?
                   </h1>
                 </div>
               </div>
