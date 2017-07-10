@@ -53,6 +53,12 @@ const Navbar = ({ session, user }) => (
         <nav className='navbar-collapse' role='navigation'>
           <ul className='nav navbar-nav navbar-right navbar-options'>
             <li><Link to='/'> ¿COMO LO HACEMOS? </Link></li>
+            <li>
+              <Link to='/'> Síguenos </Link>
+              <Link to='/'> Síguenos </Link>
+              <Link to='/'> Síguenos </Link>
+              <Link to='/'> Síguenos </Link>
+            </li>
             {session.authenticityToken && Object.keys(user).length !== 0 ?
               profile() : <li> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
             }

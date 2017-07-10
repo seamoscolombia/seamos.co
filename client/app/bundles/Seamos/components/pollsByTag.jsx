@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ShareButtons, generateShareIcon } from 'react-share';
+// import { ShareButtons, generateShareIcon } from 'react-share';
 import Polls from './polls';
-import { PRODUCTION_URL } from '../constants';
+// import { PRODUCTION_URL } from '../constants';
 
-const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
-const { FacebookShareButton } = ShareButtons;
-const FacebookIcon = generateShareIcon('facebook');
+// const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
+// const { FacebookShareButton } = ShareButtons;
+// const FacebookIcon = generateShareIcon('facebook');
 
 const PollsByTag = (props) => {
 const { image, icon, name } = props.tag;
-const imgUrl = image;
-const shareDescription = `Opina en las propuestas de ${name}`;
-const title = `propuestas de ${name}`;
+// const imgUrl = image;
+// const shareDescription = `Opina en las propuestas de ${name}`;
+// const title = `propuestas de ${name}`;
   return (
     <section id='polls-component'>
       <div className='background-container' style={{ backgroundImage: `url(${image})` }}>
@@ -23,20 +23,6 @@ const title = `propuestas de ${name}`;
           <div className='tag-name'>
             <h1> {name}</h1>
           </div>
-          <FacebookShareButton
-            url={shareUrl}
-            title={title}
-            picture={imgUrl}
-            description={shareDescription}
-            className="network__share-button"
-          >
-            <FacebookIcon
-              size={32}
-              round
-            >
-            Compartir
-            </FacebookIcon>
-          </FacebookShareButton>
         </div>
       </div>
       <div className='polls-box'>
