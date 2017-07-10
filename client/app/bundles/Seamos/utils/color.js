@@ -3,7 +3,7 @@ class Color {
         const { initial_time, remaining, startColor, endColor } = props;
         const startingColor = this.hexToRgb(startColor);
         const endingColor = this.hexToRgb(endColor);
-        const percentage = (1 - (remaining / initial_time)) * 100;
+        const percentage = Math.abs(1 - (remaining / initial_time)) * 100; //eslint-disable-line
         this.state = { percentage, startColor: startingColor, endColor: endingColor };
     }
 
@@ -18,7 +18,7 @@ class Color {
 
     componentToHex(c) {
         const hex = c.toString(16);
-        return hex.length === 1 ? '0' + hex : hex;
+        return hex.length === 1 ? `0${hex}` : hex;
     }
 
     rgbToHex(r, g, b) {
@@ -35,10 +35,8 @@ class Color {
         return this.rgbToHex(r, g, b);
     }
 
-    getColors(start, end, steps, count) {
-        const s = start;
-        const e = end;
-        const final = s + (((e - s) / steps) * count);
+    getColors(startColor, endColor, steps, count) {
+        const final = startColor + (((endColor - startColor) / steps) * count);
 
         return Math.floor(final);
     }
