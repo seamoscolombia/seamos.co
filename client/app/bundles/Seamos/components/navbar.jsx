@@ -55,6 +55,8 @@ const Navbar = ({ session, user }) => (
             <li>
               <Link to='/'> ¿COMO LO HACEMOS? </Link>
             </li>
+            <li><Link to='/tags'> Temas </Link></li>
+            <li><Link to='/closed-polls'> Resultados </Link></li>
             <li className='dropdown'>
               <a> Siguenos </a>
               <div className="dropdown-content">

@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ShareButtons, generateShareIcon } from 'react-share';
-
+import { ShareButtons} from 'react-share';
+import { Link } from 'react-router-dom';
 import CountDown from '../../containers/countdownContainer';
+import RelatedPolls from '../../containers/relatedPollsContainer';
+import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
 import { PRODUCTION_URL } from '../../constants';
@@ -10,11 +12,17 @@ import { PRODUCTION_URL } from '../../constants';
 
 const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
 const { FacebookShareButton } = ShareButtons;
-const FacebookIcon = generateShareIcon('facebook');
+// const FacebookIcon = generateShareIcon('facebook');
 
 const moreInfoStyle = { height: 150, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
 
+function getColorDependingOnTime(initial_time, remaining) {
+  const startColor = '00FF92';
+  const endColor = 'ff0000';
+  const colorObj = new Color({ initial_time, remaining, startColor, endColor });
+  return colorObj.interpolate();
+}
 function voteButton(pollType, voteTypes, voteAction) {
   switch (pollType) {
     case 'signing': //2
@@ -72,7 +80,7 @@ const PollDetail = ({
                       description, objective, vote_count,
                       user_already_voted, links, politician,
                       poll_type, moreInfo, setMoreInfo, vote_types,
-                      voteAction, initial_time
+                      voteAction, initial_time, tag
                     }) => (
     <section id='poll-detail'>
       <div className='container'>
@@ -138,20 +146,27 @@ const PollDetail = ({
                     }
                   </div>
                   <div className="countdown-wrapper col-xs-3">
+                  { remaining > 0 ?
                     <CountDown
-                      timerCount={remaining}
-                      initialTime={initial_time}
-                      countdownColor="#66CCCC"
-                      innerColor="#fff"
-                      outerColor="#747272"
-                    />
-                  </div>
+                        timerCount={remaining}
+                        initialTime={initial_time}
+                        countdownColor={getColorDependingOnTime(initial_time, remaining)}
+                        innerColor="#fff"
+                        outerColor="#747272"
+                    /> :
+                    <h4> Propuesta cerrada </h4>
+                  }
+                </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
       </div>
+      <section id='related-polls'>
+        <h3> Tambien te podría interesar </h3>
+        <RelatedPolls tagId={tag.id} pollId={id}/>
+      </section>
     </section>
   );
 PollDetail.propTypes = {
@@ -168,6 +183,7 @@ PollDetail.propTypes = {
   links: PropTypes.array.isRequired,
   politician: PropTypes.object.isRequired,
   moreInfo: PropTypes.bool,
+  tag: PropTypes.object.isRequired,
   vote_types: PropTypes.array,
   voteAction: PropTypes.func.isRequired
 };

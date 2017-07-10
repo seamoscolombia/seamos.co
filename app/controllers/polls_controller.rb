@@ -18,8 +18,8 @@ class PollsController < ApplicationController
 
   before_action :validate_poll_closed?, only: :show
   before_action :validate_closing_date, only: :edit
-  before_action :validate_session, except: [:index, :show, :filtered_by_politician, :filtered_by_tag]
-  before_action :validate_admin_user, except: [:index, :show, :voted, :filtered_by_politician, :filtered_by_tag]
+  before_action :validate_session, except: [:index, :show, :filtered_by_politician, :filtered_by_tag, :index_closed]
+  before_action :validate_admin_user, except: [:index, :show, :voted, :filtered_by_politician, :filtered_by_tag, :index_closed]
   before_action :set_tag, only: :filtered_by_tag
   before_action :set_politician, only: :filtered_by_politician
 
@@ -76,7 +76,16 @@ class PollsController < ApplicationController
         @polls = Poll.order('id desc').all.page(params[:page]).per(4)
       end
       format.json do
-        @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| - poll.votes.size}
+        @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| poll.send(order_param)}
+        @polls = @polls.reverse if @reverse
+      end
+    end
+  end
+
+  def index_closed
+    respond_to do |format|
+      format.json do
+        @polls = Poll.includes(:votes, :tags).closed.sort_by {|poll| poll.closing_date}.reverse
       end
     end
   end
@@ -184,6 +193,30 @@ class PollsController < ApplicationController
 
   def set_tag
     @tag = Tag.find(params[:tag_id])
+  end
+
+  def order_param
+    case params[:order_by]
+    when 'farest-closing-date-first'
+      @reverse = true
+      order_param = 'closing_date'
+    when 'nearest-closing-date-first'
+      order_param = 'closing_date'
+    when 'oldest-first'
+      order_param = 'created_at'
+    when 'newest-first'
+      @reverse = true
+      order_param = 'created_at'
+    when 'most-voted-first'
+      @reverse = true
+      order_param = 'vote_count'
+    when 'less-voted-first'
+      order_param = 'vote_count'
+    else
+      @reverse = true
+      order_param = 'vote_count'
+    end
+    order_param
   end
 
   def set_politician

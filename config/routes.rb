@@ -14,14 +14,17 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/sessions', to: 'sessions#destroy', as: 'session'
+  delete '/destroy_facebook_session', to: 'sessions#destroy_facebook_session'
   post '/sessions', to: 'sessions#create', format: 'json'
 
   get '/auth/sessions', to: 'sessions#error'
   get '/tags/:tag_id/polls', to: 'polls#filtered_by_tag', format: 'json'
   get '/politician/:politician_id/polls', to: 'polls#filtered_by_politician', format: 'json'
   get '/profile', to: 'users#show', format: 'json'
+  get '/proponents/:id', to: 'users#politician_profile', format: 'json'
   patch 'debate/:id', to: 'debates#publish', as: :publish_debate
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
+  get 'polls/closed', to: 'polls#index_closed', format: 'json'
 
   resources :polls do
     get 'last', on: :collection

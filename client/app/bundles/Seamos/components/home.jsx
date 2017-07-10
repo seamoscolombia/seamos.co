@@ -12,7 +12,8 @@ import Tags from '../containers/tagsContainer';
 // const FacebookIcon = generateShareIcon('facebook');
 // const imgUrl = `${PRODUCTION_URL}/assets/PARTICIPACIONES-4b76afbc5601851c4b5cf63c08a1a5a7c7b674ba643a7129e0147429d6be2d8c.png`;
 // const title = 'Seamos pagina home';
-
+import Polls from '../containers/pollsFeatureContainer';
+import Featured from '../containers/pollsPageContainer';
 const Home = ({ session }) => (
   <div id="homepage">
     <div className='background-container top'>
@@ -115,6 +116,14 @@ const Home = ({ session }) => (
       de acuerdo a tus intereses
     </div>
     <Tags />
+    <div className='background-container down'>
+      <div className='flex-container top-text-container'>
+        <div id='featured-polls-title'>
+          PROPUESTAS DESTACADAS
+        </div>
+      </div>
+      <Featured />
+    </div>
   </div>
 );
 
