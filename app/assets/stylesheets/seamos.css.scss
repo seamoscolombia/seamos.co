@@ -292,3 +292,29 @@ input {
 .greatings-image{
   width: 6em;
 }
+
+.social-icon {
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 26px;
+  height: 26px;
+  -webkit-transition: width 0.5s, height 0.5s;
+  transition: width 0.5s, height 0.5s;
+}
+
+.facebook-icon {
+  background-image: url(asset_path('facebook.png'));
+}
+
+.twitter-icon {
+  background-image: url(asset_path('twitter.png'));
+}
+
+.youtube-icon {
+  background-image: url(asset_path('youtube.png'));
+}
+
+.instagram-icon {
+  background-image: url(asset_path('instagram.png'));
+}

@@ -33,6 +33,13 @@ function voteButton(pollType, voteTypes, voteAction) {
   }
 }
 
+function shareTitle(user_already_voted, poll_title) {
+  if (user_already_voted) {
+                            return `Yo ya voté, vota tú también por la propuesta: ${poll_title} | Seamos.co`
+                          }
+                          return `Vota por la propuesta: ${poll_title} | Seamos.co`
+}
+
 function votedButton(pollType, voteTypes, vote_count) {
   switch (pollType) {
     case 'signing': //2
@@ -61,12 +68,12 @@ function getPicture(politician) {
 }
 
 const PollDetail = ({
-  id, title, image, remaining,
-  description, objective, vote_count,
-  user_already_voted, links, politician,
-  poll_type, moreInfo, setMoreInfo, vote_types,
-  voteAction, initial_time
-}) => (
+                      id, title, image, remaining,
+                      description, objective, vote_count,
+                      user_already_voted, links, politician,
+                      poll_type, moreInfo, setMoreInfo, vote_types,
+                      voteAction, initial_time
+                    }) => (
     <section id='poll-detail'>
       <div className='container'>
         <header className='row'>
@@ -82,6 +89,24 @@ const PollDetail = ({
           />
           <div id='author'>por {politician.full_name}</div>
         </section>
+        <div className='share-wrapper'>
+          <span className='share-this'> COMPARTIR: </span>
+            <FacebookShareButton
+              url={shareUrl}
+              title={shareTitle(user_already_voted, title)}
+              picture={image}
+              description={description}
+              className="network__share-button"
+            >
+              <a
+                className='social-icon facebook-icon'
+                rel='noopener noreferrer'
+                style={{display: 'block'}}
+              >
+                <br />
+              </a>
+            </FacebookShareButton>
+        </div>
         <section id='poll' className='row'>
           <div className="col-sm-6">
             <img
@@ -90,21 +115,6 @@ const PollDetail = ({
               role='presentation'
               alt='poll thumbnail'
             />
-            <span className='share-this'> COMPÁRTELA: </span>
-            <FacebookShareButton
-              url={shareUrl}
-              title={title}
-              picture={image}
-              description={description}
-              className="network__share-button"
-            >
-              <FacebookIcon
-                size={32}
-                round
-              >
-                Compartir
-              </FacebookIcon>
-            </FacebookShareButton>
             <p id='objective' className='row'><strong> Objetivo: </strong> {objective}</p>
           </div>
           <div className="col-sm-6">

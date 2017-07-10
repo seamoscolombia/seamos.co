@@ -52,12 +52,45 @@ const Navbar = ({ session, user }) => (
       <div className='navbar-transparent side-collapse in'>
         <nav className='navbar-collapse' role='navigation'>
           <ul className='nav navbar-nav navbar-right navbar-options'>
-            <li><Link to='/'> ¿COMO LO HACEMOS? </Link></li>
             <li>
-              <Link to='/'> Síguenos </Link>
-              <Link to='/'> Síguenos </Link>
-              <Link to='/'> Síguenos </Link>
-              <Link to='/'> Síguenos </Link>
+              <Link to='/'> ¿COMO LO HACEMOS? </Link>
+            </li>
+            <li className='dropdown'>
+              <a> Siguenos </a>
+              <div className="dropdown-content">
+                <a
+                  className='social-icon facebook-icon'
+                  href="https://www.facebook.com/seamoscolombia/"
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <br />
+                </a>
+                <a
+                  className='social-icon twitter-icon'
+                  href="https://twitter.com/seamos"
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <br />
+                </a>
+                <a
+                  className='social-icon instagram-icon'
+                  href="https://www.instagram.com/seamoscolombia/"
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <br />
+                </a>
+                <a
+                  className='social-icon youtube-icon'
+                  href="https://www.youtube.com/channel/UCC8EUjRTWhzELH3_iypQQ8w"
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  <br />
+                </a>
+              </div>
             </li>
             {session.authenticityToken && Object.keys(user).length !== 0 ?
               profile() : <li> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
