@@ -1,14 +1,28 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { ShareButtons} from 'react-share';
 import { Link } from 'react-router-dom';
-
 import CountDown from '../../containers/countdownContainer';
+import RelatedPolls from '../../containers/relatedPollsContainer';
+import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
+import { PRODUCTION_URL } from '../../constants';
+
+
+const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
+const { FacebookShareButton } = ShareButtons;
+// const FacebookIcon = generateShareIcon('facebook');
 
 const moreInfoStyle = { height: 150, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
 
+function getColorDependingOnTime(initial_time, remaining) {
+  const startColor = '00FF92';
+  const endColor = 'ff0000';
+  const colorObj = new Color({ initial_time, remaining, startColor, endColor });
+  return colorObj.interpolate();
+}
 function voteButton(pollType, voteTypes, voteAction) {
   switch (pollType) {
     case 'signing': //2
@@ -27,13 +41,20 @@ function voteButton(pollType, voteTypes, voteAction) {
   }
 }
 
+function shareTitle(user_already_voted, poll_title) {
+  if (user_already_voted) {
+                            return `Yo ya voté, vota tú también por la propuesta: ${poll_title} | Seamos.co`
+                          }
+                          return `Vota por la propuesta: ${poll_title} | Seamos.co`
+}
+
 function votedButton(pollType, voteTypes, vote_count) {
-    switch (pollType) {
+  switch (pollType) {
     case 'signing': //2
       return (<VotedButton
-          count={voteTypes[0].count}
-          name={voteTypes[0].name}
-          total={vote_count}
+        count={voteTypes[0].count}
+        name={voteTypes[0].name}
+        total={vote_count}
       />);
     default:
       return voteTypes.map(voteType =>
@@ -55,20 +76,20 @@ function getPicture(politician) {
 }
 
 const PollDetail = ({
-  id, title, image, remaining,
-  description, objective, vote_count,
-  user_already_voted, links, politician,
-  poll_type, moreInfo, setMoreInfo, vote_types,
-  voteAction, initial_time
-}) => (
+                      id, title, image, remaining,
+                      description, objective, vote_count,
+                      user_already_voted, links, politician,
+                      poll_type, moreInfo, setMoreInfo, vote_types,
+                      voteAction, initial_time, tag
+                    }) => (
     <section id='poll-detail'>
-    <div className='container'>
-      <header className='row'>
-        <p className='col-sm-12 poll-title'>
-          { title }
-        </p>
-      </header>
-      <section id='politician' className='row'>
+      <div className='container'>
+        <header className='row'>
+          <p className='col-sm-12 poll-title'>
+            {title}
+          </p>
+        </header>
+        <section id='politician' className='row'>
           <img
             src={getPicture(politician)}
             role='presentation'
@@ -79,54 +100,78 @@ const PollDetail = ({
             to={`/proponents/${politician.id}`}
           >por {politician.full_name} </ Link>
       </section>
-      <section id='poll' className='row'>
-        <div className="col-sm-6">
-          <img
-            id='poll-thumbnail'
-            src={image}
-            role='presentation'
-            alt='poll thumbnail'
-          />
-          <br /><br />
-          <p id='objective' className='row'><strong> Objetivo: </strong> {objective}</p>
+        <div className='share-wrapper'>
+          <span className='share-this'> COMPARTIR: </span>
+            <FacebookShareButton
+              url={shareUrl}
+              title={shareTitle(user_already_voted, title)}
+              picture={image}
+              description={description}
+              className="network__share-button"
+            >
+              <a
+                className='social-icon facebook-icon'
+                style={{display: 'block'}}
+                rel='noopener noreferrer'
+              >
+              </a>
+                <br />
+            </FacebookShareButton>
         </div>
-        <div className="col-sm-6">
-          <div className="row">
-            <div className="poll-description-container col-sm-12">
-               <p className="poll-description" style={moreInfo ? lessInfoStyle : moreInfoStyle}>
-                { description }
-              </p>
-            </div>
-            <div className="col-sm-12">
-              <button onClick={setMoreInfo} id='plus-info'>
-                { moreInfo ? '-INFO' : '+INFO' }
-              </button>
-            </div>
-            <div className="col-sm-12">
-              <div className="row">
-                <div className="col-xs-9 buttons-wrapper">
-                  { user_already_voted ? //eslint-disable-line
+        <section id='poll' className='row'>
+          <div className="col-sm-6">
+            <img
+              id='poll-thumbnail'
+              src={image}
+              role='presentation'
+              alt='poll thumbnail'
+            />
+            <p id='objective' className='row'><strong> Objetivo: </strong> {objective}</p>
+          </div>
+          <div className="col-sm-6">
+            <div className="row">
+              <div className="poll-description-container col-sm-12">
+                <p className="poll-description" style={moreInfo ? lessInfoStyle : moreInfoStyle}>
+                  {description}
+                </p>
+              </div>
+              <div className="col-sm-12">
+                <button onClick={setMoreInfo} id='plus-info'>
+                  {moreInfo ? '-INFO' : '+INFO'}
+                </button>
+              </div>
+              <div className="col-sm-12">
+                <div className="row">
+                  <div className="col-xs-9 buttons-wrapper">
+                    {user_already_voted ? //eslint-disable-line
                       votedButton(poll_type, vote_types, vote_count) :
                       voteButton(poll_type, vote_types, voteAction)
                     }
+                  </div>
+                  <div className="countdown-wrapper col-xs-3">
+                  { remaining > 0 ?
+                    <CountDown
+                        timerCount={remaining}
+                        initialTime={initial_time}
+                        countdownColor={getColorDependingOnTime(initial_time, remaining)}
+                        innerColor="#fff"
+                        outerColor="#747272"
+                    /> :
+                    <h4> Propuesta cerrada </h4>
+                  }
                 </div>
-                <div className="countdown-wrapper col-xs-3">
-                  <CountDown
-                      timerCount={remaining}
-                      initialTime={initial_time}
-                      countdownColor="#66CCCC"
-                      innerColor="#fff"
-                      outerColor="#747272"
-                  />
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
+      </div>
+      <section id='related-polls'>
+        <h3> Tambien te podría interesar </h3>
+        <RelatedPolls tagId={tag.id} pollId={id}/>
       </section>
-    </div>
-  </section>
-);
+    </section>
+  );
 PollDetail.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
@@ -141,6 +186,7 @@ PollDetail.propTypes = {
   links: PropTypes.array.isRequired,
   politician: PropTypes.object.isRequired,
   moreInfo: PropTypes.bool,
+  tag: PropTypes.object.isRequired,
   vote_types: PropTypes.array,
   voteAction: PropTypes.func.isRequired
 };

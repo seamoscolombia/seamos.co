@@ -1,9 +1,19 @@
 // import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import { ShareButtons, generateShareIcon } from 'react-share';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
+// import { PRODUCTION_URL } from '../constants';
 
+// const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
+// const shareDescription = 'somos una organización que ayuda a la democracía';
+// const { FacebookShareButton } = ShareButtons;
+// const FacebookIcon = generateShareIcon('facebook');
+// const imgUrl = `${PRODUCTION_URL}/assets/PARTICIPACIONES-4b76afbc5601851c4b5cf63c08a1a5a7c7b674ba643a7129e0147429d6be2d8c.png`;
+// const title = 'Seamos pagina home';
+import Polls from '../containers/pollsFeatureContainer';
+import Featured from '../containers/pollsPageContainer';
 const Home = ({ session }) => (
   <div id="homepage">
     <div className='background-container top'>
@@ -14,7 +24,7 @@ const Home = ({ session }) => (
           permite incidir en las decisiones políticas en <br className='breaker' />
           tiempo real
         </p>
-        <div onClick= {() => window.scrollTo(0, 391)} >
+        <div onClick={() => window.scrollTo(0, 391)} >
           <div className='action'>
             Pasemos a la acción
           </div>
@@ -40,9 +50,9 @@ const Home = ({ session }) => (
     <div id='steps-container' className="flex-container">
       <Link
         to="#"
-        onClick= {() => window.scrollTo(0, 1434)}
+        onClick={() => window.scrollTo(0, 1434)}
       >
-      <div className="step">
+        <div className="step">
           <div className="step-info">
             <div className="step-number">1</div>
             <div className="step-text">
@@ -85,7 +95,7 @@ const Home = ({ session }) => (
       </Link>
     </div>
     <div className="fb-button-container">
-      { session && session.authenticityToken ?
+      {session && session.authenticityToken ?
         <span /> :
         <div>
           <div className="one-click"> Sin registros, solo un click </div>
@@ -96,17 +106,25 @@ const Home = ({ session }) => (
     <div className='background-container mid'>
       <div className='flex-container top-text-container'>
         <h1 className='welcome question'>
-        ¿De qué <br className='breaker' />
-        quieres hablar?
+          ¿De qué <br className='breaker' />
+          quieres hablar?
         </h1>
       </div>
     </div>
     <div className="mid-paragraph">
-    ¿En qué estás pensando ahora? <br />
-    Encuentra las propuestas vigentes <br />
-    de acuerdo a tus intereses
+      ¿En qué estás pensando ahora? <br />
+      Encuentra las propuestas vigentes <br />
+      de acuerdo a tus intereses
     </div>
     <Tags />
+    <div className='background-container down'>
+      <div className='flex-container top-text-container'>
+        <div id='featured-polls-title'>
+          PROPUESTAS DESTACADAS
+        </div>
+      </div>
+      <Featured />
+    </div>
   </div>
 );
 

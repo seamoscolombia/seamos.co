@@ -9,6 +9,11 @@ json.poll do
     json.remaining @poll.remaining_time_in_seconds
     json.vote_count @poll.votes.size
     json.poll_type @poll.poll_type
+
+    json.tag do
+      json.id @poll.tags.first.id
+      json.color @poll.tags.first.tag_color
+    end
     if current_user
       json.user_already_voted current_user.already_voted?(@poll)
     else
