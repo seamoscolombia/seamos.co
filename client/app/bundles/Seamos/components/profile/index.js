@@ -46,7 +46,7 @@ const Profile = (props) => {
         {interests ?
           selectInterests() : myInterests(tags, goToEdit)
         }
-        <section id='my-participations' className='col-sm-6'>
+        <section className='my-participations col-sm-6'>
           <div className='title'>
             <span> MIS PARTICIPACIONES</span>
           </div>

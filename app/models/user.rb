@@ -40,6 +40,7 @@ class User < ApplicationRecord
   validates  :names, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}, if: :admin?
   validates_presence_of  [:first_surname, :second_surname, :names, :role_type]
+  validates_presence_of  [:bio, :organization], if: :admin?
   validates :uid, uniqueness: true, unless: :admin?
 
   validate :email_for_admin, if: :admin?

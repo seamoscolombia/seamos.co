@@ -4,6 +4,7 @@ json.user do
   json.short_name "#{@user.names}  #{@user.first_surname}"
   json.organization @user.organization
   json.bio @user.bio
+  json.picture @user.admin_photo.url
   json.polls do
     json.array! @polls do |poll|
       json.id poll.id

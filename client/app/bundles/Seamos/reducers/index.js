@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import interests from './interestsReducer';
+import politician from './politicianReducer';
 import poll from './pollDetailReducer';
 import polls from './pollsReducer';
 import user from './userReducer';
@@ -12,6 +13,7 @@ import VotedPollsReducer from './votedPollsReducer';
 export default combineReducers({
   interests,
   poll,
+  politician,
   actualVotedPoll: VotedPollReducer,
   polls,
   user,

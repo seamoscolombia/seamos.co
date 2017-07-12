@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 function getDays(remaining) {
   const remainingDays = ((remaining / 3600) / 24);
-  if (remainingDays < 0) {
-    return <span> propuesta cerrada</span>;  
+  if (remainingDays <= 0) {
+    return <span> propuesta cerrada</span>;
   }
   return <span> quedan {remainingDays} días</span>;
 }
