@@ -12,16 +12,28 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = { getPolitician };
 
 class ProfileContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { moreInfo: false };
+        this.setMoreInfo = this.setMoreInfo.bind(this);
+    }
 
     componentWillMount() {
         const politicianId = this.props.match.params.politicianId;
         this.props.getPolitician(politicianId);
     }
-        
+
+    setMoreInfo() { this.setState({ moreInfo: !this.state.moreInfo }); }
+
     render() {
         const { politician } = this.props;
         if (politician.id !== null) {
-            return <Politician {...politician} />;
+            return (<Politician
+                      {...politician}
+                      setMoreInfo={this.setMoreInfo}
+                      moreInfo={this.state.moreInfo}
+            />
+           );
         }
         return null;
     }

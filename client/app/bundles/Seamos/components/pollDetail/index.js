@@ -94,12 +94,13 @@ const PollDetail = ({
             src={getPicture(politician)}
             role='presentation'
             alt='politician'
-          />
-          <Link 
+            />
+          <Link
             id='author'
             to={`/proponents/${politician.id}`}
-          >por {politician.full_name} </ Link>
-      </section>
+          >por {politician.full_name}
+          </Link>
+          </section>
         <div className='share-wrapper'>
           <span className='share-this'> COMPARTIR: </span>
             <FacebookShareButton
