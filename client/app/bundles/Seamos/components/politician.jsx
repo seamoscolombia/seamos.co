@@ -11,10 +11,10 @@ const Politician = (props) => {
       <div id='profile' className='container'>
         <header className="media">
           <div className="row profile-info-container">
-            <div className="col-sm-1 media-left">
+            <div className="col-sm-1 col-xs-12 media-left">
               <img src={props.picture} className='media-object' role='presentation' />
             </div>
-            <div className="media-body col-sm-10">
+            <div className="media-body col-sm-10 col-xs-12">
               <h4 className="media-heading">{props.short_name}</h4>
               <h5 className="media-heading organization">{props.organization}</h5>
               <h6 className="media-heading" style={props.moreInfo ? lessInfoStyle : moreInfoStyle}>{props.bio}</h6>
@@ -33,9 +33,9 @@ const Politician = (props) => {
               <span>PROPUESTAS VIGENTES</span>
             </div>
             <Polls polls={props.polls} />
-            <div className="btn-edit-container">
-              <button className="btn btn-edit"> Editar mis temas</button>
-            </div>
+            {/* <div className="btn-create-poll-container">
+               <button className="btn btn-create-poll"> Agregar Propuesta </button>
+            </div> */}
           </section>
 
           <section className='my-participations col-sm-6'>
