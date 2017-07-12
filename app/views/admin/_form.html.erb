@@ -4,6 +4,11 @@
     <%= render 'shared/mensajes_de_error',  object: f.object %>
 
     <div class="field">
+      <%= f.label "Nombres" %>
+      <%= f.text_field :names, class: 'form-control' %>
+    </div>
+
+    <div class="field">
         <%= f.label "Primer Apellido" %>
         <%= f.text_field :first_surname, class: 'form-control' %>
     </div>
@@ -14,8 +19,13 @@
     </div>
 
     <div class="field">
-        <%= f.label "Nombres" %>
-        <%= f.text_field :names, class: 'form-control' %>
+      <%= f.label "Organización" %>
+      <%= f.text_field :organization, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label "Biografía" %>
+      <%= f.text_area :bio, class: 'form-control' %>
     </div>
 
     <div class="field">

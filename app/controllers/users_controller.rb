@@ -120,7 +120,8 @@ class UsersController < ApplicationController
   def users_params
     params.require(:user).permit(:first_surname, :second_surname, :names,
                                     :tipo_de_documento_id, :document_number,
-                                    :expedition_date, :email, :password, :password_confirmation)
+                                    :expedition_date, :email, :password,
+                                    :password_confirmation, :bio, :organization, :role_type, :admin_photo)
   end
 
   def users_exist
