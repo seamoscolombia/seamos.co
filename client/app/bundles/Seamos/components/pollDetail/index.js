@@ -94,9 +94,13 @@ const PollDetail = ({
             src={getPicture(politician)}
             role='presentation'
             alt='politician'
-          />
-          <div id='author'>por {politician.full_name}</div>
-        </section>
+            />
+          <Link
+            id='author'
+            to={`/proponents/${politician.id}`}
+          >por {politician.full_name}
+          </Link>
+          </section>
         <div className='share-wrapper'>
           <span className='share-this'> COMPARTIR: </span>
             <FacebookShareButton
@@ -108,11 +112,11 @@ const PollDetail = ({
             >
               <a
                 className='social-icon facebook-icon'
-                rel='noopener noreferrer'
                 style={{display: 'block'}}
+                rel='noopener noreferrer'
               >
-                <br />
               </a>
+                <br />
             </FacebookShareButton>
         </div>
         <section id='poll' className='row'>
