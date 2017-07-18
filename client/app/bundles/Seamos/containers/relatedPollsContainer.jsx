@@ -19,14 +19,27 @@ class RelatedPollsContainer extends Component {
         this.props.pollsFilteredByTag(this.props.pollId);
     }
 
+
     render() {
+        function Title(props) {
+          const pollsPresent = props.polls.length !== 0;
+          if (pollsPresent) {
+            return <h3> Tambien te podría interesar </h3>;
+          }
+          return null;
+        }
         const { polls, tag, pollId } = this.props;
         if (polls.length !== 0 || this.props.tag) {
-            const relPolls = polls.slice(0, 3)
-            const relPollsWithoutDup=relPolls.filter(function(poll) {
+            const relPolls = polls.slice(0, 3);
+            const relPollsWithoutDup = relPolls.filter(function (poll) {
               return poll.id !== pollId;
             });
-            return <Polls polls={relPollsWithoutDup.slice(0, 2)} tag={tag} />;
+            return (
+              <div>
+                <Title polls={relPollsWithoutDup} />
+                <Polls polls={relPollsWithoutDup.slice(0, 2)} tag={tag} />
+              </div>
+            );
         }
         return null;
     }

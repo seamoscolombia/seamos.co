@@ -12,7 +12,8 @@
       text-align: center
       color: white
       text-transform: uppercase
-      padding-top: 111px
+      @media screen and (max-width: $break-medium)
+        padding-top: 40px
       .welcome
         font-family: 'RobotoCondensed'
         letter-spacing: 7px
@@ -75,15 +76,22 @@
             background-size: contain
             background-position: center -14px
             height: 145%
+    .down-text-container
+      text-align: center
+      color: white
+      text-transform: uppercase
+      padding-top: 111px
+      @media screen and (max-width: $break-medium)
+        padding-top: 26px
   .top
     background-image: url(asset_path('inicio.png'))
     background-position: center top
   .mid
     background-image: url(asset_path('de_que_quieres_hablar.png'))
     background-position: center top
-    padding: 120px 0 210px 0
+    padding: 100px 0 210px 0
     margin-top: 50px
-    height: 500px
+    height: 420px
     @media screen and (max-width: $break-medium)
       height: 147px
       padding: 0 0 30px 0
