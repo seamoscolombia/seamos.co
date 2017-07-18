@@ -166,6 +166,12 @@
       display: flex
       text-align: center
       justify-content: center
+      @media screen and (max-width: $break-medium)
+        flex: 1
+        flex-wrap: wrap
       #poll-component
         flex-wrap: nowrap
         width: 520px
+        @media screen and (max-width: $break-medium)
+          flex-wrap: wrap
+          width: auto
