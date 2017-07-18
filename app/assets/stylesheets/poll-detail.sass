@@ -6,6 +6,8 @@
   height: 100%
   @media screen and (max-width: $break-medium)
     padding: 0 10px
+  .flex-row
+    display: flex
   header
     .poll-title
       font-family: 'hkNovaBold'
@@ -20,6 +22,7 @@
     font-family: 'RobotoBoldCondensed'
     font-size: 12px
     padding: 0 15px
+    overflow: visible
     @media screen and (max-width: $break-medium)
       margin-top: 10px
     img
@@ -82,7 +85,11 @@
       background-color: transparent
       margin: 10px 0
     .buttons-wrapper
-      padding-right: 80px
+      padding-right: 20px
+      display: flex
+      flex-direction: column
+      justify-content: center
+      max-height: 140px
       .single-button
         min-height: 60px
         margin-bottom: 1em
@@ -99,14 +106,13 @@
         min-height: 60px
         border-radius: 18px
         padding: 0
-        margin-bottom: 1em
+        margin: 5px 0
         background-color: gray
         color: whitesmoke
         width: 100%
         background-color: rgb(200, 200, 200)
         @media screen and (max-width: $break-medium)
-          min-height: 30px
-
+          min-height: 40px
         .progress-bar
           background-color: rgb(102, 204, 204)
           display: flex
@@ -117,7 +123,7 @@
             font-size: 30px
             vertical-align: middle
             float: right
-            margin-right: 80px
+            margin-right: 20px
             position: absolute
             right: 20px
             @media screen and (max-width: $break-medium)
@@ -125,10 +131,22 @@
               line-height: 0
 
     .countdown-wrapper
-      margin-top: 7px
+      margin-top: 0px
       @media screen and (max-width: $break-medium)
         padding: 0
-        margin: -14px
+        margin: 0
+      svg
+        height: 170px
+        position: absolute
+        right: -20px
+        @media screen and (max-width: $break-medium)
+          height: 120px
+          right: 9px
+      h4
+        margin-top: 55px
+        text-align: center
+        @media screen and (max-width: $break-medium)
+          margin-top: 37px
   #related-polls
     display: flex
     margin-top: 15px
@@ -145,5 +163,15 @@
         margin-bottom: 35px
     flex-direction: column
     .polls-wrapper
-      flex: 1
+      display: flex
       text-align: center
+      justify-content: center
+      @media screen and (max-width: $break-medium)
+        flex: 1
+        flex-wrap: wrap
+      #poll-component
+        flex-wrap: nowrap
+        width: 520px
+        @media screen and (max-width: $break-medium)
+          flex-wrap: wrap
+          width: auto

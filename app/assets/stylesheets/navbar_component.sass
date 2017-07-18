@@ -1,5 +1,15 @@
 @import './variables.scss'
 #client-navbar
+  .hide-on-mobile
+    a
+    @media screen and (max-width: $break-medium)
+      display: none !important
+  .hide-on-desktop
+    a
+    @media screen and (min-width: $break-medium)
+      display: none !important
+  a:focus
+    background-color: rgba(0, 0, 0, 0)
   .navbar-header
     @media screen and (max-width: $break-medium)
       margin-left: 0
@@ -33,6 +43,7 @@
       display: block
     li
       margin-right: 10px
+      margin-bottom: 10px
     a
       text-transform: uppercase
       font-weight: bold
@@ -81,7 +92,17 @@
     visibility: hidden
     opacity: 0
     transition: visibility 0s, opacity 0.5s linear
+  .sidebar-social
+    position: absolute
+    bottom: 20px
   .social-icon
+    @media screen and (max-width: $break-medium)
+      background-position: center center
+      background-size: cover
+      background-repeat: no-repeat
+      width: 33px
+      height: 31px
+      display: inline-flex
     &:hover
       cursor: pointer
       width: 40px

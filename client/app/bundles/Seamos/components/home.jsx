@@ -118,7 +118,7 @@ const Home = ({ session }) => (
     </div>
     <Tags />
     <div className='background-container down'>
-      <div className='flex-container top-text-container'>
+      <div className='flex-container down-text-container'>
         <div id='featured-polls-title'>
           PROPUESTAS DESTACADAS
         </div>
