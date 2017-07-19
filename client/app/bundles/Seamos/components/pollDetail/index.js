@@ -23,6 +23,21 @@ function getColorDependingOnTime(initial_time, remaining) {
   const colorObj = new Color({ initial_time, remaining, startColor, endColor });
   return colorObj.interpolate();
 }
+
+function externalLinks(links) {
+  return links.map(link =>
+    <div className='external-link'>
+      <a
+        href={link.url}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {link.url.substr(0, 60)}
+      </a>
+    </div>
+  );
+}
+
 function voteButton(pollType, voteTypes, voteAction) {
   switch (pollType) {
     case 'signing': //2
@@ -33,7 +48,7 @@ function voteButton(pollType, voteTypes, voteAction) {
     default:
       return voteTypes.map(voteType =>
         <SingleButton
-          key={`${voteType.name}`}
+          key={voteType.name}
           name={voteType.name}
           onClick={() => { voteAction(voteType.id); }}
         />
@@ -59,13 +74,21 @@ function votedButton(pollType, voteTypes, vote_count) {
     default:
       return voteTypes.map(voteType =>
         <VotedButton
-          key={`${voteType.name}`}
+          key={voteType.name}
           count={voteType.count}
           name={voteType.name}
           total={vote_count}
         />
       );
   }
+}
+
+function externalLinksTitle(links) {
+  const linksPresent = links.length !== 0;
+  if (linksPresent) {
+    return <h4> Enlaces Externos </h4>;
+  }
+  return null;
 }
 
 function getPicture(politician) {
@@ -132,9 +155,13 @@ const PollDetail = ({
           <div className="col-sm-6">
             <div className="row">
               <div className="poll-description-container col-sm-12">
-                <p className="poll-description" style={moreInfo ? lessInfoStyle : moreInfoStyle}>
+                <div className="poll-description" style={moreInfo ? lessInfoStyle : moreInfoStyle}>
                   {description}
-                </p>
+                  {externalLinksTitle(links)}
+                  <div className='external-links-container'>
+                    {externalLinks(links)}
+                  </div>
+                </div>
               </div>
               <div className="col-sm-12">
                 <button onClick={setMoreInfo} id='plus-info'>

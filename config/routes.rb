@@ -52,5 +52,5 @@ Rails.application.routes.draw do
     resources 'dashboard', only: :index
   end
 
-  mount ActionCable.server => '/cable'
+  # mount ActionCable.server => '/cable'
 end

@@ -20,6 +20,7 @@
 class Poll < ApplicationRecord
   mount_uploader :poll_image, PollImageUploader
 
+  attr_accessor :links
   belongs_to :user
   has_many :vote_types, inverse_of: :poll, dependent: :destroy
   has_many :votes, dependent: :destroy

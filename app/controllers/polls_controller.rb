@@ -15,7 +15,6 @@
 
 class PollsController < ApplicationController
   include SessionsHelper
-
   before_action :validate_poll_closed?, only: :show
   before_action :validate_closing_date, only: :edit
   before_action :validate_session, except: [:index, :show, :filtered_by_politician, :filtered_by_tag, :index_closed]
@@ -35,6 +34,7 @@ class PollsController < ApplicationController
     @poll = Poll.new http_params
     @poll.user = current_user
     @poll.set_tags(tags_param)
+    bind_links
     totals_hash = {}
     Poll.transaction do
       @poll.vote_types.build(name: 'SI')
@@ -77,7 +77,7 @@ class PollsController < ApplicationController
       end
       format.json do
         @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| poll.send(order_param)}
-        @polls = @polls.reverse if @reverse
+        @polls = @reverse ? @polls.reverse.first(6) : @polls.first(6)
       end
     end
   end
@@ -191,6 +191,14 @@ class PollsController < ApplicationController
 
   private
 
+  def bind_links
+    links_param.split(',').map(&:strip).uniq.each do |url|
+      if url.length > 4
+        ExternalLink.create!(url: url, poll: @poll)
+      end
+    end
+  end
+
   def set_tag
     @tag = Tag.find(params[:tag_id])
   end
@@ -240,6 +248,10 @@ class PollsController < ApplicationController
 
   def tags_param
     params[:poll][:tags]
+  end
+
+  def links_param
+    params[:poll][:links]
   end
   def http_params
     params.require(:poll).permit(
