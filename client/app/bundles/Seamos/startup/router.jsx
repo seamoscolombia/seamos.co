@@ -12,8 +12,9 @@ import { isAuthenticated } from '../utils';
 
 import Home from '../containers/homeContainer';
 import Navbar from '../containers/navbarContainer';
+import Footer from './../containers/footerContainer';
 import Politician from '../containers/politicianContainer';
-import Component404 from '../components/component404'; 
+import Component404 from '../components/component404';
 import Profile from '../containers/profileContainer';
 import PollsClosed from '../containers/pollsClosedContainer';
 import Polls from '../containers/pollsPageContainer';
@@ -51,6 +52,7 @@ const AppRouter = () => (
                 <Route path='/404' component={Component404} />
                 <Route component={Component404} />
             </Switch>
+            <Footer />
         </div>
     </Router>
 );
