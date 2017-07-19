@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ShareButtons} from 'react-share';
+import { ShareButtons } from 'react-share';
 import { Link } from 'react-router-dom';
 import CountDown from '../../containers/countdownContainer';
 import RelatedPolls from '../../containers/relatedPollsContainer';
@@ -48,7 +48,7 @@ function voteButton(pollType, voteTypes, voteAction) {
     default:
       return voteTypes.map(voteType =>
         <SingleButton
-          key={voteType.name}
+          key={`${voteType.name}`}
           name={voteType.name}
           onClick={() => { voteAction(voteType.id); }}
         />
@@ -74,7 +74,7 @@ function votedButton(pollType, voteTypes, vote_count) {
     default:
       return voteTypes.map(voteType =>
         <VotedButton
-          key={voteType.name}
+          key={`${voteType.name}`}
           count={voteType.count}
           name={voteType.name}
           total={vote_count}

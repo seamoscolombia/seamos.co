@@ -93,7 +93,7 @@ class PollsController < ApplicationController
   def filtered_by_tag
     respond_to do |format|
       format.json do
-        @polls = @tag.polls.includes(:votes).open.active.sort_by {|poll| - poll.votes.size}
+        @polls = @tag.polls.includes(:votes).open.active.sort_by {|poll| - poll.votes.size} if @tag
       end
     end
   end
@@ -200,7 +200,7 @@ class PollsController < ApplicationController
   end
 
   def set_tag
-    @tag = Tag.find(params[:tag_id])
+    @tag = Tag.find_by(id: params[:tag_id])
   end
 
   def order_param

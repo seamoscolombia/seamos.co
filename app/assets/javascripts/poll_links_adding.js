@@ -8,7 +8,7 @@ var ready = function() {
         var linkname = $(this).val()
         console.log(linkname);
         linklist.push(linkname);
-        $("#links-field").val(`${$('#link-1').val()} , ${$('#link-2').val()}, ${$('#link-3').val()}`);
+        $("#links-field").val($('#link-1').val().concat(', ', $('#link-2').val(), ', ', $('#link-3').val()));
         return false
     }
   );
