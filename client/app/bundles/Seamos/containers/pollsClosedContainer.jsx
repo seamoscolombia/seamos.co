@@ -29,7 +29,12 @@ class PollsContainer extends Component {
               </div>
             </div>
             <div id="">
-                <Polls {...this.props} />
+            <div className='polls-box'>
+              {this.props.polls.length !== 0 ?
+                <Polls {...this.props} /> :
+                <h3> Por el momento no hay propuestas para este tema </h3>
+              }
+            </div>
             </div>
           </div>
         );

@@ -1,10 +1,11 @@
 @import './variables.scss'
 #poll-detail
   // overflow: visible
-  margin-top: 5em
+  margin-top: 7em
   padding: 6px 6em 0 6em
   height: 100%
   @media screen and (max-width: $break-medium)
+    margin-top: 5em
     padding: 0 10px
   .flex-row
     display: flex
@@ -16,8 +17,9 @@
       margin: 0 15px 0 15px
       padding: 0
       @media screen and (max-width: $break-medium)
-        font-size: 17px
+        font-size: 22px
         line-height: 1em
+        text-align: center
   #politician
     font-family: 'RobotoBoldCondensed'
     font-size: 12px
@@ -67,6 +69,24 @@
         padding: 0
         text-align: justify
         top: -7px
+        line-height: 25px
+        @media screen and (max-width: $break-medium)
+          font-size: 15px
+          line-height: 18px
+        .external-links-container
+          margin-bottom: 25px
+          .external-link
+            margin: 10px 0
+            width: 406px
+            overflow: hidden
+            a
+              white-space: nowrap
+              background-color: gray
+              font-weight: 500
+              padding: 8px
+              font-family: HKNovaBold
+              font-size: 12px
+              color: white
     #poll-thumbnail
       width: 100%
       max-height: 330px
@@ -102,6 +122,17 @@
         color: white
         font-size: 30px
         margin-bottom: 0.5em
+      .non-voted-button
+        min-height: 60px
+        border-radius: 18px
+        padding: 0
+        margin: 5px 0
+        color: white
+        width: 100%
+        font-size: 26px
+        // background-color: rgb(200, 200, 200)
+        @media screen and (max-width: $break-medium)
+          min-height: 40px
       .voted-button
         min-height: 60px
         border-radius: 18px
@@ -150,7 +181,6 @@
   #related-polls
     display: flex
     margin-top: 15px
-    min-height: 20em
     overflow: visible
     h3
       margin-bottom: 60px

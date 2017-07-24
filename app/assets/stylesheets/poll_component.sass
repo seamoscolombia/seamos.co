@@ -40,6 +40,7 @@
     position: relative
     width: 340px
     padding: 10px
+    padding-top: 0
     @media screen and (max-width: $break-medium)
       width: 55%
       margin: auto
@@ -78,6 +79,9 @@
         font-size: 17px
 
     .poll-info
+      color: black
+      &:hover
+        text-decoration: none
       // position: relative
       .poll-description
         font-size: 12px
@@ -86,6 +90,7 @@
         overflow: hidden
         max-height: 100px
         text-align: justify
+        padding-top: 6px
         @media screen and (max-width: $break-medium)
           margin-bottom: 30px
           max-height: 84px
@@ -96,5 +101,4 @@
         line-height: 1em
         text-align: left
         @media screen and (max-width: $break-medium)
-          margin: 0 0 10px 0
           font-size: 14px

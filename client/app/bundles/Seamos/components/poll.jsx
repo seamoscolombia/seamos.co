@@ -20,20 +20,20 @@ const Poll = (props) => {
   return (
     <div id='poll-component'>
       <div className='poll-image-container'>
-      <Link to={`/poll/${id}`} >
-        <img alt="poll" src={poll_image} />
-      </Link>
+        <Link to={`/poll/${id}`} >
+          <img alt="poll" src={poll_image} />
+        </Link>
       </div>
       <div className='color-separator' style={{ backgroundColor: tagColor }} />
       <div className='poll-infos-container'>
-        <div className='poll-info'>
+        <Link to={`/poll/${id}`} className='poll-info'>
           <div className='poll-title'>
             {title}
           </div>
-          <div className='poll-description'>
-            {description}
-          </div>
-        </div>
+            <div className='poll-description'>
+              {description}
+            </div>
+        </Link>
         <div className='poll-details'>
           <span> {vote_count} participaciones </span>
           <span className='separator'> | </span>

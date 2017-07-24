@@ -19,7 +19,7 @@ class PollsFeatureContainer extends Component {
 
     render() {
         // get the first 2 polls
-        const polls = this.props.polls.slice(0, 2); 
+        const polls = this.props.polls.slice(0, 2);
         return <Polls polls={polls} />;
     }
 }

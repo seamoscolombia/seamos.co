@@ -3,7 +3,7 @@ import React from 'react';
 import { ShareButtons} from 'react-share';
 import { Link } from 'react-router-dom';
 import CountDown from '../../containers/countdownContainer';
-import RelatedPolls from '../../containers/relatedPollsContainer';
+import RelatedPolls from './../../containers/relatedPollsContainer';
 import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
@@ -14,8 +14,8 @@ const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
 const { FacebookShareButton } = ShareButtons;
 // const FacebookIcon = generateShareIcon('facebook');
 
-const moreInfoStyle = { height: 150, overflowY: 'hidden' };
-const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
+const moreInfoStyle = { height: 150, overflow: 'hidden' };
+const lessInfoStyle = { maxHeight: 9999, overflow: 'none' };
 
 function getColorDependingOnTime(initial_time, remaining) {
   const startColor = '00FF92';
@@ -169,9 +169,9 @@ const PollDetail = ({
           </div>
         </section>
       </div>
-      <section id='related-polls'>
-        <RelatedPolls tagId={tag.id} pollId={id}/>
-      </section>
+      <div id='related-polls'>
+        <RelatedPolls tagId={tag.id} pollId={id} />
+      </div>
     </section>
   );
 PollDetail.propTypes = {

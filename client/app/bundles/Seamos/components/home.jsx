@@ -123,8 +123,8 @@ const Home = ({ session }) => (
           PROPUESTAS DESTACADAS
         </div>
       </div>
-      <Featured />
     </div>
+    <Featured />
   </div>
 );
 
