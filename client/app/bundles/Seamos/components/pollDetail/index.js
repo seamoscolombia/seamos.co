@@ -14,7 +14,7 @@ const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
 const { FacebookShareButton } = ShareButtons;
 // const FacebookIcon = generateShareIcon('facebook');
 
-const moreInfoStyle = { height: 150, overflowY: 'hidden' };
+const moreInfoStyle = { height: 150, overflow: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
 
 function getColorDependingOnTime(initial_time, remaining) {
