@@ -27,19 +27,27 @@ class PollsDetailContainer extends Component {
         });
     }
 
-    componentWillUnmount() {
-        this.props.poll.id = null;
+    shouldComponentUpdate(nextProps) {
+      if (this.props.user !== nextProps.user) {
+        this.props.poll.user_already_voted = !this.props.poll.user_already_voted;
+      } else if (nextProps.poll.id !== this.props.poll.id) {
+          window.location.hash = `/poll/${nextProps.poll.id}`;
+          console.info('new poll detail', nextProps.poll.id)
+      } else if (nextProps.match.params.pollId !== this.props.match.params.pollId) {
+         this.props.getPoll({
+              pollId: nextProps.match.params.pollId,
+              errCallback: () => this.props.history.push('/404')
+          });
+      }
+      return true;
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (this.props.user !== nextProps.user) {
-            this.props.poll.user_already_voted = !this.props.poll.user_already_voted;
-        } 
-        return true;
+    componentWillUnmount() {
+      this.props.poll.id = null;
     }
 
     setMoreInfo() { this.setState({ moreInfo: !this.state.moreInfo }); }
-    
+
     voteAction(id) {
         const { poll, session, votePoll } = this.props;
         if (session.authenticityToken) {
