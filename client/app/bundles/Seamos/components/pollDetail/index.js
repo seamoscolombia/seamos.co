@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ShareButtons} from 'react-share';
+import { ShareButtons } from 'react-share';
 import { Link } from 'react-router-dom';
 import CountDown from '../../containers/countdownContainer';
 import RelatedPolls from '../../containers/relatedPollsContainer';
@@ -14,7 +14,7 @@ const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
 const { FacebookShareButton } = ShareButtons;
 // const FacebookIcon = generateShareIcon('facebook');
 
-const moreInfoStyle = { height: 150, overflowY: 'hidden' };
+const moreInfoStyle = { height: 150, overflow: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
 
 function getColorDependingOnTime(initial_time, remaining) {
@@ -23,6 +23,21 @@ function getColorDependingOnTime(initial_time, remaining) {
   const colorObj = new Color({ initial_time, remaining, startColor, endColor });
   return colorObj.interpolate();
 }
+
+function externalLinks(links) {
+  return links.map(link =>
+    <div className='external-link'>
+      <a
+        href={link.url}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {link.url.substr(0, 60)}
+      </a>
+    </div>
+  );
+}
+
 function voteButton(pollType, voteTypes, voteAction) {
   switch (pollType) {
     case 'signing': //2
@@ -66,6 +81,14 @@ function votedButton(pollType, voteTypes, vote_count) {
         />
       );
   }
+}
+
+function externalLinksTitle(links) {
+  const linksPresent = links.length !== 0;
+  if (linksPresent) {
+    return <h4> Enlaces Externos </h4>;
+  }
+  return null;
 }
 
 function getPicture(politician) {
@@ -132,9 +155,13 @@ const PollDetail = ({
           <div className="col-sm-6">
             <div className="row">
               <div className="poll-description-container col-sm-12">
-                <p className="poll-description" style={moreInfo ? lessInfoStyle : moreInfoStyle}>
+                <div className="poll-description" style={moreInfo ? lessInfoStyle : moreInfoStyle}>
                   {description}
-                </p>
+                  {externalLinksTitle(links)}
+                  <div className='external-links-container'>
+                    {externalLinks(links)}
+                  </div>
+                </div>
               </div>
               <div className="col-sm-12">
                 <button onClick={setMoreInfo} id='plus-info'>
