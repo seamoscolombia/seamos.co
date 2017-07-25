@@ -12,6 +12,28 @@
     <label id='counter-label' class='char-left'>500</label>
 </div>
 
+
+<%= f.label "Enlaces Externos (opcionales)" %>
+<div>
+ <input id="link-1" type="text" class="form-control extlink" placeholder="Enlace externo 1">
+</div>
+
+<div>
+ <input id="link-2" type="text" class="form-control extlink" placeholder="Enlace externo 2">
+</div>
+
+<div>
+ <input id="link-3" type="text" class="form-control extlink" placeholder="Enlace externo 3">
+</div>
+
+<div class="field" style="display: none">
+  <% if @used_links %>
+    <%= f.text_field :links, id: 'links-field', value: @used_links%>
+  <% else %>
+    <%= f.text_field :links, id: 'links-field'%>
+  <% end %>
+</div>
+
 <div class="field">
   <%= f.label :objective %>
   <%= f.text_field :objective, class: 'form-control' %>
