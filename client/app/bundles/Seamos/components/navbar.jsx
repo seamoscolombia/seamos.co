@@ -66,7 +66,7 @@ const Navbar = ({ session, user }) => (
               <Link to='/'> ¿COMO LO HACEMOS? </Link>
             </li>
             <li key='7'><Link to='/tags'> Temas </Link></li>
-            <li key='8'><Link to='/closed-polls'> Resultados </Link></li>
+            <li key='8'><Link to='/closed-polls'> Propuestas Cerradas </Link></li>
             <li key='9' className='dropdown hide-on-mobile'>
               <a> Siguenos </a>
               <div className="dropdown-content">
