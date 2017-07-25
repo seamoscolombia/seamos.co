@@ -16,7 +16,7 @@ const Menu = () => (
 
 function profile() {
     return (
-      <li>
+      <li key='3'>
         <ProfileButton />
       </li>
     );
@@ -24,7 +24,7 @@ function profile() {
 
 function logout() {
     return (
-      <li>
+      <li key='4'>
         <LogoutButton />
       </li>
     );
@@ -59,15 +59,15 @@ const Navbar = ({ session, user }) => (
           <ul className='nav navbar-nav navbar-right navbar-options'>
             <div className='hide-on-desktop'>
               {session.authenticityToken && Object.keys(user).length !== 0 ?
-                profile() : <li> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
+                profile() : <li key='5'> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
               }
             </div>
-            <li>
+            <li key='6'>
               <Link to='/'> ¿COMO LO HACEMOS? </Link>
             </li>
-            <li><Link to='/tags'> Temas </Link></li>
-            <li><Link to='/closed-polls'> Resultados </Link></li>
-            <li className='dropdown hide-on-mobile'>
+            <li key='7'><Link to='/tags'> Temas </Link></li>
+            <li key='8'><Link to='/closed-polls'> Resultados </Link></li>
+            <li key='9' className='dropdown hide-on-mobile'>
               <a> Siguenos </a>
               <div className="dropdown-content">
                 <a
@@ -104,7 +104,7 @@ const Navbar = ({ session, user }) => (
                 </a>
               </div>
             </li>
-            <li className='hide-on-desktop sidebar-social'>
+            <li key='10' className='hide-on-desktop sidebar-social'>
               <a> Siguenos </a>
               <div className="">
                 <a
@@ -143,11 +143,11 @@ const Navbar = ({ session, user }) => (
             </li>
             <div className='hide-on-mobile'>
               {session.authenticityToken && Object.keys(user).length !== 0 ?
-                profile() : <li> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
+                profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
               }
             </div>
             {session.authenticityToken && Object.keys(user).length !== 0 ?
-              logout() : <li />
+              logout() : <span />
             }
           </ul>
         </nav>

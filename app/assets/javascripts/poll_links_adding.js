@@ -12,15 +12,14 @@ var ready = function() {
         return false
     }
   );
-  var locatinhash = window.location.hash
-  console.log(locatinhash.split('/')[1] == 'poll');
-  if (locatinhash.split('/')[1] == 'poll' && locatinhash.length == 3) {
-    console.log('asdfdsfwork');
-    $('.poll-info').on("click", window.setTimeout(function() {
-      console.log('work');
-      window.location.reload();
-    }, 50);
-  }
+  // var locatinhash = window.location.hash
+  // console.log(locatinhash.split('/')[1] == 'poll');
+  // if (locatinhash.split('/')[1] == 'poll' && locatinhash.length == 3) {
+  //   $('.poll-info').on("click", window.setTimeout(function() {
+  //     console.log('work');
+  //     window.location.reload();
+  //   }, 50));
+  // }
 };
 
 $(document).ready(ready);
