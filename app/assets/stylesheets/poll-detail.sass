@@ -177,11 +177,29 @@
         @media screen and (max-width: $break-medium)
           height: 120px
           right: 9px
-      h4
-        margin-top: 55px
-        text-align: center
+      .closed-text-wrapper
+        background-color: gainsboro
+        border-radius: 100px
+        max-width: 150px
+        /* margin-right: -21px */
+        position: relative
+        display: flex
+        align-items: center
+        justify-content: center
+        height: 120px
+        width: 120px
+        top: 8px
+        left: 15px
         @media screen and (max-width: $break-medium)
-          margin-top: 37px
+          top: 15px
+          left: -13px
+          max-width: 95px
+          height: 70px
+        h4
+          margin: 0
+          text-align: center
+          @media screen and (max-width: $break-medium)
+            font-size: 12px
   #related-polls
     display: flex
     margin-top: 15px

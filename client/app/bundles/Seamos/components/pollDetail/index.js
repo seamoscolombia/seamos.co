@@ -202,7 +202,9 @@ const PollDetail = ({
                             innerColor="#fff"
                             outerColor="#747272"
                         /> :
-                        <h4> cerrada </h4>
+                        <div className="closed-text-wrapper">
+                          <h4> cerrada </h4>
+                        </div>
                       }
                   </div>
                 </div>
