@@ -63,7 +63,7 @@ const Navbar = ({ session, user }) => (
               }
             </div>
             <li key='6'>
-              <Link to='/'> ¿COMO LO HACEMOS? </Link>
+              <Link to='/'> INICIO </Link>
             </li>
             <li key='7'><Link to='/tags'> Temas </Link></li>
             <li key='8'><Link to='/closed-polls'> Propuestas Cerradas </Link></li>

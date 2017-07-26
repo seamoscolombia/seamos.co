@@ -39,12 +39,12 @@ const Home = ({ session }) => (
     </div>
     <div id='how' className="flex-container">
       <div className="title">
-        ¿Cómo lo hacemos?
+        ¿Cómo logramos el cambio?
       </div>
       <div className="text">
-        SeamOS es un canal entre la ciudadanía y los políticos en ejercicio, que
-        busca fortalecer la democracia y transformar la política, devolviendo
-        el poder a los ciudadanos, a través de un click.
+        La plataforma SeamOS es un canal entre la ciudadanía y los políticos en ejercicio,
+        para generar un diálogo con ellos y hacer valer la representación democrática que
+        les otorgamos con nuestro voto.
       </div>
     </div>
     <div id='steps-container' className="flex-container">
@@ -56,7 +56,7 @@ const Home = ({ session }) => (
           <div className="step-info">
             <div className="step-number">1</div>
             <div className="step-text">
-              Descubre propuestas de acuerdo a tus temas de interés.
+              Explora las propuestas publicadas según los ejes temáticos de tu interés.
             </div>
             <div className="step-image step-image-1" />
           </div>
@@ -71,8 +71,8 @@ const Home = ({ session }) => (
           <div className="step-info">
             <div className="step-number">2</div>
             <div className="step-text">
-              Participa en las discusiones en torno a propuestas que
-              te interesan y aporta para fortalecerlas.
+               Registrarte, vota y da tu opinión. El político frente a la
+               propuesta será notificado.
             </div>
           </div>
           <div className="step-image step-image-2" />
@@ -80,14 +80,15 @@ const Home = ({ session }) => (
       </a>
       {/* <<<< is bad*/ }
       <Link
-        to='/tag/3/polls'
+        to="#"
+        onClick={() => window.scrollTo(0, 3300)}
       >
         <div className="step">
           <div className="step-info">
             <div className="step-number">3</div>
             <div className="step-text">
-              si quieres ir más allá, regístrate con fácebook y vota
-              y dile al político si crees o no en esa propuesta.
+              Participa en las discusiones en torno a las propuestas que te
+              interesan y aporta para fortalecerlas y lograr que se cumplan
             </div>
           </div>
           <div className="step-image step-image-3" />
