@@ -6,7 +6,7 @@ import Tag from './tag';
 const SelectInterests = ({ tags, action, returnToMySubjects }) => (
     <section id='my-subjects' className='col-sm-4'>
       <div className='title'>
-        <span>Seleciona tus intereses</span>
+        <span>SELECCIONA TUS INTERESES</span>
       </div>
       <section id='tags-component'>
         <div className='flex-container tags-box'>
@@ -15,7 +15,7 @@ const SelectInterests = ({ tags, action, returnToMySubjects }) => (
               key={tag.id}
               action={action}
               {...tag}
-              selectedTagClass={tag.selected ? 'tagIsSelected' : 'tagIsNotSelected'}
+              selectedTagClass={tag.selected ? 'tag-selected' : 'tag-not-selected'}
             />
           ))
         }
