@@ -72,10 +72,14 @@
           margin: auto
           background-repeat: no-repeat
           background-position: center -26px
+          -webkit-transition: background-position 1s
+          transition: background-position 1s
           @media screen and (max-width: $break-medium)
             background-size: contain
             background-position: center -14px
             height: 145%
+          &:hover
+            background-position: center -11px
     .down-text-container
       text-align: center
       color: white

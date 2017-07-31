@@ -81,7 +81,7 @@ const Home = ({ session }) => (
       {/* <<<< is bad*/ }
       <Link
         to="#"
-        onClick={() => window.scrollTo(0, 3300)}
+        onClick={() => window.scrollTo(0, 2050)}
       >
         <div className="step">
           <div className="step-info">
