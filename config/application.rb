@@ -13,11 +13,5 @@ module Seamos
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :es
     Koala.config.api_version = 'v2.0'
-
-    config.action_dispatch.default_headers = {
-    'Access-Control-Allow-Origin' => 'http://seamos.mybluemix.net',
-    'Access-Control-Request-Method' => %w{GET POST PUT OPTIONS}.join(",")
-  }
-
   end
 end
