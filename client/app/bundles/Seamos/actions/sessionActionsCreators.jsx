@@ -13,6 +13,6 @@ export const resetSession = () => dispatch => (
   axios.delete(`${URL}/destroy_facebook_session.json`)
   .then(() => dispatch(resetUserSession()))
   .catch(e => {
-    alert('Ha ocurrido un error por favor reporta a nuestro equipo'); //eslint-disable-line
+    alert('Por favor inicia sesión nuevamente'); //eslint-disable-line
   })
 );

@@ -15,6 +15,6 @@ export const getPolitician = (id) => (dispatch) => (
       dispatch(setPolitician(response.data.user));
     })
     .catch(e => {
-      alert('Ha ocurrido un error por favor reporta a nuestro equipo');
+      alert('Por favor inicia sesión nuevamente');
     })
 );
