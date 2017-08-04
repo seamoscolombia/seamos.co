@@ -33,6 +33,7 @@ class VotesController < ApplicationController
         poll_id: @poll.id,
         vote_type: vote_type
       )
+      redirect_to polls_url if user_already_voted?(current_user, @poll)
       vote_save_fb vote
     end
   rescue ActiveRecord::RecordInvalid
@@ -45,6 +46,10 @@ class VotesController < ApplicationController
 
   def http_params
     params[:vote][:vote_type_id].to_i
+  end
+
+  def user_already_voted?(user, poll)
+    Vote.where('user_id = ? AND poll_id = ?', user.id, poll.id).present?
   end
 
   def vote_save_fb(vote)

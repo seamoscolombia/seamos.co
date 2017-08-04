@@ -16,14 +16,16 @@ const { image, icon, name } = props.tag;
   return (
     <section id='polls-component'>
       <div className='background-container' style={{ backgroundImage: `url(${image})` }}>
+        {/*
         <div className='icon-name-wrapper'>
           <div className='tag-icon-container'>
             <img className='tag-icon' alt='tag icon' src={icon} />
           </div>
           <div className='tag-name'>
-            <h1> {name}</h1>
+            <h1> {name} </h1>
           </div>
         </div>
+        */}
       </div>
       <div className='polls-box'>
         {props.polls.length !== 0 ?

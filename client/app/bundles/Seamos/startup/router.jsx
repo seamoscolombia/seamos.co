@@ -42,6 +42,7 @@ const AppRouter = () => (
             <Navbar />
             <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/_=_" component={Home} />
                 <Route path="/tags" component={Tags} />
                 <Route path="/tag/:tagId/polls" component={PollsByTag} />
                 <Route path="/polls" component={Polls} />

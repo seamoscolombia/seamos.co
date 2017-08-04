@@ -5,6 +5,7 @@ json.tags do
     json.id tag.id
     json.name tag.name
     json.image tag.tag_image.url
+    json.thumbnail tag.thumbnail.url
     json.icon tag.tag_icon.url
     json.color tag.tag_color
   end

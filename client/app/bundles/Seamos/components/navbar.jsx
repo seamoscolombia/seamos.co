@@ -69,7 +69,7 @@ const Navbar = ({ session, user }) => (
             <li key='8'><Link to='/closed-polls'> Propuestas Cerradas </Link></li>
             <li key='9' className='dropdown hide-on-mobile'>
               <a> Siguenos </a>
-              <div className="dropdown-content">
+              <div className='dropdown-content'>
                 <a
                   className='social-icon facebook-icon'
                   href="https://www.facebook.com/seamoscolombia/"
@@ -105,8 +105,8 @@ const Navbar = ({ session, user }) => (
               </div>
             </li>
             <li key='10' className='hide-on-desktop sidebar-social'>
-              <a> Siguenos </a>
-              <div className="">
+              <a style={{textAlign: 'center'}}> Siguenos </a>
+              <div className="social-icons-wrapper">
                 <a
                   className='social-icon facebook-icon'
                   href="https://www.facebook.com/seamoscolombia/"

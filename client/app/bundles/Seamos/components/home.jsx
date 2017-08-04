@@ -113,8 +113,10 @@ const Home = ({ session }) => (
       </div>
     </div>
     <div className="mid-paragraph">
-      ¿En qué estás pensando ahora? <br />
-      Encuentra las propuestas vigentes <br />
+      ¿En qué estás pensando ahora?
+    </div>
+    <div className="mid-paragraph-caption">
+      Encuentra las propuestas vigentes
       de acuerdo a tus intereses
     </div>
     <Tags />

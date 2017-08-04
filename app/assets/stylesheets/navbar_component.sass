@@ -95,20 +95,26 @@
   .sidebar-social
     position: absolute
     bottom: 20px
-  .social-icon
+  .social-icons-wrapper
     @media screen and (max-width: $break-medium)
-      background-position: center center
-      background-size: cover
-      background-repeat: no-repeat
-      width: 33px
-      height: 31px
-      display: inline-flex
-    &:hover
-      cursor: pointer
-      width: 40px
-      height: 40px
-      background-color: rgba(60, 60, 60, 1)
-      border-radius: 21px
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+    .social-icon
+      @media screen and (max-width: $break-medium)
+        margin: 8px
+        background-position: center center
+        background-size: cover
+        background-repeat: no-repeat
+        width: 33px
+        height: 31px
+        display: inline-flex
+      &:hover
+        cursor: pointer
+        width: 40px
+        height: 40px
+        background-color: rgba(60, 60, 60, 1)
+        border-radius: 21px
   .dropdown:hover .dropdown-content
     display: flex
     visibility: visible
