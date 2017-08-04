@@ -100,22 +100,3 @@ start than the `rspec` command.
 **Returned attributes**: id, title, description, type
 
 
-# COPY coldocuments (divipol_id, doc_num)  FROM 'pth to CSV' DELIMITER ',' CSV;
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
