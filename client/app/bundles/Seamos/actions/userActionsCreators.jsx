@@ -4,6 +4,7 @@
 import axios from 'axios';
 import { ADD_TAGS_ON_USER, DELETE_TAGS_ON_USER, SET_USER, RESET_SESSION, URL } from '../constants';
 import { setSession } from './sessionActionsCreators';
+import { getInterests } from './tagsActionsCreators';
 
 export const addTagsOnUser = (tag) => ({
   type: ADD_TAGS_ON_USER,
@@ -91,11 +92,11 @@ export const userInterests = ({ authenticity_token, user_id, tag }) => (dispatch
       switch (response.status) {
         case 201:
           dispatch(addTagsOnUser(tag));
-          alert(`Tema ${tag.name} agregado a tus intereses`);
+          dispatch(getInterests(user_id));
           break;
         case 204:
           dispatch(deleteTagsOnUser(tag));
-          alert(`Tema ${tag.name} desligado de tus intereses`);
+          dispatch(getInterests(user_id));
           break;
         default:
           break;
