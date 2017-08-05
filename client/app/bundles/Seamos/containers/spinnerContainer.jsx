@@ -6,11 +6,9 @@ import { showSpinner, hideSpinner } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
-    const { isFetching } = state;
-    return { isFetching };
+    const { spinner } = state;
+    return { spinner };
 };
-
-const mapDispatchToProps = { showSpinner, hideSpinner };
 
 class SpinnerContainer extends Component {
     // constructor(props) {
@@ -19,7 +17,7 @@ class SpinnerContainer extends Component {
     // }
 
     render() {
-      const { isFetching } = this.props;
+      const { isFetching } = this.props.spinner;
       console.log('is fetching ? ', isFetching);
       if (isFetching) {
           return <Spinner isFetching={isFetching} />;
@@ -28,9 +26,9 @@ class SpinnerContainer extends Component {
     }
 }
 SpinnerContainer.defaultProps = {
-  isFetching: true
+  isFetching: false
 };
 // Don't forget to actually use connect!
 // Note that we don't export Polls, but the redux "connected" version of it.
 // See https://github.com/reactjs/react-redux/blob/master/docs/api.md#examples
-export default connect(mapStateToProps, mapDispatchToProps)(SpinnerContainer);
+export default connect(mapStateToProps)(SpinnerContainer);

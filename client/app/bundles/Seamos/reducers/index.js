@@ -9,6 +9,7 @@ import session from './sessionReducer';
 import tags from './tagsReducer';
 import VotedPollReducer from './votedPollReducer';
 import VotedPollsReducer from './votedPollsReducer';
+import spinner from './spinnerReducer';
 
 export default combineReducers({
   interests,
@@ -21,4 +22,5 @@ export default combineReducers({
   tag,
   tags,
   votedPolls: VotedPollsReducer,
+  spinner
 });

@@ -2,12 +2,10 @@
 
 import { SHOW_SPINNER, HIDE_SPINNER } from '../constants';
 
-export const showSpinner = (spinner) => ({
+export const showSpinner = () => ({
   type: SHOW_SPINNER,
-  spinner,
 });
 
-export const hideSpinner = (spinner) => ({
+export const hideSpinner = () => ({
   type: HIDE_SPINNER,
-  spinner,
 });

@@ -4,6 +4,7 @@
 import axios from 'axios';
 import { ADD_TAGS_ON_USER, DELETE_TAGS_ON_USER, SET_USER, RESET_SESSION, URL } from '../constants';
 import { setSession } from './sessionActionsCreators';
+import { showSpinner, hideSpinner } from './spinnerActionsCreators';
 
 export const addTagsOnUser = (tag) => ({
   type: ADD_TAGS_ON_USER,
@@ -60,16 +61,19 @@ export const setUser = (user) => ({
 
 export const resetUser = () => ({ type: RESET_SESSION });
 
-export const validateUserSession = (fbUser) => (dispatch) => (
-  axios.post(`${URL}/sessions.json`, {
+export const validateUserSession = (fbUser) => (dispatch) => {
+  dispatch(showSpinner());
+  return axios.post(`${URL}/sessions.json`, {
     uid: fbUser.id,
     fb_token: fbUser.accessToken
   })
     .then(response => {
+      dispatch(hideSpinner());
       dispatch(setSession(response.data.authenticity_token));
       dispatch(getUser(fbUser));
     })
     .catch(e => {
+      dispatch(hideSpinner());
       if (e.response && e.response.status === 422) {
         dispatch(createUser(fbUser, e.response.data.authenticity_token));
       } else {
@@ -81,7 +85,7 @@ export const validateUserSession = (fbUser) => (dispatch) => (
         alert('Por favor inicia sesión nuevamente');
       }
     })
-);
+};
 
 export const userInterests = ({ authenticity_token, user_id, tag }) => (dispatch) => (
   axios.post(`${URL}/users/${user_id}/interests`, {
