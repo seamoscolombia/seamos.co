@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 // import { ShareButtons, generateShareIcon } from 'react-share';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
+import Spinner from '../containers/spinnerContainer';
 // import { PRODUCTION_URL } from '../constants';
 
 // const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
@@ -14,8 +15,10 @@ import Tags from '../containers/tagsContainer';
 // const title = 'Seamos pagina home';
 import Polls from '../containers/pollsFeatureContainer';
 import Featured from '../containers/pollsPageContainer';
+
 const Home = ({ session }) => (
   <div id="homepage">
+    <Spinner isFetching />
     <div className='background-container top'>
       <div className='flex-container top-text-container'>
         <h1 className='welcome'>Bienvenido</h1>

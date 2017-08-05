@@ -24,3 +24,5 @@ export const SET_SESSION = 'SET_SESSION';
 export const RESET_SESSION = 'RESET_SESSION';
 export const VALIDATE_ACTUAL_POLL = 'validate_actual_poll';
 export const VOTED_POLLS = 'voted_polls';
+export const SHOW_SPINNER = 'SHOW_SPINNER';
+export const HIDE_SPINNER = 'HIDE_SPINNER';
