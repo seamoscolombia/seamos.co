@@ -30,7 +30,7 @@ const { image, icon, name } = props.tag;
       <div className='polls-box'>
         {props.polls.length !== 0 ?
           <Polls {...props} /> :
-          <h3> Por el momento no hay propuestas para este tema </h3>
+          <h3> En el momento no hay propuestas abiertas a votación para este tema </h3>
         }
       </div>
     </section>

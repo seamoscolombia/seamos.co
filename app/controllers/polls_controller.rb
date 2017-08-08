@@ -76,7 +76,12 @@ class PollsController < ApplicationController
         @polls = Poll.order('id desc').all.page(params[:page]).per(4)
       end
       format.json do
-        @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| poll.send(order_param)}
+        if params[:order_by] == 'by-user-interests'
+          @polls = Poll.includes(:votes, :tags).open.active.by_user_interests(current_user).sort_by {|poll| poll.vote_count}
+          @reverse = true
+        else
+          @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| poll.send(order_param)}
+        end
         @polls = @reverse ? @polls.reverse.first(6) : @polls.first(6)
       end
     end
@@ -219,6 +224,8 @@ class PollsController < ApplicationController
       @reverse = true
       order_param = 'vote_count'
     when 'less-voted-first'
+      order_param = 'vote_count'
+    when 'by-user-interests'
       order_param = 'vote_count'
     else
       @reverse = true

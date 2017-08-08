@@ -102,6 +102,10 @@ class Poll < ApplicationRecord
     votes.size
   end
 
+  def self.by_user_interests(user)
+    Tag.where(id: user.tag_ids).includes(:polls).map(&:polls).flatten.uniq
+  end
+
   private
 
   def closing_date_validation
