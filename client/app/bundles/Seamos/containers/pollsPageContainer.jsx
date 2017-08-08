@@ -29,6 +29,7 @@ class PollsContainer extends Component {
                     <option value='most-voted-first'> Más votadas </option>
                     <option value='newest-first'> Más recientes </option>
                     <option value='nearest-closing-date-first'> Cerca del cierre </option>
+                    <option value='by-user-interests'> Según tus intereses </option>
                 </select>
               </div>
                 <Polls {...this.props} />
