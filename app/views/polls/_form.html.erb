@@ -34,6 +34,14 @@
   <% end %>
 </div>
 
+<div class="field" style="display: none">
+    <% if @used_tags %>
+      <%= f.text_field :tags, id: 'tags-field', value: @used_tags%>
+    <% else %>
+      <%= f.text_field :tags, id: 'tags-field'%>
+    <% end %>
+</div>
+
 <div class="field">
   <%= f.label :objective %>
   <%= f.text_field :objective, class: 'form-control' %>
