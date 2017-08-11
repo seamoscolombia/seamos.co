@@ -11,15 +11,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(users_params)
-    @user.approved = false
-    @user.role_type = 0
-    @user.uid = session[:uid]
-
-    @user.email = params[:users_email]
     respond_to do |format|
 
       format.json do
+        @user = User.new(user_params)
+        @user.approved = false
+        @user.role_type = 0
+        @user.uid = session[:uid]
+
+        @user.email = params[:users_email]
         # server Date format 2015-05-28 YYYY-MM-DD
         if @user.save
           @participations = Poll.get_user_participations(@user)
@@ -28,6 +28,18 @@ class UsersController < ApplicationController
           logger.debug "Create User Error: #{@user.errors.messages}"
           errors = @user.errors.messages.map { |message| { message[0].to_s.humanize => message[1] } } || []
           render json: { errors: errors }, status: :unprocessable_entity
+        end
+      end
+      format.html do
+        @user = User.new(user_params.except(:major_electoral_representation_localities))
+        localities_string = localities_array_to_string(params[:user][:major_electoral_representation_localities]) unless params[:user][:major_electoral_representation_localities].blank?
+        @user.major_electoral_representation_localities = localities_string
+        if @user.save
+          flash[:notice] = I18n.t(:accion_exitosa)
+          redirect_to users_path
+        else
+          errs = @user.errors.map{ |k,v| flash[:danger] = "#{k}-#{v}" }
+          redirect_to new_admin_path @user
         end
       end
     end
@@ -61,11 +73,26 @@ class UsersController < ApplicationController
     @polls = user_polls.open
     @closed_polls = user_polls.closed
   end
+  #
+  # def update
+  #   @user.transaction do
+  #     @user.attributes = user_params
+  #     @user.save!
+  #   end
+  #   flash[:notice] = I18n.t(:accion_exitosa)
+  #   redirect_to users_path
+  # rescue ActiveRecord::RecordInvalid => e
+  #   puts "update user: #{e}"
+  #   flash[:danger] = " #{e}"
+  #   redirect_to edit_users_path @user
+  # end
 
   def update
     @user.transaction do
       @user = User.find_by(id: params[:id])
-      @user.attributes = users_params
+      @user.attributes = user_params.except(:major_electoral_representation_localities)
+      localities_string = localities_array_to_string(params[:user][:major_electoral_representation_localities]) unless params[:user][:major_electoral_representation_localities].blank?
+      @user.major_electoral_representation_localities = localities_string
       @user.save!
     end
     flash[:notice] = I18n.t(:accion_exitosa)
@@ -98,6 +125,15 @@ class UsersController < ApplicationController
 
   private
 
+  def localities_array_to_string(localities_array)
+    localities = []
+    localities_array.delete("")
+    localities_array.each do |res|
+      localities << res
+    end
+    localities.join(", ")
+  end
+
   def filter_users_option
     case params[:users_filter_select]
     when '1'
@@ -117,11 +153,29 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def users_params
-    params.require(:user).permit(:first_surname, :second_surname, :names,
-                                    :tipo_de_documento_id, :document_number,
-                                    :expedition_date, :email, :password,
-                                    :password_confirmation, :bio, :organization, :role_type, :admin_photo)
+  def user_params
+    params.require(:user).permit(:first_surname,
+                                 :second_surname,
+                                 :names,
+                                 :email,
+                                 :password,
+                                 :admin_photo,
+                                 :password_confirmation,
+                                 :role_type,
+                                 :bio,
+                                 :organization,
+                                 :birthday,
+                                 :birthplace,
+                                 :profession,
+                                 :university,
+                                 :further_studies,
+                                 :last_election_vote_count,
+                                 :represented_organizations,
+                                 :major_electoral_representation_localities,
+                                 :other_periods_elected,
+                                 :current_corporation_commission,
+                                 :proposed_initiatives_to_date
+                                )
   end
 
   def users_exist
