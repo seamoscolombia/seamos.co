@@ -36,20 +36,42 @@ class User < ApplicationRecord
   has_many :tags, -> { distinct }, through: :interests
 
   validates  :first_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
-  validates  :second_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
+  # validates  :second_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :names, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}, if: :admin?
-  validates_presence_of  [:first_surname, :second_surname, :names, :role_type]
-  validates_presence_of  [:bio, :organization], if: :admin?
-  validates :uid, uniqueness: true, unless: :admin?
+  validates_presence_of  [:first_surname, :names, :role_type]
+  validates_presence_of  [:bio, :organization, :admin_photo], if: :politician?
+  validates :uid, uniqueness: true, unless: [:admin?, :politician?]
 
   validate :email_for_admin, if: :admin?
   validate :password_for_admin, on: :create, if: :admin?
   validate :password_for_admin_update, on: :update, if: :admin?
-  validates :uid, presence: true, unless: :admin?
-  validates :admin_photo, presence: true, if: :admin?
+  validate :major_electoral_representation_localities_length, if: :politician?
+  validates :uid, presence: true, unless: [:admin?, :politician?]
 
   enum role_type: {ciudadano: 0, politico: 1, administrador: 2}
+  enum current_corporation_commission: {"comision del plan": 0, "comision de gobierno": 1, "comision de hacienda": 2}
+  enum localitie: { "Usaquén": 0,
+                  "Chapinero": 1,
+                  "Santa Fe": 2,
+                  "San Cristóbal": 3,
+                  "Usme": 4,
+                  "Tunjuelito":5,
+                  "Bosa": 6,
+                  "Kennedy": 7,
+                  "Fontibón": 8,
+                  "Engativá": 9,
+                  "Suba": 10,
+                  "Barrios Unidos": 11,
+                  "Teusaquillo": 12,
+                  "Los Mártires": 13,
+                  "Antonio Nariño": 14,
+                  "Puente Aranda": 15,
+                  "La Candelaria": 16,
+                  "Rafael Uribe Uribe": 17,
+                  "Ciudad Bolívar": 18,
+                  "Sumapaz": 19,
+                  }
 
   def already_voted?(poll)
     !(votes.find_by(poll: poll).nil?)
@@ -81,6 +103,12 @@ class User < ApplicationRecord
       end
     end
 
+    def major_electoral_representation_localities_length
+      if self.major_electoral_representation_localities.split(',').length > 2
+        errors.add(:major_electoral_representation_localities, "Seleccione sólo dos de las localidades de mayor representación electoral")
+      end
+    end
+
     def password_for_admin
       if (password.nil? || password.present? != password_confirmation.present?)
         errors.add(:contraseña, I18n.t(:password))
@@ -99,8 +127,12 @@ class User < ApplicationRecord
       end
     end
 
+    def politician?
+      role_type == "politico"
+    end
+
     def admin?
-      role_type != "ciudadano"
+      role_type == "administrador"
     end
 
 end

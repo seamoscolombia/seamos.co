@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731171544) do
+ActiveRecord::Schema.define(version: 20170810225842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,8 +176,8 @@ ActiveRecord::Schema.define(version: 20170731171544) do
     t.date     "expedition_date"
     t.string   "uid"
     t.boolean  "approved"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "document_photo_id"
     t.string   "email"
     t.string   "password_hash"
@@ -186,6 +186,17 @@ ActiveRecord::Schema.define(version: 20170731171544) do
     t.string   "admin_photo"
     t.string   "organization"
     t.string   "bio"
+    t.date     "birthday"
+    t.string   "birthplace"
+    t.string   "profession"
+    t.string   "university"
+    t.text     "further_studies"
+    t.integer  "last_election_vote_count"
+    t.text     "represented_organizations"
+    t.string   "major_electoral_representation_localities"
+    t.string   "other_periods_elected"
+    t.integer  "current_corporation_commission"
+    t.text     "proposed_initiatives_to_date"
     t.index ["document_number"], name: "index_users_on_document_number", using: :btree
     t.index ["document_photo_id"], name: "index_users_on_document_photo_id", using: :btree
     t.index ["tipo_de_documento_id", "document_number"], name: "index_users_on_tipo_de_documento_id_and_document_number", unique: true, using: :btree
