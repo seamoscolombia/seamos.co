@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :facebookob
   get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
-  resources :users , except: [:new, :show] do
+  resources :users , except: [:show] do
     get 'already_voted', on: :member
     get 'validate', on: :member
     patch 'update_valid_user', on: :member
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   resources :votes, only: :create
   resources :debate_votes, only: :create
   get '/tags', to: 'tags#index'
-  resources :admin, only: [:create, :new]
+  resources :admin, only: [:create, :new, :edit]
   scope '/admin', as: :admin do
     # get '/', to: 'sessions#new'
     post '/tags', to: 'tags#create'

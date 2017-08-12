@@ -30,13 +30,7 @@
                   <div class="caption" class="pull-left">
                     <div class="pull-right">
                       <div>
-                        <% if admin_validator(user) %>
-                          <%= link_to user.approved ? t(".validated_user") : t(".validate_user") ,validate_user_path(user), class:"btn btn-primary icon #{'disabled' if user.approved}"%>
-                        <% end %>
-                      </div>
-                      <br>
-                      <div>
-                        <%= link_to t(".details") , edit_user_path(user), class:"btn btn-info icon" %>
+                        <%= link_to t(".details") , edit_admin_path(user), class:"btn btn-info icon" %>
                       </div>
                       <br>
                       <div>
