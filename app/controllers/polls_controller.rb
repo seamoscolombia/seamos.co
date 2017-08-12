@@ -242,7 +242,7 @@ class PollsController < ApplicationController
       Rails.application.secrets.tvtd_page_id.to_s,
       'feed',
       message: poll.title,
-      link: (polls_url + "##{poll.id}" if Rails.env.production?)
+      link: (polls_url + "##{poll.id}")
     )
   end
 
