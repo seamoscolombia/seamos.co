@@ -25,11 +25,12 @@
 }
 
 #navbar-client{
+  background-color: gainsboro;
   .nav-fb {
     padding: 15px;
     font-family: 'RobotoCondensed';
     font-size: 13px;
-    color: whitesmoke;
+    color: black;
     background-color: transparent;
     border: 0px;
      &:hover{
@@ -42,7 +43,6 @@
   .navbar-nav > li > .dropdown-menu{
       background-color: rgba(0, 0, 0, 0.6)
   }
-  background-color: rgba(0, 0, 0, 0.2);
   a {
     font-family: 'RobotoCondensed';
     font-size: 13px;
@@ -61,7 +61,7 @@
     background-size: contain;
     background-repeat: no-repeat;
   }
-  .navbar-toggle .icon-bar { 
+  .navbar-toggle .icon-bar {
     background-color: whitesmoke;
   }
 

@@ -9,23 +9,25 @@ import Polls from './polls';
 // const FacebookIcon = generateShareIcon('facebook');
 
 const PollsByTag = (props) => {
-const { image, icon, name } = props.tag;
+const { image, icon, name, color } = props.tag;
 // const imgUrl = image;
 // const shareDescription = `Opina en las propuestas de ${name}`;
 // const title = `propuestas de ${name}`;
   return (
     <section id='polls-component'>
-      <div className='background-container' style={{ backgroundImage: `url(${image})` }}>
-        {/*
+      <div
+        className='background-container'
+        style={{ backgroundColor: color }}
+      >
+        <img src={`${image}`} alt={name} />
         <div className='icon-name-wrapper'>
-          <div className='tag-icon-container'>
+          <div className='tag-icon-container' style={{ display: 'none' }}>
             <img className='tag-icon' alt='tag icon' src={icon} />
           </div>
           <div className='tag-name'>
             <h1> {name} </h1>
           </div>
         </div>
-        */}
       </div>
       <div className='polls-box'>
         {props.polls.length !== 0 ?

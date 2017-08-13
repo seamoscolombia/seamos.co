@@ -33,7 +33,7 @@ function logout() {
 const Navbar = ({ session, user }) => (
   <header
     id='navbar-client'
-    className='navbar navbar-fixed-top navbar-transparent'
+    className='navbar navbar-fixed-top'
     role='banner'
   >
     <div id="client-navbar" className='container'>
