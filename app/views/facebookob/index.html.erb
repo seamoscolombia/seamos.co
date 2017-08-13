@@ -6,10 +6,10 @@
     <%= csrf_meta_tags %>
     <meta property="og:site_name" content="SeamOS Democracia Digital "/>
     <meta property="og:title" content="<%= @poll.title%>"/>
-    <meta property="og:url" content="https://seamos.co/facebookob/?id=<%= params[:id] %>"/>
+    <meta property="og:url" content="<%=params[:location]%>/#/poll/<%=params[:id]%>"/>
     <meta property="og:type" content="website"/>
     <meta property="og:description" content="<%= @poll.description%>"/>
-    <meta property="og:image" content="http://seamos.co<%= @poll.poll_image%>"/>
+    <meta property="og:image" content="<%= @poll.poll_image%>"/>
     <meta property="og:image:width" content="298"/>
     <meta property="og:image:height" content="295"/>
     <meta property="og:site_name" content="seamos.co"/>
@@ -39,6 +39,8 @@
   </head>
 
   <body>
-
+    <script>
+      $(document).ready(function() { window.location.assign("<%=params[:location].to_s + '/#/poll/' + params[:id].to_s %>") })
+    </script>
   </body>
 </html>

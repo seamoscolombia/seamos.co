@@ -10,7 +10,7 @@ import VotedButton from './votedButton';
 import { PRODUCTION_URL } from '../../constants';
 
 
-const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
+const shareUrl = `${window.location.href}`;
 const { FacebookShareButton } = ShareButtons;
 const { TwitterShareButton } = ShareButtons;
 // const FacebookIcon = generateShareIcon('facebook');
@@ -128,10 +128,7 @@ const PollDetail = ({
         <div className='share-wrapper'>
           <span className='share-this'> COMPARTIR: </span>
             <FacebookShareButton
-              url={shareUrl}
-              title={shareTitle(user_already_voted, title)}
-              picture={image}
-              description={description}
+              url={`${window.location.origin}/facebookob?id=${id}&location=${window.location.origin}`}
               className="network__share-button"
             >
               <a
@@ -146,7 +143,7 @@ const PollDetail = ({
               url={shareUrl}
               via='seamos'
               title={shareTitle(user_already_voted, title)}
-              hashtags={[tag.name, 'seamos', 'democraciaDigital']}
+              hashtags={[tag.name, 'seamos']}
               className="network__share-button"
             >
               <a
