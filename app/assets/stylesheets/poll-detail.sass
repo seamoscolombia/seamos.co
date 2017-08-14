@@ -220,8 +220,128 @@
         flex: 1
         flex-wrap: wrap
       #poll-component
-        flex-wrap: nowrap
-        width: 520px
+        $break-medium: 720px
+        display: inline-flex
+        flex-wrap: wrap
+        justify-content: center
+        width: 340px
+        margin: 0 30px 0 30px
+        margin-bottom: 30px
+        position: relative
         @media screen and (max-width: $break-medium)
-          flex-wrap: wrap
-          width: auto
+          width: 100%
+          margin: 0
+          margin-bottom: 40px
+          padding: 0 10px
+        .poll-image-container
+          height: 300px
+          position: relative
+          overflow: hidden
+          margin: auto
+          display: flex
+          align-items: center
+          justify-content: center
+          @media screen and (max-width: $break-medium)
+            width: 40%
+          a
+            img
+              max-height: 300px
+              @media screen and (max-width: $break-medium)
+                max-height: 150px
+        .color-separator
+          height: 45px
+        .poll-title
+          font-size: 27px
+          // height: 80px
+          margin-bottom: 20px
+          font-family: 'HKNovaBold'
+          line-height: 1em
+          text-align: left
+          color: #44424c
+          width: 100%
+          @media screen and (max-width: $break-medium)
+            font-size: 14px
+        .politician-info
+          width: 100%
+          display: flex
+          align-items: center
+          margin-bottom: 10px
+          .picture-container
+            width: 40px
+            height: 40px
+            overflow: hidden
+            img
+              width: 40px
+              height: 40px
+              border-radius: 20px
+          .name-container
+            font-size: 18px
+            font-family: "RobotoCondensed"
+            margin-left: 10px
+            letter-spacing: 0.02em
+            color: #44424c
+        .poll-infos-container
+          position: relative
+          width: 340px
+          padding-top: 0
+          @media screen and (max-width: $break-medium)
+            width: 55%
+            margin: auto
+            margin-top: 0
+            margin-bottom: 0
+            padding: 0
+            padding-left: 5px
+            max-height: 150px
+            overflow: hidden
+          .poll-details
+            display: flex
+            font-family: "HKNovaBold"
+            font-size: 8px
+            color: rgba(30, 30, 30, 0.6)
+            line-height: 1em
+            align-items: center
+            word-break: break-word
+            margin-top: 30px
+            height: 46px
+            .poll-tag-name
+              color: #44424c
+              font-size: 25px
+              line-height: 23px
+              width: 60%
+              text-align: left
+            .btn-plus-read
+              color: white
+              font-size: 20px
+              line-height: 15px
+              float: right
+              font-family: "HKNovaBold"
+              text-transform: uppercase
+              border-radius: 2px
+              padding: 10px
+              position: absolute
+              right: 0
+              @media screen and (max-width: $break-medium)
+                margin-right: 0
+
+            .separator
+              padding: 0 1px
+              font-size: 17px
+
+          .poll-info
+            color: black
+            text-decoration: none
+            &:hover
+              text-decoration: none
+            // position: relative
+            .poll-description
+              font-size: 19px
+              font-family: 'GothamMedium'
+              line-height: 1.2em
+              overflow: hidden
+              height: 96px
+              text-align: left
+              padding-top: 6px
+              color: #44424c
+              @media screen and (max-width: $break-medium)
+                margin-bottom: 30px
+                max-height: 84px

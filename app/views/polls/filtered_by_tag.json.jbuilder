@@ -1,3 +1,4 @@
+url = Rails.env.production? ? '' : 'http://localhost:3000'
 json.filtered_by_tag do
   if @tag
     json.tag do
@@ -20,6 +21,12 @@ json.filtered_by_tag do
         json.already_voted current_user.already_voted?(poll)
       else
         json.already_voted false
+      end
+      json.politician do
+        json.id poll.user.id
+        json.full_name poll.user.full_name
+        json.picture url + poll.user.admin_photo.url if poll.user.admin_photo.url
+        # json.picture "${url}${politician_profile_picture}"
       end
     end
   end

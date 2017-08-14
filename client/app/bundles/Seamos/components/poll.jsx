@@ -10,35 +10,50 @@ function getDays(remaining) {
   return <span> quedan {remainingDays} días</span>;
 }
 const Poll = (props) => {
-  const { id, title, description, poll_image, vote_count, remaining, tag, color } = props;
+  const { id, title, description, poll_image, tag, color, tag_name, politician } = props;
   let tagColor = 'none';
   if (tag) {
     tagColor = tag.color;
   } else {
     tagColor = color;
   }
+  let tagName = 'none';
+  if (tag) {
+    tagName = tag.name;
+  } else {
+    tagName = tag_name;
+  }
   return (
     <div id='poll-component'>
+      <div className='poll-title'>
+        <span>
+          {title}
+        </span>
+      </div>
+      <div className='politician-info'>
+        <div className='picture-container'>
+          <img src={politician.picture} alt='politician' />
+        </div>
+        <div className='name-container'>
+          {politician.full_name}
+        </div>
+      </div>
       <div className='poll-image-container'>
         <Link to={`/poll/${id}`} >
           <img alt="poll" src={poll_image} />
         </Link>
       </div>
-      <div className='color-separator' style={{ backgroundColor: tagColor }} />
       <div className='poll-infos-container'>
         <Link to={`/poll/${id}`} className='poll-info'>
-          <div className='poll-title'>
-            {title}
-          </div>
             <div className='poll-description'>
               {description}
             </div>
         </Link>
         <div className='poll-details'>
-          <span> {vote_count} participaciones </span>
-          <span className='separator'> | </span>
-          { getDays(remaining) }
-          <span className='separator'> | </span>
+          <div className='poll-tag-name'>
+            {tagName}
+          </div>
+          <div className='color-separator' style={{ borderLeft: `5px solid ${tagColor}` }}> </div>
           <Link
             to={`/poll/${id}`}
             className='btn button btn-plus-read'

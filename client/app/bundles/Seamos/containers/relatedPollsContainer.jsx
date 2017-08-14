@@ -30,14 +30,14 @@ class RelatedPollsContainer extends Component {
         }
         const { polls, tag, pollId } = this.props;
         if (polls.length !== 0 || this.props.tag) {
-            const relPolls = polls.slice(0, 3);
+            const relPolls = polls.slice(0, 4);
             const relPollsWithoutDup = relPolls.filter(function (poll) {
               return poll.id !== pollId;
             });
             return (
               <div>
                 <Title polls={relPollsWithoutDup} />
-                <Polls polls={relPollsWithoutDup.slice(0, 2)} tag={tag} />
+                <Polls polls={relPollsWithoutDup.slice(0, 3)} tag={tag} />
               </div>
             );
         }
