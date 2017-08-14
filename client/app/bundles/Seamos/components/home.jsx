@@ -18,33 +18,11 @@ const Home = ({ session }) => (
   <div id="homepage">
     <div className='background-container top'>
       <div className='flex-container top-text-container'>
-        <h1 className='welcome'>Bienvenido</h1>
+        <h1 className='welcome'>SeamOS</h1>
         <p className='to'>
-          A la única plataforma ciudadana que le <br className='breaker' />
-          permite incidir en las decisiones políticas en <br className='breaker' />
-          tiempo real
+          Presentamos la primera plataforma digital que te permite <br className='breaker' />
+          incidir en las decisiones políticas de tu ciudad. <br className='breaker' />
         </p>
-        <div onClick={() => window.scrollTo(0, 391)} >
-          <div className='action'>
-            Pasemos a la acción
-          </div>
-          <div className='hand-image-container'>
-            <div className='hand-image'>
-              <br />
-              <br />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id='how' className="flex-container">
-      <div className="title">
-        ¿Cómo logramos el cambio?
-      </div>
-      <div className="text">
-        La plataforma SeamOS es un canal entre la ciudadanía y los políticos en ejercicio,
-        para generar un diálogo con ellos y hacer valer la representación democrática que
-        les otorgamos con nuestro voto.
       </div>
     </div>
     <div id='steps-container' className="flex-container">
@@ -54,12 +32,13 @@ const Home = ({ session }) => (
       >
         <div className="step">
           <div className="step-info">
-            <div className="step-number">1</div>
             <div className="step-text">
-              Explora las propuestas publicadas según los ejes temáticos de tu interés.
+              <span className="step-number-1">1 </span>
+              &nbsp;Regístrate
             </div>
-            <div className="step-image step-image-1" />
           </div>
+          <div className='text'>Con un solo click en la plataforma.</div>
+          <div className="step-image step-image-1" />
         </div>
       </Link>
       <a
@@ -69,12 +48,12 @@ const Home = ({ session }) => (
       >
         <div className="step">
           <div className="step-info">
-            <div className="step-number">2</div>
             <div className="step-text">
-               Registrarte, vota y da tu opinión. El político frente a la
-               propuesta será notificado.
+              <span className="step-number-2">2 </span>
+              &nbsp;Explora
             </div>
           </div>
+          <div className='text'>Las propuestas de acuerdo a tus temas de interés.</div>
           <div className="step-image step-image-2" />
         </div>
       </a>
@@ -84,12 +63,12 @@ const Home = ({ session }) => (
       >
         <div className="step">
           <div className="step-info">
-            <div className="step-number">3</div>
             <div className="step-text">
-              Participa en las discusiones en torno a las propuestas que te
-              interesan y aporta para fortalecerlas y lograr que se cumplan
+              <span className="step-number-3">3 </span>
+               &nbsp;Vota
             </div>
           </div>
+          <div className='text'>Para comenzar a incidir en los asuntos de tu ciudad.</div>
           <div className="step-image step-image-3" />
         </div>
       </Link>
@@ -106,23 +85,17 @@ const Home = ({ session }) => (
     <div className='background-container mid'>
       <div className='flex-container top-text-container'>
         <h1 className='welcome question'>
-          ¿De qué <br className='breaker' />
-          quieres hablar?
+          Encuentra propuestas de <br className='breaker' />
+          acuerdo a los temas <br className='breaker' />
+          de tu interés
         </h1>
       </div>
-    </div>
-    <div className="mid-paragraph">
-      ¿En qué estás pensando ahora?
-    </div>
-    <div className="mid-paragraph-caption">
-      Encuentra las propuestas vigentes
-      de acuerdo a tus intereses
     </div>
     <Tags />
     <div className='background-container down'>
       <div className='flex-container down-text-container'>
         <div id='featured-polls-title'>
-          PROPUESTAS DESTACADAS
+          Propuestas<br />destacadas
         </div>
       </div>
     </div>

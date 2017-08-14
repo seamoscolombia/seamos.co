@@ -11,11 +11,16 @@
     .top-text-container
       text-align: center
       color: white
-      text-transform: uppercase
+      background-image: url(asset_path('outlined-logo.png'))
+      color: #f7e938
+      background-size: 150px 120px
+      background-repeat: no-repeat
+      background-position: center 155px
+      padding-top: 260px
       @media screen and (max-width: $break-medium)
         padding-top: 40px
       .welcome
-        font-family: 'RobotoCondensed'
+        font-family: 'HKNovaBold'
         letter-spacing: 7px
         font-weight: bold
         margin-bottom: 10px
@@ -24,9 +29,11 @@
           font-size: 30px
           letter-spacing: 2px
       .question
-        font-size: 70px
+        font-size: 52px
         line-height: 1.3em
         margin-top: 88px
+        color: #3d4f62
+        letter-spacing: 0.04em
         @media screen and (max-width: $break-medium)
           margin-top: 24px
           line-height: 1.1em
@@ -37,6 +44,7 @@
         font-family: 'GothamMedium'
         font-weight: bold
         text-align: center
+        color: #44424c
         @media screen and (max-width: $break-medium)
           font-size: 10px
 
@@ -85,37 +93,37 @@
     .down-text-container
       text-align: center
       color: white
-      text-transform: uppercase
-      padding-top: 111px
       @media screen and (max-width: $break-medium)
         padding-top: 26px
   .top
     // background-image: url(asset_path('inicio.png'))
-    background-color: rgb(209, 71, 71)
+    background-color: #eb6157
     background-position: center top
   .mid
-    background-image: url(asset_path('de_que_quieres_hablar.png'))
-    background-position: center top
+    background-color: #55bec8
     padding: 100px 0 210px 0
     margin-top: 50px
-    height: 420px
+    height: 520px
+    margin-bottom: 100px
     @media screen and (max-width: $break-medium)
       height: 147px
       padding: 0 0 30px 0
       margin-top: 20px
+    .top-text-container
+      padding: 0
+      color: white
+      background-image: none
   .down
-    background-image: url(asset_path('featured.png'))
-    background-position: center bottom
-    padding: 0 0 150px 0
-    margin-top: 90px
-    height: 270px
+    background-color: #c6c6c5
+    height: 440px
+    display: flex
+    margin-top: 70px
     @media screen and (max-width: $break-medium)
       height: 120px
-      padding: 0 0 20px 0
-      margin-top: 30px
     #featured-polls-title
-      color: white
+      color: #3d4f62
       margin: 0
+      text-transform: none
 
   .mid-paragraph
     text-align: center
@@ -185,41 +193,62 @@
       width: 300px
       font-family: 'RobotoCondensed'
       font-weight: bold
-      text-transform: uppercase
+      text-transform: capitalize
       text-align: justify
-      margin: 10px 5px 10px 5px
+      margin: 70px 5px 10px 5px
+      .text
+        color: #44424c
+        width: 91%
+        font-size: 21px
+        font-weight: normal
+        letter-spacing: 2px
+        text-transform: none
+        text-align: center
+        margin-top: 13px
+        margin-bottom: 45px
       .step-info
         display: flex
         display: -webkit-flex
         flex-wrap: wrap
         align-items: center
-        .step-number
-          position: relative
-          top: 0
-          width: 15%
-          font-size: 80px
-          font-weight: bold
+        justify-content: center
         .step-text
-          height: 100px
-          width: 85%
+          height: 40px
           line-height: 1.2em
           letter-spacing: 0.04em
-          display: flex
-          flex: 1
-          align-items: center
+          color: #44424c
+          // display: flex
+          font-size: 40px
+          // flex: 3
+          text-align: center
+          // align-items: center
           padding: 0 10px 0 10px
+          .step-number-1
+            color: #eb6157
+            border-right: 3px solid #eb6157
+          .step-number-2
+            color: #70b961
+            border-right: 3px solid #70b961
+          .step-number-3
+            color: #55539f
+            border-right: 3px solid #55539f
       .step-image
-        width: 100%
+        width: 190px
         height: 190px
+        border-radius: 95px
         background-size: contain
         background-origin: content-box
         background-position: center center
         background-repeat: no-repeat
+        margin: auto
       .step-image-1
         background-image: url(asset_path('pasoapaso-01.png'))
+        background-color: #eb6157
       .step-image-2
         background-image: url(asset_path('pasoapaso-02.png'))
+        background-color: #70b961
       .step-image-3
+        background-color: #55539f
         background-image: url(asset_path('pasoapaso-03.png'))
     a
       color: black
@@ -253,13 +282,11 @@
     @media screen and (max-width: $break-medium)
       display: none
   #featured-polls-title
-    margin-top: 60px
-    margin-bottom: 30px
-    color: black
     text-align: center
     font-family: 'RobotoCondensed'
     font-weight: bold
-    font-size: 38px
+    font-size: 58px
+    letter-spacing: 9px
     line-height: 1.3em
     @media screen and (max-width: $break-medium)
       letter-spacing: 1px
