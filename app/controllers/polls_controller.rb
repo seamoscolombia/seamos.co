@@ -82,7 +82,7 @@ class PollsController < ApplicationController
         else
           @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| poll.send(order_param)}
         end
-        @polls = @reverse ? @polls.reverse.first(6) : @polls.first(6)
+        @polls = @reverse ? @polls.reverse.first(3) : @polls.first(3)
       end
     end
   end
