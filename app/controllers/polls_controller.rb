@@ -269,6 +269,8 @@ class PollsController < ApplicationController
       :title,
       :objective,
       :status,
+      :summary,
+      :question,
       vote_types_attributes: [:name]
     )
   end
