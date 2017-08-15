@@ -10,30 +10,24 @@
     <meta property="og:type" content="website"/>
     <meta property="og:description" content="<%= @poll.description%>"/>
     <meta property="og:image" content="<%= @poll.poll_image%>"/>
-    <meta property="og:image:width" content="298"/>
-    <meta property="og:image:height" content="295"/>
+    <!-- <meta property="og:image:width" content="298"/> -->
+    <!-- <meta property="og:image:height" content="295"/> -->
     <meta property="og:site_name" content="seamos.co"/>
     <meta property="fb:app_id" content="1707774202581080"/>
     <meta itemprop="name" content="Nuestro Proyecto"/>
     <meta itemprop="url" content="https://seamos.co/"/>
     <meta itemprop="description" content="SeamOS es una plataforma ciudadana y tecnológica que busca utilizar las
     TICs para actualizar la democracia"/>
-    <meta itemprop="thumbnailUrl" content="http://static1.squarespace.com/static/5914b4b42e69cfcd980116be/t/5914b59c414fb563a633732b/1494529436354/OS-baja.png?format=1000w"/>
-    <link rel="image_src" href="http://static1.squarespace.com/static/5914b4b42e69cfcd980116be/t/5914b59c414fb563a633732b/1494529436354/OS-baja.png?format=1000w" />
-    <meta itemprop="image" content="http://static1.squarespace.com/static/5914b4b42e69cfcd980116be/t/5914b59c414fb563a633732b/1494529436354/OS-baja.png?format=1000w"/>
+    <meta itemprop="thumbnailUrl" content="<%= @poll.poll_image%>"/>
+    <link rel="image_src" href="<%= @poll.poll_image%>" />
+    <meta itemprop="image" content="<%= @poll.poll_image%>"/>
     <meta name="twitter:title" content="Nuestro Proyecto"/>
-    <meta name="twitter:image" content="http://static1.squarespace.com/static/5914b4b42e69cfcd980116be/t/5914b59c414fb563a633732b/1494529436354/OS-baja.png?format=1000w"/>
+    <meta name="twitter:image" content="<%= @poll.poll_image%>"/>
     <meta name="twitter:url" content="https://seamos.co/"/>
     <meta name="twitter:site" content="@seamos"/>
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:description" content="SeamOS es una plataforma ciudadana y tecnológica que busca utilizar las
-    TICs para actualizar la democracia"/>
-    <meta name="description" content="SeamOS es una plataforma ciudadana y tecnológica que busca utilizar las
-    TICs para actualizar la democracia." />
-    <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag "https://www.google.com/jsapi" %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="twitter:description" content="<%= @poll.description%>"/>
+    <meta name="description" content="<%= @poll.description%>" />
     <%= favicon_link_tag 'favicon.png' %>
 
   </head>
