@@ -16,9 +16,15 @@ const Menu = () => (
 
 function profile() {
     return (
-      <li key='3'>
-        <ProfileButton />
-      </li>
+      <span>
+        <li style={{ display: 'inline-block' }} key='3'>
+          <ProfileButton />
+        </li>
+        <span
+          style={{ position: 'relative', top: '-8px', left: '-3px' }}
+          className='circle-separator'
+        > &#9679; </span>
+      </span>
     );
 }
 

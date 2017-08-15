@@ -122,6 +122,8 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     formatador (0.2.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -341,6 +343,7 @@ DEPENDENCIES
   factory_girl_rails (= 4.5.0)
   faker
   fog-aws (~> 0.12.0)
+  font-awesome-sass
   jbuilder (~> 2.5)
   jquery-rails
   kaminari (~> 1.0.1)

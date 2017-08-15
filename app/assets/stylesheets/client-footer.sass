@@ -1,3 +1,5 @@
+@import "font-awesome-sprockets"
+@import "font-awesome"
 @import './variables.scss'
 #client-footer
   background-color: #3d5062
@@ -23,7 +25,7 @@
     .disclaimer
       color: white
       font-family: 'RobotoRegular'
-      font-size: 11px
+      font-size: 15px
       @media screen and (max-width: $break-medium)
         font-size: 10px
   .logo-container
@@ -42,3 +44,41 @@
         @media screen and (max-width: $break-medium)
           height: 16px
           width: 22px
+      #who-are-we
+        #footer-social-icons-container
+          height: 40px
+          text-align: right
+          width: 100%
+          position: absolute
+          right: 0
+          top: 50px
+          margin-right: 31px
+          #who-text
+            font-size: 25px
+            font-family: RobotoRegular
+            font-weight: bold
+            margin-right: 40px
+          .circle-separator
+            position: relative
+            top: -6px
+            font-size: medium
+          .footer-social-icon
+            color: white
+            font-size: 35px
+            margin: 0 17px
+            &:hover
+              color: white
+              cursor: pointer
+          .fa-facebook
+            margin-left: 40px
+            &:hover
+              color: #3b5998
+          .fa-twitter
+            &:hover
+              color: #55acee
+          .fa-instagram
+            &:hover
+              color: #cd486b
+          .fa-youtube
+            &:hover
+              color: #bb0000
