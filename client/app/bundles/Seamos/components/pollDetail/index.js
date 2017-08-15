@@ -10,7 +10,7 @@ import VotedButton from './votedButton';
 import { PRODUCTION_URL } from '../../constants';
 
 
-const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
+const shareUrl = `${PRODUCTION_URL}/facebookob/?Id=${window.location.hash}`; 
 const { FacebookShareButton } = ShareButtons;
 const { TwitterShareButton } = ShareButtons;
 // const FacebookIcon = generateShareIcon('facebook');
