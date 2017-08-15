@@ -62,48 +62,50 @@ const Navbar = ({ session, user }) => (
                 profile() : <li key='5'> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
               }
             </div>
-            <li key='6'>
-              <Link to='/'> INICIO </Link>
-            </li>
-            <li key='7'><Link to='/tags'> Temas </Link></li>
-            <li key='8'><Link to='/closed-polls'> Propuestas Cerradas </Link></li>
-            <li key='9' className='dropdown hide-on-mobile'>
-              <a> Siguenos </a>
-              <div className='dropdown-content'>
-                <a
-                  className='social-icon facebook-icon'
-                  href="https://www.facebook.com/seamoscolombia/"
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <br />
-                </a>
-                <a
-                  className='social-icon twitter-icon'
-                  href="https://twitter.com/seamos"
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <br />
-                </a>
-                <a
-                  className='social-icon instagram-icon'
-                  href="https://www.instagram.com/seamoscolombia/"
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <br />
-                </a>
-                <a
-                  className='social-icon youtube-icon'
-                  href="https://www.youtube.com/channel/UCC8EUjRTWhzELH3_iypQQ8w"
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  <br />
-                </a>
-              </div>
-            </li>
+            <li key='6'><Link to='/tags'> Temas </Link></li>
+            <span className='circle-separator'> &#9679; </span>
+            <li key='7'><Link to='/tags'> Propuestas destacadas </Link></li>
+            <span className='circle-separator'> &#9679; </span>
+            <li key='8'><Link to='/tags'> Quienes somos </Link></li>
+            <span className='circle-separator'> &#9679; </span>
+            {/*
+              <li key='8' className='dropdown hide-on-mobile'>
+                <a> Siguenos </a>
+                <div className='dropdown-content'>
+                  <a
+                    className='social-icon facebook-icon'
+                    href="https://www.facebook.com/seamoscolombia/"
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <br />
+                  </a>
+                  <a
+                    className='social-icon twitter-icon'
+                    href="https://twitter.com/seamos"
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <br />
+                  </a>
+                  <a
+                    className='social-icon instagram-icon'
+                    href="https://www.instagram.com/seamoscolombia/"
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <br />
+                  </a>
+                  <a
+                    className='social-icon youtube-icon'
+                    href="https://www.youtube.com/channel/UCC8EUjRTWhzELH3_iypQQ8w"
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    <br />
+                  </a>
+                </div>
+              </li>
             <li key='10' className='hide-on-desktop sidebar-social'>
               <a style={{textAlign: 'center'}}> Siguenos </a>
               <div className="social-icons-wrapper">
@@ -141,9 +143,10 @@ const Navbar = ({ session, user }) => (
                 </a>
               </div>
             </li>
+          */}
             <div className='hide-on-mobile'>
               {session.authenticityToken && Object.keys(user).length !== 0 ?
-                profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
+                profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='Regístrate' /> </li>
               }
             </div>
             {session.authenticityToken && Object.keys(user).length !== 0 ?
