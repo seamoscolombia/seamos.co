@@ -43,6 +43,11 @@
     position: relative
     top: 5px
     line-height: 0
+    text-align: right
+    position: relative
+    top: -28px
+    @media screen and (max-width: $break-medium)
+      top: 0
     .share-this
       font-family: 'RobotoCondensed'
       margin-left: 38px
@@ -57,11 +62,14 @@
         outline: none
       &:visited
         outline: none
-      .social-icon
-        background-position: left
+      .fa
+        background: none
         position: relative
         top: -14px
         left: -6px
+        font-size: 28px
+        color: black
+        margin-left: 28px
   #poll
     overflow: visible
     padding-bottom: 17px
@@ -198,6 +206,30 @@
           text-align: center
           @media screen and (max-width: $break-medium)
             font-size: 12px
+    #poll-states
+      .state
+        height: 80px
+        background-color: gainsboro
+        margin: 8px 0
+        font-family: RobotoRegular
+        display: flex
+        justify-content: left
+        align-items: center
+        font-size: 23px
+        padding-left: 108px
+        background-size: contain
+        background-repeat: no-repeat
+      .state-1
+        background-image: url(asset_path('state-1.png'))
+      .state-2
+        background-image: url(asset_path('state-2.png'))
+      .state-3
+        background-image: url(asset_path('state-3.png'))
+      .state-4
+        background-image: url(asset_path('state-4.png'))
+      .state-5
+        background-image: url(asset_path('state-5.png'))
+        margin-top: 40px
   #related-polls
     display: flex
     margin-top: 15px

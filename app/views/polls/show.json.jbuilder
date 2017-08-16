@@ -9,6 +9,7 @@ json.poll do
     json.remaining @poll.remaining_time_in_seconds
     json.vote_count @poll.votes.size
     json.poll_type @poll.poll_type
+    json.status @poll.poll_state
     json.tag do
       tag = @poll.tags.first
       json.id tag.id

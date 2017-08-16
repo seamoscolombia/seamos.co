@@ -17,6 +17,8 @@ const { TwitterShareButton } = ShareButtons;
 
 const moreInfoStyle = { height: 150, overflow: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflow: 'none' };
+const statusActiveStyle = { backgroundColor: 'yellow' };
+const statusInactiveStyle = { backgroundColor: 'gainsboro' };
 
 function getColorDependingOnTime(initial_time, remaining) {
   const startColor = '00FF92';
@@ -104,7 +106,7 @@ const PollDetail = ({
                       description, objective, vote_count,
                       user_already_voted, links, politician,
                       poll_type, moreInfo, setMoreInfo, vote_types,
-                      voteAction, initial_time, tag
+                      voteAction, initial_time, tag, status
                     }) => (
     <section id='poll-detail'>
       <div className='container'>
@@ -135,7 +137,7 @@ const PollDetail = ({
               className="network__share-button"
             >
               <a
-                className='social-icon facebook-icon'
+                className='fa fa-facebook'
                 style={{display: 'block'}}
                 rel='noopener noreferrer'
               >
@@ -150,7 +152,7 @@ const PollDetail = ({
               className="network__share-button"
             >
               <a
-                className='social-icon twitter-icon'
+                className='fa fa-twitter'
                 style={{display: 'block'}}
                 rel='noopener noreferrer'
               >
@@ -159,7 +161,7 @@ const PollDetail = ({
             </TwitterShareButton>
         </div>
         <section id='poll' className='row'>
-          <div className="col-sm-6">
+          <div id='left-col' className="col-sm-6">
             <img
               id='poll-thumbnail'
               src={image}
@@ -167,11 +169,18 @@ const PollDetail = ({
               alt='poll thumbnail'
             />
             <p id='objective' className='row'><strong> Objetivo: </strong> {objective}</p>
+            <div id='poll-states'>
+              <div className='state state-1' style={(remaining > 0 && status === 0) ? statusActiveStyle : statusInactiveStyle}> Votación abierta </div>
+              <div className='state state-2' style={(remaining > 0 && status === 1) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
+              <div className='state state-3' style={(remaining > 0 && status === 2) ? statusActiveStyle : statusInactiveStyle}> Proyecto de acuerdo </div>
+              <div className='state state-4' style={(remaining > 0 && status === 3) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
+              <div className='state state-5' style={remaining < 0 ? statusActiveStyle : statusInactiveStyle}> Propuesta Cerrada </div>
+            </div>
           </div>
           <div className="col-sm-6">
             <div className="row">
               <div className="poll-description-container col-sm-12">
-                <div className="poll-description" style={moreInfo ? lessInfoStyle : moreInfoStyle}>
+                <div className="poll-description" style={(moreInfo || (remaining < 0)) ? lessInfoStyle : moreInfoStyle}>
                   {description}
                   {externalLinksTitle(links)}
                   <div className='external-links-container'>
@@ -180,9 +189,11 @@ const PollDetail = ({
                 </div>
               </div>
               <div className="col-sm-12">
-                <button onClick={setMoreInfo} id='plus-info'>
-                  {moreInfo ? '-INFO' : '+INFO'}
-                </button>
+              { (remaining < 0) ? <span /> :
+                  <button onClick={setMoreInfo} id='plus-info'>
+                    {moreInfo ? '-INFO' : '+INFO'}
+                  </button>
+              }
               </div>
               <div className="col-sm-12">
                 <div className="row flex-row">

@@ -50,7 +50,7 @@ class User < ApplicationRecord
   validates :uid, presence: true, unless: [:admin?, :politician?]
 
   enum role_type: {ciudadano: 0, politico: 1, administrador: 2}
-  enum current_corporation_commission: {"comision del plan": 0, "comision de gobierno": 1, "comision de hacienda": 2}
+  enum current_corporation_commission: {"Comisión del plan": 0, "Comisión de Gobierno": 1, "Comisión de Hacienda": 2}
   enum localitie: { "Usaquén": 0,
                   "Chapinero": 1,
                   "Santa Fe": 2,

@@ -42,6 +42,10 @@ class Poll < ApplicationRecord
   validate :has_only_one_tag
 
   enum poll_type: {voting: 0, participation: 1, signing: 2}
+  enum state: {"Votación abierta": 0,
+                   "En el concejo": 1,
+                   "propuesta de acuerdo": 2,
+                   "En el concejox": 3}
 
   scope :active, -> {
     where('active IS TRUE AND closing_date >= ?', Date.today)
@@ -70,6 +74,10 @@ class Poll < ApplicationRecord
     else
       all
     end
+  end
+
+  def poll_state
+    Poll.states[state ? state : 0].to_i
   end
 
   def closed?
