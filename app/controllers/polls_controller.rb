@@ -99,6 +99,7 @@ class PollsController < ApplicationController
     respond_to do |format|
       format.json do
         @polls = @tag.polls.includes(:votes).open.active.sort_by {|poll| - poll.votes.size} if @tag
+        @closed = @tag.polls.includes(:votes).closed.sort_by {|poll| - poll.votes.size} if @tag
       end
     end
   end
