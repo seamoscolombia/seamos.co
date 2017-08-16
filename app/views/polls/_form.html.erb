@@ -11,12 +11,22 @@
     <%= f.text_field :title, class: 'form-control' %>
 </div>
 
-<div class="field description">
-    <%= f.label :description %>
-    <%= f.text_area :description, id: 'poll-description',class: 'form-control', maxlength: 1000 %>
-    <label id='counter-label' class='char-left'>500</label>
+<div class="field">
+  <%= f.label "sumario" %>
+  <%= f.text_area :summary, class: 'form-control' %>
 </div>
 
+
+<div class="field description">
+    <%= f.label :description %>
+    <%= f.text_area :description, id: 'poll-description',class: 'form-control', maxlength: 3000 %>
+    <label id='counter-label' class='char-left'>3000</label>
+</div>
+
+<div class="field">
+    <%= f.label "pregunta" %>
+    <%= f.text_field :question, class: 'form-control' %>
+</div>
 
 <%= f.label "Enlaces Externos (opcionales)" %>
 <div>

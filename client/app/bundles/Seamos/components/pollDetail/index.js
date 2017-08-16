@@ -10,7 +10,7 @@ import VotedButton from './votedButton';
 import { PRODUCTION_URL } from '../../constants';
 
 
-const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
+const shareUrl = `${PRODUCTION_URL}/facebookob/?id=`;
 const { FacebookShareButton } = ShareButtons;
 const { TwitterShareButton } = ShareButtons;
 // const FacebookIcon = generateShareIcon('facebook');
@@ -141,10 +141,7 @@ const PollDetail = ({
         <div className='share-wrapper'>
           <span className='share-this'> COMPARTIR: </span>
             <FacebookShareButton
-              url={shareUrl}
-              title={shareTitle(user_already_voted, title)}
-              picture={image}
-              description={description}
+              url={shareUrl + id}
               className="network__share-button"
             >
               <a
