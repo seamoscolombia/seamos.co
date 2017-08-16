@@ -27,6 +27,14 @@ function getColorDependingOnTime(initial_time, remaining) {
   return colorObj.interpolate();
 }
 
+function getDays(remaining) {
+  const remainingDays = ((remaining / 3600) / 24);
+  if (remainingDays <= 0) {
+    return <span> propuesta cerrada</span>;
+  }
+  return <span> faltan {remainingDays} días</span>;
+}
+
 function externalLinks(links) {
   return links.map(link =>
     <div className='external-link'>
@@ -89,7 +97,7 @@ function votedButton(pollType, voteTypes, vote_count) {
 function externalLinksTitle(links) {
   const linksPresent = links.length !== 0;
   if (linksPresent) {
-    return <h4> Enlaces Externos </h4>;
+    return <h5> Enlaces Externos </h5>;
   }
   return null;
 }
@@ -120,12 +128,15 @@ const PollDetail = ({
             src={getPicture(politician)}
             role='presentation'
             alt='politician'
-            />
-          <Link
-            id='author'
-            to={`/proponents/${politician.id}`}
-          >por {politician.full_name}
-          </Link>
+          />
+          <div id='politician-info'>
+            <Link
+              id='author'
+              to={`/proponents/${politician.id}`}
+            > {politician.full_name}
+            </Link>
+            <div id='org'> {politician.organization} </div>
+          </div>
           </section>
         <div className='share-wrapper'>
           <span className='share-this'> COMPARTIR: </span>
@@ -168,7 +179,7 @@ const PollDetail = ({
               role='presentation'
               alt='poll thumbnail'
             />
-            <p id='objective' className='row'><strong> Objetivo: </strong> {objective}</p>
+            <p id='objective' className='row' style={{display: 'none'}}><strong> Objetivo: </strong> {objective}</p>
             <div id='poll-states'>
               <div className='state state-1' style={(remaining > 0 && status === 0) ? statusActiveStyle : statusInactiveStyle}> Votación abierta </div>
               <div className='state state-2' style={(remaining > 0 && status === 1) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
@@ -176,50 +187,40 @@ const PollDetail = ({
               <div className='state state-4' style={(remaining > 0 && status === 3) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
               <div className='state state-5' style={remaining < 0 ? statusActiveStyle : statusInactiveStyle}> Propuesta Cerrada </div>
             </div>
+            {externalLinksTitle(links)}
+            <div className='external-links-container'>
+              {externalLinks(links)}
+            </div>
           </div>
           <div className="col-sm-6">
             <div className="row">
-              <div className="poll-description-container col-sm-12">
-                <div className="poll-description" style={(moreInfo || (remaining < 0)) ? lessInfoStyle : moreInfoStyle}>
-                  {description}
-                  {externalLinksTitle(links)}
-                  <div className='external-links-container'>
-                    {externalLinks(links)}
-                  </div>
-                </div>
-              </div>
               <div className="col-sm-12">
-              { (remaining < 0) ? <span /> :
-                  <button onClick={setMoreInfo} id='plus-info'>
-                    {moreInfo ? '-INFO' : '+INFO'}
-                  </button>
-              }
-              </div>
-              <div className="col-sm-12">
-                <div className="row flex-row">
-                  <div className="col-xs-8 buttons-wrapper">
+                <div className="row">
+                  <div className="col-xs-12 col-sm-12 buttons-wrapper">
                     {user_already_voted ? //eslint-disable-line
                       votedButton(poll_type, vote_types, vote_count) :
                       voteButton(poll_type, vote_types, voteAction)
                     }
                   </div>
-                  <div className="col-xs-4">
-                    <div className="countdown-wrapper">
-                      { remaining > 0 ?
-                        <CountDown
-                            timerCount={remaining}
-                            initialTime={initial_time}
-                            countdownColor={getColorDependingOnTime(initial_time, remaining)}
-                            innerColor="#fff"
-                            outerColor="#747272"
-                        /> :
-                        <div className="closed-text-wrapper">
-                          <h4> cerrada </h4>
-                        </div>
-                      }
+                  <div className='col-xs-12 col-sm-12 poll-details'>
+                    <span> {vote_count} votos </span>
+                    <span className='circle-separator'>&nbsp; &#9679; &nbsp;</span>
+                      { getDays(remaining) }
                   </div>
                 </div>
+              </div>
+              <div className="poll-description-container col-sm-12">
+                <div className="poll-static-title"> La Propuesta: </div>
+                <div className="poll-description" style={(true || moreInfo || (remaining < 0)) ? lessInfoStyle : moreInfoStyle}>
+                  {description}
                 </div>
+              </div>
+              <div className="col-sm-12">
+                { (remaining < 0 || true) ? <span /> :
+                    <button onClick={setMoreInfo} id='plus-info'>
+                      {moreInfo ? '-INFO' : '+INFO'}
+                    </button>
+                }
               </div>
             </div>
           </div>

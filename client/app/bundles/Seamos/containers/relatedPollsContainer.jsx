@@ -24,7 +24,7 @@ class RelatedPollsContainer extends Component {
         function Title(props) {
           const pollsPresent = props.polls.length !== 0;
           if (pollsPresent) {
-            return <h3> Tambien te podría interesar </h3>;
+            return <span id='featured-polls-title'><h3> Tambien te puede interesar </h3></span>;
           }
           return null;
         }
