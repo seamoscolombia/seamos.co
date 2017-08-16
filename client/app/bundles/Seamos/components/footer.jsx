@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => (
   <div id='client-footer'>
@@ -10,7 +11,11 @@ const Footer = () => (
         </div>
         <div id='who-are-we'>
           <span id='footer-social-icons-container'>
-            <span id='who-text' > QUIÉNES SOMOS </span>
+            <Link
+              to='/terms'
+            >
+              <span id='who-text' > TÉRMINOS Y CONDICIONES </span>
+            </Link>
             <span className='circle-separator'>  &#9679; </span>
             <a
               className='footer-social-icon'
