@@ -18,7 +18,7 @@ const Home = ({ session }) => (
   <div id="homepage">
     <div className='background-container top'>
       <div className='flex-container top-text-container'>
-        <h1 className='welcome'>SeamOS</h1>
+        <h1 className='welcome'>El poder está<br />en tus manos</h1>
         <p className='to'>
           Presentamos la primera plataforma digital que te permite <br className='breaker' />
           incidir en las decisiones políticas de tu ciudad. <br className='breaker' />
@@ -73,15 +73,6 @@ const Home = ({ session }) => (
         </div>
       </Link>
     </div>
-    <div className="fb-button-container">
-      {session && session.authenticityToken ?
-        <span /> :
-        <div>
-          <div className="one-click"> Sin registros, solo un click </div>
-          <FacebookLogin fbText='Conéctate con facebook' />
-        </div>
-      }
-    </div>
     <div className='background-container up-mid'>
       <div className='flex-container up-mid-text-container'>
         <div id='how-to-achieve'>
@@ -127,7 +118,7 @@ const Home = ({ session }) => (
           Suscríbete a nuestro newsletter
         </div>
         <div className="input-group">
-          <input type="text" className="form-control" placeholder="email" />
+          <input type="text" className="form-control" placeholder="Email" />
           <span className="input-group-btn">
             <button className="btn btn-secondary" type="button">ENVIAR</button>
           </span>

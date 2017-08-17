@@ -24,6 +24,7 @@ json.user do
           json.poll_image poll.poll_image.url
           json.vote_count poll.votes.size
           json.remaining poll.remaining_time_in_seconds
+          json.summary poll.summary
           json.tag do
             json.tag_color poll.tags.first.tag_color
           end

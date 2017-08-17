@@ -25,7 +25,7 @@
 }
 
 #navbar-client{
-  background-color: gainsboro;
+  background-color: rgba(200, 200, 200, 0.5);;
   .nav-fb {
     padding: 15px;
     font-family: 'RobotoCondensed';
@@ -55,7 +55,7 @@
     }
   }
   #brand-logo {
-    background: url(asset_path('logo-color.png'));
+    background: url(asset_path('LogoSeamos_blanco.png'));
     min-height: 30px;
     min-width: 90px;
     background-size: contain;

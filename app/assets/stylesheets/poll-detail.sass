@@ -22,6 +22,9 @@
       margin: 0 15px 0 15px
       padding: 0
       color: #44434c
+      line-height: 41px
+      margin-bottom: 28px
+      width: 97%
       @media screen and (max-width: $break-medium)
         font-size: 22px
         line-height: 1em
@@ -88,8 +91,11 @@
         top: -14px
         left: -6px
         font-size: 28px
-        color: black
+        color: #44434c
         margin-left: 28px
+        &:hover
+          text-decoration: none
+          color: #44434c
   #poll
     overflow: visible
     padding-bottom: 17px
@@ -137,6 +143,21 @@
       font-weight: bold
       margin: 22px 0 52px 0
       text-transform: uppercase
+    .summary
+      font-size: 18px
+      margin: 0
+      padding: 0
+      text-align: justify
+      font-style: italic
+      top: -7px
+      line-height: 25px
+      font-family: 'RobotoRegular'
+      color: #44434c
+      margin-bottom: 25px
+      padding-left: 15px
+      @media screen and (max-width: $break-medium)
+        font-size: 15px
+        line-height: 18px
     .buttons-wrapper
       padding-right: 20px
       display: flex
@@ -162,7 +183,7 @@
         padding: 0
         margin: 5px 0
         color: white
-        width: 100%
+        width: 70%
         font-size: 26px
         // background-color: rgb(200, 200, 200)
         @media screen and (max-width: $break-medium)
@@ -251,11 +272,11 @@
     .external-links-container
       margin-bottom: 25px
       .external-link
-        margin: 3px 0
+        margin: 10px 0
         width: 100%
         overflow: hidden
         a
-          white-space: nowrap
+          word-break: break-all
           font-family: RobotoRegular
           font-size: 21px
           color: #96d3d9
@@ -289,6 +310,8 @@
     overflow: visible
     padding-top: 214px
     position: relative
+    padding-left: 15px
+    padding-right: 15px
     #featured-polls-title
       font-family: "RobotoCondensed"
       font-weight: bold
@@ -312,12 +335,13 @@
         font-family: RobotoRegular
         font-weight: bold
         font-size: 26px
+        padding-left: 20px
 
     flex-direction: column
     .polls-wrapper
       display: flex
       text-align: center
-      justify-content: center
+      justify-content: left
       @media screen and (max-width: $break-medium)
         flex: 1
         flex-wrap: wrap
@@ -330,6 +354,7 @@
         margin: 0 30px 0 30px
         margin-bottom: 30px
         position: relative
+        margin-left: 0
         @media screen and (max-width: $break-medium)
           width: 100%
           margin: 0

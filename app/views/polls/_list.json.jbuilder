@@ -10,6 +10,7 @@ json.polls do
     json.remaining poll.remaining_time_in_seconds
     json.color poll.tags.first.tag_color
     json.tag_name poll.tags.first.name
+    json.summary poll.summary
     json.politician do
       json.id poll.user.id
       json.full_name poll.user.full_name

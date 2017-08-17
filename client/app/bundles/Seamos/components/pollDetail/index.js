@@ -114,7 +114,7 @@ const PollDetail = ({
                       description, objective, vote_count,
                       user_already_voted, links, politician,
                       poll_type, moreInfo, setMoreInfo, vote_types,
-                      voteAction, initial_time, tag, status
+                      voteAction, initial_time, tag, status, summary
                     }) => (
     <section id='poll-detail'>
       <div className='container'>
@@ -137,7 +137,7 @@ const PollDetail = ({
             </Link>
             <div id='org'> {politician.organization} </div>
           </div>
-          </section>
+        </section>
         <div className='share-wrapper'>
           <span className='share-this'> COMPARTIR: </span>
             <FacebookShareButton
@@ -193,6 +193,7 @@ const PollDetail = ({
             <div className="row">
               <div className="col-sm-12">
                 <div className="row">
+                  <div className='summary'> {summary} </div>
                   <div className="col-xs-12 col-sm-12 buttons-wrapper">
                     {user_already_voted ? //eslint-disable-line
                       votedButton(poll_type, vote_types, vote_count) :

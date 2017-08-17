@@ -70,9 +70,7 @@ const Navbar = ({ session, user }) => (
             </div>
             <li key='6'><Link to='/tags'> Temas </Link></li>
             <span className='circle-separator'> &#9679; </span>
-            <li key='7'><Link to='/tags'> Propuestas destacadas </Link></li>
-            <span className='circle-separator'> &#9679; </span>
-            <li key='8'><Link to='/tags'> Quienes somos </Link></li>
+            <li key='8'><Link to='/tags'> Quiénes somos </Link></li>
             <span className='circle-separator'> &#9679; </span>
             {/*
               <li key='8' className='dropdown hide-on-mobile'>

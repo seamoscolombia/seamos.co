@@ -17,6 +17,7 @@ json.filtered_by_tag do
       json.poll_image poll.poll_image.url
       json.vote_count poll.votes.size
       json.remaining poll.remaining_time_in_seconds
+      json.summary poll.summary
       if current_user
         json.already_voted current_user.already_voted?(poll)
       else
