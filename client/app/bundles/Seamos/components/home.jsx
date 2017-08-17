@@ -28,9 +28,8 @@ const Home = ({ session }) => (
     <div id='steps-container' className="flex-container">
       <Link
         to="#"
-        onClick={() => window.scrollTo(0, 1434)}
       >
-        <div className="step">
+        <div className="step" style={{ height: '322px' }}>
           <div className="step-info">
             <div className="step-text">
               <span className="step-number-1">1 </span>
@@ -39,12 +38,11 @@ const Home = ({ session }) => (
           </div>
           <div className='text'>Con un solo click en la plataforma.</div>
           <div className="step-image step-image-1" />
+          <FacebookLogin id='fb-login-transparent' fbText='Conéctate con facebook' />
         </div>
       </Link>
-      <a
-        href="https://www.facebook.com/seamoscolombia/"
-        target='_blank'
-        rel='noopener noreferrer'
+      <Link
+        to="/tags"
       >
         <div className="step">
           <div className="step-info">
@@ -56,7 +54,7 @@ const Home = ({ session }) => (
           <div className='text'>Las propuestas de acuerdo a tus temas de interés.</div>
           <div className="step-image step-image-2" />
         </div>
-      </a>
+      </Link>
       <Link
         to="#"
         onClick={() => window.scrollTo(0, 2050)}

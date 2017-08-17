@@ -9,8 +9,21 @@
   position: absolute
   bottom: -390px
   @media screen and (max-width: $break-medium)
-    bottom: -100px
-    height: 100px
+    bottom: -176px
+    height: 200px
+    overflow: hidden
+    .circle-separator
+      display: none
+  .hide-on-desktop-terms
+    text-align: center
+    position: relative
+    top: 94px
+    @media screen and (min-width: $break-medium)
+      display: none
+    a
+      color: white
+      font-family: 'RobotoRegular'
+      font-weight: bold
   .disclaimer-container
     text-align: center
     margin: 38px 0 4px 0
@@ -27,7 +40,7 @@
       font-family: 'RobotoRegular'
       font-size: 15px
       @media screen and (max-width: $break-medium)
-        font-size: 10px
+        font-size: 14px
   .logo-container
     .logo-background
       margin-top: 28px
@@ -53,6 +66,11 @@
           right: 0
           top: 50px
           margin-right: 31px
+          @media screen and (max-width: $break-medium)
+            margin-right: 0
+            text-align: center
+            bottom: 34px
+            top: auto
           a
             color: white
             text-decoration: none
@@ -67,6 +85,8 @@
             margin-right: 39px
             position: relative
             bottom: 4px
+            @media screen and (max-width: $break-medium)
+              display: none
           .circle-separator
             position: relative
             top: -6px
@@ -80,6 +100,8 @@
               cursor: pointer
           .fa-facebook
             margin-left: 40px
+            @media screen and (max-width: $break-medium)
+              margin-left: 0
             &:hover
               color: #3b5998
           .fa-twitter

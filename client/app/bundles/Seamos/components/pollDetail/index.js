@@ -11,6 +11,7 @@ import { PRODUCTION_URL } from '../../constants';
 
 
 const shareUrl = `${PRODUCTION_URL}/facebookob/?id=`;
+// const twittershareUrl = `${PRODUCTION_URL}/#/poll/`;
 const { FacebookShareButton } = ShareButtons;
 const { TwitterShareButton } = ShareButtons;
 // const FacebookIcon = generateShareIcon('facebook');
@@ -69,7 +70,7 @@ function voteButton(pollType, voteTypes, voteAction) {
 
 function shareTitle(user_already_voted, poll_title) {
   if (user_already_voted) {
-                            return `Yo ya voté, vota tú también por la propuesta: ${poll_title} en SeamOS`
+                            return `Ya voté, vota por la propuesta: ${poll_title} en SeamOS`
                           }
                           return `Vota por la propuesta: ${poll_title} en SeamOS`
 }
@@ -153,10 +154,10 @@ const PollDetail = ({
                 <br />
             </FacebookShareButton>
             <TwitterShareButton
-              url={shareUrl}
+              url={shareUrl + id}
               via='seamos'
               title={shareTitle(user_already_voted, title)}
-              hashtags={[tag.name, 'seamos', 'democraciaDigital']}
+              hashtags={['seamOSelcambio']}
               className="network__share-button"
             >
               <a

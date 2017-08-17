@@ -3,6 +3,13 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => (
   <div id='client-footer'>
+    <div className='hide-on-desktop-terms'>
+      <Link
+        to='/terms'
+      >
+        <span id='who-text-mobile' > TÉRMINOS Y CONDICIONES </span>
+      </Link>
+    </div>
     <div className='logo-container'>
       <div className='logo-background'>
         <div className='logo'>
