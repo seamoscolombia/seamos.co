@@ -1,9 +1,10 @@
 #tag-component
   $break-medium: 720px
+  $tag-size: 170px
   text-align: center
-  margin: 16px
-  height: 200px
-  width: 200px
+  margin: 10px
+  height: $tag-size
+  width: $tag-size
   transition: opacity 0.5s
   &:hover
     opacity: 0.7
@@ -49,14 +50,14 @@
     display: none
 
   .tag-image
-    width: 200px
+    width: $tag-size
     overflow: hidden
     display: flex
     justify-content: center
     @media screen and (max-width: $break-medium)
       width: 134px
     img
-      height: 200px
+      height: $tag-size
       -webkit-transition: width 0.5s /* For Safari 3.1 to 6.0 */
       transition: opacity 0.5s
       &:hover
@@ -65,11 +66,12 @@
         height: 134px
   .tag-name
     color: white
-    font-family: 'HKNovaBold'
+    font-family: "HKNovaBold"
     position: relative
-    text-transform: uppercase
-    bottom: 218px
-    font-size: 18px
+    bottom: 207px
+    text-align: left
+    font-size: 19px
+    padding-left: 10px
     &:hover
       text-decoration: none
     @media screen and (max-width: $break-medium)

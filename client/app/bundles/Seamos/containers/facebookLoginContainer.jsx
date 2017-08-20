@@ -30,7 +30,6 @@ class FacebookLoginContainer extends Component {
         fields="id,location,first_name,last_name,email,picture.width(100)"
         callback={(fbUser) => this.responseFacebook(fbUser)}
         cssClass={this.props.fbclassName || 'my-facebook-button-class'}
-        icon="fa-facebook"
       />
     );
   }

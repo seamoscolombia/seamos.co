@@ -1,47 +1,115 @@
+@import "font-awesome-sprockets"
+@import "font-awesome"
 @import './variables.scss'
 #client-footer
-  background-color: rgb(50, 50, 50)
+  background-color: #3d5062
+  color: white
   width: 100%
-  height: 140px
+  height: 330px
   position: absolute
-  bottom: -200px
+  bottom: -390px
   @media screen and (max-width: $break-medium)
-    bottom: -100px
-    height: 100px
+    bottom: -176px
+    height: 200px
+    overflow: hidden
+    .circle-separator
+      display: none
+  .hide-on-desktop-terms
+    text-align: center
+    position: relative
+    top: 94px
+    @media screen and (min-width: $break-medium)
+      display: none
+    a
+      color: white
+      font-family: 'RobotoRegular'
+      font-weight: bold
   .disclaimer-container
     text-align: center
     margin: 38px 0 4px 0
+    text-align: center
+    margin: 0 0 27px 0
+    position: absolute
+    bottom: 0
+    width: 100%
+    font-family: 'RobotoRegular'
     @media screen and (max-width: $break-medium)
       margin: 22px 0 4px 0
     .disclaimer
       color: white
-      font-family: 'HKNovaBold'
-      font-size: 11px
+      font-family: 'RobotoRegular'
+      font-size: 15px
       @media screen and (max-width: $break-medium)
-        font-size: 10px
+        font-size: 14px
   .logo-container
-    display: flex
-    justify-content: center
     .logo-background
-      background-color: white
-      width: 40px
-      height: 40px
-      border-radius: 50px
-      display: flex
-      align-items: center
-      justify-content: center
+      margin-top: 28px
       @media screen and (max-width: $break-medium)
         width: 28px
         height: 28px
       .logo
-        background-image: url(asset_path('PARTICIPACIONES.png'))
-        height: 26px
-        width: 35px
-        align-items: center
+        background-image: url(asset_path('LogoSeamos_blanco.png'))
         background-size: contain
+        background-position: center center
         background-repeat: no-repeat
-        border-radius: 6px
-        opacity: 0.8
+        background-position: 43px top
+        height: 59px
         @media screen and (max-width: $break-medium)
           height: 16px
           width: 22px
+      #who-are-we
+        #footer-social-icons-container
+          height: 40px
+          text-align: right
+          width: 100%
+          position: absolute
+          right: 0
+          top: 50px
+          margin-right: 31px
+          @media screen and (max-width: $break-medium)
+            margin-right: 0
+            text-align: center
+            bottom: 34px
+            top: auto
+          a
+            color: white
+            text-decoration: none
+            &:hover
+              color: white
+              cursor: pointer
+              text-decoration: none
+          #who-text
+            font-size: 14px
+            font-family: RobotoRegular
+            font-weight: bold
+            margin-right: 39px
+            position: relative
+            bottom: 4px
+            @media screen and (max-width: $break-medium)
+              display: none
+          .circle-separator
+            position: relative
+            top: -6px
+            font-size: medium
+          .footer-social-icon
+            color: white
+            font-size: 35px
+            margin: 0 17px
+            &:hover
+              color: white
+              cursor: pointer
+          .fa-facebook
+            margin-left: 40px
+            @media screen and (max-width: $break-medium)
+              margin-left: 0
+            &:hover
+              color: #3b5998
+          .fa-twitter
+            &:hover
+              color: #55acee
+          .fa-instagram
+            &:hover
+              color: #cd486b
+          .fa-youtube
+            &:hover
+              color: #bb0000

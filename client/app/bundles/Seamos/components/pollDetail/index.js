@@ -11,18 +11,29 @@ import { PRODUCTION_URL } from '../../constants';
 
 
 const shareUrl = `${PRODUCTION_URL}/facebookob/?id=`;
+// const twittershareUrl = `${PRODUCTION_URL}/#/poll/`;
 const { FacebookShareButton } = ShareButtons;
 const { TwitterShareButton } = ShareButtons;
 // const FacebookIcon = generateShareIcon('facebook');
 
 const moreInfoStyle = { height: 150, overflow: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflow: 'none' };
+const statusActiveStyle = { backgroundColor: 'yellow' };
+const statusInactiveStyle = { backgroundColor: 'gainsboro' };
 
 function getColorDependingOnTime(initial_time, remaining) {
   const startColor = '00FF92';
   const endColor = 'ff0000';
   const colorObj = new Color({ initial_time, remaining, startColor, endColor });
   return colorObj.interpolate();
+}
+
+function getDays(remaining) {
+  const remainingDays = ((remaining / 3600) / 24);
+  if (remainingDays <= 0) {
+    return <span> propuesta cerrada</span>;
+  }
+  return <span> faltan {remainingDays} días</span>;
 }
 
 function externalLinks(links) {
@@ -59,7 +70,7 @@ function voteButton(pollType, voteTypes, voteAction) {
 
 function shareTitle(user_already_voted, poll_title) {
   if (user_already_voted) {
-                            return `Yo ya voté, vota tú también por la propuesta: ${poll_title} en SeamOS`
+                            return `Ya voté, vota por la propuesta: ${poll_title} en SeamOS`
                           }
                           return `Vota por la propuesta: ${poll_title} en SeamOS`
 }
@@ -87,7 +98,7 @@ function votedButton(pollType, voteTypes, vote_count) {
 function externalLinksTitle(links) {
   const linksPresent = links.length !== 0;
   if (linksPresent) {
-    return <h4> Enlaces Externos </h4>;
+    return <h5> Enlaces Externos </h5>;
   }
   return null;
 }
@@ -104,7 +115,7 @@ const PollDetail = ({
                       description, objective, vote_count,
                       user_already_voted, links, politician,
                       poll_type, moreInfo, setMoreInfo, vote_types,
-                      voteAction, initial_time, tag
+                      voteAction, initial_time, tag, status, summary
                     }) => (
     <section id='poll-detail'>
       <div className='container'>
@@ -118,13 +129,16 @@ const PollDetail = ({
             src={getPicture(politician)}
             role='presentation'
             alt='politician'
-            />
-          <Link
-            id='author'
-            to={`/proponents/${politician.id}`}
-          >por {politician.full_name}
-          </Link>
-          </section>
+          />
+          <div id='politician-info'>
+            <Link
+              id='author'
+              to={`/proponents/${politician.id}`}
+            > {politician.full_name}
+            </Link>
+            <div id='org'> {politician.organization} </div>
+          </div>
+        </section>
         <div className='share-wrapper'>
           <span className='share-this'> COMPARTIR: </span>
             <FacebookShareButton
@@ -132,7 +146,7 @@ const PollDetail = ({
               className="network__share-button"
             >
               <a
-                className='social-icon facebook-icon'
+                className='fa fa-facebook'
                 style={{display: 'block'}}
                 rel='noopener noreferrer'
               >
@@ -140,14 +154,14 @@ const PollDetail = ({
                 <br />
             </FacebookShareButton>
             <TwitterShareButton
-              url={shareUrl}
+              url={shareUrl + id}
               via='seamos'
               title={shareTitle(user_already_voted, title)}
-              hashtags={[tag.name, 'seamos', 'democraciaDigital']}
+              hashtags={['seamOSelcambio']}
               className="network__share-button"
             >
               <a
-                className='social-icon twitter-icon'
+                className='fa fa-twitter'
                 style={{display: 'block'}}
                 rel='noopener noreferrer'
               >
@@ -156,56 +170,54 @@ const PollDetail = ({
             </TwitterShareButton>
         </div>
         <section id='poll' className='row'>
-          <div className="col-sm-6">
+          <div id='left-col' className="col-sm-6">
             <img
               id='poll-thumbnail'
               src={image}
               role='presentation'
               alt='poll thumbnail'
             />
-            <p id='objective' className='row'><strong> Objetivo: </strong> {objective}</p>
+            <p id='objective' className='row' style={{display: 'none'}}><strong> Objetivo: </strong> {objective}</p>
+            <div id='poll-states'>
+              <div className='state state-1' style={(remaining > 0 && status === 0) ? statusActiveStyle : statusInactiveStyle}> Votación abierta </div>
+              <div className='state state-2' style={(remaining > 0 && status === 1) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
+              <div className='state state-3' style={(remaining > 0 && status === 2) ? statusActiveStyle : statusInactiveStyle}> Proyecto de acuerdo </div>
+              <div className='state state-4' style={(remaining > 0 && status === 3) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
+              <div className='state state-5' style={remaining < 0 ? statusActiveStyle : statusInactiveStyle}> Propuesta Cerrada </div>
+            </div>
+            {externalLinksTitle(links)}
+            <div className='external-links-container'>
+              {externalLinks(links)}
+            </div>
           </div>
           <div className="col-sm-6">
             <div className="row">
-              <div className="poll-description-container col-sm-12">
-                <div className="poll-description" style={moreInfo ? lessInfoStyle : moreInfoStyle}>
-                  {description}
-                  {externalLinksTitle(links)}
-                  <div className='external-links-container'>
-                    {externalLinks(links)}
-                  </div>
-                </div>
-              </div>
               <div className="col-sm-12">
-                <button onClick={setMoreInfo} id='plus-info'>
-                  {moreInfo ? '-INFO' : '+INFO'}
-                </button>
-              </div>
-              <div className="col-sm-12">
-                <div className="row flex-row">
-                  <div className="col-xs-8 buttons-wrapper">
+                <div className="row">
+                  <div className='summary'> {summary} </div>
+                  <div className="col-xs-12 col-sm-12 buttons-wrapper">
                     {user_already_voted ? //eslint-disable-line
                       votedButton(poll_type, vote_types, vote_count) :
                       voteButton(poll_type, vote_types, voteAction)
                     }
                   </div>
-                  <div className="col-xs-4">
-                    <div className="countdown-wrapper">
-                      { remaining > 0 ?
-                        <CountDown
-                            timerCount={remaining}
-                            initialTime={initial_time}
-                            countdownColor={getColorDependingOnTime(initial_time, remaining)}
-                            innerColor="#fff"
-                            outerColor="#747272"
-                        /> :
-                        <div className="closed-text-wrapper">
-                          <h4> cerrada </h4>
-                        </div>
-                      }
+                  <div className='col-xs-12 col-sm-12 poll-details'>
+                      { getDays(remaining) }
                   </div>
                 </div>
+              </div>
+              <div className="poll-description-container col-sm-12">
+                <div className="poll-static-title"> La Propuesta: </div>
+                <div className="poll-description" style={(true || moreInfo || (remaining < 0)) ? lessInfoStyle : moreInfoStyle}>
+                  {description}
                 </div>
+              </div>
+              <div className="col-sm-12">
+                { (remaining < 0 || true) ? <span /> :
+                    <button onClick={setMoreInfo} id='plus-info'>
+                      {moreInfo ? '-INFO' : '+INFO'}
+                    </button>
+                }
               </div>
             </div>
           </div>

@@ -3,49 +3,63 @@
     font-size: 20px
   $break-medium: 720px
   .background-container
-    background-size: cover
-    padding-top: 40px
-    padding-bottom: 20px
-    height: 410px
+    height: 400px
     width: 100%
-    align-items: center
-    background-position: center -62px
+    background-repeat: no-repeat
     display: inline-flex
+    align-items: flex-end
     @media screen and (max-width: $break-medium)
-      height: 175px
+      height: 218px
       font-size: 250px
-      background-position: center bottom
+    img
+      width: 900px
+      height: 350px
+      position: absolute
+      right: 0
+      // height: 390px
+      @media screen and (max-width: $break-medium)
+        width: 100%
+        height: initial
+        // position: absolute
+        // right: 0
     .icon-name-wrapper
-      margin: auto
       display: flex
       align-items: center
+      position: absolute
       @media screen and (max-width: $break-medium)
-        margin-top: 35px
       .tag-icon-container
         width: 100px
         .tag-icon
           width: 100px
           height: 100px
       .tag-name
+        position: absolute
+        bottom: 32px
+        left: 40px
+        @media screen and (max-width: $break-medium)
+          bottom: 11px
+          left: 13px
         h1
           color: white
           font-size: 60px
-          font-family: 'RobotoCondensed'
-          text-transform: uppercase
+          font-family: 'HKNovaBold'
+          text-transform: capitalize
           font-weight: bold
           letter-spacing: 4px
           margin: 0
+          text-align: left
           @media screen and (max-width: $break-medium)
-            font-size: 30px
+            font-size: 25px
+            width: 90%
   .polls-box
-    margin-top: 90px
+    margin-top: 50px
     width: 100%
     display: inline-flex
     flex-wrap: wrap
-    justify-content: center
-    align-items: center
+    justify-content: left
+    align-items: left
+    padding-left: 11px
     overflow: hidden
-    text-align: center
     @media screen and (max-width: $break-medium)
       margin-top: 50px
       padding: 0 10px

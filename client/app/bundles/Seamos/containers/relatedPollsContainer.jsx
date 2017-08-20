@@ -24,20 +24,20 @@ class RelatedPollsContainer extends Component {
         function Title(props) {
           const pollsPresent = props.polls.length !== 0;
           if (pollsPresent) {
-            return <h3> Tambien te podría interesar </h3>;
+            return <span id='featured-polls-title'><h3> Tambien te puede interesar </h3></span>;
           }
           return null;
         }
         const { polls, tag, pollId } = this.props;
         if (polls.length !== 0 || this.props.tag) {
-            const relPolls = polls.slice(0, 3);
+            const relPolls = polls.slice(0, 4);
             const relPollsWithoutDup = relPolls.filter(function (poll) {
               return poll.id !== pollId;
             });
             return (
               <div>
                 <Title polls={relPollsWithoutDup} />
-                <Polls polls={relPollsWithoutDup.slice(0, 2)} tag={tag} />
+                <Polls polls={relPollsWithoutDup.slice(0, 3)} tag={tag} />
               </div>
             );
         }

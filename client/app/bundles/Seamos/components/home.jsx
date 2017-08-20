@@ -18,115 +18,111 @@ const Home = ({ session }) => (
   <div id="homepage">
     <div className='background-container top'>
       <div className='flex-container top-text-container'>
-        <h1 className='welcome'>Bienvenido</h1>
+        <h1 className='welcome'>El poder está<br />en tus manos</h1>
         <p className='to'>
-          A la única plataforma ciudadana que le <br className='breaker' />
-          permite incidir en las decisiones políticas en <br className='breaker' />
-          tiempo real
+          Presentamos la primera plataforma digital que te permite <br className='breaker' />
+          incidir en las decisiones políticas de tu ciudad. <br className='breaker' />
         </p>
-        <div onClick={() => window.scrollTo(0, 391)} >
-          <div className='action'>
-            Pasemos a la acción
-          </div>
-          <div className='hand-image-container'>
-            <div className='hand-image'>
-              <br />
-              <br />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id='how' className="flex-container">
-      <div className="title">
-        ¿Cómo logramos el cambio?
-      </div>
-      <div className="text">
-        La plataforma SeamOS es un canal entre la ciudadanía y los políticos en ejercicio,
-        para generar un diálogo con ellos y hacer valer la representación democrática que
-        les otorgamos con nuestro voto.
       </div>
     </div>
     <div id='steps-container' className="flex-container">
       <Link
         to="#"
-        onClick={() => window.scrollTo(0, 1434)}
       >
-        <div className="step">
+        <div className="step" style={{ height: '322px' }}>
           <div className="step-info">
-            <div className="step-number">1</div>
             <div className="step-text">
-              Explora las propuestas publicadas según los ejes temáticos de tu interés.
+              <span className="step-number-1">1 </span>
+              &nbsp;Regístrate
             </div>
-            <div className="step-image step-image-1" />
           </div>
+          <div className='text'>Con un solo click en la plataforma.</div>
+          <div className="step-image step-image-1" />
+          <FacebookLogin id='fb-login-transparent' fbText='Conéctate con facebook' />
         </div>
       </Link>
-      <a
-        href="https://www.facebook.com/seamoscolombia/"
-        target='_blank'
-        rel='noopener noreferrer'
+      <Link
+        to="/tags"
       >
         <div className="step">
           <div className="step-info">
-            <div className="step-number">2</div>
             <div className="step-text">
-               Registrarte, vota y da tu opinión. El político frente a la
-               propuesta será notificado.
+              <span className="step-number-2">2 </span>
+              &nbsp;Explora
             </div>
           </div>
+          <div className='text'>Las propuestas de acuerdo a tus temas de interés.</div>
           <div className="step-image step-image-2" />
         </div>
-      </a>
+      </Link>
       <Link
         to="#"
         onClick={() => window.scrollTo(0, 2050)}
       >
         <div className="step">
           <div className="step-info">
-            <div className="step-number">3</div>
             <div className="step-text">
-              Participa en las discusiones en torno a las propuestas que te
-              interesan y aporta para fortalecerlas y lograr que se cumplan
+              <span className="step-number-3">3 </span>
+               &nbsp;Vota
             </div>
           </div>
+          <div className='text'>Para comenzar a incidir en los asuntos de tu ciudad.</div>
           <div className="step-image step-image-3" />
         </div>
       </Link>
     </div>
-    <div className="fb-button-container">
-      {session && session.authenticityToken ?
-        <span /> :
-        <div>
-          <div className="one-click"> Sin registros, solo un click </div>
-          <FacebookLogin fbText='Conéctate con facebook' />
+    <div className='background-container up-mid'>
+      <div className='flex-container up-mid-text-container'>
+        <div id='how-to-achieve'>
+          ¿Cómo logramos <br />
+          el cambio?
         </div>
-      }
+      </div>
+    </div>
+    <div id="how-facts">
+      <div className="how-fact">
+        <span className="title"> Poder Ciudadano </span><br />
+        Involucramos a los ciudadanos en procesos de decisión
+        política para que hagan valer su voto en los espacios
+        democráticos.
+      </div>
+      <div className="how-fact">
+        <span className="title"> Compromiso Político </span><br />
+        Vinculamos a los políticos para que se comprometan a
+        acatar las decisiones de sus votantes.
+      </div>
     </div>
     <div className='background-container mid'>
       <div className='flex-container top-text-container'>
         <h1 className='welcome question'>
-          ¿De qué <br className='breaker' />
-          quieres hablar?
+          Encuentra propuestas de <br className='breaker' />
+          acuerdo a los temas <br className='breaker' />
+          de tu interés
         </h1>
       </div>
-    </div>
-    <div className="mid-paragraph">
-      ¿En qué estás pensando ahora?
-    </div>
-    <div className="mid-paragraph-caption">
-      Encuentra las propuestas vigentes
-      de acuerdo a tus intereses
     </div>
     <Tags />
     <div className='background-container down'>
       <div className='flex-container down-text-container'>
         <div id='featured-polls-title'>
-          PROPUESTAS DESTACADAS
+          Propuestas<br />destacadas
         </div>
       </div>
     </div>
     <Featured />
+    <div className='newsletter-container'>
+      <div className='newsletter'>
+        <div className='title'>
+          Suscríbete a nuestro newsletter
+        </div>
+        <div className="input-group">
+          <input type="text" className="form-control" placeholder="Email" />
+          <span className="input-group-btn">
+            <button className="btn btn-secondary" type="button">ENVIAR</button>
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
 );
 

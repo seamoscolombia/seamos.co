@@ -5,6 +5,7 @@ function calculatePercentage(count, total) {
       Math.floor(100 * (count / total))
     );
 }
+const minorThanThirteen = { backgroundColor: 'gainsboro' };
 const SingleButton = ({ name, count = 0, total }) => {
     const percentage = calculatePercentage(count, total);
     return (
@@ -17,7 +18,8 @@ const SingleButton = ({ name, count = 0, total }) => {
                 aria-valuemax="100"
                 style={{ width: `${percentage}%`, cursor: 'default' }}
             >
-                <span>{ name } {`${percentage}%`}</span>
+                <span id='vote-name' style={percentage < 13 ? { color: 'black' } : {}}>{ name }</span>
+                <span id='percentage'>{`${percentage}%`}</span>
             </div>
         </button>
     );

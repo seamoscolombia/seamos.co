@@ -1,6 +1,11 @@
 <%= form_for(poll, html: { multipart: true } ) do |f| %>
 <%= render 'shared/mensajes_de_error',  object: f.object %>
 
+<div class="field politician-field">
+  <%= f.label "Estado de la Propuesta" %>
+  <%= f.select :state, Poll.states.keys, {}, {class: 'form-control'} %>
+</div>
+
 <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control' %>

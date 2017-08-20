@@ -1,0 +1,34 @@
+@import "font-awesome-sprockets"
+@import "font-awesome"
+@import './variables.scss'
+#terms
+  background-color: #f3f3f3
+  #polls-component
+    .background-container
+      background-image: url(asset_path('terms.png'))
+      background-size: contain
+      background-position: right 21px
+    .text-wrapper
+      text-align: justify
+      padding: 71px 109px
+      font-size: 32px
+      line-height: 36px
+      color: #44434c
+      font-family: RobotoRegular
+      @media screen and (max-width: $break-medium)
+        text-align: justify
+        padding: 71px 29px
+        font-size: 15px
+        line-height: 23px
+        color: #44434c
+        font-family: RobotoRegular
+    .icon-name-wrapper
+      .tag-name
+        h1
+          color: white
+          // font-size: 85px
+          font-family: HKNovaBold
+          text-transform: capitalize
+          font-weight: bold
+          margin: 0
+          text-align: left

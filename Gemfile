@@ -47,6 +47,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'react_on_rails', '~> 7.0.4'
 gem 'rails_12factor', group: :production
 gem "cf-autoconfig", '~> 0.2.1'
+gem 'font-awesome-sass'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

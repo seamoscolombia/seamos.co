@@ -82,7 +82,7 @@ class PollsController < ApplicationController
         else
           @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| poll.send(order_param)}
         end
-        @polls = @reverse ? @polls.reverse.first(6) : @polls.first(6)
+        @polls = @reverse ? @polls.reverse.first(3) : @polls.first(3)
       end
     end
   end
@@ -99,6 +99,7 @@ class PollsController < ApplicationController
     respond_to do |format|
       format.json do
         @polls = @tag.polls.includes(:votes).open.active.sort_by {|poll| - poll.votes.size} if @tag
+        @closed = @tag.polls.includes(:votes).closed.sort_by {|poll| - poll.votes.size} if @tag
       end
     end
   end
@@ -269,6 +270,7 @@ class PollsController < ApplicationController
       :title,
       :objective,
       :status,
+      :state,
       :summary,
       :question,
       vote_types_attributes: [:name]

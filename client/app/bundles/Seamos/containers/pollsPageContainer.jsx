@@ -23,6 +23,7 @@ class PollsContainer extends Component {
     render() {
         return (
             <div id='poll-page'>
+            {/*
               <div className='order-select-wrapper'>
                 <span className='order-string'> Ordenar </span>
                 <select name='' className='order-select' onChange={this.changeOpc.bind(this)}>
@@ -32,6 +33,7 @@ class PollsContainer extends Component {
                     <option value='by-user-interests'> Según tus intereses </option>
                 </select>
               </div>
+              */}
                 <Polls {...this.props} />
             </div>
         );
