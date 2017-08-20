@@ -202,8 +202,6 @@ const PollDetail = ({
                     }
                   </div>
                   <div className='col-xs-12 col-sm-12 poll-details'>
-                    <span> {vote_count} votos </span>
-                    <span className='circle-separator'>&nbsp; &#9679; &nbsp;</span>
                       { getDays(remaining) }
                   </div>
                 </div>
