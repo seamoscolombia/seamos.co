@@ -47,6 +47,11 @@ const Navbar = ({ session, user }) => (
         <Link to='/' className='navbar-brand'>
           <div id='brand-logo' />
         </Link>
+        <div className='hide-on-desktop only-photo'>
+          {session.authenticityToken && Object.keys(user).length !== 0 ?
+            profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='' /> </li>
+          }
+        </div>
         <button
           className='navbar-toggle pull-right'
           data-toggle='collapse-side'
@@ -65,7 +70,7 @@ const Navbar = ({ session, user }) => (
           <ul className='nav navbar-nav navbar-right navbar-options'>
             <div className='hide-on-desktop'>
               {session.authenticityToken && Object.keys(user).length !== 0 ?
-                profile() : <li key='5'> <FacebookLogin fbclassName='nav-fb' fbText='CONÉCTATE' /> </li>
+                profile() : <li key='5'> <FacebookLogin fbclassName='nav-fb' fbText='REGÍSTRATE' /> </li>
               }
             </div>
             <li key='6'><Link to='/tags'> Temas </Link></li>
@@ -76,7 +81,7 @@ const Navbar = ({ session, user }) => (
                target='_blank'
                rel='noopener noreferrer'
               >
-                Quiénes somos 
+                Quiénes somos
               </a>
             </li>
             <span className='circle-separator'> &#9679; </span>
