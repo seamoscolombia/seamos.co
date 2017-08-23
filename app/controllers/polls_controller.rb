@@ -58,6 +58,20 @@ class PollsController < ApplicationController
     render :new
   end
 
+  def update
+    @poll = Poll.find_by(id: params[:id])
+    @poll.tags = []
+    @poll.set_tags(tags_param)
+    bind_links
+    if @poll.update(http_params)
+      # ActionCable.server.broadcast 'polls_channel', 'changed'
+      flash[:success] = I18n.t(:accion_exitosa)
+      redirect_to admin_dashboard_index_path
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @poll = Poll.find_by(id: params[:id])
     @poll.destroy
@@ -174,19 +188,6 @@ class PollsController < ApplicationController
     end
   end
 
-  def update
-    @poll = Poll.find_by(id: params[:id])
-    @poll.tags = []
-    @poll.set_tags(tags_param)
-    if @poll.update(http_params)
-      # ActionCable.server.broadcast 'polls_channel', 'changed'
-      flash[:success] = I18n.t(:accion_exitosa)
-      redirect_to admin_dashboard_index_path
-    else
-      render :edit
-    end
-  end
-
   def voted
     @polls = current_user.voted_polls.last(5)
     respond_to do |format|
@@ -198,6 +199,7 @@ class PollsController < ApplicationController
   private
 
   def bind_links
+    @poll.external_links.destroy_all if @poll.external_links.present?
     links_param.split(',').map(&:strip).uniq.each do |url|
       if url.length > 4
         ExternalLink.create!(url: url, poll: @poll)
