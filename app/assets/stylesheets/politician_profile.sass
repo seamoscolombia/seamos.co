@@ -1,88 +1,78 @@
 @import './variables.scss'
 #politician-profile
-  .container
-    width: 1000px
-    @media screen and (max-width: $break-medium)
-      width: auto
-  .organization
-    font-family: 'RobotoCondensed'
-    text-transform: uppercase
-    margin-left: 46px
-    font-weight: bold
-    font-size: 15px
-    @media screen and (max-width: $break-medium)
-      margin-left: 0
-  #plus-info
-    color: gray
-    font-family: 'HknovaBold'
-    @media screen and (max-width: $break-medium)
-      color: gray
-      font-size: 12px
-    &:hover
-      text-decoration: none
-      cursor: pointer
+  $picture-size: 160px
+  #top-color-banner
+    height: 150px
+    background-color: #eb6157
+    margin-bottom: -124px
   #profile
-    header
-      img
-        @media screen and (max-width: $break-medium)
-          margin: auto
-    .btn-return
-    @media screen and (max-width: $break-medium)
-    .profile-info-container
-      padding-right: 10px
-      @media screen and (max-width: $break-medium)
-        padding-right: 0
-        display: block
-    .media-left
-      margin-left: 0
-      @media screen and (max-width: $break-medium)
-    .media-body
-      @media screen and (max-width: $break-medium)
-        text-align: center
-        padding-right: 0
-      .media-heading
-        @media screen and (max-width: $break-medium)
-          padding: 0px 20px
-      h4
-        margin-left: 2.2em
-        @media screen and (max-width: $break-medium)
-          margin-left: 0
-          font-size: 18px
-          margin-top: 10px
-      h6
-        margin-left: 3.5em
-        text-align: justify
-        @media screen and (max-width: $break-medium)
-          margin-left: 0
-    #profile-container
-      #my-subjects
-        @media screen and (max-width: $break-medium)
-      .my-participations
-        .btn-create-poll-container
-          width: 400 + 12px
-          text-align: center
-          @media screen and (max-width: $break-medium)
-            margin: auto
-            padding-left: 0
-            text-align: center
-            margin-bottom: 30px
-            width: 400 + 34px
-          .btn-create-poll
-            margin-top: 20px
-            background-color: black
-            color: white
-            font-family: 'HKNovaBold'
-        .polls-wrapper
-          justify-content: space-between
-          @media screen and (max-width: $break-medium)
-            justify-content: center
-          a
-            @media screen and (max-width: $break-medium)
-              margin-top: -40px
-          #poll-component
-            width: 200px
-            @media screen and (max-width: $break-medium)
-              width: 310px
-            .poll-title
-              @media screen and (max-width: $break-medium)
-                font-size: 18px
+    h1
+      font-family: "RobotoRegular"
+      font-weight: bold
+      font-size: 28px
+      text-align: left
+      margin: 6px 0
+      color: #44424c
+    h2
+      font-family: 'RobotoRegular'
+      font-size: 18px
+      font-weight: bold
+      margin: 0
+      text-align: left
+      color: #44424c
+    p
+      font-size: 19px
+      font-family: 'RobotoRegular'
+      line-height: 22px
+      margin-top: 24px
+    .top
+      margin-bottom: 25px
+      .basic-info
+        height: $picture-size
+        .basic-info-wrapper
+          position: absolute
+          bottom: 10px
+      .picture-wrapper
+        max-width: $picture-size
+        max-height: $picture-size
+        border-radius: 50%
+        overflow: hidden
+        img
+          width: $picture-size
+          height: $picture-size
+    .mid
+      .cv-title
+        height: 46px
+        background-color: #c6c6c5
+        display: flex
+        font-family: RobotoRegular
+        font-weight: bold
+        font-size: 23px
+        display: flex
+        align-items: center
+        padding-left: 20px
+      .cv-subtitle
+        font-family: 'RobotoRegular'
+        font-size: 21px
+        border-bottom: 2px solid gray
+        padding-bottom: 6px
+      .further-studies
+        padding: 20px
+        font-size: 16px
+        color: black
+        br
+          display: none
+      .career
+        padding: 20px
+        font-size: 16px
+      .achieved-votes
+        font-size: 25px
+        font-family: 'RobotoBold'
+        height: 50px
+        display: flex
+        align-items: center
+        text-align: right
+    .polls-wrapper
+      margin-top: 50px
+      #poll-component
+        margin: 0 30px 0 0px
