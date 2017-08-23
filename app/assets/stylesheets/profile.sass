@@ -24,42 +24,18 @@
         // width: 130px
   #tag-component
     height: $tag-size
-    width: auto
-    margin: 3px
+    width: $tag-size
+    border: 3px solid white
     @media screen and (max-width: $break-medium)
       width: 134px
       height: $tag-size-mobile
     .tag-name
       font-size: 14px
       width: $tag-size
-      bottom: 190px
-      margin: auto
-      visibility: hidden
+      display: none
       @media screen and (max-width: $break-medium)
-        bottom: 170px
         width: $tag-size-mobile
         font-size: 12px
-    .tag-image
-      width: $tag-size
-      overflow: hidden
-      display: flex
-      justify-content: center
-      @media screen and (max-width: $break-medium)
-        width: $tag-size-mobile
-      img
-        height: $tag-size
-        @media screen and (max-width: $break-medium)
-          height: $tag-size-mobile
-    .tag-icon
-      visibility: hidden
-      width: $tag-size
-      img
-        height: $tag-size
-        bottom: 160px
-        @media screen and (max-width: $break-medium)
-          height: $tag-size-mobile
-          width: $tag-size-mobile
-          bottom: 140px
   header
     img
       // margin-left: 2.5em
@@ -138,49 +114,40 @@
           margin-left: 3.5em
           font-weight: bold
       .polls-wrapper
-        display: flex
-        flex-wrap: wrap
         @media screen and (max-width: $break-medium)
-          align-items: center
-          text-align: center
-          justify-content: center
         #poll-component
-          width: 240px
-          margin: 20px 10px 0 10px
+          width: 250px
+          margin-right: 20px
+          margin-top: 20px
+          margin-left: 0
+          margin-bottom: 0
           @media screen and (max-width: $break-medium)
-            margin: 20px 0px 0 0px
-            width: 310px
+            width: 100%
+          .poll-title
+            @media screen and (max-width: $break-medium)
+              height: auto
+          .politician-info
+            .picture-container
+              width: 55px
+              @media screen and (max-width: $break-medium)
+                width: 58px
+            .name-container
+              @media screen and (max-width: $break-medium)
+                margin-left: 0
           .poll-image-container
+            height: 230px
             @media screen and (max-width: $break-medium)
-              width: 100%
             a
-              left: 0
-              right: 0
               img
-                max-height: 200px
                 @media screen and (max-width: $break-medium)
-                  max-height: 150px
           .poll-infos-container
-            margin-top: -30px
             @media screen and (max-width: $break-medium)
-              margin-top: -20px
-              width: 100%
+              padding-left: 0
             .poll-info
               .poll-description
-                display: none
-              .poll-title
-                text-align: center
-                line-height: 1.2em
+                margin-bottom: 10px
             .poll-details
-              text-align: center
-              font-size: 12px
-              position: relative
-              margin-top: 5px
+              display: none
               @media screen and (max-width: $break-medium)
-                justify-content: center
-                word-break: break-word
-                line-height: 12px
               span:nth-child(4)
-                display: none
               .btn-plus-read
-                display: none

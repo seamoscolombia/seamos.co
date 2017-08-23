@@ -12,17 +12,12 @@ const Tag = (props) => {
     <div
       id='tag-component'
       onClick={() => hasAction(action, props)}
+      style={{ backgroundImage: `url(${thumbnail})`, backgroundColor: color }}
     >
-      <div className="tag-image" style={{ backgroundColor: color}}>
-        <img alt={name} src={thumbnail} />
-      </div>
-      <div className="tag-icon" style={{ visibility: 'hidden' }}>
-        <img alt={name} src={icon} />
-      </div>
-      <div className="tag-name">{name}</div>
       <div className={`${selectedTagClass}`} >
         <i className="glyphicon glyphicon-ok-sign" />
       </div>
+      <div className="tag-name">{name}</div>
     </div>
   );
 };

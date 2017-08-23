@@ -13,6 +13,20 @@
   .navbar-header
     @media screen and (max-width: $break-medium)
       margin-left: 0
+    .only-photo
+      display: flex
+      position: absolute
+      right: 65px
+      top: 8px
+      width: 30px
+      li
+        color: transparent
+        pointer-events: none
+      button
+        background-color: transparent
+        color: transparent
+      .circle-separator
+        display: none
     .navbar-brand
       padding: 0px 0 10px 0
       background-color: rgba(0, 0, 0, 0) !important
@@ -41,8 +55,8 @@
     margin-top: 8px !important
     @media screen and (max-width: $break-medium)
       display: block
-    span.circle-separator
-      display: none
+      span.circle-separator
+        display: none
     li
       margin-right: 10px
       margin-bottom: 10px

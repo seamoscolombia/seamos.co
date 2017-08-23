@@ -33,8 +33,8 @@ class VotesController < ApplicationController
         poll_id: @poll.id,
         vote_type: vote_type
       )
-      redirect_to polls_url if user_already_voted?(current_user, @poll)
-      vote_save_fb vote
+      return true if user_already_voted?(current_user, @poll)
+      vote.save
     end
   rescue ActiveRecord::RecordInvalid
     error_msg = "#{I18n.t(:accion_no_realizada)} "
@@ -52,10 +52,4 @@ class VotesController < ApplicationController
     Vote.where('user_id = ? AND poll_id = ?', user.id, poll.id).present?
   end
 
-  def vote_save_fb(vote)
-    if vote.save!
-      # publish_vote_facebook vote if params["vote"]["fb_feed"] == "true"
-      redirect_to polls_url #+"##{vote.poll.id}"
-    end
-  end
 end
