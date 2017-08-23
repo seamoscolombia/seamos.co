@@ -25,9 +25,9 @@ json.user do
           json.vote_count poll.votes.size
           json.remaining poll.remaining_time_in_seconds
           json.summary poll.summary
-          json.tag do
-            json.tag_color poll.tags.first.tag_color
-          end
+          json.color poll.tags.first.tag_color
+          json.tag_name poll.tags.first.name
+
           json.politician do
             json.id poll.user.id
             json.full_name poll.user.full_name

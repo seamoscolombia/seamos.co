@@ -25,9 +25,11 @@
       margin-bottom: 28px
       width: 97%
       @media screen and (max-width: $break-medium)
-        font-size: 27px
+        width: 90%
+        font-size: 25px
         line-height: 1em
         text-align: center
+        margin-bottom: 6px
   #politician
     font-family: 'RobotoBoldCondensed'
     font-size: 12px
@@ -75,7 +77,6 @@
       font-family: "RobotoCondensed"
       margin-left: 38px
       color: #44434c
-      letter-spacing: 2px
       font-size: 19px
       position: relative
       font-weight: bold
@@ -339,7 +340,7 @@
       display: flex
       justify-content: center
       @media screen and (max-width: $break-medium)
-        font-size: 23px
+        font-size: 18px
         margin-bottom: 35px
         position: relative
         width: 100%
@@ -387,12 +388,14 @@
           justify-content: center
           @media screen and (max-width: $break-medium)
             width: 90%
+            height: 210px
           img
             min-height: 330px
             max-height: 340px
             @media screen and (max-width: $break-medium)
               width: 100%
-              max-height: 150px
+              min-height: 220px
+              max-height: 230px
         .color-separator
           height: 45px
         .poll-title
@@ -406,7 +409,7 @@
           width: 100%
           @media screen and (max-width: $break-medium)
             text-align: center
-            font-size: 27px
+            font-size: 20px
             margin-bottom: -8px
         .politician-info
           width: 100%
@@ -419,6 +422,8 @@
             width: 40px
             height: 40px
             overflow: hidden
+            @media screen and (max-width: $break-medium)
+              width: 60px
             img
               width: 40px
               height: 40px
@@ -427,8 +432,9 @@
             font-size: 18px
             font-family: "RobotoCondensed"
             margin-left: 10px
-            letter-spacing: 0.02em
             color: #44424c
+            @media screen and (max-width: $break-medium)
+              margin-left: 0px
         .poll-infos-container
           position: relative
           width: 340px
