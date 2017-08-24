@@ -8,7 +8,7 @@ import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
 import { PRODUCTION_URL } from '../../constants';
-
+import FacebookLogin from '../../containers/facebookLoginContainer';
 
 const shareUrl = `${PRODUCTION_URL}/facebookob/?id=`;
 // const twittershareUrl = `${PRODUCTION_URL}/#/poll/`;
@@ -36,6 +36,36 @@ function getDays(remaining) {
   return <span> faltan {remainingDays} días</span>;
 }
 
+function setVotedButton(userAlreadyVoted,
+                        userLoggedIn,
+                        pollType,
+                        voteTypes,
+                        voteCount,
+                        voteAction) {
+  let resultingButton;
+  if (userAlreadyVoted) {
+      resultingButton = (
+        votedButton(pollType, voteTypes, voteCount)
+      );
+    } else if (userLoggedIn) {
+      resultingButton = (
+        voteButton(pollType, voteTypes, voteAction, userLoggedIn)
+      );
+    } else {
+      resultingButton = (
+        <div>
+          {voteButton(pollType, voteTypes, voteAction, userLoggedIn)}
+          <FacebookLogin fbText='' />
+        </div>
+      );
+    }
+    return (
+      <div>
+        { resultingButton }
+      </div>
+    );
+}
+
 function externalLinks(links) {
   return links.map(link =>
     <div className='external-link'>
@@ -53,10 +83,14 @@ function externalLinks(links) {
 function voteButton(pollType, voteTypes, voteAction) {
   switch (pollType) {
     case 'signing': //2
-      return (<SingleButton
-        name={voteTypes[0].name}
-        onClick={() => { voteAction(voteTypes.id); }}
-      />);
+      return (
+        <div>
+          <SingleButton
+            name={voteTypes[0].name}
+            onClick={() => { voteAction(voteTypes.id); }}
+          />
+        </div>
+      );
     default:
       return voteTypes.map(voteType =>
         <SingleButton
@@ -115,7 +149,8 @@ const PollDetail = ({
                       description, objective, vote_count,
                       user_already_voted, links, politician,
                       poll_type, moreInfo, setMoreInfo, vote_types,
-                      voteAction, initial_time, tag, status, summary
+                      voteAction, tag, status, summary,
+                      user_logged_in
                     }) => (
     <section id='poll-detail'>
       <div className='container'>
@@ -196,9 +231,13 @@ const PollDetail = ({
                 <div className="row">
                   <div className='summary'> {summary} </div>
                   <div className="col-xs-12 col-sm-12 buttons-wrapper">
-                    {user_already_voted ? //eslint-disable-line
-                      votedButton(poll_type, vote_types, vote_count) :
-                      voteButton(poll_type, vote_types, voteAction)
+                    {
+                      setVotedButton(user_already_voted,
+                                              user_logged_in,
+                                              poll_type,
+                                              vote_types,
+                                              vote_count,
+                                              voteAction)
                     }
                   </div>
                   <div className='col-xs-12 col-sm-12 poll-details'>

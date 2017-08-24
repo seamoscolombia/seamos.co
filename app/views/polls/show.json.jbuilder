@@ -19,8 +19,10 @@ json.poll do
     end
     if current_user
       json.user_already_voted current_user.already_voted?(@poll)
+      json.user_logged_in true
     else
       json.user_already_voted false
+      json.user_logged_in false
     end
     json.links do
       json.array! @poll.external_links do |external_link|
