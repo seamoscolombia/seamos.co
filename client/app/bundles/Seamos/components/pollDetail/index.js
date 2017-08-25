@@ -36,18 +36,15 @@ function getDays(remaining) {
   return <span> faltan {remainingDays} días</span>;
 }
 
-function setVotedButton(userAlreadyVoted,
+function setVoteButton(
                         userLoggedIn,
                         pollType,
                         voteTypes,
                         voteCount,
-                        voteAction) {
+                        voteAction
+                       ) {
   let resultingButton;
-  if (userAlreadyVoted) {
-      resultingButton = (
-        votedButton(pollType, voteTypes, voteCount)
-      );
-    } else if (userLoggedIn) {
+  if (userLoggedIn) {
       resultingButton = (
         voteButton(pollType, voteTypes, voteAction, userLoggedIn)
       );
@@ -231,13 +228,20 @@ const PollDetail = ({
                 <div className="row">
                   <div className='summary'> {summary} </div>
                   <div className="col-xs-12 col-sm-12 buttons-wrapper">
-                    {
-                      setVotedButton(user_already_voted,
-                                              user_logged_in,
-                                              poll_type,
-                                              vote_types,
-                                              vote_count,
-                                              voteAction)
+                    <div> {`user already voted:${user_already_voted}` } </div>
+                    <div> {`user logged in:${user_logged_in}` }  </div>
+                    { user_already_voted ? votedButton(
+                                                      poll_type,
+                                                      vote_types,
+                                                      vote_count
+                                                      ) :
+                                          setVoteButton(
+                                                        user_logged_in,
+                                                        poll_type,
+                                                        vote_types,
+                                                        vote_count,
+                                                        voteAction
+                                                      )
                     }
                   </div>
                   <div className='col-xs-12 col-sm-12 poll-details'>
