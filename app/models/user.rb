@@ -77,12 +77,12 @@ class User < ApplicationRecord
     !(votes.find_by(poll: poll).nil?)
   end
 
-  def debate_already_voted?(debate)
-    !(debate_votes.find_by(debate: debate).nil?)
-  end
-
   def full_name
     "#{names} #{first_surname} #{second_surname}"
+  end
+
+  def vote_count
+    votes.size
   end
 
   def self.get_admin(params)
