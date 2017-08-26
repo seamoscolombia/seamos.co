@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
     @open_polls = @polls.open
     @closed_polls = @polls.closed
     @citizens = User.where(role_type: 0).includes(:votes)
-    @vote_average = calculate_vote_average(@citizens)
+    @vote_average = calculate_vote_average(@citizens).round(1)
     @non_votant_users = @citizens.select{|u| u.votes.size == 0}.size
     @votant_users = @citizens.select{|u| u.votes.size > 0}.size
     @global_vote_count = Vote.count
