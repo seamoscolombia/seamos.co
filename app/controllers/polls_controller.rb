@@ -140,21 +140,6 @@ class PollsController < ApplicationController
     render :index
   end
 
-  def last
-    @polls_filter = params[:polls_filter_select]
-    @polls_filter = '1'
-    case @polls_filter
-    when '0'
-      @polls = Poll.all.order('closing_date ASC')
-    when nil, '1'
-      @polls = Poll.where('closing_date >= ?', Date.today)
-      @polls = @polls.select { |poll| poll unless current_user.already_voted?(poll) }
-      @polls = [@polls.last] unless @polls.empty?
-    when '2'
-      @polls = Poll.where('closing_date < ?', Date.today)
-    end
-  end
-
   def new
     @poll = Poll.new
   end
@@ -295,6 +280,6 @@ class PollsController < ApplicationController
 
   def validate_closing_date
     poll = Poll.find_by(id: params[:id])
-    redirect_to root_path and return if poll.closing_date < Date.today
+    redirect_to root_path and return if poll.closing_date < Date.today.in_time_zone
   end
 end

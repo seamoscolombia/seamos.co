@@ -48,18 +48,18 @@ class Poll < ApplicationRecord
                    "En el concejox": 3}
 
   scope :active, -> {
-    where('active IS TRUE AND closing_date >= ?', Date.today)
+    where('active IS TRUE AND closing_date >= ?', Date.today.in_time_zone)
   }
   scope :inactive, -> {
-    where('active IS FALSE OR closing_date < ?', Date.today)
+    where('active IS FALSE OR closing_date < ?', Date.today.in_time_zone)
   }
 
   scope :open, -> {
-    where('closing_date > ?', Date.today)
+    where('closing_date >= ?', Date.today.in_time_zone)
   }
 
   scope :closed, -> {
-    where('closing_date <= ?', Date.today)
+    where('closing_date < ?', Date.today.in_time_zone)
   }
 
   scope :get_user_participations, -> (user) {
@@ -81,7 +81,7 @@ class Poll < ApplicationRecord
   end
 
   def closed?
-    closing_date && closing_date < Date.today
+    closing_date && closing_date < Date.today.in_time_zone
   end
 
   def published_debates
@@ -99,7 +99,7 @@ class Poll < ApplicationRecord
   end
 
   def remaining_time_in_seconds
-    (closing_date - Date.today) * 1.days
+    closing_date.in_time_zone - (Date.today - 1.days).in_time_zone
   end
 
   def remaining_time_in_seconds_from_created
