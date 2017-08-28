@@ -56,21 +56,24 @@ class PollsDetailContainer extends Component {
                 authenticityToken: session.authenticityToken,
                 poll
             });
-        } else {
-            alert('Por favor inicie sesión antes de votar'); //eslint-disable-line
+        } else {            
+            //alert('Por favor inicie sesión antes de votar'); //eslint-disable-line
         }
     }
 
     render() {
-        const { poll } = this.props;
+        const { poll, session } = this.props;
         if (poll.id) {
             return (
-                <PollDetail
-                    {...this.props.poll}
-                    setMoreInfo={this.setMoreInfo}
-                    moreInfo={this.state.moreInfo}
-                    voteAction={id => this.voteAction(id)}
-                />
+                <div>
+                    <PollDetail
+                        {...this.props.poll}
+                        setMoreInfo={this.setMoreInfo}
+                        moreInfo={this.state.moreInfo}
+                        voteAction={id => this.voteAction(id)}
+                        session={session}
+                    />
+                </div>
             );
         }
         return null;

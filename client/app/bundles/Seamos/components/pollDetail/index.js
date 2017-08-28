@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { ShareButtons } from 'react-share';
 import { Link } from 'react-router-dom';
 import CountDown from '../../containers/countdownContainer';
@@ -8,6 +9,8 @@ import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
 import { PRODUCTION_URL } from '../../constants';
+
+import FacebookLogin from '../../containers/facebookLoginContainer';
 
 
 const shareUrl = `${PRODUCTION_URL}/facebookob/?id=`;
@@ -20,6 +23,8 @@ const moreInfoStyle = { height: 150, overflow: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflow: 'none' };
 const statusActiveStyle = { backgroundColor: 'yellow' };
 const statusInactiveStyle = { backgroundColor: 'gainsboro' };
+
+
 
 function getColorDependingOnTime(initial_time, remaining) {
   const startColor = '00FF92';
@@ -50,7 +55,7 @@ function externalLinks(links) {
   );
 }
 
-function voteButton(pollType, voteTypes, voteAction) {
+function voteButton(pollType, voteTypes, voteAction, session) {
   switch (pollType) {
     case 'signing': //2
       return (<SingleButton
@@ -58,13 +63,22 @@ function voteButton(pollType, voteTypes, voteAction) {
         onClick={() => { voteAction(voteTypes.id); }}
       />);
     default:
-      return voteTypes.map(voteType =>
-        <SingleButton
-          key={`${voteType.name}`}
-          name={voteType.name}
-          onClick={() => { voteAction(voteType.id); }}
-        />
-      );
+      if (!session.authenticityToken) {
+        return voteTypes.map(voteType =>
+          <FacebookLogin 
+            key={`${voteType.name}`} fbclassName='btn single-button non-voted-button' 
+            fbText={voteType.name} 
+          />
+        );
+      } else {
+        return voteTypes.map(voteType =>
+          <SingleButton
+            key={`${voteType.name}`}
+            name={voteType.name}
+            onClick={() => { voteAction(voteType.id); }}
+          />
+        );
+      }
   }
 }
 
@@ -115,7 +129,7 @@ const PollDetail = ({
                       description, objective, vote_count,
                       user_already_voted, links, politician,
                       poll_type, moreInfo, setMoreInfo, vote_types,
-                      voteAction, initial_time, tag, status, summary
+                      voteAction, initial_time, tag, status, summary, session
                     }) => (
     <section id='poll-detail'>
       <div className='container'>
@@ -198,7 +212,7 @@ const PollDetail = ({
                   <div className="col-xs-12 col-sm-12 buttons-wrapper">
                     {user_already_voted ? //eslint-disable-line
                       votedButton(poll_type, vote_types, vote_count) :
-                      voteButton(poll_type, vote_types, voteAction)
+                      voteButton(poll_type, vote_types, voteAction, session)
                     }
                   </div>
                   <div className='col-xs-12 col-sm-12 poll-details'>
@@ -244,7 +258,8 @@ PollDetail.propTypes = {
   moreInfo: PropTypes.bool,
   tag: PropTypes.object.isRequired,
   vote_types: PropTypes.array,
-  voteAction: PropTypes.func.isRequired
+  voteAction: PropTypes.func.isRequired,
+  session: PropTypes.object
 };
 
 export default PollDetail;

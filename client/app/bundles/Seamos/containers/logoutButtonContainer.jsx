@@ -9,7 +9,7 @@ const mapDispatchToProps = { resetSession };
 
 class ProfileButtonContainer extends Component {
     logout() {
-        this.props.resetSession();
+        this.props.resetSession(this.props.pol);
     }
     render() {
         return (<ProfileButton
