@@ -51,7 +51,8 @@ Rails.application.routes.draw do
     get '/', to: 'sessions#new', as: :login
     post '/sessions', to: 'sessions#admin_create'
     get 'validate-users', to: 'users#index'
-    resources 'dashboard', only: :index
+    resources 'dashboard', only: [:index]
+    get '/dashboard/stats', to: 'dashboard#stats'
   end
 
   # mount ActionCable.server => '/cable'

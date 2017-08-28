@@ -62,6 +62,7 @@
                 <li class="<%= 'nav-li-border' if params[:controller] == 'polls' and params[:action] == 'new' %>">  <%= link_to t('.create_poll'), new_poll_path %> </li>
               <% end %>
               <% if is_admin? %>
+                <li class="<%= 'nav-li-border' if params[:controller] == 'dashboard' %>">  <%= link_to "Datos",admin_dashboard_stats_path %> </li>
                 <li class="<%= 'nav-li-border' if params[:controller] == 'users' %>">  <%= link_to t('.users'),admin_validate_users_path %> </li>
                 <li class="<%= 'nav-li-border' if params[:controller] == 'admin' %>">  <%= link_to t('.create_admin'),new_admin_path %></li>
                 <li class="<%= 'nav-li-border' if params[:controller] == 'tags' %>">  <%= link_to t(:tags_menu),admin_tags_new_path %></li>
