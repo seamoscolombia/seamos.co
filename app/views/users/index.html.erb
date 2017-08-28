@@ -1,24 +1,20 @@
 <p id="notice"><%= notice %></p>
-<%= link_to admin_dashboard_index_path, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
-  <i class="material-icons">navigate_before</i>
-<% end %>
-<h1>
-	Usuarios
-	<small class='select-users'>
-    <%= form_for(:users_filter, url: users_path, method: :get) do |f|  %>
-      <select class="form-control" name="users_filter_select" id="users_filter">
-        <option value="0"><%= t('.filter_options')[0]%></option>
-        <option value="1" <%= 'selected' if @users_filter == "1" %>><%= t('.filter_options')[1]%></option>
-      </select>
-    <% end %>
-	</small>
-</h1>
-
 
 <div class="container" id="users-list" >
-  <h2> <%= paginate @users %> </h2>
 	<div class="row">
-    <div class="span12">
+    <div class="col-md-3 admin-search-form">
+      <%= label_tag :Filtros %>
+      <%= form_tag({controller: "users", action: "index"}, method: "get") do %>
+        <%= select_tag(:users_filter_select, options_for_select( User.role_types.keys,
+                                                                 params[:users_filter_select] ),
+                                                                 {class: "form-control",
+                                                                  include_blank: true
+                                                                 }) %>
+        <%= text_field_tag :search_term, params[:search_term], class: 'form-control', placeholder: "Búsqueda por email o nombre" %>
+        <%= submit_tag 'Filtrar', class: 'form-control btn-info' %>
+      <% end %>
+    </div>
+    <div class="span12 col-md-9">
   		<ul class="thumbnails" style="list-style-type: none;">
           <% @users.each do |user| %>
               <li class="span5 clearfix">
@@ -30,7 +26,7 @@
                   <div class="caption" class="pull-left">
                     <div class="pull-right">
                       <div>
-                        <%= link_to t(".details") , edit_admin_path(user), class:"btn btn-info icon" %>
+                        <%= link_to "Editar datos de usuario" , edit_admin_path(user), class:"btn btn-info icon" %>
                       </div>
                       <br>
                       <div>
@@ -46,11 +42,13 @@
                     </h4>
                     <p><small><b><%= User.human_attribute_name("email") %>: </b><%= user.email %></small></p>
                     <p><small><b>ID de Facebook: </b><%= user.uid %></small></p>
+                    <p><small><b>tipo de usuario: </b><%= user.role_type %></small></p>
                   </div>
                 </div>
               </li>
           <% end %>
         </ul>
+        <h2> <%= paginate @users %> </h2>
     </div>
 	</div>
 </div>

@@ -73,6 +73,14 @@ class User < ApplicationRecord
                   "Sumapaz": 19,
                   }
 
+  scope :by_role_type, -> (role_type) {
+    where(role_type: role_type)
+  }
+
+  scope :search, -> (search_term) {
+    where("names LIKE ? OR first_surname LIKE ? OR second_surname LIKE ? OR email LIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
+  }
+
   def already_voted?(poll)
     !(votes.find_by(poll: poll).nil?)
   end

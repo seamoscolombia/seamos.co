@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :polls do
     get 'last', on: :collection
     get 'voted', on: :collection
+    get 'search', on: :collection, to: 'polls#search'
     resources :debates, on: :collection
     get '/debates/:id/change_debate_state', to: 'debates#change_debate_state', as: :change_debate_state
   end
