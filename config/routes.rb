@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   patch 'debate/:id', to: 'debates#publish', as: :publish_debate
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
   get 'polls/closed', to: 'polls#index_closed', format: 'json'
+  get 'check_vote', to: 'votes#check_vote', format: 'json'
 
   resources :polls do
     get 'last', on: :collection
