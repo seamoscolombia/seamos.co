@@ -67,7 +67,7 @@ class Poll < ApplicationRecord
   }
 
   scope :by_title, -> (poll_title) {
-    where("title LIKE ?", "%#{poll_title}%")
+    where("title ILIKE ?", "%#{poll_title}%")
   }
 
   def self.search(search_term)

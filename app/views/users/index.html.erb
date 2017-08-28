@@ -15,39 +15,43 @@
       <% end %>
     </div>
     <div class="span12 col-md-9">
-  		<ul class="thumbnails" style="list-style-type: none;">
-          <% @users.each do |user| %>
-              <li class="span5 clearfix">
-                <div class="thumbnail clearfix">
-									<a class="profile pull-left span2 clearfix" href="#thumb">
-										<span>
-										</span>
-									</a>
-                  <div class="caption" class="pull-left">
-                    <div class="pull-right">
-                      <div>
-                        <%= link_to "Editar datos de usuario" , edit_admin_path(user), class:"btn btn-info icon" %>
+      <% if @users.present? %>
+    		<ul class="thumbnails" style="list-style-type: none;">
+            <% @users.each do |user| %>
+                <li class="span5 clearfix">
+                  <div class="thumbnail clearfix">
+  									<a class="profile pull-left span2 clearfix" href="#thumb">
+  										<span>
+  										</span>
+  									</a>
+                    <div class="caption" class="pull-left">
+                      <div class="pull-right">
+                        <div>
+                          <%= link_to "Editar datos de usuario" , edit_admin_path(user), class:"btn btn-info icon" %>
+                        </div>
+                        <br>
+                        <div>
+                          <%= link_to t(".destroy_user"), user_path(user), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")} %>
+                        </div>
                       </div>
-                      <br>
-                      <div>
-                        <%= link_to t(".destroy_user"), user_path(user), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")} %>
-                      </div>
+                      <h4>
+                      <a href="#" >
+                        <%= user.names %>
+                        <%= user.first_surname %>
+                        <%= user.second_surname %>
+                      </a>
+                      </h4>
+                      <p><small><b><%= User.human_attribute_name("email") %>: </b><%= user.email %></small></p>
+                      <p><small><b>ID de Facebook: </b><%= user.uid %></small></p>
+                      <p><small><b>tipo de usuario: </b><%= user.role_type %></small></p>
                     </div>
-                    <h4>
-                    <a href="#" >
-                      <%= user.names %>
-                      <%= user.first_surname %>
-                      <%= user.second_surname %>
-                    </a>
-                    </h4>
-                    <p><small><b><%= User.human_attribute_name("email") %>: </b><%= user.email %></small></p>
-                    <p><small><b>ID de Facebook: </b><%= user.uid %></small></p>
-                    <p><small><b>tipo de usuario: </b><%= user.role_type %></small></p>
                   </div>
-                </div>
-              </li>
-          <% end %>
-        </ul>
+                </li>
+            <% end %>
+          </ul>
+        <%else%>
+          <h2>No hay resultados</h2>
+        <%end%>
         <h2> <%= paginate @users %> </h2>
     </div>
 	</div>
