@@ -131,116 +131,118 @@ const PollDetail = ({
                       poll_type, moreInfo, setMoreInfo, vote_types,
                       voteAction, initial_time, tag, status, summary, session
                     }) => (
-    <section id='poll-detail'>
-      <div className='container'>
-        <header className='row'>
-          <p className='col-sm-12 poll-title'>
-            {title}
-          </p>
-        </header>
-        <section id='politician' className='row'>
-          <img
-            src={getPicture(politician)}
-            role='presentation'
-            alt='politician'
-          />
-          <div id='politician-info'>
-            <Link
-              id='author'
-              to={`/proponents/${politician.id}`}
-            > {politician.full_name}
-            </Link>
-            <div id='org'> {politician.organization} </div>
-          </div>
-        </section>
-        <div className='share-wrapper'>
-          <span className='share-this'> COMPARTIR: </span>
-            <FacebookShareButton
-              url={shareUrl + id}
-              className="network__share-button"
-            >
-              <a
-                className='fa fa-facebook'
-                style={{display: 'block'}}
-                rel='noopener noreferrer'
-              >
-              </a>
-                <br />
-            </FacebookShareButton>
-            <TwitterShareButton
-              url={shareUrl + id}
-              via='seamos'
-              title={shareTitle(user_already_voted, title)}
-              hashtags={['seamOSelcambio']}
-              className="network__share-button"
-            >
-              <a
-                className='fa fa-twitter'
-                style={{display: 'block'}}
-                rel='noopener noreferrer'
-              >
-              </a>
-                <br />
-            </TwitterShareButton>
-        </div>
-        <section id='poll' className='row'>
-          <div id='left-col' className="col-sm-6">
+    <div>
+      <section id='poll-detail'>
+        <div className='container'>
+          <header className='row'>
+            <p className='col-sm-12 poll-title'>
+              {title}
+            </p>
+          </header>
+          <section id='politician' className='row'>
             <img
-              id='poll-thumbnail'
-              src={image}
+              src={getPicture(politician)}
               role='presentation'
-              alt='poll thumbnail'
+              alt='politician'
             />
-            <p id='objective' className='row' style={{display: 'none'}}><strong> Objetivo: </strong> {objective}</p>
-            <div id='poll-states'>
-              <div className='state state-1' style={(remaining > 0 && status === 0) ? statusActiveStyle : statusInactiveStyle}> Votación abierta </div>
-              <div className='state state-2' style={(remaining > 0 && status === 1) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
-              <div className='state state-3' style={(remaining > 0 && status === 2) ? statusActiveStyle : statusInactiveStyle}> Proyecto de acuerdo </div>
-              <div className='state state-4' style={(remaining > 0 && status === 3) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
-              <div className='state state-5' style={remaining < 0 ? statusActiveStyle : statusInactiveStyle}> Propuesta Cerrada </div>
+            <div id='politician-info'>
+              <Link
+                id='author'
+                to={`/proponents/${politician.id}`}
+              > {politician.full_name}
+              </Link>
+              <div id='org'> {politician.organization} </div>
             </div>
-            {externalLinksTitle(links)}
-            <div className='external-links-container'>
-              {externalLinks(links)}
-            </div>
+          </section>
+          <div className='share-wrapper'>
+            <span className='share-this'> COMPARTIR: </span>
+              <FacebookShareButton
+                url={shareUrl + id}
+                className="network__share-button"
+              >
+                <a
+                  className='fa fa-facebook'
+                  style={{display: 'block'}}
+                  rel='noopener noreferrer'
+                >
+                </a>
+                  <br />
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={shareUrl + id}
+                via='seamos'
+                title={shareTitle(user_already_voted, title)}
+                hashtags={['seamOSelcambio']}
+                className="network__share-button"
+              >
+                <a
+                  className='fa fa-twitter'
+                  style={{display: 'block'}}
+                  rel='noopener noreferrer'
+                >
+                </a>
+                  <br />
+              </TwitterShareButton>
           </div>
-          <div className="col-sm-6">
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="row">
-                  <div className='summary'> {summary} </div>
-                  <div className="col-xs-12 col-sm-12 buttons-wrapper">
-                    {user_already_voted ? //eslint-disable-line
-                      votedButton(poll_type, vote_types, vote_count) :
-                      voteButton(poll_type, vote_types, voteAction, session)
-                    }
-                  </div>
-                  <div className='col-xs-12 col-sm-12 poll-details'>
-                      { getDays(remaining) }
+          <section id='poll' className='row'>
+            <div id='left-col' className="col-sm-6">
+              <img
+                id='poll-thumbnail'
+                src={image}
+                role='presentation'
+                alt='poll thumbnail'
+              />
+              <p id='objective' className='row' style={{display: 'none'}}><strong> Objetivo: </strong> {objective}</p>
+              <div id='poll-states'>
+                <div className='state state-1' style={(remaining > 0 && status === 0) ? statusActiveStyle : statusInactiveStyle}> Votación abierta </div>
+                <div className='state state-2' style={(remaining > 0 && status === 1) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
+                <div className='state state-3' style={(remaining > 0 && status === 2) ? statusActiveStyle : statusInactiveStyle}> Proyecto de acuerdo </div>
+                <div className='state state-4' style={(remaining > 0 && status === 3) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
+                <div className='state state-5' style={remaining < 0 ? statusActiveStyle : statusInactiveStyle}> Propuesta Cerrada </div>
+              </div>
+              {externalLinksTitle(links)}
+              <div className='external-links-container'>
+                {externalLinks(links)}
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div className="row">
+                <div className="col-sm-12">
+                  <div className="row">
+                    <div className='summary'> {summary} </div>
+                    <div className="col-xs-12 col-sm-12 buttons-wrapper">
+                      {user_already_voted ? //eslint-disable-line
+                        votedButton(poll_type, vote_types, vote_count) :
+                        voteButton(poll_type, vote_types, voteAction, session)
+                      }
+                    </div>
+                    <div className='col-xs-12 col-sm-12 poll-details'>
+                        { getDays(remaining) }
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="poll-description-container col-sm-12">
-                <div className="poll-static-title"> La Propuesta: </div>
-                <div className="poll-description" style={(true || moreInfo || (remaining < 0)) ? lessInfoStyle : moreInfoStyle}>
-                  {description}
+                <div className="poll-description-container col-sm-12">
+                  <div className="poll-static-title"> La Propuesta: </div>
+                  <div className="poll-description" style={(true || moreInfo || (remaining < 0)) ? lessInfoStyle : moreInfoStyle}>
+                    {description}
+                  </div>
+                </div>
+                <div className="col-sm-12">
+                  { (remaining < 0 || true) ? <span /> :
+                      <button onClick={setMoreInfo} id='plus-info'>
+                        {moreInfo ? '-INFO' : '+INFO'}
+                      </button>
+                  }
                 </div>
               </div>
-              <div className="col-sm-12">
-                { (remaining < 0 || true) ? <span /> :
-                    <button onClick={setMoreInfo} id='plus-info'>
-                      {moreInfo ? '-INFO' : '+INFO'}
-                    </button>
-                }
-              </div>
             </div>
-          </div>
-        </section>
-      </div>
-      <div id='related-polls'>
-        <RelatedPolls tagId={tag.id} pollId={id} />
-      </div>
-    </section>
+          </section>
+        </div>
+        <div id='related-polls'>
+          <RelatedPolls tagId={tag.id} pollId={id} />
+        </div>
+      </section>
+    </div>
   );
 PollDetail.propTypes = {
   id: PropTypes.number.isRequired,

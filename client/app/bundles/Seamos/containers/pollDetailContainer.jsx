@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PollDetail from '../components/pollDetail';
-import { getPoll, votePoll } from '../actions';
+import { getPoll, votePoll, chechVotedPol } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
     return { poll, session, user };
 };
 
-const mapDispatchToProps = { getPoll, votePoll };
+const mapDispatchToProps = { getPoll, votePoll, chechVotedPol };
 
 class PollsDetailContainer extends Component {
     constructor(props) {
@@ -28,11 +28,14 @@ class PollsDetailContainer extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-      if (this.props.user !== nextProps.user) {
-        this.props.poll.user_already_voted = !this.props.poll.user_already_voted;
+      if (!nextProps.user.id) {
+        this.props.poll.user_already_voted = false;
+        this.props.poll.prevent_loop = true;
+      } else if (nextProps.user.id && nextProps.poll.id && nextProps.poll.prevent_loop) {
+        this.props.chechVotedPol(nextProps.user.id, nextProps.poll);
       } else if (nextProps.poll.id !== this.props.poll.id) {
           window.location.hash = `/poll/${nextProps.poll.id}`;
-          console.info('new poll detail', nextProps.poll.id)
+          console.info('new poll detail', nextProps.poll.id);
       } else if (nextProps.match.params.pollId !== this.props.match.params.pollId) {
          this.props.getPoll({
               pollId: nextProps.match.params.pollId,
