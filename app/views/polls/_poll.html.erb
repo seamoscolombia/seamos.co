@@ -1,13 +1,11 @@
-
-
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 admin-poll">
     <div class="row">
       <div class="col-md-12 center">
         <h4>
           <strong >
             <%= link_to poll_path(poll.id), style: "color: #393939;" do %>
-               <%= poll.title%> > <small> Ver resultados </small>
+               <%= poll.title%>
             <%end%>
           </strong>
         </h4>
@@ -30,7 +28,7 @@
         <%end%>
       </div>
       <div class="col-md-9">
-        <p style="margin: 0">
+        <p style="max-height: 75px; overflow: hidden">
           <%= poll.description %>
         </p>
         <ul class="list-inline list-unstyled">

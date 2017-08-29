@@ -66,6 +66,18 @@ class Poll < ApplicationRecord
     joins(:votes).where("votes.user_id = ?", user.id)
   }
 
+  scope :by_title, -> (poll_title) {
+    where("title ILIKE ?", "%#{poll_title}%")
+  }
+
+  def self.search(search_term)
+    if search_term
+      by_title(search_term)
+    else
+      find(:all)
+    end
+  end
+
   def self.by_status(status)
     if status == 'inactive'
       inactive

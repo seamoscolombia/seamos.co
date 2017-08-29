@@ -325,7 +325,7 @@ es:
         - Todas
         - Abiertas
         - Cerradas
-      no_polls_available: Por el momento no hay propuestas para mostrar.
+      no_polls_available: No hay propuestas para mostrar.
       "true": Anónima
     new:
       create: Crear
