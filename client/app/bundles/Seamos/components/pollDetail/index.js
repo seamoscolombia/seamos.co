@@ -65,9 +65,9 @@ function voteButton(pollType, voteTypes, voteAction, session) {
     default:
       if (!session.authenticityToken) {
         return voteTypes.map(voteType =>
-          <FacebookLogin 
-            key={`${voteType.name}`} fbclassName='btn single-button non-voted-button' 
-            fbText={voteType.name} 
+          <FacebookLogin
+            key={`${voteType.name}`} fbclassName='btn single-button non-voted-button'
+            fbText={voteType.name}
           />
         );
       } else {
@@ -227,12 +227,10 @@ const PollDetail = ({
                     {description}
                   </div>
                 </div>
-                <div className="col-sm-12">
-                  { (remaining < 0 || true) ? <span /> :
-                      <button onClick={setMoreInfo} id='plus-info'>
-                        {moreInfo ? '-INFO' : '+INFO'}
-                      </button>
-                  }
+              </div>
+              <div className="poll-description-container col-sm-12">
+                <div className="poll-static-title"> La Propuesta: </div>
+                <div dangerouslySetInnerHTML={{ __html: description }} className="poll-description" style={lessInfoStyle}>
                 </div>
               </div>
             </div>

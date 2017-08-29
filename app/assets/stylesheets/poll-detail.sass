@@ -117,12 +117,18 @@
         padding: 0
         text-align: justify
         top: -7px
-        line-height: 25px
+        line-height: 1.2em
         font-family: 'RobotoRegular'
         color: #44434c
         @media screen and (max-width: $break-medium)
           font-size: 15px
           line-height: 18px
+        strong
+          font-family: 'HKNovaBold'
+        span
+          font-family: 'RobotoRegular' !important
+
+
 
     #poll-thumbnail
       width: 100%
@@ -209,6 +215,10 @@
         overflow: visible
         @media screen and (max-width: $break-medium)
           min-height: 40px
+        &:hover
+          .tooltiptext
+            visibility: visible
+
         .progress-bar
           background-color: rgb(102, 204, 204)
           display: flex
@@ -243,7 +253,18 @@
               font-size: 15px
               line-height: 0
               margin-top: 20px
-
+        .tooltiptext
+          visibility: hidden
+          background-color: black
+          color: #fff
+          text-align: center
+          border-radius: 6px
+          padding: 5px 0
+          /* Position the tooltip */
+          position: absolute
+          z-index: 1
+          left: 18px
+          bottom: 178px
     .countdown-wrapper
       margin-top: 0px
       @media screen and (max-width: $break-medium)
@@ -353,6 +374,8 @@
         font-weight: bold
         font-size: 26px
         padding-left: 20px
+        @media screen and (max-width: $break-medium)
+          font-size: 18px
 
     flex-direction: column
     .polls-wrapper
