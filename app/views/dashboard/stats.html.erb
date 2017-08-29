@@ -1,0 +1,32 @@
+<div id='stats' class="container">
+  <div class="cards">
+    <div class="card-wrapper">
+      <%= render partial: "card", locals: {stat: @citizens.size, comment: "ciudadanos registrados a través de facebook"} %>
+    </div>
+    <div class="card-wrapper">
+      <%= render partial: "card", locals: {stat: @votant_users, comment: "ciudadanos se registraron y votaron"} %>
+    </div>
+    <div class="card-wrapper">
+      <%= render partial: "card", locals: {stat: @non_votant_users, comment: "ciudadanos se registraron y no votaron"} %>
+    </div>
+    <div class="card-wrapper">
+      <%= render partial: "card", locals: {stat: "#{@vote_average}", comment: "Es el promedio de votos por usuario"} %>
+    </div>
+    <div class="card-wrapper">
+      <%= render partial: "card", locals: {stat: "#{@polls.size}", comment: "Propuestas creadas hasta la fecha"} %>
+    </div>
+    <div class="card-wrapper">
+      <%= render partial: "card", locals: {stat: "#{@open_polls.size}", comment: "Propuestas abiertas actualmente"} %>
+    </div>
+    <div class="card-wrapper">
+      <%= render partial: "card", locals: {stat: "#{@closed_polls.size}", comment: "Propuestas cerradas actualmente"} %>
+    </div>
+    <div class="card-wrapper">
+      <%= render partial: "card", locals: {stat: "#{@global_vote_count}", comment: "Es la cantidad de votos global"} %>
+    </div>
+  </div>
+  <%= render partial: "poll_stats", locals: {polls: @polls} %>
+  <div class="row">
+    <h5 style="text-align: center"> Hora en el servidor: <%=Time.now.strftime("%H:%M:%S")%> | Hora local: <%=(Time.now - 5.hours).strftime("%H:%M:%S")%> </h5>
+  </div>
+</div>

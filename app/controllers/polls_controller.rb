@@ -16,7 +16,7 @@
 class PollsController < ApplicationController
   include SessionsHelper
   before_action :validate_poll_closed?, only: :show
-  before_action :validate_closing_date, only: :edit
+  # before_action :validate_closing_date, only: :edit
   before_action :validate_session, except: [:index, :show, :filtered_by_politician, :filtered_by_tag, :index_closed]
   before_action :validate_admin_user, except: [:index, :show, :voted, :filtered_by_politician, :filtered_by_tag, :index_closed]
   before_action :set_tag, only: :filtered_by_tag
@@ -87,7 +87,8 @@ class PollsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @polls = Poll.order('id desc').all.page(params[:page]).per(4)
+        @polls = Poll.search(params[:search_term]).page(params[:page]).per(4) unless params[:search_term].blank?
+        @polls ||= Poll.order('id desc').all.page(params[:page]).per(4)
       end
       format.json do
         if params[:order_by] == 'by-user-interests'
@@ -132,6 +133,7 @@ class PollsController < ApplicationController
 
   def index_admin
     @filtered_polls = Poll.by_status(params[:status])
+    @filtered_polls = @filtered_polls.search(params[:search_term]).page(params[:page]).per(4) unless params[:search_term].blank?
     @polls = if current_user.politico?
                @filtered_polls.order('id desc').where(user_id: current_user.id).page(params[:page]).per(4)
              else

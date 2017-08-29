@@ -48,3 +48,15 @@ left: 60px; /*position where enlarged image should offset horizontally */
     padding: 2px 12px;
   }
 }
+
+.thumbnail.clearfix{
+  margin-top: 20px;
+  p {
+    margin: 0;
+  }
+}
+
+.pull-right{
+  top: 30px;
+  position: relative;
+}
