@@ -43,9 +43,9 @@ class Poll < ApplicationRecord
 
   enum poll_type: {voting: 0, participation: 1, signing: 2}
   enum state: {"Votación abierta": 0,
-                   "En el concejo": 1,
-                   "propuesta de acuerdo": 2,
-                   "En el concejox": 3}
+               "En el concejo": 1,
+               "propuesta de acuerdo": 2,
+               "En el concejox": 3}
 
   scope :active, -> {
     where('active IS TRUE AND closing_date >= ?', Date.today.in_time_zone)
@@ -55,11 +55,11 @@ class Poll < ApplicationRecord
   }
 
   scope :open, -> {
-    where('closing_date >= ?', Date.today.in_time_zone)
+    select{|p| !p.closed?}
   }
 
   scope :closed, -> {
-    where('closing_date < ?', Date.today.in_time_zone)
+    select{|p| p.closed?}
   }
 
   scope :get_user_participations, -> (user) {
@@ -93,7 +93,9 @@ class Poll < ApplicationRecord
   end
 
   def closed?
-    closing_date && closing_date < Date.today.in_time_zone
+    closing_date && closing_date.in_time_zone == Date.today.in_time_zone &&
+    closing_hour && closing_hour <= Time.zone.now.strftime("%H:%M:%S") ||
+    closing_date.in_time_zone < Date.today.in_time_zone
   end
 
   def published_debates

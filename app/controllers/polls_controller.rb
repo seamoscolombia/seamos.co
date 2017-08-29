@@ -253,6 +253,7 @@ class PollsController < ApplicationController
   def http_params
     params.require(:poll).permit(
       :closing_date,
+      :closing_hour,
       :description,
       :poll_image,
       :poll_image_cache,

@@ -69,6 +69,11 @@
 </div>
 
 <div class="field">
+    <%= f.label "Hora de cierre" %>
+    <%= f.time_field :closing_hour, class: 'form-control' %>
+</div>
+
+<div class="field">
     <%= f.label t('.poll_image') %>
     <% if poll.poll_image.file %>
     <p class="has_media">
