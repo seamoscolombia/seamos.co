@@ -223,14 +223,8 @@ const PollDetail = ({
                 </div>
                 <div className="poll-description-container col-sm-12">
                   <div className="poll-static-title"> La Propuesta: </div>
-                  <div className="poll-description" style={(true || moreInfo || (remaining < 0)) ? lessInfoStyle : moreInfoStyle}>
-                    {description}
+                  <div dangerouslySetInnerHTML={{ __html: description }} className="poll-description" style={lessInfoStyle}>
                   </div>
-                </div>
-              </div>
-              <div className="poll-description-container col-sm-12">
-                <div className="poll-static-title"> La Propuesta: </div>
-                <div dangerouslySetInnerHTML={{ __html: description }} className="poll-description" style={lessInfoStyle}>
                 </div>
               </div>
             </div>

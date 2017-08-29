@@ -21,7 +21,6 @@ const SingleButton = ({ name, count = 0, total }) => {
                 <span id='vote-name' style={percentage < 13 ? { color: 'black' } : {}}>{ name }</span>
                 <span id='percentage'>{`${percentage}%`}</span>
             </div>
-            <span className="tooltiptext"> Si aún no has votado, actualiza la página <br /> para ver las opciones</span>
         </button>
     );
 };
