@@ -1,3 +1,4 @@
+<%= tinymce_assets %>
 <%= form_for(poll, html: { multipart: true } ) do |f| %>
 <%= render 'shared/mensajes_de_error',  object: f.object %>
 
@@ -19,7 +20,7 @@
 
 <div class="field description">
     <%= f.label :description %>
-    <%= f.text_area :description, id: 'poll-description',class: 'form-control', maxlength: 3000 %>
+    <%= f.text_area :description, id: 'poll-description',class: 'form-control tinymce', maxlength: 3000 %>
     <label id='counter-label' class='char-left'>3000</label>
 </div>
 
@@ -103,3 +104,4 @@
         optionsContainer.append(myHTML);
     }
 </script>
+<%= tinymce %>

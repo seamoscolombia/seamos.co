@@ -73,16 +73,24 @@ class User < ApplicationRecord
                   "Sumapaz": 19,
                   }
 
+  scope :by_role_type, -> (role_type) {
+    where(role_type: role_type)
+  }
+
+  scope :search, -> (search_term) {
+    where("names ILIKE ? OR first_surname ILIKE ? OR second_surname ILIKE ? OR email ILIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
+  }
+
   def already_voted?(poll)
     !(votes.find_by(poll: poll).nil?)
   end
 
-  def debate_already_voted?(debate)
-    !(debate_votes.find_by(debate: debate).nil?)
-  end
-
   def full_name
     "#{names} #{first_surname} #{second_surname}"
+  end
+
+  def vote_count
+    votes.size
   end
 
   def self.get_admin(params)
