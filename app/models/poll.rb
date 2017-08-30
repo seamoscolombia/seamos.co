@@ -113,7 +113,11 @@ class Poll < ApplicationRecord
   end
 
   def remaining_time_in_seconds
-    closing_date.in_time_zone - (Date.today - 1.days).in_time_zone
+    if closing_hour && closing_date.in_time_zone == Date.today.in_time_zone
+      Time.zone.parse(closing_hour) - Time.zone.now
+    else
+      closing_date.in_time_zone - (Date.today - 1.days).in_time_zone
+    end
   end
 
   def remaining_time_in_seconds_from_created

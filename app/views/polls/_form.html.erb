@@ -69,8 +69,8 @@
 </div>
 
 <div class="field">
-    <%= f.label "Hora de cierre" %>
-    <%= f.time_field :closing_hour, class: 'form-control' %>
+    <%= f.label "Hora de cierre (valor por defecto: 11:59 PM)" %>
+    <%= f.time_field :closing_hour, class: 'form-control', value: poll.closing_hour %>
 </div>
 
 <div class="field">
