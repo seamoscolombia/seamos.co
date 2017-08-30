@@ -25,7 +25,6 @@ const statusActiveStyle = { backgroundColor: 'yellow' };
 const statusInactiveStyle = { backgroundColor: 'gainsboro' };
 
 
-
 function getColorDependingOnTime(initial_time, remaining) {
   const startColor = '00FF92';
   const endColor = 'ff0000';
