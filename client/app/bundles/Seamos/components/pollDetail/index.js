@@ -237,7 +237,7 @@ const PollDetail = ({
               </div>
             </div>
           </section>
-        </div>
+        </div>         
         <div id='related-polls'>
           <RelatedPolls tagId={tag.id} pollId={id} />
         </div>

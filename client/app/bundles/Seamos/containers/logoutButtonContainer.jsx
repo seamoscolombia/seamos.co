@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import ProfileButton from '../components/profile/profileButton';
 import { resetSession } from '../actions';
+import { URL } from '../constants';
 
 const mapDispatchToProps = { resetSession };
 

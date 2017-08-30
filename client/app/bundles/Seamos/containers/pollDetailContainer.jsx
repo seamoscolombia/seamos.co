@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PollDetail from '../components/pollDetail';
 import { getPoll, votePoll, chechVotedPol } from '../actions';
+import { ToastContainer, toast } from 'react-toastify';
+import { LOGGED_MESSAGE } from '../constants';
+
+
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
@@ -32,6 +36,7 @@ class PollsDetailContainer extends Component {
         this.props.poll.user_already_voted = false;
         this.props.poll.prevent_loop = true;
       } else if (nextProps.user.id && nextProps.poll.id && nextProps.poll.prevent_loop) {
+        toast(LOGGED_MESSAGE);
         this.props.chechVotedPol(nextProps.user.id, nextProps.poll);
       } else if (nextProps.poll.id !== this.props.poll.id) {
           window.location.hash = `/poll/${nextProps.poll.id}`;
@@ -76,6 +81,16 @@ class PollsDetailContainer extends Component {
                         voteAction={id => this.voteAction(id)}
                         session={session}
                     />
+                    <div>
+                        <ToastContainer 
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            pauseOnHover
+                        />
+                    </div> 
                 </div>
             );
         }

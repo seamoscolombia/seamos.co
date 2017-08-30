@@ -7,7 +7,6 @@ import Polls from './polls';
 // const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
 // const { FacebookShareButton } = ShareButtons;
 // const FacebookIcon = generateShareIcon('facebook');
-
 const PollsByTag = (props) => {
 const { image, icon, name, color } = props.tag;
 // const imgUrl = image;
