@@ -37,7 +37,7 @@ class Poll < ApplicationRecord
   validates :objective, presence: true
   validates :poll_image, presence: true, on: :create
 
-  validate :closing_date_validation
+  # validate :closing_date_validation
   validate :has_one_tag
   validate :has_only_one_tag
 
@@ -48,10 +48,10 @@ class Poll < ApplicationRecord
                "En el concejox": 3}
 
   scope :active, -> {
-    where('active IS TRUE AND closing_date >= ?', Date.today.in_time_zone)
+    where('active IS TRUE AND closing_date >= ?', Date.current)
   }
   scope :inactive, -> {
-    where('active IS FALSE OR closing_date < ?', Date.today.in_time_zone)
+    where('active IS FALSE OR closing_date < ?', Date.current)
   }
 
   scope :open, -> {
@@ -93,9 +93,9 @@ class Poll < ApplicationRecord
   end
 
   def closed?
-    closing_date && closing_date.in_time_zone == Date.today.in_time_zone &&
+    closing_date && closing_date == Date.current &&
     closing_hour && closing_hour <= Time.zone.now.strftime("%H:%M:%S") ||
-    closing_date.in_time_zone < Date.today.in_time_zone
+    closing_date < Date.current
   end
 
   def published_debates
@@ -113,10 +113,10 @@ class Poll < ApplicationRecord
   end
 
   def remaining_time_in_seconds
-    if closing_hour && closing_date.in_time_zone == Date.today.in_time_zone
+    if closing_hour && closing_date == Date.current
       Time.zone.parse(closing_hour) - Time.zone.now
     else
-      closing_date.in_time_zone - (Date.today - 1.days).in_time_zone
+      closing_date - Date.current + 1.days
     end
   end
 

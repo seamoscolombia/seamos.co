@@ -35,10 +35,14 @@ function getColorDependingOnTime(initial_time, remaining) {
 
 function getDays(remaining) {
   const remainingDays = ((remaining / 3600) / 24);
-  if (remainingDays <= 0) {
+  if (remainingDays < 0) {
     return <span> propuesta cerrada</span>;
+  } else if (remaining < 3600 && remaining > 0) {
+    return <span> faltan {Math.round(remaining / 60)} minutos</span>;
+  } else if (remaining < 86400) {
+    return <span> faltan {Math.round(remaining / 3600)} horas</span>;
   }
-  return <span> faltan {remainingDays} días</span>;
+  return <span> faltan {Math.round(remainingDays)} días</span>;
 }
 
 function externalLinks(links) {
@@ -211,7 +215,7 @@ const PollDetail = ({
                   <div className="row">
                     <div className='summary'> {summary} </div>
                     <div className="col-xs-12 col-sm-12 buttons-wrapper">
-                      {user_already_voted ? //eslint-disable-line
+                      {user_already_voted || remaining <= 0 ?
                         votedButton(poll_type, vote_types, vote_count) :
                         voteButton(poll_type, vote_types, voteAction, session)
                       }
