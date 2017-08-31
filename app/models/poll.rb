@@ -37,29 +37,29 @@ class Poll < ApplicationRecord
   validates :objective, presence: true
   validates :poll_image, presence: true, on: :create
 
-  validate :closing_date_validation
+  # validate :closing_date_validation
   validate :has_one_tag
   validate :has_only_one_tag
 
   enum poll_type: {voting: 0, participation: 1, signing: 2}
   enum state: {"Votación abierta": 0,
-                   "En el concejo": 1,
-                   "propuesta de acuerdo": 2,
-                   "En el concejox": 3}
+               "En el concejo": 1,
+               "propuesta de acuerdo": 2,
+               "En el concejox": 3}
 
   scope :active, -> {
-    where('active IS TRUE AND closing_date >= ?', Date.today)
+    where('active IS TRUE AND closing_date >= ?', Date.current)
   }
   scope :inactive, -> {
-    where('active IS FALSE OR closing_date < ?', Date.today)
+    where('active IS FALSE OR closing_date < ?', Date.current)
   }
 
   scope :open, -> {
-    where('closing_date > ?', Date.today)
+    select{|p| !p.closed?}
   }
 
   scope :closed, -> {
-    where('closing_date <= ?', Date.today)
+    select{|p| p.closed?}
   }
 
   scope :get_user_participations, -> (user) {
@@ -93,7 +93,9 @@ class Poll < ApplicationRecord
   end
 
   def closed?
-    closing_date && closing_date < Date.today
+    closing_date && closing_date == Date.current &&
+    closing_hour && closing_hour <= Time.zone.now.strftime("%H:%M:%S") ||
+    closing_date < Date.current
   end
 
   def published_debates
@@ -111,7 +113,11 @@ class Poll < ApplicationRecord
   end
 
   def remaining_time_in_seconds
-    (closing_date - Date.today) * 1.days
+    if closing_hour && closing_date == Date.current
+      Time.zone.parse(closing_hour) - Time.zone.now
+    else
+      closing_date - Date.current + 1.days
+    end
   end
 
   def remaining_time_in_seconds_from_created

@@ -32,6 +32,7 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new http_params
+    @poll.closing_hour = "23:59" if @poll.closing_hour == ''
     @poll.user = current_user
     @poll.set_tags(tags_param)
     bind_links
@@ -92,10 +93,10 @@ class PollsController < ApplicationController
       end
       format.json do
         if params[:order_by] == 'by-user-interests'
-          @polls = Poll.includes(:votes, :tags).open.active.by_user_interests(current_user).sort_by {|poll| poll.vote_count}
+          @polls = Poll.includes(:votes, :tags).active.open.by_user_interests(current_user).sort_by {|poll| poll.vote_count}
           @reverse = true
         else
-          @polls = Poll.includes(:votes, :tags).open.active.sort_by {|poll| poll.send(order_param)}
+          @polls = Poll.includes(:votes, :tags).active.open.sort_by {|poll| poll.send(order_param)}
         end
         @polls = @reverse ? @polls.reverse.first(3) : @polls.first(3)
       end
@@ -113,7 +114,7 @@ class PollsController < ApplicationController
   def filtered_by_tag
     respond_to do |format|
       format.json do
-        @polls = @tag.polls.includes(:votes).open.active.sort_by {|poll| - poll.votes.size} if @tag
+        @polls = @tag.polls.includes(:votes).active.open.sort_by {|poll| - poll.votes.size} if @tag
         @closed = @tag.polls.includes(:votes).closed.sort_by {|poll| - poll.votes.size} if @tag
       end
     end
@@ -123,7 +124,7 @@ class PollsController < ApplicationController
     if @politician
       respond_to do |format|
         format.json do
-          @polls = @politician.polls.includes(:votes).open.active.sort_by {|poll| - poll.votes.size}
+          @polls = @politician.polls.includes(:votes).active.open.sort_by {|poll| - poll.votes.size}
         end
       end
     else
@@ -140,21 +141,6 @@ class PollsController < ApplicationController
                @filtered_polls.order('id desc').all.page(params[:page]).per(4)
              end
     render :index
-  end
-
-  def last
-    @polls_filter = params[:polls_filter_select]
-    @polls_filter = '1'
-    case @polls_filter
-    when '0'
-      @polls = Poll.all.order('closing_date ASC')
-    when nil, '1'
-      @polls = Poll.where('closing_date >= ?', Date.today)
-      @polls = @polls.select { |poll| poll unless current_user.already_voted?(poll) }
-      @polls = [@polls.last] unless @polls.empty?
-    when '2'
-      @polls = Poll.where('closing_date < ?', Date.today)
-    end
   end
 
   def new
@@ -268,6 +254,7 @@ class PollsController < ApplicationController
   def http_params
     params.require(:poll).permit(
       :closing_date,
+      :closing_hour,
       :description,
       :poll_image,
       :poll_image_cache,
@@ -297,6 +284,6 @@ class PollsController < ApplicationController
 
   def validate_closing_date
     poll = Poll.find_by(id: params[:id])
-    redirect_to root_path and return if poll.closing_date < Date.today
+    redirect_to root_path and return if poll.closing_date < Date.today.in_time_zone
   end
 end

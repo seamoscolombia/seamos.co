@@ -48,6 +48,7 @@ gem 'react_on_rails', '~> 7.0.4'
 gem 'rails_12factor', group: :production
 gem "cf-autoconfig", '~> 0.2.1'
 gem 'font-awesome-sass'
+gem 'tinymce-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
