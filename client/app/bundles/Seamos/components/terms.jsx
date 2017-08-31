@@ -9,7 +9,7 @@ const Terms = () => (
       >
         <div className='icon-name-wrapper'>
           <div className='tag-name'>
-            <h1> Términos y Condiciones </h1>
+            <h1> Términos y condiciones </h1>
           </div>
         </div>
       </div>

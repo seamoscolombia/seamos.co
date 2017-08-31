@@ -137,6 +137,9 @@ const PollDetail = ({
                     }) => (
     <div>
       <section id='poll-detail'>
+        <div className="top-color-bar" style={{ backgroundColor: tag.color }} >
+          <div className="tag-name"> {tag.name} </div>
+        </div>
         <div className='container'>
           <header className='row'>
             <p className='col-sm-12 poll-title'>

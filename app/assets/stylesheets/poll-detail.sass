@@ -1,24 +1,33 @@
 @import './variables.scss'
 #poll-detail
   overflow: hidden
+  padding: 0 6em 0 6em
+  height: 100%
+  @media screen and (max-width: $break-medium)
+    margin-top: 5em
+    padding: 0 10px
+  .top-color-bar
+    height: 125px
+    width: 100vw
+    position: absolute
+    left: 0
+    padding: 90px 6em 0 6em
+    .tag-name
+      font-size: 27px
+      font-family: 'HKNovaBold'
+      margin-left: 15px
   .circle-separator
     font-size: 8px
     position: relative
     bottom: 3px
   // overflow: visible
-  margin-top: 7em
-  padding: 6px 6em 0 6em
-  height: 100%
-  @media screen and (max-width: $break-medium)
-    margin-top: 5em
-    padding: 0 10px
   .flex-row
     display: flex
   header
     .poll-title
       font-family: "hkNovaBold"
       font-size: 40px
-      margin: 0 15px 0 15px
+      margin: 180px 15px 0 15px
       padding: 0
       color: #44434c
       line-height: 41px
