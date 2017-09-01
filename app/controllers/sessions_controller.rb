@@ -14,6 +14,12 @@ class SessionsController < ApplicationController
     end
   end
 
+  def show
+    render json: { session_initiated: current_user.present?,
+                   authenticity_token: form_authenticity_token
+                 }, status: :ok
+  end
+
   def create
     if request.format.json?
       uid = params[:uid]
