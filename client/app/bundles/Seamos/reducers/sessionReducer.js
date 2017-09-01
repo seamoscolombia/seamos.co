@@ -6,7 +6,7 @@ const INITIAL_STATE = localStorage.getItem('session') ? JSON.parse(localStorage.
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_SESSION: {
-      const session = Object.assign({}, { authenticityToken: action.authenticityToken });
+      const session = Object.assign({}, ...state, { authenticityToken: action.authenticityToken });
       localStorage.setItem('session', JSON.stringify(session));// eslint-disable-line
       return session;
     }

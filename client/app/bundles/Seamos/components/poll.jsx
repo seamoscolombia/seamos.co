@@ -54,13 +54,12 @@ const Poll = (props) => {
               {tagName}
             </div>
             <div className='color-separator' style={{ borderLeft: `5px solid ${tagColor}` }}> </div>
-            <Link
-              to={`/poll/${id}`}
+            <div
               className='btn button btn-plus-read'
               style={{ backgroundColor: tagColor }}
             >
               {is_closed ? 'RESULTADOS' : 'VOTA'}
-            </Link>
+            </div>
           </div>
         </div>
       </div>

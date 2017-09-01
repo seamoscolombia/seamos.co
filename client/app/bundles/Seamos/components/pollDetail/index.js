@@ -252,7 +252,6 @@ PollDetail.propTypes = {
   objective: PropTypes.string.isRequired,
   remaining: PropTypes.number.isRequired,
   vote_count: PropTypes.number.isRequired,
-  poll_type: PropTypes.string.isRequired,
   user_already_voted: PropTypes.bool.isRequired,
   links: PropTypes.array.isRequired,
   politician: PropTypes.object.isRequired,
