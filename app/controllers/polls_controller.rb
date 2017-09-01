@@ -93,10 +93,10 @@ class PollsController < ApplicationController
       end
       format.json do
         if params[:order_by] == 'by-user-interests'
-          @polls = Poll.includes(:votes, :tags).active.open.by_user_interests(current_user).sort_by {|poll| poll.vote_count}
+          @polls = Poll.includes(:votes, :tags).active.by_user_interests(current_user).sort_by {|poll| poll.vote_count}
           @reverse = true
         else
-          @polls = Poll.includes(:votes, :tags).active.open.sort_by {|poll| poll.send(order_param)}
+          @polls = Poll.includes(:votes, :tags).active.sort_by {|poll| poll.send(order_param)}
         end
         @polls = @reverse ? @polls.reverse.first(3) : @polls.first(3)
       end
@@ -114,8 +114,7 @@ class PollsController < ApplicationController
   def filtered_by_tag
     respond_to do |format|
       format.json do
-        @polls = @tag.polls.includes(:votes).active.open.sort_by {|poll| - poll.votes.size} if @tag
-        @closed = @tag.polls.includes(:votes).closed.sort_by {|poll| - poll.votes.size} if @tag
+        @polls = @tag.polls.includes(:votes).sort_by {|poll| - poll.votes.size} if @tag
       end
     end
   end

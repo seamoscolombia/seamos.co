@@ -98,25 +98,17 @@ class Poll < ApplicationRecord
     closing_date < Date.current
   end
 
-  def published_debates
-    debates.where(published: true)
-  end
-
-  def import_csv
-    # TODO: csv reader
-    # format: email1, email2, ... ,emailN
-    raise NotImplementedError
-  end
-
   def set_tags(tag_list)
     tags << Tag.where(name: tag_list.split(','))
   end
 
   def remaining_time_in_seconds
-    if closing_hour && closing_date == Date.current
+    if closing_hour && closing_hour != "" && closing_date == Date.current
       Time.zone.parse(closing_hour) - Time.zone.now
+    elsif closing_date >= Date.current
+      ( closing_date - Date.current ) * 1.days + 1.days
     else
-      closing_date - Date.current + 1.days
+      ( closing_date - Date.current ) * 1.days
     end
   end
 

@@ -10,7 +10,7 @@ function getDays(remaining) {
   return <span> quedan {remainingDays} días</span>;
 }
 const Poll = (props) => {
-  const { id, title, description, summary, poll_image, tag, color, tag_name, politician } = props;
+  const { id, title, is_closed, summary, poll_image, tag, color, tag_name, politician } = props;
   let tagColor = 'none';
   if (tag) {
     tagColor = tag.color;
@@ -27,9 +27,10 @@ const Poll = (props) => {
     <Link to={`/poll/${id}`} style={{ textDecoration: 'none' }}>
       <div id='poll-component'>
         <div className='poll-image-container'>
-
             <img alt="poll" src={poll_image} />
-
+        </div>
+        <div className='closed-ribbon' style={{ display: `${is_closed ? 'auto' : 'none'}` }}>
+          Propuesta Cerrada
         </div>
         <div className='poll-title'>
           <span>
@@ -58,7 +59,7 @@ const Poll = (props) => {
               className='btn button btn-plus-read'
               style={{ backgroundColor: tagColor }}
             >
-              VOTA
+              {is_closed ? 'RESULTADOS' : 'VOTA'}
             </Link>
           </div>
         </div>

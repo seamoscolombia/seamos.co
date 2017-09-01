@@ -10,12 +10,33 @@
   border: 2px solid gainsboro
   padding-bottom: 12px
   @media screen and (max-width: $break-medium)
-    width: 340px
+    width: 300px
     display: block
     margin: 0
     margin-bottom: 70px
-    padding: 0 10px
     top: 24px
+  .closed-ribbon
+    width: 100%
+    display: flex
+    align-items: center
+    background-color: gainsboro
+    justify-content: center
+    height: 62px
+    font-family: 'RobotoBold'
+    color: #44424c
+    padding-left: 60px
+    font-size: 22px
+    position: absolute
+    top: 120px
+    background-image: url(asset_path('closed-icon.png'))
+    background-size: 50px
+    background-repeat: no-repeat
+    background-position-x: 45px
+    background-position-y: center
+    @media screen and (max-width: $break-medium)
+      padding-left: 22px
+      background-position-x: 25px
+      top: 60px
   .poll-image-container
     height: 300px
     position: relative
@@ -25,7 +46,7 @@
     align-items: center
     justify-content: center
     @media screen and (max-width: $break-medium)
-      width: 90%
+      height: 190px
     img
       min-height: 330px
       max-height: 340px
@@ -79,7 +100,6 @@
     padding-top: 6px
     @media screen and (max-width: $break-medium)
       font-size: 14px
-      margin-bottom: 30px
       max-height: 80px
   .poll-infos-container
     position: relative
@@ -107,15 +127,15 @@
       height: 46px
       .poll-tag-name
         color: #44424c
-        font-size: 25px
+        font-size: 20px
         line-height: 23px
-        width: 60%
+        width: 53%
         text-align: left
         @media screen and (max-width: $break-medium)
           font-size: 17px
       .btn-plus-read
         color: white
-        font-size: 20px
+        font-size: 15px
         line-height: 15px
         float: right
         font-family: "HKNovaBold"
@@ -126,11 +146,11 @@
         right: 14px
         @media screen and (max-width: $break-medium)
           margin-right: 0
-          font-size: 14px
+          font-size: 12px
           padding: 11px
           position: absolute
           right: 0
-          bottom: 7px
+          bottom: 11px
           line-height: 0
 
       .separator
