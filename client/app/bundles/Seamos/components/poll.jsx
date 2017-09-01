@@ -26,10 +26,18 @@ const Poll = (props) => {
   return (
     <Link to={`/poll/${id}`} style={{ textDecoration: 'none' }}>
       <div id='poll-component'>
+        <div className='poll-image-container'>
+
+            <img alt="poll" src={poll_image} />
+
+        </div>
         <div className='poll-title'>
           <span>
             {title}
           </span>
+        </div>
+        <div className='poll-description'>
+          {summary}
         </div>
         <div className='politician-info'>
           <div className='picture-container'>
@@ -39,17 +47,7 @@ const Poll = (props) => {
             {politician.full_name}
           </div>
         </div>
-        <div className='poll-image-container'>
-
-            <img alt="poll" src={poll_image} />
-
-        </div>
         <div className='poll-infos-container'>
-          <Link to={`/poll/${id}`} className='poll-info'>
-              <div className='poll-description'>
-                {summary}
-              </div>
-          </Link>
           <div className='poll-details'>
             <div className='poll-tag-name'>
               {tagName}
