@@ -46,8 +46,6 @@ class PollsController < ApplicationController
       end
       @poll.totals = totals_hash.to_s
       @poll.save!
-
-      # publish_facebook(@poll)
     end
     # ActionCable.server.broadcast 'polls_channel', 'changed'
     flash[:success] = I18n.t(:accion_exitosa)
@@ -186,7 +184,7 @@ class PollsController < ApplicationController
   private
 
   def bind_links
-    @poll.external_links.destroy_all if @poll.external_links.present?
+    @poll.external_links.destroy_all if @poll.external_links.present? && links_param != ""
     links_param.split(',').map(&:strip).uniq.each do |url|
       if url.length > 4
         ExternalLink.create!(url: url, poll: @poll)
@@ -227,20 +225,6 @@ class PollsController < ApplicationController
   def set_politician
     @user = User.find_by(id: params[:politician_id])
     ( @user.present? && @user.politico? ) ? @politician = @user : @politician = nil
-  end
-
-  def publish_facebook(poll)
-    users_graph = Koala::Facebook::API.new(session[:fb_token])
-    tvtd_page_token = users_graph.get_page_access_token(Rails.application.secrets.tvtd_page_id.to_s)
-    logger.debug "Token in publish_facebook: #{tvtd_page_token} "
-    page_graph = Koala::Facebook::API.new(tvtd_page_token)
-    logger.debug "page_graph in publish_facebook: #{page_graph} "
-    page_graph.put_connections(
-      Rails.application.secrets.tvtd_page_id.to_s,
-      'feed',
-      message: poll.title,
-      link: (polls_url + "##{poll.id}")
-    )
   end
 
   def tags_param
