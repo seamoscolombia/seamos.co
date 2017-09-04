@@ -4,7 +4,7 @@ json.user do
   json.full_name @user.full_name
   json.short_name "#{@user.names}  #{@user.first_surname}"
   json.birthplace @user.birthplace
-  json.age ((Time.now - @user.birthday.to_time)/(60*60*24*365)).floor
+  json.age ((Time.now - @user.birthday.to_time)/(60*60*24*365)).floor if @user.birthday
   json.organization @user.organization
   json.bio @user.bio
   json.picture @user.admin_photo.url
@@ -23,14 +23,14 @@ json.user do
       json.poll_image poll.poll_image.url
       json.vote_count poll.votes.size
       json.remaining poll.remaining_time_in_seconds
+      json.is_closed poll.closed?
       json.tag do
         json.color poll.tags.first.tag_color
       end
       json.politician do
-        json.id poll.user.id
-        json.full_name poll.user.full_name
-        json.picture url + poll.user.admin_photo.url if poll.user.admin_photo.url
-        # json.picture "${url}${politician_profile_picture}"
+        json.id @user.id
+        json.full_name @user.full_name
+        json.picture url + @user.admin_photo.url if @user.admin_photo.url
       end
     end
   end
@@ -49,8 +49,4 @@ json.user do
     end
   end
   json.authenticity_token form_authenticity_token
-end
-
-def age(birthday)
-
 end

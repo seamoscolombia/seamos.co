@@ -1,3 +1,4 @@
+<%= tinymce_assets %>
 <%= form_for(poll, html: { multipart: true } ) do |f| %>
 <%= render 'shared/mensajes_de_error',  object: f.object %>
 
@@ -19,7 +20,7 @@
 
 <div class="field description">
     <%= f.label :description %>
-    <%= f.text_area :description, id: 'poll-description',class: 'form-control', maxlength: 3000 %>
+    <%= f.text_area :description, id: 'poll-description',class: 'form-control tinymce', maxlength: 3000 %>
     <label id='counter-label' class='char-left'>3000</label>
 </div>
 
@@ -30,15 +31,15 @@
 
 <%= f.label "Enlaces Externos (opcionales)" %>
 <div>
- <input id="link-1" type="text" class="form-control extlink" placeholder="Enlace externo 1">
+ <input id="link-1" type="text" class="form-control extlink" placeholder="Enlace externo 1" value="<%= (poll.external_links[0].present? ? poll.external_links[0].url : '') %>" >
 </div>
 
 <div>
- <input id="link-2" type="text" class="form-control extlink" placeholder="Enlace externo 2">
+ <input id="link-2" type="text" class="form-control extlink" placeholder="Enlace externo 2" value="<%= (poll.external_links[1].present? ? poll.external_links[1].url : '') %>" >
 </div>
 
 <div>
- <input id="link-3" type="text" class="form-control extlink" placeholder="Enlace externo 3">
+ <input id="link-3" type="text" class="form-control extlink" placeholder="Enlace externo 3" value="<%= (poll.external_links[2].present? ? poll.external_links[2].url : '') %>" >
 </div>
 
 <div class="field" style="display: none">
@@ -65,6 +66,11 @@
 <div class="field">
     <%= f.label :closing_date %>
     <input type="text" value="<%= poll.closing_date %>" data-provide='datepicker' data-date-language="es" data-date-autoclose="true" data-date-format="yyyy/mm/dd" class="input-sm form-control" name="poll[closing_date]"/>
+</div>
+
+<div class="field">
+    <%= f.label "Hora de cierre (valor por defecto: 11:59 PM)" %>
+    <%= f.time_field :closing_hour, class: 'form-control', value: poll.closing_hour %>
 </div>
 
 <div class="field">
@@ -103,3 +109,4 @@
         optionsContainer.append(myHTML);
     }
 </script>
+<%= tinymce %>

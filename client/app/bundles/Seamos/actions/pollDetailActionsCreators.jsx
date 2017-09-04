@@ -41,3 +41,15 @@ export const votePoll = ({ voteTypeId, authenticityToken, poll }) => (dispatch) 
     console.log(error);
   })
 );
+
+export const chechVotedPol = (userId, poll) => (dispatch) => {  
+  axios.get(`${URL}/check_vote?user_id=${userId}&poll_id=${poll.id}`)
+  .then(response => {
+    poll.user_already_voted = response.data.already_voted;
+    poll.prevent_loop = false;
+    dispatch(updatePoll(poll));
+  })
+  .catch(error => {
+    console.error(error);
+  });
+};

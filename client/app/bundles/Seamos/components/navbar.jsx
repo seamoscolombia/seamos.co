@@ -58,6 +58,7 @@ const Navbar = ({ session, user }) => (
           data-target='.side-collapse'
           data-target-2='.side-collapse-container'
           type='button'
+          style={{ top: '0' }}
         >
           <span className='icon-bar' />
           <span className='icon-bar' />

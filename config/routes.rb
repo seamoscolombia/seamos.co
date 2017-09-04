@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   get '/auth/:provider/callback', to: 'sessions#create'
+  get '/check_session', to: 'sessions#show', format: 'json'
   delete '/sessions', to: 'sessions#destroy', as: 'session'
   delete '/destroy_facebook_session', to: 'sessions#destroy_facebook_session'
   post '/sessions', to: 'sessions#create', format: 'json'
@@ -27,10 +28,12 @@ Rails.application.routes.draw do
   patch 'debate/:id', to: 'debates#publish', as: :publish_debate
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
   get 'polls/closed', to: 'polls#index_closed', format: 'json'
+  get 'check_vote', to: 'votes#check_vote', format: 'json'
 
   resources :polls do
     get 'last', on: :collection
     get 'voted', on: :collection
+    get 'search', on: :collection, to: 'polls#search'
     resources :debates, on: :collection
     get '/debates/:id/change_debate_state', to: 'debates#change_debate_state', as: :change_debate_state
   end
@@ -51,7 +54,8 @@ Rails.application.routes.draw do
     get '/', to: 'sessions#new', as: :login
     post '/sessions', to: 'sessions#admin_create'
     get 'validate-users', to: 'users#index'
-    resources 'dashboard', only: :index
+    resources 'dashboard', only: [:index]
+    get '/dashboard/stats', to: 'dashboard#stats'
   end
 
   # mount ActionCable.server => '/cable'

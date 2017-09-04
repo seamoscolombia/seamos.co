@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import { ShareButtons } from 'react-share';
 import { Link } from 'react-router-dom';
 import CountDown from '../../containers/countdownContainer';
@@ -8,6 +9,8 @@ import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
 import { PRODUCTION_URL } from '../../constants';
+
+import FacebookLogin from '../../containers/facebookLoginContainer';
 
 
 const shareUrl = `${PRODUCTION_URL}/facebookob/?id=`;
@@ -21,6 +24,8 @@ const lessInfoStyle = { maxHeight: 9999, overflow: 'none' };
 const statusActiveStyle = { backgroundColor: 'yellow' };
 const statusInactiveStyle = { backgroundColor: 'gainsboro' };
 
+
+
 function getColorDependingOnTime(initial_time, remaining) {
   const startColor = '00FF92';
   const endColor = 'ff0000';
@@ -30,10 +35,14 @@ function getColorDependingOnTime(initial_time, remaining) {
 
 function getDays(remaining) {
   const remainingDays = ((remaining / 3600) / 24);
-  if (remainingDays <= 0) {
+  if (remainingDays < 0) {
     return <span> propuesta cerrada</span>;
+  } else if (remaining < 3600 && remaining > 0) {
+    return <span> faltan {Math.round(remaining / 60)} minutos</span>;
+  } else if (remaining < 86400) {
+    return <span> faltan {Math.round(remaining / 3600)} horas</span>;
   }
-  return <span> faltan {remainingDays} días</span>;
+  return <span> faltan {Math.round(remainingDays)} días</span>;
 }
 
 function externalLinks(links) {
@@ -50,7 +59,7 @@ function externalLinks(links) {
   );
 }
 
-function voteButton(pollType, voteTypes, voteAction) {
+function voteButton(pollType, voteTypes, voteAction, session) {
   switch (pollType) {
     case 'signing': //2
       return (<SingleButton
@@ -58,13 +67,22 @@ function voteButton(pollType, voteTypes, voteAction) {
         onClick={() => { voteAction(voteTypes.id); }}
       />);
     default:
-      return voteTypes.map(voteType =>
-        <SingleButton
-          key={`${voteType.name}`}
-          name={voteType.name}
-          onClick={() => { voteAction(voteType.id); }}
-        />
-      );
+      if (!session.authenticityToken) {
+        return voteTypes.map(voteType =>
+          <FacebookLogin
+            key={`${voteType.name}`} fbclassName='btn single-button non-voted-button'
+            fbText={voteType.name}
+          />
+        );
+      } else {
+        return voteTypes.map(voteType =>
+          <SingleButton
+            key={`${voteType.name}`}
+            name={voteType.name}
+            onClick={() => { voteAction(voteType.id); }}
+          />
+        );
+      }
   }
 }
 
@@ -115,118 +133,115 @@ const PollDetail = ({
                       description, objective, vote_count,
                       user_already_voted, links, politician,
                       poll_type, moreInfo, setMoreInfo, vote_types,
-                      voteAction, initial_time, tag, status, summary
+                      voteAction, initial_time, tag, status, summary, session
                     }) => (
-    <section id='poll-detail'>
-      <div className='container'>
-        <header className='row'>
-          <p className='col-sm-12 poll-title'>
-            {title}
-          </p>
-        </header>
-        <section id='politician' className='row'>
-          <img
-            src={getPicture(politician)}
-            role='presentation'
-            alt='politician'
-          />
-          <div id='politician-info'>
-            <Link
-              id='author'
-              to={`/proponents/${politician.id}`}
-            > {politician.full_name}
-            </Link>
-            <div id='org'> {politician.organization} </div>
-          </div>
-        </section>
-        <div className='share-wrapper'>
-          <span className='share-this'> COMPARTIR: </span>
-            <FacebookShareButton
-              url={shareUrl + id}
-              className="network__share-button"
-            >
-              <a
-                className='fa fa-facebook'
-                style={{display: 'block'}}
-                rel='noopener noreferrer'
-              >
-              </a>
-                <br />
-            </FacebookShareButton>
-            <TwitterShareButton
-              url={shareUrl + id}
-              via='seamos'
-              title={shareTitle(user_already_voted, title)}
-              hashtags={['seamOSelcambio']}
-              className="network__share-button"
-            >
-              <a
-                className='fa fa-twitter'
-                style={{display: 'block'}}
-                rel='noopener noreferrer'
-              >
-              </a>
-                <br />
-            </TwitterShareButton>
+    <div>
+      <section id='poll-detail'>
+        <div className="top-color-bar" style={{ backgroundColor: tag.color }} >
+          <div className="tag-name"> {tag.name} </div>
         </div>
-        <section id='poll' className='row'>
-          <div id='left-col' className="col-sm-6">
+        <div className='container'>
+          <header className='row'>
+            <p className='col-sm-12 poll-title'>
+              {title}
+            </p>
+          </header>
+          <section id='politician' className='row'>
             <img
-              id='poll-thumbnail'
-              src={image}
+              src={getPicture(politician)}
               role='presentation'
-              alt='poll thumbnail'
+              alt='politician'
             />
-            <p id='objective' className='row' style={{display: 'none'}}><strong> Objetivo: </strong> {objective}</p>
-            <div id='poll-states'>
-              <div className='state state-1' style={(remaining > 0 && status === 0) ? statusActiveStyle : statusInactiveStyle}> Votación abierta </div>
-              <div className='state state-2' style={(remaining > 0 && status === 1) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
-              <div className='state state-3' style={(remaining > 0 && status === 2) ? statusActiveStyle : statusInactiveStyle}> Proyecto de acuerdo </div>
-              <div className='state state-4' style={(remaining > 0 && status === 3) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
-              <div className='state state-5' style={remaining < 0 ? statusActiveStyle : statusInactiveStyle}> Propuesta Cerrada </div>
+            <div id='politician-info'>
+              <Link
+                id='author'
+                to={`/proponents/${politician.id}`}
+              > {politician.full_name}
+              </Link>
+              <div id='org'> {politician.organization} </div>
             </div>
-            {externalLinksTitle(links)}
-            <div className='external-links-container'>
-              {externalLinks(links)}
-            </div>
+          </section>
+          <div className='share-wrapper'>
+            <span className='share-this'> COMPARTIR: </span>
+              <FacebookShareButton
+                url={shareUrl + id}
+                className="network__share-button"
+              >
+                <a
+                  className='fa fa-facebook'
+                  style={{display: 'block'}}
+                  rel='noopener noreferrer'
+                >
+                </a>
+                  <br />
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={shareUrl + id}
+                via='seamos'
+                title={shareTitle(user_already_voted, title)}
+                hashtags={['seamOSelcambio']}
+                className="network__share-button"
+              >
+                <a
+                  className='fa fa-twitter'
+                  style={{display: 'block'}}
+                  rel='noopener noreferrer'
+                >
+                </a>
+                  <br />
+              </TwitterShareButton>
           </div>
-          <div className="col-sm-6">
-            <div className="row">
-              <div className="col-sm-12">
-                <div className="row">
-                  <div className='summary'> {summary} </div>
-                  <div className="col-xs-12 col-sm-12 buttons-wrapper">
-                    {user_already_voted ? //eslint-disable-line
-                      votedButton(poll_type, vote_types, vote_count) :
-                      voteButton(poll_type, vote_types, voteAction)
-                    }
+          <section id='poll' className='row'>
+            <div id='left-col' className="col-sm-6">
+              <img
+                id='poll-thumbnail'
+                src={image}
+                role='presentation'
+                alt='poll thumbnail'
+              />
+              <p id='objective' className='row' style={{display: 'none'}}><strong> Objetivo: </strong> {objective}</p>
+              <div id='poll-states'>
+                <div className='state state-1' style={(remaining > 0 && status === 0) ? statusActiveStyle : statusInactiveStyle}> Votación abierta </div>
+                <div className='state state-2' style={(remaining > 0 && status === 1) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
+                <div className='state state-3' style={(remaining > 0 && status === 2) ? statusActiveStyle : statusInactiveStyle}> Proyecto de acuerdo </div>
+                <div className='state state-4' style={(remaining > 0 && status === 3) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
+                <div className='state state-5' style={remaining < 0 ? statusActiveStyle : statusInactiveStyle}> Propuesta Cerrada </div>
+              </div>
+              {externalLinksTitle(links)}
+              <div className='external-links-container'>
+                {externalLinks(links)}
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div className="row">
+                <div className="col-sm-12">
+                  <div className="row">
+                    <div className='summary'> {summary} </div>
+                    <div className="col-xs-12 col-sm-12 buttons-wrapper">
+                      {user_already_voted || remaining <= 0 ?
+                        votedButton(poll_type, vote_types, vote_count) :
+                        voteButton(poll_type, vote_types, voteAction, session)
+                      }
+                    </div>
+                    <div className='col-xs-12 col-sm-12 poll-details'>
+                        { getDays(remaining) }
+                    </div>
                   </div>
-                  <div className='col-xs-12 col-sm-12 poll-details'>
-                      { getDays(remaining) }
+                </div>
+                <div className="poll-description-container col-sm-12">
+                  <div className="poll-static-title"> La Propuesta: </div>
+                  <div dangerouslySetInnerHTML={{ __html: description }} className="poll-description" style={lessInfoStyle}>
                   </div>
                 </div>
               </div>
-              <div className="poll-description-container col-sm-12">
-                <div className="poll-static-title"> La Propuesta: </div>
-                <div className="poll-description" style={(true || moreInfo || (remaining < 0)) ? lessInfoStyle : moreInfoStyle}>
-                  {description}
-                </div>
-              </div>
-              <div className="col-sm-12">
-                { (remaining < 0 || true) ? <span /> :
-                    <button onClick={setMoreInfo} id='plus-info'>
-                      {moreInfo ? '-INFO' : '+INFO'}
-                    </button>
-                }
-              </div>
             </div>
-          </div>
-        </section>
-      </div>
-      <div id='related-polls'>
-        <RelatedPolls tagId={tag.id} pollId={id} />
-      </div>
-    </section>
+          </section>
+        </div>
+        <div id='related-polls'>
+          <RelatedPolls tagId={tag.id} pollId={id} />
+        </div>
+      </section>
+    </div>
   );
 PollDetail.propTypes = {
   id: PropTypes.number.isRequired,
@@ -237,14 +252,14 @@ PollDetail.propTypes = {
   objective: PropTypes.string.isRequired,
   remaining: PropTypes.number.isRequired,
   vote_count: PropTypes.number.isRequired,
-  poll_type: PropTypes.string.isRequired,
   user_already_voted: PropTypes.bool.isRequired,
   links: PropTypes.array.isRequired,
   politician: PropTypes.object.isRequired,
   moreInfo: PropTypes.bool,
   tag: PropTypes.object.isRequired,
   vote_types: PropTypes.array,
-  voteAction: PropTypes.func.isRequired
+  voteAction: PropTypes.func.isRequired,
+  session: PropTypes.object
 };
 
 export default PollDetail;

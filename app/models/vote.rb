@@ -18,7 +18,7 @@ class Vote < ApplicationRecord
   validate :vote_date, on: :create
 
   def vote_date
-    if poll.closing_date <= Date.today
+    if poll.closing_date < Date.current
       errors.add(:base, I18n.t( :closed_poll, scope: :votes))
     end
   end

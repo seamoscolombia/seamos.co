@@ -50,8 +50,9 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = filter_users_option
-    @users_filter = params[:users_filter_select]
+    @users = User.all.page(params[:page]).per(4)
+    @users = @users.by_role_type(params[:users_filter_select]).page(params[:page]).per(4) if params[:users_filter_select] && params[:users_filter_select] != ''
+    @users = @users.search(params[:search_term]).page(params[:page]).per(4) unless params[:search_term].blank?
   end
 
   def new
@@ -70,22 +71,9 @@ class UsersController < ApplicationController
   def politician_profile
     redirect_to root_path unless @user.politico?
     user_polls = @user.polls
-    @polls = user_polls.open
+    @polls = user_polls
     @closed_polls = user_polls.closed
   end
-  #
-  # def update
-  #   @user.transaction do
-  #     @user.attributes = user_params
-  #     @user.save!
-  #   end
-  #   flash[:notice] = I18n.t(:accion_exitosa)
-  #   redirect_to users_path
-  # rescue ActiveRecord::RecordInvalid => e
-  #   puts "update user: #{e}"
-  #   flash[:danger] = " #{e}"
-  #   redirect_to edit_users_path @user
-  # end
 
   def update
     @user.transaction do
@@ -132,21 +120,6 @@ class UsersController < ApplicationController
       localities << res
     end
     localities.join(", ")
-  end
-
-  def filter_users_option
-    case params[:users_filter_select]
-    when '1'
-      User.all.page(params[:page]).per(4)
-    when '0'
-      User
-        .where('approved= ? and role_type!= ?', false, 2)
-        .page(params[:page]).per(4)
-    else
-      User
-        .where('approved= ? and role_type!= ?', false, 2)
-        .page(params[:page]).per(4)
-    end
   end
 
   def set_user

@@ -311,7 +311,7 @@ es:
       csv_field: Archivo CSV
       tags_picker: Tema
       document_field: Documento de la propuesta
-      has_image: La propuesta ya tiene la imagen %{filename}. Si desea cambiar, por favor escoja otra. En caso contrario dejarla vacia.
+      has_image: La propuesta ya tiene la imagen %{filename}. Si desea cambiar, por favor escoja otra. En caso contrario deje este campo vacío.
       has_document: La propuesta ya tiene el documento %{filename}. Si desea cambiarlo, por favor escoja otro. En caso contrario deje el campo vacío.
       list_of_options: Lista de opciones
       new_option: Ingrese una opción
@@ -325,7 +325,7 @@ es:
         - Todas
         - Abiertas
         - Cerradas
-      no_polls_available: Por el momento no hay propuestas para mostrar.
+      no_polls_available: No hay propuestas para mostrar.
       "true": Anónima
     new:
       create: Crear
