@@ -18,6 +18,7 @@ json.filtered_by_tag do
       json.vote_count poll.votes.size
       json.remaining poll.remaining_time_in_seconds
       json.summary poll.summary
+      json.is_closed poll.closed?
       if current_user
         json.already_voted current_user.already_voted?(poll)
       else
