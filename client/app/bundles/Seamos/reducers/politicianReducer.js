@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   short_name: null,
   organization: null,
   bio: null,
-  polls: [ {
+  polls: [{
       id: null,
       title: null,
       description: null,
