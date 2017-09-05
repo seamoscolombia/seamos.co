@@ -20,7 +20,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case UPDATE_POLL:
-      return Object.assign({}, action.poll);
+      return Object.assign({}, ...state, action.poll);
     default:
       return state;
   }

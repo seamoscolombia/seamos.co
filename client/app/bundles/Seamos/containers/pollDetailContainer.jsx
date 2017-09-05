@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PollDetail from '../components/pollDetail';
-import { getPoll, votePoll, chechVotedPol } from '../actions';
+import { getPoll, votePoll, chechVotedPol, validateSession } from '../actions';
 
 
 // Which part of the Redux global state does our component want to receive as props?
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
     return { poll, session, user };
 };
 
-const mapDispatchToProps = { getPoll, votePoll, chechVotedPol };
+const mapDispatchToProps = { getPoll, votePoll, chechVotedPol, validateSession };
 
 class PollsDetailContainer extends Component {
     constructor(props) {
@@ -22,6 +22,7 @@ class PollsDetailContainer extends Component {
     }
 
     componentWillMount() {
+        this.props.validateSession();        
         this.props.getPoll({
             pollId: this.props.match.params.pollId,
             errCallback: () => this.props.history.push('/404')
@@ -54,14 +55,15 @@ class PollsDetailContainer extends Component {
 
     voteAction(id) {
         const { poll, session, votePoll } = this.props;
-        if (session.authenticityToken) {
+
+        if (session.logged) {
             votePoll({
                 voteTypeId: id,
                 authenticityToken: session.authenticityToken,
                 poll
             });
         } else {            
-            //alert('Por favor inicie sesión antes de votar'); //eslint-disable-line
+            alert('Por favor inicie sesión antes de votar'); //eslint-disable-line
         }
     }
 

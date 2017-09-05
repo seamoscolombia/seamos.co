@@ -5,6 +5,7 @@ class VotesController < ApplicationController
 
   def create
     vote(http_params)
+    render json: { message: "vote registered" }, status: :ok
   end
 
   def check_vote
@@ -27,7 +28,6 @@ class VotesController < ApplicationController
   end
 
   def vote(code)
-    Rails.logger.info('')
     vote_type = nil
     @poll.transaction do
       vote_type = VoteType.find_by(id: code)

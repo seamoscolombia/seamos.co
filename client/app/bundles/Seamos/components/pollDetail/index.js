@@ -34,10 +34,14 @@ function getColorDependingOnTime(initial_time, remaining) {
 
 function getDays(remaining) {
   const remainingDays = ((remaining / 3600) / 24);
-  if (remainingDays <= 0) {
+  if (remainingDays < 0) {
     return <span> propuesta cerrada</span>;
+  } else if (remaining < 3600 && remaining > 0) {
+    return <span> faltan {Math.round(remaining / 60)} minutos</span>;
+  } else if (remaining < 86400) {
+    return <span> faltan {Math.round(remaining / 3600)} horas</span>;
   }
-  return <span> faltan {remainingDays} días</span>;
+  return <span> faltan {Math.round(remainingDays)} días</span>;
 }
 
 function externalLinks(links) {
@@ -62,7 +66,8 @@ function voteButton(pollType, voteTypes, voteAction, session) {
         onClick={() => { voteAction(voteTypes.id); }}
       />);
     default:
-      if (!session.authenticityToken) {
+      console.log(session);
+      if (!session.logged) {
         return voteTypes.map(voteType =>
           <FacebookLogin
             key={`${voteType.name}`} fbclassName='btn single-button non-voted-button'
@@ -132,6 +137,9 @@ const PollDetail = ({
                     }) => (
     <div>
       <section id='poll-detail'>
+        <div className="top-color-bar" style={{ backgroundColor: tag.color }} >
+          <div className="tag-name"> {tag.name} </div>
+        </div>
         <div className='container'>
           <header className='row'>
             <p className='col-sm-12 poll-title'>
@@ -210,7 +218,7 @@ const PollDetail = ({
                   <div className="row">
                     <div className='summary'> {summary} </div>
                     <div className="col-xs-12 col-sm-12 buttons-wrapper">
-                      {user_already_voted ? //eslint-disable-line
+                      {user_already_voted || remaining <= 0 ?
                         votedButton(poll_type, vote_types, vote_count) :
                         voteButton(poll_type, vote_types, voteAction, session)
                       }
@@ -244,7 +252,6 @@ PollDetail.propTypes = {
   objective: PropTypes.string.isRequired,
   remaining: PropTypes.number.isRequired,
   vote_count: PropTypes.number.isRequired,
-  poll_type: PropTypes.string.isRequired,
   user_already_voted: PropTypes.bool.isRequired,
   links: PropTypes.array.isRequired,
   politician: PropTypes.object.isRequired,

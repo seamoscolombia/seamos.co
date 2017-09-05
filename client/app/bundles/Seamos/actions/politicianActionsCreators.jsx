@@ -12,6 +12,7 @@ export const setPolitician = (politician) => ({
 export const getPolitician = (id) => (dispatch) => (
   axios.get(`${URL}/proponents/${id}.json`)
     .then(response => {
+      console.log(response);
       dispatch(setPolitician(response.data.user));
     })
     .catch(e => {

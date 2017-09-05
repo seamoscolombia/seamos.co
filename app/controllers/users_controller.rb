@@ -71,7 +71,7 @@ class UsersController < ApplicationController
   def politician_profile
     redirect_to root_path unless @user.politico?
     user_polls = @user.polls
-    @polls = user_polls.open
+    @polls = user_polls
     @closed_polls = user_polls.closed
   end
 

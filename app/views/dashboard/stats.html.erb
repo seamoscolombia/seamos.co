@@ -27,6 +27,7 @@
   </div>
   <%= render partial: "poll_stats", locals: {polls: @polls} %>
   <div class="row">
-    <h5 style="text-align: center"> Hora en el servidor: <%=Time.now.strftime("%H:%M:%S")%> | Hora local: <%=(Time.now - 5.hours).strftime("%H:%M:%S")%> </h5>
+    <h5 style="text-align: center"> Hora en el servidor: <%=Time.now.strftime("%H:%M:%S")%> | Hora local: <%=Time.zone.now.strftime("%H:%M:%S")%> </h5>
+    <h5 style="text-align: center"> Fecha en el servidor: <%=Date.today%> | Fecha local: <%= Date.current.strftime("%Y-%m-%d") %> </h5>
   </div>
 </div>

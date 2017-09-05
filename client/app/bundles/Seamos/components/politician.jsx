@@ -8,42 +8,73 @@ const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
 const Politician = (props) => {
   return (
     <div id='politician-profile'>
+      <div id='top-color-banner' />
       <div id='profile' className='container'>
-        <header className="media">
-          <div className="row profile-info-container">
-            <div className="col-sm-1 col-xs-12 media-left">
-              <img src={props.picture} className='media-object' role='presentation' />
-            </div>
-            <div className="media-body col-sm-10 col-xs-12">
-              <h4 className="media-heading">{props.short_name}</h4>
-              <h5 className="media-heading organization">{props.organization}</h5>
-              <h6 className="media-heading" style={props.moreInfo ? lessInfoStyle : moreInfoStyle}>{props.bio}</h6>
+        <div className='row top'>
+          <div className='col-md-2 col-12 picture-wrapper-wrapper'>
+            <div className='picture-wrapper'>
+              <img src={props.picture} alt='politician' />
             </div>
           </div>
-          <div style={{ textAlign: 'center' }}>
-            <a onClick={props.setMoreInfo} id='plus-info'>
-              {props.moreInfo ? '-INFO' : '+INFO'}
-            </a>
-          </div>
-        </header>
-        <br />
-        <div id='profile-container' className='row' >
-          <section className='my-participations col-sm-6'>
-            <div className='title'>
-              <span>PROPUESTAS VIGENTES</span>
+          <div className='col-md-8 basic-info'>
+            <div className='basic-info-wrapper'>
+              <div className=''>
+                <h1> {props.short_name} </h1>
+              </div>
+              <div className=''>
+                <h1> {props.organization} </h1>
+              </div>
             </div>
-            <Polls polls={props.polls} />
-            {/* <div className="btn-create-poll-container">
-               <button className="btn btn-create-poll"> Agregar Propuesta </button>
-            </div> */}
-          </section>
+          </div>
+          <div className='col-md-2'>
+          </div>
+        </div>
+        <div className='row mid'>
+          <div className='col-md-4'>
+            <div className='cv-title'>
+              Formación
+            </div>
+            <div className='further-studies'>
+              <td dangerouslySetInnerHTML={{ __html: props.further_studies }} />
+            </div>
+            <div className='cv-title'>
+              Carrera Política
+            </div>
+            <div className='career'>
+              <div className='cv-subtitle'>
+                Votos conseguidos
+              </div>
+              <div className='achieved-votes'>
+                {props.last_vote_count}
+              </div>
+              <div className='cv-subtitle'>
+                Las dos localidades con mayor representación
+              </div>
+              <div className='major-representation-localities'>
+                {props.localities}
+              </div>
+              <div className=''>
+                <div className='commission'>
+                  {props.commission}
+                </div>
+              </div>
+            </div>
 
-          <section className='my-participations col-sm-6'>
-            <div className='title'>
-              <span> RESULTADOS </span>
+          </div>
+          <div className='col-md-8'>
+            <div className='row'>
+              <div className='col-md-12'>
+                <h2 className='hide-on-desktop'> Biografía </h2>
+                <p> {props.bio} </p>
+              </div>
             </div>
-            <Polls polls={props.closed_polls} />
-          </section>
+            <div className='row'>
+              <div className='col-md-12'>
+                <h1> Propuestas </h1>
+                <Polls polls={props.polls} />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -6,7 +6,7 @@ const INITIAL_STATE = {
   short_name: null,
   organization: null,
   bio: null,
-  polls: [ {
+  polls: [{
       id: null,
       title: null,
       description: null,
@@ -32,7 +32,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_POLITICIAN: {
-      return Object.assign({}, action.politician);
+      return Object.assign({}, ...state, action.politician);
     }
     default: return state;
   }
