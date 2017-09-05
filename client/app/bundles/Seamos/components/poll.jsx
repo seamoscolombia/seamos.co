@@ -2,13 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function getDays(remaining) {
-  const remainingDays = ((remaining / 3600) / 24);
-  if (remainingDays <= 0) {
-    return <span> propuesta cerrada</span>;
-  }
-  return <span> quedan {remainingDays} días</span>;
-}
 const Poll = (props) => {
   const { id, title, is_closed, summary, poll_image, tag, color, tag_name, politician } = props;
   let tagColor = 'none';
@@ -53,7 +46,7 @@ const Poll = (props) => {
             <div className='poll-tag-name'>
               {tagName}
             </div>
-            <div className='color-separator' style={{ borderLeft: `5px solid ${tagColor}` }}> </div>
+            <div className='color-separator' style={{ borderLeft: `5px solid ${tagColor}` }} />
             <div
               className='btn button btn-plus-read'
               style={{ backgroundColor: tagColor }}
@@ -70,11 +63,9 @@ const Poll = (props) => {
 Poll.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   poll_image: PropTypes.string.isRequired,
   tag: PropTypes.object.isRequired,
-  vote_count: PropTypes.number.isRequired,
-  remaining: PropTypes.number.isRequired
+  vote_count: PropTypes.number.isRequired
 };
 
 export default Poll;
