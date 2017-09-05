@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import FacebookLogin from 'react-facebook-login';
 import { APP_ID } from '../constants';
 
-import { validateUserSession } from '../actions';
+import { validateUserSession, validateSession } from '../actions';
 
 // const mapStateToProps = state => ({});
-const mapDispatchToProps = { validateUserSession };
+const mapDispatchToProps = { validateUserSession, validateSession };
 
 class FacebookLoginContainer extends Component {
   constructor(props) {
@@ -16,7 +16,10 @@ class FacebookLoginContainer extends Component {
 
   responseFacebook(fbUser) {
     if (fbUser.status !== 'unknown') {
-      this.props.validateUserSession(fbUser);
+      this.props.validateUserSession(fbUser)
+      .then(() => {
+        this.props.validateSession();  
+      });
     }
   }
 

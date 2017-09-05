@@ -2,7 +2,7 @@
 /* eslint-disable window.localStorage */
 
 import axios from 'axios';
-import { ADD_TAGS_ON_USER, DELETE_TAGS_ON_USER, SET_USER, RESET_SESSION, URL } from '../constants';
+import { ADD_TAGS_ON_USER, DELETE_TAGS_ON_USER, SET_USER, RESET_SESSION, URL, IS_LOGGED } from '../constants';
 import { setSession } from './sessionActionsCreators';
 import { getInterests } from './tagsActionsCreators';
 
@@ -106,4 +106,19 @@ export const userInterests = ({ authenticity_token, user_id, tag }) => (dispatch
       console.error(e);
       alert('Por favor inicia sesión nuevamente');
     })
+);
+
+export const checkSession = (logged) => ({
+  type: IS_LOGGED,
+  logged
+});
+
+export const validateSession = () => dispatch => (
+  axios.get(`${URL}/check_session`)
+  .then(response => {
+    dispatch(checkSession(response.data.session_initiated));
+  })
+  .catch(err => {
+    console.log(err);
+  })
 );
