@@ -38,7 +38,7 @@ const Home = ({ session }) => (
           </div>
           <div className='text'>Con un solo click en la plataforma.</div>
           <div className="step-image step-image-1" />
-          {session.authenticityToken ? 
+          {session.logged ? 
             null
             : <FacebookLogin id='fb-login-transparent' fbText='Conéctate con facebook' />
           }

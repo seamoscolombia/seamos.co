@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import ProfileButton from '../containers/profileButtonContainer';
 import LogoutButton from '../containers/logoutButtonContainer';
-import { ToastContainer, toast } from 'react-toastify';
-import { LOGGED_MESSAGE } from '../constants';
+
 
 const Menu = () => (
   [<li key='1' >
@@ -38,10 +37,6 @@ function logout() {
     );
 }
 
-function toastMethod() {
-  toast(LOGGED_MESSAGE);
-}
-
 const Navbar = ({ session, user }) => (
   <header
     id='navbar-client'
@@ -57,19 +52,6 @@ const Navbar = ({ session, user }) => (
           {session.logged && Object.keys(user).length !== 0 ?
             profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='' /> </li>
           }
-        </div>
-        <div>
-          {session.authenticityToken && Object.keys(user).length !== 0 ?
-            toastMethod() : null
-          }
-          <ToastContainer 
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              pauseOnHover
-          />
         </div>
         <button
           className='navbar-toggle pull-right'

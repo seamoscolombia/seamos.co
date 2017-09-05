@@ -66,7 +66,6 @@ function voteButton(pollType, voteTypes, voteAction, session) {
         onClick={() => { voteAction(voteTypes.id); }}
       />);
     default:
-      console.log(session);
       if (!session.logged) {
         return voteTypes.map(voteType =>
           <FacebookLogin
