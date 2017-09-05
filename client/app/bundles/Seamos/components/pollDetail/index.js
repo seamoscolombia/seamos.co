@@ -67,7 +67,8 @@ function voteButton(pollType, voteTypes, voteAction, session) {
         onClick={() => { voteAction(voteTypes.id); }}
       />);
     default:
-      if (!session.authenticityToken) {
+      console.log(session);
+      if (!session.logged) {
         return voteTypes.map(voteType =>
           <FacebookLogin
             key={`${voteType.name}`} fbclassName='btn single-button non-voted-button'

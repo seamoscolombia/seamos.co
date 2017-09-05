@@ -18,7 +18,6 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action.poll);
   switch (action.type) {
     case UPDATE_POLL:
       return Object.assign({}, ...state, action.poll);
