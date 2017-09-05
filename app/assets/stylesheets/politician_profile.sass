@@ -1,6 +1,10 @@
 @import './variables.scss'
 #politician-profile
   $picture-size: 160px
+  .hide-on-desktop
+    display: none
+    @media screen and (max-width: $break-medium)
+      display: block
   #top-color-banner
     height: 150px
     background-color: #eb6157
@@ -24,22 +28,36 @@
       font-size: 19px
       font-family: 'RobotoRegular'
       line-height: 22px
-      margin-top: 24px
+      @media screen and (max-width: $break-medium)
+        text-align: justify
     .top
       margin-bottom: 25px
       .basic-info
         height: $picture-size
+        @media screen and (max-width: $break-medium)
+          height: 100px
+          display: flex
+          justify-content: center
+        h1
+          @media screen and (max-width: $break-medium)
+            text-align: center
+
         .basic-info-wrapper
           position: absolute
           bottom: 10px
-      .picture-wrapper
-        max-width: $picture-size
-        max-height: $picture-size
-        border-radius: 50%
-        overflow: hidden
-        img
-          width: $picture-size
-          height: $picture-size
+      .picture-wrapper-wrapper
+        @media screen and (max-width: $break-medium)
+          display: flex
+          justify-content: center
+          align-items: center
+        .picture-wrapper
+          max-width: $picture-size
+          max-height: $picture-size
+          border-radius: 50%
+          overflow: hidden
+          img
+            width: $picture-size
+            height: $picture-size
     .mid
       .cv-title
         height: 46px
@@ -53,17 +71,23 @@
         padding-left: 20px
       .cv-subtitle
         font-family: 'RobotoRegular'
-        font-size: 21px
+        font-size: 23px
         border-bottom: 2px solid gray
-        padding-bottom: 6px
+        padding: 12px 0
+        font-weight: bold
+        color: #44434c
+        line-height: 1.1em
       .further-studies
-        padding: 20px
-        font-size: 16px
-        color: black
+        padding: 10px
+        color: #44434c
+        p
+          font-family: 'HKNovaRegular'
+          font-size: 24px
+          line-height: 1em
         br
           display: none
       .career
-        padding: 20px
+        padding: 20px 10px
         font-size: 16px
       .achieved-votes
         font-size: 25px
@@ -72,7 +96,51 @@
         display: flex
         align-items: center
         text-align: right
+        background-image: url(asset_path('achieved-votes.png'))
+        min-height: 93px
+        background-repeat: no-repeat
+        justify-content: flex-end
+        background-size: 70px 70px
+        background-position-y: center
+        border-bottom: 2px solid gray
+        color: #3d5062
+      .major-representation-localities
+        font-family: 'RobotoBold'
+        height: 50px
+        display: flex
+        align-items: center
+        text-align: right
+        min-height: 93px
+        background-repeat: no-repeat
+        justify-content: flex-end
+        background-size: 118px 82px
+        background-position-y: center
+        border-bottom: 2px solid gray
+        color: #3d5062
+        font-size: 20px
+        background-image: url(asset_path('localities.png'))
+        padding-left: 30%
+      .commission
+        margin-top: 16px
+        font-size: 23px
+        font-family: 'RobotoRegular'
+        color: #44434c
+      h2
+        @media screen and (max-width: $break-medium)
+          text-align: center
+          font-size: 28px
+          padding-top: 30px
+          padding-bottom: 30px
+      h1
+        @media screen and (max-width: $break-medium)
+          text-align: center
+          padding-top: 30px
     .polls-wrapper
       margin-top: 50px
+      @media screen and (max-width: $break-medium)
+        margin-top: 10px
       #poll-component
-        margin: 0 30px 0 0px
+        margin: 0 30px 30px 0
+        @media screen and (max-width: $break-medium)
+          margin: auto
+          margin-bottom: 35px

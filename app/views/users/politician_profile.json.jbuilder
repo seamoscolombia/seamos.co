@@ -4,7 +4,6 @@ json.user do
   json.full_name @user.full_name
   json.short_name "#{@user.names}  #{@user.first_surname}"
   json.birthplace @user.birthplace
-  json.age ((Time.now - @user.birthday.to_time)/(60*60*24*365)).floor if @user.birthday
   json.organization @user.organization
   json.bio @user.bio
   json.picture @user.admin_photo.url
@@ -18,12 +17,14 @@ json.user do
     json.array! @polls do |poll|
       json.id poll.id
       json.title poll.title
-      json.description poll.description
+      json.summary poll.summary
       json.type poll.poll_type
       json.poll_image poll.poll_image.url
       json.vote_count poll.votes.size
       json.remaining poll.remaining_time_in_seconds
       json.is_closed poll.closed?
+      json.color poll.tags.first.tag_color
+      json.tag_name poll.tags.first.name
       json.tag do
         json.color poll.tags.first.tag_color
       end

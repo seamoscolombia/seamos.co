@@ -63,7 +63,6 @@ const Poll = (props) => {
 Poll.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   poll_image: PropTypes.string.isRequired,
   tag: PropTypes.object.isRequired,
   vote_count: PropTypes.number.isRequired

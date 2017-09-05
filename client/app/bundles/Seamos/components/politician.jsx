@@ -11,7 +11,7 @@ const Politician = (props) => {
       <div id='top-color-banner' />
       <div id='profile' className='container'>
         <div className='row top'>
-          <div className='col-md-2'>
+          <div className='col-md-2 col-12 picture-wrapper-wrapper'>
             <div className='picture-wrapper'>
               <img src={props.picture} alt='politician' />
             </div>
@@ -21,9 +21,6 @@ const Politician = (props) => {
               <div className=''>
                 <h1> {props.short_name} </h1>
               </div>
-              <h2 className=''>
-                {props.birthplace}, {props.age}
-              </h2>
               <div className=''>
                 <h1> {props.organization} </h1>
               </div>
@@ -53,32 +50,27 @@ const Politician = (props) => {
               <div className='cv-subtitle'>
                 Las dos localidades con mayor representación
               </div>
-              <div className='achieved-votes'>
+              <div className='major-representation-localities'>
                 {props.localities}
               </div>
-              <div className='cv-subtitle'>
-                Organizaciones sociales que representa
+              <div className=''>
+                <div className='commission'>
+                  {props.commission}
+                </div>
               </div>
-              <p> {props.represented_organizations}</p>
             </div>
 
           </div>
           <div className='col-md-8'>
             <div className='row'>
               <div className='col-md-12'>
-                <h2> Biografía </h2>
+                <h2 className='hide-on-desktop'> Biografía </h2>
                 <p> {props.bio} </p>
               </div>
             </div>
             <div className='row'>
               <div className='col-md-12'>
-                <h2> Comisión: {props.commission} </h2>
-                <p> {props.initiatives} </p>
-              </div>
-            </div>
-            <div className='row'>
-              <div className='col-md-12'>
-                <h1> Propuestas Abiertas </h1>
+                <h1> Propuestas </h1>
                 <Polls polls={props.polls} />
               </div>
             </div>
