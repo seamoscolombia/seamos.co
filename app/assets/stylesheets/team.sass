@@ -1,5 +1,7 @@
+@import './variables'
 #team
   $square-info-size: 470px
+  $square-info-size-mobile: 270px
   $team-member-size: 200px
   $politician-size: 150px
   .team-banner
@@ -14,23 +16,49 @@
     display: flex
     align-items: center
     justify-content: center
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
   .one
     background-color: #54bfc9
     display: flex
     align-items: flex-end
     height: 390px
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
+    .one-caption
+      height: 390px
+      text-align: center
+      padding-top: 140px
+      font-size: 80px
+      position: absolute
+      top: 0
+      line-height: 1.3em
+      font-weight: bold
+      color: white
+      text-transform: none
+      font-family: "HKNovaBold"
+      @media screen and (max-width: $break-medium)
+        height: 180px
+        font-size: 27px
+        padding-top: 80px
     .left
       background-image: url(asset_path('png_quienes_somos-03.png'))
       height: 262px
       background-size: contain
       background-repeat: no-repeat
       background-position: center
+      @media screen and (max-width: $break-medium)
+        background-image: none
     .right
       background-image: url(asset_path('png_quienes_somos-04.png'))
       height: 262px
       background-size: contain
       background-repeat: no-repeat
       background-position: center
+      @media screen and (max-width: $break-medium)
+        background-image: none
   .two
     background-color: #cd4c45
   .team-members
@@ -90,10 +118,10 @@
       margin: 0 50px
       margin-bottom: 80px
       .photo
-        border-radius: 50%
         width: $politician-size
         height: $politician-size
         background-size: contain
+        margin: auto
       .name
         font-family: 'RobotoBold'
         text-align: center
@@ -108,45 +136,72 @@
       display: block
       height: auto
       .photo
-        background-image: url(asset_path('NICOLAS-FINAL.png'))
+        background-image: url(asset_path('hollman.png'))
     .two
       .photo
-        background-image: url(asset_path('JUANCARLOS-FINAL.png'))
+        background-image: url(asset_path('juan.png'))
     .three
       .photo
-        background-image: url(asset_path('ANDREA-FINAL.png'))
+        background-image: url(asset_path('horacio.png'))
     .four
-      .name
-        color: #44434c
+      color: #333333
       .photo
-        background-image: url(asset_path('DAVID-FINAL.png'))
+        background-image: url(asset_path('lucia.png'))
     .five
       .photo
-        background-image: url(asset_path('ANDRES-FINAL.png'))
+        background-image: url(asset_path('diego.png'))
     .six
       .photo
-        background-image: url(asset_path('ALEX-FINAL.png'))
+        background-image: url(asset_path('angela.png'))
     .seven
       .photo
-        background-image: url(asset_path('JULIANA-FINAL.png'))
+        background-image: url(asset_path('emel.png'))
     .eight
       .photo
-        background-image: url(asset_path('KAREN-FINAL.png'))
+        background-image: url(asset_path('daniel.png'))
     .nine
       .photo
-        background-image: url(asset_path('KAREN-FINAL.png'))
+        background-image: url(asset_path('german.png'))
     .ten
       .photo
-        background-image: url(asset_path('KAREN-FINAL.png'))
+        background-image: url(asset_path('jose.png'))
     .eleven
       .photo
-        background-image: url(asset_path('KAREN-FINAL.png'))
+        background-image: url(asset_path('yefer.png'))
     .twelve
       .photo
-        background-image: url(asset_path('KAREN-FINAL.png'))
+        background-image: url(asset_path('maria.png'))
   .four
     background-color: #c6c6c6
     color: #3d5062
+  .allies
+    padding: 0 170px
+    @media screen and (max-width: $break-medium)
+      padding: 0 40px
+    .ally
+      height: 180px
+      background-repeat: no-repeat
+      background-color: white
+      background-size: 80%
+      background-position: center
+      margin: 0
+      @media screen and (max-width: $break-medium)
+        height: 130px
+    .one
+      background-image: url(asset_path('logos_aliados-01.png'))
+    .two
+      background-image: url(asset_path('logos_aliados-02.png'))
+    .three
+      background-image: url(asset_path('logos_aliados-05.png'))
+    .four
+      background-image: url(asset_path('logos_aliados-04.png'))
+      background-size: 40%
+    .five
+      background-image: url(asset_path('logos_aliados-03.png'))
+    .six
+      background-image: url(asset_path('logos_aliados-06.png'))
+    .seven
+      background-image: url(asset_path('logos_aliados-07.png'))
   .caption
     text-align: center
     font-family: 'RobotoRegular'
@@ -155,6 +210,10 @@
     line-height: 1em
     padding: 73px 0
   .square-info-wrapper
+    @media screen and (max-width: $break-medium)
+      display: flex
+      align-items: center
+      justify-content: center
     .square-info
       width: $square-info-size
       height: $square-info-size
@@ -162,6 +221,20 @@
       margin-bottom: 95px
       background-repeat: no-repeat
       background-position: center
+      color: transparent
+      @media screen and (max-width: $break-medium)
+        height: $square-info-size-mobile
+        width: $square-info-size-mobile
+      &:hover
+        color: #44434c
+        background-color: #c6c6c6
+        background-image: none
+        font-size: 25px
+        line-height: 1.1em
+        text-align: justify
+        padding: 25px
+        @media screen and (max-width: $break-medium)
+          font-size: 12px
     .left
       float: right
       background-image: url(asset_path('png_quienes_somos-01.png'))

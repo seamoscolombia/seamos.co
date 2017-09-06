@@ -5,6 +5,10 @@ const Team = () => (
     <div className='row team-banner one'>
       <div className='left col-md-6'></div>
       <div className='right col-md-6'></div>
+      <div className='one-caption'>
+        ¿Quiénes <br />
+        Somos?
+      </div>
     </div>
     <div className='row'>
       <div className='caption'>
@@ -16,12 +20,33 @@ const Team = () => (
       <div className='col-md-6'>
         <div className='square-info-wrapper'>
           <div className='square-info left'>
+            En un país convulsionado por la guerra e
+            invadido por la corrupción, nos juntamos
+            unos jóvenes para convertir la indignación
+            en acción. Como parte de una generación
+            transformada por las nuevas tecnologías,
+            nos dimos cuenta que la solución podía estar,
+             literalmente, al alcance de nuestras manos,
+             y es así que creamos una herramienta que volviera
+             el poder a donde realmente corresponde: al ciudadano.
+             Bienvenidos a SeamOS. En Colombia, la era de la
+             democracia digital ha comenzado.
           </div>
         </div>
       </div>
       <div className='col-md-6'>
         <div className='square-info-wrapper'>
           <div className='square-info right'>
+            A través de SeamOS, podremos sentar un voto de
+            opinión sobre las propuestas que se presentan
+             en el Concejo de Bogota. Los representantes
+             han firmado voluntariamente un manifiesto con
+             el cual se comprometen a suscribir sus propuestas
+             en la plataforma y actuar conforme a lo manifestado
+             por los ciudadanos, y aunque el voto en SeamOS no
+             podrá ir en contravía de la Ley de Bancadas, sí
+             podemos asegurar que valdrá para activar conversaciones,
+             afectar decisiones y fortalecer la democracia.
           </div>
         </div>
       </div>
@@ -141,8 +166,7 @@ const Team = () => (
     <div className='row'>
       <div className='politicians'>
         <div className='politician one'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Hollman Morris
           </div>
@@ -151,8 +175,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician two'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Juan Felipe Grillo
           </div>
@@ -161,8 +184,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician three'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Horacio José Serpa
           </div>
@@ -171,8 +193,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician four'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Lucía Bastidas
           </div>
@@ -181,8 +202,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician five'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Diego Molano
           </div>
@@ -191,8 +211,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician six'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Ángela Garzón
           </div>
@@ -201,8 +220,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician seven'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Emel Rojas
           </div>
@@ -211,8 +229,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician eight'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Daniel Palacios
           </div>
@@ -221,8 +238,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician nine'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Germán García
           </div>
@@ -231,8 +247,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician ten'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             José David Castellanos
           </div>
@@ -241,8 +256,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician eleven'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Yefer Vega
           </div>
@@ -251,8 +265,7 @@ const Team = () => (
           </div>
         </div>
         <div className='politician twelve'>
-          <div className='photo'>
-          </div>
+          <div className='photo' />
           <div className='name'>
             Maria Clara Name
           </div>
@@ -266,6 +279,22 @@ const Team = () => (
       Socios y Aliados
     </div>
     <div className='row'>
+      <div className='allies row'>
+        <div className='ally one col-md-6'>
+        </div>
+        <div className='ally two col-md-6'>
+        </div>
+        <div className='ally three col-md-4'>
+        </div>
+        <div className='ally four col-md-4'>
+        </div>
+        <div className='ally five col-md-4'>
+        </div>
+        <div className='ally six col-md-6'>
+        </div>
+        <div className='ally seven col-md-6'>
+        </div>
+      </div>
     </div>
   </div>
 );
