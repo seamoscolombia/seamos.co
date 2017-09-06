@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import MetaTags from 'react-meta-tags';
 
 import { ShareButtons } from 'react-share';
 import { Link } from 'react-router-dom';
@@ -137,6 +138,15 @@ const PollDetail = ({
                       voteAction, initial_time, tag, status, summary, session
                     }) => (
     <div>
+      <div>
+        <MetaTags>
+          <title>{title}</title>
+          <meta id="meta-description" name="description" content={description} />
+          <meta id="og-title" property="og:title" content={title} />
+          <meta id="og-image" property="og:image" content={image} />
+        </MetaTags>
+      
+
       <section id='poll-detail'>
         <div className="top-color-bar" style={{ backgroundColor: tag.color }} >
           <div className="tag-name"> {tag.name} </div>
@@ -242,6 +252,7 @@ const PollDetail = ({
           <RelatedPolls tagId={tag.id} pollId={id} />
         </div>
       </section>
+      </div>
     </div>
   );
 PollDetail.propTypes = {
