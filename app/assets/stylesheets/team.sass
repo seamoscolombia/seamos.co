@@ -4,6 +4,10 @@
   $square-info-size-mobile: 270px
   $team-member-size: 200px
   $politician-size: 150px
+  $politician-mobile-size: 100px
+  .breaker
+    @media screen and (max-width: $break-medium)
+      display: none
   .team-banner
     height: 300px
     background-color: gainsboro
@@ -16,9 +20,12 @@
     display: flex
     align-items: center
     justify-content: center
+    word-break: break-word
     @media screen and (max-width: $break-medium)
       height: 180px
       font-size: 27px
+      padding: 0 40px
+      text-align: center
   .one
     background-color: #54bfc9
     display: flex
@@ -76,9 +83,17 @@
       margin: 0 25px
       padding-top: $team-member-size
       margin-bottom: 25px
+      @media screen and (max-width: $break-medium)
+        text-align: center
+        width: 122px
+        height: 220px
+        margin: 0 5px
+        padding-top: 120px
       .name
         font-family: 'HKNovaBold'
         padding: 15px 0
+        @media screen and (max-width: $break-medium)
+          padding: 5px 0
       .profession
         font-family: 'RobotoRegular'
       .role
@@ -87,6 +102,8 @@
       background-image: url(asset_path('NICOLAS-FINAL.png'))
       align-items: flex-start
       display: block
+      @media screen and (max-width: $break-medium)
+        font-size: 14px
     .two
       background-image: url(asset_path('JUANCARLOS-FINAL.png'))
     .three
@@ -104,6 +121,8 @@
   .three
     background-color: #5554a0
     margin-top: 70px
+    @media screen and (max-width: $break-medium)
+      margin-top: 15px
   .politicians
     display: flex
     align-items: center
@@ -111,26 +130,39 @@
     flex-wrap: wrap
     padding: 0 80px
     margin-top: 90px
+    @media screen and (max-width: $break-medium)
+      margin-top: 30px
+      padding: 0 10px
     .politician
       background-size: contain
       background-repeat: no-repeat
       background-color: white
       margin: 0 50px
       margin-bottom: 80px
+      @media screen and (max-width: $break-medium)
+        margin: 0 20px
+        margin-bottom: 15px
       .photo
         width: $politician-size
         height: $politician-size
         background-size: contain
         margin: auto
+        @media screen and (max-width: $break-medium)
+          width: $politician-mobile-size
+          height: $politician-mobile-size
       .name
         font-family: 'RobotoBold'
         text-align: center
         padding-top: 15px
         font-size: 20px
+        @media screen and (max-width: $break-medium)
+          font-size: 14px
       .organization
         font-family: 'RobotoRegular'
         text-align: center
         font-size: 18px
+        @media screen and (max-width: $break-medium)
+          font-size: 13px
     .one
       align-items: flex-start
       display: block
@@ -178,6 +210,7 @@
     padding: 0 170px
     @media screen and (max-width: $break-medium)
       padding: 0 40px
+      padding-top: 20px
     .ally
       height: 180px
       background-repeat: no-repeat
@@ -186,7 +219,10 @@
       background-position: center
       margin: 0
       @media screen and (max-width: $break-medium)
-        height: 130px
+        background-size: contain
+        height: 71px
+        width: 200px
+        margin: auto
     .one
       background-image: url(asset_path('logos_aliados-01.png'))
     .two
@@ -209,6 +245,9 @@
     font-size: 23px
     line-height: 1em
     padding: 73px 0
+    @media screen and (max-width: $break-medium)
+      font-size: 14px
+      padding: 30px 40px
   .square-info-wrapper
     @media screen and (max-width: $break-medium)
       display: flex
@@ -223,6 +262,7 @@
       background-position: center
       color: transparent
       @media screen and (max-width: $break-medium)
+        margin-bottom: 35px
         height: $square-info-size-mobile
         width: $square-info-size-mobile
       &:hover
@@ -234,7 +274,8 @@
         text-align: justify
         padding: 25px
         @media screen and (max-width: $break-medium)
-          font-size: 12px
+          font-size: 15px
+          padding: 12px
     .left
       float: right
       background-image: url(asset_path('png_quienes_somos-01.png'))

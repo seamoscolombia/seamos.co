@@ -12,7 +12,7 @@ const Team = () => (
     </div>
     <div className='row'>
       <div className='caption'>
-        SoeamOS es una plataforma ciudadana que busca <br />
+        SoeamOS es una plataforma ciudadana que busca <br className='breaker' />
         utilizar las tics para actualizar la democracia
       </div>
     </div>
@@ -56,7 +56,7 @@ const Team = () => (
     </div>
     <div className='row'>
       <div className='caption'>
-        Somos un equipo jóven, con experiencia en asuntos públicos y políticos reunidos <br />
+        Somos un equipo jóven, con experiencia en asuntos públicos y políticos reunidos <br className='breaker' />
         para explorar los alcances que tienen las TIC para irrumpir en el ejercicio político.
       </div>
     </div>
@@ -64,7 +64,7 @@ const Team = () => (
       <div className='team-members'>
         <div className='team-member one'>
           <div className='name'>
-            Nicolás <br />
+            Nicolás <br className='breaker' />
             Díaz
           </div>
           <div className='profession'>
@@ -76,7 +76,7 @@ const Team = () => (
         </div>
         <div className='team-member two'>
           <div className='name'>
-            Juan Carlos <br />
+            Juan Carlos <br className='breaker' />
             Rodríguez
           </div>
           <div className='profession'>
@@ -88,7 +88,7 @@ const Team = () => (
         </div>
         <div className='team-member three'>
           <div className='name'>
-            Andrea <br />
+            Andrea <br className='breaker' />
             Mora
           </div>
           <div className='profession'>
@@ -100,7 +100,7 @@ const Team = () => (
         </div>
         <div className='team-member four'>
           <div className='name'>
-            David <br />
+            David <br className='breaker' />
             Núñez
           </div>
           <div className='profession'>
@@ -112,7 +112,7 @@ const Team = () => (
         </div>
         <div className='team-member five'>
           <div className='name'>
-            Andrés <br />
+            Andrés <br className='breaker' />
             Márquez
           </div>
           <div className='profession'>
@@ -124,7 +124,7 @@ const Team = () => (
         </div>
         <div className='team-member six'>
           <div className='name'>
-            Alexander <br />
+            Alexander <br className='breaker' />
             Quiceno
           </div>
           <div className='profession'>
@@ -136,7 +136,7 @@ const Team = () => (
         </div>
         <div className='team-member seven'>
           <div className='name'>
-            Juliana <br />
+            Juliana <br className='breaker' />
             Ramirez
           </div>
           <div className='profession'>
@@ -148,7 +148,7 @@ const Team = () => (
         </div>
         <div className='team-member eight'>
           <div className='name'>
-            Karen <br />
+            Karen <br className='breaker' />
             Fonseca
           </div>
           <div className='profession'>
