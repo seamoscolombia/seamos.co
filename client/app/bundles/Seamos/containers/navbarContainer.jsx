@@ -3,19 +3,21 @@ import React, { Component } from 'react';
 import jQuery from 'jquery';
 import { connect } from 'react-redux';
 import Navbar from '../components/navbar';
-import { validateSession } from '../actions';
+import { validateSession, toasterDisplay } from '../actions';
+
+import { ToastContainer, toast } from 'react-toastify';
+import { LOGGED_MESSAGE } from '../constants';
 
 const mapStateToProps = (state) => {
     const { session, user } = state;
     return { session, user };
 };
 
-const mapDispatchToProps = { validateSession };
+const mapDispatchToProps = { validateSession, toasterDisplay };
 
 class NavbarContainer extends Component {
 
     componentWillMount() {
-      console.log('validada ');
       this.props.validateSession();
     }
 
@@ -36,8 +38,27 @@ class NavbarContainer extends Component {
         });
     }
 
+    componentWillUpdate(nextProps) {
+        if (nextProps.session.logged && !nextProps.session.display) {
+            toast(LOGGED_MESSAGE);  
+            this.props.toasterDisplay();
+        }
+    }
+
     render() {
-        return <Navbar {...this.props} />;
+        return (
+            <div>
+                <Navbar {...this.props} />
+                <ToastContainer 
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    pauseOnHover
+                />
+            </div>
+        );
     }
 }
 // Don't forget to actually use connect!

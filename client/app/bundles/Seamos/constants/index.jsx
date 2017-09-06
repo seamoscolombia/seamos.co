@@ -26,3 +26,4 @@ export const VALIDATE_ACTUAL_POLL = 'validate_actual_poll';
 export const VOTED_POLLS = 'voted_polls';
 export const LOGGED_MESSAGE = 'Sesión iniciada';
 export const IS_LOGGED = 'IS_LOGGED';
+export const TOASTER_DISPLAY = 'TOASTER_DISPLAY';

@@ -1,7 +1,7 @@
-import { RESET_SESSION, SET_SESSION, IS_LOGGED } from '../constants';
+import { RESET_SESSION, SET_SESSION, IS_LOGGED, TOASTER_DISPLAY } from '../constants';
 
 const INITIAL_STATE = localStorage.getItem('session') ? JSON.parse(localStorage.getItem('session')) // eslint-disable-line
-  : { authenticityToken: null };
+  : { authenticityToken: null, logged: null, display: false };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -17,6 +17,10 @@ export default (state = INITIAL_STATE, action) => {
     }
     case IS_LOGGED: {
       const session = Object.assign({}, state, { logged: action.logged });
+      return session;
+    }
+    case TOASTER_DISPLAY: {
+      const session = Object.assign({}, state, { display: true });
       return session;
     }
     default:

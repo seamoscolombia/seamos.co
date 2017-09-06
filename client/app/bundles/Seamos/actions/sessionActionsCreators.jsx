@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
-import { RESET_SESSION, SET_SESSION, URL } from '../constants';
+import { RESET_SESSION, SET_SESSION, URL, TOASTER_DISPLAY } from '../constants';
 
 export const setSession = (authenticityToken) => ({
   type: SET_SESSION,
@@ -15,4 +15,8 @@ export const resetSession = () => dispatch => (
   .catch(e => {
     alert('Por favor inicia sesión nuevamente'); //eslint-disable-line
   })
+);
+
+export const toasterDisplay = () => dispatch => (
+  dispatch({ type: TOASTER_DISPLAY })
 );

@@ -22,6 +22,7 @@ const Tag = (props) => {
   );
 };
 
+
 Tag.propTypes = {
   id: PropTypes.number.isRequired,
   goTo: PropTypes.func,

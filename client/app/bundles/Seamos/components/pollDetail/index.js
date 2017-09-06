@@ -25,7 +25,6 @@ const statusActiveStyle = { backgroundColor: 'yellow' };
 const statusInactiveStyle = { backgroundColor: 'gainsboro' };
 
 
-
 function getColorDependingOnTime(initial_time, remaining) {
   const startColor = '00FF92';
   const endColor = 'ff0000';
@@ -67,7 +66,6 @@ function voteButton(pollType, voteTypes, voteAction, session) {
         onClick={() => { voteAction(voteTypes.id); }}
       />);
     default:
-      console.log(session);
       if (!session.logged) {
         return voteTypes.map(voteType =>
           <FacebookLogin
@@ -237,7 +235,7 @@ const PollDetail = ({
               </div>
             </div>
           </section>
-        </div>
+        </div>         
         <div id='related-polls'>
           <RelatedPolls tagId={tag.id} pollId={id} />
         </div>
