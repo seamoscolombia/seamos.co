@@ -14,6 +14,7 @@ import Home from '../containers/homeContainer';
 import Navbar from '../containers/navbarContainer';
 import Footer from './../containers/footerContainer';
 import Terms from './../containers/termsContainer';
+import Team from './../containers/teamContainer';
 import Politician from '../containers/politicianContainer';
 import Component404 from '../components/component404';
 import Profile from '../containers/profileContainer';
@@ -50,6 +51,7 @@ const AppRouter = () => (
                 <Route path="/poll/:pollId" component={PollDetail} />
                 <Route path="/closed-polls" component={PollsClosed} />
                 <Route path="/terms" component={Terms} />
+                <Route path="/team" component={Team} />
                 <Route path="/proponents/:politicianId" component={Politician} />
                 <PrivateRoute path="/profile" component={Profile} />
                 <Route path='/404' component={Component404} />
