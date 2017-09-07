@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   # root 'intro#inicio'
 
   resources :photos, only: :create
-
-  resources :facebookob
+  resources :suscriptions, only: :create
+  resources :facebookob, only: :index
   get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
   resources :users , except: [:show] do
     get 'already_voted', on: :member

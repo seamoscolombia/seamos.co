@@ -13,7 +13,7 @@ export const subscribeNewsletter = email => dispatch => {
   const subscription = {
     email
   };
-  axios.post(`${URL}/suscriptions`, {
+  return axios.post(`${URL}/suscriptions`, {
     subscription
   })
   .then(response => {
