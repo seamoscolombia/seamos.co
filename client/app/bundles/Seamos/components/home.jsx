@@ -14,7 +14,9 @@ import Tags from '../containers/tagsContainer';
 // const title = 'Seamos pagina home';
 import Polls from '../containers/pollsFeatureContainer';
 import Featured from '../containers/pollsPageContainer';
-const Home = ({ session }) => (
+import InputContainer from '../containers/inputContainer';
+
+const Home = ({ session, inputReducer, subscribeNewsletter }) => (
   <div id="homepage">
     <div className='background-container top'>
       <div className='flex-container top-text-container'>
@@ -38,7 +40,7 @@ const Home = ({ session }) => (
           </div>
           <div className='text'>Con un solo click en la plataforma.</div>
           <div className="step-image step-image-1" />
-          {session.authenticityToken ? 
+          {session.logged ? 
             null
             : <FacebookLogin id='fb-login-transparent' fbText='Conéctate con facebook' />
           }
@@ -118,12 +120,9 @@ const Home = ({ session }) => (
         <div className='title'>
           Suscríbete a nuestro newsletter
         </div>
-        <div className="input-group">
-          <input type="text" className="form-control" placeholder="Email" />
-          <span className="input-group-btn">
-            <button className="btn btn-secondary" type="button">ENVIAR</button>
-          </span>
-        </div>
+        <InputContainer placeholder="correo" title="subscribe" name="newsletter" 
+          actionCreator={() => subscribeNewsletter(inputReducer.subscribe.newsletter)}
+        />
       </div>
     </div>
   </div>
