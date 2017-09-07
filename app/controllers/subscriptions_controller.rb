@@ -1,17 +1,17 @@
-class SuscriptionsController < ApplicationController
+class SubscriptionsController < ApplicationController
 
   protect_from_forgery except: :create
 
   def create
-    @suscription = Suscription.new(subscription_params)
-    if @suscription.save
+    @subscription = Subscription.new(subscription_params)
+    if @subscription.save
       render json: {
-        message: "Tu email #{@suscription.email} ha quedado suscrito",
+        message: "Tu email #{@subscription.email} ha quedado suscrito",
         success: true
       }, status: 201
     else
       render json: {
-        errors: @suscription.errors.messages[:email],
+        errors: @subscription.errors.messages[:email],
         success: false
       }
     end

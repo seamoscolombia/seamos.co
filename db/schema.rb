@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 20170907153544) do
     t.index ["code"], name: "index_roles_on_code", unique: true, using: :btree
   end
 
-  create_table "suscriptions", force: :cascade do |t|
+  create_table "subscriptions", force: :cascade do |t|
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :suscription do
+  factory :subscription do
     email "MyString"
   end
 
