@@ -13,11 +13,41 @@
     padding: 90px 6em 0 6em
     @media screen and (max-width: $break-medium)
       width: 100vw
-
     .tag-name
       font-size: 27px
       font-family: 'HKNovaBold'
       margin-left: 15px
+      color: #44434c
+  .closed-ribbon-wrapper
+    padding-right: 30px
+    position: absolute
+    top: 118px
+    width: 100%
+    @media screen and (max-width: $break-medium)
+      top: 58px
+    .closed-ribbon
+      width: 100%
+      display: flex
+      align-items: center
+      background-color: gainsboro
+      justify-content: center
+      height: 62px
+      font-family: 'RobotoBold'
+      color: #44424c
+      padding-left: 60px
+      font-size: 22px
+      background-image: url(asset_path('closed-icon.png'))
+      background-size: 50px
+      background-repeat: no-repeat
+      background-position-x: 45px
+      background-position-y: center
+      @media screen and (max-width: $break-medium)
+        background-size: 40px
+        font-size: 18px
+        height: 50px
+        padding-left: 54px
+        background-position-x: 17px
+        top: 60px
   .circle-separator
     font-size: 8px
     position: relative
@@ -145,6 +175,8 @@
       width: 100%
       max-height: 330px
       margin-bottom: 40px
+      @media screen and (max-width: $break-medium)
+        margin-bottom: 15px
     #objective
       font-family: 'RobotoCondensed'
       padding-left: 18px
@@ -338,6 +370,8 @@
         padding-left: 108px
         background-size: contain
         background-repeat: no-repeat
+        @media screen and (max-width: $break-medium)
+          height: 50px
       .state-1
         background-image: url(asset_path('state-1.png'))
       .state-2
