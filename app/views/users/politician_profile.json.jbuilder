@@ -13,6 +13,7 @@ json.user do
   json.last_vote_count @user.last_election_vote_count
   json.localities @user.major_electoral_representation_localities
   json.represented_organizations @user.represented_organizations
+  json.other_periods @user.other_periods_elected
   json.polls do
     json.array! @polls do |poll|
       json.id poll.id

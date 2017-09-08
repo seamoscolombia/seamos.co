@@ -92,7 +92,7 @@ function shareTitle(user_already_voted, poll_title) {
                           return `Vota por la propuesta: ${poll_title} en SeamOS`
 }
 
-function votedButton(pollType, voteTypes, vote_count) {
+function votedButton(pollType, voteTypes, vote_count, is_closed) {
   switch (pollType) {
     case 'signing': //2
       return (<VotedButton
@@ -107,6 +107,7 @@ function votedButton(pollType, voteTypes, vote_count) {
           count={voteType.count}
           name={voteType.name}
           total={vote_count}
+          closed={is_closed}
         />
       );
   }
@@ -131,8 +132,8 @@ const PollDetail = ({
                       id, title, image, remaining,
                       description, objective, vote_count,
                       user_already_voted, links, politician,
-                      poll_type, moreInfo, setMoreInfo, vote_types,
-                      voteAction, initial_time, tag, status, summary, session
+                      poll_type, vote_types,
+                      voteAction, tag, status, summary, session
                     }) => (
     <div>
       <section id='poll-detail'>
@@ -198,6 +199,11 @@ const PollDetail = ({
                 role='presentation'
                 alt='poll thumbnail'
               />
+              <div className='closed-ribbon-wrapper'>
+                <div className='closed-ribbon' style={{ display: `${remaining <= 0 ? 'flex' : 'none'}` }}>
+                  Propuesta Cerrada
+                </div>
+              </div>
               <p id='objective' className='row' style={{display: 'none'}}><strong> Objetivo: </strong> {objective}</p>
               <div id='poll-states'>
                 <div className='state state-1' style={(remaining > 0 && status === 0) ? statusActiveStyle : statusInactiveStyle}> Votación abierta </div>
@@ -218,7 +224,7 @@ const PollDetail = ({
                     <div className='summary'> {summary} </div>
                     <div className="col-xs-12 col-sm-12 buttons-wrapper">
                       {user_already_voted || remaining <= 0 ?
-                        votedButton(poll_type, vote_types, vote_count) :
+                        votedButton(poll_type, vote_types, vote_count, remaining <= 0 ) :
                         voteButton(poll_type, vote_types, voteAction, session)
                       }
                     </div>
@@ -235,7 +241,7 @@ const PollDetail = ({
               </div>
             </div>
           </section>
-        </div>         
+        </div>
         <div id='related-polls'>
           <RelatedPolls tagId={tag.id} pollId={id} />
         </div>

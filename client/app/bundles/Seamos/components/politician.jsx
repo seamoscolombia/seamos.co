@@ -22,7 +22,7 @@ const Politician = (props) => {
                 <h1> {props.short_name} </h1>
               </div>
               <div className=''>
-                <h1> {props.organization} </h1>
+                <h2> {props.organization} </h2>
               </div>
             </div>
           </div>
@@ -53,10 +53,17 @@ const Politician = (props) => {
               <div className='major-representation-localities'>
                 {props.localities}
               </div>
-              <div className=''>
-                <div className='commission'>
-                  {props.commission}
-                </div>
+              <div className='cv-subtitle'>
+                Otros periodos electo
+              </div>
+              <div className='without-image'>
+                {props.other_periods}
+              </div>
+              <div className='cv-subtitle'>
+                Comisión
+              </div>
+              <div className='without-image'>
+                {props.commission}
               </div>
             </div>
 

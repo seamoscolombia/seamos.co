@@ -21,9 +21,13 @@
       font-family: 'RobotoRegular'
       font-size: 18px
       font-weight: bold
-      margin: 0
       text-align: left
-      color: #44424c
+      color: gray
+      margin: 0
+      margin-bottom: 40px
+      @media screen and (max-width: $break-medium)
+        margin: 0
+        text-align: center
     p
       font-size: 19px
       font-family: 'RobotoRegular'
@@ -84,6 +88,8 @@
           font-family: 'HKNovaRegular'
           font-size: 24px
           line-height: 1em
+          @media screen and (max-width: $break-medium)
+            font-size: 14px
         br
           display: none
       .career
@@ -119,12 +125,17 @@
         color: #3d5062
         font-size: 20px
         background-image: url(asset_path('localities.png'))
-        padding-left: 30%
-      .commission
-        margin-top: 16px
-        font-size: 23px
-        font-family: 'RobotoRegular'
-        color: #44434c
+        padding-left: 35%
+      .without-image
+        font-family: "RobotoBold"
+        height: 50px
+        display: flex
+        align-items: center
+        min-height: 62px
+        font-size: 20px
+        justify-content: flex-end
+        border-bottom: 2px solid gray
+        color: #3d5062
       h2
         @media screen and (max-width: $break-medium)
           text-align: center
