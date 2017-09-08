@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PollDetail from '../components/pollDetail';
 import { getPoll, votePoll, chechVotedPol, validateSession } from '../actions';
 
+
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
     const { poll, session, user } = state;
@@ -77,7 +78,7 @@ class PollsDetailContainer extends Component {
                         moreInfo={this.state.moreInfo}
                         voteAction={id => this.voteAction(id)}
                         session={session}
-                    />
+                    /> 
                 </div>
             );
         }

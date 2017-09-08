@@ -5,7 +5,7 @@ import { APP_ID } from '../constants';
 
 import { validateUserSession, validateSession } from '../actions';
 
-// const mapStateToProps = state => ({});
+
 const mapDispatchToProps = { validateUserSession, validateSession };
 
 class FacebookLoginContainer extends Component {

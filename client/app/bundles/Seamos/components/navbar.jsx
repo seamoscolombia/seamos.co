@@ -5,6 +5,7 @@ import FacebookLogin from '../containers/facebookLoginContainer';
 import ProfileButton from '../containers/profileButtonContainer';
 import LogoutButton from '../containers/logoutButtonContainer';
 
+
 const Menu = () => (
   [<li key='1' >
     <ProfileButton />
@@ -76,15 +77,7 @@ const Navbar = ({ session, user }) => (
             </div>
             <li key='6'><Link to='/tags'> Temas </Link></li>
             <span className='circle-separator'> &#9679; </span>
-            <li key='8'>
-              <a
-               href='http://seamos.co/quienes-somos'
-               target='_blank'
-               rel='noopener noreferrer'
-              >
-                Quiénes somos
-              </a>
-            </li>
+            <li key='7'><Link to='/team'> Quiénes somos </Link></li>
             <span className='circle-separator'> &#9679; </span>
             <div className='hide-on-mobile'>
               {session.logged && Object.keys(user).length !== 0 ?
