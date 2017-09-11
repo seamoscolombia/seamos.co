@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 
 import { updateInput } from '../actions';
 
-const mapStateToProps = state => {
-  console.log(state);
-};
-
 const mapDispatchToProps = { updateInput };
 
 class InputContainer extends Component {
@@ -35,4 +31,4 @@ class InputContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(InputContainer);
+export default connect(null, mapDispatchToProps)(InputContainer);

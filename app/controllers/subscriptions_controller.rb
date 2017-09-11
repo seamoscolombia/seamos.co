@@ -11,7 +11,7 @@ class SubscriptionsController < ApplicationController
       }, status: 201
     else
       render json: {
-        errors: @subscription.errors.messages[:email],
+        message: "Ya te has suscrito previamente",
         success: false
       }
     end

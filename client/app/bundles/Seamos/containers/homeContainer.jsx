@@ -7,8 +7,8 @@ import { subscribeNewsletter } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
-    const { session, inputReducer } = state;
-    return { session, inputReducer };
+    const { session, inputReducer, newsletterReducer } = state;
+    return { session, inputReducer, newsletterReducer };
 };
 
 const mapDispatchToProps = { subscribeNewsletter };

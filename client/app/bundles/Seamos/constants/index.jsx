@@ -27,4 +27,7 @@ export const VOTED_POLLS = 'voted_polls';
 export const LOGGED_MESSAGE = 'Sesión iniciada';
 export const IS_LOGGED = 'IS_LOGGED';
 export const UPDATE_INPUT = 'UPDATE_INPUT';
-export const TOASTER_DISPLAY = 'TOASTER_DISPLAY'
+export const TOASTER_DISPLAY = 'TOASTER_DISPLAY';
+export const SUBSCRIBE_TO_NEWSLETTER = 'SUBSCRIBE_TO_NEWSLETTER';
+
+

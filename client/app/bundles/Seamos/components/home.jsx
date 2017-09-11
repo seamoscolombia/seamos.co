@@ -16,7 +16,8 @@ import Polls from '../containers/pollsFeatureContainer';
 import Featured from '../containers/pollsPageContainer';
 import InputContainer from '../containers/inputContainer';
 
-const Home = ({ session, inputReducer, subscribeNewsletter }) => (
+
+const Home = ({ session, inputReducer, subscribeNewsletter, newsletterReducer }) => (
   <div id="homepage">
     <div className='background-container top'>
       <div className='flex-container top-text-container'>
@@ -123,6 +124,7 @@ const Home = ({ session, inputReducer, subscribeNewsletter }) => (
         <InputContainer placeholder="correo" title="subscribe" name="newsletter" 
           actionCreator={() => subscribeNewsletter(inputReducer.subscribe.newsletter)}
         />
+        
       </div>
     </div>
   </div>

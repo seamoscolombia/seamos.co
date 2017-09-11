@@ -38,6 +38,7 @@
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
     "react-facebook-login": "^3.6.1",
+    "react-notifications": "^1.4.3",
     "react-on-rails": "7.0.4",
     "react-redux": "^5.0.4",
     "react-router-dom": "^4.1.1",

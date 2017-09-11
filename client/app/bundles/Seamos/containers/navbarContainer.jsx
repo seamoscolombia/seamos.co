@@ -5,8 +5,11 @@ import { connect } from 'react-redux';
 import Navbar from '../components/navbar';
 import { validateSession, toasterDisplay } from '../actions';
 
-import { ToastContainer, toast } from 'react-toastify';
-import { LOGGED_MESSAGE } from '../constants';
+import { NotificationManager } from 'react-notifications';
+import { LOGGED_MESSAGE } from '../constants/index';
+
+import ToasterContainer from './toasterContainer';
+
 
 const mapStateToProps = (state) => {
     const { session, user } = state;
@@ -40,7 +43,7 @@ class NavbarContainer extends Component {
 
     componentWillUpdate(nextProps) {
         if (nextProps.session.logged && !nextProps.session.display) {
-            toast(LOGGED_MESSAGE);  
+            NotificationManager.success(LOGGED_MESSAGE);
             this.props.toasterDisplay();
         }
     }
@@ -49,14 +52,7 @@ class NavbarContainer extends Component {
         return (
             <div>
                 <Navbar {...this.props} />
-                <ToastContainer 
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    pauseOnHover
-                />
+                <ToasterContainer />
             </div>
         );
     }

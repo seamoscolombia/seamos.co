@@ -1,4 +1,4 @@
-import { UPDATE_INPUT } from '../constants';
+import { UPDATE_INPUT, SUBSCRIBE_TO_NEWSLETTER } from '../constants';
 
 const initialState = {};
 
