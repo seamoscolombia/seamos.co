@@ -34,6 +34,7 @@ class User < ApplicationRecord
   has_many  :debate_votes, dependent: :destroy
   has_many :interests, dependent: :destroy
   has_many :tags, -> { distinct }, through: :interests
+  has_many :academic_titles, dependent: :destroy
 
   validates  :first_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
   # validates  :second_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}

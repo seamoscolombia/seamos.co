@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829213034) do
+ActiveRecord::Schema.define(version: 20170911174434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "academic_titles", force: :cascade do |t|
+    t.string   "title"
+    t.string   "period"
+    t.string   "institute"
+    t.string   "annotation"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_academic_titles_on_user_id", using: :btree
+  end
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -144,6 +155,12 @@ ActiveRecord::Schema.define(version: 20170829213034) do
     t.index ["code"], name: "index_roles_on_code", unique: true, using: :btree
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "taggings", force: :cascade do |t|
     t.integer  "poll_id"
     t.integer  "tag_id"
@@ -227,6 +244,7 @@ ActiveRecord::Schema.define(version: 20170829213034) do
     t.index ["vote_type_id"], name: "index_votes_on_vote_type_id", using: :btree
   end
 
+  add_foreign_key "academic_titles", "users"
   add_foreign_key "causes", "users"
   add_foreign_key "debate_votes", "debates"
   add_foreign_key "debate_votes", "users"
