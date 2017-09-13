@@ -41,12 +41,6 @@ class AdminController < ApplicationController
     redirect_to edit_users_path @user
   end
 
-  # def index
-  #   @users = filter_users_option
-  #   @users_filter = params[:users_filter_select]
-  # end
-
-
   private
 
     def localities_array_to_string(localities_array)
