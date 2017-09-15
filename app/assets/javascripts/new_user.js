@@ -3,7 +3,9 @@ $( document ).on('turbolinks:load', function() {
   var current_fs, next_fs, previous_fs; //fieldsets
   var left, opacity, scale; //fieldset properties which we will animate
   var animating; //flag to prevent quick multi-click glitches
-
+  if ($("#user_role_type_administrador").prop("checked") == true) {
+    $(".politician-field").addClass("hidden")
+  }
   $("#user_role_type_politico").click(function(){
     $(".politician-field").removeClass("hidden")
   })

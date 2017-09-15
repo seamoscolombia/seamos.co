@@ -147,7 +147,13 @@ class UsersController < ApplicationController
                                  :major_electoral_representation_localities,
                                  :other_periods_elected,
                                  :current_corporation_commission,
-                                 :proposed_initiatives_to_date
+                                 :proposed_initiatives_to_date,
+                                 academic_titles_attributes: [:id,
+                                                              :title,
+                                                              :period,
+                                                              :annotation,
+                                                              :institute,
+                                                              :_destroy]
                                 )
   end
 
