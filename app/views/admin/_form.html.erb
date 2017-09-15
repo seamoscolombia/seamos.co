@@ -52,6 +52,11 @@
     </div>
 
     <div class="field politician-field">
+      <%= f.label "Usuario de twitter" %>
+      <%= f.text_field :twitter_username, class: 'form-control', placeholder: 'ej: @my_twitter_username' %>
+    </div>
+
+    <div class="field politician-field">
       <%= f.label "Fecha de nacimiento" %>
       <input type="text" value="<%= user.birthday %>" data-provide='datepicker' data-date-language="es" data-date-autoclose="true" data-date-format="yyyy/mm/dd" class="input-sm form-control" name="user[birthday]"/>
     </div>

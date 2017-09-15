@@ -148,6 +148,7 @@ class UsersController < ApplicationController
                                  :other_periods_elected,
                                  :current_corporation_commission,
                                  :proposed_initiatives_to_date,
+                                 :twitter_username,
                                  academic_titles_attributes: [:id,
                                                               :title,
                                                               :period,

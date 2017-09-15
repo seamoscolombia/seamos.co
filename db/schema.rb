@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911174434) do
+ActiveRecord::Schema.define(version: 20170915031324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 20170911174434) do
     t.string   "other_periods_elected"
     t.integer  "current_corporation_commission"
     t.text     "proposed_initiatives_to_date"
+    t.string   "twitter_username"
     t.index ["document_number"], name: "index_users_on_document_number", using: :btree
     t.index ["document_photo_id"], name: "index_users_on_document_photo_id", using: :btree
     t.index ["tipo_de_documento_id", "document_number"], name: "index_users_on_tipo_de_documento_id_and_document_number", unique: true, using: :btree
