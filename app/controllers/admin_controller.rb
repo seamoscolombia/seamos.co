@@ -4,6 +4,7 @@ class AdminController < ApplicationController
 
   def new
     @user = User.new()
+    3.times { @user.academic_titles.build }
     render :new
   end
 
@@ -23,6 +24,7 @@ class AdminController < ApplicationController
 
   def edit
     @user = User.find_by(id: params[:id])
+    (3 - @user.academic_titles.length).times { @user.academic_titles.build }
     redirect_to users_path if @user.nil?
   end
 
@@ -40,12 +42,6 @@ class AdminController < ApplicationController
     flash[:danger] = " #{e}"
     redirect_to edit_users_path @user
   end
-
-  # def index
-  #   @users = filter_users_option
-  #   @users_filter = params[:users_filter_select]
-  # end
-
 
   private
 
