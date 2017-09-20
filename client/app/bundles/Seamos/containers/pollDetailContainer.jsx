@@ -7,8 +7,8 @@ import { getPoll, votePoll, chechVotedPol, validateSession } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
-  const { poll, session, user, interests } = state;
-  return { poll, session, user, interests };
+  const { poll, session, user, pollIdReducer } = state;
+  return { poll, session, user, pollIdReducer };
 };
 
 const mapDispatchToProps = { getPoll, votePoll, chechVotedPol, validateSession };
@@ -16,7 +16,6 @@ const mapDispatchToProps = { getPoll, votePoll, chechVotedPol, validateSession }
 class PollsDetailContainer extends Component {
     constructor(props) {
         super(props);
-        // console.log('11111111111111', props);
         this.state = { moreInfo: false, timer: 0 };
         this.setMoreInfo = this.setMoreInfo.bind(this);
         this.voteAction = this.voteAction.bind(this);
@@ -24,9 +23,8 @@ class PollsDetailContainer extends Component {
 
     componentWillMount() {
         this.props.validateSession();
-        // console.log('22222222222222', this.props);
         this.props.getPoll({
-          pollId: this.props.interests.id
+          pollId: this.props.pollIdReducer.id
         });
     }
 
@@ -38,10 +36,6 @@ class PollsDetailContainer extends Component {
         this.props.chechVotedPol(nextProps.user.id, nextProps.poll);
       } else if (nextProps.poll.id !== this.props.poll.id) {
           console.info('new poll detail', nextProps.poll.id);
-      } else if (false) {
-       this.props.getPoll({
-            pollId: 63,
-        });
       }
       return true;
     }

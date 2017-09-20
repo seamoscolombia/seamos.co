@@ -13,6 +13,6 @@ class FrontendController < ApplicationController
       image:    @poll.poll_image,
       description: @poll.summary
     }
-    @props = {interests: {id: params[:id]}}
+    @props = {pollIdReducer: {id: params[:id]}}
   end
 end

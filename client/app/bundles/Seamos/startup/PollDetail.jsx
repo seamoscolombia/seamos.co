@@ -1,7 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import PollDetailContainer from '../containers/pollDetailContainer';
+import Poll from './poll';
+
 import configureStore from '../store';
 
 // See documentation for https://github.com/reactjs/react-redux.
@@ -11,7 +12,7 @@ import configureStore from '../store';
 // knowing the locale. See the React on Rails documentation for more info on the railsContext
 const PollDetailApp = (props) => (
   <Provider store={configureStore(props)}>
-    <PollDetailContainer />
+    <Poll />
   </Provider>
 );
 
