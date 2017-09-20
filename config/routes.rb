@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :tags, only: :index, to: 'tags#user_interests', format: 'json'
   end
 
+
+  get 'client/polls/:id', to: 'frontend#prueba'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/check_session', to: 'sessions#show', format: 'json'
   delete '/sessions', to: 'sessions#destroy', as: 'session'

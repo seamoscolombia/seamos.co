@@ -153,11 +153,11 @@ const PollDetail = ({
               alt='politician'
             />
             <div id='politician-info'>
-              <Link
+              <a
                 id='author'
-                to={`/proponents/${politician.id}`}
+                href={`/proponents/${politician.id}`}
               > {politician.full_name}
-              </Link>
+              </a>
               <div id='org'> {politician.organization} </div>
             </div>
           </section>

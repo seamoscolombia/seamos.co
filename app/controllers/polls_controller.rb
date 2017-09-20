@@ -146,29 +146,30 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find_by(id: params[:id])
-    chart_type = 'pie'
-
-    if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
-      @vote_types = @poll.votes.joins(:vote_type)
-                         .group('vote_types.name')
-                         .count('vote_types.id')
-    else
-      i_date = params[:poll][:initial_date]
-      f_date = params[:poll][:final_date]
-      @vote_types = @poll.votes.joins(:vote_type)
-                         .where(created_at: i_date...f_date)
-      unless @vote_types.empty?
-        @vote_types = @vote_types.group('vote_types.name')
-                                 .count('vote_types.id')
-      end
-    end
-
-    puts "@vote_types: #{@vote_types}"
-
+    # set_meta_tags og: {
+    #   title:    @poll.title,
+    #   image:    @poll.poll_image,
+    #   description: @poll.summary
+    # }
     respond_to do |format|
-      format.html {}
+      format.html do
+        chart_type = 'pie'
+        if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
+          @vote_types = @poll.votes.joins(:vote_type)
+          .group('vote_types.name')
+          .count('vote_types.id')
+        else
+          i_date = params[:poll][:initial_date]
+          f_date = params[:poll][:final_date]
+          @vote_types = @poll.votes.joins(:vote_type).where(created_at: i_date...f_date)
+          @vote_types = @vote_types.group('vote_types.name').count('vote_types.id') unless @vote_types.empty?
+        end
+        puts "@vote_types: #{@vote_types}"
+      end
       format.json do
-        @poll = Poll.find(params[:id])
+        @vote_types = @poll.votes.joins(:vote_type)
+        .group('vote_types.name')
+        .count('vote_types.id')
       end
     end
   end

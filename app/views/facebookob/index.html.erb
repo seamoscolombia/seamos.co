@@ -37,6 +37,8 @@
   </head>
 
   <body>
+    <% meta_tag :title, @poll.title %>
+    <% meta_tag :description, @poll.description.first(200) %>
     <script>
       $(document).ready(function() { window.location.assign("<%= '/#/poll/' + params[:id].to_s %>") })
     </script>
