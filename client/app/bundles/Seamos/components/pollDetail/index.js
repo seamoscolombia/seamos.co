@@ -13,13 +13,10 @@ import { PRODUCTION_URL } from '../../constants';
 import FacebookLogin from '../../containers/facebookLoginContainer';
 
 
-const shareUrl = `${PRODUCTION_URL}/facebookob/?id=`;
-// const twittershareUrl = `${PRODUCTION_URL}/#/poll/`;
+const shareUrl = window.location.href;
 const { FacebookShareButton } = ShareButtons;
 const { TwitterShareButton } = ShareButtons;
-// const FacebookIcon = generateShareIcon('facebook');
 
-const moreInfoStyle = { height: 150, overflow: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflow: 'none' };
 const statusActiveStyle = { backgroundColor: 'yellow' };
 const statusInactiveStyle = { backgroundColor: 'gainsboro' };

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
 
-  get 'client/polls/:id', to: 'frontend#prueba'
+  get 'client/polls/:id', to: 'polls#client_show'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/check_session', to: 'sessions#show', format: 'json'
   delete '/sessions', to: 'sessions#destroy', as: 'session'
