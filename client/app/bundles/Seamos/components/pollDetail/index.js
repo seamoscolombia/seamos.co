@@ -159,7 +159,7 @@ const PollDetail = ({
           <div className='share-wrapper'>
             <span className='share-this'> COMPARTIR: </span>
               <FacebookShareButton
-                url={`${PRODUCTION_URL}/${id}`}
+                url={`${PRODUCTION_URL}/client/polls/${id}`}
                 className="network__share-button"
               >
                 <a
@@ -171,7 +171,7 @@ const PollDetail = ({
                   <br />
               </FacebookShareButton>
               <TwitterShareButton
-                url={`${PRODUCTION_URL}/${id}`}
+                url={`${PRODUCTION_URL}/client/polls/${id}`}
                 via='seamos'
                 title={shareTitle(user_already_voted, title)}
                 hashtags={['seamOSelcambio']}
