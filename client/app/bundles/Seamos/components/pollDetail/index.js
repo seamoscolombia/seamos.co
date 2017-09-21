@@ -161,7 +161,7 @@ const PollDetail = ({
           <div className='share-wrapper'>
             <span className='share-this'> COMPARTIR: </span>
               <FacebookShareButton
-                url={shareUrl + id}
+                url={shareUrl}
                 className="network__share-button"
               >
                 <a
