@@ -15,7 +15,7 @@ export const UPDATE_TAGS = 'UPDATE_TAGS';
 export const ADD_TAGS_ON_USER = 'ADD_TAGS_ON_USER';
 export const DELETE_TAGS_ON_USER = 'DELETE_TAGS_ON_USER';
 export const SET_POLITICIAN = 'SET_POLITICIAN';
-export const PRODUCTION_URL = 'https://seamos.mybluemix.net';
+export const PRODUCTION_URL = 'https://seamos.herokuapp.com';
 // export const PRODUCTION_URL = 'https://seamosproduction.mybluemix.net';
 export const URL = (process.env.NODE_ENV === 'development') ? 'http://localhost:3000' : PRODUCTION_URL;
 export const APP_ID = (process.env.NODE_ENV === 'development') ? '1541054365966079' : '1707774202581080';
