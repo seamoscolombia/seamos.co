@@ -176,17 +176,20 @@ class PollsController < ApplicationController
       image:    @poll.poll_image,
       description: @poll.summary,
       type: "article",
-      site_name: "seamos.co",
-      article: {
-        tag: "@poll.tags.first.name"
-      }
+      site_name: "seamos.co"
+    }
+
+    set_meta_tags article: {
+      published_time:    @poll.created_at,
+      section:           @poll.tags.first.name,
+      tag:               @poll.tags.first.name,
     }
 
     set_meta_tags twitter: {
       card:  "summary_large_image",
       site:  "@seamos",
       title:  @poll.title,
-      description: @poll.summary.first(199),
+      description: @poll.summary ? @poll.summary.first(199) : nil,
       creator: "@seamos",
       image: {
         _:      @poll.poll_image,
@@ -196,7 +199,7 @@ class PollsController < ApplicationController
     }
     @props = {pollIdReducer: {id: params[:id]}}
   end
-  
+
   def voted
     @polls = current_user.voted_polls.last(5)
     respond_to do |format|
