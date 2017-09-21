@@ -172,11 +172,11 @@ class PollsController < ApplicationController
   def client_show
     @poll = Poll.find(params[:id])
     set_meta_tags og: {
-      title:    @poll.title,
-      image:    @poll.poll_image,
+      title: @poll.title,
+      image: @poll.poll_image,
       description: @poll.summary,
       type: "article",
-      site_name: "seamos.co"
+      site_name: "seamOS"
     }
 
     set_meta_tags article: {
