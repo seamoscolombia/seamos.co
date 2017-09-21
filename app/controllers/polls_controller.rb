@@ -172,7 +172,7 @@ class PollsController < ApplicationController
   def client_show
     @poll = Poll.find(params[:id])
     set_meta_tags og: {
-      url: 'http://seamosproduction.mybluemix.net'
+      url: 'http://seamosproduction.mybluemix.net',
       title: @poll.title,
       image: @poll.poll_image,
       description: @poll.summary,
