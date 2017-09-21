@@ -174,11 +174,29 @@ class PollsController < ApplicationController
     set_meta_tags og: {
       title:    @poll.title,
       image:    @poll.poll_image,
-      description: @poll.summary
+      description: @poll.summary,
+      type: "article",
+      site_name: "seamos.co",
+      article: {
+        tag: "@poll.tags.first.name"
+      }
+    }
+
+    set_meta_tags twitter: {
+      card:  "summary_large_image",
+      site:  "@seamos",
+      title:  @poll.title,
+      description: @poll.summary.first(199),
+      creator: "@seamos",
+      image: {
+        _:      @poll.poll_image,
+        width:  100,
+        height: 100,
+      }
     }
     @props = {pollIdReducer: {id: params[:id]}}
   end
-
+  
   def voted
     @polls = current_user.voted_polls.last(5)
     respond_to do |format|

@@ -173,7 +173,7 @@ const PollDetail = ({
                   <br />
               </FacebookShareButton>
               <TwitterShareButton
-                url={shareUrl + id}
+                url={shareUrl}
                 via='seamos'
                 title={shareTitle(user_already_voted, title)}
                 hashtags={['seamOSelcambio']}
