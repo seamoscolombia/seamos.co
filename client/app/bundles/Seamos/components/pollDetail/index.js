@@ -12,8 +12,6 @@ import { PRODUCTION_URL } from '../../constants';
 
 import FacebookLogin from '../../containers/facebookLoginContainer';
 
-
-const shareUrl = window.location.href;
 const { FacebookShareButton } = ShareButtons;
 const { TwitterShareButton } = ShareButtons;
 
@@ -161,7 +159,7 @@ const PollDetail = ({
           <div className='share-wrapper'>
             <span className='share-this'> COMPARTIR: </span>
               <FacebookShareButton
-                url={shareUrl}
+                url={`${PRODUCTION_URL}/${id}`}
                 className="network__share-button"
               >
                 <a
@@ -173,7 +171,7 @@ const PollDetail = ({
                   <br />
               </FacebookShareButton>
               <TwitterShareButton
-                url={shareUrl}
+                url={`${PRODUCTION_URL}/${id}`}
                 via='seamos'
                 title={shareTitle(user_already_voted, title)}
                 hashtags={['seamOSelcambio']}
