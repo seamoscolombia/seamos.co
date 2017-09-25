@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ProfileButton from '../components/profile/profileButton';
+import { URL } from '../constants';
+
 
 const mapStateToProps = (state) => {
     const { user } = state;
@@ -9,7 +11,7 @@ const mapStateToProps = (state) => {
 };
 class ProfileButtonContainer extends Component {
     goToProfile() {
-        // this.props.history.push('/profile');
+        location.href = `${URL}/#/profile`
     }
     render() {
         return (<ProfileButton

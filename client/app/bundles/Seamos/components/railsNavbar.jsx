@@ -45,7 +45,7 @@ const Navbar = ({ session, user }) => (
   >
     <div id="client-navbar" className='container'>
       <div className='navbar-header'>
-        <a href={`${URL}/#`}>
+        <a href={`${URL}/#`} className='navbar-brand'>
           <div id='brand-logo' />
         </a>
         <div className='hide-on-desktop only-photo'>
