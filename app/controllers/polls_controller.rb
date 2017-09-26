@@ -20,6 +20,7 @@ class PollsController < ApplicationController
   before_action :validate_session, except: [:index, :show, :client_show, :filtered_by_politician, :filtered_by_tag, :index_closed]
   before_action :validate_admin_user, except: [:index, :show, :client_show, :voted, :filtered_by_politician, :filtered_by_tag, :index_closed]
   before_action :set_tag, only: :filtered_by_tag
+  before_action :set_poll, only: :client_show
   before_action :set_politician, only: :filtered_by_politician
 
   def toggle_status
@@ -170,33 +171,36 @@ class PollsController < ApplicationController
   end
 
   def client_show
-    @poll = Poll.find(params[:id])
-    set_meta_tags og: {
-      title: @poll.title,
-      image: @poll.poll_image,
-      description: @poll.summary,
-      type: "article",
-      site_name: "seamOS"
-    }
-
-    set_meta_tags article: {
-      published_time:    @poll.created_at,
-      section:           @poll.tags.first.name,
-      tag:               @poll.tags.first.name,
-    }
-
-    set_meta_tags twitter: {
-      card:  "summary_large_image",
-      site:  "@seamos",
-      title:  @poll.title,
-      description: @poll.summary ? @poll.summary.first(199) : nil,
-      creator: "@seamos",
-      image: {
-        _:      @poll.poll_image,
-        width:  100,
-        height: 100,
+    if @poll
+      set_meta_tags og: {
+        title: @poll.title,
+        image: @poll.poll_image,
+        description: @poll.summary,
+        type: "article",
+        site_name: "seamOS"
       }
-    }
+
+      set_meta_tags article: {
+        published_time:    @poll.created_at,
+        section:           @poll.tags.first.name,
+        tag:               @poll.tags.first.name,
+      }
+
+      set_meta_tags twitter: {
+        card:  "summary_large_image",
+        site:  "@seamos",
+        title:  @poll.title,
+        description: @poll.summary ? @poll.summary.first(199) : nil,
+        creator: "@seamos",
+        image: {
+          _:      @poll.poll_image,
+          width:  100,
+          height: 100,
+        }
+      }
+    else
+      redirect_to "/\#/404"
+    end
     @props = {pollIdReducer: {id: params[:id]}}
   end
 
@@ -209,6 +213,10 @@ class PollsController < ApplicationController
   end
 
   private
+
+  def set_poll
+    @poll = Poll.find_by(id: params[:id])
+  end
 
   def bind_links
     @poll.external_links.destroy_all if @poll.external_links.present? && links_param != ""
