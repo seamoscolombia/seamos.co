@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import jQuery from 'jquery';
 import { connect } from 'react-redux';
 import RailsNavbar from '../components/railsNavbar';
-import { validateSession, toasterDisplay } from '../actions';
+import { getUser, validateSession, toasterDisplay } from '../actions';
 
 import { ToastContainer, toast } from 'react-toastify';
 import { LOGGED_MESSAGE } from '../constants';
@@ -13,12 +13,13 @@ const mapStateToProps = (state) => {
     return { session, user };
 };
 
-const mapDispatchToProps = { validateSession, toasterDisplay };
+const mapDispatchToProps = { getUser, validateSession, toasterDisplay };
 
 class RailsNavbarContainer extends Component {
 
     componentWillMount() {
       this.props.validateSession();
+      this.props.getUser();
     }
 
     componentDidMount() {
@@ -40,7 +41,7 @@ class RailsNavbarContainer extends Component {
 
     componentWillUpdate(nextProps) {
         if (nextProps.session.logged && !nextProps.session.display) {
-            toast(LOGGED_MESSAGE);  
+            toast(LOGGED_MESSAGE);
             this.props.toasterDisplay();
         }
     }
@@ -49,7 +50,7 @@ class RailsNavbarContainer extends Component {
         return (
             <div>
                 <RailsNavbar {...this.props} />
-                <ToastContainer 
+                <ToastContainer
                     position="top-right"
                     autoClose={5000}
                     hideProgressBar={false}

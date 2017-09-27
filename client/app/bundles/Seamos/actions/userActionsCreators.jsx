@@ -38,17 +38,12 @@ export const createUser = (fbUser, authenticityToken) => dispatch => {
     });
 };
 
-export const getUser = (fbUser) => (dispatch) => (
+export const getUser = () => (dispatch) => (
   axios.get(`${URL}/profile.json`)
     .then(response => {
-      if (fbUser) {
-        response.data.user.picture = fbUser.picture.data.url;
-        response.data.user.location = fbUser.location ? fbUser.location.name : null;
-      }
       dispatch(setUser(response.data.user));
     })
     .catch(e => {
-      alert('Por favor inicia sesión nuevamente');
     })
 );
 
@@ -64,7 +59,9 @@ export const resetUser = () => ({ type: RESET_SESSION });
 export const validateUserSession = (fbUser) => (dispatch) => (
   axios.post(`${URL}/sessions.json`, {
     uid: fbUser.id,
-    fb_token: fbUser.accessToken
+    fb_token: fbUser.accessToken,
+    fb_image: fbUser.picture.data.url,
+    fb_location: fbUser.location ? fbUser.location.name : null
   })
     .then(response => {
       dispatch(setSession(response.data.authenticity_token));
