@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import jQuery from 'jquery';
 import { connect } from 'react-redux';
-import Navbar from '../components/navbar';
+import RailsNavbar from '../components/railsNavbar';
 import { getUser, validateSession, toasterDisplay } from '../actions';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { getUser, validateSession, toasterDisplay };
 
-class NavbarContainer extends Component {
+class RailsNavbarContainer extends Component {
 
     componentWillMount() {
       this.props.validateSession();
@@ -49,7 +49,7 @@ class NavbarContainer extends Component {
     render() {
         return (
             <div>
-                <Navbar {...this.props} />
+                <RailsNavbar {...this.props} />
                 <ToastContainer
                     position="top-right"
                     autoClose={5000}
@@ -65,4 +65,4 @@ class NavbarContainer extends Component {
 // Don't forget to actually use connect!
 // Note that we don't export Navbar, but the redux "connected" version of it.
 // See https://github.com/reactjs/react-redux/blob/master/docs/api.md#examples
-export default connect(mapStateToProps, mapDispatchToProps)(NavbarContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RailsNavbarContainer);

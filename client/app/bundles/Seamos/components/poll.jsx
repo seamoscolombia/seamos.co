@@ -17,7 +17,7 @@ const Poll = (props) => {
     tagName = tag_name;
   }
   return (
-    <Link to={`/poll/${id}`} style={{ textDecoration: 'none' }}>
+    <a href={`/client/polls/${id}`} style={{ textDecoration: 'none' }}>
       <div id='poll-component'>
         <div className='poll-image-container'>
             <img alt="poll" src={poll_image} />
@@ -56,7 +56,7 @@ const Poll = (props) => {
           </div>
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 

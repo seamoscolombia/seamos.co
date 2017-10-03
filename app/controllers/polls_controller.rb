@@ -17,9 +17,10 @@ class PollsController < ApplicationController
   include SessionsHelper
   before_action :validate_poll_closed?, only: :show
   # before_action :validate_closing_date, only: :edit
-  before_action :validate_session, except: [:index, :show, :filtered_by_politician, :filtered_by_tag, :index_closed]
-  before_action :validate_admin_user, except: [:index, :show, :voted, :filtered_by_politician, :filtered_by_tag, :index_closed]
+  before_action :validate_session, except: [:index, :show, :client_show, :filtered_by_politician, :filtered_by_tag, :index_closed]
+  before_action :validate_admin_user, except: [:index, :show, :client_show, :voted, :filtered_by_politician, :filtered_by_tag, :index_closed]
   before_action :set_tag, only: :filtered_by_tag
+  before_action :set_poll, only: :client_show
   before_action :set_politician, only: :filtered_by_politician
 
   def toggle_status
@@ -146,31 +147,61 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find_by(id: params[:id])
-    chart_type = 'pie'
-
-    if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
-      @vote_types = @poll.votes.joins(:vote_type)
-                         .group('vote_types.name')
-                         .count('vote_types.id')
-    else
-      i_date = params[:poll][:initial_date]
-      f_date = params[:poll][:final_date]
-      @vote_types = @poll.votes.joins(:vote_type)
-                         .where(created_at: i_date...f_date)
-      unless @vote_types.empty?
-        @vote_types = @vote_types.group('vote_types.name')
-                                 .count('vote_types.id')
-      end
-    end
-
-    puts "@vote_types: #{@vote_types}"
-
     respond_to do |format|
-      format.html {}
+      format.html do
+        chart_type = 'pie'
+        if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
+          @vote_types = @poll.votes.joins(:vote_type)
+          .group('vote_types.name')
+          .count('vote_types.id')
+        else
+          i_date = params[:poll][:initial_date]
+          f_date = params[:poll][:final_date]
+          @vote_types = @poll.votes.joins(:vote_type).where(created_at: i_date...f_date)
+          @vote_types = @vote_types.group('vote_types.name').count('vote_types.id') unless @vote_types.empty?
+        end
+        puts "@vote_types: #{@vote_types}"
+      end
       format.json do
-        @poll = Poll.find(params[:id])
+        @vote_types = @poll.votes.joins(:vote_type)
+        .group('vote_types.name')
+        .count('vote_types.id')
       end
     end
+  end
+
+  def client_show
+    if @poll
+      set_meta_tags og: {
+        title: @poll.title,
+        image: @poll.poll_image,
+        description: @poll.summary,
+        type: "article",
+        site_name: "seamOS"
+      }
+
+      set_meta_tags article: {
+        published_time:    @poll.created_at,
+        section:           @poll.tags.first.name,
+        tag:               @poll.tags.first.name,
+      }
+
+      set_meta_tags twitter: {
+        card:  "summary_large_image",
+        site:  "@seamos",
+        title:  @poll.title,
+        description: @poll.summary ? @poll.summary.first(199) : nil,
+        creator: "@seamos",
+        image: {
+          _:      @poll.poll_image,
+          width:  100,
+          height: 100,
+        }
+      }
+    else
+      redirect_to "/\#/404"
+    end
+    @props = {pollIdReducer: {id: params[:id]}}
   end
 
   def voted
@@ -182,6 +213,10 @@ class PollsController < ApplicationController
   end
 
   private
+
+  def set_poll
+    @poll = Poll.find_by(id: params[:id])
+  end
 
   def bind_links
     @poll.external_links.destroy_all if @poll.external_links.present? && links_param != ""

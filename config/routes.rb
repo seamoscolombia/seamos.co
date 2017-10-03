@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   resources :photos, only: :create
 
-  resources :facebookob
   get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
   resources :users , except: [:show] do
     get 'already_voted', on: :member
@@ -14,6 +13,8 @@ Rails.application.routes.draw do
     resources :tags, only: :index, to: 'tags#user_interests', format: 'json'
   end
 
+
+  get 'client/polls/:id', to: 'polls#client_show'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/check_session', to: 'sessions#show', format: 'json'
   delete '/sessions', to: 'sessions#destroy', as: 'session'

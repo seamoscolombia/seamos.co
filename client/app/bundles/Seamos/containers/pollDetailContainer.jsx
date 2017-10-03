@@ -7,8 +7,8 @@ import { getPoll, votePoll, chechVotedPol, validateSession } from '../actions';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
-    const { poll, session, user } = state;
-    return { poll, session, user };
+  const { poll, session, user, pollIdReducer } = state;
+  return { poll, session, user, pollIdReducer };
 };
 
 const mapDispatchToProps = { getPoll, votePoll, chechVotedPol, validateSession };
@@ -22,10 +22,9 @@ class PollsDetailContainer extends Component {
     }
 
     componentWillMount() {
-        this.props.validateSession();        
+        this.props.validateSession();
         this.props.getPoll({
-            pollId: this.props.match.params.pollId,
-            errCallback: () => this.props.history.push('/404')
+          pollId: this.props.pollIdReducer.id
         });
     }
 
@@ -36,13 +35,7 @@ class PollsDetailContainer extends Component {
       } else if (nextProps.user.id && nextProps.poll.id && nextProps.poll.prevent_loop) {
         this.props.chechVotedPol(nextProps.user.id, nextProps.poll);
       } else if (nextProps.poll.id !== this.props.poll.id) {
-          window.location.hash = `/poll/${nextProps.poll.id}`;
           console.info('new poll detail', nextProps.poll.id);
-      } else if (nextProps.match.params.pollId !== this.props.match.params.pollId) {
-         this.props.getPoll({
-              pollId: nextProps.match.params.pollId,
-              errCallback: () => this.props.history.push('/404')
-          });
       }
       return true;
     }
@@ -62,7 +55,7 @@ class PollsDetailContainer extends Component {
                 authenticityToken: session.authenticityToken,
                 poll
             });
-        } else {            
+        } else {
             alert('Por favor inicie sesión antes de votar'); //eslint-disable-line
         }
     }
@@ -78,7 +71,7 @@ class PollsDetailContainer extends Component {
                         moreInfo={this.state.moreInfo}
                         voteAction={id => this.voteAction(id)}
                         session={session}
-                    /> 
+                    />
                 </div>
             );
         }

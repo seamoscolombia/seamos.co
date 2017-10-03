@@ -12,14 +12,9 @@ import { PRODUCTION_URL } from '../../constants';
 
 import FacebookLogin from '../../containers/facebookLoginContainer';
 
-
-const shareUrl = `${PRODUCTION_URL}/facebookob/?id=`;
-// const twittershareUrl = `${PRODUCTION_URL}/#/poll/`;
 const { FacebookShareButton } = ShareButtons;
 const { TwitterShareButton } = ShareButtons;
-// const FacebookIcon = generateShareIcon('facebook');
 
-const moreInfoStyle = { height: 150, overflow: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflow: 'none' };
 const statusActiveStyle = { backgroundColor: 'yellow' };
 const statusInactiveStyle = { backgroundColor: 'gainsboro' };
@@ -153,18 +148,18 @@ const PollDetail = ({
               alt='politician'
             />
             <div id='politician-info'>
-              <Link
+              <a
                 id='author'
-                to={`/proponents/${politician.id}`}
+                href={`/proponents/${politician.id}`}
               > {politician.full_name}
-              </Link>
+              </a>
               <div id='org'> {politician.organization} </div>
             </div>
           </section>
           <div className='share-wrapper'>
             <span className='share-this'> COMPARTIR: </span>
               <FacebookShareButton
-                url={shareUrl + id}
+                url={`${PRODUCTION_URL}/client/polls/${id}`}
                 className="network__share-button"
               >
                 <a
@@ -176,7 +171,7 @@ const PollDetail = ({
                   <br />
               </FacebookShareButton>
               <TwitterShareButton
-                url={shareUrl + id}
+                url={`${PRODUCTION_URL}/client/polls/${id}`}
                 via='seamos'
                 title={shareTitle(user_already_voted, title)}
                 hashtags={['seamOSelcambio']}
