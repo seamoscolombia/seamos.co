@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import GoogleLog from '../containers/googleLoginContainer';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import RailsProfileButton from '../containers/railsProfileButtonContainer';
 import RailsLogoutButton from '../containers/railsLogoutButtonContainer';
 import { URL } from '../constants';
-
 
 const Menu = () => (
   [<li key='1' >
@@ -50,7 +50,15 @@ const Navbar = ({ session, user }) => (
         </a>
         <div className='hide-on-desktop only-photo'>
           {session.logged && Object.keys(user).length !== 0 ?
-            profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='' /> </li>
+            profile() : 
+            <div>
+              <li key='11'> 
+                <FacebookLogin fbclassName='nav-fb' fbText='REGÍSTRATE' /> 
+              </li>
+              <li key='12'> 
+                <GoogleLog googleClassName='nav-fb' googleText='REGÍSTRATE GOOGLE' />
+              </li>
+            </div>
           }
         </div>
         <button
@@ -72,7 +80,13 @@ const Navbar = ({ session, user }) => (
           <ul className='nav navbar-nav navbar-right navbar-options'>
             <div className='hide-on-desktop'>
               {session.logged && Object.keys(user).length !== 0 ?
-                profile() : <li key='5'> <FacebookLogin fbclassName='nav-fb' fbText='REGÍSTRATE' /> </li>
+                profile() : 
+                <div>
+                  <li key='5'> 
+                    <FacebookLogin fbclassName='nav-fb' fbText='REGÍSTRATE' /> 
+                    <GoogleLog googleClassName='nav-fb' googleText='REGÍSTRATE GOOGLE' />
+                  </li>
+                </div>
               }
             </div>
             <li key='6'><a href={`${URL}/#/tags`}> Temas </a></li>
@@ -81,7 +95,15 @@ const Navbar = ({ session, user }) => (
             <span className='circle-separator'> &#9679; </span>
             <div className='hide-on-mobile'>
               {session.logged && Object.keys(user).length !== 0 ?
-                profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='Regístrate' /> </li>
+                profile() : 
+                <div>
+                  <li key='11'> 
+                    <FacebookLogin fbclassName='nav-fb' fbText='REGÍSTRATE' /> 
+                  </li>
+                  <li key='12'> 
+                    <GoogleLog googleClassName='nav-fb' googleText='REGÍSTRATE GOOGLE' />
+                  </li>
+                </div>
               }
             </div>
             {session.logged && Object.keys(user).length !== 0 ?
