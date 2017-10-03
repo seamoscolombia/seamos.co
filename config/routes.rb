@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   resources :photos, only: :create
 
-  resources :facebookob
   get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
   resources :users , except: [:show] do
     get 'already_voted', on: :member
