@@ -1,4 +1,4 @@
-var ready = function() {
+$( document ).ready(function(){
     var pathn = window.location.pathname
     if (pathn.split("/").find(function(controller) {
             return controller === "polls"
@@ -36,6 +36,3 @@ var ready = function() {
         });
     }
 };
-
-$(document).ready(ready);
-$(document).on('turbolinks:load', ready);

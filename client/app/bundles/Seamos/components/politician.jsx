@@ -72,7 +72,7 @@ const Politician = (props) => {
             <div className='row'>
               <div className='col-md-12'>
                 <h2 className='hide-on-desktop'> Biografía </h2>
-                <p> {props.bio} </p>
+                <td dangerouslySetInnerHTML={{ __html: props.bio }} />
               </div>
             </div>
             <div className='row'>
