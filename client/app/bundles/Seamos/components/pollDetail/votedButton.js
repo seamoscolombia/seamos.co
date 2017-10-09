@@ -2,7 +2,7 @@ import React from 'react';
 
 function calculatePercentage(count, total) {
     return (
-      Math.floor(100 * (count / total))
+      (100 * (count / total)).toFixed(1)
     );
 }
 const minorThanThirteen = { backgroundColor: 'gainsboro' };
