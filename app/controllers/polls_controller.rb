@@ -113,7 +113,7 @@ class PollsController < ApplicationController
   def filtered_by_tag
     respond_to do |format|
       format.json do
-        @polls = @tag.polls.includes(:votes).sort_by {|poll| - poll.votes.size} if @tag
+        @polls = @tag.polls.includes(:votes).active.sort_by {|poll| - poll.votes.size} if @tag
       end
     end
   end
@@ -122,7 +122,7 @@ class PollsController < ApplicationController
     if @politician
       respond_to do |format|
         format.json do
-          @polls = @politician.polls.includes(:votes).sort_by {|poll| - poll.votes.size}
+          @polls = @politician.polls.includes(:votes).active.sort_by {|poll| - poll.votes.size}
         end
       end
     else
@@ -174,7 +174,11 @@ class PollsController < ApplicationController
     if @poll
       set_meta_tags og: {
         title: @poll.title,
-        image: @poll.poll_image,
+        image: {
+          _: @poll.poll_image,
+          width: 100,
+          height: 100
+        },
         description: @poll.summary,
         type: "article",
         site_name: "seamOS"
