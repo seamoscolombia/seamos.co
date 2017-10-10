@@ -1,4 +1,4 @@
-$( document ).on('turbolinks:load', function() {
+$( document ).ready(function(){
   var fU = $("#users_filter");
   var bS = $(".button-sender");
   var bVTA = $("#button_vote_types_attributes");
