@@ -150,7 +150,7 @@ const PollDetail = ({
             <div id='politician-info'>
               <a
                 id='author'
-                href={`/proponents/${politician.id}`}
+                href={`/#/proponents/${politician.id}`}
               > {politician.full_name}
               </a>
               <div id='org'> {politician.organization} </div>

@@ -50,6 +50,7 @@ class Poll < ApplicationRecord
   scope :active, -> {
     where('active IS TRUE AND closing_date >= ?', Date.current)
   }
+
   scope :inactive, -> {
     where('active IS FALSE OR closing_date < ?', Date.current)
   }
