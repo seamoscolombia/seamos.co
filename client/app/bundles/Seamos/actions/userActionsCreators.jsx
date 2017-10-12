@@ -16,7 +16,7 @@ export const deleteTagsOnUser = (tag) => ({
   tag,
 });
 
-export const createUser = (fbUser, authenticityToken) => dispatch => {
+export const createUser = (fbUser, authenticityToken) => (dispatch) => {
   const user = {
     names: fbUser.first_name,
     first_surname: fbUser.last_name,
@@ -64,8 +64,7 @@ export const validateUserSession = (fbUser) => (dispatch) => (
     fb_location: fbUser.location ? fbUser.location.name : null
   })
     .then(response => {
-      dispatch(setSession(response.data.authenticity_token));
-      dispatch(getUser(fbUser));
+      dispatch(handleSession(response.data.authenticity_token, fbUser));
     })
     .catch(e => {
       if (e.response && e.response.status === 422) {
@@ -80,6 +79,11 @@ export const validateUserSession = (fbUser) => (dispatch) => (
       }
     })
 );
+
+export const handleSession = (token, fbUser) => (dispatch) => {
+  dispatch(setSession(token));
+  dispatch(getUser(fbUser));
+};
 
 export const userInterests = ({ authenticity_token, user_id, tag }) => (dispatch) => (
   axios.post(`${URL}/users/${user_id}/interests`, {
