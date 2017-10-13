@@ -1,4 +1,4 @@
-var ready = function() {
+$( document ).ready(function(){
    if ($("#links-field").val() == null){
      var linklist = []
    } else {
@@ -20,7 +20,4 @@ var ready = function() {
   //     window.location.reload();
   //   }, 50));
   // }
-};
-
-$(document).ready(ready);
-$(document).on('turbolinks:load', ready);
+});
