@@ -176,8 +176,8 @@ class PollsController < ApplicationController
         title: @poll.title,
         image: {
           _: @poll.poll_image,
-          width: 100,
-          height: 100
+          width: 600,
+          height: 600
         },
         description: @poll.summary,
         type: "article",
