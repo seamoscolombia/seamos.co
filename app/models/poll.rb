@@ -48,7 +48,7 @@ class Poll < ApplicationRecord
                "En el concejox": 3}
 
   scope :active, -> {
-    where('active IS TRUE AND closing_date >= ?', Date.current)
+    where('active IS TRUE')
   }
   scope :inactive, -> {
     where('active IS FALSE OR closing_date < ?', Date.current)

@@ -8,7 +8,7 @@ import RelatedPolls from './../../containers/relatedPollsContainer';
 import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
-import { PRODUCTION_URL } from '../../constants';
+import { URL } from '../../constants';
 
 import FacebookLogin from '../../containers/facebookLoginContainer';
 
@@ -150,7 +150,7 @@ const PollDetail = ({
             <div id='politician-info'>
               <a
                 id='author'
-                href={`/proponents/${politician.id}`}
+                href={`/#/proponents/${politician.id}`}
               > {politician.full_name}
               </a>
               <div id='org'> {politician.organization} </div>
@@ -159,7 +159,7 @@ const PollDetail = ({
           <div className='share-wrapper'>
             <span className='share-this'> COMPARTIR: </span>
               <FacebookShareButton
-                url={`${PRODUCTION_URL}/client/polls/${id}`}
+                url={`${URL}/client/polls/${id}`}
                 className="network__share-button"
               >
                 <a
@@ -171,7 +171,7 @@ const PollDetail = ({
                   <br />
               </FacebookShareButton>
               <TwitterShareButton
-                url={`${PRODUCTION_URL}/client/polls/${id}`}
+                url={`${URL}/client/polls/${id}`}
                 via='seamos'
                 title={shareTitle(user_already_voted, title)}
                 hashtags={['seamOSelcambio']}
