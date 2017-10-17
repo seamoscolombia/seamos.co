@@ -72,6 +72,12 @@
       <%= yield %>
     </div>
 
+
+    <% if params[:controller] == 'polls' %>
+      <footer>
+        <iframe style="width:0; height:0; margin:0; padding:0; border:0; position:absolute;" src="https://developers.facebook.com/tools/debug/sharing/?q=<%=request.url%>">‌​</iframe>
+      </footer>
+    <% end %>
     <% unless params[:controller] == 'frontend' %>
       <footer id="footer-seamos" >
         <div class="container">
