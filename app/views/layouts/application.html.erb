@@ -72,14 +72,9 @@
       <%= yield %>
     </div>
 
-
-    <% if params[:controller] == 'polls' %>
-      <footer>
-        <iframe style="width:0; height:0; margin:0; padding:0; border:0; position:absolute;" src="https://developers.facebook.com/tools/debug/sharing/?q=<%=request.url%>">‌​</iframe>
-      </footer>
-    <% end %>
     <% unless params[:controller] == 'frontend' %>
       <footer id="footer-seamos" >
+        <iframe style="width:0; height:0; margin:0; padding:0; border:0; position:absolute;" src="https://developers.facebook.com/tools/debug/sharing/?q=<%=request.url%>">‌​</iframe>
         <div class="container">
           <p class="text-muted">POWERED BY SEAMOS – DEMOCRACIA DIGITAL</p>
           <p><%= image_tag("favicon.png") %></p>

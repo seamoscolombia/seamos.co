@@ -175,10 +175,9 @@ class PollsController < ApplicationController
       set_meta_tags og: {
         title: @poll.title,
         image: {
-          _: @poll.poll_image,
-          width: 600,
-          height: 600
+          secure_url: @poll.poll_image,
         },
+        image: @poll.poll_image,
         description: @poll.summary,
         type: "article",
         site_name: "seamOS"
