@@ -33,7 +33,7 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new http_params
-    @poll.closing_hour = "23:59" if @poll.closing_hour == ''
+    @poll.closing_hour = "23:59" if @poll.closing_hour.blank?
     @poll.user = current_user
     @poll.set_tags(tags_param)
     bind_links
@@ -48,7 +48,6 @@ class PollsController < ApplicationController
       @poll.totals = totals_hash.to_s
       @poll.save!
     end
-    # ActionCable.server.broadcast 'polls_channel', 'changed'
     flash[:success] = I18n.t(:accion_exitosa)
     redirect_to admin_dashboard_index_path
   rescue Exception => e
