@@ -77,12 +77,47 @@ const Navbar = ({ session, user }) => (
             </div>
             <li key='6'><Link to='/tags'> Temas </Link></li>
             <span className='circle-separator'> &#9679; </span>
-            <li key='7'><Link to='/team'> Quiénes somos </Link></li>
+            <li key='7'><Link to='/#'> Blog </Link></li>
+            <span className='circle-separator'> &#9679; </span>
+            <li key='8'><Link to='/#'> FAQS </Link></li>
+            <span className='circle-separator'> &#9679; </span>
+            <li className="dropdown">
+              <button className="nav-with-background" type="button" data-toggle="dropdown">
+                ACERCA DE
+                &ensp;
+                &ensp;
+                &ensp;
+                &ensp;
+                &ensp;                
+              </button>
+              <ul className="dropdown-menu custom--dropdown--about">
+                <li><Link to='/team'> Nuestro equipo </Link></li>
+                <li role="presentation" className="divider"></li>                
+                <li><Link to='/team'> Nuestros eventos </Link></li>
+                <li role="presentation" className="divider"></li>                
+                <li><Link to='/team'> Concejales que <br /> se unieron </Link></li>
+              </ul>
+            </li>
             <span className='circle-separator'> &#9679; </span>
             <div className='hide-on-mobile'>
               {session.logged && Object.keys(user).length !== 0 ?
-                profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='Regístrate' /> </li>
-              }
+                profile() :
+                <li className="dropdown">
+                  <button className="nav-with-background" type="button" data-toggle="dropdown">
+                    REGÍSTRATE
+                    <span className="caret"></span>
+                  </button>
+                  <ul className="dropdown-menu custom--dropdown">
+                    <li>
+                      <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
+                    </li>
+                    <li role="presentation" className="divider"></li>
+                    <li>
+                      <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
+                    </li>
+                  </ul>
+                </li>
+              } 
             </div>
             {session.logged && Object.keys(user).length !== 0 ?
               logout() : <span />
