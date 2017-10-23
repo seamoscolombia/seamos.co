@@ -127,6 +127,10 @@ class Poll < ApplicationRecord
     Tag.where(id: user.tag_ids).includes(:polls).map(&:polls).flatten.uniq
   end
 
+  def related_links
+    external_links.where(is_project_link: false)
+  end
+
   private
 
   def closing_date_validation
@@ -134,7 +138,6 @@ class Poll < ApplicationRecord
       errors.add(:closing_date, I18n.t(:fecha_invalida))
     end
   end
-
 
   def has_at_least_two_vote_types
     if vote_types.length < 2

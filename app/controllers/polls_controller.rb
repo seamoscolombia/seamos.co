@@ -222,11 +222,19 @@ class PollsController < ApplicationController
   end
 
   def bind_links
-    @poll.external_links.destroy_all if @poll.external_links.present? && links_param != ""
+    set_project_link
+    @poll.related_links.destroy_all if @poll.external_links.present? && links_param != ""
     links_param.split(',').map(&:strip).uniq.each do |url|
       if url.length > 4
         ExternalLink.create!(url: url, poll: @poll)
       end
+    end
+  end
+
+  def set_project_link
+    unless project_link_param[:project_link].blank?
+      @poll.project_link.destroy if @poll.project_link
+      ExternalLink.create!(url: project_link_param[:project_link], poll: @poll, is_project_link: true)
     end
   end
 
@@ -272,6 +280,11 @@ class PollsController < ApplicationController
   def links_param
     params[:poll][:links]
   end
+
+  def project_link_param
+    params[:poll].permit(:project_link)
+  end
+
   def http_params
     params.require(:poll).permit(
       :closing_date,
