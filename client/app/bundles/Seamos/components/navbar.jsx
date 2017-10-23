@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import GoogleLog from '../containers/googleLoginContainer';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import ProfileButton from '../containers/profileButtonContainer';
 import LogoutButton from '../containers/logoutButtonContainer';
-
 
 const Menu = () => (
   [<li key='1' >
@@ -50,7 +50,15 @@ const Navbar = ({ session, user }) => (
         </Link>
         <div className='hide-on-desktop only-photo'>
           {session.logged && Object.keys(user).length !== 0 ?
-            profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='' /> </li>
+            profile() : 
+            <div>
+              <li key='11'>
+                <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
+              </li>
+              <li key='12'>
+                <GoogleLog googleClassName='nav-dropdown-options' googleText='Google' />
+              </li>
+            </div>
           }
         </div>
         <button
@@ -72,14 +80,22 @@ const Navbar = ({ session, user }) => (
           <ul className='nav navbar-nav navbar-right navbar-options'>
             <div className='hide-on-desktop'>
               {session.logged && Object.keys(user).length !== 0 ?
-                profile() : <li key='5'> <FacebookLogin fbclassName='nav-fb' fbText='REGÍSTRATE' /> </li>
+                profile() : 
+                <div>
+                  <li key='5'>
+                    <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
+                  </li>
+                  <li key='6'>
+                    <GoogleLog googleClassName='nav-dropdown-options' googleText='Google' />
+                  </li>
+                </div>
               }
             </div>
-            <li key='6'><Link to='/tags'> Temas </Link></li>
+            <li key='7'><Link to='/tags'> Temas </Link></li>
             <span className='circle-separator'> &#9679; </span>
-            <li key='7'><Link to='/#'> Blog </Link></li>
+            <li key='8'><Link to='/#'> Blog </Link></li>
             <span className='circle-separator'> &#9679; </span>
-            <li key='8'><Link to='/#'> FAQS </Link></li>
+            <li key='9'><Link to='/#'> FAQS </Link></li>
             <span className='circle-separator'> &#9679; </span>
             <li className="dropdown">
               <button className="nav-with-background" type="button" data-toggle="dropdown">
@@ -113,7 +129,7 @@ const Navbar = ({ session, user }) => (
                     </li>
                     <li role="presentation" className="divider"></li>
                     <li>
-                      <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
+                      <GoogleLog googleClassName='nav-dropdown-options' googleText='Google' />
                     </li>
                   </ul>
                 </li>

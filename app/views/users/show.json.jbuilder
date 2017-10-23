@@ -38,6 +38,6 @@ json.user do
     end
   end
   json.authenticity_token form_authenticity_token
-  json.picture session[:fb_image]
-  json.location session[:fb_location]
+  json.picture session[:login_image]
+  json.location session[:login_location]
 end
