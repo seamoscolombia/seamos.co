@@ -95,7 +95,7 @@ const Navbar = ({ session, user }) => (
                 <li role="presentation" className="divider"></li>                
                 <li><a href={`${URL}/#/team`}> Nuestros eventos </a></li>
                 <li role="presentation" className="divider"></li>                
-                <li><a href={`${URL}/#/team`}> Concejales que <br /> se unieron </a></li>
+                <li><a href={`${URL}/#/politicians`}> Concejales que <br /> se unieron </a></li>
               </ul>
             </li>
             <span className='circle-separator'> &#9679; </span>
