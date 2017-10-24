@@ -47,10 +47,25 @@ function externalLinks(links) {
         target='_blank'
         rel='noopener noreferrer'
       >
-        {link.url.substr(0, 60)}
+        {link.url.substr(0, 50)}
       </a>
     </div>
   );
+}
+
+function projectLink(link) {
+  if (link) {
+    return (<div className='project-link'>
+      <a
+        href={link}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {link.substr(0, 50)}
+      </a>
+    </div>
+    )
+  }
 }
 
 function voteButton(pollType, voteTypes, voteAction, session) {
@@ -108,10 +123,17 @@ function votedButton(pollType, voteTypes, vote_count, is_closed) {
   }
 }
 
+function projectLinkTitle(link) {
+  if (link) {
+    return <h5 className='external-links-title' style={{ marginTop: '54px' }}> Enlace Proyecto Concejal </h5>;
+  }
+  return null;
+}
+
 function externalLinksTitle(links) {
   const linksPresent = links.length !== 0;
   if (linksPresent) {
-    return <h5> Enlaces Externos </h5>;
+    return <h5 className='external-links-title'> Enlaces Relacionados </h5>;
   }
   return null;
 }
@@ -126,8 +148,8 @@ function getPicture(politician) {
 const PollDetail = ({
                       id, title, image, remaining,
                       description, objective, vote_count,
-                      user_already_voted, links, politician,
-                      poll_type, vote_types,
+                      user_already_voted, links, project_link,
+                      politician, poll_type, vote_types,
                       voteAction, tag, status, summary, session
                     }) => (
     <div>
@@ -206,6 +228,10 @@ const PollDetail = ({
                 <div className='state state-3' style={(remaining > 0 && status === 2) ? statusActiveStyle : statusInactiveStyle}> Proyecto de acuerdo </div>
                 <div className='state state-4' style={(remaining > 0 && status === 3) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
                 <div className='state state-5' style={remaining < 0 ? statusActiveStyle : statusInactiveStyle}> Propuesta Cerrada </div>
+              </div>
+              {projectLinkTitle(project_link)}
+              <div className='external-links-container'>
+                {projectLink(project_link)}
               </div>
               {externalLinksTitle(links)}
               <div className='external-links-container'>
