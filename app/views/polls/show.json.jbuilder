@@ -22,7 +22,7 @@ json.poll do
     else
       json.user_already_voted false
     end
-    json.project_link @poll.project_link.url
+    json.project_link @poll.try(:project_link).try(:url)
     json.links do
       json.array! @poll.related_links do |related_link|
         json.url related_link.url
