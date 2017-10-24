@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
   get 'polls/closed', to: 'polls#index_closed', format: 'json'
   get 'check_vote', to: 'votes#check_vote', format: 'json'
+  get 'random_polls', to: 'polls#random_non_voted_polls', format: 'json'
 
   resources :polls do
     get 'last', on: :collection

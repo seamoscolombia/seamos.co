@@ -101,6 +101,10 @@ class Poll < ApplicationRecord
     closing_date < Date.current
   end
 
+  def voted_by_user?(user_id)
+    votes.pluck(:user_id).include?(user_id)
+  end
+
   def set_tags(tag_list)
     tags << Tag.where(name: tag_list.split(','))
   end
