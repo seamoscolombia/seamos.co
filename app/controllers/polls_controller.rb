@@ -17,8 +17,21 @@ class PollsController < ApplicationController
   include SessionsHelper
   before_action :validate_poll_closed?, only: :show
   # before_action :validate_closing_date, only: :edit
-  before_action :validate_session, except: [:index, :show, :client_show, :filtered_by_politician, :filtered_by_tag, :index_closed]
-  before_action :validate_admin_user, except: [:index, :show, :client_show, :voted, :filtered_by_politician, :filtered_by_tag, :index_closed]
+  before_action :validate_session, except: [:index,
+                                            :show,
+                                            :client_show,
+                                            :filtered_by_politician,
+                                            :filtered_by_tag,
+                                            :index_closed,
+                                            :random_non_voted_polls]
+  before_action :validate_admin_user, except: [:index,
+                                               :show,
+                                               :client_show,
+                                               :voted,
+                                               :filtered_by_politician,
+                                               :filtered_by_tag,
+                                               :index_closed,
+                                               :random_non_voted_polls]
   before_action :set_tag, only: :filtered_by_tag
   before_action :set_poll, only: :client_show
   before_action :set_politician, only: :filtered_by_politician
@@ -113,6 +126,14 @@ class PollsController < ApplicationController
     respond_to do |format|
       format.json do
         @polls = @tag.polls.includes(:votes).active.sort_by {|poll| - poll.votes.size} if @tag
+      end
+    end
+  end
+
+  def random_non_voted_polls
+    respond_to do |format|
+      format.json do
+        @polls = Poll.includes(:votes, :tags).active.open.select{|poll| poll.voted_by_user?(current_user.id) == false}.shuffle
       end
     end
   end
