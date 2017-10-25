@@ -1,5 +1,40 @@
 @import './variables.scss'
 #profile
+  #profile-baner
+  $square-info-size: 470px
+  $square-info-size-mobile: 270px
+  $team-member-size: 200px
+  $politician-size: 150px
+  $politician-mobile-size: 100px
+  .breaker
+    @media screen and (max-width: $break-medium)
+      display: none
+  .profile--banner
+    height: 300px
+    background-color: gainsboro
+    font-size: 50px
+    line-height: 1.3em
+    font-weight: bold
+    color: white
+    text-transform: none
+    font-family: "HKNovaBold"
+    display: flex
+    align-items: center
+    justify-content: center
+    word-break: break-word
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
+      padding: 0 40px
+      text-align: center
+  .one
+    background-color: #bdbdbd
+    display: flex
+    align-items: flex-end
+    height: 200px
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
   .btn-return
     margin-top: 20px
     background-color: black
@@ -7,9 +42,13 @@
     font-family: 'HKNovaBold'
   $tag-size: 150px
   $tag-size-mobile: $tag-size - 20px
-  margin-top: 80px
-  @media screen and (max-width: $break-medium)
-    margin-top: 60px
+  .container
+    margin-top: -55px
+  .divider
+    border: 1px solid #d4d4d4
+    margin: 30px 200px
+  .second-container
+    margin-top: 0
   .profile-info-container
     display: flex
     align-items: center
@@ -102,7 +141,6 @@
       @media screen and (max-width: $break-medium)
         margin-bottom: 60px
       .title
-        background-image: url(asset_path('PARTICIPACIONES.png'))
         min-height: 30px
         min-width: 90px
         margin-bottom: 20px
@@ -111,8 +149,11 @@
         background-size: contain
         background-repeat: no-repeat
         span
-          margin-left: 3.5em
-          font-weight: bold
+          font-family: 'HKNovaBold'
+          font-size: 20px
+          @media screen and (max-width: $break-medium)
+            font-size: 14px
+            margin-left: 0
       .polls-wrapper
         @media screen and (max-width: $break-medium)
         #poll-component
