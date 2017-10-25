@@ -38,6 +38,7 @@ const Profile = (props) => {
     participations, tags
   } = props.user;
   const { interests } = props;
+  console.log(participations);
   return (
     <div id='profile'>
       <div id='profile-banner'>
