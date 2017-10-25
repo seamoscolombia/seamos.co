@@ -10,7 +10,7 @@ function myInterests(tags) {
       { tags.length > 0 ?
         <section id='my-subjects' className='col-sm-4'>
           <div className='title'>
-            <span>MIS TEMAS</span>
+            <span>Mis temas de interes</span>
           </div>
           <Tags tags={tags} />
         </section>
@@ -38,7 +38,6 @@ const Profile = (props) => {
     participations, tags
   } = props.user;
   const { interests } = props;
-  console.log(participations);
   return (
     <div id='profile'>
       <div id='profile-banner'>
@@ -66,7 +65,7 @@ const Profile = (props) => {
             <div className='title'>
               <span>Participaciones recientes</span>
             </div>
-            <Polls polls={participations.polls} />
+            <Polls polls={participations.polls.slice(0, 1)} />
           </section>
         </div>
       </div>
@@ -77,9 +76,9 @@ const Profile = (props) => {
           { selectInterests() }
           <section className='my-participations col-sm-6'>
             <div className='title'>
-              <span>Participaciones recientes</span>
+              <span>Otras participaciones</span>
             </div>
-            <Polls polls={participations.polls} />
+            <Polls polls={participations.polls.slice(2)} type='horizontal' />
           </section>
         </div>
       </div>

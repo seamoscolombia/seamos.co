@@ -39,9 +39,6 @@ const Poll = (props) => {
             {title}
           </span>
         </div>
-        <div className='poll-description'>
-          {summary}
-        </div>
         <div className='politician-info'>
           <div className='picture-container'>
             <img src={politician.picture} alt='politician' />
