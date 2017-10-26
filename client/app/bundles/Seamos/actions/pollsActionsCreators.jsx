@@ -47,12 +47,12 @@ const mayInteresPolls = (polls) => ({
   polls
 });
 
-export const getMayInterestPolls = () => (dispatch) => {
+export const getMayInterestPolls = () => (dispatch) => (
   axios.get(`${URL}/random_polls`)
   .then(response => {
     dispatch(mayInteresPolls(response.data.polls));
   })
   .catch(err => {
     console.log(err);
-  });
-};
+  })
+);

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Poll = (props) => {
+  console.log(props)
   const { id, title, is_closed, summary, poll_image, tag, color, tag_name, politician } = props;
   let tagColor = 'none';
   if (tag) {
