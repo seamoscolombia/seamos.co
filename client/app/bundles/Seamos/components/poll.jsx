@@ -27,7 +27,7 @@ const Poll = (props) => {
   return (
     <a href={`/client/polls/${id}`} style={{ textDecoration: 'none' }}>
       <div id='poll-component'>
-        { user_vote ? myVote(user_vote) : null }        
+        { user_vote ? myVote(user_vote) : null }
         <div className='poll-image-container'>
             <img alt="poll" src={poll_image} />
         </div>

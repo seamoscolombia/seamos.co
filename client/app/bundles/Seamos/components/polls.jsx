@@ -20,7 +20,6 @@ const Polls = ({ polls, tag, type }) => (
               </div>
                   )
                )
-            
     }
   </div>
 );

@@ -1,6 +1,5 @@
 @import './variables.scss'
 #profile
-  #profile-baner
   $square-info-size: 470px
   $square-info-size-mobile: 270px
   $team-member-size: 200px
@@ -29,8 +28,6 @@
       text-align: center
   .one
     background-color: #c6c6c6
-    display: flex
-    align-items: flex-end
     height: 200px
     @media screen and (max-width: $break-medium)
       height: 180px
@@ -46,7 +43,7 @@
     margin-top: -55px
   .divider
     border: 1px solid #d4d4d4
-    margin: 30px 200px
+    margin: 50px 0px
   .second-container
     margin-top: 0
   .profile-info-container
@@ -82,7 +79,8 @@
       width: 100px
       height: 100px
   .media-left
-    margin-left: $move-left
+    margin-left: 0
+    // margin-left: $move-left
     @media screen and (max-width: $break-medium)
       margin-left: 0
   .media-body
@@ -108,7 +106,7 @@
         margin-left: 0
   #profile-container
     #my-subjects
-      margin-left: $move-left
+      // margin-left: $move-left
       @media screen and (max-width: $break-medium)
         margin-left: 0
       .title
@@ -153,14 +151,17 @@
         background-repeat: no-repeat
         span
           font-family: 'HKNovaBold'
-          font-size: 20px
+          font-size: 30px
           @media screen and (max-width: $break-medium)
             font-size: 14px
             margin-left: 0
       .polls-wrapper
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-between
         @media screen and (max-width: $break-medium)
         #poll-component
-          width: 250px
+          width: 340px
           margin-right: 20px
           margin-top: 20px
           margin-left: 0
@@ -179,7 +180,7 @@
               @media screen and (max-width: $break-medium)
                 margin-left: 0
           .poll-image-container
-            height: 230px
+            height: 300px
             @media screen and (max-width: $break-medium)
             a
               img
@@ -191,7 +192,6 @@
               .poll-description
                 margin-bottom: 10px
             .poll-details
-              display: none
               @media screen and (max-width: $break-medium)
               span:nth-child(4)
               .btn-plus-read

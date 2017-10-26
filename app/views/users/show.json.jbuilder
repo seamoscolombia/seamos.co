@@ -23,6 +23,7 @@ json.user do
           json.poll_image poll.poll_image.url
           json.remaining poll.remaining_time_in_seconds
           json.summary poll.summary
+          json.tag_name poll.tags.first.name
           json.color poll.tags.first.tag_color
           json.user_vote poll.votes.by_user_id(current_user.id).first.name
 

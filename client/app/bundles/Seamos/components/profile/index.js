@@ -61,24 +61,22 @@ const Profile = (props) => {
           {interests ?
             selectInterests() : myInterests(tags)
           }
-          <section className='my-participations col-sm-6'>
+          <section className='my-participations col-sm-8'>
             <div className='title'>
               <span>Participaciones recientes</span>
             </div>
-            <Polls polls={participations.polls.slice(0, 1)} />
+            <Polls polls={participations.polls.slice(0, 2)} />
           </section>
         </div>
-      </div>
-      <div className="divider"></div>
-      <div className='container second-container'>
+        <div className="col-sm-12 divider"></div>
         <br />
         <div id='profile-container' className='row' >
           { selectInterests() }
-          <section className='my-participations col-sm-6'>
+          <section className='my-participations col-sm-8'>
             <div className='title'>
               <span>Otras participaciones</span>
             </div>
-            <Polls polls={participations.polls.slice(2)} type='horizontal' />
+            <Polls polls={participations.polls.slice(3)} type='horizontal' />
           </section>
         </div>
       </div>
