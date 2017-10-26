@@ -10,6 +10,7 @@ import tags from './tagsReducer';
 import VotedPollReducer from './votedPollReducer';
 import VotedPollsReducer from './votedPollsReducer';
 import pollIdReducer from './pollIdReducer';
+import mayInterestReducer from './mayInterestReducer';
 
 export default combineReducers({
   interests,
@@ -22,5 +23,6 @@ export default combineReducers({
   tag,
   tags,
   votedPolls: VotedPollsReducer,
-  pollIdReducer
+  pollIdReducer,
+  mayInterestReducer
 });

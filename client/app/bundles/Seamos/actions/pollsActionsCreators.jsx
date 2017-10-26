@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { updateTag } from './tagActionsCreators';
-import { UPDATE_POLLS, URL } from '../constants';
+import { UPDATE_POLLS, URL, MAY_INTEREST } from '../constants';
 
 export const updatePolls = (polls) => ({
   type: UPDATE_POLLS,
@@ -40,4 +40,19 @@ export const pollsFilteredByTag = (tagId) => (dispatch) => {
       console.log(error);
     });
   }
+};
+
+const mayInteresPolls = (polls) => ({
+  type: MAY_INTEREST,
+  polls
+});
+
+export const getMayInterestPolls = () => (dispatch) => {
+  axios.get(`${URL}/random_polls`)
+  .then(response => {
+    dispatch(mayInteresPolls(response.data.polls));
+  })
+  .catch(err => {
+    console.log(err);
+  });
 };

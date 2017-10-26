@@ -1,0 +1,64 @@
+@import './variables'
+#may-interest
+  $square-info-size: 470px
+  $square-info-size-mobile: 270px
+  $team-member-size: 200px
+  $politician-size: 150px
+  $politician-mobile-size: 100px
+  .breaker
+    @media screen and (max-width: $break-medium)
+      display: none
+  .interest-banner
+    height: 150px
+    background-color: gainsboro
+    font-size: 50px
+    line-height: 1.3em
+    font-weight: bold
+    color: white
+    text-transform: none
+    font-family: "HKNovaBold"
+    display: flex
+    align-items: center
+    justify-content: center
+    word-break: break-word
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
+      padding: 0 40px
+      text-align: center
+  .one
+    margin: 50px 0
+    background-color: #c6c6c6
+    color: #45434c
+  .allies
+    padding: 0 170px
+    @media screen and (max-width: $break-medium)
+      padding: 0 40px
+      padding-top: 20px
+    .ally
+      height: 180px
+      background-repeat: no-repeat
+      background-color: white
+      background-size: 80%
+      background-position: center
+      margin: 0
+      @media screen and (max-width: $break-medium)
+        background-size: contain
+        height: 71px
+        width: 200px
+        margin: auto
+    .one
+      background-image: url(asset_path('logos_aliados-01.png'))
+    .two
+      background-image: url(asset_path('logos_aliados-02.png'))
+    .three
+      background-image: url(asset_path('logos_aliados-05.png'))
+    .four
+      background-image: url(asset_path('logos_aliados-04.png'))
+      background-size: 40%
+    .five
+      background-image: url(asset_path('logos_aliados-03.png'))
+    .six
+      background-image: url(asset_path('logos_aliados-06.png'))
+    .seven
+      background-image: url(asset_path('logos_aliados-07.png'))

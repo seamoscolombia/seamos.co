@@ -3,6 +3,7 @@ import React from 'react';
 import Tags from '../tags';
 import Polls from '../polls';
 import SelectInterests from '../../containers/selectInterestsContainer';
+import MayInterestContainer from '../../containers/mayInterestContainer';
 
 function myInterests(tags, goToEdit) {
   return (
@@ -29,29 +30,34 @@ const Profile = (props) => {
   } = props.user;
   const { interests, goToEdit } = props;
   return (
-    <div id='profile' className='container'>
-      <header className="media">
-        <div className="row profile-info-container">
-          <div className="col-sm-1 media-left">
-            <img src={picture} className='media-object' role='presentation' />
+    <div>
+      <div id='profile' className='container'>
+        <header className="media">
+          <div className="row profile-info-container">
+            <div className="col-sm-1 media-left">
+              <img src={picture} className='media-object' role='presentation' />
+            </div>
+            <div className="media-body col-sm-10">
+              <h4 className="media-heading">{short_name}</h4>
+              <h6 className="media-heading">{location}</h6>
+            </div>
           </div>
-          <div className="media-body col-sm-10">
-            <h4 className="media-heading">{short_name}</h4>
-            <h6 className="media-heading">{location}</h6>
-          </div>
+        </header>
+        <br />
+        <div id='profile-container' className='row' >
+          {interests ?
+            selectInterests() : myInterests(tags, goToEdit)
+          }
+          <section className='my-participations col-sm-6'>
+            <div className='title'>
+              <span> MIS PARTICIPACIONES</span>
+            </div>
+            <Polls polls={participations.polls} />
+          </section>
         </div>
-      </header>
-      <br />
-      <div id='profile-container' className='row' >
-        {interests ?
-          selectInterests() : myInterests(tags, goToEdit)
-        }
-        <section className='my-participations col-sm-6'>
-          <div className='title'>
-            <span> MIS PARTICIPACIONES</span>
-          </div>
-          <Polls polls={participations.polls} />
-        </section>
+      </div>
+      <div>
+        <MayInterestContainer />
       </div>
     </div>
   );
