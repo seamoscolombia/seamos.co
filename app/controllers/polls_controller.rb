@@ -133,7 +133,9 @@ class PollsController < ApplicationController
   def random_non_voted_polls
     respond_to do |format|
       format.json do
-        @polls = Poll.includes(:votes, :tags).active.open.select{|poll| poll.voted_by_user?(current_user.id) == false}.shuffle
+        @polls = Poll.includes(:votes, :tags).active.open
+        @polls = @polls.select{|poll| poll.voted_by_user?(current_user.id) == false} if current_user.present?
+        @polls = @polls.shuffle.first(4)
       end
     end
   end
