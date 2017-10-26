@@ -136,6 +136,7 @@ class PollsController < ApplicationController
         @polls = Poll.includes(:votes, :tags).active.open
         @polls = @polls.select{|poll| poll.voted_by_user?(current_user.id) == false} if current_user.present?
         @polls = @polls.shuffle.first(4)
+        @polls = Poll.includes(:votes, :tags).active.closed.shuffle.first(4) if @polls.blank?
       end
     end
   end
