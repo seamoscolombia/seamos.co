@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
 // import { PRODUCTION_URL } from '../constants';
+import PollsPageContainer from '../containers/pollsPageContainer'
 
 // const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
 // const shareDescription = 'somos una organización que ayuda a la democracía';
@@ -25,54 +26,16 @@ const Home = ({ session }) => (
         </p>
       </div>
     </div>
-    <div id='steps-container' className="flex-container">
-      <Link
-        to="#"
-      >
-        <div className="step" style={{ height: '322px' }}>
-          <div className="step-info">
-            <div className="step-text">
-              <span className="step-number-1">1 </span>
-              &nbsp;Regístrate
-            </div>
-          </div>
-          <div className='text'>Con un solo click en la plataforma.</div>
-          <div className="step-image step-image-1" />
-          {session.logged ? 
-            null
-            : <FacebookLogin id='fb-login-transparent' fbText='Conéctate con facebook' />
-          }
+    <div className="row mid-container">
+      <div className="col-md-5">
+        <div className="title">
+          <h1>Temas de Interés</h1> 
         </div>
-      </Link>
-      <Link
-        to="/tags"
-      >
-        <div className="step">
-          <div className="step-info">
-            <div className="step-text">
-              <span className="step-number-2">2 </span>
-              &nbsp;Explora
-            </div>
-          </div>
-          <div className='text'>Las propuestas de acuerdo a tus temas de interés.</div>
-          <div className="step-image step-image-2" />
-        </div>
-      </Link>
-      <Link
-        to="#"
-        onClick={() => window.scrollTo(0, 2050)}
-      >
-        <div className="step">
-          <div className="step-info">
-            <div className="step-text">
-              <span className="step-number-3">3 </span>
-               &nbsp;Vota
-            </div>
-          </div>
-          <div className='text'>Para comenzar a incidir en los asuntos de tu ciudad.</div>
-          <div className="step-image step-image-3" />
-        </div>
-      </Link>
+        <Tags />
+      </div>
+      <div className="col-md-7">
+        <PollsPageContainer />
+      </div>
     </div>
     <div className='background-container up-mid'>
       <div className='flex-container up-mid-text-container'>
@@ -95,25 +58,7 @@ const Home = ({ session }) => (
         acatar las decisiones de sus votantes.
       </div>
     </div>
-    <div className='background-container mid'>
-      <div className='flex-container top-text-container'>
-        <h1 className='welcome question'>
-          Encuentra propuestas de <br className='breaker' />
-          acuerdo a los temas <br className='breaker' />
-          de tu interés
-        </h1>
-      </div>
-    </div>
-    <Tags />
-    <div className='background-container down'>
-      <div className='flex-container down-text-container'>
-        <div id='featured-polls-title'>
-          Propuestas<br />destacadas
-        </div>
-      </div>
-    </div>
-    <Featured />
-    <div className='newsletter-container'>
+    {/* <div className='newsletter-container'>
       <div className='newsletter'>
         <div className='title'>
           Suscríbete a nuestro newsletter
@@ -125,7 +70,7 @@ const Home = ({ session }) => (
           </span>
         </div>
       </div>
-    </div>
+    </div> */}
   </div>
 );
 
