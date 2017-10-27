@@ -6,6 +6,7 @@ const moreInfoStyle = { height: 30, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
 
 const Politician = (props) => {
+  console.log(props)
   return (
     <div id='politician-profile'>
       <div id='top-color-banner' />
@@ -16,7 +17,7 @@ const Politician = (props) => {
               <img src={props.picture} alt='politician' />
             </div>
           </div>
-          <div className='col-md-8 basic-info'>
+          <div className='col-md-7 basic-info'>
             <div className='basic-info-wrapper'>
               <div className=''>
                 <h1> {props.short_name} </h1>
@@ -26,7 +27,18 @@ const Politician = (props) => {
               </div>
             </div>
           </div>
-          <div className='col-md-2'>
+          <div className='col-md-3 social-info'>
+            <div className='social-info-wrapper'>
+              <div className=''>
+                <p>
+                  <i className="fa fa-twitter" aria-hidden="true" />
+                  &nbsp;
+                  &nbsp;
+                  &nbsp;
+                  {props.short_name}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         <div className='row mid'>
@@ -53,22 +65,22 @@ const Politician = (props) => {
               <div className='major-representation-localities'>
                 {props.localities}
               </div>
-              <div className='cv-subtitle'>
-                Otros periodos electo
-              </div>
-              <div className='without-image'>
-                {props.other_periods}
-              </div>
-              <div className='cv-subtitle'>
-                Comisión
-              </div>
-              <div className='without-image'>
-                {props.commission}
-              </div>
+            </div>
+            <div className='cv-title'>
+              Otros periodos electo
+            </div>
+            <div className='without-image'>
+              {props.other_periods}
+            </div>
+            <div className='cv-title'>
+              Comisión
+            </div>
+            <div className='without-image'>
+              {props.commission}
             </div>
 
           </div>
-          <div className='col-md-8'>
+          <div className='col-md-8 bottom'>
             <div className='row'>
               <div className='col-md-12'>
                 <h2 className='hide-on-desktop'> Biografía </h2>

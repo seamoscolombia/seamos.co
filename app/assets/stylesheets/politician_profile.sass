@@ -6,7 +6,7 @@
     @media screen and (max-width: $break-medium)
       display: block
   #top-color-banner
-    height: 150px
+    height: 200px
     background-color: #eb6157
     margin-bottom: -124px
   #profile
@@ -35,6 +35,7 @@
       @media screen and (max-width: $break-medium)
         text-align: justify
     .top
+      margin-top: -43px
       margin-bottom: 25px
       .basic-info
         height: $picture-size
@@ -47,6 +48,21 @@
             text-align: center
 
         .basic-info-wrapper
+          position: absolute
+          bottom: 10px
+      .social-info
+        height: $picture-size
+        height: 110px
+        @media screen and (max-width: $break-medium)
+          height: 100px
+          display: flex
+          justify-content: center
+        p
+          font-family: "RobotoRegular"
+          @media screen and (max-width: $break-medium)
+            text-align: center
+
+        .social-info-wrapper
           position: absolute
           bottom: 10px
       .picture-wrapper-wrapper
@@ -65,9 +81,10 @@
     .mid
       .cv-title
         height: 46px
-        background-color: #c6c6c5
+        background-color: #45434c
+        color: #eaeaea
         display: flex
-        font-family: RobotoRegular
+        font-family: "HKNovaBold"
         font-weight: bold
         font-size: 23px
         display: flex
@@ -155,3 +172,6 @@
         @media screen and (max-width: $break-medium)
           margin: auto
           margin-bottom: 35px
+    .bottom
+      h1
+        font-family: "HKNovaBold"
