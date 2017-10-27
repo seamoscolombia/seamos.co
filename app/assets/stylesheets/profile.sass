@@ -49,6 +49,7 @@
   .profile-info-container
     display: flex
     align-items: center
+    margin-bottom: 40px
   .flex-container
     width: 100%
   #tags-component
@@ -88,19 +89,20 @@
     width: auto
     padding-left: 0
     h4
-      margin-left: 1.2em
+      margin-left: 1.3em
       font-family: 'HKNovaBold'
       text-transform: uppercase
-      font-size: 20px
+      font-size: 25px
       @media screen and (max-width: $break-medium)
         font-size: 14px
         margin-left: 0
     h6
       margin-left: 1.8em
-      color: gray
-      font-family: 'HKNovaBold'
-      font-size: 13px
+      color: #333333
+      font-family: "RobotoBold"
       margin-bottom: 0
+      font-size: 18px
+      margin-top: 15px
       @media screen and (max-width: $break-medium)
         font-size: 10px
         margin-left: 0
@@ -139,6 +141,7 @@
           color: white
           font-family: 'HKNovaBold'
     .my-participations
+      overflow: hidden
       @media screen and (max-width: $break-medium)
         margin-bottom: 60px
       .title
@@ -168,6 +171,8 @@
           margin-bottom: 0
           @media screen and (max-width: $break-medium)
             width: 100%
+          .closed-ribbon
+            top: 150px
           .poll-title
             @media screen and (max-width: $break-medium)
               height: auto

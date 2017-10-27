@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function myVote(vote) {
   return (
     <div className='poll-my-vote'>
-      <span className='poll-vote-title'>Mi voto: </span><span>{vote}</span>
+      <span className='poll-vote-title'>Mi voto: </span><span style={{ fontFamily: 'HKNovaRegular'}}> &nbsp; {vote}</span>
     </div>
   )
 }
@@ -26,42 +26,39 @@ const Poll = (props) => {
   }
   return (
     <a href={`/client/polls/${id}`} style={{ textDecoration: 'none' }}>
-      <div id='poll-component'>
-        <div className='poll-image-container'>
-            <img alt="poll" src={poll_image} />
-        </div>
-        <div className='closed-ribbon' style={{ display: `${is_closed ? 'auto' : 'none'}` }}>
-          Propuesta Cerrada
-        </div>
-        <div className='poll-title'>
-          <span>
-            {title}
-          </span>
-        </div>
-        <div className='politician-info'>
-          <div className='picture-container'>
-            <img src={politician.picture} alt='politician' />
-          </div>
-          <div className='name-container'>
-            {politician.full_name}
-          </div>
-        </div>
-        <div className='poll-infos-container'>
-          <div className='poll-details'>
-            <div className='poll-tag-name'>
-              {tagName}
+      <div id='global-container'>
+        <div id='other-poll-component'>
+          <div className='col-md-4 no-padding'>
+            <div className='poll-image-container'>
+                <img alt="poll" src={poll_image} />
             </div>
-            <div className='color-separator' style={{ borderLeft: `5px solid ${tagColor}` }} />
-            <div
-              className='btn button btn-plus-read'
-              style={{ backgroundColor: tagColor }}
-            >
-              {is_closed ? 'RESULTADOS' : 'VOTA'}
+            <div className='closed-ribbon' style={{ display: `${is_closed ? 'auto' : 'none'}` }}>
+            </div>
+          </div>
+          <div className='right-side col-md-8'>
+            <div className='poll-title'>
+              <span>
+                {title}
+              </span>
+            </div>
+            <div className='poll-infos-container'>
+              <div className='poll-details'>
+                <div className='poll-tag-name'>
+                  {tagName}
+                </div>
+                <div className='color-separator' style={{ borderLeft: `5px solid ${tagColor}` }} />
+                <div
+                  className='btn button btn-plus-read'
+                  style={{ backgroundColor: tagColor }}
+                >
+                  {is_closed ? 'RESULTADOS' : 'VOTA'}
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        { user_vote ? myVote(user_vote) : null }
       </div>
-      { user_vote ? myVote(user_vote) : null }
     </a>
   );
 };

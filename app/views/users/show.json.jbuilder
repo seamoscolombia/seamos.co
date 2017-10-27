@@ -26,6 +26,7 @@ json.user do
           json.tag_name poll.tags.first.name
           json.color poll.tags.first.tag_color
           json.user_vote poll.votes.by_user_id(current_user.id).first.name
+          json.is_closed poll.closed?
 
           json.politician do
             json.id poll.user.id
