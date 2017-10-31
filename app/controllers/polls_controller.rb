@@ -104,12 +104,13 @@ class PollsController < ApplicationController
       end
       format.json do
         if params[:order_by] == 'by-user-interests'
+          @polls = [] and return unless current_user
           @polls = Poll.includes(:votes, :tags).active.by_user_interests(current_user).sort_by {|poll| poll.vote_count}
           @reverse = true
         else
-          @polls = Poll.includes(:votes, :tags).active.sort_by {|poll| poll.send(order_param)}
+          @polls = Poll.includes(:votes, :tags).active.open.sort_by {|poll| poll.send(order_param)}
         end
-        @polls = @reverse ? @polls.reverse.first(3) : @polls.first(3)
+        @polls = @reverse ? @polls.reverse.first(2) : @polls.first(2)
       end
     end
   end

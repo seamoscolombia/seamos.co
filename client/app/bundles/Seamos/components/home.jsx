@@ -1,39 +1,23 @@
-// import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { ShareButtons, generateShareIcon } from 'react-share';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import Tags from '../containers/tagsContainer';
-// import { PRODUCTION_URL } from '../constants';
 import PollsPageContainer from '../containers/pollsPageContainer'
 
-// const shareUrl = `${PRODUCTION_URL}/${window.location.hash}`;
-// const shareDescription = 'somos una organización que ayuda a la democracía';
-// const { FacebookShareButton } = ShareButtons;
-// const FacebookIcon = generateShareIcon('facebook');
-// const imgUrl = `${PRODUCTION_URL}/assets/PARTICIPACIONES-4b76afbc5601851c4b5cf63c08a1a5a7c7b674ba643a7129e0147429d6be2d8c.png`;
-// const title = 'Seamos pagina home';
 import Polls from '../containers/pollsFeatureContainer';
 import Featured from '../containers/pollsPageContainer';
 const Home = ({ session }) => (
   <div id="homepage">
     <div className='background-container top'>
-      <div className='flex-container top-text-container'>
-        <h1 className='welcome'>El poder está<br />en tus manos</h1>
-        <p className='to'>
-          Presentamos la primera plataforma digital que te permite <br className='breaker' />
-          incidir en las decisiones políticas de tu ciudad. <br className='breaker' />
-        </p>
-      </div>
     </div>
-    <div className="row mid-container">
-      <div className="col-md-5">
+    <div className="mid-container">
+      <div className="left-col">
         <div className="title">
-          <h1>Temas de Interés</h1> 
+          <h1>Temas de Interés</h1>
         </div>
         <Tags />
       </div>
-      <div className="col-md-7">
+      <div className="right-col">
         <PollsPageContainer />
       </div>
     </div>
