@@ -22,10 +22,10 @@ class SessionsController < ApplicationController
 
   def create
     uid = params[:uid]
-    session[:fb_token] = params[:fb_token]
+    session[:login_token] = params[:login_token]
     session[:session_type] = "mobile"
-    session[:fb_image] = params[:fb_image]
-    session[:fb_location] = params[:fb_location]
+    session[:login_image] = params[:login_image]
+    session[:login_location] = params[:login_location]
     session[:uid] = uid
     @user = User.find_by(uid: uid)
     respond_to do |format|

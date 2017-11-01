@@ -34,6 +34,7 @@
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.5.4",
     "react-facebook-login": "^3.6.1",
+    "react-google-login": "^3.0.1",
     "react-on-rails": "7.0.4",
     "react-redux": "^5.0.4",
     "react-router-dom": "^4.1.1",
