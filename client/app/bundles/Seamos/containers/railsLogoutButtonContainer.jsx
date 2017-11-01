@@ -13,8 +13,8 @@ class ProfileButtonContainer extends Component {
     render() {
         return (<ProfileButton
             action={this.logout.bind(this)}
-            className={'nav-fb nav-fb-logout'}
-            name={'Logout'}
+            className={'nav-with-background'}
+            name={'SALIR'}
         />);
     }
 }

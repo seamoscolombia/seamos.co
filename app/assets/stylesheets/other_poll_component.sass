@@ -1,0 +1,178 @@
+#global-container
+  display: flex
+  align-items: center
+  margin-bottom: 25px
+  .poll-my-vote
+    background-color: #c6c6c6
+    height: 46px
+    width: 195px
+    font-size: 22px
+    display: flex
+    align-items: center
+    padding-left: 11px
+    span
+      color: black
+    .poll-vote-title
+      font-family: "HKNovaBold"
+      font-weight: 800
+  #other-poll-component
+    $break-medium: 720px
+    display: inline-flex
+    flex-wrap: wrap
+    justify-content: center
+    width: 585px
+    position: relative
+    border: 2px solid gainsboro
+    @media screen and (max-width: $break-medium)
+      width: 300px
+      display: block
+      margin: 0
+      margin-bottom: 70px
+      top: 24px
+    .closed-ribbon
+      width: 100%
+      display: flex
+      align-items: center
+      background-color: gainsboro
+      justify-content: center
+      height: 40px
+      font-family: 'RobotoBold'
+      color: #44424c
+      font-size: 22px
+      position: absolute
+      top: 60px
+      background-image: url(asset_path('closed-icon.png'))
+      background-size: 34px
+      background-repeat: no-repeat
+      background-position: center
+      @media screen and (max-width: $break-medium)
+        top: 30px
+    .poll-image-container
+      height: 160px
+      position: relative
+      overflow: hidden
+      margin: auto
+      display: flex
+      align-items: center
+      justify-content: center
+      @media screen and (max-width: $break-medium)
+        height: 190px
+      img
+        min-height: 330px
+        max-height: 340px
+        @media screen and (max-width: $break-medium)
+          max-height: 150px
+    .color-separator
+      height: 45px
+    .poll-title
+      font-size: 22px
+      margin: 16px 0
+      font-family: 'HKNovaRegular'
+      font-weight: bold
+      line-height: 1em
+      text-align: left
+      color: #44424c
+      width: 100%
+      padding: 0 10px
+      @media screen and (max-width: $break-medium)
+        text-align: center
+        height: auto
+        font-size: 20px
+        width: 90%
+    .politician-info
+      width: 100%
+      display: flex
+      align-items: center
+      padding: 15px 10px
+      @media screen and (max-width: $break-medium)
+      .picture-container
+        width: 43px
+        height: 40px
+        overflow: hidden
+        img
+          width: 40px
+          height: 40px
+          border-radius: 20px
+      .name-container
+        font-size: 18px
+        font-family: "RobotoCondensed"
+        color: #44424c
+        text-align: left
+        padding-left: 10px
+    .poll-description
+      font-size: 17px
+      font-family: 'HKNovaRegular'
+      line-height: 1.3em
+      overflow: hidden
+      height: 96px
+      text-align: left
+      color: #44424c
+      padding: 0 10px
+      padding-top: 6px
+      @media screen and (max-width: $break-medium)
+        font-size: 14px
+        max-height: 80px
+    .poll-infos-container
+      position: relative
+      padding-top: 0
+      width: 100%
+      padding: 0 10px
+      @media screen and (max-width: $break-medium)
+        width: 90%
+        margin: auto
+        margin-top: 0
+        margin-bottom: 0
+        padding: 0
+        padding-left: 5px
+        max-height: 150px
+        overflow: hidden
+      .poll-details
+        width: 100%
+        display: flex
+        font-family: "HKNovaBold"
+        font-size: 8px
+        color: rgba(30, 30, 30, 0.6)
+        line-height: 1em
+        align-items: center
+        margin-top: 5px
+        height: 46px
+        position: absolute
+        top: 45px
+        .poll-tag-name
+          color: #44424c
+          font-size: 20px
+          line-height: 23px
+          text-align: left
+          @media screen and (max-width: $break-medium)
+            font-size: 17px
+        .btn-plus-read
+          color: white
+          font-size: 15px
+          line-height: 15px
+          float: right
+          font-family: "HKNovaBold"
+          text-transform: uppercase
+          border-radius: 2px
+          padding: 10px 20px
+          position: absolute
+          right: 14px
+          @media screen and (max-width: $break-medium)
+            margin-right: 0
+            font-size: 12px
+            padding: 11px
+            position: absolute
+            right: 0
+            bottom: 11px
+            line-height: 0
+
+        .separator
+          padding: 0 1px
+          font-size: 17px
+
+      .poll-info
+        color: black
+        text-decoration: none
+        padding: 0 10px
+        &:hover
+          text-decoration: none
+        // position: relative

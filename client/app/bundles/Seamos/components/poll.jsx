@@ -2,8 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+function myVote(vote) {
+  return (
+    <div className='poll-my-vote'>
+      <span className='poll-vote-title'>Mi voto: </span><span>{vote}</span>
+    </div>
+  )
+}
+
 const Poll = (props) => {
-  const { id, title, is_closed, summary, poll_image, tag, color, tag_name, politician } = props;
+  const { id, title, is_closed, summary, poll_image, tag, color, tag_name, politician, user_vote } = props;
   let tagColor = 'none';
   if (tag) {
     tagColor = tag.color;
@@ -19,6 +27,7 @@ const Poll = (props) => {
   return (
     <a href={`/client/polls/${id}`} style={{ textDecoration: 'none' }}>
       <div id='poll-component'>
+        { user_vote ? myVote(user_vote) : null }
         <div className='poll-image-container'>
             <img alt="poll" src={poll_image} />
         </div>

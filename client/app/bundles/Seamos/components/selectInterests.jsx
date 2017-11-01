@@ -6,7 +6,7 @@ import Tag from './tag';
 const SelectInterests = ({ tags, action, returnToMySubjects }) => (
     <section id='my-subjects' className='col-sm-4'>
       <div className='title'>
-        <span>SELECCIONA TUS INTERESES</span>
+        <span>Otros temas</span>
       </div>
       <section id='tags-component'>
         <div className='flex-container tags-box'>
@@ -21,9 +21,6 @@ const SelectInterests = ({ tags, action, returnToMySubjects }) => (
         }
         </div>
       </section>
-      <div className="btn-edit-container">
-        <button className='btn btn-return' onClick={returnToMySubjects}> regresar </button>
-      </div>
     </section>
 );
 
