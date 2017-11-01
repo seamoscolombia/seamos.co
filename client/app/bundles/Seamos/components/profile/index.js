@@ -10,7 +10,7 @@ function myInterests(tags) {
       { tags.length > 0 ?
         <section id='my-subjects' className='col-sm-4'>
           <div className='title'>
-            <span>Mis temas de interes</span>
+            <span>Mis temas de interés</span>
           </div>
           <Tags tags={tags} />
         </section>
@@ -20,7 +20,9 @@ function myInterests(tags) {
             <span>MIS TEMAS</span>
           </div>
           <div className="info">
-            <span>Actualmente no tienes temas seleccionados</span>
+            <span>Actualmente no tienes temas seleccionados, seleccionalos en la lista de abajo</span>
+            <br />
+            <i className='glyphicon glyphicon-hand-down' />
           </div>
         </section>
       }

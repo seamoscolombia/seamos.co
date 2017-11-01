@@ -28,7 +28,8 @@
       text-align: center
   .one
     background-color: #c6c6c6
-    height: 200px
+    height: 190px
+    margin-bottom: -72px
     @media screen and (max-width: $break-medium)
       height: 180px
       font-size: 27px
@@ -66,6 +67,10 @@
     @media screen and (max-width: $break-medium)
       width: 134px
       height: $tag-size-mobile
+    .tag-selected
+      position: relative
+      top: 18px
+      right: -6px
     .tag-name
       font-size: 14px
       width: $tag-size
@@ -77,8 +82,8 @@
     img
       // margin-left: 2.5em
       border-radius: 50%
-      width: 100px
-      height: 100px
+      width: 135px
+      height: 135px
   .media-left
     margin-left: 0
     // margin-left: $move-left
@@ -87,7 +92,7 @@
   .media-body
     vertical-align: middle
     width: auto
-    padding-left: 0
+    padding-left: 40px
     h4
       margin-left: 1.3em
       font-family: 'HKNovaBold'
@@ -108,14 +113,25 @@
         margin-left: 0
   #profile-container
     #my-subjects
-      // margin-left: $move-left
+      overflow: hidden
       @media screen and (max-width: $break-medium)
         margin-left: 0
+      .info
+        font-family: 'HKNovaBold'
+        font-size: 20px
+        text-align: center
+        width: 300px
+        margin-top: 28px
+      .glyphicon.glyphicon-hand-down
+        font-size: 40px
+        margin-top: 17px
+      .glyphicon-ok-sign
+        font-size: 30px
+        top: -12px
       .title
-        min-height: 30px
+        min-height: 40px
         min-width: 90px
         max-width: 300px
-        margin-bottom: 20px
         display: flex
         align-items: center
         background-size: contain
@@ -125,7 +141,7 @@
           margin-left: 20px
           font-weight: bold
           color: #eaeaea
-          font-size: large
+          font-size: 22px
       .btn-edit-container
         width: $tag-size * 2 + 12px
         text-align: center
@@ -154,7 +170,8 @@
         background-repeat: no-repeat
         span
           font-family: 'HKNovaBold'
-          font-size: 30px
+          font-size: 35px
+          color: #45444d
           @media screen and (max-width: $break-medium)
             font-size: 14px
             margin-left: 0
