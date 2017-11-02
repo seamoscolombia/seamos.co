@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import GoogleLog from '../containers/googleLoginContainer';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import RailsProfileButton from '../containers/railsProfileButtonContainer';
 import RailsLogoutButton from '../containers/railsLogoutButtonContainer';
@@ -50,7 +51,15 @@ const Navbar = ({ session, user }) => (
         </a>
         <div className='hide-on-desktop only-photo'>
           {session.logged && Object.keys(user).length !== 0 ?
-            profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='' /> </li>
+            profile() : 
+            <div>
+              <li key='11'>
+                <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
+              </li>
+              <li key='12'>
+                <GoogleLog googleClassName='nav-dropdown-options' googleText='Google' />
+              </li>
+            </div>
           }
         </div>
         <button
@@ -72,16 +81,59 @@ const Navbar = ({ session, user }) => (
           <ul className='nav navbar-nav navbar-right navbar-options'>
             <div className='hide-on-desktop'>
               {session.logged && Object.keys(user).length !== 0 ?
-                profile() : <li key='5'> <FacebookLogin fbclassName='nav-fb' fbText='REGÍSTRATE' /> </li>
+                profile() : 
+                <div>
+                  <li key='5'>
+                    <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
+                  </li>
+                  <li key='6'>
+                    <GoogleLog googleClassName='nav-dropdown-options' googleText='Google' />
+                  </li>
+                </div>
               }
             </div>
-            <li key='6'><a href={`${URL}/#/tags`}> Temas </a></li>
+            <li key='7'><a href={`${URL}/#/tags`}> Temas </a></li>
             <span className='circle-separator'> &#9679; </span>
-            <li key='7'><a href={`${URL}/#/team`}> Quiénes somos </a></li>
+            <li key='8'><a href={`${URL}/#`}> Blog </a></li>
+            <span className='circle-separator'> &#9679; </span>
+            <li key='9'><a href={`${URL}/#/`}> FAQS </a></li>
+            <span className='circle-separator'> &#9679; </span>
+            <li className="dropdown">
+              <button className="nav-with-background" type="button" data-toggle="dropdown">
+                ACERCA DE
+                &ensp;
+                &ensp;
+                &ensp;
+                &ensp;
+                &ensp;                
+              </button>
+              <ul className="dropdown-menu custom--dropdown--about">
+                <li><a href={`${URL}/#/team`}> Nuestro equipo </a></li>
+                <li role="presentation" className="divider"></li>                
+                <li><a href={`${URL}/#/team`}> Nuestros eventos </a></li>
+                <li role="presentation" className="divider"></li>                
+                <li><a href={`${URL}/#/politicians`}> Concejales que <br /> se unieron </a></li>
+              </ul>
+            </li>
             <span className='circle-separator'> &#9679; </span>
             <div className='hide-on-mobile'>
               {session.logged && Object.keys(user).length !== 0 ?
-                profile() : <li key='11'> <FacebookLogin fbclassName='nav-fb' fbText='Regístrate' /> </li>
+                profile() :
+                <li className="dropdown">
+                  <button className="nav-with-background" type="button" data-toggle="dropdown">
+                    REGÍSTRATE
+                    <span className="caret"></span>
+                  </button>
+                  <ul className="dropdown-menu custom--dropdown">
+                    <li>
+                      <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
+                    </li>
+                    <li role="presentation" className="divider"></li>
+                    <li>
+                      <GoogleLog googleClassName='nav-dropdown-options' googleText='Google' />
+                    </li>
+                  </ul>
+                </li>
               }
             </div>
             {session.logged && Object.keys(user).length !== 0 ?

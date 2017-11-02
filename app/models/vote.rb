@@ -17,9 +17,12 @@ class Vote < ApplicationRecord
 
   validate :vote_date, on: :create
 
+  delegate :name, :to => :vote_type, :allow_nil => true
+
   def vote_date
     if poll.closing_date < Date.current
       errors.add(:base, I18n.t( :closed_poll, scope: :votes))
     end
   end
+  scope :by_user_id, -> (user_id) { where(user_id: user_id) }
 end

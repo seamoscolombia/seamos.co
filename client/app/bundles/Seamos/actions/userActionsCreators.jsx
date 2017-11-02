@@ -2,7 +2,8 @@
 /* eslint-disable window.localStorage */
 
 import axios from 'axios';
-import { ADD_TAGS_ON_USER, DELETE_TAGS_ON_USER, SET_USER, RESET_SESSION, URL, IS_LOGGED } from '../constants';
+import { ADD_TAGS_ON_USER, DELETE_TAGS_ON_USER, SET_USER, RESET_SESSION, URL, 
+  IS_LOGGED } from '../constants';
 import { setSession } from './sessionActionsCreators';
 import { getInterests } from './tagsActionsCreators';
 
@@ -16,20 +17,20 @@ export const deleteTagsOnUser = (tag) => ({
   tag,
 });
 
-export const createUser = (fbUser, authenticityToken) => dispatch => {
+export const createUser = (loginResponse, authenticityToken) => dispatch => {
   const user = {
-    names: fbUser.first_name,
-    first_surname: fbUser.last_name,
+    names: loginResponse.first_name || loginResponse.profileObj.givenName,
+    first_surname: loginResponse.last_name || loginResponse.profileObj.familyName,
     second_surname: 'N.A.',
-    email: fbUser.email
+    email: loginResponse.profileObj.email
   };
   axios.post(`${URL}/users.json`, {
     authenticity_token: authenticityToken, //eslint-disable-line
     user
   })
     .then(response => {
-      response.data.user.picture = fbUser.picture.data.url;
-      response.data.user.location = fbUser.location ? fbUser.location.name : null;
+      response.data.user.picture = loginResponse.picture ? loginResponse.picture.data.url : loginResponse.profileObj.imageUrl;
+      response.data.user.location = loginResponse.location ? loginResponse.location.name : null;
       dispatch(setUser(response.data.user));
       dispatch(setSession(response.data.user.authenticity_token));
     })
@@ -47,8 +48,6 @@ export const getUser = () => (dispatch) => (
     })
 );
 
-
-
 export const setUser = (user) => ({
   type: SET_USER,
   user
@@ -56,20 +55,20 @@ export const setUser = (user) => ({
 
 export const resetUser = () => ({ type: RESET_SESSION });
 
-export const validateUserSession = (fbUser) => (dispatch) => (
+export const validateUserSession = (loginResponse) => (dispatch) => (
   axios.post(`${URL}/sessions.json`, {
-    uid: fbUser.id,
-    fb_token: fbUser.accessToken,
-    fb_image: fbUser.picture.data.url,
-    fb_location: fbUser.location ? fbUser.location.name : null
+    uid: loginResponse.id || loginResponse.profileObj.googleId,
+    login_token: loginResponse.accessToken,
+    login_image: loginResponse.picture ? loginResponse.picture.data.url : loginResponse.profileObj.imageUrl,
+    login_location: loginResponse.location ? loginResponse.location.name : null
   })
     .then(response => {
       dispatch(setSession(response.data.authenticity_token));
-      dispatch(getUser(fbUser));
+      dispatch(getUser(loginResponse));
     })
     .catch(e => {
       if (e.response && e.response.status === 422) {
-        dispatch(createUser(fbUser, e.response.data.authenticity_token));
+        dispatch(createUser(loginResponse, e.response.data.authenticity_token));
       } else {
         console.warn('Error != 422');
         console.warn(e);
@@ -79,7 +78,7 @@ export const validateUserSession = (fbUser) => (dispatch) => (
         alert('Por favor inicia sesión nuevamente');
       }
     })
-);
+  );
 
 export const userInterests = ({ authenticity_token, user_id, tag }) => (dispatch) => (
   axios.post(`${URL}/users/${user_id}/interests`, {

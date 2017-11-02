@@ -16,8 +16,8 @@ class ProfileButtonContainer extends Component {
     render() {
         return (<ProfileButton
             action={this.goToProfile.bind(this)}
-            className={'nav-fb nav-fb-profile'}
-            name={'Perfil'}
+            className={'nav-with-background'}
+            name={'TÚ PERFIL'}
             user={this.props.user}
         />);
     }

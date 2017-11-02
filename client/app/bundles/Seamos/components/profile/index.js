@@ -5,17 +5,29 @@ import Polls from '../polls';
 import SelectInterests from '../../containers/selectInterestsContainer';
 import MayInterestContainer from '../../containers/mayInterestContainer';
 
-function myInterests(tags, goToEdit) {
+function myInterests(tags) {
   return (
-    <section id='my-subjects' className='col-sm-4'>
-      <div className='title'>
-        <span>MIS TEMAS</span>
-      </div>
-      <Tags tags={tags} />
-      <div className="btn-edit-container">
-        <button className="btn btn-edit"onClick={goToEdit}> Editar mis temas</button>
-      </div>
-    </section>
+    <div>
+      { tags.length > 0 ?
+        <section id='my-subjects' className='col-sm-4'>
+          <div className='title'>
+            <span>Mis temas de interés</span>
+          </div>
+          <Tags tags={tags} />
+        </section>
+        :
+        <section id='my-subjects' className='col-sm-4'>
+          <div className='title'>
+            <span>MIS TEMAS</span>
+          </div>
+          <div className="info">
+            <span>Actualmente no tienes temas seleccionados, seleccionalos en la lista de abajo</span>
+            <br />
+            <i className='glyphicon glyphicon-hand-down' />
+          </div>
+        </section>
+      }
+    </div>
   );
 }
 
@@ -28,10 +40,14 @@ const Profile = (props) => {
     picture, location, short_name,
     participations, tags
   } = props.user;
-  const { interests, goToEdit } = props;
+  const { interests } = props;
   return (
-    <div>
-      <div id='profile' className='container'>
+    <div id='profile'>
+      <div id='profile-banner'>
+        <div className='row profile--banner one'>
+        </div>
+      </div>
+      <div className='container'>
         <header className="media">
           <div className="row profile-info-container">
             <div className="col-sm-1 media-left">
@@ -46,18 +62,26 @@ const Profile = (props) => {
         <br />
         <div id='profile-container' className='row' >
           {interests ?
-            selectInterests() : myInterests(tags, goToEdit)
+            selectInterests() : myInterests(tags)
           }
-          <section className='my-participations col-sm-6'>
+          <section className='my-participations col-sm-8'>
             <div className='title'>
-              <span> MIS PARTICIPACIONES</span>
+              <span>Participaciones recientes</span>
             </div>
-            <Polls polls={participations.polls} />
+            <Polls polls={participations.polls.slice(0, 2)} />
           </section>
         </div>
-      </div>
-      <div>
-        <MayInterestContainer />
+        <div className="col-sm-12 divider"></div>
+        <br />
+        <div id='profile-container' className='row' >
+          { selectInterests() }
+          <section className='my-participations col-sm-8'>
+            <div className='title'>
+              <span>Otras participaciones</span>
+            </div>
+            <Polls polls={participations.polls.slice(3)} type='horizontal' />
+          </section>
+        </div>
       </div>
     </div>
   );

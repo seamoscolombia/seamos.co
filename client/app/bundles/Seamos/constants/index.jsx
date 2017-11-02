@@ -17,6 +17,7 @@ export const DELETE_TAGS_ON_USER = 'DELETE_TAGS_ON_USER';
 export const SET_POLITICIAN = 'SET_POLITICIAN';
 export const URL = window.location.origin;
 export const APP_ID = (process.env.NODE_ENV === 'development') ? '1541054365966079' : '1707774202581080';
+export const GOOGLE_APP_ID = '124346038853-0i82ec0pmkkv78pmf5qinhjc3dvfkeja.apps.googleusercontent.com';
 export const SET_USER = 'SET_USER';
 export const SET_SESSION = 'SET_SESSION';
 export const RESET_SESSION = 'RESET_SESSION';

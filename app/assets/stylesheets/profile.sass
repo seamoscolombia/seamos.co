@@ -1,5 +1,38 @@
 @import './variables.scss'
 #profile
+  $square-info-size: 470px
+  $square-info-size-mobile: 270px
+  $team-member-size: 200px
+  $politician-size: 150px
+  $politician-mobile-size: 100px
+  .breaker
+    @media screen and (max-width: $break-medium)
+      display: none
+  .profile--banner
+    height: 300px
+    background-color: gainsboro
+    font-size: 50px
+    line-height: 1.3em
+    font-weight: bold
+    color: white
+    text-transform: none
+    font-family: "HKNovaBold"
+    display: flex
+    align-items: center
+    justify-content: center
+    word-break: break-word
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
+      padding: 0 40px
+      text-align: center
+  .one
+    background-color: #c6c6c6
+    height: 190px
+    margin-bottom: -72px
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
   .btn-return
     margin-top: 20px
     background-color: black
@@ -7,12 +40,17 @@
     font-family: 'HKNovaBold'
   $tag-size: 150px
   $tag-size-mobile: $tag-size - 20px
-  margin-top: 80px
-  @media screen and (max-width: $break-medium)
-    margin-top: 60px
+  .container
+    margin-top: -55px
+  .divider
+    border: 1px solid #d4d4d4
+    margin: 50px 0px
+  .second-container
+    margin-top: 0
   .profile-info-container
     display: flex
     align-items: center
+    margin-bottom: 40px
   .flex-container
     width: 100%
   #tags-component
@@ -29,6 +67,10 @@
     @media screen and (max-width: $break-medium)
       width: 134px
       height: $tag-size-mobile
+    .tag-selected
+      position: relative
+      top: 18px
+      right: -6px
     .tag-name
       font-size: 14px
       width: $tag-size
@@ -40,50 +82,66 @@
     img
       // margin-left: 2.5em
       border-radius: 50%
-      width: 100px
-      height: 100px
+      width: 135px
+      height: 135px
   .media-left
-    margin-left: $move-left
+    margin-left: 0
+    // margin-left: $move-left
     @media screen and (max-width: $break-medium)
       margin-left: 0
   .media-body
     vertical-align: middle
     width: auto
-    padding-left: 0
+    padding-left: 40px
     h4
-      margin-left: 1.2em
+      margin-left: 1.3em
       font-family: 'HKNovaBold'
       text-transform: uppercase
-      font-size: 20px
+      font-size: 25px
       @media screen and (max-width: $break-medium)
         font-size: 14px
         margin-left: 0
     h6
       margin-left: 1.8em
-      color: gray
-      font-family: 'HKNovaBold'
-      font-size: 13px
+      color: #333333
+      font-family: "RobotoBold"
       margin-bottom: 0
+      font-size: 18px
+      margin-top: 15px
       @media screen and (max-width: $break-medium)
         font-size: 10px
         margin-left: 0
   #profile-container
     #my-subjects
-      margin-left: $move-left
+      overflow: hidden
       @media screen and (max-width: $break-medium)
         margin-left: 0
+      .info
+        font-family: 'HKNovaBold'
+        font-size: 20px
+        text-align: center
+        width: 300px
+        margin-top: 28px
+      .glyphicon.glyphicon-hand-down
+        font-size: 40px
+        margin-top: 17px
+      .glyphicon-ok-sign
+        font-size: 30px
+        top: -12px
       .title
-        background-image: url(asset_path('temas.png'))
-        min-height: 30px
+        min-height: 40px
         min-width: 90px
-        margin-bottom: 20px
+        max-width: 300px
         display: flex
         align-items: center
         background-size: contain
         background-repeat: no-repeat
+        background-color: #45434c
         span
-          margin-left: 2.8em
+          margin-left: 20px
           font-weight: bold
+          color: #eaeaea
+          font-size: 22px
       .btn-edit-container
         width: $tag-size * 2 + 12px
         text-align: center
@@ -99,10 +157,10 @@
           color: white
           font-family: 'HKNovaBold'
     .my-participations
+      overflow: hidden
       @media screen and (max-width: $break-medium)
         margin-bottom: 60px
       .title
-        background-image: url(asset_path('PARTICIPACIONES.png'))
         min-height: 30px
         min-width: 90px
         margin-bottom: 20px
@@ -111,18 +169,27 @@
         background-size: contain
         background-repeat: no-repeat
         span
-          margin-left: 3.5em
-          font-weight: bold
+          font-family: 'HKNovaBold'
+          font-size: 35px
+          color: #45444d
+          @media screen and (max-width: $break-medium)
+            font-size: 14px
+            margin-left: 0
       .polls-wrapper
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-between
         @media screen and (max-width: $break-medium)
         #poll-component
-          width: 250px
+          width: 340px
           margin-right: 20px
           margin-top: 20px
           margin-left: 0
           margin-bottom: 0
           @media screen and (max-width: $break-medium)
             width: 100%
+          .closed-ribbon
+            top: 150px
           .poll-title
             @media screen and (max-width: $break-medium)
               height: auto
@@ -135,7 +202,7 @@
               @media screen and (max-width: $break-medium)
                 margin-left: 0
           .poll-image-container
-            height: 230px
+            height: 300px
             @media screen and (max-width: $break-medium)
             a
               img
@@ -147,7 +214,6 @@
               .poll-description
                 margin-bottom: 10px
             .poll-details
-              display: none
               @media screen and (max-width: $break-medium)
               span:nth-child(4)
               .btn-plus-read
