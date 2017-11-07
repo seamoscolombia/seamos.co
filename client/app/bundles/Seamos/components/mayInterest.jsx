@@ -1,18 +1,18 @@
 import React from 'react';
 import Poll from './poll';
-
+import OtherProfilePoll from './otherProfilePoll';
 
 const MayInterest = ({ mayInterestReducer }) => (
-  <div id='may-interest'>
+  <div id='may-interest-container'>
     <div className='row interest-banner one'>
       Tambien te puede interesar
     </div>
-    <div className='row'>
+    <div id='may-interest'>
       {console.log(mayInterestReducer)}
       {
         mayInterestReducer.map(
             poll => (
-              <Poll {...poll} key={poll.id} />
+              <OtherProfilePoll {...poll} key={poll.id}/>
                     )
                 )
       }

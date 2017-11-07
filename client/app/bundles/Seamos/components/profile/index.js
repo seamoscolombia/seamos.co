@@ -83,6 +83,7 @@ const Profile = (props) => {
           </section>
         </div>
       </div>
+      <MayInterestContainer />
     </div>
   );
 };

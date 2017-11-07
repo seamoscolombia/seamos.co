@@ -1,5 +1,6 @@
 @import './variables'
-#may-interest
+#may-interest-container
+  height: 600px
   $square-info-size: 470px
   $square-info-size-mobile: 270px
   $team-member-size: 200px
@@ -8,6 +9,16 @@
   .breaker
     @media screen and (max-width: $break-medium)
       display: none
+  #may-interest
+    display: flex
+    justify-content: center
+    flex-wrap: wrap
+    position: relative
+    top: 120px
+    #global-container
+      #other-poll-component
+        width: 540px
+        margin: 0 20px 0 20px
   .interest-banner
     height: 150px
     background-color: gainsboro

@@ -9,6 +9,7 @@ import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
 import { URL } from '../../constants';
+import MayInterestContainer from '../../containers/mayInterestContainer';
 
 import FacebookLogin from '../../containers/facebookLoginContainer';
 
@@ -263,9 +264,7 @@ const PollDetail = ({
             </div>
           </section>
         </div>
-        <div id='related-polls'>
-          <RelatedPolls tagId={tag.id} pollId={id} />
-        </div>
+        <MayInterestContainer />
       </section>
     </div>
   );

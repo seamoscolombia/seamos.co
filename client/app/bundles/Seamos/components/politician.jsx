@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Polls from './polls';
+import MayInterestContainer from '../containers/mayInterestContainer';
 
 const moreInfoStyle = { height: 30, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
@@ -84,6 +85,7 @@ const Politician = (props) => {
           </div>
         </div>
       </div>
+      <MayInterestContainer />
     </div>
   );
 };
