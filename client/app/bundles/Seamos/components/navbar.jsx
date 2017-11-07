@@ -50,7 +50,7 @@ const Navbar = ({ session, user }) => (
         </Link>
         <div className='hide-on-desktop only-photo'>
           {session.logged && Object.keys(user).length !== 0 ?
-            profile() : 
+            profile() :
             <div>
               <li key='11'>
                 <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
@@ -80,7 +80,7 @@ const Navbar = ({ session, user }) => (
           <ul className='nav navbar-nav navbar-right navbar-options'>
             <div className='hide-on-desktop'>
               {session.logged && Object.keys(user).length !== 0 ?
-                profile() : 
+                profile() :
                 <div>
                   <li key='5'>
                     <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
@@ -98,19 +98,14 @@ const Navbar = ({ session, user }) => (
             <li key='9'><Link to='/#'> FAQS </Link></li>
             <span className='circle-separator'> &#9679; </span>
             <li className="dropdown">
-              <button className="nav-with-background" type="button" data-toggle="dropdown">
+              <button className="nav-with-background about" type="button" data-toggle="dropdown">
                 ACERCA DE
-                &ensp;
-                &ensp;
-                &ensp;
-                &ensp;
-                &ensp;                
               </button>
               <ul className="dropdown-menu custom--dropdown--about">
                 <li><Link to='/team'> Nuestro equipo </Link></li>
-                <li role="presentation" className="divider"></li>                
+                <li role="presentation" className="divider"></li>
                 <li><Link to='/team'> Nuestros eventos </Link></li>
-                <li role="presentation" className="divider"></li>                
+                <li role="presentation" className="divider"></li>
                 <li><Link to='/politicians'> Concejales que <br /> se unieron </Link></li>
               </ul>
             </li>
@@ -133,7 +128,7 @@ const Navbar = ({ session, user }) => (
                     </li>
                   </ul>
                 </li>
-              } 
+              }
             </div>
             {session.logged && Object.keys(user).length !== 0 ?
               logout() : <span />
