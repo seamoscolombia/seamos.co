@@ -92,9 +92,20 @@
     &:hover
       background-color: #ec6257
       border-radius: 3px
-      -webkit-transition: background-color 0.3s linear
-      -ms-transition: background-color 0.3s linear
-      transition: background-color 0.3s linear
+      -webkit-transition: width 0.5s, background-color 0.5s linear
+      -ms-transition: width 0.5s, background-color 0.5s linear
+      transition: width 0.5s, background-color 0.5s linear
+  .about
+    width: 75px
+    &:focus
+      width: 122px
+      justify-content: center
+    &:active
+      width: 122px
+      justify-content: center
+    &:hover
+      width: 122px
+      justify-content: center
     .fa
       margin-right: 7px
       padding-right: 7px
@@ -179,7 +190,7 @@
     left: 0 !important
     min-width: 0 !important
     padding: 0 !important
-    background-color: rgba(0, 0, 0, 0.1)  
+    background-color: rgba(0, 0, 0, 0.1)
     li
       margin: 0
       text-align: center
@@ -199,5 +210,3 @@
           height: auto
       button
         width: 100%
-    
-
