@@ -153,7 +153,7 @@ const PollDetail = ({
                       politician, poll_type, vote_types,
                       voteAction, tag, status, summary, session
                     }) => (
-    <div>
+    <div id='poll-detail-global-wrapper'>
       <section id='poll-detail'>
         <div className="top-color-bar" style={{ backgroundColor: tag.color }} >
           <div className="tag-name"> {tag.name} </div>
@@ -264,8 +264,8 @@ const PollDetail = ({
             </div>
           </section>
         </div>
-        <MayInterestContainer />
       </section>
+      <MayInterestContainer />
     </div>
   );
 PollDetail.propTypes = {

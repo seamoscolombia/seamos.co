@@ -19,7 +19,6 @@ import Politicians from '../containers/politiciansContainer';
 import Politician from '../containers/politicianContainer';
 import Component404 from '../components/component404';
 import Profile from '../containers/profileContainer';
-import PollsClosed from '../containers/pollsClosedContainer';
 import Polls from '../containers/pollsPageContainer';
 import PollsByTag from '../containers/pollsByTagContainer';
 import PollDetail from '../containers/pollDetailContainer';
@@ -50,10 +49,9 @@ const AppRouter = () => (
                 <Route path="/tag/:tagId/polls" component={PollsByTag} />
                 <Route path="/polls" component={Polls} />
                 <Route path="/poll/:pollId" component={PollDetail} />
-                <Route path="/closed-polls" component={PollsClosed} />
                 <Route path="/terms" component={Terms} />
                 <Route path="/team" component={Team} />
-                <Route path="/politicians" component={Politicians} />                
+                <Route path="/politicians" component={Politicians} />
                 <Route path="/proponents/:politicianId" component={Politician} />
                 <PrivateRoute path="/profile" component={Profile} />
                 <Route path='/404' component={Component404} />
