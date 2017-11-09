@@ -51,7 +51,7 @@ const Navbar = ({ session, user }) => (
         </a>
         <div className='hide-on-desktop only-photo'>
           {session.logged && Object.keys(user).length !== 0 ?
-            profile() : 
+            profile() :
             <div>
               <li key='11'>
                 <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
@@ -81,7 +81,7 @@ const Navbar = ({ session, user }) => (
           <ul className='nav navbar-nav navbar-right navbar-options'>
             <div className='hide-on-desktop'>
               {session.logged && Object.keys(user).length !== 0 ?
-                profile() : 
+                profile() :
                 <div>
                   <li key='5'>
                     <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
@@ -99,19 +99,14 @@ const Navbar = ({ session, user }) => (
             <li key='9'><a href={`${URL}/#/`}> FAQS </a></li>
             <span className='circle-separator'> &#9679; </span>
             <li className="dropdown">
-              <button className="nav-with-background" type="button" data-toggle="dropdown">
+              <button className="nav-with-background about" type="button" data-toggle="dropdown">
                 ACERCA DE
-                &ensp;
-                &ensp;
-                &ensp;
-                &ensp;
-                &ensp;                
               </button>
               <ul className="dropdown-menu custom--dropdown--about">
                 <li><a href={`${URL}/#/team`}> Nuestro equipo </a></li>
-                <li role="presentation" className="divider"></li>                
+                <li role="presentation" className="divider"></li>
                 <li><a href={`${URL}/#/team`}> Nuestros eventos </a></li>
-                <li role="presentation" className="divider"></li>                
+                <li role="presentation" className="divider"></li>
                 <li><a href={`${URL}/#/politicians`}> Concejales que <br /> se unieron </a></li>
               </ul>
             </li>

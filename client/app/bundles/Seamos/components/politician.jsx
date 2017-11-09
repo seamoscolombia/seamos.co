@@ -27,6 +27,22 @@ const Politician = (props) => {
               </div>
             </div>
           </div>
+
+          <div className='col-md-2 social-info'>
+            <div className='social-info-wrapper'>
+              <div className=''>
+                <p>
+                  <i className="fa fa-twitter" aria-hidden="true" />
+                    &nbsp;
+                    &nbsp;
+                    {props.twitter}
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
           <div className='col-md-2'>
           </div>
         </div>
@@ -36,7 +52,15 @@ const Politician = (props) => {
               Formación
             </div>
             <div className='further-studies'>
-              <td dangerouslySetInnerHTML={{ __html: props.further_studies }} />
+            { props.academic_titles.map(
+                academic_title => (
+                  <div className='academic-title'>
+                    <div><strong> Título: </strong>{academic_title.title} </div>
+                    <div className='institute'><strong> Institución: </strong>{academic_title.institute} </div>
+                  </div>
+                )
+              )
+            }
             </div>
             <div className='cv-title'>
               Carrera Política
@@ -99,7 +123,6 @@ Politician.propTypes = {
         bio: PropTypes.string,
         moreInfo: PropTypes.bool,
         polls: PropTypes.array.isRequired,
-        closed_polls: PropTypes.array.isRequired
 };
 
 export default Politician;

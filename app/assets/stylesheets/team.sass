@@ -70,6 +70,8 @@
   .two
     background-color: #cd4c45
   .team-members
+    width: 1340px
+    margin: auto
     display: flex
     align-items: center
     justify-content: center
@@ -92,7 +94,7 @@
         padding-top: 120px
       .name
         font-family: 'HKNovaBold'
-        padding: 15px 0
+        padding: 15px 0 5px 0
         @media screen and (max-width: $break-medium)
           padding: 5px 0
       .profession
@@ -272,8 +274,10 @@
         background-image: none
         font-size: 25px
         line-height: 1.1em
-        text-align: justify
-        padding: 25px
+        text-align: left
+        padding: 34px
+        font-size: 21px
+        transition: color 1s
         @media screen and (max-width: $break-medium)
           font-size: 15px
           padding: 12px

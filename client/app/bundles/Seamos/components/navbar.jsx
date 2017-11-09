@@ -93,7 +93,13 @@ const Navbar = ({ session, user }) => (
             </div>
             <li key='7'><Link to='/tags'> Temas </Link></li>
             <span className='circle-separator'> &#9679; </span>
-            <li key='8'><Link to='/#'> Blog </Link></li>
+            <li key='8'>
+              <a
+              href="https://seamosit.github.io"
+              rel='noopener noreferrer'
+              > Blog
+              </a>
+            </li>
             <span className='circle-separator'> &#9679; </span>
             <li key='9'><Link to='/#'> FAQS </Link></li>
             <span className='circle-separator'> &#9679; </span>
