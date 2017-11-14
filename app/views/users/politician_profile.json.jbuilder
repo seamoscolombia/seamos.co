@@ -19,16 +19,11 @@ json.user do
     json.array! @polls do |poll|
       json.id poll.id
       json.title poll.title
-      json.summary poll.summary
-      json.type poll.poll_type
       json.poll_image poll.poll_image.url
-      json.vote_count poll.votes.size
-      json.remaining poll.remaining_time_in_seconds
       json.is_closed poll.closed?
-      json.color poll.tags.first.tag_color
-      json.tag_name poll.tags.first.name
       json.tag do
         json.color poll.tags.first.tag_color
+        json.name poll.tags.first.name
       end
       json.politician do
         json.id @user.id

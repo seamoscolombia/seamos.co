@@ -52,7 +52,7 @@ const Poll = (props) => {
         </div>
         <div className='poll-infos-container'>
           <div className='poll-details'>
-            <div className='poll-tag-name'>
+            <div className='poll-tag-name' style={is_closed ? {width: '52%'} : {width: '70%'}}>
               {tagName}
             </div>
             <div className='color-separator' style={{ borderLeft: `5px solid ${tagColor}` }} />

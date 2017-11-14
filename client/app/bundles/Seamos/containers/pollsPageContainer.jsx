@@ -31,6 +31,8 @@ class PollsContainer extends Component {
                     <option value='nearest-closing-date-first'> Propuestas cercanas al cierre </option>
                     <option value='by-user-interests'> Propuestas según tus intereses </option>
                 </select>
+                <span className='polls-summary-text'> Resumen de propuestas </span>
+                <span className='polls-summary-btn'> Ver + </span>
               </div>
               <Polls {...this.props} />
             </div>

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Polls from './polls';
 import MayInterestContainer from '../containers/mayInterestContainer';
+import OtherProfilePoll from './otherProfilePoll';
 
 const moreInfoStyle = { height: 30, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
@@ -102,8 +103,15 @@ const Politician = (props) => {
             </div>
             <div className='row'>
               <div className='col-md-12'>
-                <h1> Propuestas </h1>
-                <Polls polls={props.polls} />
+                <h1 className='title'> Propuestas </h1>
+                {
+                  props.polls.map(
+                      poll => (
+                        console.log(poll),
+                        <OtherProfilePoll {...poll} key={poll.id}/>
+                              )
+                          )
+                }
               </div>
             </div>
           </div>

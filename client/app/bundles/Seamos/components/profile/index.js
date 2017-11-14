@@ -76,10 +76,10 @@ const Profile = (props) => {
         <div id='profile-container' className='row' >
           { selectInterests() }
           <section className='my-participations col-sm-8'>
-            <div className='title'>
+            <div className='title second'>
               <span>Otras participaciones</span>
             </div>
-            <Polls polls={participations.polls.slice(3)} type='horizontal' />
+            <Polls polls={participations.polls.slice(2)} type='horizontal' />
           </section>
         </div>
       </div>
