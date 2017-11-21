@@ -1,6 +1,6 @@
 @import './variables.scss'
 #poll-detail-global-wrapper
-  margin-bottom: 590px
+  margin-bottom: 340px
   #may-interest-container
     position: absolute
     width: 100%
@@ -21,11 +21,21 @@
       padding: 90px 6em 0 6em
       @media screen and (max-width: $break-medium)
         width: 100vw
+        padding: 0
       .tag-name
+        width: 1170px
+        margin: auto
         font-size: 27px
         font-family: 'HKNovaBold'
-        margin-left: 15px
+        padding-left: 15px
         color: #44434c
+        @media screen and (max-width: $break-medium)
+          width: auto
+          position: absolute
+          top: 78px
+          line-height: 21px
+          padding-left: 0
+          text-align: center
     .closed-ribbon-wrapper
       padding-right: 30px
       position: absolute
@@ -257,6 +267,7 @@
           font-size: 26px
           // background-color: rgb(200, 200, 200)
           @media screen and (max-width: $break-medium)
+            width: auto
             min-height: 40px
         .voted-button
           min-height: 75px
@@ -271,6 +282,7 @@
           width: 84%
           overflow: visible
           @media screen and (max-width: $break-medium)
+            width: auto
             min-height: 40px
           &:hover
             .tooltiptext
@@ -292,6 +304,7 @@
               font-weight: bold
               color: #44434c
               @media screen and (max-width: $break-medium)
+                right: -162px
                 font-size: 15px
                 line-height: 0
                 margin-top: 20px

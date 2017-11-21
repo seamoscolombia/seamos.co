@@ -1,7 +1,31 @@
+@import './variables'
 #primary-container
   position: relative
   margin-bottom: 0 !important
+  overflow-x: hidden
 .admin-search-form
   background: gainsboro
   border-radius: 7px
   margin-top: 24px
+.interest-banner
+  height: 150px
+  background-color: gainsboro
+  font-size: 50px
+  line-height: 1.3em
+  font-weight: bold
+  color: white
+  text-transform: none
+  font-family: "HKNovaBold"
+  display: flex
+  align-items: center
+  justify-content: center
+  word-break: break-word
+  margin: 50px 0
+  background-color: #c6c6c6
+  color: #45434c
+  @media screen and (max-width: $break-medium)
+    height: 100px
+    font-size: 25px
+    padding: 0 40px
+    text-align: center
+    margin: 30px 0

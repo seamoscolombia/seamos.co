@@ -44,7 +44,7 @@ const Navbar = ({ session, user }) => (
     className='navbar navbar-fixed-top'
     role='banner'
   >
-    <div id="client-navbar" className='container'>
+    <div id="client-navbar">
       <div className='navbar-header'>
         <a href={`${URL}/#`} className='navbar-brand'>
           <div id='brand-logo' />

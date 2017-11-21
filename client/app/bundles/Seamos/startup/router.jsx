@@ -23,6 +23,7 @@ import Polls from '../containers/pollsPageContainer';
 import PollsByTag from '../containers/pollsByTagContainer';
 import PollDetail from '../containers/pollDetailContainer';
 import Tags from '../containers/tagsContainerPage';
+import PollsSummaryContainer from '../containers/pollsSummaryContainer';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -52,6 +53,7 @@ const AppRouter = () => (
                 <Route path="/terms" component={Terms} />
                 <Route path="/team" component={Team} />
                 <Route path="/politicians" component={Politicians} />
+                <Route path="/summary" component={PollsSummaryContainer} />
                 <Route path="/proponents/:politicianId" component={Politician} />
                 <PrivateRoute path="/profile" component={Profile} />
                 <Route path='/404' component={Component404} />

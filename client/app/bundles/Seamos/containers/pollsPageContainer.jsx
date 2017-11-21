@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Polls from '../components/polls';
 import { getPolls } from '../actions';
+import { Link } from 'react-router-dom';
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
@@ -31,8 +32,12 @@ class PollsContainer extends Component {
                     <option value='nearest-closing-date-first'> Propuestas cercanas al cierre </option>
                     <option value='by-user-interests'> Propuestas según tus intereses </option>
                 </select>
-                <span className='polls-summary-text'> Resumen de propuestas </span>
-                <span className='polls-summary-btn'> Ver + </span>
+                <div id="summary-wrapper">
+                  <span className='polls-summary-text'> Resumen de propuestas </span>
+                  <Link className='summary-btn-wrapper' to='/summary'>
+                    <span className='polls-summary-btn'> Ver + </span>
+                  </Link>
+                </div>
               </div>
               <Polls {...this.props} />
             </div>

@@ -12,7 +12,7 @@ const Team = () => (
     </div>
     <div className='row'>
       <div className='caption'>
-        SoeamOS es una plataforma ciudadana que busca <br className='breaker' />
+        SeamOS es una plataforma ciudadana que busca <br className='breaker' />
         utilizar las tics para actualizar la democracia
       </div>
     </div>
@@ -31,6 +31,7 @@ const Team = () => (
              el poder a donde realmente corresponde: al ciudadano.
              Bienvenidos a SeamOS. En Colombia, la era de la
              democracia digital ha comenzado.
+             <span className='cover'> Nuestra Historia </span>
           </div>
         </div>
       </div>
@@ -47,6 +48,7 @@ const Team = () => (
              podrá ir en contravía de la Ley de Bancadas, sí
              podemos asegurar que valdrá para activar conversaciones,
              afectar decisiones y fortalecer la democracia.
+             <span className='cover'> ¿Qué pasa con tu voto? </span>
           </div>
         </div>
       </div>

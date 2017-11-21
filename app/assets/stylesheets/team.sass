@@ -70,13 +70,13 @@
   .two
     background-color: #cd4c45
   .team-members
-    width: 1340px
-    margin: auto
     display: flex
     align-items: center
     justify-content: center
     flex-wrap: wrap
     padding: 0 50px
+    width: 1140px
+    margin: auto
     .team-member
       width: $team-member-size
       height: $team-member-size + 130px
@@ -278,12 +278,32 @@
         padding: 34px
         font-size: 21px
         transition: color 1s
+        cursor: default
         @media screen and (max-width: $break-medium)
           font-size: 15px
           padding: 12px
+        span
+          color: transparent
     .left
       float: right
       background-image: url(asset_path('png_quienes_somos-01.png'))
+      .cover
+        color: white
+        font-family: 'HKNovaBold'
+        position: absolute
+        font-size: 42px
+        left: 322px
+        bottom: 140px
     .right
       float: left
       background-image: url(asset_path('png_quienes_somos-02.png'))
+      .cover
+        color: white
+        font-family: "HKNovaBold"
+        position: absolute
+        font-size: 42px
+        left: 15px
+        width: 470px
+        line-height: 43px
+        text-align: center
+        bottom: 110px

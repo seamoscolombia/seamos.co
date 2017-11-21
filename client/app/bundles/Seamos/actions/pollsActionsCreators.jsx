@@ -19,16 +19,6 @@ export const getPolls = (val = 'most-voted-first') => (dispatch) => (
     })
 );
 
-export const getClosedPolls = () => (dispatch) => (
-    axios.get(`${URL}/polls/closed`)
-    .then(response => {
-      dispatch(updatePolls(response.data.polls));
-    })
-    .catch(error => {
-      console.log(error);
-    })
-);
-
 export const pollsFilteredByTag = (tagId) => (dispatch) => {
   if (tagId) {
     return axios.get(`${URL}/tags/${tagId}/polls.json`)
@@ -49,6 +39,16 @@ const mayInteresPolls = (polls) => ({
 
 export const getMayInterestPolls = () => (dispatch) => (
   axios.get(`${URL}/random_polls`)
+  .then(response => {
+    dispatch(mayInteresPolls(response.data.polls));
+  })
+  .catch(err => {
+    console.log(err);
+  })
+);
+
+export const getSummaryPolls = () => (dispatch) => (
+  axios.get(`${URL}/summary_polls`)
   .then(response => {
     dispatch(mayInteresPolls(response.data.polls));
   })

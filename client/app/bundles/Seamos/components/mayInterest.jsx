@@ -4,9 +4,6 @@ import OtherProfilePoll from './otherProfilePoll';
 
 const MayInterest = ({ mayInterestReducer }) => (
   <div id='may-interest-container'>
-    <div className='row interest-banner one'>
-      Tambien te puede interesar
-    </div>
     <div id='may-interest'>
       {console.log(mayInterestReducer)}
       {

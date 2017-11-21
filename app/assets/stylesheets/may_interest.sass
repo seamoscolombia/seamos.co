@@ -1,6 +1,5 @@
 @import './variables'
 #may-interest-container
-  height: 600px
   $square-info-size: 470px
   $square-info-size-mobile: 270px
   $team-member-size: 200px
@@ -16,29 +15,14 @@
     justify-content: left
     flex-wrap: wrap
     position: relative
+    justify-content: center
+    @media screen and (max-width: $break-medium)
+      width: auto
     #global-container
       #other-poll-component
         width: 540px
         margin: 0 20px 0 20px
-  .interest-banner
-    height: 150px
-    background-color: gainsboro
-    font-size: 50px
-    line-height: 1.3em
-    font-weight: bold
-    color: white
-    text-transform: none
-    font-family: "HKNovaBold"
-    display: flex
-    align-items: center
-    justify-content: center
-    word-break: break-word
-    @media screen and (max-width: $break-medium)
-      height: 180px
-      font-size: 27px
-      padding: 0 40px
-      text-align: center
-  .one
-    margin: 50px 0
-    background-color: #c6c6c6
-    color: #45434c
+        @media screen and (max-width: $break-medium)
+          margin: auto
+          width: 88%
+          height: 88px

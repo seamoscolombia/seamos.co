@@ -1,7 +1,10 @@
+$break-medium: 720px
 #global-container
   display: flex
   align-items: center
   margin-bottom: 25px
+  @media screen and (max-width: $break-medium)
+    margin-bottom: 12px
   .poll-my-vote
     background-color: #c6c6c6
     height: 46px
@@ -10,13 +13,19 @@
     display: flex
     align-items: center
     padding-left: 11px
+    @media screen and (max-width: $break-medium)
+      padding-left: 7px
+      height: 33px
+      width: 78px
+      font-size: 9px
+      line-height: 10px
+      // padding-left: 3px
     span
       color: black
     .poll-vote-title
       font-family: "HKNovaBold"
       font-weight: 800
   #other-poll-component
-    $break-medium: 720px
     display: inline-flex
     flex-wrap: wrap
     justify-content: center
@@ -24,11 +33,13 @@
     position: relative
     border: 2px solid gainsboro
     @media screen and (max-width: $break-medium)
-      width: 300px
-      display: block
+      width: 88%
+      height: 88px
       margin: 0
-      margin-bottom: 70px
-      top: 24px
+    .left-side
+      overflow: hidden
+    .right-side
+      padding: 0
     .closed-ribbon
       width: 100%
       display: flex
@@ -47,6 +58,8 @@
       background-position: center
       @media screen and (max-width: $break-medium)
         top: 30px
+        height: 24px
+        background-size: 25px
     .poll-image-container
       height: 160px
       position: relative
@@ -56,14 +69,19 @@
       align-items: center
       justify-content: center
       @media screen and (max-width: $break-medium)
-        height: 190px
+        height: auto
+        overflow: hidden
       img
         min-height: 200px
         max-height: 210px
         @media screen and (max-width: $break-medium)
-          max-height: 150px
+          max-height: auto
+          min-height: auto
+          width: 170%
     .color-separator
       height: 45px
+      @media screen and (max-width: $break-medium)
+        height: 16px
     .poll-title
       font-size: 22px
       margin: 16px 0
@@ -76,10 +94,13 @@
       padding: 0 10px
       position: absolute
       @media screen and (max-width: $break-medium)
-        text-align: center
-        height: auto
-        font-size: 20px
+        text-align: left
+        font-size: 12px
+        height: 35px
+        position: relative
+        overflow: hidden
         width: 90%
+        margin: 7px 0
     .politician-info
       width: 100%
       display: flex
@@ -126,7 +147,7 @@
         padding: 0
         padding-left: 5px
         max-height: 150px
-        overflow: hidden
+        overflow: visible
       .poll-details
         width: 100%
         display: flex
@@ -139,6 +160,10 @@
         height: 46px
         position: absolute
         top: 100px
+        @media screen and (max-width: $break-medium)
+          height: 36px
+          bottom: -38px
+          top: auto
         .poll-tag-name
           color: #44424c
           font-size: 20px
@@ -146,7 +171,8 @@
           text-align: left
           width: 62%
           @media screen and (max-width: $break-medium)
-            font-size: 17px
+            font-size: 12px
+            line-height: 10px
         .btn-plus-read
           color: white
           font-size: 15px
@@ -160,8 +186,8 @@
           right: 14px
           @media screen and (max-width: $break-medium)
             margin-right: 0
-            font-size: 12px
-            padding: 11px
+            font-size: 8px
+            padding: 6px
             position: absolute
             right: 0
             bottom: 11px
