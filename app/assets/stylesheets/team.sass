@@ -77,6 +77,8 @@
     padding: 0 50px
     width: 1140px
     margin: auto
+    @media screen and (max-width: $break-medium)
+      width: auto
     .team-member
       width: $team-member-size
       height: $team-member-size + 130px
@@ -294,6 +296,10 @@
         font-size: 42px
         left: 322px
         bottom: 140px
+        @media screen and (max-width: $break-medium)
+          font-size: 26px
+          left: 108px
+          bottom: 55px
     .right
       float: left
       background-image: url(asset_path('png_quienes_somos-02.png'))
@@ -307,3 +313,10 @@
         line-height: 43px
         text-align: center
         bottom: 110px
+        @media screen and (max-width: $break-medium)
+          font-size: 26px
+          left: 83px
+          width: 270px
+          text-align: center
+          bottom: 45px
+          line-height: 25px

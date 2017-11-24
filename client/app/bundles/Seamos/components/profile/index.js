@@ -66,7 +66,7 @@ const Profile = (props) => {
           }
           <section className='my-participations col-sm-8'>
             <div className='title'>
-              <span>Participaciones recientes</span>
+              <span className='recent'>Participaciones recientes</span>
             </div>
             <Polls polls={participations.polls.slice(0, 2)} />
           </section>

@@ -5,6 +5,10 @@
     overflow: hidden
   .reminder
     padding-left: 30px
+    @media screen and (max-width: $break-medium)
+      padding-left: 0
+      width: 300px
+      text-align: center
   #tags-component
     .tags-box
       justify-content: left

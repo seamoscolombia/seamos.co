@@ -268,6 +268,7 @@ const PollDetail = ({
         </div>
       </section>
       <MayInterestContainer />
+      <div className='spacer-small hide-on-desktop' />
     </div>
   );
 PollDetail.propTypes = {

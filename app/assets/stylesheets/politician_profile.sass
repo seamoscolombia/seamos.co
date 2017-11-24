@@ -10,12 +10,17 @@
     background-color: #eb6157
     margin-bottom: -124px
   #may-interest-container
+    margin-bottom: -60px
     #may-interest
       top: 0
   #profile
     margin-top: 35px
+    @media screen and (max-width: $break-medium)
+      margin-bottom: 0
     .title
       margin: 40px 0 20px 0
+      @media screen and (max-width: $break-medium)
+        margin-top: -40px
     h1
       font-family: "RobotoRegular"
       font-weight: bold
@@ -46,6 +51,11 @@
         .social-info-wrapper
           p
             margin-top: 60px
+            @media screen and (max-width: $break-medium)
+              width: 100%
+              text-align: center
+              font-size: 13px
+              margin-top: -8px
       .basic-info
         height: $picture-size
         @media screen and (max-width: $break-medium)
@@ -77,6 +87,8 @@
         font-family: 'RobotoRegular'
         font-size: 21px
         line-height: 24px
+        @media screen and (max-width: $break-medium)
+          text-align: justify
       .cv-title
         height: 46px
         background-color: #c6c6c5
