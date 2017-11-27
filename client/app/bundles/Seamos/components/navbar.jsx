@@ -103,7 +103,7 @@ const Navbar = ({ session, user }) => (
             <span className='circle-separator'> &#9679; </span>
             <li key='9'><Link to='/#'> FAQS </Link></li>
             <span className='circle-separator'> &#9679; </span>
-            <li className="dropdown">
+            <li className="dropdown hide-on-mobile">
               <button className="nav-with-background about" type="button" data-toggle="dropdown">
                 ACERCA DE
               </button>
@@ -113,6 +113,16 @@ const Navbar = ({ session, user }) => (
                 <li><Link to='/team'> Nuestros eventos </Link></li>
                 <li role="presentation" className="divider"></li>
                 <li><Link to='/politicians'> Concejales que <br /> se unieron </Link></li>
+              </ul>
+            </li>
+            <li className="hide-on-desktop">
+              <button className="nav-with-background about" type="button">
+                ACERCA DE
+              </button>
+              <ul className="submenu">
+                <li><Link to='/team'> Nuestro equipo </Link></li>
+                <li><Link to='/team'> Nuestros eventos </Link></li>
+                <li><Link to='/politicians'> Concejales que se unieron </Link></li>
               </ul>
             </li>
             <div className='hide-on-mobile'>
