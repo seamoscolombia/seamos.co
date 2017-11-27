@@ -10,7 +10,6 @@ export const updatePoll = (poll) => ({
 });
 
 export const getPoll = ({ pollId, errCallback }) => (dispatch) => {
-    console.log(URL, pollId);
     axios.get(`${URL}/polls/${pollId}.json`)
     .then(response => {
       console.log('RESPONSE', response);

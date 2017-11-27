@@ -28,14 +28,14 @@ const Poll = (props) => {
     <a href={`/client/polls/${id}`} style={{ textDecoration: 'none' }}>
       <div id='global-container'>
         <div id='other-poll-component'>
-          <div className='col-md-4 no-padding'>
+          <div className='left-side col-xs-4 col-md-4 no-padding'>
             <div className='poll-image-container'>
                 <img alt="poll" src={poll_image} />
             </div>
             <div className='closed-ribbon' style={{ display: `${is_closed ? 'auto' : 'none'}` }}>
             </div>
           </div>
-          <div className='right-side col-md-8'>
+          <div className='right-side col-xs-8 col-md-8'>
             <div className='poll-title'>
               <span>
                 {title}
@@ -43,7 +43,7 @@ const Poll = (props) => {
             </div>
             <div className='poll-infos-container'>
               <div className='poll-details'>
-                <div className='poll-tag-name' style={is_closed ? {width: '51%'} : {width: '67%'}}>
+                <div className='poll-tag-name' style={is_closed ? {width: '46%'} : {width: '65%'}}>
                   {tagName}
                 </div>
                 <div className='color-separator' style={{ borderLeft: `5px solid ${tagColor}` }} />

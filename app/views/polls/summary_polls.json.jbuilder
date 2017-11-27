@@ -6,5 +6,6 @@ json.polls do
     json.title poll.title
     json.tag_name poll.tags.first.name
     json.color poll.tags.first.tag_color
+    json.is_closed poll.closed?
   end
 end

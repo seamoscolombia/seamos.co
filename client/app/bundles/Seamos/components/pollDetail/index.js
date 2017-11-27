@@ -9,6 +9,7 @@ import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
 import { URL } from '../../constants';
+import MayInterestContainer from '../../containers/mayInterestContainer';
 
 import FacebookLogin from '../../containers/facebookLoginContainer';
 
@@ -152,7 +153,7 @@ const PollDetail = ({
                       politician, poll_type, vote_types,
                       voteAction, tag, status, summary, session
                     }) => (
-    <div>
+    <div id='poll-detail-global-wrapper'>
       <section id='poll-detail'>
         <div className="top-color-bar" style={{ backgroundColor: tag.color }} >
           <div className="tag-name"> {tag.name} </div>
@@ -209,13 +210,15 @@ const PollDetail = ({
               </TwitterShareButton>
           </div>
           <section id='poll' className='row'>
-            <div id='left-col' className="col-sm-6">
-              <img
-                id='poll-thumbnail'
-                src={image}
-                role='presentation'
-                alt='poll thumbnail'
-              />
+            <div id='left-col' className="col-sm-4">
+              <div id='poll-image-container'>
+                <img
+                  id='poll-thumbnail'
+                  src={image}
+                  role='presentation'
+                  alt='poll thumbnail'
+                />
+              </div>
               <div className='closed-ribbon-wrapper'>
                 <div className='closed-ribbon' style={{ display: `${remaining <= 0 ? 'flex' : 'none'}` }}>
                   Propuesta Cerrada
@@ -238,12 +241,12 @@ const PollDetail = ({
                 {externalLinks(links)}
               </div>
             </div>
-            <div className="col-sm-6">
+            <div className="col-sm-8">
               <div className="row">
                 <div className="col-sm-12">
                   <div className="row">
                     <div className='summary'> {summary} </div>
-                    <div className="col-xs-12 col-sm-12 buttons-wrapper">
+                    <div className="col-xs-12 col-sm-6 buttons-wrapper">
                       {user_already_voted || remaining <= 0 ?
                         votedButton(poll_type, vote_types, vote_count, remaining <= 0 ) :
                         voteButton(poll_type, vote_types, voteAction, session)
@@ -263,10 +266,9 @@ const PollDetail = ({
             </div>
           </section>
         </div>
-        <div id='related-polls'>
-          <RelatedPolls tagId={tag.id} pollId={id} />
-        </div>
       </section>
+      <MayInterestContainer />
+      <div className='spacer-small hide-on-desktop' />
     </div>
   );
 PollDetail.propTypes = {

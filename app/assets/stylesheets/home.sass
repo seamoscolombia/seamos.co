@@ -5,10 +5,17 @@
     overflow: hidden
   .reminder
     padding-left: 30px
+    @media screen and (max-width: $break-medium)
+      padding-left: 0
+      width: 300px
+      text-align: center
   #tags-component
     .tags-box
       justify-content: left
       margin: 0
+      @media screen and (max-width: $break-medium)
+        display: flex
+        justify-content: center
   .flex-container
     margin: 0
     width: auto
@@ -124,7 +131,7 @@
       text-align: left
       @media screen and (max-width: $break-medium)
         position: relative
-        left: 7px
+        left: 45px
         top: -23px
         font-size: 23px
         line-height: 31px
@@ -135,6 +142,8 @@
     justify-content: center
     @media screen and (max-width: $break-medium)
       margin-top: 0
+      display: flex
+      flex-wrap: wrap
     .right-col
       width: 740px
       #poll-page
@@ -167,7 +176,8 @@
           font-weight: bold
           letter-spacing: 0
           @media screen and (max-width: $break-medium)
-            margin-left: 25px
+            margin-left: 0
+            text-align: center
   .down
     background-color: #c6c6c5
     height: 440px

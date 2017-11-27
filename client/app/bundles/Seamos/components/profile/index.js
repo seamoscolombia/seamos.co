@@ -3,6 +3,7 @@ import React from 'react';
 import Tags from '../tags';
 import Polls from '../polls';
 import SelectInterests from '../../containers/selectInterestsContainer';
+import MayInterestContainer from '../../containers/mayInterestContainer';
 
 function myInterests(tags) {
   return (
@@ -65,7 +66,7 @@ const Profile = (props) => {
           }
           <section className='my-participations col-sm-8'>
             <div className='title'>
-              <span>Participaciones recientes</span>
+              <span className='recent'>Participaciones recientes</span>
             </div>
             <Polls polls={participations.polls.slice(0, 2)} />
           </section>
@@ -75,13 +76,14 @@ const Profile = (props) => {
         <div id='profile-container' className='row' >
           { selectInterests() }
           <section className='my-participations col-sm-8'>
-            <div className='title'>
+            <div className='title second'>
               <span>Otras participaciones</span>
             </div>
-            <Polls polls={participations.polls.slice(3)} type='horizontal' />
+            <Polls polls={participations.polls.slice(2)} type='horizontal' />
           </section>
         </div>
       </div>
+      <MayInterestContainer />
     </div>
   );
 };

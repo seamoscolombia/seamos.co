@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'polls/closed', to: 'polls#index_closed', format: 'json'
   get 'check_vote', to: 'votes#check_vote', format: 'json'
   get 'random_polls', to: 'polls#random_non_voted_polls', format: 'json'
+  get 'summary_polls', to: 'polls#summary_polls', format: 'json'
 
   resources :polls do
     get 'last', on: :collection

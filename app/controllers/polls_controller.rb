@@ -23,7 +23,8 @@ class PollsController < ApplicationController
                                             :filtered_by_politician,
                                             :filtered_by_tag,
                                             :index_closed,
-                                            :random_non_voted_polls]
+                                            :random_non_voted_polls,
+                                            :summary_polls]
   before_action :validate_admin_user, except: [:index,
                                                :show,
                                                :client_show,
@@ -31,7 +32,8 @@ class PollsController < ApplicationController
                                                :filtered_by_politician,
                                                :filtered_by_tag,
                                                :index_closed,
-                                               :random_non_voted_polls]
+                                               :random_non_voted_polls,
+                                               :summary_polls]
   before_action :set_tag, only: :filtered_by_tag
   before_action :set_poll, only: :client_show
   before_action :set_politician, only: :filtered_by_politician
@@ -134,12 +136,17 @@ class PollsController < ApplicationController
   def random_non_voted_polls
     respond_to do |format|
       format.json do
-        @polls = Poll.includes(:votes, :tags).active.open
-        @polls = @polls.select{|poll| poll.voted_by_user?(current_user.id) == false} if current_user.present?
-        @polls = @polls.shuffle.first(4)
+        @active_polls = Poll.includes(:votes, :tags).active.open
+        @polls = @active_polls.select{|poll| poll.voted_by_user?(current_user.id) == false} if current_user.present?
+        @polls << @active_polls.first(4) if @polls.size < 5
+        @polls = @polls.flatten.shuffle.first(4)
         @polls = Poll.includes(:votes, :tags).active.closed.shuffle.first(4) if @polls.blank?
       end
     end
+  end
+
+  def summary_polls
+    @polls = Poll.includes(:votes, :tags).order(created_at: :desc).limit(40)
   end
 
   def filtered_by_politician

@@ -43,14 +43,14 @@ const Navbar = ({ session, user }) => (
     className='navbar navbar-fixed-top'
     role='banner'
   >
-    <div id="client-navbar" className='container'>
+    <div id="client-navbar">
       <div className='navbar-header'>
         <Link to='/' className='navbar-brand'>
           <div id='brand-logo' />
         </Link>
         <div className='hide-on-desktop only-photo'>
           {session.logged && Object.keys(user).length !== 0 ?
-            profile() : 
+            profile() :
             <div>
               <li key='11'>
                 <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
@@ -80,7 +80,7 @@ const Navbar = ({ session, user }) => (
           <ul className='nav navbar-nav navbar-right navbar-options'>
             <div className='hide-on-desktop'>
               {session.logged && Object.keys(user).length !== 0 ?
-                profile() : 
+                profile() :
                 <div>
                   <li key='5'>
                     <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
@@ -93,28 +93,38 @@ const Navbar = ({ session, user }) => (
             </div>
             <li key='7'><Link to='/tags'> Temas </Link></li>
             <span className='circle-separator'> &#9679; </span>
-            <li key='8'><Link to='/#'> Blog </Link></li>
+            <li key='8'>
+              <a
+              href="https://seamosit.github.io"
+              rel='noopener noreferrer'
+              > Blog
+              </a>
+            </li>
             <span className='circle-separator'> &#9679; </span>
             <li key='9'><Link to='/#'> FAQS </Link></li>
             <span className='circle-separator'> &#9679; </span>
-            <li className="dropdown">
-              <button className="nav-with-background" type="button" data-toggle="dropdown">
+            <li className="dropdown hide-on-mobile">
+              <button className="nav-with-background about" type="button" data-toggle="dropdown">
                 ACERCA DE
-                &ensp;
-                &ensp;
-                &ensp;
-                &ensp;
-                &ensp;                
               </button>
               <ul className="dropdown-menu custom--dropdown--about">
                 <li><Link to='/team'> Nuestro equipo </Link></li>
-                <li role="presentation" className="divider"></li>                
+                <li role="presentation" className="divider"></li>
                 <li><Link to='/team'> Nuestros eventos </Link></li>
-                <li role="presentation" className="divider"></li>                
+                <li role="presentation" className="divider"></li>
                 <li><Link to='/politicians'> Concejales que <br /> se unieron </Link></li>
               </ul>
             </li>
-            <span className='circle-separator'> &#9679; </span>
+            <li className="hide-on-desktop">
+              <button className="nav-with-background about" type="button">
+                ACERCA DE
+              </button>
+              <ul className="submenu">
+                <li><Link to='/team'> Nuestro equipo </Link></li>
+                <li><Link to='/team'> Nuestros eventos </Link></li>
+                <li><Link to='/politicians'> Concejales que se unieron </Link></li>
+              </ul>
+            </li>
             <div className='hide-on-mobile'>
               {session.logged && Object.keys(user).length !== 0 ?
                 profile() :
@@ -133,7 +143,7 @@ const Navbar = ({ session, user }) => (
                     </li>
                   </ul>
                 </li>
-              } 
+              }
             </div>
             {session.logged && Object.keys(user).length !== 0 ?
               logout() : <span />

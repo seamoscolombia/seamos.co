@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Polls from './polls';
+import MayInterestContainer from '../containers/mayInterestContainer';
+import OtherProfilePoll from './otherProfilePoll';
 
 const moreInfoStyle = { height: 30, overflowY: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
@@ -26,6 +28,22 @@ const Politician = (props) => {
               </div>
             </div>
           </div>
+
+          <div className='col-md-2 social-info'>
+            <div className='social-info-wrapper'>
+              <div className=''>
+                <p>
+                  <i className="fa fa-twitter" aria-hidden="true" />
+                    &nbsp;
+                    &nbsp;
+                    {props.twitter}
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
           <div className='col-md-2'>
           </div>
         </div>
@@ -35,7 +53,15 @@ const Politician = (props) => {
               Formación
             </div>
             <div className='further-studies'>
-              <td dangerouslySetInnerHTML={{ __html: props.further_studies }} />
+            { props.academic_titles.map(
+                academic_title => (
+                  <div className='academic-title'>
+                    <div><strong> Título: </strong>{academic_title.title} </div>
+                    <div className='institute'><strong> Institución: </strong>{academic_title.institute} </div>
+                  </div>
+                )
+              )
+            }
             </div>
             <div className='cv-title'>
               Carrera Política
@@ -77,13 +103,21 @@ const Politician = (props) => {
             </div>
             <div className='row'>
               <div className='col-md-12'>
-                <h1> Propuestas </h1>
-                <Polls polls={props.polls} />
+                <h1 className='title'> Propuestas </h1>
+                {
+                  props.polls.map(
+                      poll => (
+                        console.log(poll),
+                        <OtherProfilePoll {...poll} key={poll.id}/>
+                              )
+                          )
+                }
               </div>
             </div>
           </div>
         </div>
       </div>
+      <MayInterestContainer />
     </div>
   );
 };
@@ -97,7 +131,6 @@ Politician.propTypes = {
         bio: PropTypes.string,
         moreInfo: PropTypes.bool,
         polls: PropTypes.array.isRequired,
-        closed_polls: PropTypes.array.isRequired
 };
 
 export default Politician;
