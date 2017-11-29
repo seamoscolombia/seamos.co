@@ -94,23 +94,25 @@ const Navbar = ({ session, user }) => (
             </div>
             <li key='7'><a href={`${URL}/#/tags`}> Temas </a></li>
             <span className='circle-separator'> &#9679; </span>
-            <li key='8'><a href={`${URL}/#`}> Blog </a></li>
-            <span className='circle-separator'> &#9679; </span>
-            <li key='9'><a href={`${URL}/#/`}> FAQS </a></li>
-            <span className='circle-separator'> &#9679; </span>
-            <li className="dropdown">
+            <li className="dropdown hide-on-mobile">
               <button className="nav-with-background about" type="button" data-toggle="dropdown">
                 ACERCA DE
               </button>
               <ul className="dropdown-menu custom--dropdown--about">
                 <li><a href={`${URL}/#/team`}> Nuestro equipo </a></li>
                 <li role="presentation" className="divider"></li>
-                <li><a href={`${URL}/#/team`}> Nuestros eventos </a></li>
-                <li role="presentation" className="divider"></li>
                 <li><a href={`${URL}/#/politicians`}> Concejales que <br /> se unieron </a></li>
               </ul>
             </li>
-            <span className='circle-separator'> &#9679; </span>
+            <li className="hide-on-desktop">
+              <button className="nav-with-background about" type="button">
+                ACERCA DE
+              </button>
+              <ul className="submenu">
+                <li><a href={`${URL}/#/team`}> Nuestro equipo </a></li>
+                <li><a href={`${URL}/#/politicians`}> Concejales que se unieron </a></li>
+              </ul>
+            </li>
             <div className='hide-on-mobile'>
               {session.logged && Object.keys(user).length !== 0 ?
                 profile() :
