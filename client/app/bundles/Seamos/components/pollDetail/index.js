@@ -69,6 +69,20 @@ function projectLink(link) {
   }
 }
 
+function statusImageLink(type, status) {
+  if (type == 0) {
+    return (
+      console.log('Voto o proyecto de acuerdo'),
+      <img src={"https://s3.amazonaws.com/poll-states/Control+Pol%C3%ADtico/ESTADOS+27+NOV+control+politico-0" + `${status}` + ".png"} className='state' />
+    );
+  } else {
+    return (
+      console.log('control politico'),
+      <img src={"https://s3.amazonaws.com/poll-states/Voto+o+Proyecto+de+Acuerdo/ESTADOS+27+NOV+PA+y+V-0" + `${status}` + ".png"} className='state' />
+    );
+  }
+}
+
 function voteButton(pollType, voteTypes, voteAction, session) {
   switch (pollType) {
     case 'signing': //2
@@ -150,7 +164,7 @@ const PollDetail = ({
                       id, title, image, remaining,
                       description, objective, vote_count,
                       user_already_voted, links, project_link,
-                      politician, poll_type, vote_types,
+                      politician, type, vote_types,
                       voteAction, tag, status, summary, session
                     }) => (
     <div id='poll-detail-global-wrapper'>
@@ -226,11 +240,7 @@ const PollDetail = ({
               </div>
               <p id='objective' className='row' style={{display: 'none'}}><strong> Objetivo: </strong> {objective}</p>
               <div id='poll-states'>
-                <div className='state state-1' style={(remaining > 0 && status === 0) ? statusActiveStyle : statusInactiveStyle}> Votación abierta </div>
-                <div className='state state-2' style={(remaining > 0 && status === 1) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
-                <div className='state state-3' style={(remaining > 0 && status === 2) ? statusActiveStyle : statusInactiveStyle}> Proyecto de acuerdo </div>
-                <div className='state state-4' style={(remaining > 0 && status === 3) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
-                <div className='state state-5' style={remaining < 0 ? statusActiveStyle : statusInactiveStyle}> Propuesta Cerrada </div>
+                {statusImageLink(type, status)}
               </div>
               {projectLinkTitle(project_link)}
               <div className='external-links-container'>
@@ -248,8 +258,8 @@ const PollDetail = ({
                     <div className='summary'> {summary} </div>
                     <div className="col-xs-12 col-sm-6 buttons-wrapper">
                       {user_already_voted || remaining <= 0 ?
-                        votedButton(poll_type, vote_types, vote_count, remaining <= 0 ) :
-                        voteButton(poll_type, vote_types, voteAction, session)
+                        votedButton(type, vote_types, vote_count, remaining <= 0 ) :
+                        voteButton(type, vote_types, voteAction, session)
                       }
                     </div>
                     <div className='col-xs-12 col-sm-12 poll-details'>
