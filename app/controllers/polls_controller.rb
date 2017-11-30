@@ -205,6 +205,7 @@ class PollsController < ApplicationController
     if @poll
       set_meta_tags og: {
         title: @poll.title,
+        url: request.url,
         image: {
           _: @poll.poll_image,
           width: 600,
