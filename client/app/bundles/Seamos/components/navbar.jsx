@@ -93,6 +93,14 @@ const Navbar = ({ session, user }) => (
             </div>
             <li key='7'><Link to='/tags'> Temas </Link></li>
             <span className='circle-separator'> &#9679; </span>
+            <li key='8'>
+              <a
+              href="https://seamosit.github.io"
+              rel='noopener noreferrer'
+              > Blog
+              </a>
+            </li>
+            <span className='circle-separator'> &#9679; </span>
             <li className="dropdown hide-on-mobile">
               <button className="nav-with-background about" type="button" data-toggle="dropdown">
                 ACERCA DE
