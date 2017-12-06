@@ -98,7 +98,6 @@ const Navbar = ({ session, user }) => (
               <a
               href="https://seamosit.github.io"
               rel='noopener noreferrer'
-              target='blank'
               > Blog
               </a>
             </li>
