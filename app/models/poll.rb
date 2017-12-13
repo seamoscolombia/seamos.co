@@ -43,11 +43,17 @@ class Poll < ApplicationRecord
   # validate :closing_date_validation
   validate :at_least_one_tag
 
-  enum poll_type: {voting: 0, participation: 1, signing: 2}
-  enum state: {"Votación abierta": 0,
-               "En el concejo": 1,
-               "propuesta de acuerdo": 2,
-               "En el concejox": 3}
+  enum poll_type: {
+                    "Voto o proyecto de acuerdo": 1,
+                    "Control político": 0
+                  }
+  enum state: {
+                "Votación seamos": 0,
+                "Radica concejal": 1,
+                "Primer debate": 2,
+                "Segundo debate": 3,
+                "Sanción del proyecto de acuerdo": 4
+              }
 
   scope :active, -> {
     where('active IS TRUE')
