@@ -138,7 +138,7 @@ class PollsController < ApplicationController
       format.json do
         @active_polls = Poll.includes(:votes, :tags).active.open
         @polls = @active_polls.select{|poll| poll.voted_by_user?(current_user.id) == false} if current_user.present?
-        @polls << @active_polls.first(4) if @polls && @polls.size < 5
+        @polls << @active_polls.first(4) if @polls.present? && @polls.size < 5
         @polls = @polls.flatten.shuffle.first(4) if @polls.present?
         @polls = Poll.includes(:votes, :tags).active.closed.shuffle.first(4) if @polls.blank?
       end

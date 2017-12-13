@@ -113,7 +113,7 @@
         margin: auto
       .polls-summary-text
         padding: 8px
-        padding-right: 26px
+        padding-right: 60px
         position: relative
         bottom: -1px
         left: 30px
@@ -121,6 +121,8 @@
         color: white
         font-family: "HKNovaBold"
         font-size: 15px
+        @media screen and (max-width: $break-medium)
+          padding-right: 26px
       a.summary-btn-wrapper
         &:hover
           text-decoration: none
