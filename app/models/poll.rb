@@ -88,10 +88,10 @@ class Poll < ApplicationRecord
   end
 
   def self.by_status(status)
-    if status == 'inactive'
-      inactive
-    elsif status == 'active'
-      active
+    if status == 'closed'
+      closed
+    elsif status == 'open'
+      open
     else
       all
     end

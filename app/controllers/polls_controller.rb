@@ -107,10 +107,10 @@ class PollsController < ApplicationController
       format.json do
         if params[:order_by] == 'by-user-interests'
           @polls = [] and return unless current_user
-          @polls = Poll.includes(:votes, :tags).active.by_user_interests(current_user).sort_by {|poll| poll.vote_count}
+          @polls = Poll.includes(:votes, :tags).by_user_interests(current_user).sort_by {|poll| poll.vote_count}
           @reverse = true
         else
-          @polls = Poll.includes(:votes, :tags).active.open.sort_by {|poll| poll.send(order_param)}
+          @polls = Poll.includes(:votes, :tags).open.sort_by {|poll| poll.send(order_param)}
         end
         @polls = @reverse ? @polls.reverse.first(2) : @polls.first(2)
       end
@@ -128,7 +128,7 @@ class PollsController < ApplicationController
   def filtered_by_tag
     respond_to do |format|
       format.json do
-        @polls = @tag.polls.includes(:votes).active.sort_by {|poll| - poll.votes.size} if @tag
+        @polls = @tag.polls.includes(:votes).sort_by {|poll| - poll.votes.size} if @tag
       end
     end
   end
@@ -136,11 +136,12 @@ class PollsController < ApplicationController
   def random_non_voted_polls
     respond_to do |format|
       format.json do
-        @active_polls = Poll.includes(:votes, :tags).active.open
+        @polls = []
+        @active_polls = Poll.includes(:votes, :tags).open
         @polls = @active_polls.select{|poll| poll.voted_by_user?(current_user.id) == false} if current_user.present?
-        @polls << @active_polls.first(4) if @polls.present? && @polls.size < 5
+        @polls << @active_polls.first(4) if @polls.size < 5
         @polls = @polls.flatten.shuffle.first(4) if @polls.present?
-        @polls = Poll.includes(:votes, :tags).active.closed.shuffle.first(4) if @polls.blank?
+        @polls = Poll.includes(:votes, :tags).closed.shuffle.first(4) if @polls.blank?
       end
     end
   end
@@ -153,7 +154,7 @@ class PollsController < ApplicationController
     if @politician
       respond_to do |format|
         format.json do
-          @polls = @politician.polls.includes(:votes).active.sort_by {|poll| - poll.votes.size}
+          @polls = @politician.polls.includes(:votes).sort_by {|poll| - poll.votes.size}
         end
       end
     else
@@ -162,12 +163,11 @@ class PollsController < ApplicationController
   end
 
   def index_admin
-    @filtered_polls = Poll.by_status(params[:status])
-    @filtered_polls = @filtered_polls.search(params[:search_term]).page(params[:page]).per(4) unless params[:search_term].blank?
+    @filtered_polls = Poll.by_title(params[:search_term]).by_status(params[:status]) unless params[:search_term].blank?
     @polls = if current_user.politico?
-               @filtered_polls.order('id desc').where(user_id: current_user.id).page(params[:page]).per(4)
+               @filtered_polls.where(user_id: current_user.id).page(params[:page]).per(4)
              else
-               @filtered_polls.order('id desc').all.page(params[:page]).per(4)
+               Kaminari.paginate_array(@filtered_polls).page(params[:page]).per(4)
              end
     render :index
   end
