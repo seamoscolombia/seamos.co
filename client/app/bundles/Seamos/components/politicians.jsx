@@ -10,114 +10,138 @@ const Team = () => (
     </div>
     <div className='row'>
       <div className='politicians'>
-        <div className='politician one'>
-          <div className='photo' />
-          <div className='name'>
-            Hollman Morris
+      <a className='politician-link' href='http://seamos.co/#/proponents/23'>
+          <div className='politician one'>
+            <div className='photo' />
+            <div className='name'>
+              Hollman Morris
+            </div>
+            <div className='organization'>
+              Progresistas
+            </div>
           </div>
-          <div className='organization'>
-            Progresistas
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/10'>
+          <div className='politician two'>
+              <div className='photo' />
+            <div className='name'>
+              Juan Felipe Grillo
+            </div>
+            <div className='organization'>
+              Cambio Radical
+            </div>
           </div>
-        </div>
-        <div className='politician two'>
-          <div className='photo' />
-          <div className='name'>
-            Juan Felipe Grillo
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/15'>
+          <div className='politician three'>
+            <div className='photo' />
+            <div className='name'>
+              Horacio José Serpa
+            </div>
+            <div className='organization'>
+              Partido Liberal
+            </div>
           </div>
-          <div className='organization'>
-            Cambio Radical
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/20'>
+          <div className='politician four'>
+            <div className='photo' />
+            <div className='name'>
+              Lucía Bastidas
+            </div>
+            <div className='organization'>
+              Partido Verde
+            </div>
           </div>
-        </div>
-        <div className='politician three'>
-          <div className='photo' />
-          <div className='name'>
-            Horacio José Serpa
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/9'>
+          <div className='politician five'>
+            <div className='photo' />
+            <div className='name'>
+              Diego Molano
+            </div>
+            <div className='organization'>
+              Centro Democrático
+            </div>
           </div>
-          <div className='organization'>
-            Partido Liberal
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/11'>
+          <div className='politician six'>
+            <div className='photo' />
+            <div className='name'>
+              Ángela Garzón
+            </div>
+            <div className='organization'>
+              Centro Democrático
+            </div>
           </div>
-        </div>
-        <div className='politician four'>
-          <div className='photo' />
-          <div className='name'>
-            Lucía Bastidas
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/16'>
+          <div className='politician seven'>
+            <div className='photo' />
+            <div className='name'>
+              Emel Rojas
+            </div>
+            <div className='organization'>
+              Movimiento Libres
+            </div>
           </div>
-          <div className='organization'>
-            Partido Verde
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/18'>
+          <div className='politician eight'>
+            <div className='photo' />
+            <div className='name'>
+              Daniel Palacios
+            </div>
+            <div className='organization'>
+              Centro Democrático
+            </div>
           </div>
-        </div>
-        <div className='politician five'>
-          <div className='photo' />
-          <div className='name'>
-            Diego Molano
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/21'>
+          <div className='politician nine'>
+            <div className='photo' />
+            <div className='name'>
+              Germán García
+            </div>
+            <div className='organization'>
+              Partido Liberal
+            </div>
           </div>
-          <div className='organization'>
-            Centro Democrático
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/19'>
+          <div className='politician ten'>
+            <div className='photo' />
+            <div className='name'>
+              José David Castellanos
+            </div>
+            <div className='organization'>
+              Cambio Radical
+            </div>
           </div>
-        </div>
-        <div className='politician six'>
-          <div className='photo' />
-          <div className='name'>
-            Ángela Garzón
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/31'>
+          <div className='politician eleven'>
+            <div className='photo' />
+            <div className='name'>
+              Yefer Vega
+            </div>
+            <div className='organization'>
+              Cambio Radical
+            </div>
           </div>
-          <div className='organization'>
-            Centro Democrático
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/17'>
+          <div className='politician twelve'>
+            <div className='photo' />
+            <div className='name'>
+              Maria Clara Name
+            </div>
+            <div className='organization'>
+              Partido Verde
+            </div>
           </div>
-        </div>
-        <div className='politician seven'>
-          <div className='photo' />
-          <div className='name'>
-            Emel Rojas
-          </div>
-          <div className='organization'>
-            Movimiento Libres
-          </div>
-        </div>
-        <div className='politician eight'>
-          <div className='photo' />
-          <div className='name'>
-            Daniel Palacios
-          </div>
-          <div className='organization'>
-            Centro Democrático
-          </div>
-        </div>
-        <div className='politician nine'>
-          <div className='photo' />
-          <div className='name'>
-            Germán García
-          </div>
-          <div className='organization'>
-            Partido Liberal
-          </div>
-        </div>
-        <div className='politician ten'>
-          <div className='photo' />
-          <div className='name'>
-            José David Castellanos
-          </div>
-          <div className='organization'>
-            Cambio Radical
-          </div>
-        </div>
-        <div className='politician eleven'>
-          <div className='photo' />
-          <div className='name'>
-            Yefer Vega
-          </div>
-          <div className='organization'>
-            Cambio Radical
-          </div>
-        </div>
-        <div className='politician twelve'>
-          <div className='photo' />
-          <div className='name'>
-            Maria Clara Name
-          </div>
-          <div className='organization'>
-            Partido Verde
-          </div>
-        </div>
+        </a>
       </div>
     </div>
   </div>

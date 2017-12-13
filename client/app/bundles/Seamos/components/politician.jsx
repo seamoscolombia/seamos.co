@@ -32,12 +32,14 @@ const Politician = (props) => {
           <div className='col-md-2 social-info'>
             <div className='social-info-wrapper'>
               <div className=''>
-                <p>
-                  <i className="fa fa-twitter" aria-hidden="true" />
-                    &nbsp;
-                    &nbsp;
-                    {props.twitter}
-                </p>
+                <a className='no-decoration' href={`https://twitter.com/${props.twitter.replace("@", "")}`}>
+                  <p>
+                    <i className="fa fa-twitter" aria-hidden="true" />
+                      &nbsp;
+                      &nbsp;
+                      {props.twitter}
+                  </p>
+                </a>
               </div>
             </div>
           </div>
