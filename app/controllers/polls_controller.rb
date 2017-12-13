@@ -109,9 +109,12 @@ class PollsController < ApplicationController
           @polls = [] and return unless current_user
           @polls = Poll.includes(:votes, :tags).by_user_interests(current_user).sort_by {|poll| poll.vote_count}
           @reverse = true
+          @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.vote_count}.first(2 - @polls.size)
         else
           @polls = Poll.includes(:votes, :tags).open.sort_by {|poll| poll.send(order_param)}
+          @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.send(order_param)}.first(2 - @polls.size)
         end
+        @polls.flatten!
         @polls = @reverse ? @polls.reverse.first(2) : @polls.first(2)
       end
     end
@@ -163,7 +166,7 @@ class PollsController < ApplicationController
   end
 
   def index_admin
-    @filtered_polls = Poll.by_title(params[:search_term]).by_status(params[:status]) unless params[:search_term].blank?
+    @filtered_polls = Poll.by_title(params[:search_term]).by_status(params[:status])
     @polls = if current_user.politico?
                @filtered_polls.where(user_id: current_user.id).page(params[:page]).per(4)
              else
