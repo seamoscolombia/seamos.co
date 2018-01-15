@@ -48,7 +48,7 @@
     padding-left: 30px
   .side-collapse
     @media screen and (max-width: $break-medium)
-      width: 60%
+      width: 74%
   .navbar-options
     display: flex
     align-items: center
@@ -186,16 +186,15 @@
     visibility: visible
     opacity: 1
   .custom--dropdown
-    left: 0 !important
-    min-width: 0 !important
     padding: 0 !important
     background-color: rgba(0, 0, 0, 0.1)
+    top: 50px
+    right: -25px
     li
       margin: 0
       text-align: center
       button
-        background-color: rgba(0, 0, 0, 0.6)
-        width: 100%
+        margin: 10px
   .custom--dropdown--about
     left: 0 !important
     min-width: 0 !important
@@ -209,3 +208,55 @@
           height: auto
       button
         width: 100%
+
+.loginBtn
+  box-sizing: border-box
+  position: relative
+  margin: 0.2em
+  padding: 0 15px 0 46px
+  border: none
+  text-align: left
+  line-height: 34px
+  white-space: nowrap
+  font-size: 16px
+  color: #FFF
+  @media screen and (max-width: $break-medium)
+    padding: 0 7px 0 41px
+    font-size: 14px
+  &:before
+    content: ""
+    box-sizing: border-box
+    position: absolute
+    top: 0
+    left: 0
+    width: 34px
+    height: 100%
+  &:focus
+    outline: none
+  &:active
+    box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1)
+
+/* Facebook
+
+.loginBtn--facebook
+  background-color: #4267b2
+  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;
+  &:before
+    background-image: url(asset_path('facebook-logo-white.png'))
+    background-size: 70%
+    background-position: center center
+    background-repeat: no-repeat
+
+/* Google
+
+.loginBtn--google
+  /*font-family: "Roboto", Roboto, arial, sans-serif;
+  background: #DD4B39
+  &:before
+    background-image: url(asset_path('google-logo.svg'))
+    background-size: 130%
+    background-position: center center
+    background-repeat: no-repeat
+    // background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat
+  &:hover, &:focus
+    background: #E74B37

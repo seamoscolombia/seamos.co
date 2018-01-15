@@ -53,12 +53,6 @@ const Navbar = ({ session, user }) => (
           {session.logged && Object.keys(user).length !== 0 ?
             profile() :
             <div>
-              <li key='11'>
-                <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
-              </li>
-              <li key='12'>
-                <GoogleLog googleClassName='nav-dropdown-options' googleText='Google' />
-              </li>
             </div>
           }
         </div>
@@ -84,10 +78,10 @@ const Navbar = ({ session, user }) => (
                 profile() :
                 <div>
                   <li key='5'>
-                    <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
+                    <FacebookLogin fbclassName='loginBtn loginBtn--facebook' fbText='Continuar con Facebook' />
                   </li>
                   <li key='6'>
-                    <GoogleLog googleClassName='nav-dropdown-options' googleText='Google' />
+                    <GoogleLog googleClassName='loginBtn loginBtn--google' googleText='Continuar con Google' />
                   </li>
                 </div>
               }
@@ -131,11 +125,11 @@ const Navbar = ({ session, user }) => (
                   </button>
                   <ul className="dropdown-menu custom--dropdown">
                     <li>
-                      <FacebookLogin fbclassName='nav-dropdown-options' fbText='Facebook' />
+                      <FacebookLogin fbclassName='loginBtn loginBtn--facebook' fbText='Continuar con Facebook' />
                     </li>
                     <li role="presentation" className="divider"></li>
                     <li>
-                      <GoogleLog googleClassName='nav-dropdown-options' googleText='Google' />
+                      <GoogleLog googleClassName='loginBtn loginBtn--google' googleText='Continuar con Google' />
                     </li>
                   </ul>
                 </li>
