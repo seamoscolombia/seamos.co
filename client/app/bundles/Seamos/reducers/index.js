@@ -11,7 +11,8 @@ import VotedPollReducer from './votedPollReducer';
 import VotedPollsReducer from './votedPollsReducer';
 import inputReducer from './inputReducer';
 import newsletterReducer from './newsletterReducer';
-
+import pollIdReducer from './pollIdReducer';
+import mayInterestReducer from './mayInterestReducer';
 
 export default combineReducers({
   interests,
@@ -25,5 +26,7 @@ export default combineReducers({
   tags,
   votedPolls: VotedPollsReducer,
   inputReducer,
-  newsletterReducer
+  newsletterReducer,
+  pollIdReducer,
+  mayInterestReducer
 });

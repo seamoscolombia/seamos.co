@@ -6,10 +6,21 @@
     @media screen and (max-width: $break-medium)
       display: block
   #top-color-banner
-    height: 150px
+    height: 190px
     background-color: #eb6157
     margin-bottom: -124px
+  #may-interest-container
+    margin-bottom: -60px
+    #may-interest
+      top: 0
   #profile
+    margin-top: 35px
+    @media screen and (max-width: $break-medium)
+      margin-bottom: 0
+    .title
+      margin: 40px 0 20px 0
+      @media screen and (max-width: $break-medium)
+        margin-top: -40px
     h1
       font-family: "RobotoRegular"
       font-weight: bold
@@ -36,6 +47,16 @@
         text-align: justify
     .top
       margin-bottom: 25px
+      .social-info
+        .social-info-wrapper
+          p
+            margin-top: 60px
+            font-size: 14px
+            @media screen and (max-width: $break-medium)
+              width: 100%
+              text-align: center
+              font-size: 13px
+              margin-top: -8px
       .basic-info
         height: $picture-size
         @media screen and (max-width: $break-medium)
@@ -63,6 +84,12 @@
             width: $picture-size
             height: $picture-size
     .mid
+      td
+        font-family: 'RobotoRegular'
+        font-size: 21px
+        line-height: 24px
+        @media screen and (max-width: $break-medium)
+          text-align: justify
       .cv-title
         height: 46px
         background-color: #c6c6c5
@@ -76,7 +103,7 @@
       .cv-subtitle
         font-family: 'RobotoRegular'
         font-size: 23px
-        border-bottom: 2px solid gray
+        border-bottom: 1px solid gray
         padding: 12px 0
         font-weight: bold
         color: #44434c
@@ -84,14 +111,14 @@
       .further-studies
         padding: 10px
         color: #44434c
-        p
-          font-family: 'HKNovaRegular'
-          font-size: 24px
-          line-height: 1em
-          @media screen and (max-width: $break-medium)
-            font-size: 14px
-        br
-          display: none
+        .academic-title
+          font-size: 19px
+          font-family: 'RobotoRegular'
+          border-bottom: 1px solid gray
+          div
+            margin: 30px 0 30px 0
+        .academic-title:nth-child(3)
+          border-bottom: none
       .career
         padding: 20px 10px
         font-size: 16px
@@ -108,7 +135,7 @@
         justify-content: flex-end
         background-size: 70px 70px
         background-position-y: center
-        border-bottom: 2px solid gray
+        border-bottom: 1px solid gray
         color: #3d5062
       .major-representation-localities
         font-family: 'RobotoBold'
@@ -121,7 +148,7 @@
         justify-content: flex-end
         background-size: 118px 82px
         background-position-y: center
-        border-bottom: 2px solid gray
+        border-bottom: 1px solid gray
         color: #3d5062
         font-size: 20px
         background-image: url(asset_path('localities.png'))
@@ -134,7 +161,7 @@
         min-height: 62px
         font-size: 20px
         justify-content: flex-end
-        border-bottom: 2px solid gray
+        border-bottom: 1px solid gray
         color: #3d5062
       h2
         @media screen and (max-width: $break-medium)
@@ -148,6 +175,8 @@
           padding-top: 30px
     .polls-wrapper
       margin-top: 50px
+      display: flex
+      flex-wrap: wrap
       @media screen and (max-width: $break-medium)
         margin-top: 10px
       #poll-component

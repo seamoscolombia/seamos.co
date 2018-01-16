@@ -12,7 +12,7 @@ const Team = () => (
     </div>
     <div className='row'>
       <div className='caption'>
-        SoeamOS es una plataforma ciudadana que busca <br className='breaker' />
+        SeamOS es una plataforma ciudadana que busca <br className='breaker' />
         utilizar las tics para actualizar la democracia
       </div>
     </div>
@@ -31,6 +31,7 @@ const Team = () => (
              el poder a donde realmente corresponde: al ciudadano.
              Bienvenidos a SeamOS. En Colombia, la era de la
              democracia digital ha comenzado.
+             <span className='cover'> Nuestra Historia </span>
           </div>
         </div>
       </div>
@@ -47,6 +48,7 @@ const Team = () => (
              podrá ir en contravía de la Ley de Bancadas, sí
              podemos asegurar que valdrá para activar conversaciones,
              afectar decisiones y fortalecer la democracia.
+             <span className='cover'> ¿Qué pasa con tu voto? </span>
           </div>
         </div>
       </div>
@@ -156,121 +158,6 @@ const Team = () => (
           </div>
           <div className='role'>
             Comunicaciones
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className='row team-banner three'>
-      ¿Qué concejales participan?
-    </div>
-    <div className='row'>
-      <div className='politicians'>
-        <div className='politician one'>
-          <div className='photo' />
-          <div className='name'>
-            Hollman Morris
-          </div>
-          <div className='organization'>
-            Progresistas
-          </div>
-        </div>
-        <div className='politician two'>
-          <div className='photo' />
-          <div className='name'>
-            Juan Felipe Grillo
-          </div>
-          <div className='organization'>
-            Cambio Radical
-          </div>
-        </div>
-        <div className='politician three'>
-          <div className='photo' />
-          <div className='name'>
-            Horacio José Serpa
-          </div>
-          <div className='organization'>
-            Partido Liberal
-          </div>
-        </div>
-        <div className='politician four'>
-          <div className='photo' />
-          <div className='name'>
-            Lucía Bastidas
-          </div>
-          <div className='organization'>
-            Partido Verde
-          </div>
-        </div>
-        <div className='politician five'>
-          <div className='photo' />
-          <div className='name'>
-            Diego Molano
-          </div>
-          <div className='organization'>
-            Centro Democrático
-          </div>
-        </div>
-        <div className='politician six'>
-          <div className='photo' />
-          <div className='name'>
-            Ángela Garzón
-          </div>
-          <div className='organization'>
-            Centro Democrático
-          </div>
-        </div>
-        <div className='politician seven'>
-          <div className='photo' />
-          <div className='name'>
-            Emel Rojas
-          </div>
-          <div className='organization'>
-            Movimiento Libres
-          </div>
-        </div>
-        <div className='politician eight'>
-          <div className='photo' />
-          <div className='name'>
-            Daniel Palacios
-          </div>
-          <div className='organization'>
-            Centro Democrático
-          </div>
-        </div>
-        <div className='politician nine'>
-          <div className='photo' />
-          <div className='name'>
-            Germán García
-          </div>
-          <div className='organization'>
-            Partido Liberal
-          </div>
-        </div>
-        <div className='politician ten'>
-          <div className='photo' />
-          <div className='name'>
-            José David Castellanos
-          </div>
-          <div className='organization'>
-            Cambio Radical
-          </div>
-        </div>
-        <div className='politician eleven'>
-          <div className='photo' />
-          <div className='name'>
-            Yefer Vega
-          </div>
-          <div className='organization'>
-            Cambio Radical
-          </div>
-        </div>
-        <div className='politician twelve'>
-          <div className='photo' />
-          <div className='name'>
-            Maria Clara Name
-          </div>
-          <div className='organization'>
-            Partido Verde
           </div>
         </div>
       </div>

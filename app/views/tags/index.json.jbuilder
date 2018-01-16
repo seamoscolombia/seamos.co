@@ -8,5 +8,6 @@ json.tags do
     json.thumbnail tag.thumbnail.url
     json.icon tag.tag_icon.url
     json.color tag.tag_color
+    json.polls_count tag.polls.size
   end
 end

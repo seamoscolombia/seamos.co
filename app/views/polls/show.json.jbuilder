@@ -8,7 +8,7 @@ json.poll do
     json.initial_time @poll.remaining_time_in_seconds_from_created
     json.remaining @poll.remaining_time_in_seconds
     json.vote_count @poll.votes.size
-    json.poll_type @poll.poll_type
+    json.type @poll.poll_type.present? ? Poll.poll_types[@poll.poll_type] : 0
     json.status @poll.poll_state
     json.summary @poll.summary
     json.tag do
@@ -22,9 +22,10 @@ json.poll do
     else
       json.user_already_voted false
     end
+    json.project_link @poll.try(:project_link).try(:url)
     json.links do
-      json.array! @poll.external_links do |external_link|
-        json.url external_link.url
+      json.array! @poll.related_links do |related_link|
+        json.url related_link.url
       end
     end
     json.vote_types do

@@ -15,10 +15,9 @@ export const UPDATE_TAGS = 'UPDATE_TAGS';
 export const ADD_TAGS_ON_USER = 'ADD_TAGS_ON_USER';
 export const DELETE_TAGS_ON_USER = 'DELETE_TAGS_ON_USER';
 export const SET_POLITICIAN = 'SET_POLITICIAN';
-export const PRODUCTION_URL = 'https://seamos.mybluemix.net';
-// export const PRODUCTION_URL = 'https://seamosproduction.mybluemix.net';
-export const URL = (process.env.NODE_ENV === 'development') ? 'http://localhost:3000' : PRODUCTION_URL;
+export const URL = window.location.origin;
 export const APP_ID = (process.env.NODE_ENV === 'development') ? '1541054365966079' : '1707774202581080';
+export const GOOGLE_APP_ID = '398172152409-esinb90qeveb1sik7pvi54ro3kjm3qnc.apps.googleusercontent.com';
 export const SET_USER = 'SET_USER';
 export const SET_SESSION = 'SET_SESSION';
 export const RESET_SESSION = 'RESET_SESSION';
@@ -29,5 +28,4 @@ export const IS_LOGGED = 'IS_LOGGED';
 export const UPDATE_INPUT = 'UPDATE_INPUT';
 export const TOASTER_DISPLAY = 'TOASTER_DISPLAY';
 export const SUBSCRIBE_TO_NEWSLETTER = 'SUBSCRIBE_TO_NEWSLETTER';
-
-
+export const MAY_INTEREST = 'MAY_INTEREST';

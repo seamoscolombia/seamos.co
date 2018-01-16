@@ -2,10 +2,47 @@
 <%= form_for(poll, html: { multipart: true } ) do |f| %>
 <%= render 'shared/mensajes_de_error',  object: f.object %>
 
-<div class="field politician-field">
-  <%= f.label "Estado de la Propuesta" %>
-  <%= f.select :state, Poll.states.keys, {}, {class: 'form-control'} %>
+<div class="radio_button_field">
+    <%= f.label "Tipo de propuesta" %><br/>
+  <div class="radio-buttons">
+    <%= f.radio_button :poll_type, "Voto o proyecto de acuerdo" %>
+    <%= f.label :poll_type, "Voto o proyecto de acuerdo"%><br/>
+    <%= f.radio_button :poll_type, "Control político", checked: "#{poll && poll.poll_type == 'Control político' ? 'checked' : false}" %>
+    <%= f.label :role_type, "Control político",class: "radio_button_lbl"  %>
+  </div>
 </div>
+
+<br />
+
+<% if f.object.poll_type == "Control político" %>
+  <div class="field politician-field politic-control">
+    <%= f.label "Estado de la Propuesta" %>
+    <%= f.select(:state) do %>
+      <% [['Votación seamos', "Votación seamos"], ['Radica concejal', "Radica concejal"], ['Primer debate', "Primer debate"], ['Debate de control político', "Segundo debate"], ['Moción de censura', 'Sanción del proyecto de acuerdo']].each do |c| %>
+        <%= content_tag(:option, c.first, value: c.last, selected: f.object.state == c.last ? 'selected' : false) %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="field politician-field vote-or-agreement hidden">
+    <%= f.label "Estado de la Propuesta" %>
+    <%= f.select :state, Poll.states.keys, {}, {class: 'form-control', id: 'vote-agreement-select'} %>
+  </div>
+<% else %>
+  <div class="field politician-field politic-control hidden">
+    <%= f.label "Estado de la Propuesta" %>
+    <%= f.select(:state) do %>
+      <% [['Votación seamos', "Votación seamos"], ['Radica concejal', "Radica concejal"], ['Primer debate', "Primer debate"], ['Debate de control político', "Segundo debate"], ['Moción de censura', 'Sanción del proyecto de acuerdo']].each do |c| %>
+        <%= content_tag(:option, c.first, value: c.last, selected: f.object.state == c.last ? 'selected' : false) %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="field politician-field vote-or-agreement">
+    <%= f.label "Estado de la Propuesta" %>
+    <%= f.select :state, Poll.states.keys, {}, {class: 'form-control', id: 'vote-agreement-select'} %>
+  </div>
+<%end%>
+
+
 
 <div class="field">
     <%= f.label :title %>
@@ -29,17 +66,23 @@
     <%= f.text_field :question, class: 'form-control' %>
 </div>
 
+<%= f.label "Enlace Del Proyecto" %>
+
+<div>
+ <%= f.text_field :project_link, id: 'project_link', class: "form-control",  placeholder: "Enlace del Proyecto", value: poll.project_link ? poll.project_link.url : ''%>
+</div>
+
 <%= f.label "Enlaces Externos (opcionales)" %>
 <div>
- <input id="link-1" type="text" class="form-control extlink" placeholder="Enlace externo 1" value="<%= (poll.external_links[0].present? ? poll.external_links[0].url : '') %>" >
+ <input id="link-1" type="text" class="form-control extlink" placeholder="Enlace externo 1" value="<%= (poll.related_links[0].present? ? poll.related_links[0].url : '') %>" >
 </div>
 
 <div>
- <input id="link-2" type="text" class="form-control extlink" placeholder="Enlace externo 2" value="<%= (poll.external_links[1].present? ? poll.external_links[1].url : '') %>" >
+ <input id="link-2" type="text" class="form-control extlink" placeholder="Enlace externo 2" value="<%= (poll.related_links[1].present? ? poll.related_links[1].url : '') %>" >
 </div>
 
 <div>
- <input id="link-3" type="text" class="form-control extlink" placeholder="Enlace externo 3" value="<%= (poll.external_links[2].present? ? poll.external_links[2].url : '') %>" >
+ <input id="link-3" type="text" class="form-control extlink" placeholder="Enlace externo 3" value="<%= (poll.related_links[2].present? ? poll.related_links[2].url : '') %>" >
 </div>
 
 <div class="field" style="display: none">

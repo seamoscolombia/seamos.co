@@ -26,7 +26,7 @@
 
 #navbar-client{
   background-color: rgba(200, 200, 200, 0.5);;
-  .nav-fb {
+  .nav-dropdown-options {
     padding: 15px;
     font-family: 'RobotoCondensed';
     font-size: 13px;
@@ -41,7 +41,22 @@
     }
   }
   .navbar-nav > li > .dropdown-menu{
-      background-color: rgba(0, 0, 0, 0.6)
+      background-color: rgba(0, 0, 0, 0.6);
+      @media screen and (max-width: 768px) {
+        background-color: transparent;
+        margin-left: 14px;
+      }
+  }
+  .submenu {
+    border-left: 1px solid white;
+    margin-left: 7px;
+    li {
+      a {
+        @media screen and (max-width: 768px) {
+          white-space: nowrap;
+        }
+      }
+    }
   }
   a {
     font-family: 'RobotoCondensed';
@@ -51,7 +66,7 @@
       background-color: rgba(255, 255, 255, 0.3);
     }
     &:focus {
-      background-color: rgba(255,255,255, 0.6);
+      background-color: rgba(255, 255, 255, 0.151);
     }
   }
   #brand-logo {

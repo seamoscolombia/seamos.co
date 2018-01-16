@@ -8,18 +8,14 @@ import RelatedPolls from './../../containers/relatedPollsContainer';
 import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
-import { PRODUCTION_URL } from '../../constants';
+import { URL } from '../../constants';
+import MayInterestContainer from '../../containers/mayInterestContainer';
 
 import FacebookLogin from '../../containers/facebookLoginContainer';
 
-
-const shareUrl = `${PRODUCTION_URL}/facebookob/?id=`;
-// const twittershareUrl = `${PRODUCTION_URL}/#/poll/`;
 const { FacebookShareButton } = ShareButtons;
 const { TwitterShareButton } = ShareButtons;
-// const FacebookIcon = generateShareIcon('facebook');
 
-const moreInfoStyle = { height: 150, overflow: 'hidden' };
 const lessInfoStyle = { maxHeight: 9999, overflow: 'none' };
 const statusActiveStyle = { backgroundColor: 'yellow' };
 const statusInactiveStyle = { backgroundColor: 'gainsboro' };
@@ -52,10 +48,39 @@ function externalLinks(links) {
         target='_blank'
         rel='noopener noreferrer'
       >
-        {link.url.substr(0, 60)}
+        {link.url.substr(0, 50)}
       </a>
     </div>
   );
+}
+
+function projectLink(link) {
+  if (link) {
+    return (<div className='project-link'>
+      <a
+        href={link}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {link.substr(0, 50)}
+      </a>
+    </div>
+    )
+  }
+}
+
+function statusImageLink(type, status) {
+  if (type == 0) {
+    return (
+      console.log('Voto o proyecto de acuerdo'),
+      <img src={"https://s3.amazonaws.com/poll-states/Control+Pol%C3%ADtico/ESTADOS+27+NOV+control+politico-0" + `${status}` + ".png"} className='state' />
+    );
+  } else {
+    return (
+      console.log('control politico'),
+      <img src={"https://s3.amazonaws.com/poll-states/Voto+o+Proyecto+de+Acuerdo/ESTADOS+27+NOV+PA+y+V-0" + `${status}` + ".png"} className='state' />
+    );
+  }
 }
 
 function voteButton(pollType, voteTypes, voteAction, session) {
@@ -113,10 +138,17 @@ function votedButton(pollType, voteTypes, vote_count, is_closed) {
   }
 }
 
+function projectLinkTitle(link) {
+  if (link) {
+    return <h5 className='external-links-title' style={{ marginTop: '54px' }}> Enlace Proyecto Concejal </h5>;
+  }
+  return null;
+}
+
 function externalLinksTitle(links) {
   const linksPresent = links.length !== 0;
   if (linksPresent) {
-    return <h5> Enlaces Externos </h5>;
+    return <h5 className='external-links-title'> Enlaces Relacionados </h5>;
   }
   return null;
 }
@@ -131,11 +163,11 @@ function getPicture(politician) {
 const PollDetail = ({
                       id, title, image, remaining,
                       description, objective, vote_count,
-                      user_already_voted, links, politician,
-                      poll_type, vote_types,
+                      user_already_voted, links, project_link,
+                      politician, type, vote_types,
                       voteAction, tag, status, summary, session
                     }) => (
-    <div>
+    <div id='poll-detail-global-wrapper'>
       <section id='poll-detail'>
         <div className="top-color-bar" style={{ backgroundColor: tag.color }} >
           <div className="tag-name"> {tag.name} </div>
@@ -153,18 +185,18 @@ const PollDetail = ({
               alt='politician'
             />
             <div id='politician-info'>
-              <Link
+              <a
                 id='author'
-                to={`/proponents/${politician.id}`}
+                href={`/#/proponents/${politician.id}`}
               > {politician.full_name}
-              </Link>
+              </a>
               <div id='org'> {politician.organization} </div>
             </div>
           </section>
           <div className='share-wrapper'>
             <span className='share-this'> COMPARTIR: </span>
               <FacebookShareButton
-                url={shareUrl + id}
+                url={`${URL}/client/polls/${id}`}
                 className="network__share-button"
               >
                 <a
@@ -176,7 +208,7 @@ const PollDetail = ({
                   <br />
               </FacebookShareButton>
               <TwitterShareButton
-                url={shareUrl + id}
+                url={`${URL}/client/polls/${id}`}
                 via='seamos'
                 title={shareTitle(user_already_voted, title)}
                 hashtags={['seamOSelcambio']}
@@ -192,13 +224,15 @@ const PollDetail = ({
               </TwitterShareButton>
           </div>
           <section id='poll' className='row'>
-            <div id='left-col' className="col-sm-6">
-              <img
-                id='poll-thumbnail'
-                src={image}
-                role='presentation'
-                alt='poll thumbnail'
-              />
+            <div id='left-col' className="col-sm-4">
+              <div id='poll-image-container'>
+                <img
+                  id='poll-thumbnail'
+                  src={image}
+                  role='presentation'
+                  alt='poll thumbnail'
+                />
+              </div>
               <div className='closed-ribbon-wrapper'>
                 <div className='closed-ribbon' style={{ display: `${remaining <= 0 ? 'flex' : 'none'}` }}>
                   Propuesta Cerrada
@@ -206,26 +240,26 @@ const PollDetail = ({
               </div>
               <p id='objective' className='row' style={{display: 'none'}}><strong> Objetivo: </strong> {objective}</p>
               <div id='poll-states'>
-                <div className='state state-1' style={(remaining > 0 && status === 0) ? statusActiveStyle : statusInactiveStyle}> Votación abierta </div>
-                <div className='state state-2' style={(remaining > 0 && status === 1) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
-                <div className='state state-3' style={(remaining > 0 && status === 2) ? statusActiveStyle : statusInactiveStyle}> Proyecto de acuerdo </div>
-                <div className='state state-4' style={(remaining > 0 && status === 3) ? statusActiveStyle : statusInactiveStyle}> En el concejo </div>
-                <div className='state state-5' style={remaining < 0 ? statusActiveStyle : statusInactiveStyle}> Propuesta Cerrada </div>
+                {statusImageLink(type, status)}
+              </div>
+              {projectLinkTitle(project_link)}
+              <div className='external-links-container'>
+                {projectLink(project_link)}
               </div>
               {externalLinksTitle(links)}
               <div className='external-links-container'>
                 {externalLinks(links)}
               </div>
             </div>
-            <div className="col-sm-6">
+            <div className="col-sm-8">
               <div className="row">
                 <div className="col-sm-12">
                   <div className="row">
                     <div className='summary'> {summary} </div>
-                    <div className="col-xs-12 col-sm-12 buttons-wrapper">
+                    <div className="col-xs-12 col-sm-6 buttons-wrapper">
                       {user_already_voted || remaining <= 0 ?
-                        votedButton(poll_type, vote_types, vote_count, remaining <= 0 ) :
-                        voteButton(poll_type, vote_types, voteAction, session)
+                        votedButton(type, vote_types, vote_count, remaining <= 0 ) :
+                        voteButton(type, vote_types, voteAction, session)
                       }
                     </div>
                     <div className='col-xs-12 col-sm-12 poll-details'>
@@ -242,10 +276,9 @@ const PollDetail = ({
             </div>
           </section>
         </div>
-        <div id='related-polls'>
-          <RelatedPolls tagId={tag.id} pollId={id} />
-        </div>
       </section>
+      <MayInterestContainer />
+      <div className='spacer-small hide-on-desktop' />
     </div>
   );
 PollDetail.propTypes = {

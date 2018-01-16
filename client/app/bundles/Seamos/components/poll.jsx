@@ -2,8 +2,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+function myVote(vote) {
+  return (
+    <div className='poll-my-vote'>
+      <span className='poll-vote-title'>Mi voto: </span><span>{vote}</span>
+    </div>
+  )
+}
+
 const Poll = (props) => {
-  const { id, title, is_closed, summary, poll_image, tag, color, tag_name, politician } = props;
+  const { id, title, is_closed, summary, poll_image, tag, color, tag_name, politician, user_vote } = props;
   let tagColor = 'none';
   if (tag) {
     tagColor = tag.color;
@@ -17,8 +25,9 @@ const Poll = (props) => {
     tagName = tag_name;
   }
   return (
-    <Link to={`/poll/${id}`} style={{ textDecoration: 'none' }}>
+    <a href={`/client/polls/${id}`} style={{ textDecoration: 'none' }}>
       <div id='poll-component'>
+        { user_vote ? myVote(user_vote) : null }
         <div className='poll-image-container'>
             <img alt="poll" src={poll_image} />
         </div>
@@ -43,7 +52,7 @@ const Poll = (props) => {
         </div>
         <div className='poll-infos-container'>
           <div className='poll-details'>
-            <div className='poll-tag-name'>
+            <div className='poll-tag-name' style={is_closed ? {width: '52%'} : {width: '70%'}}>
               {tagName}
             </div>
             <div className='color-separator' style={{ borderLeft: `5px solid ${tagColor}` }} />
@@ -56,7 +65,7 @@ const Poll = (props) => {
           </div>
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 

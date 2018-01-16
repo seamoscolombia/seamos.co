@@ -1,0 +1,28 @@
+@import './variables'
+#may-interest-container
+  $square-info-size: 470px
+  $square-info-size-mobile: 270px
+  $team-member-size: 200px
+  $politician-size: 150px
+  $politician-mobile-size: 100px
+  .breaker
+    @media screen and (max-width: $break-medium)
+      display: none
+  #may-interest
+    width: 1200px
+    margin: auto
+    display: flex
+    justify-content: left
+    flex-wrap: wrap
+    position: relative
+    justify-content: center
+    @media screen and (max-width: $break-medium)
+      width: auto
+    #global-container
+      #other-poll-component
+        width: 540px
+        margin: 0 20px 0 20px
+        @media screen and (max-width: $break-medium)
+          margin: auto
+          width: 88%
+          height: 88px

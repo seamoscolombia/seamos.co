@@ -1,0 +1,142 @@
+@import './variables'
+#politicians
+  $square-info-size: 470px
+  $square-info-size-mobile: 270px
+  $team-member-size: 200px
+  $politician-size: 150px
+  $politician-mobile-size: 100px
+  .breaker
+    @media screen and (max-width: $break-medium)
+      display: none
+  .politicians-banner
+    height: 300px
+    background-color: gainsboro
+    font-size: 50px
+    line-height: 1.3em
+    font-weight: bold
+    color: white
+    text-transform: none
+    font-family: "HKNovaBold"
+    display: flex
+    align-items: center
+    justify-content: center
+    word-break: break-word
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
+      padding: 0 40px
+      text-align: center
+  .one
+    background-color: #5554a0
+    display: flex
+    align-items: flex-end
+    height: 390px
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
+    .one-caption
+      height: 390px
+      text-align: center
+      padding-top: 140px
+      font-size: 80px
+      position: absolute
+      top: 0
+      line-height: 1.3em
+      font-weight: bold
+      color: white
+      text-transform: none
+      font-family: "HKNovaBold"
+      @media screen and (max-width: $break-medium)
+        height: 180px
+        font-size: 27px
+        padding-top: 80px
+  .politicians
+    width: 1300px
+    margin: auto
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
+    padding: 0 80px
+    margin-top: 90px
+    @media screen and (max-width: $break-medium)
+      width: auto
+      margin-top: 30px
+      padding: 0 10px
+    .politician-link
+      color: #333333
+      &:hover
+        text-decoration: none
+      .politician
+        background-size: contain
+        background-repeat: no-repeat
+        background-color: white
+        margin: 0 50px
+        margin-bottom: 80px
+        @media screen and (max-width: $break-medium)
+          margin: 0 20px
+          margin-bottom: 15px
+        .photo
+          width: $politician-size
+          height: $politician-size
+          background-size: contain
+          margin: auto
+          @media screen and (max-width: $break-medium)
+            width: $politician-mobile-size
+            height: $politician-mobile-size
+        .name
+          font-family: 'RobotoBold'
+          text-align: center
+          padding-top: 15px
+          font-size: 20px
+          @media screen and (max-width: $break-medium)
+            font-size: 14px
+        .organization
+          font-family: 'RobotoRegular'
+          text-align: center
+          font-size: 18px
+          @media screen and (max-width: $break-medium)
+            font-size: 13px
+      .one
+        align-items: flex-start
+        display: block
+        height: auto
+        .photo
+          background-image: url(asset_path('hollman.png'))
+      .two
+        .photo
+          background-image: url(asset_path('juan.png'))
+      .three
+        .photo
+          background-image: url(asset_path('horacio.png'))
+      .four
+        color: #333333
+        .photo
+          background-image: url(asset_path('lucia.png'))
+      .five
+        .photo
+          background-image: url(asset_path('diego.png'))
+      .six
+        .photo
+          background-image: url(asset_path('angela.png'))
+      .seven
+        .photo
+          background-image: url(asset_path('emel.png'))
+      .eight
+        .photo
+          background-image: url(asset_path('daniel.png'))
+      .nine
+        .photo
+          background-image: url(asset_path('german.png'))
+      .ten
+        .photo
+          background-image: url(asset_path('jose.png'))
+      .eleven
+        .photo
+          background-image: url(asset_path('yefer.png'))
+      .twelve
+        .photo
+          background-image: url(asset_path('maria.png'))
+  .four
+    background-color: #c6c6c6
+    color: #3d5062

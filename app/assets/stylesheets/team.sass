@@ -46,6 +46,7 @@
       color: white
       text-transform: none
       font-family: "HKNovaBold"
+      color: #f7e938
       @media screen and (max-width: $break-medium)
         height: 180px
         font-size: 27px
@@ -74,6 +75,10 @@
     justify-content: center
     flex-wrap: wrap
     padding: 0 50px
+    width: 1140px
+    margin: auto
+    @media screen and (max-width: $break-medium)
+      width: auto
     .team-member
       width: $team-member-size
       height: $team-member-size + 130px
@@ -91,7 +96,7 @@
         padding-top: 120px
       .name
         font-family: 'HKNovaBold'
-        padding: 15px 0
+        padding: 15px 0 5px 0
         @media screen and (max-width: $break-medium)
           padding: 5px 0
       .profession
@@ -271,14 +276,48 @@
         background-image: none
         font-size: 25px
         line-height: 1.1em
-        text-align: justify
-        padding: 25px
+        text-align: left
+        padding: 34px
+        font-size: 21px
+        transition: color 1s
+        cursor: default
         @media screen and (max-width: $break-medium)
           font-size: 15px
           padding: 12px
+        span
+          color: transparent
     .left
       float: right
       background-image: url(asset_path('png_quienes_somos-01.png'))
+      .cover
+        color: white
+        font-family: 'HKNovaBold'
+        position: absolute
+        font-size: 42px
+        left: 418px
+        bottom: 140px
+        @media screen and (max-width: $break-medium)
+          left: 322px
+          font-size: 26px
+          left: 108px
+          bottom: 55px
     .right
       float: left
       background-image: url(asset_path('png_quienes_somos-02.png'))
+      .cover
+        color: white
+        font-family: "HKNovaBold"
+        position: absolute
+        font-size: 42px
+        left: 15px
+        width: 470px
+        line-height: 43px
+        text-align: center
+        bottom: 110px
+        @media screen and (max-width: $break-medium)
+          font-size: 26px
+          left: 83px
+          width: 270px
+          text-align: center
+          bottom: 45px
+          line-height: 25px

@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { updateTag } from './tagActionsCreators';
-import { UPDATE_POLLS, URL } from '../constants';
+import { UPDATE_POLLS, URL, MAY_INTEREST } from '../constants';
 
 export const updatePolls = (polls) => ({
   type: UPDATE_POLLS,
@@ -11,16 +11,6 @@ export const updatePolls = (polls) => ({
 
 export const getPolls = (val = 'most-voted-first') => (dispatch) => (
     axios.get(`${URL}/polls.json?order_by=${val}`)
-    .then(response => {
-      dispatch(updatePolls(response.data.polls));
-    })
-    .catch(error => {
-      console.log(error);
-    })
-);
-
-export const getClosedPolls = () => (dispatch) => (
-    axios.get(`${URL}/polls/closed`)
     .then(response => {
       dispatch(updatePolls(response.data.polls));
     })
@@ -41,3 +31,28 @@ export const pollsFilteredByTag = (tagId) => (dispatch) => {
     });
   }
 };
+
+const mayInteresPolls = (polls) => ({
+  type: MAY_INTEREST,
+  polls
+});
+
+export const getMayInterestPolls = () => (dispatch) => (
+  axios.get(`${URL}/random_polls`)
+  .then(response => {
+    dispatch(mayInteresPolls(response.data.polls));
+  })
+  .catch(err => {
+    console.log(err);
+  })
+);
+
+export const getSummaryPolls = () => (dispatch) => (
+  axios.get(`${URL}/summary_polls`)
+  .then(response => {
+    dispatch(mayInteresPolls(response.data.polls));
+  })
+  .catch(err => {
+    console.log(err);
+  })
+);

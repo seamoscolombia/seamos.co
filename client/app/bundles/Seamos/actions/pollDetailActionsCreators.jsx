@@ -12,14 +12,11 @@ export const updatePoll = (poll) => ({
 export const getPoll = ({ pollId, errCallback }) => (dispatch) => {
     axios.get(`${URL}/polls/${pollId}.json`)
     .then(response => {
+      console.log('RESPONSE', response);
       dispatch(updatePoll(response.data.poll));
     })
-    .catch( error => {
-      if (error.response.status === 404) {
-        errCallback();
-      } else {
-        console.error(error);
-      }
+    .catch(error => {
+      console.log('ERROR', error);
     });
 };
 
@@ -42,7 +39,7 @@ export const votePoll = ({ voteTypeId, authenticityToken, poll }) => (dispatch) 
   })
 );
 
-export const chechVotedPol = (userId, poll) => (dispatch) => {  
+export const chechVotedPol = (userId, poll) => (dispatch) => {
   axios.get(`${URL}/check_vote?user_id=${userId}&poll_id=${poll.id}`)
   .then(response => {
     poll.user_already_voted = response.data.already_voted;

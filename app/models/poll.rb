@@ -28,7 +28,10 @@ class Poll < ApplicationRecord
   accepts_nested_attributes_for :vote_types
   has_many :taggings, dependent: :destroy
   has_many :tags, -> { distinct }, through: :taggings
+
   has_many :external_links, dependent: :destroy
+  has_one :project_link, -> { where(is_project_link: true) }, class_name: 'ExternalLink'
+
   has_many :poll_states
 
   validates :title, presence: true
@@ -38,18 +41,24 @@ class Poll < ApplicationRecord
   validates :poll_image, presence: true, on: :create
 
   # validate :closing_date_validation
-  validate :has_one_tag
-  validate :has_only_one_tag
+  validate :at_least_one_tag
 
-  enum poll_type: {voting: 0, participation: 1, signing: 2}
-  enum state: {"Votación abierta": 0,
-               "En el concejo": 1,
-               "propuesta de acuerdo": 2,
-               "En el concejox": 3}
+  enum poll_type: {
+                    "Voto o proyecto de acuerdo": 1,
+                    "Control político": 0
+                  }
+  enum state: {
+                "Votación seamos": 0,
+                "Radica concejal": 1,
+                "Primer debate": 2,
+                "Segundo debate": 3,
+                "Sanción del proyecto de acuerdo": 4
+              }
 
   scope :active, -> {
-    where('active IS TRUE AND closing_date >= ?', Date.current)
+    where('active IS TRUE')
   }
+
   scope :inactive, -> {
     where('active IS FALSE OR closing_date < ?', Date.current)
   }
@@ -79,10 +88,10 @@ class Poll < ApplicationRecord
   end
 
   def self.by_status(status)
-    if status == 'inactive'
-      inactive
-    elsif status == 'active'
-      active
+    if status == 'closed'
+      closed
+    elsif status == 'open'
+      open
     else
       all
     end
@@ -96,6 +105,10 @@ class Poll < ApplicationRecord
     closing_date && closing_date == Date.current &&
     closing_hour && closing_hour <= Time.zone.now.strftime("%H:%M:%S") ||
     closing_date < Date.current
+  end
+
+  def voted_by_user?(user_id)
+    votes.pluck(:user_id).include?(user_id)
   end
 
   def set_tags(tag_list)
@@ -124,6 +137,10 @@ class Poll < ApplicationRecord
     Tag.where(id: user.tag_ids).includes(:polls).map(&:polls).flatten.uniq
   end
 
+  def related_links
+    external_links.where(is_project_link: false)
+  end
+
   private
 
   def closing_date_validation
@@ -132,20 +149,13 @@ class Poll < ApplicationRecord
     end
   end
 
-
   def has_at_least_two_vote_types
     if vote_types.length < 2
       errors.add(:base, I18n.t(:at_least_two_options, scope: :polls))
     end
   end
 
-  def has_only_one_tag
-    unless tags.size < 2
-      errors.add(:base, I18n.t(:only_one_tag, scope: :polls))
-    end
-  end
-
-  def has_one_tag
+  def at_least_one_tag
     unless tags.present?
       errors.add(:base, I18n.t(:one_tag, scope: :polls))
     end

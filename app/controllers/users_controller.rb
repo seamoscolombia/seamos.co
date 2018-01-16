@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   def show
     if current_user
       @user = current_user
-      @participations = Poll.includes(:tags).get_user_participations(current_user)
+      @participations = @user.votes.map(&:poll)
     else
       render :json => { errors: t(".not_logged_in") }, status: 401
     end
@@ -71,8 +71,7 @@ class UsersController < ApplicationController
   def politician_profile
     redirect_to root_path unless @user.politico?
     user_polls = @user.polls
-    @polls = user_polls
-    @closed_polls = user_polls.closed
+    @polls = user_polls.first(6)
   end
 
   def update
@@ -80,7 +79,7 @@ class UsersController < ApplicationController
       @user = User.find_by(id: params[:id])
       @user.attributes = user_params.except(:major_electoral_representation_localities)
       localities_string = localities_array_to_string(params[:user][:major_electoral_representation_localities]) unless params[:user][:major_electoral_representation_localities].blank?
-      @user.major_electoral_representation_localities = localities_string
+      @user.major_electoral_representation_localities = localities_string unless localities_string.blank?
       @user.save!
     end
     flash[:notice] = I18n.t(:accion_exitosa)
@@ -147,7 +146,14 @@ class UsersController < ApplicationController
                                  :major_electoral_representation_localities,
                                  :other_periods_elected,
                                  :current_corporation_commission,
-                                 :proposed_initiatives_to_date
+                                 :proposed_initiatives_to_date,
+                                 :twitter_username,
+                                 academic_titles_attributes: [:id,
+                                                              :title,
+                                                              :period,
+                                                              :annotation,
+                                                              :institute,
+                                                              :_destroy]
                                 )
   end
 

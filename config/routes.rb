@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     resources :tags, only: :index, to: 'tags#user_interests', format: 'json'
   end
 
+
+  get 'client/polls/:id', to: 'polls#client_show'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/check_session', to: 'sessions#show', format: 'json'
   delete '/sessions', to: 'sessions#destroy', as: 'session'
@@ -29,6 +31,8 @@ Rails.application.routes.draw do
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
   get 'polls/closed', to: 'polls#index_closed', format: 'json'
   get 'check_vote', to: 'votes#check_vote', format: 'json'
+  get 'random_polls', to: 'polls#random_non_voted_polls', format: 'json'
+  get 'summary_polls', to: 'polls#summary_polls', format: 'json'
 
   resources :polls do
     get 'last', on: :collection

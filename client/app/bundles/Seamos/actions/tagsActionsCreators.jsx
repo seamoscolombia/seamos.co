@@ -12,7 +12,9 @@ export const updateTags = (tags) => ({
 export const getTags = () => (dispatch) => (
     axios.get(`${URL}/tags.json`)
     .then(response => {
-      dispatch(updateTags(response.data.tags));
+      const tags = response.data.tags;
+      const filtered = tags.filter(tag => tag.polls_count > 0);
+      dispatch(updateTags(filtered));
     })
     .catch(error => {
       console.log(error);

@@ -21,17 +21,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if request.format.json?
-      uid = params[:uid]
-      session[:fb_token] = params[:fb_token]
-      session[:session_type] = "mobile"
-    else
-      puts  request.env['omniauth.auth']
-      uid = request.env['omniauth.auth']['uid']
-      session[:fb_token] = request.env['omniauth.auth']['credentials']['token']
-      session[:fb_image] = request.env['omniauth.auth']['info']['image']
-      session[:session_type] = "web"
-    end
+    uid = params[:uid]
+    session[:login_token] = params[:login_token]
+    session[:session_type] = "mobile"
+    session[:login_image] = params[:login_image]
+    session[:login_location] = params[:login_location]
     session[:uid] = uid
     @user = User.find_by(uid: uid)
     respond_to do |format|

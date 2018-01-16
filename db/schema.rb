@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170907153544) do
+ActiveRecord::Schema.define(version: 20171023213759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "academic_titles", force: :cascade do |t|
+    t.string   "title"
+    t.string   "period"
+    t.string   "institute"
+    t.string   "annotation"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_academic_titles_on_user_id", using: :btree
+  end
 
   create_table "causes", force: :cascade do |t|
     t.text     "description"
@@ -68,8 +79,9 @@ ActiveRecord::Schema.define(version: 20170907153544) do
   create_table "external_links", force: :cascade do |t|
     t.string   "url"
     t.integer  "poll_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "is_project_link", default: false
     t.index ["poll_id"], name: "index_external_links_on_poll_id", using: :btree
   end
 
@@ -207,6 +219,7 @@ ActiveRecord::Schema.define(version: 20170907153544) do
     t.string   "other_periods_elected"
     t.integer  "current_corporation_commission"
     t.text     "proposed_initiatives_to_date"
+    t.string   "twitter_username"
     t.index ["document_number"], name: "index_users_on_document_number", using: :btree
     t.index ["document_photo_id"], name: "index_users_on_document_photo_id", using: :btree
     t.index ["tipo_de_documento_id", "document_number"], name: "index_users_on_tipo_de_documento_id_and_document_number", unique: true, using: :btree
@@ -233,6 +246,7 @@ ActiveRecord::Schema.define(version: 20170907153544) do
     t.index ["vote_type_id"], name: "index_votes_on_vote_type_id", using: :btree
   end
 
+  add_foreign_key "academic_titles", "users"
   add_foreign_key "causes", "users"
   add_foreign_key "debate_votes", "debates"
   add_foreign_key "debate_votes", "users"

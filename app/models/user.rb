@@ -35,6 +35,9 @@ class User < ApplicationRecord
   has_many :interests, dependent: :destroy
   has_many :tags, -> { distinct }, through: :interests
 
+  has_many :academic_titles, inverse_of: :user, dependent: :destroy
+  accepts_nested_attributes_for :academic_titles, reject_if: proc { |attributes| attributes[:title].blank? }, allow_destroy: true
+
   validates  :first_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
   # validates  :second_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :names, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}

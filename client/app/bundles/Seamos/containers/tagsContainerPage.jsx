@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Tags from '../components/tags';
 import { getTags } from '../actions';
+import MayInterestContainer from './mayInterestContainer';
+
 
 // Which part of the Redux global state does our component want to receive as props?
 const mapStateToProps = (state) => {
@@ -35,6 +37,7 @@ class TagsContainer extends Component {
               <div>
                   <Tags {...this.props} action={this.pollsByTag.bind(this)} />
               </div>
+              <MayInterestContainer />
             </div>
         );
     }

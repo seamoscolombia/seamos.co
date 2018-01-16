@@ -121,7 +121,7 @@
 .toastify {
   z-index: 999;
   position: fixed;
-  padding-top: 50px; 
+  padding-top: 50px;
   padding-right: 4px;
   width: 320px;
   box-sizing: border-box;
@@ -195,7 +195,7 @@
   font-family: sans-serif;
   cursor: pointer; }
   .toastify-content--default {
-    background: #07bc0c; }
+    background: rgba(80, 73, 80, 0.5) }
   .toastify-content--info {
     background: #3498db; }
   .toastify-content--success {
