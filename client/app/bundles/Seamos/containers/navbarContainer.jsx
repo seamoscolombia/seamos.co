@@ -55,7 +55,7 @@ class NavbarContainer extends Component {
             <div>
                 <Navbar {...this.props} />
                 <ToasterContainer />
-                <ToastContainer
+                {/* <ToastContainer
                     position="top-right"
                     autoClose={5000}
                     hideProgressBar={false}
@@ -63,6 +63,7 @@ class NavbarContainer extends Component {
                     closeOnClick
                     pauseOnHover
                 />
+                grey with progress bar*/}
             </div>
         );
     }
