@@ -9,6 +9,8 @@ import session from './sessionReducer';
 import tags from './tagsReducer';
 import VotedPollReducer from './votedPollReducer';
 import VotedPollsReducer from './votedPollsReducer';
+import inputReducer from './inputReducer';
+import newsletterReducer from './newsletterReducer';
 import pollIdReducer from './pollIdReducer';
 import mayInterestReducer from './mayInterestReducer';
 
@@ -23,6 +25,8 @@ export default combineReducers({
   tag,
   tags,
   votedPolls: VotedPollsReducer,
+  inputReducer,
+  newsletterReducer,
   pollIdReducer,
   mayInterestReducer
 });

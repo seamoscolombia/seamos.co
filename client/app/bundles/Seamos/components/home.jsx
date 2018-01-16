@@ -6,7 +6,10 @@ import PollsPageContainer from '../containers/pollsPageContainer'
 
 import Polls from '../containers/pollsFeatureContainer';
 import Featured from '../containers/pollsPageContainer';
-const Home = ({ session }) => (
+import InputContainer from '../containers/inputContainer';
+
+
+const Home = ({ session, inputReducer, subscribeNewsletter, newsletterReducer }) => (
   <div id="homepage">
     <div className='background-container top'>
     </div>
@@ -42,19 +45,17 @@ const Home = ({ session }) => (
         acatar las decisiones de sus votantes.
       </div>
     </div>
-    {/* <div className='newsletter-container'>
+    <div className='newsletter-container'>
       <div className='newsletter'>
         <div className='title'>
           Suscríbete a nuestro newsletter
         </div>
-        <div className="input-group">
-          <input type="text" className="form-control" placeholder="Email" />
-          <span className="input-group-btn">
-            <button className="btn btn-secondary" type="button">ENVIAR</button>
-          </span>
-        </div>
+        <InputContainer placeholder="correo" title="subscribe" name="newsletter"
+          actionCreator={() => subscribeNewsletter(inputReducer.subscribe.newsletter)}
+        />
+
       </div>
-    </div> */}
+    </div>
   </div>
 );
 
