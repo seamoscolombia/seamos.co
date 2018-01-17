@@ -40,6 +40,7 @@ const Poll = (props) => {
               <span>
                 {title}
               </span>
+              <div className='diffuse'></div>
             </div>
             <div className='poll-infos-container'>
               <div className='poll-details'>
