@@ -11,7 +11,7 @@ const Team = () => (
     <div className='row'>
       <div className='politicians'>
       <a className='politician-link' href='http://seamos.co/#/proponents/23'>
-          <div className='politician one'>
+          <div className='politician p_one'>
             <div className='photo' />
             <div className='name'>
               Hollman Morris
@@ -22,7 +22,7 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/10'>
-          <div className='politician two'>
+          <div className='politician p_two'>
               <div className='photo' />
             <div className='name'>
               Juan Felipe Grillo
@@ -33,7 +33,7 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/15'>
-          <div className='politician three'>
+          <div className='politician p_three'>
             <div className='photo' />
             <div className='name'>
               Horacio José Serpa
@@ -44,7 +44,7 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/20'>
-          <div className='politician four'>
+          <div className='politician p_four'>
             <div className='photo' />
             <div className='name'>
               Lucía Bastidas
@@ -55,7 +55,7 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/9'>
-          <div className='politician five'>
+          <div className='politician p_five'>
             <div className='photo' />
             <div className='name'>
               Diego Molano
@@ -66,7 +66,7 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/11'>
-          <div className='politician six'>
+          <div className='politician p_six'>
             <div className='photo' />
             <div className='name'>
               Ángela Garzón
@@ -77,7 +77,7 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/16'>
-          <div className='politician seven'>
+          <div className='politician p_seven'>
             <div className='photo' />
             <div className='name'>
               Emel Rojas
@@ -88,7 +88,7 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/18'>
-          <div className='politician eight'>
+          <div className='politician p_eight'>
             <div className='photo' />
             <div className='name'>
               Daniel Palacios
@@ -99,7 +99,7 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/21'>
-          <div className='politician nine'>
+          <div className='politician p_nine'>
             <div className='photo' />
             <div className='name'>
               Germán García
@@ -110,7 +110,7 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/19'>
-          <div className='politician ten'>
+          <div className='politician p_ten'>
             <div className='photo' />
             <div className='name'>
               José David Castellanos
@@ -121,7 +121,7 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/31'>
-          <div className='politician eleven'>
+          <div className='politician p_eleven'>
             <div className='photo' />
             <div className='name'>
               Yefer Vega
@@ -132,13 +132,24 @@ const Team = () => (
           </div>
         </a>
         <a className='politician-link' href='http://seamos.co/#/proponents/17'>
-          <div className='politician twelve'>
+          <div className='politician p_twelve'>
             <div className='photo' />
             <div className='name'>
               Maria Clara Name
             </div>
             <div className='organization'>
               Partido Verde
+            </div>
+          </div>
+        </a>
+        <a className='politician-link' href='http://seamos.co/#/proponents/1616'>
+          <div className='politician p_thirteen'>
+            <div className='photo' />
+            <div className='name'>
+              Manuel Sarmiento
+            </div>
+            <div className='organization'>
+              Polo Democrático alternativo
             </div>
           </div>
         </a>
