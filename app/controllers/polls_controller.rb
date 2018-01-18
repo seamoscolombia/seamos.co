@@ -143,11 +143,11 @@ class PollsController < ApplicationController
     respond_to do |format|
       format.json do
         @polls = []
-        @active_polls = Poll.includes(:votes, :tags).open
-        @polls = @active_polls.select{|poll| poll.voted_by_user?(current_user.id) == false} if current_user.present?
-        @polls << @active_polls.first(4) if @polls.size < 5
-        @polls = @polls.flatten.shuffle.first(4) if @polls.present?
-        @polls = Poll.includes(:votes, :tags).closed.shuffle.first(4) if @polls.blank?
+        active_polls = Poll.includes(:votes, :tags).open
+        closed_polls = Poll.includes(:votes, :tags).closed
+        @polls << active_polls.first(4)
+        @polls << closed_polls.shuffle.first(4 - active_polls.size)
+        @polls = @polls.flatten.first(4) if @polls.present?
       end
     end
   end
