@@ -45,7 +45,7 @@ const Home = ({ session, inputReducer, subscribeNewsletter, newsletterReducer })
         acatar las decisiones de sus votantes.
       </div>
     </div>
-    {/*<div className='newsletter-container'>
+    <div className='newsletter-container'>
       <div className='newsletter'>
         <div className='title'>
           Suscríbete a nuestro newsletter
@@ -56,7 +56,6 @@ const Home = ({ session, inputReducer, subscribeNewsletter, newsletterReducer })
 
       </div>
     </div>
-    */}
   </div>
 );
 

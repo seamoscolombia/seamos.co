@@ -5,6 +5,8 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new(subscription_params)
     if @subscription.save
+      @unsubscribe = Rails.application.message_verifier(:unsubscribe).generate(@subscription.id)
+      UserNotifierMailer.send_subscription_email(@subscription.email, @unsubscribe).deliver_later
       render json: {
         message: "Tu email #{@subscription.email} ha quedado suscrito",
         success: true
