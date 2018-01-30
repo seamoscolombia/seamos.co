@@ -17,7 +17,7 @@ class ProfileButtonContainer extends Component {
         return (<ProfileButton
             action={this.goToProfile.bind(this)}
             className={'nav-with-background'}
-            name={'TÚ PERFIL'}
+            name={'TU PERFIL'}
             user={this.props.user}
         />);
     }
