@@ -24,14 +24,6 @@ const Home = ({ session, inputReducer, subscribeNewsletter, newsletterReducer })
         <PollsPageContainer />
       </div>
     </div>
-    <div className='background-container up-mid'>
-      <div className='flex-container up-mid-text-container'>
-        <div id='how-to-achieve'>
-          ¿Cómo logramos <br />
-          el cambio?
-        </div>
-      </div>
-    </div>
     {/*<div className='newsletter-container'>
       <div className='newsletter'>
         <div className='title'>
