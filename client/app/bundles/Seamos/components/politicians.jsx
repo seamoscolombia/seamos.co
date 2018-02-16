@@ -4,7 +4,7 @@ const Team = () => (
   <div id='politicians'>
     <div className='row politicians-banner one'>
       <div className='one-caption'>
-        ¿Qué concejales <br />
+        ¿Qué concejales
         participan?
       </div>
     </div>
