@@ -32,19 +32,6 @@ const Home = ({ session, inputReducer, subscribeNewsletter, newsletterReducer })
         </div>
       </div>
     </div>
-    <div id="how-facts">
-      <div className="how-fact">
-        <span className="title"> Poder Ciudadano </span><br />
-        Involucramos a los ciudadanos en procesos de decisión
-        política para que hagan valer su voto en los espacios
-        democráticos.
-      </div>
-      <div className="how-fact">
-        <span className="title"> Compromiso Político </span><br />
-        Vinculamos a los políticos para que se comprometan a
-        acatar las decisiones de sus votantes.
-      </div>
-    </div>
     {/*<div className='newsletter-container'>
       <div className='newsletter'>
         <div className='title'>
