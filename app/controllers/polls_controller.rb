@@ -146,7 +146,7 @@ class PollsController < ApplicationController
         active_polls = Poll.includes(:votes, :tags).open
         closed_polls = Poll.includes(:votes, :tags).closed
         @polls << active_polls.first(4)
-        @polls << closed_polls.shuffle.first(4 - active_polls.size)
+        @polls << closed_polls.shuffle.first(4 - @polls.size)
         @polls = @polls.flatten.first(4) if @polls.present?
       end
     end
