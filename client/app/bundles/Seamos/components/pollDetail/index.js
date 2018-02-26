@@ -173,11 +173,6 @@ const PollDetail = ({
           <div className="tag-name"> {tag.name} </div>
         </div>
         <div className='container'>
-          <header className='row'>
-            <p className='col-sm-12 poll-title'>
-              {title}
-            </p>
-          </header>
           <section id='politician' className='row'>
             <img
               src={getPicture(politician)}
@@ -193,8 +188,13 @@ const PollDetail = ({
               <div id='org'> {politician.organization} </div>
             </div>
           </section>
+          <header className='row'>
+            <p className='col-sm-12 poll-title'>
+              {title}
+            </p>
+          </header>
           <div className='share-wrapper'>
-            <span className='share-this'> COMPARTIR: </span>
+            <span className='share-this hide-on-mobile'> COMPARTIR: </span>
               <FacebookShareButton
                 url={`${URL}/client/polls/${id}`}
                 className="network__share-button"
@@ -255,7 +255,6 @@ const PollDetail = ({
               <div className="row">
                 <div className="col-sm-12">
                   <div className="row">
-                    <div className='summary'> {summary} </div>
                     <div className="col-xs-12 col-sm-6 buttons-wrapper">
                       {user_already_voted || remaining <= 0 ?
                         votedButton(type, vote_types, vote_count, remaining <= 0 ) :
@@ -266,6 +265,7 @@ const PollDetail = ({
                         { getDays(remaining) }
                     </div>
                   </div>
+                  <div className='summary'> {summary} </div>
                 </div>
                 <div className="poll-description-container col-sm-12">
                   <div className="poll-static-title"> La Propuesta: </div>
