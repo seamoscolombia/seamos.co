@@ -58,8 +58,8 @@ const Politician = (props) => {
             { props.academic_titles.map(
                 academic_title => (
                   <div className='academic-title'>
-                    <div><strong> Título: </strong>{academic_title.title} </div>
-                    <div className='institute'><strong> Institución: </strong>{academic_title.institute} </div>
+                    <div><strong> Título: <br /></strong>{academic_title.title} </div>
+                    <div className='institute'><strong> Institución: <br /></strong>{academic_title.institute} </div>
                   </div>
                 )
               )
@@ -79,15 +79,26 @@ const Politician = (props) => {
                 Las dos localidades con mayor representación
               </div>
               <div className='major-representation-localities'>
-                {props.localities}
+                {
+                  props.localities.map(
+                    locality => (
+                                  <span>
+                                    <span>
+                                      {locality}
+                                    </span>
+                                    <br />
+                                  </span>
+                                )
+                  )
+                }
               </div>
-              <div className='cv-subtitle'>
+              <div className='cv-title'>
                 Otros periodos electo
               </div>
               <div className='without-image'>
                 {props.other_periods}
               </div>
-              <div className='cv-subtitle'>
+              <div className='cv-title'>
                 Comisión
               </div>
               <div className='without-image'>
@@ -99,7 +110,7 @@ const Politician = (props) => {
           <div className='col-md-8'>
             <div className='row'>
               <div className='col-md-12'>
-                <h2 className='hide-on-desktop'> Biografía </h2>
+                {/* <h2 className='hide-on-desktop'> Biografía </h2> */}
                 <td dangerouslySetInnerHTML={{ __html: props.bio }} />
               </div>
             </div>

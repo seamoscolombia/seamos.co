@@ -76,14 +76,16 @@
       display: flex
     header
       .poll-title
-        font-family: "hkNovaBold"
-        font-size: 40px
-        margin: 180px 15px 0 15px
+        font-family: "HKNovaBold"
+        font-size: 37px
+        margin: 10px 15px 0 15px
         padding: 0
         color: #44434c
         line-height: 41px
-        margin-bottom: 28px
+        margin-bottom: -10px
         width: 97%
+        border-top: 1px solid black
+        padding-top: 9px
         @media screen and (max-width: $break-medium)
           width: 90%
           font-size: 25px
@@ -94,12 +96,12 @@
       font-family: 'RobotoBoldCondensed'
       font-size: 12px
       padding: 0 15px
+      margin-top: 135px
       overflow: visible
       display: flex
       align-items: center
       @media screen and (max-width: $break-medium)
-        margin-top: 10px
-        margin-bottom: 30px
+        margin-top: 130px
       img
         margin-right: 0.8em
         width: 50px
@@ -125,14 +127,14 @@
       line-height: 0
       text-align: right
       position: relative
-      top: -28px
+      top: -115px
       left: 50%
       width: 50%
       @media screen and (max-width: $break-medium)
         left: 0
         width: auto
         right: 0
-        top: 0
+        top: -147px
       .share-this
         font-family: "RobotoCondensed"
         margin-left: 38px
@@ -223,17 +225,14 @@
         text-transform: uppercase
       .summary
         font-size: 18px
-        margin: 0
-        padding: 0
         text-align: justify
         font-style: italic
-        top: -7px
         line-height: 25px
-        font-family: 'RobotoRegular'
+        font-family: "RobotoRegular"
         color: #44434c
         margin-bottom: 25px
-        padding-left: 15px
-        padding-right: 15px
+        position: relative
+        top: -45px
         @media screen and (max-width: $break-medium)
           font-size: 15px
           line-height: 18px
@@ -269,7 +268,6 @@
           font-size: 26px
           // background-color: rgb(200, 200, 200)
           @media screen and (max-width: $break-medium)
-            width: auto
             min-height: 40px
         .voted-button
           min-height: 75px

@@ -12,7 +12,7 @@ json.user do
   json.commission @user.current_corporation_commission
   json.initiatives @user.proposed_initiatives_to_date
   json.last_vote_count @user.last_election_vote_count
-  json.localities @user.major_electoral_representation_localities
+  json.localities @user.major_electoral_representation_localities.split(',')
   json.represented_organizations @user.represented_organizations
   json.other_periods @user.other_periods_elected
   json.polls do
