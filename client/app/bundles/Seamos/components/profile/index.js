@@ -9,16 +9,16 @@ function myInterests(tags) {
   return (
     <div>
       { tags.length > 0 ?
-        <section id='my-subjects' className='col-sm-4'>
-          <div className='title'>
-            <span>Mis temas de interés</span>
+        <section id='my-subjects' className='col-sm-12'>
+          <div className='cv-title'>
+            Mis temas de interés
           </div>
           <Tags tags={tags} />
         </section>
         :
-        <section id='my-subjects' className='col-sm-4'>
-          <div className='title'>
-            <span>MIS TEMAS</span>
+        <section id='my-subjects' className='col-sm-12'>
+          <div className='cv-title'>
+            Mis temas de interés
           </div>
           <div className="info">
             <span>Actualmente no tienes temas seleccionados, seleccionalos en la lista de abajo</span>
@@ -61,23 +61,17 @@ const Profile = (props) => {
         </header>
         <br />
         <div id='profile-container' className='row' >
-          {interests ?
-            selectInterests() : myInterests(tags)
-          }
+          <div className='col-md-4'>
+            {interests ? selectInterests() : myInterests(tags)}
+            { selectInterests() }
+          </div>
           <section className='my-participations col-sm-8'>
-            <div className='title'>
-              <span className='recent'>Participaciones recientes</span>
+            <div className='open-title'>
+              Participaciones recientes
             </div>
             <Polls polls={participations.polls.slice(0, 2)} />
-          </section>
-        </div>
-        <div className="col-sm-12 divider"></div>
-        <br />
-        <div id='profile-container' className='row' >
-          { selectInterests() }
-          <section className='my-participations col-sm-8'>
-            <div className='title second'>
-              <span>Otras participaciones</span>
+            <div className='open-title other'>
+              Otras participaciones
             </div>
             <Polls polls={participations.polls.slice(2)} type='horizontal' />
           </section>

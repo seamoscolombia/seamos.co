@@ -4,9 +4,9 @@ import shouldUpdate from 'recompose/shouldUpdate';
 import Tag from './tag';
 
 const SelectInterests = ({ tags, action, returnToMySubjects }) => (
-    <section id='my-subjects' className='col-sm-4'>
-      <div className='title'>
-        <span>Otros temas</span>
+    <section id='my-subjects' className='col-sm-12'>
+      <div className='cv-title'>
+        Otros temas
       </div>
       <section id='tags-component'>
         <div className='flex-container tags-box'>

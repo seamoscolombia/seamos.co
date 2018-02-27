@@ -188,11 +188,6 @@ const PollDetail = ({
               <div id='org'> {politician.organization} </div>
             </div>
           </section>
-          <header className='row'>
-            <p className='col-sm-12 poll-title'>
-              {title}
-            </p>
-          </header>
           <div className='share-wrapper'>
             <span className='share-this hide-on-mobile'> COMPARTIR: </span>
               <FacebookShareButton
@@ -223,6 +218,11 @@ const PollDetail = ({
                   <br />
               </TwitterShareButton>
           </div>
+          <header className='row'>
+            <p className='col-sm-12 poll-title'>
+              {title}
+            </p>
+          </header>
           <section id='poll' className='row'>
             <div id='left-col' className="col-sm-4">
               <div id='poll-image-container'>

@@ -6,6 +6,16 @@
   $politician-size: 150px
   $politician-mobile-size: 100px
   margin-bottom: 120px
+  .open-title
+    font-family: RobotoCondensed
+    font-size: 32px
+    letter-spacing: 9px
+    text-transform: uppercase
+    line-height: initial
+    margin-bottom: 7px
+    @media screen and (max-width: $break-medium)
+      font-size: 21px
+      text-align: center
   #may-interest-container
     #may-interest
       top: 150px
@@ -32,13 +42,20 @@
       text-align: center
   .one
     background-color: #c6c6c6
-    height: 190px
+    height: 140px
     margin-bottom: -72px
     @media screen and (max-width: $break-medium)
       margin-bottom: -120px
       margin-top: -30px
       height: 100px
       font-size: 27px
+  .one-mod
+    margin-bottom: -233px
+    @media screen and (max-width: $break-medium)
+      margin-bottom: -120px
+      margin-top: -12px
+      height: 100px
+      font-size: 21px
   .btn-return
     margin-top: 20px
     background-color: black
@@ -125,6 +142,7 @@
   #profile-container
     #my-subjects
       overflow: hidden
+      margin-bottom: 40px
       .info
         font-family: 'HKNovaBold'
         font-size: 20px
@@ -140,15 +158,20 @@
       .glyphicon-ok-sign
         font-size: 30px
         top: -12px
-      .title
-        min-height: 40px
-        min-width: 90px
-        max-width: 300px
+      .cv-title
+        height: 46px
+        width: 300px
+        background-color: #eaeaea
+        border: 2px solid #5a5861
+        border-radius: 14px
+        display: flex
+        font-family: 'RobotoRegular'
+        font-weight: bold
+        font-size: 23px
         display: flex
         align-items: center
-        background-size: contain
-        background-repeat: no-repeat
-        background-color: #45434c
+        padding-left: 20px
+        margin-bottom: -15px
         @media screen and (max-width: $break-medium)
           margin: auto
         span
@@ -178,14 +201,18 @@
       @media screen and (max-width: $break-medium)
         margin-bottom: 40px
         overflow: visible
-      .title
-        min-height: 30px
-        min-width: 90px
-        margin-bottom: 30px
+      .cv-title
+        height: 46px
+        background-color: #eaeaea
+        border: 2px solid #5a5861
+        border-radius: 14px
+        display: flex
+        font-family: 'RobotoRegular'
+        font-weight: bold
+        font-size: 23px
         display: flex
         align-items: center
-        background-size: contain
-        background-repeat: no-repeat
+        padding-left: 20px
         span
           font-family: 'HKNovaBold'
           font-size: 35px
@@ -199,6 +226,10 @@
             text-align: center
             margin-top: 70px
             margin-bottom: -40px
+      .other
+        margin: 33px 0
+        @media screen and (max-width: $break-medium)
+          margin: 50px 0
       .title.second
         margin-bottom: 50px
       .polls-wrapper
