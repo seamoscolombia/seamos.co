@@ -375,18 +375,35 @@
   .newsletter-container
     display: flex
     justify-content: center
-    padding-top: 70px
-    margin-bottom: 20px
+    padding-top: 50px
+    flex-wrap: wrap
+    margin-bottom: -35px
+    @media screen and (max-width: $break-medium)
+      padding: 20px
+      margin-bottom: -70px
+    .title
+      font-family: HKNovaRegular
+      font-size: 34px
+      letter-spacing: 12px
+      line-height: 1.3em
+      text-transform: uppercase
+      text-align: center
+      color: #45434c
+      width: 100%
+      margin-bottom: 30px
+      @media screen and (max-width: $break-medium)
+        font-size: 13px
+        letter-spacing: 5px
+        margin: 10px 0
     .newsletter
-      width: 80%
-      height: 250px
+      width: 75%
       background-color: #f4e937
-      padding: 90px
+      padding: 40px
       @media screen and (max-width: $break-medium)
         padding: 20px
-        padding-top: 70px
         margin-bottom: 50px
         margin-top: 25px
+        width: 100%
       .title
         font-family: 'HKNovaBold'
         text-align: center
@@ -394,16 +411,16 @@
         color: #3d5062
         margin-bottom: 53px
         margin-top: -20px
-        @media screen and (max-width: $break-medium)
-          font-size: 24px
       .input-group
         width: 530px
         margin: auto
         @media screen and (max-width: $break-medium)
           width: 240px
+        input 
+          font-family: 'RobotoBold'
         .btn-secondary
           background-color: #5bc0c8
-          color: white
+          color: black
           font-family: 'RobotoCondensed'
           font-weight: bold
           text-transform: uppercase

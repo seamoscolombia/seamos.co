@@ -18,7 +18,7 @@ const Politician = (props) => {
               <img src={props.picture} alt='politician' />
             </div>
           </div>
-          <div className='col-md-8 basic-info'>
+          <div className='col-md-6 basic-info'>
             <div className='basic-info-wrapper'>
               <div className=''>
                 <h1> {props.short_name} </h1>
@@ -29,7 +29,7 @@ const Politician = (props) => {
             </div>
           </div>
 
-          <div className='col-md-2 social-info'>
+          <div className='col-md-4 social-info'>
             <div className='social-info-wrapper'>
               <div className=''>
                 <a className='no-decoration' href={`https://twitter.com/${props.twitter.replace("@", "")}`}>
