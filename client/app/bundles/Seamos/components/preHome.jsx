@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import InputContainer from '../containers/inputContainer';
+import { S3_BASE } from '../constants';
 
 const preHome = ({ session, inputReducer, subscribeNewsletter, newsletterReducer }) => (
   <span style={{'overflow': 'visible'}}>
@@ -12,14 +13,19 @@ const preHome = ({ session, inputReducer, subscribeNewsletter, newsletterReducer
           </h3>
         </div>
         <Link to='/home'>
-          <div className='image-btn left'></div>
+          <div className='image-btn left'>
+            <img src= {S3_BASE + "seamos-btn.png"} alt=""/>
+          </div>          
         </Link>
         <a href="http://sifuerapresidente.co" target='_blank'>
-          <div className='image-btn right'></div>
+          <div className='image-btn right'>
+            <img src= {S3_BASE + "sfp-btn.png"} alt=""/>
+          </div>
         </a>
       </section>
       <section className='mid-section-container'>
         <div className='fist'>
+          <img src= {S3_BASE + "fist-2.png"} alt=""/>
         </div>
         <div className='right-side'>
           <div className='title'> ¿ CÓMO LOGRAMOS EL CAMBIO ?</div>
@@ -70,10 +76,12 @@ const preHome = ({ session, inputReducer, subscribeNewsletter, newsletterReducer
             afectar decisiones y fortalecer la democracia.
           </div>
           <Link to='/team'>
-            <div className='btn btn-3'></div>
+            <div className='btn btn-3'>
+            </div>
           </Link>
           <Link to='team'>
-            <div className='btn btn-4'></div>
+            <div className='btn btn-4'>
+            </div>
           </Link>
         </div>
       </section>
