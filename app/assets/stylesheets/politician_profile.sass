@@ -18,7 +18,7 @@
     @media screen and (max-width: $break-medium)
       margin-bottom: 0
     .title
-      margin: 40px 0 20px 0
+      margin: 20px 0 20px 0
       @media screen and (max-width: $break-medium)
         margin-top: -40px
     h1
@@ -51,7 +51,8 @@
         .social-info-wrapper
           p
             margin-top: 60px
-            font-size: 14px
+            font-size: 19px
+            text-align: right
             @media screen and (max-width: $break-medium)
               width: 100%
               text-align: center
@@ -92,9 +93,11 @@
           text-align: justify
       .cv-title
         height: 46px
-        background-color: #c6c6c5
+        background-color: #eaeaea
+        border: 2px solid #5a5861
+        border-radius: 14px
         display: flex
-        font-family: RobotoRegular
+        font-family: 'RobotoRegular'
         font-weight: bold
         font-size: 23px
         display: flex
@@ -104,7 +107,7 @@
         font-family: 'RobotoRegular'
         font-size: 23px
         border-bottom: 1px solid gray
-        padding: 12px 0
+        padding: 12px 0 0 0
         font-weight: bold
         color: #44434c
         line-height: 1.1em
@@ -116,7 +119,7 @@
           font-family: 'RobotoRegular'
           border-bottom: 1px solid gray
           div
-            margin: 30px 0 30px 0
+            margin: 12px 0 12px 0
         .academic-title:nth-child(3)
           border-bottom: none
       .career
@@ -124,35 +127,31 @@
         font-size: 16px
       .achieved-votes
         font-size: 25px
-        font-family: 'RobotoBold'
+        font-family: "RobotoBold"
         height: 50px
+        padding-left: 144px
         display: flex
         align-items: center
-        text-align: right
+        text-align: left
         background-image: url(asset_path('achieved-votes.png'))
         min-height: 93px
         background-repeat: no-repeat
-        justify-content: flex-end
         background-size: 70px 70px
         background-position-y: center
-        border-bottom: 1px solid gray
-        color: #3d5062
+        color: #44434c
       .major-representation-localities
         font-family: 'RobotoBold'
         height: 50px
-        display: flex
+        padding-left: 144px
+        padding-top: 26px
         align-items: center
-        text-align: right
         min-height: 93px
         background-repeat: no-repeat
-        justify-content: flex-end
         background-size: 118px 82px
         background-position-y: center
-        border-bottom: 1px solid gray
         color: #3d5062
         font-size: 20px
         background-image: url(asset_path('localities.png'))
-        padding-left: 35%
       .without-image
         font-family: "RobotoBold"
         height: 50px
@@ -160,8 +159,7 @@
         align-items: center
         min-height: 62px
         font-size: 20px
-        justify-content: flex-end
-        border-bottom: 1px solid gray
+        justify-content: flex-start
         color: #3d5062
       h2
         @media screen and (max-width: $break-medium)

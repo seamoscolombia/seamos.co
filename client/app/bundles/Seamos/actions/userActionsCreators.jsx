@@ -22,7 +22,7 @@ export const createUser = (loginResponse, authenticityToken) => dispatch => {
     names: loginResponse.first_name || loginResponse.profileObj.givenName,
     first_surname: loginResponse.last_name || loginResponse.profileObj.familyName,
     second_surname: 'N.A.',
-    email: loginResponse.profileObj.email
+    email: loginResponse.email  || loginResponse.profileObj.email
   };
   axios.post(`${URL}/users.json`, {
     authenticity_token: authenticityToken, //eslint-disable-line
@@ -33,6 +33,7 @@ export const createUser = (loginResponse, authenticityToken) => dispatch => {
       response.data.user.location = loginResponse.location ? loginResponse.location.name : null;
       dispatch(setUser(response.data.user));
       dispatch(setSession(response.data.user.authenticity_token));
+      location.reload();      
     })
     .catch(e => {
       alert('Por favor inicia sesión nuevamente');

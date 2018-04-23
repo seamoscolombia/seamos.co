@@ -5,6 +5,7 @@ import GoogleLog from '../containers/googleLoginContainer';
 import FacebookLogin from '../containers/facebookLoginContainer';
 import ProfileButton from '../containers/profileButtonContainer';
 import LogoutButton from '../containers/logoutButtonContainer';
+import { S3_BASE } from '../constants';
 
 const Menu = () => (
   [<li key='1' >
@@ -44,6 +45,9 @@ const Navbar = ({ session, user }) => (
     role='banner'
   >
     <div id="client-navbar">
+      <a href='http://sifuerapresidente.co' target='_blank' className='sfp-btn'>
+        <img src= {S3_BASE + "sfp-logo.png"} alt=""/>
+      </a>
       <div className='navbar-header'>
         <Link to='/' className='navbar-brand'>
           <div id='brand-logo' />
@@ -72,7 +76,7 @@ const Navbar = ({ session, user }) => (
       <div className='navbar-transparent side-collapse in'>
         <nav className='navbar-collapse' role='navigation'>
           <ul className='nav navbar-nav navbar-right navbar-options'>
-            <div className='hide-on-desktop'>
+            <div className='hide-on-desktop login-buttons'>
               {session.logged && Object.keys(user).length !== 0 ?
                 profile() :
                 <div>

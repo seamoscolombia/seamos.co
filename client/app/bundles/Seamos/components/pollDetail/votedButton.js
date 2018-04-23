@@ -1,13 +1,15 @@
 import React from 'react';
 
-function calculatePercentage(count, total) {
-    return (
-      (100 * (count / total)).toFixed(1)
-    );
+function calculatePercentage(count, total, name) {
+    if (name == 'SI'){
+        return(Math.ceil((100 * (count / total)).toFixed(1)))
+    } else {
+        return(Math.floor((100 * (count / total)).toFixed(1)))
+    }
 }
 const minorThanThirteen = { backgroundColor: 'gainsboro' };
 const SingleButton = ({ name, count = 0, total, closed }) => {
-    const percentage = calculatePercentage(count, total);
+    const percentage = calculatePercentage(count, total, name);
     return (
         <button className="progress btn voted-button">
             <div

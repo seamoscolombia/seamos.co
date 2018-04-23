@@ -29,3 +29,4 @@ export const UPDATE_INPUT = 'UPDATE_INPUT';
 export const TOASTER_DISPLAY = 'TOASTER_DISPLAY';
 export const SUBSCRIBE_TO_NEWSLETTER = 'SUBSCRIBE_TO_NEWSLETTER';
 export const MAY_INTEREST = 'MAY_INTEREST';
+export const S3_BASE = 'https://s3.amazonaws.com/si-yo-fuera-presidente/assets/'

@@ -16,43 +16,6 @@ const Team = () => (
         utilizar las tics para actualizar la democracia
       </div>
     </div>
-    <div className='row'>
-      <div className='col-md-6'>
-        <div className='square-info-wrapper'>
-          <div className='square-info left'>
-            En un país convulsionado por la guerra e
-            invadido por la corrupción, nos juntamos
-            unos jóvenes para convertir la indignación
-            en acción. Como parte de una generación
-            transformada por las nuevas tecnologías,
-            nos dimos cuenta que la solución podía estar,
-             literalmente, al alcance de nuestras manos,
-             y es así que creamos una herramienta que volviera
-             el poder a donde realmente corresponde: al ciudadano.
-             Bienvenidos a SeamOS. En Colombia, la era de la
-             democracia digital ha comenzado.
-             <span className='cover'> Nuestra Historia </span>
-          </div>
-        </div>
-      </div>
-      <div className='col-md-6'>
-        <div className='square-info-wrapper'>
-          <div className='square-info right'>
-            A través de SeamOS, podremos sentar un voto de
-            opinión sobre las propuestas que se presentan
-             en el Concejo de Bogota. Los representantes
-             han firmado voluntariamente un manifiesto con
-             el cual se comprometen a suscribir sus propuestas
-             en la plataforma y actuar conforme a lo manifestado
-             por los ciudadanos, y aunque el voto en SeamOS no
-             podrá ir en contravía de la Ley de Bancadas, sí
-             podemos asegurar que valdrá para activar conversaciones,
-             afectar decisiones y fortalecer la democracia.
-             <span className='cover'> ¿Qué pasa con tu voto? </span>
-          </div>
-        </div>
-      </div>
-    </div>
     <div className='row team-banner two'>
       Nuestro Equipo
     </div>

@@ -60,3 +60,9 @@ left: 60px; /*position where enlarged image should offset horizontally */
   top: 30px;
   position: relative;
 }
+
+.navbar-toggle.pull-right{
+  top: 30px;
+  right: 0;
+  position: absolute;
+}

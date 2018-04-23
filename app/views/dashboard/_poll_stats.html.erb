@@ -4,7 +4,8 @@
         <th>Id</th>
         <th>Título</th>
         <th>Autor</th>
-        <th>Fecha de cierre</th>
+        <th>Fecha de creación</th>
+        <th>Fecha de cierre &nbsp;&nbsp;&nbsp;&nbsp;</th>
         <th>Sí</th>
         <th>No</th>
         <th>Total Votos</th>
@@ -21,6 +22,7 @@
           <td><%= poll.id %></td>
           <td><%= poll.title %></td>
           <td><%= poll.user.full_name %></td>
+          <td><%= poll.created_at.to_date %></td>
           <td><%= poll.closing_date %></td>
           <td style="border-left: 1px solid gainsboro; white-space: nowrap"><%= "#{grouped_by_vote_type['SI']} #{y_percentage}" %></td>
           <td style="border-left: 1px solid gainsboro; white-space: nowrap"><%= "#{grouped_by_vote_type["NO"]} #{n_percentage}" %></td>

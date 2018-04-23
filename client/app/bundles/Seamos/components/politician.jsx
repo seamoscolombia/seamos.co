@@ -18,7 +18,7 @@ const Politician = (props) => {
               <img src={props.picture} alt='politician' />
             </div>
           </div>
-          <div className='col-md-8 basic-info'>
+          <div className='col-md-6 basic-info'>
             <div className='basic-info-wrapper'>
               <div className=''>
                 <h1> {props.short_name} </h1>
@@ -29,7 +29,7 @@ const Politician = (props) => {
             </div>
           </div>
 
-          <div className='col-md-2 social-info'>
+          <div className='col-md-4 social-info'>
             <div className='social-info-wrapper'>
               <div className=''>
                 <a className='no-decoration' href={`https://twitter.com/${props.twitter.replace("@", "")}`}>
@@ -43,9 +43,6 @@ const Politician = (props) => {
               </div>
             </div>
           </div>
-
-
-
           <div className='col-md-2'>
           </div>
         </div>
@@ -58,8 +55,8 @@ const Politician = (props) => {
             { props.academic_titles.map(
                 academic_title => (
                   <div className='academic-title'>
-                    <div><strong> Título: </strong>{academic_title.title} </div>
-                    <div className='institute'><strong> Institución: </strong>{academic_title.institute} </div>
+                    <div><strong> Título: <br /></strong>{academic_title.title} </div>
+                    <div className='institute'><strong> Institución: <br /></strong>{academic_title.institute} </div>
                   </div>
                 )
               )
@@ -79,15 +76,26 @@ const Politician = (props) => {
                 Las dos localidades con mayor representación
               </div>
               <div className='major-representation-localities'>
-                {props.localities}
+                {
+                  props.localities.map(
+                    locality => (
+                                  <span>
+                                    <span>
+                                      {locality}
+                                    </span>
+                                    <br />
+                                  </span>
+                                )
+                  )
+                }
               </div>
-              <div className='cv-subtitle'>
+              <div className='cv-title'>
                 Otros periodos electo
               </div>
               <div className='without-image'>
                 {props.other_periods}
               </div>
-              <div className='cv-subtitle'>
+              <div className='cv-title'>
                 Comisión
               </div>
               <div className='without-image'>
@@ -99,7 +107,7 @@ const Politician = (props) => {
           <div className='col-md-8'>
             <div className='row'>
               <div className='col-md-12'>
-                <h2 className='hide-on-desktop'> Biografía </h2>
+                {/* <h2 className='hide-on-desktop'> Biografía </h2> */}
                 <td dangerouslySetInnerHTML={{ __html: props.bio }} />
               </div>
             </div>

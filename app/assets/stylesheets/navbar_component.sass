@@ -1,5 +1,8 @@
 @import './variables.scss'
 #client-navbar
+  background: #abdadf
+  display: flex 
+  align-items: center
   .hide-on-mobile
     a
     @media screen and (max-width: $break-medium)
@@ -10,6 +13,21 @@
       display: none !important
   a:focus
     background-color: rgba(0, 0, 0, 0)
+  .navbar-collapse
+    height: 68px
+    display: flex
+    align-items: center
+  .sfp-btn
+    position: absolute
+    width: 185px
+    left: 43%
+    @media screen and (max-width: $break-medium)
+      width: 86px
+      left: 41%
+    &:hover
+      background-color: #abdadf
+    img
+      width: 100%
   .navbar-header
     padding-left: 40px
     @media screen and (max-width: $break-medium)
@@ -52,7 +70,7 @@
   .navbar-options
     display: flex
     align-items: center
-    margin-top: 8px !important
+    margin-top: 6px !important
     position: absolute
     right: 40px
     @media screen and (max-width: $break-medium)
@@ -62,6 +80,8 @@
       display: block
       span.circle-separator
         display: none
+    .login-buttons
+      margin-top: 220px
     li
       margin-right: 10px
       margin-bottom: 10px

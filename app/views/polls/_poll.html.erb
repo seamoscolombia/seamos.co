@@ -37,13 +37,30 @@
           <%end%>
         </ul>
         <ul class="list-inline list-unstyled">
-          <li><span><i class="icon-calendar"></i> <%= poll.closing_date %></span></li>
           <% if is_admin? || current_user.politico?%>
-              <li>|</li>
-              <span> <%= link_to t('.edit_poll'), edit_poll_path(poll.id), class: "btn btn-default" %></span>
+            <li> <%= link_to t('.edit_poll'), edit_poll_path(poll.id), class: "btn btn-default" %></li>
             <li>|</li>
-            <span> <%= link_to t('.delete_poll'), poll, class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></span>
+            <li> <%= link_to t('.delete_poll'), poll, class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></li>
           <% end %>
+          <br>
+          <li>
+            <span>
+              fecha de cierre 
+              <%= poll.closing_date %>
+            </span>
+          </li>
+          <li>
+            <span>
+              fecha de creación
+              <%= poll.created_at.to_date %>
+            </span>
+          </li>
+          <li>
+            <span>
+              última actualización
+              <%= poll.updated_at.to_date %>
+            </span>
+          </li>
         </ul>
       </div>
     </div>
