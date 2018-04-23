@@ -7,21 +7,21 @@ const Team = () => (
       <div className='right col-md-6'></div>
       <div className='one-caption'>
         ¿Quiénes <br />
-        Somos?
+        somos?
       </div>
     </div>
     <div className='row'>
       <div className='caption'>
         SeamOS es una plataforma ciudadana que busca <br className='breaker' />
-        utilizar las tics para actualizar la democracia
+        utilizar las TIC para actualizar la democracia
       </div>
     </div>
     <div className='row team-banner two'>
-      Nuestro Equipo
+      Nuestro equipo
     </div>
     <div className='row'>
       <div className='caption'>
-        Somos un equipo jóven, con experiencia en asuntos públicos y políticos reunidos <br className='breaker' />
+        Somos un equipo joven con experiencia en asuntos públicos y políticos, reunidos <br className='breaker' />
         para explorar los alcances que tienen las TIC para irrumpir en el ejercicio político.
       </div>
     </div>
@@ -45,7 +45,7 @@ const Team = () => (
             Rodríguez
           </div>
           <div className='profession'>
-            Economísta
+            Economista
           </div>
           <div className='role'>
             Administrativo
@@ -102,7 +102,7 @@ const Team = () => (
         <div className='team-member seven'>
           <div className='name'>
             Juliana <br className='breaker' />
-            Ramirez
+            Ramírez
           </div>
           <div className='profession'>
             Publicista
