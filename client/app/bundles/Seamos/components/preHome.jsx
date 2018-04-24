@@ -28,7 +28,7 @@ const preHome = ({ session, inputReducer, subscribeNewsletter, newsletterReducer
           <img src= {S3_BASE + "fist-2.png"} alt=""/>
         </div>
         <div className='right-side'>
-          <div className='title'> ¿ CÓMO LOGRAMOS EL CAMBIO ?</div>
+          <div className='title'>¿CÓMO LOGRAMOS EL CAMBIO?</div>
           <div className='caption'>
             <h3> Poder Ciudadano </h3>
             <p> Involucramos a los ciudadanos en procesos de decisión política
@@ -46,7 +46,7 @@ const preHome = ({ session, inputReducer, subscribeNewsletter, newsletterReducer
           ¿ Quiénes SOMOS ?
         </div>
         <div className='caption'>
-          SeamOS es una pĺataforma ciudadana que busca 
+          SeamOS es una plataforma ciudadana que busca 
           <br /> 
           utilizar las TIC para actualizar la democracia.
         </div>
