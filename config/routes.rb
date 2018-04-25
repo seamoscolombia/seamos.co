@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'settings/unsubscribe'
+
   root 'frontend#index'
   # root 'intro#inicio'
 
@@ -61,6 +63,10 @@ Rails.application.routes.draw do
     resources 'dashboard', only: [:index]
     get '/dashboard/stats', to: 'dashboard#stats'
   end
+
+  get 'settings/unsubscribe'
+  get 'settings/successfully_unsubscribed'
+  patch 'settings/update'
 
   # mount ActionCable.server => '/cable'
 end

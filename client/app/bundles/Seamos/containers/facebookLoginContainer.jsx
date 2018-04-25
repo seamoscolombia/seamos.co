@@ -29,8 +29,8 @@ class FacebookLoginContainer extends Component {
         textButton={this.props.fbText || 'Login'}
         appId={APP_ID}
         autoLoad={false}
-        scope='user_location'
-        fields="id,location,first_name,last_name,email,picture.width(100)"
+        scope='user_location, email'
+        fields="id,location,first_name,last_name, email,picture.width(100)"
         callback={(fbUser) => this.responseFacebook(fbUser)}
         cssClass={this.props.fbclassName || 'my-facebook-button-class'}
         disableMobileRedirect

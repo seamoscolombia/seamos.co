@@ -43,9 +43,6 @@ const Politician = (props) => {
               </div>
             </div>
           </div>
-
-
-
           <div className='col-md-2'>
           </div>
         </div>

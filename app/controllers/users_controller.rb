@@ -12,14 +12,11 @@ class UsersController < ApplicationController
 
   def create
     respond_to do |format|
-
       format.json do
         @user = User.new(user_params)
         @user.approved = false
         @user.role_type = 0
         @user.uid = session[:uid]
-
-        @user.email = params[:users_email]
         # server Date format 2015-05-28 YYYY-MM-DD
         if @user.save
           @participations = Poll.get_user_participations(@user)

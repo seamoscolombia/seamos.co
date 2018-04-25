@@ -24,18 +24,6 @@ const Home = ({ session, inputReducer, subscribeNewsletter, newsletterReducer })
         <PollsPageContainer />
       </div>
     </div>
-    {/*<div className='newsletter-container'>
-      <div className='newsletter'>
-        <div className='title'>
-          Suscríbete a nuestro newsletter
-        </div>
-        <InputContainer placeholder="correo" title="subscribe" name="newsletter"
-          actionCreator={() => subscribeNewsletter(inputReducer.subscribe.newsletter)}
-        />
-
-      </div>
-    </div>
-    */}
   </div>
 );
 
