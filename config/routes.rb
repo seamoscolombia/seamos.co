@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   delete '/sessions', to: 'sessions#destroy', as: 'session'
   delete '/destroy_facebook_session', to: 'sessions#destroy_facebook_session'
   post '/sessions', to: 'sessions#create', format: 'json'
+  get '/mail_preview', to: 'messages#preview'
 
   get '/auth/sessions', to: 'sessions#error'
   get '/tags/:tag_id/polls', to: 'polls#filtered_by_tag', format: 'json'
@@ -50,6 +51,9 @@ Rails.application.routes.draw do
   get '/tags', to: 'tags#index'
   resources :admin, only: [:create, :new, :edit]
   scope '/admin', as: :admin do
+    get '/mail', to: 'messages#new'
+    post '/mail', to: 'messages#create'
+    get '/mail_preview', to: 'messages#preview'
     # get '/', to: 'sessions#new'
     post '/tags', to: 'tags#create'
     get '/tags/new', to: 'tags#new'

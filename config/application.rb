@@ -20,5 +20,12 @@ module Seamos
     config.i18n.default_locale = :es
     config.time_zone = 'Bogota'
     Koala.config.api_version = 'v2.0'
+
+    config.action_mailer.preview_path = "#{Rails.root}/views/mailer_previews"
+  
+    config.action_mailer.delivery_method = :smtp
+    
+    config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
   end
 end
