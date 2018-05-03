@@ -51,38 +51,158 @@ const preHome = ({ session, inputReducer, subscribeNewsletter, newsletterReducer
           utilizar las TIC para actualizar la democracia.
         </div>
         <div className='buttons-container'>
-          <div className='btn btn-1'>
-            En un país convulsionado por la guerra e
-            invadido por la corrupción, nos juntamos
-            unos jóvenes para convertir la indignación
-            en acción. Como parte de una generación
-            transformada por las nuevas tecnologías,
-            nos dimos cuenta que la solución podía estar,
-            literalmente, al alcance de nuestras manos,
-            y es así que creamos una herramienta que volviera
-            el poder a donde realmente corresponde: al ciudadano.
-            Bienvenidos a SeamOS. En Colombia, la era de la
-            democracia digital ha comenzado.</div>
-          <div className='btn btn-2'>
-            A través de SeamOS, podremos sentar un voto de
-            opinión sobre las propuestas que se presentan
-            en el Concejo de Bogota. Los representantes
-            han firmado voluntariamente un manifiesto con
-            el cual se comprometen a suscribir sus propuestas
-            en la plataforma y actuar conforme a lo manifestado
-            por los ciudadanos, y aunque el voto en SeamOS no
-            podrá ir en contravía de la Ley de Bancadas, sí
-            podemos asegurar que valdrá para activar conversaciones,
-            afectar decisiones y fortalecer la democracia.
+          <div id='btn-1' className='btn square'>
+            <h3>
+            	Qué pasa con tu voto
+            </h3>
           </div>
-          <Link to='/team'>
-            <div className='btn btn-3'>
+          <div id='btn-2' className='btn square'>
+            <h3>
+            	Nuestra Historia
+            </h3>
+          </div>
+          <div id='btn-3' className='btn square'>
+            <h3>
+            	Nuestro Equipo
+            </h3>
+          </div>
+          <div id='btn-4' className='btn square'>
+            <h3>
+            	Socios y aliados
+            </h3>
+          </div>
+        </div>
+        <div>
+          <span id='info-1' className='info'>
+            A través de SeamOS, podremos sentar un voto de opinión sobre las propuestas que se presentan en el Concejo de Bogota. 
+            Los representantes han firmado voluntariamente un manifiesto con el cual se comprometen a suscribir sus propuestas en 
+            la plataforma y actuar conforme a lo manifestado por los ciudadanos, y aunque el voto en SeamOS no podrá ir en contravía 
+            de la Ley de Bancadas, sí podemos asegurar que valdrá para activar conversaciones, afectar decisiones y fortalecer la democracia.
+          </span>
+          <span id='info-2' className='info'>
+            En un país convulsionado por la guerra e invadido por la corrupción, nos juntamos unos jóvenes para convertir la indignación 
+            en acción. Como parte de una generación transformada por las nuevas tecnologías, nos dimos cuenta que la solución podía estar, 
+            literalmente, al alcance de nuestras manos, y es así que creamos una herramienta que volviera el poder a donde realmente corresponde: 
+            al ciudadano. Bienvenidos a SeamOS. En Colombia, la era de la democracia digital ha comenzado.
+          </span>
+          <span id='info-3' className='info'>
+            <div className='team-members'>
+              <div className='team-member one'>
+                <div className='name'>
+                  Nicolás <br className='breaker' />
+                  Díaz
+                </div>
+                <div className='profession'>
+                  Politólogo
+                </div>
+                <div className='role'>
+                  Director
+                </div>
+              </div>
+              <div className='team-member two'>
+                <div className='name'>
+                  Juan Carlos <br className='breaker' />
+                  Rodríguez
+                </div>
+                <div className='profession'>
+                  Economista
+                </div>
+                <div className='role'>
+                  Administrativo
+                </div>
+              </div>
+              <div className='team-member three'>
+                <div className='name'>
+                  Andrea <br className='breaker' />
+                  Mora
+                </div>
+                <div className='profession'>
+                  Internacionalista
+                </div>
+                <div className='role'>
+                  Outreach Político
+                </div>
+              </div>
+              <div className='team-member four'>
+                <div className='name'>
+                  David <br className='breaker' />
+                  Núñez
+                </div>
+                <div className='profession'>
+                  Politólogo
+                </div>
+                <div className='role'>
+                  Outreach Político
+                </div>
+              </div>
+              <div className='team-member five'>
+                <div className='name'>
+                  Andrés <br className='breaker' />
+                  Márquez
+                </div>
+                <div className='profession'>
+                  Abogado
+                </div>
+                <div className='role'>
+                  Outreach Político
+                </div>
+              </div>
+              <div className='team-member six'>
+                <div className='name'>
+                  Alexander <br className='breaker' />
+                  Quiceno
+                </div>
+                <div className='profession'>
+                  Ingeniero
+                </div>
+                <div className='role'>
+                  Programación
+                </div>
+              </div>
+              <div className='team-member seven'>
+                <div className='name'>
+                  Juliana <br className='breaker' />
+                  Ramírez
+                </div>
+                <div className='profession'>
+                  Publicista
+                </div>
+                <div className='role'>
+                  Comunicaciones
+                </div>
+              </div>
+              <div className='team-member eight'>
+                <div className='name'>
+                  Karen <br className='breaker' />
+                  Fonseca
+                </div>
+                <div className='profession'>
+                  Diseñadora Gráfica
+                </div>
+                <div className='role'>
+                  Comunicaciones
+                </div>
+              </div>
             </div>
-          </Link>
-          <Link to='team'>
-            <div className='btn btn-4'>
+          </span>
+          <span id='info-4' className='info'>
+            <div className='allies row'>
+              <div className='ally one col-md-6'>
+              </div>
+              <div className='ally two col-md-6'>
+              </div>
+              <div className='ally three col-md-4'>
+              </div>
+              <div className='ally four col-md-4'>
+              </div>
+              <div className='ally five col-md-4'>
+              </div>
+              <div className='ally six col-md-6'>
+              </div>
+              <div className='ally seven col-md-6'>
+              </div>
             </div>
-          </Link>
+          </span>
         </div>
       </section>
     </div>

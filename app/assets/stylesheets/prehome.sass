@@ -20,6 +20,8 @@
     margin-top: 75px
     h3 
       margin: 30px 0
+      font-family: 'HKNovaRegular'
+      font-weight: normal
       @media screen and (max-width: $break-medium)
         font-size: 13px
         letter-spacing: 5px
@@ -92,6 +94,7 @@
           @media screen and (max-width: $break-medium)
             font-size: 14px
   .bottom-section-container
+    overflow: visible
     .title
       margin: 37px 0
       padding: 10px 0
@@ -113,77 +116,122 @@
     flex-wrap: wrap
     justify-content: space-between
     .btn
-      max-width: 49%
+      max-width: 25%
       padding: 0
-      background-size: contain
-      background-repeat: no-repeat
-      background-position: center center
       margin-bottom: 40px
       white-space: normal
       font-family: 'RobotoRegular'
       overflow: auto
+      border-radius: 0
       @media screen and (max-width: $break-medium)
         max-width: 100%
         margin-bottom: 15px
-    .btn-1
-      color: rgba(0, 0, 0, 0)
-      background-image: url('https://s3.amazonaws.com/si-yo-fuera-presidente/assets/h-btn-1.png')
-      height: 359px
+    .square
+      width: 23%
+      height: 18vw
+      margin: 5px
+      background-color: $light-gray
+      text-transform: uppercase
+      position: relative
+      h3 
+        position: absolute
+        bottom: 0
+        padding: 0 25px
+        text-align: left
+.info
+  display: none
+  width: 100%
+  padding-top: 50px
+  font-size: 20px
+  text-align: justify
+  overflow: visible
+.team-members
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
+    padding: 0 50px
+    width: 1140px
+    margin: auto
+    @media screen and (max-width: $break-medium)
+      width: auto
+    .team-member
+      width: $team-member-size
+      height: $team-member-size + 130px
+      background-size: contain
+      background-repeat: no-repeat
+      background-color: white
+      margin: 0 25px
+      padding-top: $team-member-size
+      margin-bottom: 25px
       @media screen and (max-width: $break-medium)
-        height: 180px
-      &:hover
-        text-align: justify
-        color: #44434c
-        background-color: #c6c6c6
-        background-image: none
-        line-height: 1.1em
-        padding: 28px
-        font-size: 22px
-        cursor: default
-        content: none
-        width: 100%
+        text-align: center
+        width: 122px
+        height: 220px
+        margin: 0 5px
+        padding-top: 120px
+      .name
+        font-family: 'HKNovaBold'
+        padding: 15px 0 5px 0
         @media screen and (max-width: $break-medium)
-          font-size: 12px
-          padding: 10px
-    .btn-2
-      color: rgba(0, 0, 0, 0)
-      background-image: url('https://s3.amazonaws.com/si-yo-fuera-presidente/assets/h-btn-2.png')
-      height: 359px
+          padding: 5px 0
+      .profession
+        font-family: 'RobotoRegular'
+      .role
+        font-family: 'RobotoBold'
+    .one
+      background-image: url(asset_path('NICOLAS-FINAL.png'))
+      align-items: flex-start
+      display: block
       @media screen and (max-width: $break-medium)
-        height: 180px
-      &:hover
-        text-align: justify
-        color: #44434c
-        background-color: #c6c6c6
-        background-image: none
-        font-size: 22px
-        line-height: 1.1em
-        padding: 28px
-        cursor: default
-        content: none
-        width: 100%
-        @media screen and (max-width: $break-medium)
-          font-size: 12px
-          padding: 10px
-    a 
-      width: 49%
-      @media screen and (max-width: $break-medium)
-        width: 100%
-      .btn-3
-        color: rgba(0, 0, 0, 0)
-        background-image: url('https://s3.amazonaws.com/si-yo-fuera-presidente/assets/h-btn-3.png')
-        height: 123px
-        width: 100%
-        max-width: 100%
-        @media screen and (max-width: $break-medium)
-          height: 65px
-      .btn-4
-        color: rgba(0, 0, 0, 0)
-        background-image: url('https://s3.amazonaws.com/si-yo-fuera-presidente/assets/h-btn-4.png')
-        height: 123px
-        width: 100%
-        max-width: 100%
-        @media screen and (max-width: $break-medium)
-          height: 65px
+        font-size: 14px
+    .two
+      background-image: url(asset_path('JUANCARLOS-FINAL.png'))
+    .three
+      background-image: url(asset_path('ANDREA-FINAL.png'))
+    .four
+      background-image: url(asset_path('DAVID-FINAL.png'))
+    .five
+      background-image: url(asset_path('ANDRES-FINAL.png'))
+    .six
+      background-image: url(asset_path('ALEX-FINAL.png'))
+    .seven
+      background-image: url(asset_path('JULIANA-FINAL.png'))
+    .eight
+      background-image: url(asset_path('KAREN-FINAL.png'))
+.allies
+  padding: 0 170px
+  @media screen and (max-width: $break-medium)
+    padding: 0 40px
+    padding-top: 20px
+  .ally
+    height: 180px
+    background-repeat: no-repeat
+    background-color: white
+    background-size: 80%
+    background-position: center
+    margin: 0
+    @media screen and (max-width: $break-medium)
+      background-size: contain
+      height: 71px
+      width: 200px
+      margin: auto
+  .one
+    background-image: url(asset_path('logos_aliados-01.png'))
+  .two
+    background-image: url(asset_path('logos_aliados-02.png'))
+  .three
+    background-image: url(asset_path('logos_aliados-05.png'))
+  .four
+    background-image: url(asset_path('logos_aliados-04.png'))
+    background-size: 40%
+  .five
+    background-image: url(asset_path('logos_aliados-03.png'))
+  .six
+    background-image: url(asset_path('logos_aliados-06.png'))
+  .seven
+    background-image: url(asset_path('logos_aliados-07.png'))
+
+      
 
 
