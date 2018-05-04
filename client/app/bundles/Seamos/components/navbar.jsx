@@ -22,10 +22,6 @@ function profile() {
         <li style={{ display: 'inline-block' }} key='3'>
           <ProfileButton />
         </li>
-        <span
-          style={{ position: 'relative', top: '-8px', left: '-3px' }}
-          className='circle-separator'
-        > &#9679; </span>
       </span>
     );
 }
@@ -45,9 +41,6 @@ const Navbar = ({ session, user }) => (
     role='banner'
   >
     <div id="client-navbar">
-      <a href='http://sifuerapresidente.co' target='_blank' className='sfp-btn'>
-        <img src= {S3_BASE + "sfp-logo.png"} alt=""/>
-      </a>
       <div className='navbar-header'>
         <Link to='/' className='navbar-brand'>
           <div id='brand-logo' />
@@ -89,16 +82,17 @@ const Navbar = ({ session, user }) => (
                 </div>
               }
             </div>
-            <li key='7'><Link to='/tags'> Temas </Link></li>
-            <span className='circle-separator'> &#9679; </span>
-            <li key='8'>
+            <li key='7'>
+              <a href='http://sifuerapresidente.co' target='_blank' rel='noopener noreferrer'> SIFUERAPRESIDENTE </a>
+            </li>
+            <li key='8'><Link to='/tags'> Temas </Link></li>
+            <li key='9'>
               <a
               href="https://seamosit.github.io"
               rel='noopener noreferrer'
               > Blog
               </a>
             </li>
-            <span className='circle-separator'> &#9679; </span>
             <li className="dropdown hide-on-mobile">
               <button className="nav-with-background about" type="button" data-toggle="dropdown">
                 ACERCA DE

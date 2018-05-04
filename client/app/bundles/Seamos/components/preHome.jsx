@@ -29,16 +29,16 @@ const preHome = ({ session, inputReducer, subscribeNewsletter, newsletterReducer
         </div>
         <div className='right-side'>
           <div className='title'>¿CÓMO LOGRAMOS EL CAMBIO?</div>
-          <div className='caption'>
+          <span className='caption'>
             <h3> Poder Ciudadano </h3>
             <p> Involucramos a los ciudadanos en procesos de decisión política
             para que hagan valer su voto en los espacios democráticos. </p>
-          </div>
-          <div className='caption'>
+          </span>
+          <span className='caption'>
             <h3> Compromiso Político </h3>
             <p> Vinculamos a los políticos para que se comprometan a acatar 
             las desiciones de sus votantes </p>
-          </div>
+          </span>
         </div>
       </section>
       <section className='bottom-section-container'>
