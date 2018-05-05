@@ -9,6 +9,13 @@ const Footer = () => (
       >
         <span id='who-text-mobile' > TÉRMINOS Y CONDICIONES </span>
       </Link>
+      <br />
+      <br />
+      <Link
+        to='/transparency'
+      >
+        <span className='who-text' > TRANSPARENCIA </span>
+      </Link>
     </div>
     <div className='logo-container'>
       <div className='logo-background'>
@@ -16,14 +23,20 @@ const Footer = () => (
           <br />
           <br />
         </div>
+        <Link
+          to='/terms'
+        >
+          <span className='who-text' > TÉRMINOS Y CONDICIONES </span>
+        </Link>
+        <br />
+        <br />
+        <Link
+          to='/transparency'
+        >
+          <span className='who-text' > TRANSPARENCIA </span>
+        </Link>
         <div id='who-are-we'>
           <span id='footer-social-icons-container'>
-            <Link
-              to='/terms'
-            >
-              <span id='who-text' > TÉRMINOS Y CONDICIONES </span>
-            </Link>
-            <span className='circle-separator'>  &#9679; </span>
             <a
               className='footer-social-icon'
               href="https://www.facebook.com/seamoscolombia/"
