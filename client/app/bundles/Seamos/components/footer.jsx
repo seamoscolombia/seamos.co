@@ -16,7 +16,7 @@ const Footer = () => (
           <br />
           <br />
         </div>
-        <div id='who-are-we'>
+        <div id='who-we-are'>
           <span id='footer-social-icons-container'>
             <Link
               to='/terms'

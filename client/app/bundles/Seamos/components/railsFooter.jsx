@@ -14,7 +14,7 @@ const Footer = () => (
           <br />
           <br />
         </div>
-        <div id='who-are-we'>
+        <div id='who-we-are'>
           <span id='footer-social-icons-container'>
             <a href={`${URL}/#/terms`}>
               <span id='who-text' > TÉRMINOS Y CONDICIONES </span>

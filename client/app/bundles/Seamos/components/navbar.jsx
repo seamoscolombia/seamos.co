@@ -85,7 +85,7 @@ const Navbar = ({ session, user }) => (
             <li key='7'>
               <a href='http://sifuerapresidente.co' target='_blank' rel='noopener noreferrer'> SIFUERAPRESIDENTE </a>
             </li>
-            <li key='8'><Link to='/tags'> Temas </Link></li>
+            <li id='this' key='8'><a>Quienes somos</a></li>
             <li key='9'>
               <a
               href="https://seamosit.github.io"
@@ -93,25 +93,8 @@ const Navbar = ({ session, user }) => (
               > Blog
               </a>
             </li>
-            <li className="dropdown hide-on-mobile">
-              <button className="nav-with-background about" type="button" data-toggle="dropdown">
-                ACERCA DE
-              </button>
-              <ul className="dropdown-menu custom--dropdown--about">
-                <li><Link to='/team'> Nuestro equipo </Link></li>
-                <li role="presentation" className="divider"></li>
-                <li><Link to='/politicians'> Concejales que <br /> se unieron </Link></li>
-              </ul>
-            </li>
-            <li className="hide-on-desktop">
-              <button className="nav-with-background about" type="button">
-                ACERCA DE
-              </button>
-              <ul className="submenu">
-                <li><Link to='/team'> Nuestro equipo </Link></li>
-                <li><Link to='/politicians'> Concejales que se unieron </Link></li>
-              </ul>
-            </li>
+            <li key='10'><Link to='/tags'> Temas </Link></li>
+            <li key='11' id='politicians-link'><Link to='/politicians'> Concejales </Link></li>
             <div className='hide-on-mobile'>
               {session.logged && Object.keys(user).length !== 0 ?
                 profile() :

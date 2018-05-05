@@ -22,10 +22,6 @@ function profile() {
         <li style={{ display: 'inline-block' }} key='3'>
           <RailsProfileButton />
         </li>
-        <span
-          style={{ position: 'relative', top: '-8px', left: '-3px' }}
-          className='circle-separator'
-        > &#9679; </span>
       </span>
     );
 }
@@ -73,7 +69,7 @@ const Navbar = ({ session, user }) => (
       <div className='navbar-transparent side-collapse in'>
         <nav className='navbar-collapse' role='navigation'>
           <ul className='nav navbar-nav navbar-right navbar-options'>
-            <div className='hide-on-desktop'>
+            <div className='hide-on-desktop login-buttons'>
               {session.logged && Object.keys(user).length !== 0 ?
                 profile() :
                 <div>
@@ -86,35 +82,19 @@ const Navbar = ({ session, user }) => (
                 </div>
               }
             </div>
-            <li key='7'><a href={`${URL}/#/tags`}> Temas </a></li>
-            <span className='circle-separator'> &#9679; </span>
-            <li key='8'>
+            <li key='7'>
+              <a href='http://sifuerapresidente.co' target='_blank' rel='noopener noreferrer'> SIFUERAPRESIDENTE </a>
+            </li>
+            <li id='this' key='8'><a>Quienes somos</a></li>
+            <li key='9'>
               <a
               href="https://seamosit.github.io"
               rel='noopener noreferrer'
               > Blog
               </a>
             </li>
-            <span className='circle-separator'> &#9679; </span>
-            <li className="dropdown hide-on-mobile">
-              <button className="nav-with-background about" type="button" data-toggle="dropdown">
-                ACERCA DE
-              </button>
-              <ul className="dropdown-menu custom--dropdown--about">
-                <li><a href={`${URL}/#/team`}> Nuestro equipo </a></li>
-                <li role="presentation" className="divider"></li>
-                <li><a href={`${URL}/#/politicians`}> Concejales que <br /> se unieron </a></li>
-              </ul>
-            </li>
-            <li className="hide-on-desktop">
-              <button className="nav-with-background about" type="button">
-                ACERCA DE
-              </button>
-              <ul className="submenu">
-                <li><a href={`${URL}/#/team`}> Nuestro equipo </a></li>
-                <li><a href={`${URL}/#/politicians`}> Concejales que se unieron </a></li>
-              </ul>
-            </li>
+            <li key='10'><a href={`${URL}/#/tags`}> Temas </a></li>
+            <li key='11' id='politicians-link'><a href={`${URL}/#/politicians`}> Concejales </a></li>
             <div className='hide-on-mobile'>
               {session.logged && Object.keys(user).length !== 0 ?
                 profile() :

@@ -50,7 +50,7 @@ const preHome = ({ session, inputReducer, subscribeNewsletter, newsletterReducer
           <br /> 
           utilizar las TIC para actualizar la democracia.
         </div>
-        <div className='buttons-container'>
+        <div id='buttons-container'>
           <div id='btn-1' className='btn square'>
             <h3>
             	Qué pasa con tu voto
