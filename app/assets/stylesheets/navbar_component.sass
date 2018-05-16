@@ -1,6 +1,6 @@
 @import './variables.scss'
 #client-navbar
-  background: #abdadf
+  background: rgba(80, 80, 80, 0.5)
   display: flex 
   align-items: center
   .hide-on-mobile
@@ -17,6 +17,7 @@
     height: 68px
     display: flex
     align-items: center
+    box-shadow: unset
   .sfp-btn
     position: absolute
     width: 185px
@@ -25,7 +26,7 @@
       width: 86px
       left: 41%
     &:hover
-      background-color: #abdadf
+      background-color: rgba(80, 80, 80, 0.5)
     img
       width: 100%
   .navbar-header
@@ -89,7 +90,7 @@
       margin-top: -13px
       margin-right: 7px
     a
-      color: #44434c
+      color: white
       text-transform: uppercase
       font-weight: bold
       padding: 5px !important
@@ -112,7 +113,7 @@
     display: flex
     align-items: center
     background-color: transparent
-    color: #44434c
+    color: white
     border: 0px
     @media screen and (max-width: $break-medium)
       color: white

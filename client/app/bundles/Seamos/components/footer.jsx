@@ -31,7 +31,7 @@ const Footer = () => (
         <br />
         <br />
         <Link
-          to='/transparency'
+          to='/'
         >
           <span className='who-text' > TRANSPARENCIA </span>
         </Link>
