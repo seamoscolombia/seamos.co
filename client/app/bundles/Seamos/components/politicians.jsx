@@ -50,7 +50,7 @@ const Team = () => (
               Lucía Bastidas
             </div>
             <div className='organization'>
-              Partido Verde
+              Partido Alianza Verde
             </div>
           </div>
         </a>
@@ -138,7 +138,7 @@ const Team = () => (
               Maria Clara Name
             </div>
             <div className='organization'>
-              Partido Verde
+              Partido Alianza Verde
             </div>
           </div>
         </a>
@@ -150,6 +150,39 @@ const Team = () => (
             </div>
             <div className='organization'>
               Polo Democrático alternativo
+            </div>
+          </div>
+        </a>
+        <a className='politician-link' href='/#/politicians'>
+          <div className='politician p_fourteen'>
+            <div className='photo' />
+            <div className='name'>
+              María Fernanda Rojas
+            </div>
+            <div className='organization'>
+              Partido Alianza Verde
+            </div>
+          </div>
+        </a>
+        <a className='politician-link' href='/#/politicians'>
+          <div className='politician p_fiveteen'>
+            <div className='photo' />
+            <div className='name'>
+              Armando Gutiérrez
+            </div>
+            <div className='organization'>
+              Partido Liberal
+            </div>
+          </div>
+        </a>
+        <a className='politician-link' href='/#/politicians'>
+          <div className='politician p_sixteen'>
+            <div className='photo' />
+            <div className='name'>
+              Celio Nieves
+            </div>
+            <div className='organization'>
+              Polo Democratico Alternativo
             </div>
           </div>
         </a>
