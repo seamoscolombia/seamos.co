@@ -1,51 +1,197 @@
+<%= tinymce_assets %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<!-- multistep form -->
 <div id="new_admin_form">
+  <%= form_for user, :html => {:id => "msform"} do |f| %>
+  <%= render 'shared/mensajes_de_error',  object: f.object %>
+  <!-- progressbar -->
+  <ul id="progressbar">
+    <li class="active">Datos Generales</li>
+    <li class="politician-field">Datos usuario politico</li>
+    <li class="politician-field">Datos adicionales usuario politico</li>
+    <li class="politician-field">Datos académicos usuario politico</li>
+    <li>Email y contraseña</li>
+  </ul>
+  <!-- fieldsets -->
+  <fieldset class="first-step">
+    <h2 class="fs-title">Datos Generales</h2>
 
-    <%= form_for(user, url: admin_index_path) do |f| %>
-    <%= render 'shared/mensajes_de_error',  object: f.object %>
+    <div class="radio_button_field">
+        <%= f.label "Tipo de rol" %><br/><br>
+        <%= f.radio_button :role_type, "administrador" %>
+        <%= f.label :role_type, "Administrador"%><br>
+        <%= f.radio_button :role_type, "politico", checked: "#{@user && @user.role_type == 'politico' ? 'checked' : false}" %>
+        <%= f.label :role_type, "Politico",class: "radio_button_lbl"  %>
+    </div>
 
     <div class="field">
-        <%= f.label :first_surname %>
+      <%= f.label "Nombres" %>
+      <%= f.text_field :names, class: 'form-control' %>
+    </div>
+
+    <div class="field">
+        <%= f.label "Primer Apellido" %>
         <%= f.text_field :first_surname, class: 'form-control' %>
     </div>
 
     <div class="field">
-        <%= f.label :second_surname %>
+        <%= f.label "Segundo Apellido" %>
+        <span class="optional"> (opcional) </span>
         <%= f.text_field :second_surname, class: 'form-control' %>
     </div>
 
-    <div class="field">
-        <%= f.label :names %>
-        <%= f.text_field :names, class: 'form-control' %>
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+
+  <fieldset class="politician-field">
+    <h2 class="fs-title">informacion perfil político</h2>
+
+    <div class="field politician-field">
+      <%= f.label "Foto" %>
+      <%= f.file_field :admin_photo %>
     </div>
 
+    <div class="field politician-field">
+      <%= f.label "Usuario de twitter" %>
+      <%= f.text_field :twitter_username, class: 'form-control', placeholder: 'ej: @my_twitter_username' %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Fecha de nacimiento" %>
+      <input type="text" value="<%= user.birthday %>" data-provide='datepicker' data-date-language="es" data-date-autoclose="true" data-date-format="yyyy/mm/dd" class="input-sm form-control" name="user[birthday]"/>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Lugar de nacimiento" %>
+      <span class="optional"> (opcional) </span>
+      <%= f.text_field :birthplace, class: 'form-control' %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Biografía" %>
+      <%= f.text_area :bio, class: 'form-control tinymce' %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Organización" %>
+      <%= f.text_field :organization, class: 'form-control' %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Profesión" %>
+      <span class="optional"> (opcional) </span>
+      <%= f.text_field :profession, class: 'form-control' %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Universidad" %>
+      <span class="optional"> (opcional) </span>
+      <%= f.text_field :university, class: 'form-control' %>
+    </div>
+
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+
+  <fieldset class="politician-field">
+    <h2 class="fs-title">informacion perfil político</h2>
+    <h2 class="fs-subtitle">informacion adicional</h2>
+
+    <div class="field politician-field">
+      <%= f.label "Especializaciones, maestrías, doctorados y otros " %>
+      <span class="optional"> (opcional) </span>
+      <%= f.text_area :further_studies, class: 'form-control tinymce' %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Número de votos última elección " %>
+      <span class="optional"> (opcional) </span>
+      <%= f.number_field :last_election_vote_count, class: 'form-control' %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Organizaciones sociales a las que representa " %>
+      <span class="optional"> (opcional) </span>
+      <%= f.text_area :represented_organizations, class: 'form-control' %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Localidades de mayor representación electoral" %>
+      <span class="optional"> (máximo dos) </span>
+      <span class="optional"> (localidades seleccionadas actualmente: <strong><%= user.try(:major_electoral_representation_localities) %></strong>) </span>
+      <%= f.select(:major_electoral_representation_localities, User.localities.keys, {}, {multiple: true, "data-live-search": "true", class: "selectpicker form-control", "data-size": 10}) %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Otros períodos electo" %>
+      <span class="optional"> (en esta u otras corporaciones) </span>
+      <span class="optional"> (opcional) </span>
+      <%= f.text_field :other_periods_elected, class: 'form-control' %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Comisión actual en la corporación" %>
+      <span class="optional"> (opcional) </span>
+      <%= f.select :current_corporation_commission, User.current_corporation_commissions.keys, {}, {class: 'form-control'} %>
+    </div>
+
+    <div class="field politician-field">
+      <%= f.label "Breve descripción de las iniciativas propuestas en su gestión hasta la fecha" %>
+      <span class="optional"> (Proyectos de acuerdo y control político) </span>
+      <span class="optional"> (opcional) </span>
+      <%= f.text_area :proposed_initiatives_to_date, class: 'form-control' %>
+    </div>
+
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+
+  <fieldset class="politician-field">
+    <h2 class="fs-title">Informacion académica</h2>
+    <%= f.fields_for :academic_titles do |academic_title_form| %>
+      <span class="optional"> (opcionales) </span>
+      <div>
+          <%= academic_title_form.label "Título académico" %>
+          <%= academic_title_form.text_field :title %>
+      </div>
+      <div>
+          <%= academic_title_form.label "Periodo" %>
+          <%= academic_title_form.text_field :period %>
+      </div>
+      <div>
+          <%= academic_title_form.label "Institución" %>
+          <%= academic_title_form.text_field :institute %>
+      </div>
+      <div>
+          <%= academic_title_form.label "Anotación" %>
+          <%= academic_title_form.text_field :annotation %>
+      </div>
+    <% end %>
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+
+  <fieldset class="final-step">
+    <h2 class="fs-title">Correo electrónico</h2>
     <div class="field">
-        <%= f.label :email %>
+        <%= f.label "Email" %>
         <%= f.email_field :email, class: 'form-control' %>
     </div>
 
     <div class="field">
-        <%= f.label :password %>
+        <%= f.label "Contraseña" %>
         <%= f.password_field :password, class: 'form-control' %>
     </div>
     <div class="field">
-        <%= f.label :password_confirmation %>
+        <%= f.label "Confirmación de contraseña" %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
-
-    <div class="radio_button_field">
-        <%= f.label :role_type %><br/><br>
-        <%= f.radio_button :role_type, "administrador" %>
-        <%= f.label :role_type, "Administrador"%><br>
-        <%= f.radio_button :role_type, "politico" %>
-        <%= f.label :role_type, "Politico",class: "radio_button_lbl"  %>
-    </div>
-
-    <br><br>
-
-    <div class="actions">
-        <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
-    </div>
-    <br><br>
-    <% end %>
-
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <!-- <input type="submit" name="submit" class="submit action-button" value="Submit" /> -->
+    <span class="actions">
+        <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary action-button") %>
+    </span>
+  </fieldset>
+  <%end%>
 </div>
+<%= tinymce %>

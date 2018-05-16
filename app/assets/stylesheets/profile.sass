@@ -1,0 +1,281 @@
+@import './variables.scss'
+#profile
+  $square-info-size: 470px
+  $square-info-size-mobile: 270px
+  $team-member-size: 200px
+  $politician-size: 150px
+  $politician-mobile-size: 100px
+  margin-bottom: 120px
+  .open-title
+    font-family: RobotoCondensed
+    font-size: 32px
+    letter-spacing: 9px
+    text-transform: uppercase
+    line-height: initial
+    margin-bottom: 7px
+    @media screen and (max-width: $break-medium)
+      font-size: 21px
+      text-align: center
+  #may-interest-container
+    #may-interest
+      top: 150px
+  .breaker
+    @media screen and (max-width: $break-medium)
+      display: none
+  .profile--banner
+    height: 300px
+    background-color: gainsboro
+    font-size: 50px
+    line-height: 1.3em
+    font-weight: bold
+    color: white
+    text-transform: none
+    font-family: "HKNovaBold"
+    display: flex
+    align-items: center
+    justify-content: center
+    word-break: break-word
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
+      padding: 0 40px
+      text-align: center
+  .one
+    background-color: #c6c6c6
+    height: 140px
+    margin-bottom: -72px
+    @media screen and (max-width: $break-medium)
+      margin-bottom: -120px
+      margin-top: -30px
+      height: 100px
+      font-size: 27px
+  .one-mod
+    margin-bottom: -233px
+    @media screen and (max-width: $break-medium)
+      margin-bottom: -120px
+      margin-top: -12px
+      height: 100px
+      font-size: 21px
+  .btn-return
+    margin-top: 20px
+    background-color: black
+    color: white
+    font-family: 'HKNovaBold'
+  $tag-size: 150px
+  $tag-size-mobile: $tag-size - 20px
+  .container
+    margin-top: -55px
+  .divider
+    border: 1px solid #d4d4d4
+    margin: 50px 0px
+  .second-container
+    margin-top: 0
+  .profile-info-container
+    display: flex
+    align-items: center
+    margin-bottom: 40px
+  .flex-container
+    width: 100%
+  #tags-component
+    .tags-box
+      margin-top: 37px
+      justify-content: left
+      @media screen and (max-width: $break-medium)
+        justify-content: center
+        // width: 130px
+  #tag-component
+    height: $tag-size
+    width: $tag-size
+    border: 3px solid white
+    @media screen and (max-width: $break-medium)
+      width: 130px
+      height: $tag-size-mobile
+    .tag-selected
+      position: relative
+      top: 18px
+      right: -6px
+    .tag-name
+      font-size: 14px
+      width: $tag-size
+      display: none
+      @media screen and (max-width: $break-medium)
+        width: $tag-size-mobile
+        font-size: 12px
+  header
+    img
+      // margin-left: 2.5em
+      border-radius: 50%
+      width: 135px
+      height: 135px
+  header.media
+    @media screen and (max-width: $break-medium)
+      margin-top: 150px
+  .media-left
+    margin-left: 0
+    // margin-left: $move-left
+    @media screen and (max-width: $break-medium)
+      margin-left: 0
+  .media-body
+    vertical-align: middle
+    width: auto
+    padding-left: 40px
+    @media screen and (max-width: $break-medium)
+      padding-left: 0
+    h4
+      margin-left: 1.3em
+      font-family: 'HKNovaBold'
+      text-transform: uppercase
+      font-size: 25px
+      @media screen and (max-width: $break-medium)
+        font-size: 14px
+        margin-left: 0
+    h6
+      margin-left: 1.8em
+      color: #333333
+      font-family: "RobotoBold"
+      margin-bottom: 0
+      font-size: 18px
+      margin-top: 15px
+      @media screen and (max-width: $break-medium)
+        font-size: 10px
+        margin-left: 0
+  #profile-container
+    #my-subjects
+      overflow: hidden
+      margin-bottom: 40px
+      .info
+        font-family: 'HKNovaBold'
+        font-size: 20px
+        text-align: center
+        width: 300px
+        margin-top: 28px
+        @media screen and (max-width: $break-medium)
+          margin: auto
+          margin-top: 25px
+      .glyphicon.glyphicon-hand-down
+        font-size: 40px
+        margin-top: 17px
+      .glyphicon-ok-sign
+        font-size: 30px
+        top: -12px
+      .cv-title
+        height: 46px
+        width: 300px
+        background-color: #eaeaea
+        border: 2px solid #5a5861
+        border-radius: 14px
+        display: flex
+        font-family: 'RobotoRegular'
+        font-weight: bold
+        font-size: 23px
+        display: flex
+        align-items: center
+        padding-left: 20px
+        margin-bottom: -15px
+        @media screen and (max-width: $break-medium)
+          margin: auto
+          width: auto
+        span
+          margin-left: 20px
+          font-weight: bold
+          color: #eaeaea
+          font-size: 22px
+          @media screen and (max-width: $break-medium)
+            width: 100%
+            text-align: center
+      .btn-edit-container
+        width: $tag-size * 2 + 12px
+        text-align: center
+        @media screen and (max-width: $break-medium)
+          margin: auto
+          padding-left: 0
+          text-align: center
+          margin-bottom: 30px
+          width: $tag-size-mobile * 2 + 12px
+        .btn-edit
+          margin-top: 20px
+          background-color: black
+          color: white
+          font-family: 'HKNovaBold'
+    .my-participations
+      overflow: hidden
+      @media screen and (max-width: $break-medium)
+        margin-bottom: 40px
+        overflow: visible
+      .cv-title
+        height: 46px
+        background-color: #eaeaea
+        border: 2px solid #5a5861
+        border-radius: 14px
+        display: flex
+        font-family: 'RobotoRegular'
+        font-weight: bold
+        font-size: 23px
+        display: flex
+        align-items: center
+        padding-left: 20px
+        span
+          font-family: 'HKNovaBold'
+          font-size: 35px
+          color: #45444d
+          @media screen and (max-width: $break-medium)
+            font-size: 14px
+            margin-left: 0
+            font-weight: bold
+            font-size: 28px
+            width: 100vw
+            text-align: center
+            margin-top: 70px
+            margin-bottom: -40px
+      .other
+        margin: 33px 0
+        @media screen and (max-width: $break-medium)
+          margin: 50px 0
+      .title.second
+        margin-bottom: 50px
+      .polls-wrapper
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-between
+        @media screen and (max-width: $break-medium)
+          justify-content: center
+        #poll-component
+          width: 345px
+          margin-right: 20px
+          margin-top: 20px
+          margin-left: 0
+          margin-bottom: 0
+          @media screen and (max-width: $break-medium)
+            width: 85vw
+            margin: auto
+            margin-top: 20px
+          .closed-ribbon
+            top: 150px
+          .poll-title
+            @media screen and (max-width: $break-medium)
+              height: auto
+          .politician-info
+            .picture-container
+              width: 55px
+              @media screen and (max-width: $break-medium)
+                width: 58px
+            .name-container
+              @media screen and (max-width: $break-medium)
+                margin-left: 0
+          .poll-image-container
+            height: 300px
+            @media screen and (max-width: $break-medium)
+              height: 225px
+            a
+              img
+                @media screen and (max-width: $break-medium)
+          .poll-infos-container
+            @media screen and (max-width: $break-medium)
+              padding-left: 0
+            .poll-info
+              .poll-description
+                margin-bottom: 10px
+            .poll-details
+              @media screen and (max-width: $break-medium)
+              span:nth-child(4)
+              .btn-plus-read

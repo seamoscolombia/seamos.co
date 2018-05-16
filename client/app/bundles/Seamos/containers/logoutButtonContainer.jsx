@@ -9,14 +9,13 @@ const mapDispatchToProps = { resetSession };
 
 class ProfileButtonContainer extends Component {
     logout() {
-        this.props.resetSession();
-        this.props.history.push('/');
+        this.props.resetSession(this.props.pol);
     }
     render() {
-        return (<ProfileButton 
+        return (<ProfileButton
             action={this.logout.bind(this)}
-            className={'nav-fb'}
-            name={'Logout'}
+            className={'nav-with-background'}
+            name={'SALIR'}
         />);
     }
 }

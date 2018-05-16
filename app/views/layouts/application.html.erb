@@ -2,13 +2,15 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seamos</title>
+    <%= display_meta_tags site: 'seamOS'%>
     <%= csrf_meta_tags %>
+    <meta property="fb:app_id" content="1707774202581080"/>
     <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://www.google.com/jsapi" %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag 'favicon.png' %>
+
 
   </head>
 
@@ -30,15 +32,16 @@
 
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li class="<%= 'nav-li-border' if params[:controller] == 'polls' %>">  <%= link_to t('.polls'),admin_polls_path %></li>
+              <li>  <%= link_to t('.polls'),admin_polls_path %></li>
               <% if current_user.politico? %>
-                <li class="<%= 'nav-li-border' if params[:controller] == 'users' %>">  <%= link_to t('.create_poll'), new_poll_path %> </li>
+                <li>  <%= link_to t('.create_poll'), new_poll_path %> </li>
               <% end %>
               <% if is_admin? %>
-                <li class="<%= 'nav-li-border' if params[:controller] == 'users' %>">  <%= link_to t('.users'),admin_validate_users_path %> </li>
-                <li class="<%= 'nav-li-border' if params[:controller] == 'admin' %>">  <%= link_to t('.create_admin'),new_admin_path %></li>
-                <li class="<%= 'nav-li-border' if params[:controller] == 'tags' %>">  <%= link_to t(:tags_menu),admin_tags_new_path %></li>
-                <li class="<%= 'nav-li-border' if params[:controller] == 'dashboard' %>">  <%= link_to t(:admin),admin_dashboard_index_path %></li>
+                <li>  <%= link_to t('.users'), admin_validate_users_path %> </li>
+                <li>  <%= link_to t('.create_admin'), new_admin_path %></li>
+                <li>  <%= link_to t(:tags_menu), admin_tags_new_path %></li>
+                <li>  <%= link_to "Datos", admin_dashboard_stats_path %> </li>
+                <li>  <%= link_to t(:admin), admin_dashboard_index_path %></li>
               <% end %>
               <li> </li>
               <li class="dropdown">
@@ -78,6 +81,5 @@
         </div>
       </footer>
     <% end %>
-
   </body>
 </html>

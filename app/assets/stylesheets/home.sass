@@ -1,75 +1,159 @@
 @import './variables'
 #homepage
-
+  @media screen and (max-width: $break-medium)
+    width: 100%
+    overflow: hidden
+  .reminder
+    padding-left: 30px
+    @media screen and (max-width: $break-medium)
+      padding-left: 0
+      width: 300px
+      text-align: center
+  #tags-component
+    .tags-box
+      justify-content: left
+      margin: 0
+      @media screen and (max-width: $break-medium)
+        display: flex
+        justify-content: center
+  .flex-container
+    margin: 0
+    width: auto
   .background-container
-    background-size: cover
     padding-top: 40px
-    padding-bottom: 20px
-    .top-text-container
+    @media screen and (max-width: $break-medium)
+      padding-bottom: 35px
+    .down-text-container
       text-align: center
       color: white
-      text-transform: uppercase
-      padding-top: 30px
-      .welcome
-        font-family: 'RobotoCondensed'
-        letter-spacing: 7px
-        font-weight: bold
-        margin-bottom: 10px
-        font-size: 90px
-        @media screen and (max-width: $break-medium)
-          font-size: 30px
-      .question
-        font-size: 70px
-        @media screen and (max-width: $break-medium)
-          font-size: 30px
-      .to
-        font-size: 15px
-        letter-spacing: 1px
-        font-family: 'GothamMedium'
-        line-height: 1.2em
-        font-weight: bold
-        text-align: center
-      .action
-        letter-spacing: 0.08em
-        margin-top: 50px
-        font-family: 'RobotoCondensed'
-        font-weight: bold
-        padding: 5px
-        display: inline-block
-        @media screen and (max-width: $break-medium)
-          margin-top: 30px
-      .hand-image-container
-        background-color: rgba(83, 197, 203, 0.5)
-        // background-color: rgba(83, 197, 203, 1)
-        padding: 5px 0 5px 0
-        width: 40px
-        height: 75px
-        position: relative
-        // top: -15px
-        margin: auto
-        border-radius: 30px
-        @media screen and (max-width: $break-medium)
-          width: 30px
-          height: 55px
-        .hand-image
-          text-align: center
-          background-image: url(asset_path('iconos_pasemosAlaAccion.png'))
-          background-size: contain
-          height: 100%
-          margin: auto
-          background-repeat: no-repeat
-          background-position: center center
+      @media screen and (max-width: $break-medium)
+        padding-top: 0
+    .up-mid-text-container
+      text-align: center
+      color: white
+      @media screen and (max-width: $break-medium)
+        padding-top: 41px
   .top
-    background-image: url(asset_path('inicio.jpg'))
-    background-position: center top
+    background-image: url(asset_path('homegif.gif'))
+    background-size: contain
+    background-repeat: no-repeat
+    width: 100%
+    height: 0
+    padding-top: 38.9%
   .mid
-    background-image: url(asset_path('temas.jpg'))
-    background-position: center center
-    padding: 120px 0 210px 0
-    margin-top: 50px
+    background-color: #ec6257
+    background-image: url(asset_path('RAYITAS-02.png'))
+    background-size: 736px 57px
+    background-repeat: no-repeat
+    background-position: 49% 90px
+    padding: 100px 0 210px 0
+    height: 440px
+    margin-bottom: 100px
     @media screen and (max-width: $break-medium)
+      background-position: 50% 45px
+      margin-bottom: 50px
       padding: 0 0 30px 0
       margin-top: 20px
+      height: 190px
+      margin-top: 24px
+      background-size: 376px 29px
+      background-repeat: no-repeat
+      background-position-x: 50%
+      display: flex
+      justify-content: center
+      align-items: center
+    .top-text-container
+      padding: 0
+      color: white
+      background-image: none
+  .up-mid
+    height: 410px
+    background-color: #5554a0
+    color: white
+    font-family: "HKNovaBold"
+    position: relative
+    margin-top: 90px
+    background-image: url(asset_path('fist.png'))
+    background-size: 180px 300px
+    background-repeat: no-repeat
+    background-position-x: 90%
+    background-position-y: bottom
+    @media screen and (max-width: $break-medium)
+      height: 210px
+      padding: 0 0 30px 0
+      margin-top: 20px
+      margin-top: 24px
+      background-size: 88px 142px
+      background-repeat: no-repeat
+      background-position-x: 84%
+    #how-to-achieve
+      position: absolute
+      left: 100px
+      bottom: 40px
+      font-size: 50px
+      line-height: 75px
+      text-align: left
+      @media screen and (max-width: $break-medium)
+        position: relative
+        left: 45px
+        top: -23px
+        font-size: 23px
+        line-height: 31px
+        text-align: left
+  .mid-container
+    margin-top: 30px
+    display: flex
+    justify-content: center
+    @media screen and (max-width: $break-medium)
+      margin-top: 0
+      display: flex
+      flex-wrap: wrap
+    .right-col
+      width: 740px
+      #poll-page
+        .polls-wrapper
+          #poll-component
+            margin: 0
+            margin-left: 30px
+    .left-col
+      width: 381px
+      .title
+        background-color: #eaeaea
+        height: 32px
+        margin-bottom: 30px
+        border-left: 10px solid white
+        border-right: 10px solid white
+        font-family: 'HKNovaRegular'
+        font-weight: bold
+        letter-spacing: 0px
+        @media screen and (max-width: $break-medium)
+          max-width: 100%
+          margin-left: auto
+        h1
+          margin-top: 0
+          padding: 5px 7px
+          font-size: 1.5em
+          border: 1px solid #45434c
+          background: white
+          text-align: left
+          font-family: "RobotoCondensed"
+          letter-spacing: 0
+          @media screen and (max-width: $break-medium)
+            padding-left: 0
+            text-align: center
+  .down
+    background-color: #c6c6c5
+    height: 440px
+    display: flex
+    margin-top: 120px
+    @media screen and (max-width: $break-medium)
+      margin-top: 43px
+      height: 120px
+    #featured-polls-title
+      color: #3d4f62
+      font-family: 'HKNovaBold'
+      margin: 0
+      text-transform: none
 
   .mid-paragraph
     text-align: center
@@ -82,7 +166,19 @@
     margin: 45px 0 45px 0
     @media screen and (max-width: $break-medium)
       font-size: 15px
-      margin: 25px 0 25px 0
+      margin: 25px 0 10px 0
+  .mid-paragraph-caption
+    text-align: center
+    font-family: 'RobotoCondensed'
+    text-transform: uppercase
+    color: black
+    line-height: 1em
+    margin: -25px 0 25px 0
+    font-weight: normal
+    font-size: 15px
+    @media screen and (max-width: $break-medium)
+      font-size: 13px
+      margin: 10px 0 10px 0
   #how
     .title
       text-align: center
@@ -94,14 +190,12 @@
       font-size: 70px
       text-transform: uppercase
       line-height: 1em
-      letter-spacing: 5px
       color: black
       margin-bottom: 0
       @media screen and (max-width: $break-medium)
-        font-size: 30px
+        font-size: 22px
+        margin-top: 25px
       h1
-        font-size: 60px
-        letter-spacing: 5px
         white-space: nowrap
         font-weight: bold
         // margin: auto
@@ -112,6 +206,9 @@
       font-size: 18px
       text-align: justify
       font-family: 'GothamMedium'
+      @media screen and (max-width: $break-medium)
+        font-size: 14px
+        line-height: 1.3em
   #steps-container
     display: -webkit-flex
     display: flex
@@ -122,44 +219,80 @@
     width: 82%
     .step
       width: 300px
-      font-family: 'RobotoCondensed'
-      font-weight: bold
-      text-transform: uppercase
+      font-family: 'RobotoRegular'
+      text-transform: capitalize
       text-align: justify
-      margin: 10px 5px 10px 5px
+      margin: 70px 5px 10px 5px
+      button
+        height: 322px
+        width: 100%
+        bottom: 321px
+        position: relative
+        background-color: rgba(0, 0, 0, 0)
+        border: none
+        color: rgba(0 ,0 ,0 ,0)
+      .text
+        color: #44424c
+        width: 91%
+        margin: auto
+        font-size: 18px
+        font-weight: normal
+        text-transform: none
+        text-align: center
+        margin-top: 13px
+        margin-bottom: 45px
       .step-info
         display: flex
         display: -webkit-flex
         flex-wrap: wrap
         align-items: center
-        .step-number
-          position: relative
-          top: 0
-          width: 15%
-          font-size: 80px
-          font-weight: bold
+        justify-content: center
         .step-text
-          height: 100px
-          width: 85%
+          font-family: 'HKNovaBold'
+          height: 34px
           line-height: 1.2em
-          letter-spacing: 0.04em
-          display: flex
-          flex: 1
-          align-items: center
+          color: #44424c
+          font-size: 38px
+          text-align: center
           padding: 0 10px 0 10px
+          .step-number-1
+            color: #eb6157
+            border-right: 3px solid #eb6157
+          .step-number-2
+            color: #70b961
+            border-right: 3px solid #70b961
+          .step-number-3
+            color: #55539f
+            border-right: 3px solid #55539f
       .step-image
-        width: 100%
+        width: 190px
         height: 190px
+        border-radius: 95px
         background-size: contain
         background-origin: content-box
         background-position: center center
         background-repeat: no-repeat
+        margin: auto
       .step-image-1
         background-image: url(asset_path('pasoapaso-01.png'))
+        background-color: #eb6157
       .step-image-2
         background-image: url(asset_path('pasoapaso-02.png'))
+        background-color: #70b961
       .step-image-3
+        background-color: #55539f
         background-image: url(asset_path('pasoapaso-03.png'))
+    a
+      color: black
+      text-decoration: none
+      -webkit-transition: width 0.5s, height 0.5s, -webkit-transform 0.5s
+      transition: width 0.5s, height 0.5s, transform 0.5s
+      &:hover
+        text-decoration: none
+        color: black
+        -webkit-transform: scale(1.03, 1.03)
+        transform: scale(1.03, 1.03)
+
   .fb-button-container
     text-align: center
     margin-top: 20px
@@ -169,6 +302,127 @@
       margin-bottom: 0.8em
     button
       background-color: #2d60a0
-      padding: 8px
+      padding: 6px 8px
       border-radius: 5px
       color: white
+      .fa
+        margin-right: 7px
+        padding-right: 7px
+        line-height: 20px
+        border-right: 1px solid white
+  .breaker
+    @media screen and (max-width: $break-medium)
+      display: none
+  #how-facts
+    display: inline-flex
+    align-items: center
+    justify-content: space-around
+    padding: 0 70px
+    height: 340px
+    width: 100%
+    @media screen and (max-width: $break-medium)
+      flex-wrap: wrap
+      height: 525px
+    .how-fact
+      font-family: "RobotoRegular"
+      font-size: 21px
+      width: 395px
+      position: relative
+      line-height: 26px
+      color: #44434c
+      @media screen and (max-width: $break-medium)
+        margin-bottom: -5px
+        margin-top: 62px
+      .title
+        font-size: 34px
+        font-family: 'HKNovaBold'
+        border-left: 2px solid #5554a0
+        position: absolute
+        color: #44434c
+        left: -10px
+        line-height: 26px
+        padding-left: 4px
+        margin-top: -9px
+        @media screen and (max-width: $break-medium)
+          line-height: 29px
+          padding-left: 4px
+          margin-top: -34px
+  #featured-polls-title
+    text-align: center
+    font-family: 'RobotoCondensed'
+    font-weight: bold
+    font-size: 58px
+    line-height: 1.3em
+    @media screen and (max-width: $break-medium)
+      line-height: 1.1em
+      font-size: 22px
+  #featured-polls
+    display: flex
+    align-items: center
+    justify-content: center
+    .polls-wrapper
+      text-align: center
+      #poll-component
+        margin: 0
+        margin-left: 30px
+        .poll-image-container
+          justify-content: center
+          a
+            margin: 0
+            left: 0
+            right: 0
+            position: relative
+  .newsletter-container
+    display: flex
+    justify-content: center
+    padding-top: 50px
+    flex-wrap: wrap
+    margin-bottom: -35px
+    @media screen and (max-width: $break-medium)
+      padding: 20px
+      margin-bottom: -70px
+    .title
+      font-family: HKNovaRegular
+      font-size: 34px
+      font-size: 1.8vw
+      letter-spacing: 12px
+      line-height: 1.3em
+      text-transform: uppercase
+      text-align: center
+      color: #45434c
+      width: 100%
+      margin-bottom: 30px
+      @media screen and (max-width: $break-medium)
+        font-size: 13px
+        letter-spacing: 5px
+        margin: 10px 0
+    .newsletter
+      width: 75%
+      background-color: #f4e937
+      padding: 40px
+      @media screen and (max-width: $break-medium)
+        padding: 20px
+        margin-bottom: 50px
+        margin-top: 25px
+        width: 100%
+      .title
+        font-family: 'HKNovaBold'
+        text-align: center
+        font-size: 29px
+        color: #3d5062
+        margin-bottom: 53px
+        margin-top: -20px
+      .input-group
+        width: 530px
+        margin: auto
+        @media screen and (max-width: $break-medium)
+          width: 240px
+        input 
+          font-family: 'RobotoBold'
+        .btn-secondary
+          background-color: #5bc0c8
+          color: black
+          font-family: 'RobotoCondensed'
+          font-weight: bold
+          text-transform: uppercase
+          width: 100px

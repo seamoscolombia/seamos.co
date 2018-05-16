@@ -1,0 +1,283 @@
+@import './variables.scss'
+#client-navbar
+  background: rgba(80, 80, 80, 0.5)
+  display: flex 
+  align-items: center
+  .hide-on-mobile
+    a
+    @media screen and (max-width: $break-medium)
+      display: none !important
+  .hide-on-desktop
+    a
+    @media screen and (min-width: $break-medium)
+      display: none !important
+  a:focus
+    background-color: rgba(0, 0, 0, 0)
+  .navbar-collapse
+    height: 68px
+    display: flex
+    align-items: center
+    box-shadow: unset
+  .sfp-btn
+    position: absolute
+    width: 185px
+    left: 43%
+    @media screen and (max-width: $break-medium)
+      width: 86px
+      left: 41%
+    &:hover
+      background-color: rgba(80, 80, 80, 0.5)
+    img
+      width: 100%
+  .navbar-header
+    padding-left: 40px
+    @media screen and (max-width: $break-medium)
+      margin-left: 0
+    .only-photo
+      display: flex
+      position: absolute
+      right: 65px
+      top: 8px
+      width: 30px
+      li
+        color: transparent
+        pointer-events: none
+      button
+        background-color: transparent
+        color: transparent
+      .circle-separator
+        display: none
+    .navbar-brand
+      padding: 0px 0 10px 0
+      background-color: rgba(0, 0, 0, 0) !important
+      @media screen and (max-width: $break-medium)
+        padding: 0
+        display: flex
+        align-items: center
+      &:hover
+        background-color: rgba(0, 0, 0, 0) !important
+        border-radius: 10px
+      #brand-logo
+        background-size: cover
+        min-height: 50px
+        min-width: 140px
+        @media screen and (max-width: $break-medium)
+          background-size: contain
+          min-height: 29px
+    padding-left: 30px
+  .side-collapse
+    @media screen and (max-width: $break-medium)
+      width: 74%
+  .navbar-options
+    display: flex
+    align-items: center
+    margin-top: 6px !important
+    position: absolute
+    right: 40px
+    @media screen and (max-width: $break-medium)
+      padding-left: 20px
+      padding-top: 11px
+      right: auto
+      display: block
+      span.circle-separator
+        display: none
+    .login-buttons
+      margin-top: 220px
+    li
+      margin-right: 10px
+      margin-bottom: 10px
+    span.circle-separator
+      margin-top: -13px
+      margin-right: 7px
+    a
+      color: white
+      text-transform: uppercase
+      font-weight: bold
+      padding: 5px !important
+      @media screen and (max-width: $break-medium)
+        color: white
+      &:hover
+        background-color: #ec6257
+        border-radius: 3px
+        height: 33px
+        padding-top: 7px !important
+        -webkit-transition: background-color 0.3s linear
+        -ms-transition: background-color 0.3s linear
+        transition: background-color 0.3s linear
+  .nav-with-background
+    font-family: 'RobotoCondensed'
+    text-transform: uppercase
+    font-size: 13px
+    font-weight: bold
+    padding: 5px 5px !important
+    display: flex
+    align-items: center
+    background-color: transparent
+    color: white
+    border: 0px
+    @media screen and (max-width: $break-medium)
+      color: white
+    &:hover
+      background-color: #ec6257
+      border-radius: 3px
+      -webkit-transition: width 0.5s, background-color 0.5s linear
+      -ms-transition: width 0.5s, background-color 0.5s linear
+      transition: width 0.5s, background-color 0.5s linear
+  .about
+    width: 125px
+    .fa
+      margin-right: 7px
+      padding-right: 7px
+      line-height: 20px
+      border-right: 1px solid white
+  .nav-dropdown-options
+    font-family: 'RobotoCondensed'
+    text-transform: uppercase
+    font-weight: bold
+    padding: 5px 15px !important
+    display: flex
+    align-items: center
+    background-color: #44434c
+    color: white
+    @media screen and (max-width: $break-medium)
+      background-color: transparent
+      color: white
+    &:hover
+      background-color: #ec6257
+      height: 33px
+      padding-top: 7px !important
+      -webkit-transition: background-color 0.3s linear
+      -ms-transition: background-color 0.3s linear
+      transition: background-color 0.3s linear
+    .fa
+      margin-right: 7px
+      padding-right: 7px
+      line-height: 20px
+      border-right: 1px solid white
+  .nav-fb-profile
+    background-color: rgba(0, 0, 0, 0) !important
+  .nav-fb-logout
+    background-color: rgba(0, 0, 0, 0) !important
+
+  .dropdown
+    position: relative
+    display: inline-block
+    &:hover
+      cursor: default
+      .dropdown-content
+        display: block
+
+  .dropdown-content
+    position: absolute
+    left: -35px
+    top: 25px
+    background-color: black
+    padding: 12px 16px
+    z-index: 1
+    background-color: black !important
+    border-radius: 10px
+    visibility: hidden
+    opacity: 0
+    transition: visibility 0s, opacity 0.5s linear
+  .sidebar-social
+    position: absolute
+    bottom: 20px
+  .social-icons-wrapper
+    @media screen and (max-width: $break-medium)
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+    .social-icon
+      @media screen and (max-width: $break-medium)
+        margin: 8px
+        background-position: center center
+        background-size: cover
+        background-repeat: no-repeat
+        width: 33px
+        height: 31px
+        display: inline-flex
+      &:hover
+        cursor: pointer
+        width: 40px
+        height: 40px
+        background-color: rgba(60, 60, 60, 1)
+        border-radius: 21px
+  .dropdown:hover .dropdown-content
+    display: flex
+    visibility: visible
+    opacity: 1
+  .custom--dropdown
+    padding: 0 !important
+    background-color: rgba(0, 0, 0, 0.1)
+    top: 50px
+    right: -25px
+    li
+      margin: 0
+      text-align: center
+      button
+        margin: 10px
+  .custom--dropdown--about
+    left: 0 !important
+    min-width: 0 !important
+    padding: 0 !important
+    li
+      margin: 0
+      a
+        color: white !important
+        &:hover
+          background-color: #ec6257
+          height: auto
+      button
+        width: 100%
+
+.loginBtn
+  box-sizing: border-box
+  position: relative
+  margin: 0.2em
+  padding: 0 15px 0 46px
+  border: none
+  text-align: left
+  line-height: 34px
+  white-space: nowrap
+  font-size: 16px
+  color: #FFF
+  @media screen and (max-width: $break-medium)
+    padding: 0 7px 0 41px
+    font-size: 14px
+  &:before
+    content: ""
+    box-sizing: border-box
+    position: absolute
+    top: 0
+    left: 0
+    width: 34px
+    height: 100%
+  &:focus
+    outline: none
+  &:active
+    box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1)
+
+/* Facebook
+
+.loginBtn--facebook
+  background-color: #4267b2
+  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;
+  &:before
+    background-image: url(asset_path('facebook-logo-white.png'))
+    background-size: 70%
+    background-position: center center
+    background-repeat: no-repeat
+
+/* Google
+
+.loginBtn--google
+  /*font-family: "Roboto", Roboto, arial, sans-serif;
+  background: #DD4B39
+  &:before
+    background-image: url(asset_path('google-logo.svg'))
+    background-size: 130%
+    background-position: center center
+    background-repeat: no-repeat
+    // background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat
+  &:hover, &:focus
+    background: #E74B37

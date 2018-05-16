@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.3.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use Puma as the app server
@@ -20,8 +20,8 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-gem 'em-hiredis', '~> 0.3.1'
-gem 'redis', '~> 3.3.3'
+# gem 'em-hiredis', '~> 0.3.1'
+# gem 'redis', '~> 3.3.3'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -45,6 +45,12 @@ gem 'pg', '0.18.4'
 gem 'sidekiq', '~> 4.2.10'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'react_on_rails', '~> 7.0.4'
+gem 'rails_12factor', group: :production
+gem "cf-autoconfig", '~> 0.2.1'
+gem 'font-awesome-sass', '~> 4.7.0'
+gem 'tinymce-rails'
+gem 'meta-tags'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

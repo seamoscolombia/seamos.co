@@ -16,7 +16,7 @@ import {
 export default (state = [], action) => {
   switch (action.type) {
     case UPDATE_POLLS:
-      return Object.assign([], action.polls);
+      return Object.assign([], ...state, action.polls);
     default:
       return state;
   }

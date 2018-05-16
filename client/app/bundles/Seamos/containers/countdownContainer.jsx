@@ -8,7 +8,7 @@ class CountDownContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    const initialCounter = props.timerCount;
+    const initialCounter = props.initialTime;
 
     // Constants for calculations of the SVG circle
     this.goalTimeMillis = initialCounter * 1000;
@@ -20,11 +20,10 @@ class CountDownContainer extends React.Component {
     might not actually be 1ms due to system load etc.), the time is tracked
     with moments.
     */
-    this.startDateMoment = null;
     // The milliseconds since the timer was started (without considering pauses)
     this.timerDuration = 0;
     // The 'official' milliseconds - excluding time during pauses
-    this.elapsedTime = 0;
+    this.elapsedTime = (initialCounter - props.timerCount) * 1000;
     // This property will store the Observable for the timer countdown
     this.timerObservable = null;
 
@@ -61,14 +60,51 @@ class CountDownContainer extends React.Component {
       this.start();
     }
   }
+  shouldComponentUpdate(nextProps) {
+      if (this.props.timerCount !== nextProps.timerCount && this.props.initialTime !== nextProps.initialTime) {
+        this.goalTimeMillis = nextProps.initialTime * 1000;
+        this.degrees = 360 / (nextProps.initialTime * 1000);
+        this.elapsedTime = (nextProps.initialTime - nextProps.timerCount) * 1000;
+         this.timerObservable = null;
+
+    /*
+    This observable listens for a change in the resetTimerRequested prop.
+    It calls the local reset() function to reset local state, and also
+    the parent component's callback function to reset parental state.
+    */
+    this.timerResetObservable = Observable
+      .interval(10)
+      .subscribe(t => {
+        if (this.props.resetTimerRequested) {
+          this.reset();
+          // Call callback function in parent component
+          this.props.resetTimer();
+        }
+      });
+
+    // Changes to these properties will cause the browser to re-render
+    this.state = {
+      draw: null, // The SVG draw property
+      timerIsRunning: false
+    };
+
+    // Start in a 'reset' state
+    this.timerisReset = true;
+        // this.reset();
+      }
+      return true;
+  }
+
   componentWillUnmount() { this.reset(); }
   reset() {
+    this.pause();
     this.timerisReset = true;
     this.timerDuration = 0;
     this.elapsedTime = 0;
     // Re-render required
+
     this.setState({
-      draw: this.drawCoord(360),
+      draw: this.drawCoord(0),
       timerIsRunning: false
     });
     // We don't want multiple instances of the timer hanging around
@@ -119,7 +155,7 @@ class CountDownContainer extends React.Component {
       .interval(1)
       .subscribe(t => {
         // Update the timer duration
-        let currentDate = new Date();
+        const currentDate = new Date();
         this.timerDuration = this.elapsedTime + moment(currentDate).diff(moment(this.startDateMoment));
 
         // Update the state and draw another segment in the SVG
@@ -175,7 +211,7 @@ class CountDownContainer extends React.Component {
 
   timerText() {
     // Ideally we'd just use duration.format('mm:ss') but that is not yet supported in moment.js
-    // We could use utc().format('mm:ss'), but once the 
+    // We could use utc().format('mm:ss'), but once the
     // timer hits zero (and counts up), then UTC is not applicable.
 
     // This function does the job until duration.format() is supported.
@@ -197,7 +233,7 @@ class CountDownContainer extends React.Component {
       } else {
         const hours = (`00${Math.abs(duration.hours())}`).slice(-2);
         const minutes = (`00${Math.abs(duration.minutes())}`).slice(-2);
-        response += (`${hours}h:${minutes}m`); 
+        response += (`${hours}h:${minutes}m`);
       }
     }
     return response;
@@ -205,6 +241,9 @@ class CountDownContainer extends React.Component {
 
   render() {
     // The SVG is deterministic, so split out into a stateless component
+    if (this.timerDuration === 0) {
+      return null;
+    }
     return (
       <div style={{ userSelect: 'none', WebkitUserSelect: 'none' }}>
         <CountDown
@@ -222,6 +261,7 @@ class CountDownContainer extends React.Component {
 }
 
 CountDownContainer.propTypes = {
+  initialTime: PropTypes.number.isRequired,
   timerCount: PropTypes.number.isRequired,
   outerColor: PropTypes.string,
   innerColor: PropTypes.string,

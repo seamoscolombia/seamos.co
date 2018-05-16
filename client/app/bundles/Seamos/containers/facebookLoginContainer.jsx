@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FacebookLogin from 'react-facebook-login';
+import { APP_ID } from '../constants';
 
-import { validateUserSession } from '../actions';
+import { validateUserSession, validateSession } from '../actions';
 
-// const mapStateToProps = state => ({});
-const mapDispatchToProps = { validateUserSession };
+
+const mapDispatchToProps = { validateUserSession, validateSession };
 
 class FacebookLoginContainer extends Component {
   constructor(props) {
@@ -13,9 +14,12 @@ class FacebookLoginContainer extends Component {
     this.responseFacebook = this.responseFacebook.bind(this);
   }
 
-  responseFacebook(fbUser) { 
+  responseFacebook(fbUser) {
     if (fbUser.status !== 'unknown') {
-      this.props.validateUserSession(fbUser); 
+      this.props.validateUserSession(fbUser)
+      .then(() => {
+        this.props.validateSession();  
+      });
     }
   }
 
@@ -23,12 +27,13 @@ class FacebookLoginContainer extends Component {
     return (
       <FacebookLogin
         textButton={this.props.fbText || 'Login'}
-        appId="1790044307947630"
+        appId={APP_ID}
         autoLoad={false}
-        scope='user_location'
-        fields="id,location,first_name,last_name,email,picture.width(100)"
+        scope='user_location, email'
+        fields="id,location,first_name,last_name, email,picture.width(100)"
         callback={(fbUser) => this.responseFacebook(fbUser)}
         cssClass={this.props.fbclassName || 'my-facebook-button-class'}
+        disableMobileRedirect
       />
     );
   }

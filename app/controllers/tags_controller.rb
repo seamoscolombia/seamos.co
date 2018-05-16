@@ -61,7 +61,7 @@ class TagsController < ApplicationController
   private
 
   def tag_params
-    params.require(:tag).permit(:name, :tag_image, :tag_icon, :tag_color)
+    params.require(:tag).permit(:name, :tag_image, :tag_icon, :thumbnail, :tag_color)
   end
 
   def set_user

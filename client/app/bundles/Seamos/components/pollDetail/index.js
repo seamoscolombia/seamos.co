@@ -1,143 +1,303 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { ShareButtons } from 'react-share';
+import { Link } from 'react-router-dom';
 import CountDown from '../../containers/countdownContainer';
+import RelatedPolls from './../../containers/relatedPollsContainer';
+import Color from '../../utils/color';
 import SingleButton from './singleButton';
 import VotedButton from './votedButton';
+import { URL } from '../../constants';
+import MayInterestContainer from '../../containers/mayInterestContainer';
 
-const moreInfoStyle = { height: 150, overflowY: 'hidden' };
-const lessInfoStyle = { maxHeight: 9999, overflowY: 'none' };
+import FacebookLogin from '../../containers/facebookLoginContainer';
 
-function voteButton(pollType, voteTypes, voteAction) {
+const { FacebookShareButton } = ShareButtons;
+const { TwitterShareButton } = ShareButtons;
+
+const lessInfoStyle = { maxHeight: 9999, overflow: 'none' };
+const statusActiveStyle = { backgroundColor: 'yellow' };
+const statusInactiveStyle = { backgroundColor: 'gainsboro' };
+
+
+function getColorDependingOnTime(initial_time, remaining) {
+  const startColor = '00FF92';
+  const endColor = 'ff0000';
+  const colorObj = new Color({ initial_time, remaining, startColor, endColor });
+  return colorObj.interpolate();
+}
+
+function getDays(remaining) {
+  const remainingDays = ((remaining / 3600) / 24);
+  if (remainingDays < 0) {
+    return <span> propuesta cerrada</span>;
+  } else if (remaining < 3600 && remaining > 0) {
+    return <span> faltan {Math.round(remaining / 60)} minutos</span>;
+  } else if (remaining < 86400) {
+    return <span> faltan {Math.round(remaining / 3600)} horas</span>;
+  }
+  return <span> faltan {Math.round(remainingDays)} días</span>;
+}
+
+function externalLinks(links) {
+  return links.map(link =>
+    <div className='external-link'>
+      <a
+        href={link.url}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {link.url.substr(0, 50)}
+      </a>
+    </div>
+  );
+}
+
+function projectLink(link) {
+  if (link) {
+    return (<div className='project-link'>
+      <a
+        href={link}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {link.substr(0, 50)}
+      </a>
+    </div>
+    )
+  }
+}
+
+function statusImageLink(type, status) {
+  if (type == 0) {
+    return (
+      console.log('Voto o proyecto de acuerdo'),
+      <img src={"https://s3.amazonaws.com/poll-states/Control+Pol%C3%ADtico/ESTADOS+27+NOV+control+politico-0" + `${status}` + ".png"} className='state' />
+    );
+  } else {
+    return (
+      console.log('control politico'),
+      <img src={"https://s3.amazonaws.com/poll-states/Voto+o+Proyecto+de+Acuerdo/ESTADOS+27+NOV+PA+y+V-0" + `${status}` + ".png"} className='state' />
+    );
+  }
+}
+
+function voteButton(pollType, voteTypes, voteAction, session) {
   switch (pollType) {
     case 'signing': //2
-      return (<SingleButton 
+      return (<SingleButton
         name={voteTypes[0].name}
         onClick={() => { voteAction(voteTypes.id); }}
-      />); 
+      />);
     default:
-      return voteTypes.map(voteType => 
-        <SingleButton 
-          key={`${voteType.name}`}
-          name={voteType.name}
-          onClick={() => { voteAction(voteType.id); }}
-        />
-      ); 
+      if (!session.logged) {
+        return voteTypes.map(voteType =>
+          <FacebookLogin
+            key={`${voteType.name}`} fbclassName='btn single-button non-voted-button'
+            fbText={voteType.name}
+          />
+        );
+      } else {
+        return voteTypes.map(voteType =>
+          <SingleButton
+            key={`${voteType.name}`}
+            name={voteType.name}
+            onClick={() => { voteAction(voteType.id); }}
+          />
+        );
+      }
   }
 }
 
-function votedButton(pollType, voteTypes, vote_count) {
-    switch (pollType) {
+function shareTitle(user_already_voted, poll_title) {
+  if (user_already_voted) {
+                            return `Ya voté, vota por la propuesta: ${poll_title} en SeamOS`
+                          }
+                          return `Vota por la propuesta: ${poll_title} en SeamOS`
+}
+
+function votedButton(pollType, voteTypes, vote_count, is_closed) {
+  switch (pollType) {
     case 'signing': //2
-      return (<VotedButton 
-          count={voteTypes[0].count}
-          name={voteTypes[0].name}
-          total={vote_count}
-      />); 
+      return (<VotedButton
+        count={voteTypes[0].count}
+        name={voteTypes[0].name}
+        total={vote_count}
+      />);
     default:
-      return voteTypes.map(voteType => 
-        <VotedButton 
-          key={`${voteType.name}`} 
+      return voteTypes.map(voteType =>
+        <VotedButton
+          key={`${voteType.name}`}
           count={voteType.count}
-          name={voteType.name} 
+          name={voteType.name}
           total={vote_count}
+          closed={is_closed}
         />
-      ); 
+      );
   }
 }
 
-function getPicture(picture) {
-  // if (picture) {
-  //   return picture
-  // } 
+function projectLinkTitle(link) {
+  if (link) {
+    return <h5 className='external-links-title' style={{ marginTop: '54px' }}> Enlace Proyecto Concejal </h5>;
+  }
+  return null;
+}
+
+function externalLinksTitle(links) {
+  const linksPresent = links.length !== 0;
+  if (linksPresent) {
+    return <h5 className='external-links-title'> Enlaces Relacionados </h5>;
+  }
+  return null;
+}
+
+function getPicture(politician) {
+  if (politician.picture) {
+    return politician.picture
+  }
   return 'https://developers.google.com/experts/img/user/user-default.png';
 }
 
-const PollDetail = ({ 
-  id, title, image, remaining,
-  description, objective, vote_count,
-  user_already_voted, links, politician, 
-  poll_type, moreInfo, setMoreInfo, vote_types,
-  voteAction
-}) => (
-    <section id='poll-detail'>
-    <div className='conatiner'>
-      <header className='row'>
-        <p className='col-sm-12'>
-          { title }
-        </p>
-      </header> 
-      <section id='politician' className='row'>
-          <img 
-            src={getPicture(politician.picture)}
-            role='presentation'
-            alt='politician' 
-          />
-          <div id='author'>por {politician.full_name}</div>
-      </section>
-      <section id='poll' className='row'>
-        <div className="col-sm-6">
-          <img 
-            id='poll-thumbnail'
-            className='row'
-            src={image}
-            role='presentation'
-            alt='poll thumbnail' 
-          />
-          <br /><br />
-          <p id='objective' className='row'>Objetivo: {objective}</p>
+const PollDetail = ({
+                      id, title, image, remaining,
+                      description, objective, vote_count,
+                      user_already_voted, links, project_link,
+                      politician, type, vote_types,
+                      voteAction, tag, status, summary, session
+                    }) => (
+    <div id='poll-detail-global-wrapper'>
+      <section id='poll-detail'>
+        <div className="top-color-bar" style={{ backgroundColor: tag.color }} >
+          <div className="tag-name"> {tag.name} </div>
         </div>
-        <div className="col-sm-6">
-          <div className="row">
-            <div className="col-sm-12">
-               <p style={moreInfo ? lessInfoStyle : moreInfoStyle}>
-                { description }  
-              </p>
+        <div className='container'>
+          <section id='politician' className='row'>
+            <img
+              src={getPicture(politician)}
+              role='presentation'
+              alt='politician'
+            />
+            <div id='politician-info'>
+              <a
+                id='author'
+                href={`/#/proponents/${politician.id}`}
+              > {politician.full_name}
+              </a>
+              <div id='org'> {politician.organization} </div>
             </div>
-            <div className="col-sm-12">
-              <button onClick={setMoreInfo} id='plus-info'>
-                { moreInfo ? '-INFO' : '+INFO' }
-              </button>
-            </div>
-            <div className="col-sm-12">
-              <div className="row">
-                <div className="col-xs-9">
-                  { user_already_voted ? //eslint-disable-line
-                      votedButton(poll_type, vote_types, vote_count) :
-                      voteButton(poll_type, vote_types, voteAction) 
-                    }
+          </section>
+          <div className='share-wrapper'>
+            <span className='share-this hide-on-mobile'> COMPARTIR: </span>
+              <FacebookShareButton
+                url={`${URL}/client/polls/${id}`}
+                className="network__share-button"
+              >
+                <a
+                  className='fa fa-facebook'
+                  style={{display: 'block'}}
+                  rel='noopener noreferrer'
+                >
+                </a>
+                  <br />
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={`${URL}/client/polls/${id}`}
+                via='seamos'
+                title={shareTitle(user_already_voted, title)}
+                hashtags={['seamOSelcambio']}
+                className="network__share-button"
+              >
+                <a
+                  className='fa fa-twitter'
+                  style={{display: 'block'}}
+                  rel='noopener noreferrer'
+                >
+                </a>
+                  <br />
+              </TwitterShareButton>
+          </div>
+          <header className='row'>
+            <p className='col-sm-12 poll-title'>
+              {title}
+            </p>
+          </header>
+          <section id='poll' className='row'>
+            <div id='left-col' className="col-sm-4">
+              <div id='poll-image-container'>
+                <img
+                  id='poll-thumbnail'
+                  src={image}
+                  role='presentation'
+                  alt='poll thumbnail'
+                />
+              </div>
+              <div className='closed-ribbon-wrapper'>
+                <div className='closed-ribbon' style={{ display: `${remaining <= 0 ? 'flex' : 'none'}` }}>
+                  Propuesta Cerrada
                 </div>
-                <div className="col-xs-3">
-                  <CountDown
-                      timerCount={remaining}
-                      countdownColor="#66CCCC"
-                      innerColor="#fff"
-                      outerColor="#747272"
-                  />
+              </div>
+              <p id='objective' className='row' style={{display: 'none'}}><strong> Objetivo: </strong> {objective}</p>
+              <div id='poll-states'>
+                {statusImageLink(type, status)}
+              </div>
+              {projectLinkTitle(project_link)}
+              <div className='external-links-container'>
+                {projectLink(project_link)}
+              </div>
+              {externalLinksTitle(links)}
+              <div className='external-links-container'>
+                {externalLinks(links)}
+              </div>
+            </div>
+            <div className="col-sm-8">
+              <div className="row">
+                <div className="col-sm-12">
+                  <div className="row">
+                    <div className="col-xs-12 col-sm-6 buttons-wrapper">
+                      {user_already_voted || remaining <= 0 ?
+                        votedButton(type, vote_types, vote_count, remaining <= 0 ) :
+                        voteButton(type, vote_types, voteAction, session)
+                      }
+                    </div>
+                    <div className='col-xs-12 col-sm-12 poll-details'>
+                        { getDays(remaining) }
+                    </div>
+                  </div>
+                  <div className='summary'> {summary} </div>
+                </div>
+                <div className="poll-description-container col-sm-12">
+                  <div className="poll-static-title"> La Propuesta: </div>
+                  <div dangerouslySetInnerHTML={{ __html: description }} className="poll-description" style={lessInfoStyle}>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </section>
-    </div>      
-  </section>
-);
+      <MayInterestContainer />
+      <div className='spacer-small hide-on-desktop' />
+    </div>
+  );
 PollDetail.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  initial_time: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   objective: PropTypes.string.isRequired,
   remaining: PropTypes.number.isRequired,
   vote_count: PropTypes.number.isRequired,
-  poll_type: PropTypes.string.isRequired,
   user_already_voted: PropTypes.bool.isRequired,
   links: PropTypes.array.isRequired,
   politician: PropTypes.object.isRequired,
   moreInfo: PropTypes.bool,
+  tag: PropTypes.object.isRequired,
   vote_types: PropTypes.array,
-  voteAction: PropTypes.func.isRequired
+  voteAction: PropTypes.func.isRequired,
+  session: PropTypes.object
 };
 
 export default PollDetail;

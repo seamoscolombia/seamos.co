@@ -8,7 +8,8 @@ const Tags = ({ tags, action }) => (
     <section id='tags-component'>
       <div className='flex-container tags-box'>
         { tags.map(tag => (
-          <Link
+          <Link 
+           key={tag.id}
            to={`/tag/${tag.id}/polls`}
           >
           <Tag {...tag} key={tag.id} action={action} />

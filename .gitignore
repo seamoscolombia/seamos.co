@@ -39,10 +39,17 @@ node_modules
 
 client/node_modules/
 
+client/package-lock.json
+
 node_modules/
+
+/vendor/*
 
 \.vscode/launch\.json
 
 client/yarn\.lock
 DESKTOP_SEAMOS/
 MOV_SEAMOS/
+
+\.DS_Store
+bcrypt

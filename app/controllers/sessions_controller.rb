@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  protect_from_forgery with: :exception, except: [:create]
+  protect_from_forgery with: :exception, except: [:create, :destroy, :destroy_facebook_session]
   include SessionsHelper
 
   def admin_create
@@ -14,18 +14,18 @@ class SessionsController < ApplicationController
     end
   end
 
+  def show
+    render json: { session_initiated: current_user.present?,
+                   authenticity_token: form_authenticity_token
+                 }, status: :ok
+  end
+
   def create
-    if request.format.json?
-      uid = params[:uid]
-      session[:fb_token] = params[:fb_token]
-      session[:session_type] = "mobile"
-    else
-      puts  request.env['omniauth.auth']
-      uid = request.env['omniauth.auth']['uid']
-      session[:fb_token] = request.env['omniauth.auth']['credentials']['token']
-      session[:fb_image] = request.env['omniauth.auth']['info']['image']
-      session[:session_type] = "web"
-    end
+    uid = params[:uid]
+    session[:login_token] = params[:login_token]
+    session[:session_type] = "mobile"
+    session[:login_image] = params[:login_image]
+    session[:login_location] = params[:login_location]
     session[:uid] = uid
     @user = User.find_by(uid: uid)
     respond_to do |format|
@@ -47,11 +47,18 @@ class SessionsController < ApplicationController
     end
   end
 
-  def destroy
-    session[:email] = session[:uid] = session[:fb_token] = session[:fb_image] = session[:session_type] = nil
+  def destroy_facebook_session
+    reset_session
     respond_to do |format|
-      format.html { redirect_to root_path }
-      format.json { render json: {} , stats: :ok }
+      format.json { render json: {} , status: :ok }
+    end
+  end
+
+  def destroy
+    session[:email] = session[:session_type] = nil
+    respond_to do |format|
+      format.html { redirect_to admin_login_path }
+      format.json { render json: {} , status: :ok }
     end
   end
 
@@ -59,7 +66,7 @@ class SessionsController < ApplicationController
   end
 
   def new
-    if current_user
+    if current_user && current_user.administrador?
       redirect_to admin_dashboard_index_path
     end
   end

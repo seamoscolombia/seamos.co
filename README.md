@@ -45,7 +45,7 @@ start than the `rspec` command.
 **Returned attributes**: id, name, tag_image
 
 
-## Users 
+## Users
 
 ### User Interests List:
 
@@ -67,24 +67,24 @@ start than the `rspec` command.
 
 ### Polls list:
 
-** explanation **: This endpoint returns JSON with a list of all open polls were the user has not yet voted, arranged by vote count from major to minor 
+** explanation **: This endpoint returns JSON with a list of all open polls were the user has not yet voted, arranged by vote count from major to minor
 
-**endpoint**: `GET /polls.json` 
+**endpoint**: `GET /polls.json`
 
 **Returned attributes**: id, title, description, type
 
 ### Poll details:
 
-** explanation **: This endpoint returns JSON with the poll details. 
+** explanation **: This endpoint returns JSON with the poll details.
 
-**endpoint**: `GET /poll/:id.json` 
+**endpoint**: `GET /poll/:id.json`
 
 **Returned attributes**: id, title, description, type, objective, remaining, vote_count, links, politician
 
 
 ### Polls list by tag:
 
-** explanation **: This endpoint returns JSON with a list of all open polls arranged by vote count from major to minor for a determined Tag. 
+** explanation **: This endpoint returns JSON with a list of all open polls arranged by vote count from major to minor for a determined Tag.
 
 **endpoint**: `GET /tags/:tag_id/polls`
 
@@ -93,8 +93,8 @@ start than the `rspec` command.
 
 ### Polls list by politician:
 
-** explanation **: This endpoint returns JSON with a list of all open polls arranged by vote count from major to minor that were created by a determined politician. 
+** explanation **: This endpoint returns JSON with a list of all open polls arranged by vote count from major to minor that were created by a determined politician.
 
-**endpoint**: `GET /politician/:politician_id/polls` 
+**endpoint**: `GET /politician/:politician_id/polls`
 
 **Returned attributes**: id, title, description, type

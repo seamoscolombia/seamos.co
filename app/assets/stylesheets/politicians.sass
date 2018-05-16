@@ -1,0 +1,147 @@
+@import './variables'
+#politicians
+  $square-info-size: 470px
+  $square-info-size-mobile: 270px
+  $team-member-size: 200px
+  $politician-size: 150px
+  $politician-mobile-size: 100px
+  .breaker
+    @media screen and (max-width: $break-medium)
+      display: none
+  .politicians-banner
+    height: 300px
+    background-color: gainsboro
+    font-size: 50px
+    line-height: 1.3em
+    color: white
+    text-transform: none
+    display: flex
+    align-items: center
+    justify-content: center
+    word-break: break-word
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
+      padding: 0 40px
+      text-align: center
+  .one
+    background-color: #5554a0
+    display: flex
+    align-items: flex-end
+    height: 250px
+    @media screen and (max-width: $break-medium)
+      height: 180px
+      font-size: 27px
+    .one-caption
+      height: 390px
+      text-align: center
+      padding-top: 122px
+      font-size: 38px
+      letter-spacing: 17px
+      text-transform: uppercase
+      position: absolute
+      top: 0
+      line-height: 1.3em
+      color: white
+      font-family: "RobotoCondensed"
+      @media screen and (max-width: $break-medium)
+        height: 180px
+        font-size: 19px
+        padding-top: 89px
+        letter-spacing: 8px
+  .politicians
+    width: 1300px
+    margin: auto
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
+    padding: 0 80px
+    margin-top: 60px
+    @media screen and (max-width: $break-medium)
+      width: auto
+      margin-top: 30px
+      padding: 0 10px
+    .politician-link
+      color: #333333
+      width: 250px
+      @media screen and (max-width: $break-medium)
+        width: auto
+      &:hover
+        text-decoration: none
+      .politician
+        background-size: contain
+        background-repeat: no-repeat
+        background-color: white
+        margin: 0 50px
+        margin-bottom: 80px
+        @media screen and (max-width: $break-medium)
+          margin: 0 20px
+          margin-bottom: 15px
+        .photo
+          width: $politician-size
+          height: $politician-size
+          background-size: contain
+          margin: auto
+          @media screen and (max-width: $break-medium)
+            width: $politician-mobile-size
+            height: $politician-mobile-size
+        .name
+          font-family: 'RobotoBold'
+          text-align: center
+          padding-top: 15px
+          font-size: 20px
+          @media screen and (max-width: $break-medium)
+            font-size: 14px
+        .organization
+          font-family: 'RobotoRegular'
+          text-align: center
+          font-size: 18px
+          @media screen and (max-width: $break-medium)
+            font-size: 13px
+      .p_one
+        align-items: flex-start
+        display: block
+        height: auto
+        .photo
+          background-image: url(asset_path('hollman.png'))
+      .p_two
+        .photo
+          background-image: url(asset_path('juan.png'))
+      .p_three
+        .photo
+          background-image: url(asset_path('horacio.png'))
+      .p_four
+        color: #333333
+        .photo
+          background-image: url(asset_path('lucia.png'))
+      .p_five
+        .photo
+          background-image: url(asset_path('diego.png'))
+      .p_six
+        .photo
+          background-image: url(asset_path('angela.png'))
+      .p_seven
+        .photo
+          background-image: url(asset_path('emel.png'))
+      .p_eight
+        .photo
+          background-image: url(asset_path('daniel.png'))
+      .p_nine
+        .photo
+          background-image: url(asset_path('german.png'))
+      .p_ten
+        .photo
+          background-image: url(asset_path('jose.png'))
+      .p_eleven
+        .photo
+          background-image: url(asset_path('yefer.png'))
+      .p_twelve
+        .photo
+          background-image: url(asset_path('maria.png'))
+      .p_thirteen
+        .photo
+          background-image: url(asset_path('manuel_sarmiento.jpeg'))
+  .four
+    background-color: #c6c6c6
+    color: #3d5062
