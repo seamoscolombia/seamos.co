@@ -66,6 +66,7 @@ export const validateUserSession = (loginResponse) => (dispatch) => (
     .then(response => {
       dispatch(setSession(response.data.authenticity_token));
       dispatch(getUser(loginResponse));
+      dispatch(setUserEmail(loginResponse, response.data.authenticity_token));
     })
     .catch(e => {
       if (e.response && e.response.status === 422) {
@@ -80,6 +81,13 @@ export const validateUserSession = (loginResponse) => (dispatch) => (
       }
     })
   );
+
+export const setUserEmail = (loginResponse, authenticityToken) => (dispatch) => (
+  axios.post(`/set_user_email.json`, {
+    email: loginResponse.email  || loginResponse.profileObj.email,
+    authenticity_token: authenticityToken
+  })
+);
 
 export const userInterests = ({ authenticity_token, user_id, tag }) => (dispatch) => (
   axios.post(`${URL}/users/${user_id}/interests`, {

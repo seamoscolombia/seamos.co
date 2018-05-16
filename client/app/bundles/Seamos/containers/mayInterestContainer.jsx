@@ -20,7 +20,7 @@ class MayInterestContainer extends Component {
       return(
         <div>
           <div className='row interest-banner one-mod'>
-            Tambien te puede interesar
+            También te puede interesar
           </div>
           <MayInterest {...this.props} />
         </div>

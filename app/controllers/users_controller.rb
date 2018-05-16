@@ -42,6 +42,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def set_user_email
+    respond_to do |format|
+      format.json do
+        if current_user.email.nil?
+          current_user.email = params[:email] 
+          current_user.save
+        end
+      end
+    end
+  end
+
   def edit
     users_exist
   end
