@@ -9,8 +9,11 @@ class UserNotifierMailer < ApplicationMailer
     :subject => 'Ahora estas suscrito al newsletter de SeamOS' )
   end
 
-  def send_general_message(message)
-    @message = message
-    mail( to: 'yonnyquiceno@gmail.com', subject: message[:subject], content: message[:content] )
+  def send_general_message(subject, top_image_url, content, recipient)
+    @subject = subject
+    @content = content
+    @recipient = recipient
+    @top_image_url = top_image_url
+    mail( to: recipient, subject: subject, content: content )
   end
 end

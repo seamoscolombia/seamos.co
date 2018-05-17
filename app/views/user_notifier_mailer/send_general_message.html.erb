@@ -16,15 +16,34 @@
         background-color: white;
         border-radius: 6px;
         margin: auto;
+        position: relative;
       }
       .message-container .message-wrapper .message-header img {
-        height: 50px;
+        height: 70px;
+        margin: auto
       }
 
       .message-container .message-wrapper .message-header {
         text-align: center;
         margin-top: 0px;
-        padding-top: 60px;
+        position: absolute;
+        width: 100%;
+        height: 200px;
+        background-color: #f6f7f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .message-container .message-wrapper .top-image-container img {
+        width: 100%;
+        height: auto;
+      }
+      
+      .message-container .message-wrapper .top-image-container {
+        margin-top: -4px;
+        height: 230px;
+        overflow: hidden;
       }
 
       .message-container .message-wrapper .message-body p {
@@ -32,7 +51,9 @@
       }
 
       .message-container .message-wrapper .message-body {
-        padding: 60px;
+        position: relative;
+        top: 200px;
+        padding: 30px 60px;
       }
 
       .message-container .message-wrapper .message-body .message-title {
@@ -46,7 +67,7 @@
         height: 230px;
         position: relative;
         bottom: 0;
-        padding-top: 1px
+        padding-top: 1px;
       }
       @media screen and (max-width: 770px) {
         #client-footer {
@@ -120,12 +141,26 @@
   </head>
   <div class="message-container">
     <div class="message-wrapper">
-      <div class="message-header">
-        <img src="https://s3.amazonaws.com/misc-assets-seamos/logo-color.png"></img>
-      </div>
-      <div class='message-body'>
-        <p class='message-title'> Hola <%= @message[:user_name]%>, tenemos algo qué contarte:</p>
-        <p><%= @message[:content].html_safe %></p>
+      <% if @top_image_url.present? %>
+        <div class="top-image-container" style="position: absolute">
+          <%= image_tag @top_image_url %>
+        </div>
+      <% else %>
+        <div class="message-header">
+          <img src="https://s3.amazonaws.com/misc-assets-seamos/logo-color.png"></img>
+        </div>
+      <% end %>
+      <div class='message-body' style='position: relative; top: 200px;'>
+        <p class='message-title'>
+          <% if request && (request.path == mail_preview_path) %>
+            <%= "Hola usuario de prueba, tenemos algo qué contarte:" %>
+          <% else %>
+            <%= "Hola #{@recipient.split('@')[0]}!" %>
+          <% end %>
+        </p>
+        <span>
+          <%= @content.html_safe %>
+        </span>
       </div>
       <div id='client-footer' class="noprint">
         <div class='logo-container'>

@@ -3,7 +3,7 @@ class Message
   include ActiveModel::Conversion
   extend ActiveModel::Naming
   
-  attr_accessor :sender, :receivers, :subject, :content, :user_name
+  attr_accessor :sender, :receivers, :subject, :content, :user_name, :email_list_id, :top_image_url
   
   validates_presence_of :subject
   # validates_format_of :sender, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i

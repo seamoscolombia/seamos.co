@@ -1,18 +1,29 @@
 
 <%= tinymce_assets %>
 <%= tinymce plugins: ["wordcount", "paste", "image"] %>
-<%= form_for :message do |f| %>
-  <div class='field'>
-    <%= f.label "Asunto"%><br>
-    <%= f.text_field :subject, required: 'true' %>
-  </div>
+<div class="col-md-6 col-md-offset-3">
+  <%= form_for :message do |f| %>
+    <div class='field'>
+      <%= f.label "Asunto"%><br>
+      <%= f.text_field :subject, class: 'form-control', required: 'true' %>
+    </div>
 
-  <div class='field'>
-    <%= f.text_area :content %>
-  </div>
+    <div class='field'>
+      <%= f.label "url de imagen principal (opcional)"%><br>
+      <%= f.text_field :top_image_url, class: 'form-control' %>
+    </div>
 
-  <%= f.hidden_field :user_name, value: 'celia cruz' %>
+    <div class='field'>
+      <%= f.label "Destinatarios"%><br>
+      <%= f.collection_select( :email_list_id, EmailList.all, :id, :name, {prompt: true}, {class: 'form-control', required: true}) %>
+    </div>
 
-  <%= f.submit %>
-  <%= link_to "previsualizar", '/', id: 'message-preview' %>
-<% end %>
+    <div class='field'>
+      <%= f.text_area :content, class: 'form-control tinymce', required: true %>
+    </div>
+    <br></br>
+
+    <%= f.submit "Enviar Mensaje", class: 'btn btn-info' %>
+  <% end %>
+</div>
+<script type="text/javascript" src="/assets/tinymce.js">

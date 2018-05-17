@@ -1,6 +1,7 @@
 class SubscriptionsController < ApplicationController
 
   protect_from_forgery except: :create
+  before_action :validate_admin_user, only: :destroy
 
   def create
     @subscription = Subscription.new(subscription_params)
@@ -17,6 +18,18 @@ class SubscriptionsController < ApplicationController
         success: false
       }
     end
+  end
+
+  def destroy
+    @subscription = Subscription.find_by(id: params[:id])
+    @subscription.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
+  private
+
+  def validate_admin_user
+    redirect_to :root unless current_user && current_user.role_type = 'administrador'
   end
 
   def subscription_params

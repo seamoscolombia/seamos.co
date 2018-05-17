@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root 'intro#inicio'
 
   resources :photos, only: :create
-  resources :subscriptions, only: :create
+  resources :subscriptions, only: [:create, :destroy]
   resources :facebookob, only: :index
   get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
   resources :users , except: [:show] do
@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   get '/tags', to: 'tags#index'
   resources :admin, only: [:create, :new, :edit]
   scope '/admin', as: :admin do
+    resources :email_lists
     get '/mail', to: 'messages#new'
     post '/mail', to: 'messages#create'
     get '/mail_preview', to: 'messages#preview'
