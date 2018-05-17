@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171023213759) do
+ActiveRecord::Schema.define(version: 20180516211739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,13 @@ ActiveRecord::Schema.define(version: 20171023213759) do
 
   create_table "document_photos", force: :cascade do |t|
     t.string   "url",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "email_lists", force: :cascade do |t|
+    t.string   "name"
+    t.string   "identifier"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -158,8 +165,10 @@ ActiveRecord::Schema.define(version: 20171023213759) do
 
   create_table "subscriptions", force: :cascade do |t|
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "email_list_id"
+    t.index ["email_list_id"], name: "index_subscriptions_on_email_list_id", using: :btree
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -259,6 +268,7 @@ ActiveRecord::Schema.define(version: 20171023213759) do
   add_foreign_key "poll_states", "polls"
   add_foreign_key "polls", "users"
   add_foreign_key "questions", "debates"
+  add_foreign_key "subscriptions", "email_lists"
   add_foreign_key "taggings", "polls"
   add_foreign_key "taggings", "tags"
   add_foreign_key "users", "document_photos"

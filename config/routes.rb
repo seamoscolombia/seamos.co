@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root 'intro#inicio'
 
   resources :photos, only: :create
-  resources :subscriptions, only: :create
+  resources :subscriptions, only: [:create, :destroy]
   resources :facebookob, only: :index
   get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
   resources :users , except: [:show] do
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   delete '/sessions', to: 'sessions#destroy', as: 'session'
   delete '/destroy_facebook_session', to: 'sessions#destroy_facebook_session'
   post '/sessions', to: 'sessions#create', format: 'json'
+  get '/mail_preview', to: 'messages#preview'
 
   get '/auth/sessions', to: 'sessions#error'
   get '/tags/:tag_id/polls', to: 'polls#filtered_by_tag', format: 'json'
@@ -50,6 +51,10 @@ Rails.application.routes.draw do
   get '/tags', to: 'tags#index'
   resources :admin, only: [:create, :new, :edit]
   scope '/admin', as: :admin do
+    resources :email_lists
+    get '/mail', to: 'messages#new'
+    post '/mail', to: 'messages#create'
+    get '/mail_preview', to: 'messages#preview'
     # get '/', to: 'sessions#new'
     post '/tags', to: 'tags#create'
     get '/tags/new', to: 'tags#new'

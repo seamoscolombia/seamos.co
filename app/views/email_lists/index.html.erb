@@ -1,0 +1,35 @@
+<div id='email_list_index' class="col-md-6 col-md-offset-3">
+  <div id='new-list-button-container'>
+    <%= link_to "crear nueva lista", new_admin_email_list_path, class: 'btn btn-info' %>
+  </div>
+  <div class="email_list-list">
+    <div class="email_lists-container">
+      <% @email_lists.reverse_each do |email_list|%>
+        <h1>
+          <%= email_list.name %>
+          <span class="delete">
+            <%= link_to admin_email_list_path(email_list.id), title: "Eliminar", method: :delete, data: {confirm: "está seguro de que desea eliminar la lista #{email_list.name}?"} do %>
+            <i class="glyphicon glyphicon-remove-circle"></i>
+            <% end %>
+          </span>
+        </h1>
+        <% email_list.subscriptions.reverse_each do |subscription|%>
+          <span class="content" style="border-right: 1px solid black; padding: 0 10px">
+            <span>
+              <span class="name">
+                <%= subscription.email %>
+              </span>
+              <span class="options">
+                <span class="delete">
+                  <%= link_to subscription_path(subscription.id), title: "Eliminar", method: :delete, data: {confirm: "está seguro de que desea eliminar el correo #{subscription.email}?"} do %>
+                  <i class="glyphicon glyphicon-remove-circle"></i>
+                  <% end %>
+                </span>
+              </span>
+            </span>
+          </span>
+        <%end%>
+      <%end%>
+    </div>
+  </div>
+</div>
