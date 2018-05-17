@@ -22,6 +22,10 @@
         height: 70px;
         margin: auto
       }
+      .message-container .message-wrapper img {
+        max-width: 100%;
+        height: auto
+      }
 
       .message-container .message-wrapper .message-header {
         text-align: center;
@@ -107,6 +111,13 @@
       @media screen and (max-width: 770px) {
         #client-footer .disclaimer-container {
           margin: 22px 0 4px 0;
+        }
+        .message-container .message-wrapper {
+          width: 95%
+        }
+        .message-container .message-wrapper .message-body {
+          padding: 30px 20px;
+          margin: initial;
         }
       }
       #client-footer .disclaimer-container .disclaimer {
