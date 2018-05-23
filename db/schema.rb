@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180516211739) do
+ActiveRecord::Schema.define(version: 20180517173558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,56 +24,6 @@ ActiveRecord::Schema.define(version: 20180516211739) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_academic_titles_on_user_id", using: :btree
-  end
-
-  create_table "causes", force: :cascade do |t|
-    t.text     "description"
-    t.string   "title"
-    t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["user_id"], name: "index_causes_on_user_id", using: :btree
-  end
-
-  create_table "coldocuments", id: false, force: :cascade do |t|
-    t.bigint "doc_num"
-    t.bigint "divipol_id"
-    t.index ["divipol_id"], name: "index_coldocuments_on_divipol_id", using: :btree
-    t.index ["doc_num"], name: "index_coldocuments_on_doc_num", using: :btree
-  end
-
-  create_table "debate_votes", force: :cascade do |t|
-    t.integer  "question_id"
-    t.integer  "user_id"
-    t.integer  "debate_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["debate_id"], name: "index_debate_votes_on_debate_id", using: :btree
-    t.index ["question_id"], name: "index_debate_votes_on_question_id", using: :btree
-    t.index ["user_id"], name: "index_debate_votes_on_user_id", using: :btree
-  end
-
-  create_table "debates", force: :cascade do |t|
-    t.string   "title"
-    t.boolean  "published",  default: false
-    t.integer  "poll_id"
-    t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.index ["poll_id"], name: "index_debates_on_poll_id", using: :btree
-    t.index ["user_id"], name: "index_debates_on_user_id", using: :btree
-  end
-
-  create_table "departamentos", force: :cascade do |t|
-    t.string   "nombre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "document_photos", force: :cascade do |t|
-    t.string   "url",        null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "email_lists", force: :cascade do |t|
@@ -92,14 +42,6 @@ ActiveRecord::Schema.define(version: 20180516211739) do
     t.index ["poll_id"], name: "index_external_links_on_poll_id", using: :btree
   end
 
-  create_table "globals", force: :cascade do |t|
-    t.string   "code",       null: false
-    t.string   "value",      null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_globals_on_code", unique: true, using: :btree
-  end
-
   create_table "interests", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "user_id"
@@ -107,24 +49,6 @@ ActiveRecord::Schema.define(version: 20180516211739) do
     t.datetime "updated_at", null: false
     t.index ["tag_id"], name: "index_interests_on_tag_id", using: :btree
     t.index ["user_id"], name: "index_interests_on_user_id", using: :btree
-  end
-
-  create_table "municipios", force: :cascade do |t|
-    t.string   "nombre"
-    t.integer  "departamento_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["departamento_id"], name: "index_municipios_on_departamento_id", using: :btree
-  end
-
-  create_table "poll_states", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "status"
-    t.integer  "ordinal_position"
-    t.integer  "poll_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["poll_id"], name: "index_poll_states_on_poll_id", using: :btree
   end
 
   create_table "polls", force: :cascade do |t|
@@ -146,14 +70,6 @@ ActiveRecord::Schema.define(version: 20180516211739) do
     t.string   "closing_hour"
     t.index ["title"], name: "index_polls_on_title", using: :btree
     t.index ["user_id"], name: "index_polls_on_user_id", using: :btree
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.string   "description", null: false
-    t.integer  "debate_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["debate_id"], name: "index_questions_on_debate_id", using: :btree
   end
 
   create_table "roles", force: :cascade do |t|
@@ -191,25 +107,16 @@ ActiveRecord::Schema.define(version: 20180516211739) do
     t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
 
-  create_table "tipo_de_documentos", force: :cascade do |t|
-    t.string   "codigo",     null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["codigo"], name: "index_tipo_de_documentos_on_codigo", unique: true, using: :btree
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "first_surname"
     t.string   "second_surname"
     t.string   "names"
-    t.integer  "tipo_de_documento_id"
     t.string   "document_number"
     t.date     "expedition_date"
     t.string   "uid"
     t.boolean  "approved"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
-    t.integer  "document_photo_id"
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
@@ -230,9 +137,6 @@ ActiveRecord::Schema.define(version: 20180516211739) do
     t.text     "proposed_initiatives_to_date"
     t.string   "twitter_username"
     t.index ["document_number"], name: "index_users_on_document_number", using: :btree
-    t.index ["document_photo_id"], name: "index_users_on_document_photo_id", using: :btree
-    t.index ["tipo_de_documento_id", "document_number"], name: "index_users_on_tipo_de_documento_id_and_document_number", unique: true, using: :btree
-    t.index ["tipo_de_documento_id"], name: "index_users_on_tipo_de_documento_id", using: :btree
     t.index ["uid"], name: "index_users_on_uid", unique: true, using: :btree
   end
 
@@ -256,23 +160,13 @@ ActiveRecord::Schema.define(version: 20180516211739) do
   end
 
   add_foreign_key "academic_titles", "users"
-  add_foreign_key "causes", "users"
-  add_foreign_key "debate_votes", "debates"
-  add_foreign_key "debate_votes", "users"
-  add_foreign_key "debates", "polls"
-  add_foreign_key "debates", "users"
   add_foreign_key "external_links", "polls"
   add_foreign_key "interests", "tags"
   add_foreign_key "interests", "users"
-  add_foreign_key "municipios", "departamentos"
-  add_foreign_key "poll_states", "polls"
   add_foreign_key "polls", "users"
-  add_foreign_key "questions", "debates"
   add_foreign_key "subscriptions", "email_lists"
   add_foreign_key "taggings", "polls"
   add_foreign_key "taggings", "tags"
-  add_foreign_key "users", "document_photos"
-  add_foreign_key "users", "tipo_de_documentos"
   add_foreign_key "vote_types", "polls"
   add_foreign_key "votes", "polls"
   add_foreign_key "votes", "users"
