@@ -9,6 +9,7 @@
 #  tag_image  :string
 #  tag_icon   :string
 #  tag_color  :string
+#  thumbnail  :string
 #
 
 class Tag < ApplicationRecord

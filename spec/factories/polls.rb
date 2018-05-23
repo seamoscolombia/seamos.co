@@ -15,6 +15,10 @@
 #  poll_document :string
 #  poll_type     :integer
 #  objective     :string
+#  summary       :string
+#  question      :string
+#  state         :integer
+#  closing_hour  :string
 #
 
 FactoryGirl.define do
