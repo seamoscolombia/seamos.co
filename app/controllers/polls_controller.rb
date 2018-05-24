@@ -1,18 +1,3 @@
-# == Schema Information
-#
-# Table name: polls
-#
-#  id           :integer          not null, primary key
-#  title        :string           not null
-#  description  :text             not null
-#  closing_date :date             not null
-#  user_id   :integer
-#  totals       :string
-#  url_image    :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#
-
 class PollsController < ApplicationController
   include SessionsHelper
   before_action :validate_poll_closed?, only: :show

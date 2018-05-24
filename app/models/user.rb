@@ -6,8 +6,6 @@
 #  first_surname                             :string
 #  second_surname                            :string
 #  names                                     :string
-#  document_number                           :string
-#  expedition_date                           :date
 #  uid                                       :string
 #  approved                                  :boolean
 #  created_at                                :datetime         not null
