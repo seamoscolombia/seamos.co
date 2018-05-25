@@ -8,7 +8,6 @@ json.user do
   json.twitter @user.twitter_username
   json.bio @user.bio
   json.picture @user.admin_photo.url
-  json.further_studies @user.further_studies
   json.commission @user.current_corporation_commission
   json.initiatives @user.proposed_initiatives_to_date
   json.last_vote_count @user.last_election_vote_count
