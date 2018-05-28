@@ -61,18 +61,11 @@ RSpec.describe User, type: :model do
       end
     end
     it { should validate_presence_of(:first_surname) }
-    it { should validate_presence_of(:second_surname) }
     it { should validate_presence_of(:names) }
     it { should validate_presence_of(:role_type) }
 
     describe '#first_surname' do
       it { should_not allow_value('surname123').for(:first_surname) }
-    end
-    describe '#second_surname' do
-      it { should_not allow_value('surname123').for(:second_surname) }
-    end
-    describe '#names' do
-      it { should_not allow_value('name123').for(:second_surname) }
     end
   end
 
@@ -101,25 +94,7 @@ RSpec.describe User, type: :model do
       end
     end
   end
-
-  describe 'User#debate_already_voted?' do
-    let(:user) { FactoryGirl.create(:user) }
-    let(:voted_debate) { FactoryGirl.create(:debate_with_debate_votes) }
-    let(:non_voted_debate) { FactoryGirl.create(:debate_with_debate_votes) }
-    context 'when user has already votes for in a debate' do
-      it 'returns true' do
-        debate_votes = voted_debate.debate_votes
-        debate_votes.first.update(user: user)
-        expect(user.debate_already_voted?(voted_debate)).to be true
-      end
-    end
-    context 'when user has not voted for in a debate' do
-      it 'returns false' do
-        expect(user.debate_already_voted?(:non_voted_debate)).to be false
-      end
-    end
-  end
-
+  
   describe 'User.get_admin()' do
     let(:admin_user) { FactoryGirl.create(:user, role_type: 2) }
     let(:non_admin_user) { FactoryGirl.create(:user, role_type: 0) }

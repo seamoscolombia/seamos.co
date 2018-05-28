@@ -19,7 +19,7 @@ RSpec.describe PollsController, type: :controller do
         end
         3.times { closed_polls << FactoryGirl.create(:poll, closing_date: Date.today - 3.days) }
         get :index, format: :json
-        expect(assigns(:polls)).to match_array(open_and_non_voted_polls)
+        expect(assigns(:polls)).to match_array(open_and_non_voted_polls.first(2))
       end
 
       it 'does not assign closed polls to @polls' do
@@ -232,7 +232,7 @@ RSpec.describe PollsController, type: :controller do
       it 'renders the edit template' do
         session[:email] = user.email
         get :edit, params: {id: poll.id}
-        expect(response).to redirect_to(root_path)
+        expect(response).to render_template(:edit)
       end
     end
   end
