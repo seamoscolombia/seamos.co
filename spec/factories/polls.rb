@@ -2,19 +2,22 @@
 #
 # Table name: polls
 #
-#  id            :integer          not null, primary key
-#  title         :string           not null
-#  description   :text             not null
-#  closing_date  :date             not null
-#  user_id       :integer
-#  totals        :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  poll_image    :string
-#  active        :boolean          default(TRUE)
-#  poll_document :string
-#  poll_type     :integer
-#  objective     :string
+#  id           :integer          not null, primary key
+#  title        :string           not null
+#  description  :text             not null
+#  closing_date :date             not null
+#  user_id      :integer
+#  totals       :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  poll_image   :string
+#  active       :boolean          default(TRUE)
+#  poll_type    :integer
+#  objective    :string
+#  summary      :string
+#  question     :string
+#  state        :integer
+#  closing_hour :string
 #
 
 FactoryGirl.define do

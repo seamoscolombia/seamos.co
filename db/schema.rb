@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180517173558) do
+ActiveRecord::Schema.define(version: 20180524131258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,16 +52,15 @@ ActiveRecord::Schema.define(version: 20180517173558) do
   end
 
   create_table "polls", force: :cascade do |t|
-    t.string   "title",                        null: false
-    t.text     "description",                  null: false
-    t.date     "closing_date",                 null: false
+    t.string   "title",                       null: false
+    t.text     "description",                 null: false
+    t.date     "closing_date",                null: false
     t.integer  "user_id"
     t.string   "totals"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "poll_image"
-    t.boolean  "active",        default: true
-    t.string   "poll_document"
+    t.boolean  "active",       default: true
     t.integer  "poll_type"
     t.string   "objective"
     t.string   "summary"
@@ -111,8 +110,6 @@ ActiveRecord::Schema.define(version: 20180517173558) do
     t.string   "first_surname"
     t.string   "second_surname"
     t.string   "names"
-    t.string   "document_number"
-    t.date     "expedition_date"
     t.string   "uid"
     t.boolean  "approved"
     t.datetime "created_at",                                null: false
@@ -136,7 +133,6 @@ ActiveRecord::Schema.define(version: 20180517173558) do
     t.integer  "current_corporation_commission"
     t.text     "proposed_initiatives_to_date"
     t.string   "twitter_username"
-    t.index ["document_number"], name: "index_users_on_document_number", using: :btree
     t.index ["uid"], name: "index_users_on_uid", unique: true, using: :btree
   end
 

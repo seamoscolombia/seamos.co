@@ -2,22 +2,33 @@
 #
 # Table name: users
 #
-#  id                   :integer          not null, primary key
-#  first_surname        :string
-#  second_surname       :string
-#  names                :string
-#  tipo_de_documento_id :integer
-#  document_number      :string
-#  expedition_date      :date
-#  uid                  :string
-#  approved             :boolean
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  document_photo_id    :integer
-#  email                :string
-#  password_hash        :string
-#  password_salt        :string
-#  role_type            :integer
+#  id                                        :integer          not null, primary key
+#  first_surname                             :string
+#  second_surname                            :string
+#  names                                     :string
+#  uid                                       :string
+#  approved                                  :boolean
+#  created_at                                :datetime         not null
+#  updated_at                                :datetime         not null
+#  email                                     :string
+#  password_hash                             :string
+#  password_salt                             :string
+#  role_type                                 :integer
+#  admin_photo                               :string
+#  organization                              :string
+#  bio                                       :string
+#  birthday                                  :date
+#  birthplace                                :string
+#  profession                                :string
+#  university                                :string
+#  further_studies                           :text
+#  last_election_vote_count                  :integer
+#  represented_organizations                 :text
+#  major_electoral_representation_localities :string
+#  other_periods_elected                     :string
+#  current_corporation_commission            :integer
+#  proposed_initiatives_to_date              :text
+#  twitter_username                          :string
 #
 
 class User < ApplicationRecord
@@ -27,11 +38,9 @@ class User < ApplicationRecord
 
   before_save :encrypt_password_for_admin
 
-  has_many  :causes
   has_many  :polls,  dependent: :destroy
   has_many  :voted_polls, source: 'poll', through: 'votes', foreign_key: 'poll_id'
   has_many  :votes, dependent: :destroy
-  has_many  :debate_votes, dependent: :destroy
   has_many :interests, dependent: :destroy
   has_many :tags, -> { distinct }, through: :interests
 
