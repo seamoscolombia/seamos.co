@@ -45,14 +45,13 @@ RSpec.describe TagsController, type: :controller do
 
   describe 'POST create' do
     let(:user) { FactoryGirl.create(:user, role_type: 2) }
+    let(:new_tag_params) { FactoryGirl.attributes_for(:tag, name: 'newtag') }
     before(:each) do
       Tag.destroy_all
+      allow_any_instance_of(Tag).to receive(:valid?).and_return(true)
       session[:email] = user.email
       post :create, params: {
-        tag: {
-          name: 'newtag',
-          tag_image: File.open("#{Rails.root}/spec/support/image.png", 'r')
-        }
+        tag: new_tag_params
       }
     end
     it 'Creates a new tag' do

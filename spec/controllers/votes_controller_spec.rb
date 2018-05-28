@@ -10,8 +10,10 @@ RSpec.describe VotesController, type: :controller do
     let(:poll) { FactoryGirl.create(:poll) }
     let(:vote_type) { FactoryGirl.create(:vote_type, poll: poll) }
     it 'creates a vote' do
+      previous_count = Vote.count
       post :create, params: { vote: { vote_type_id: vote_type.id } }
-      expect(response).to have_http_status(:found)
+      new_count = Vote.count
+      expect(previous_count).not_to be eq(new_count)
     end
   end
 end
