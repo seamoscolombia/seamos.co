@@ -27,9 +27,7 @@ RSpec.describe Poll, type: :model do
     it { should belong_to(:user) }
     it { should have_many(:vote_types) }
     it { should have_many(:votes) }
-    it { should have_many(:debates) }
     it { should have_many(:external_links) }
-    it { should have_many(:poll_states) }
     it { should accept_nested_attributes_for(:vote_types) }
   end
 

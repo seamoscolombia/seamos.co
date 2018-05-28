@@ -35,11 +35,9 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'relations' do
-    it { should have_many(:causes) }
     it { should have_many(:polls) }
     it { should have_many(:voted_polls) }
     it { should have_many(:votes) }
-    it { should have_many(:debate_votes) }
   end
 
   describe 'enums' do
