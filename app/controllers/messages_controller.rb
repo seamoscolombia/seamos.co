@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     if @message.valid?
       @recipients = EmailList.find_by(id: @message.email_list_id).subscriptions.pluck(:email)
       @recipients.each do |recipient|
-        UserNotifierMailer.send_general_message(@message.subject, @message.top_image_url, @message.content, recipient).deliver_later        
+        UserNotifierMailer.send_general_message(@message.sender, @message.subject, @message.top_image_url, @message.content, recipient).deliver_later        
       end
       flash[:notice] = "Mensaje enviado correctamente"
       redirect_to admin_mail_path
