@@ -18,8 +18,4 @@ class SettingsController < ApplicationController
   def successfully_unsubscribed
   end
 
-  private
-    def user_params
-      params.require(:subscription).permit(:subscription)
-    end
 end

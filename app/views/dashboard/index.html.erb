@@ -2,9 +2,21 @@
   <div>
     <div class="col-sm-12 my-buttons-container">
       <center>
-        <%= link_to admin_validate_users_path do %>
-          <%= image_tag("validate_users_button.png", class: '')  %>
-        <% end %>
+        <div>
+          <%= link_to 'lista de usuarios', admin_validate_users_path %>
+        </div>
+        <div>
+          <%= link_to 'Crear admin / político', new_admin_path %>
+        </div>
+        <div>
+          <%= link_to 'Temas', admin_tags_new_path %>
+        </div>
+        <div>
+          <%= link_to "Datos", admin_dashboard_stats_path %>
+        </div>
+        <div>
+          <%= link_to t('.polls'),admin_polls_path %>
+        </div>
       </center>
     </div>
   </div>

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :subscription do
-    email "MyString"
+    email { Faker::Internet.email }
   end
 
 end

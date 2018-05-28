@@ -301,11 +301,12 @@ es:
       debate_results: "Resultados de: %{debate_title}"
   polls:
     at_least_two_options: La propuesta debe tener por lo menos 2 opciones.
+    at_least_one_tag: Debes seleccionar por lo menos un tema para la propuesta.
     one_tag: Debe seleccionar un tema para su propuesta
     only_one_tag: Debe seleccionar únicamente un tema
     edit: Editar
     filtered_by_politician:
-      not_a_politician: Usuario no encontrado
+      not_a_politician: El id suministrado no pertenece a ningún usuario con un tipo de rol político
     form:
       add: Agregar
       csv_field: Archivo CSV

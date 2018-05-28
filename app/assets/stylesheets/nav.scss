@@ -20,6 +20,13 @@
   }
 }
 
+.collapse {
+  .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+}
+
 #seamos-navbar {
   margin-bottom: 5px;
 }
