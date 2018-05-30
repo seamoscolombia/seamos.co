@@ -11,6 +11,6 @@
 #
 
 class ExternalLink < ApplicationRecord
-    belongs_to :poll
-    validates_format_of :url, :with => URI::regexp(%w(http https))
+  belongs_to :poll
+  validates_format_of :url, :with => URI::regexp(%w(http https))
 end

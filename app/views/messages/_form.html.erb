@@ -5,7 +5,7 @@
   <%= form_for :message do |f| %>
     <div class='field'>
       <%= f.label "Remitente"%><br>
-      <%= f.text_field :sender, class: 'form-control' %>
+      <%= f.email_field :sender, class: 'form-control' %>
     </div>
 
     <div class='field'>
