@@ -77,18 +77,6 @@
       <%= f.text_field :organization, class: 'form-control' %>
     </div>
 
-    <div class="field politician-field">
-      <%= f.label "Profesión" %>
-      <span class="optional"> (opcional) </span>
-      <%= f.text_field :profession, class: 'form-control' %>
-    </div>
-
-    <div class="field politician-field">
-      <%= f.label "Universidad" %>
-      <span class="optional"> (opcional) </span>
-      <%= f.text_field :university, class: 'form-control' %>
-    </div>
-
     <input type="button" name="previous" class="previous action-button" value="Previous" />
     <input type="button" name="next" class="next action-button" value="Next" />
   </fieldset>
@@ -96,12 +84,6 @@
   <fieldset class="politician-field">
     <h2 class="fs-title">informacion perfil político</h2>
     <h2 class="fs-subtitle">informacion adicional</h2>
-
-    <div class="field politician-field">
-      <%= f.label "Especializaciones, maestrías, doctorados y otros " %>
-      <span class="optional"> (opcional) </span>
-      <%= f.text_area :further_studies, class: 'form-control tinymce' %>
-    </div>
 
     <div class="field politician-field">
       <%= f.label "Número de votos última elección " %>

@@ -19,9 +19,6 @@
 #  bio                                       :string
 #  birthday                                  :date
 #  birthplace                                :string
-#  profession                                :string
-#  university                                :string
-#  further_studies                           :text
 #  last_election_vote_count                  :integer
 #  represented_organizations                 :text
 #  major_electoral_representation_localities :string
