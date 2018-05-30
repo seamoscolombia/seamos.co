@@ -2,9 +2,6 @@ class DashboardController < ApplicationController
   before_action :validate_session
   before_action :validate_admin_user
 
-  def index
-  end
-
   def stats
     @polls = Poll.all.includes(:votes)
     @open_polls = @polls.open

@@ -18,11 +18,4 @@ class EmailList < ApplicationRecord
       Subscription.create(email: mail.strip, email_list_id: id)
     end
   end
-
-  private
-
-  def sanitize_mail_list(mail_list)
-    
-  end
-
 end

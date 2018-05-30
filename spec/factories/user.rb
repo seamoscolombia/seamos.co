@@ -26,7 +26,6 @@ FactoryGirl.define do
     first_surname { Faker::Name.last_name }
     second_surname { Faker::Name.last_name }
     names { Faker::Name.first_name }
-    expedition_date { Date.today - 1000.days }
     approved false
     email { Faker::Internet.email }
     password "password123@"

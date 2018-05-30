@@ -28,19 +28,13 @@ FactoryGirl.define do
     totals "{1=>#{Faker::Number.number(3)}, 2=>#{Faker::Number.number(3)}}"
     poll_type 0
     to_create { |instance| instance.save(validate: false) }
+    user { FactoryGirl.create(:user) }
+    objective { Faker::Lorem.sentence }
 
     factory :poll_with_votes do
       after(:create) do |poll|
         5.times do
           poll.votes << FactoryGirl.create(:vote)
-        end
-      end
-    end
-    factory :poll_with_votes_and_debates do
-      after(:create) do |poll|
-        5.times do
-          poll.votes << FactoryGirl.create(:vote)
-          poll.debates << FactoryGirl.create(:debate_with_questions)
         end
       end
     end

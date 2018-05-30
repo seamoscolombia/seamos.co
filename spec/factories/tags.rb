@@ -16,6 +16,7 @@ FactoryGirl.define do
   factory :tag do
     name { Faker::Lorem.word + SecureRandom.hex }
     tag_image { File.open("#{Rails.root}/spec/support/image.png", 'r') }
-
+    tag_icon { File.open("#{Rails.root}/spec/support/image.png", 'r') }
+    tag_color { Faker::Color.hex_color }
   end
 end

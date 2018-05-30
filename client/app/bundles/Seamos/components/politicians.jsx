@@ -164,7 +164,7 @@ const Team = () => (
             </div>
           </div>
         </a>
-        <a className='politician-link' href='/#/politicians'>
+        <a className='politician-link' href='http://seamos.co/#/proponents/1690'>
           <div className='politician p_fiveteen'>
             <div className='photo' />
             <div className='name'>
@@ -175,7 +175,7 @@ const Team = () => (
             </div>
           </div>
         </a>
-        <a className='politician-link' href='/#/politicians'>
+        <a className='politician-link' href='http://seamos.co/#/proponents/1689'>
           <div className='politician p_sixteen'>
             <div className='photo' />
             <div className='name'>

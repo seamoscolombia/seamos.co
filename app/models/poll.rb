@@ -157,7 +157,7 @@ class Poll < ApplicationRecord
 
   def at_least_one_tag
     unless tags.present?
-      errors.add(:base, I18n.t(:one_tag, scope: :polls))
+      errors.add(:at_least_one_tag, I18n.t("polls.at_least_one_tag"))
     end
   end
 end
