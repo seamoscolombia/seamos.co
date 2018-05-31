@@ -12,5 +12,10 @@
 require 'rails_helper'
 
 RSpec.describe Subscription, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    subject { Subscription.create(email: "validemail@foo.com") }
+    it { should validate_uniqueness_of(:email).scoped_to(:email_list_id).ignoring_case_sensitivity.with_message('Ya te has suscrito previamente') }
+    it { should allow_value("email@addresse.foo").for(:email) }
+    it { should_not allow_value("foo").for(:email) }
+  end
 end
