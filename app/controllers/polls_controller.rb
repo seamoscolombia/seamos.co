@@ -107,14 +107,14 @@ class PollsController < ApplicationController
       format.json do
         if params[:order_by] == 'by-user-interests'
           @polls = [] and return unless current_user
-          @polls = Poll.includes(:votes, :tags).by_user_interests(current_user).sort_by {|poll| poll.vote_count}.first(2)
+          @polls = Poll.includes(:votes, :tags).by_user_interests(current_user).sort_by {|poll| poll.vote_count}.first(3)
           @reverse = true
-          @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.vote_count}.first(2 - @polls.size)
+          @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.vote_count}.first(3 - @polls.size)
         else
-          @polls = Poll.includes(:votes, :tags).open.sort_by {|poll| poll.send(order_param)}.first(2)
-          @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.send(order_param)}.first(2 - @polls.size)
+          @polls = Poll.includes(:votes, :tags).open.sort_by {|poll| poll.send(order_param)}.first(3)
+          @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.send(order_param)}.first(3 - @polls.size)
         end
-        @polls.flatten!
+        @polls = @polls.flatten!.uniq
         @polls = @reverse ? @polls.reverse.first(2) : @polls.first(2)
       end
     end
