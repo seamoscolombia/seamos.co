@@ -37,12 +37,11 @@ RSpec.describe User, type: :model do
     it { should have_many(:votes) }
     it { should have_many(:interests) }
     it { should have_many(:tags) }
-    it { should have_many(:acamedic_titles) }
   end
 
   describe 'enums' do
     it { should define_enum_for(:role_type) }
-    it { should define_enum_for(:localitie) }
+    it { should define_enum_for(:current_corporation_commission) }
   end
 
   describe 'validations' do
