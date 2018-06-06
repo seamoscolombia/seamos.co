@@ -11,12 +11,12 @@
                     </div>
                     <div class="options">
                         <span class="delete">
-                            <%= link_to admin_path(tag.id), title: "Eliminar", method: :delete, data: {confirm: t(".confirmation")} do %>
+                            <%= link_to admin_tag_path(tag.id), title: "Eliminar", method: :delete, data: {confirm: t('tags.confirmation')} do %>
                             <i class="glyphicon glyphicon-remove-circle"></i>
                             <% end %>
                         </span>
                         <span>
-                            <%= link_to admin_tag_path(tag.id), title: "Editar" do %>
+                            <%= link_to edit_admin_tag_path(tag.id), title: "Editar" do %>
                             <i class="edit glyphicon glyphicon-edit"></i>
                             <% end %>
                         </span>

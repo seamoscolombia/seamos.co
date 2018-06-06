@@ -414,8 +414,7 @@ es:
   tags:
     name: El nombre del tema
     edit: Editar
-    tag_list:
-      confirmation: ¿Esta seguro de borrar la tema?
+    confirmation: ¿Esta seguro de borrar la tema?
     new:
       available_tags: Temas disponibles
     form:
@@ -424,7 +423,7 @@ es:
       tag_color: Color del tema
       tag_name: Nombre del Tema
       has_image: El tema ya tiene la imagen %{filename}. Si desea cambiarla, por favor escoja otra. En caso contrario deje el campo vacío.
-  :tags_creados: "%{created} creadas con éxito"
+  :tags_creados: "%{created} creados con éxito"
   tipo_de_documento:
     cedula: Cédula
     cedula_extranjeria: Cédula de extranjería
