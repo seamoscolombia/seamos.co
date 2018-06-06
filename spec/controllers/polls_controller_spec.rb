@@ -103,52 +103,6 @@ RSpec.describe PollsController, type: :controller do
     end
   end
 
-  describe 'GET filtered_by_tag' do
-    context 'when the request format is JSON' do
-      let(:user) { FactoryGirl.create(:user, role_type: 2) }
-      let(:tag) { FactoryGirl.create(:tag) }
-      it 'assigns @polls' do
-        session[:email] = user.email
-        @by_tag_polls = []
-        3.times do
-          poll = FactoryGirl.create(:poll)
-          poll.tags << tag
-          @by_tag_polls << poll
-        end
-        @other_polls = []
-        3.times do
-          poll = FactoryGirl.create(:poll)
-          @other_polls << poll
-        end
-        get :filtered_by_tag, params: { tag_id: tag.id }, format: :json
-        expect(assigns(:polls)).to match_array(@by_tag_polls)
-      end
-    end
-
-    describe "responds to" do
-      let(:tag) { FactoryGirl.create(:tag) }
-      it "responds to JSON by default" do
-        get :filtered_by_tag, params: { tag_id: tag.id }, format: :json
-        expect(response.content_type).to eq "application/json"
-      end
-    end
-
-    let(:tag) { FactoryGirl.create(:tag) }
-    let(:user) { FactoryGirl.create(:user, role_type: 2) }
-    it 'renders the filtered_by_tag template' do
-      session[:email] = user.email
-      get :filtered_by_tag, params: { tag_id: tag.id }, format: :json
-      expect(response).to render_template('filtered_by_tag')
-    end
-
-    it 'should return status ok' do
-      session[:email] = user.email
-      get :filtered_by_tag, params: { tag_id: tag.id }, format: :json
-      expect(response).to have_http_status(:ok)
-    end
-  end
-
-
   describe 'GET filtered_by_politician' do
     let(:politician) { FactoryGirl.create(:user, role_type: 1) }
     let(:other_politician) { FactoryGirl.create(:user, role_type: 1) }
