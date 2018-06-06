@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'settings/unsubscribe'
 
   root 'prehome#index'
+  get '/home', to: 'home#index'
 
   resources :subscriptions, only: [:create, :destroy]
   get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
