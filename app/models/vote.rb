@@ -24,5 +24,5 @@ class Vote < ApplicationRecord
       errors.add(:base, I18n.t( :closed_poll, scope: :votes))
     end
   end
-
+  scope :by_user_id, -> (user_id) { where(user_id: user_id) }
 end
