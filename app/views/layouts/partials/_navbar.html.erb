@@ -1,0 +1,10 @@
+<% if session[:session_type] == "web" %>
+  <%= render 'layouts/partials/admin_navbar' %>
+<% else %>
+  <%= render 'layouts/partials/client_navbar' %>
+<% end %>
+
+
+  
+
+

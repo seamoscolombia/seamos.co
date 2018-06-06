@@ -1,29 +1,22 @@
 class TagsController < ApplicationController
-  before_action :set_user, only: :user_interests
+  before_action :set_tag, only: :show
 
   def index
-    respond_to do |format|
-      format.html do
-        @location_from = ''
-        @tags = Tag.all
-      end
-      format.json do
-        @tags = Tag.all
-      end
-    end
+    @location_from = ''
+    @tags = Tag.all
   end
 
-  def user_interests
-    respond_to do |format|
-      format.json do
-        @tags = Tag.all
-      end
-    end
+  def show
+    @polls = @tag.polls.includes(:votes)
   end
 
   private
 
-  def set_user
-    @user = User.find(params[:user_id])
+  def set_tag
+    @tag = Tag.find_by(id: params[:id])
+    unless @tag
+      flash[:error] = "El tema no existe"
+      redirect_to root_path      
+    end
   end
 end

@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   get 'settings/unsubscribe'
 
-  root 'frontend#index'
-  # root 'intro#inicio'
+  root 'prehome#index'
 
   namespace :admin do
     resources :tags
@@ -15,7 +14,6 @@ Rails.application.routes.draw do
     get 'validate', on: :member
     patch 'update_valid_user', on: :member
     post 'interests', to: 'interests#association', format: 'json'
-    resources :tags, only: :index, to: 'tags#user_interests', format: 'json'
   end
 
   get 'client/polls/:id', to: 'polls#client_show'
@@ -27,7 +25,6 @@ Rails.application.routes.draw do
   get '/mail_preview', to: 'messages#preview'
 
   get '/auth/sessions', to: 'sessions#error'
-  get '/tags/:tag_id/polls', to: 'polls#filtered_by_tag', format: 'json'
   get '/politician/:politician_id/polls', to: 'polls#filtered_by_politician', format: 'json'
   get '/profile', to: 'users#show', format: 'json'
   get '/proponents/:id', to: 'users#politician_profile', format: 'json'
@@ -45,6 +42,7 @@ Rails.application.routes.draw do
   end
 
   resources :votes, only: :create
+  resources :tags, only: [:show, :index]
   resources :admin, only: [:create, :new, :edit]
   scope '/admin', as: :admin do
     resources :email_lists
