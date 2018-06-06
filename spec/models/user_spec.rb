@@ -35,10 +35,14 @@ RSpec.describe User, type: :model do
     it { should have_many(:polls) }
     it { should have_many(:voted_polls) }
     it { should have_many(:votes) }
+    it { should have_many(:interests) }
+    it { should have_many(:tags) }
+    it { should have_many(:acamedic_titles) }
   end
 
   describe 'enums' do
     it { should define_enum_for(:role_type) }
+    it { should define_enum_for(:localitie) }
   end
 
   describe 'validations' do
@@ -66,13 +70,19 @@ RSpec.describe User, type: :model do
         expect(invalid_admin.errors[:contraseña].empty?).to be false
       end
     end
-    it { should validate_presence_of(:first_surname) }
-    it { should validate_presence_of(:names) }
-    it { should validate_presence_of(:role_type) }
+    describe 'politician validations' do
+      subject { FactoryGirl.create(:user, role_type: 1) }
+      it { should validate_presence_of(:bio) }
+      it { should validate_presence_of(:organization) }
+      it { should validate_presence_of(:admin_photo) }
+    end
 
     describe '#first_surname' do
       it { should_not allow_value('surname123').for(:first_surname) }
     end
+    it { should validate_presence_of(:first_surname) }
+    it { should validate_presence_of(:names) }
+    it { should validate_presence_of(:role_type) }
   end
 
   describe 'User#full_name' do

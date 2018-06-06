@@ -32,6 +32,7 @@ FactoryGirl.define do
     password_confirmation "password123@"
     role_type { rand(0..2) }
     to_create {|instance| instance.save(validate: false) }
+    major_electoral_representation_localities { 'suba, usaquén'}
 
   end
 end
