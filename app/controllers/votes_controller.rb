@@ -1,20 +1,11 @@
 class VotesController < ApplicationController
   include SessionsHelper
-  before_action :validate_session, except: :check_vote
-  before_action :set_poll, except: :check_vote
+  before_action :validate_session
+  before_action :set_poll
 
   def create
     vote(http_params)
     render json: { message: "vote registered" }, status: :ok
-  end
-
-  def check_vote
-    vote_exists = Vote.where('poll_id = ? AND user_id = ?',
-                             params[:poll_id],
-                             params[:user_id]).first.present?
-    render json: {
-      already_voted: vote_exists
-    }, status: :ok
   end
 
   private
