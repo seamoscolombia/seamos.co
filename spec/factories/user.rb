@@ -22,7 +22,6 @@
 
 FactoryGirl.define do
   factory :user do
-
     first_surname { Faker::Name.last_name }
     second_surname { Faker::Name.last_name }
     names { Faker::Name.first_name }
@@ -32,6 +31,6 @@ FactoryGirl.define do
     password_confirmation "password123@"
     role_type { rand(0..2) }
     to_create {|instance| instance.save(validate: false) }
-
+    major_electoral_representation_localities { 'suba, usaquén'}
   end
 end

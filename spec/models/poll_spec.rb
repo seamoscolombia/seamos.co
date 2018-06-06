@@ -28,6 +28,9 @@ RSpec.describe Poll, type: :model do
     it { should have_many(:vote_types) }
     it { should have_many(:votes) }
     it { should have_many(:external_links) }
+    it { should have_many(:taggings) }
+    it { should have_many(:tags) }
+    it { should have_one(:project_link) }
     it { should accept_nested_attributes_for(:vote_types) }
   end
 
@@ -70,6 +73,30 @@ RSpec.describe Poll, type: :model do
         expect(Poll.inactive).to include(poll_1, poll_3)
       end
     end
+
+    describe 'get_user_participations' do
+      let(:user) { FactoryGirl.create(:user)}
+      let(:poll_a) { FactoryGirl.create(:poll) }
+      let(:poll_b) { FactoryGirl.create(:poll) }
+      let(:vote_a) { FactoryGirl.create(:vote, poll: poll_a, user: user)}
+      let(:vote_b) { FactoryGirl.create(:vote, poll: poll_b, user: user)}
+      before(:each) do
+        user.votes << [vote_a, vote_b]
+      end
+      it 'returns the polls in which the user has participated' do
+        expect(Poll.get_user_participations(user)).to match_array([poll_a, poll_b])
+      end
+    end
+
+    describe 'by_title' do
+      let(:poll_x) { FactoryGirl.create(:poll, title: 'Lorem ipsum dolor sit amet, laoconsectetur adipiscing elit. Phasellus ornare') }
+      let(:poll_y) { FactoryGirl.create(:poll, title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare') }
+      let(:poll_z) { FactoryGirl.create(:poll, title: 'Lorem ipsum sit amet, consectetur adipiscing elit. Phasellus ornare laoreet') }
+      it 'returns polls with similar title' do
+        expect(Poll.by_title('dolor')).to match_array([poll_y])
+        expect(Poll.by_title('lao')).to match_array([poll_x, poll_z])
+      end
+    end
   end
 
   describe 'poll#closed?' do
@@ -83,6 +110,31 @@ RSpec.describe Poll, type: :model do
       it 'returns false' do
         poll.update(closing_date: Date.today + 3.days)
         expect(poll.closed?).to eq(false)
+      end
+    end
+  end
+
+  describe 'poll#voted_by_user?' do
+    let(:user_a) { FactoryGirl.create(:user)}
+    let(:user_b) { FactoryGirl.create(:user)}
+    let(:poll_a) { FactoryGirl.create(:poll) }
+    let(:poll_b) { FactoryGirl.create(:poll) }
+    let(:vote_a) { FactoryGirl.create(:vote, poll: poll_a, user: user_a)}
+    let(:vote_b) { FactoryGirl.create(:vote, poll: poll_b, user: user_b)}
+    before(:each) do
+      user_a.votes << [vote_a]
+      user_b.votes << [vote_b]
+    end
+    context 'when user already voted the poll' do
+      it 'returns true' do
+        expect(poll_a.voted_by_user?(user_a.id)).to eq(true)
+        expect(poll_b.voted_by_user?(user_b.id)).to eq(true)
+      end
+    end
+    context 'when the user has not yet voted the poll' do
+      it 'returns true' do
+        expect(poll_b.voted_by_user?(user_a.id)).to eq(false)
+        expect(poll_a.voted_by_user?(user_b.id)).to eq(false)
       end
     end
   end

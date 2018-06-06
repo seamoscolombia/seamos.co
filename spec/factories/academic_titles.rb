@@ -14,11 +14,10 @@
 
 FactoryGirl.define do
   factory :academic_title do
-    title "MyString"
-period "MyString"
-institute "MyString"
-annotation "MyString"
-user nil
+    title { Faker::Lorem.word }
+    period { Faker::Lorem.word }
+    institute { Faker::Lorem.word }
+    annotation { Faker::Lorem.word }
+    user nil
   end
-
 end
