@@ -113,17 +113,6 @@ class PollsController < ApplicationController
     end
   end
 
-  def filtered_by_tag
-    respond_to do |format|
-      format.json do
-        by_tag_polls = @tag.polls.includes(:votes) if @tag
-        closed_polls = by_tag_polls.open
-        open_polls = by_tag_polls - closed_polls
-        @polls = closed_polls + open_polls
-      end
-    end
-  end
-
   def random_non_voted_polls
     respond_to do |format|
       format.json do
