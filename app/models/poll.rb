@@ -43,6 +43,8 @@ class Poll < ApplicationRecord
   # validate :closing_date_validation
   validate :at_least_one_tag
 
+  delegate :admin_photo, to: :user, allow_nil: true
+
   enum poll_type: {
                     "Voto o proyecto de acuerdo": 1,
                     "Control político": 0
@@ -139,6 +141,10 @@ class Poll < ApplicationRecord
 
   def related_links
     external_links.where(is_project_link: false)
+  end
+
+  def author_photo
+    user.admin_photo.try(:url)
   end
 
   private
