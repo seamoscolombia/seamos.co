@@ -414,7 +414,7 @@ es:
   tags:
     name: El nombre del tema
     edit: Editar
-    confirmation: ¿Esta seguro de borrar la tema?
+    confirmation: ¿Esta seguro de borrar el tema?
     new:
       available_tags: Temas disponibles
     form:
