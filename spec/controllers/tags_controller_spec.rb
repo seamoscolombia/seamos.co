@@ -5,10 +5,10 @@ RSpec.describe TagsController, type: :controller do
   describe 'GET index' do
     context 'when the request format is html' do
       it 'assigns @tags' do
-        5.times { FactoryGirl.create(:tag) }
+        5.times { FactoryGirl.create(:tag_with_polls) }
         all_tags = Tag.all
         get :index
-        expect(assigns(:tags)).to eq(all_tags)
+        expect(assigns(:tags)).to match_array(all_tags)
       end
     end
 

@@ -3,11 +3,11 @@ class TagsController < ApplicationController
 
   def index
     @location_from = ''
-    @tags = Tag.all
+    @tags = Tag.joins(:polls).uniq
   end
 
   def show
-    @polls = @tag.polls.includes(:votes)
+    @polls = @tag.polls.includes([:votes, :user])
   end
 
   private

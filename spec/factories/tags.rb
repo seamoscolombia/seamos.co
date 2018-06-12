@@ -18,5 +18,10 @@ FactoryGirl.define do
     tag_image { File.open("#{Rails.root}/spec/support/image.png", 'r') }
     tag_icon { File.open("#{Rails.root}/spec/support/image.png", 'r') }
     tag_color { Faker::Color.hex_color }
+    factory :tag_with_polls do
+      after(:build) do |this|
+        this.taggings << FactoryGirl.create(:tagging, poll: FactoryGirl.create(:poll), tag: this)
+      end
+    end
   end
 end

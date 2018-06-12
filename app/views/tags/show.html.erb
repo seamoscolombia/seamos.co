@@ -1,7 +1,7 @@
 <div id="polls-component-global-wrapper">
   <section id="polls-component">
     <div class="background-container" style="background-color: <%= @tag.tag_color %>;">
-      <img src="url(<%= @tag.tag_image.url %>)" alt="<%= @tag.name %>">
+      <%= image_tag @tag.tag_image.url %>
       <div class="icon-name-wrapper">
         <div class="tag-icon-container" style="display: none;"><img class="tag-icon" alt="tag icon" src="https://document-photos-seamos.s3.amazonaws.com/uploads/tag/tag_icon/2/iconos_cultura.png"></div>
         <div class="tag-name">
@@ -12,7 +12,11 @@
       </div>
     </div>
     <div class="polls-box">
-      <div> placeholder; aquí irán las propuestas del tema. </div>
+      <div class="polls-wrapper">
+        <% @polls.each do |poll| %>
+          <%= render partial: 'polls/partials/poll', locals: {poll: poll} %>
+        <% end %>
+      </div>
     </div>
   </section>
 </div>
