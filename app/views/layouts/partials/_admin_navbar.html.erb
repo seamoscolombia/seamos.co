@@ -21,7 +21,7 @@
         <% if is_admin? %>
           <li>  <%= link_to t('.users'), admin_validate_users_path %> </li>
           <li>  <%= link_to t('.create_admin'), new_admin_path %></li>
-          <li>  <%= link_to t(:tags_menu), admin_tags_new_path %></li>
+          <li>  <%= link_to t(:tags_menu), new_admin_tag_path %></li>
           <li>  <%= link_to "Datos", admin_dashboard_stats_path %> </li>
           <li class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

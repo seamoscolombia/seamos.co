@@ -1,3 +1,19 @@
-<div class="col-md-6 col-md-offset-3">
-  <%= render 'tag_list', tags: @tags %>
+<div id="tags-page">
+  <div class="background-container">
+    <div class="flex-container">
+      <h1 class="question">
+        Encuentra propuestas de 
+        <br class="breaker"> 
+        acuerdo a los temas 
+        <br class="breaker"> 
+        de tu interés
+      </h1>
+    </div>
+  </div>
+  <div>
+    <%= render partial: 'tags_list' %>
+  </div>
+  <div>
+    <span> Placeholder: Aquí va el partial "también te puede interesar" </span>
+  </div>
 </div>

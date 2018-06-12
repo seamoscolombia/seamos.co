@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   root 'prehome#index'
   get '/home', to: 'home#index'
 
+  namespace :admin do
+    resources :tags
+  end
+
   resources :subscriptions, only: [:create, :destroy]
   get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
   resources :users , except: [:show] do
@@ -11,7 +15,6 @@ Rails.application.routes.draw do
     get 'validate', on: :member
     patch 'update_valid_user', on: :member
     post 'interests', to: 'interests#association', format: 'json'
-    resources :tags, only: :index, to: 'tags#user_interests', format: 'json'
   end
 
   get 'client/polls/:id', to: 'polls#client_show'
@@ -23,7 +26,6 @@ Rails.application.routes.draw do
   get '/mail_preview', to: 'messages#preview'
 
   get '/auth/sessions', to: 'sessions#error'
-  get '/tags/:tag_id/polls', to: 'polls#filtered_by_tag', format: 'json'
   get '/politician/:politician_id/polls', to: 'polls#filtered_by_politician', format: 'json'
   get '/profile', to: 'users#show', format: 'json'
   get '/proponents/:id', to: 'users#politician_profile', format: 'json'
@@ -41,7 +43,7 @@ Rails.application.routes.draw do
   end
 
   resources :votes, only: :create
-  get '/tags', to: 'tags#index'
+  resources :tags, only: [:show, :index]
   resources :admin, only: [:create, :new, :edit]
   scope '/admin', as: :admin do
     resources :email_lists
@@ -49,11 +51,6 @@ Rails.application.routes.draw do
     post '/mail', to: 'messages#create'
     get '/mail_preview', to: 'messages#preview'
     # get '/', to: 'sessions#new'
-    post '/tags', to: 'tags#create'
-    get '/tags/new', to: 'tags#new'
-    delete '/tags/:id', to: 'tags#delete'
-    get '/tags/:id', to: 'tags#edit', as: :tag
-    patch '/tags/:id', to: 'tags#update'
     get 'polls', to:  'polls#index_admin'
     get '/', to: 'sessions#new', as: :login
     post '/sessions', to: 'sessions#admin_create'
