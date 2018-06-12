@@ -29,6 +29,11 @@
 #
 
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable,
+         :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, omniauth_providers: %i[facebook]
   mount_uploader :admin_photo, AdminPhotoUploader
 
   attr_accessor :password, :password_confirmation
@@ -90,6 +95,20 @@ class User < ApplicationRecord
     where("names ILIKE ? OR first_surname ILIKE ? OR second_surname ILIKE ? OR email ILIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
   }
 
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.names = auth.info.name   # assuming the user model has a name
+      user.provider_image = auth.info.image # assuming the user model has an image
+      user.role_type = 'ciudadano'
+      user.first_surname = auth.info.name.split(' ').last
+      # If you are using confirmable and the provider(s) you use validate emails,
+      # uncomment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
+    end
+  end
+
   def already_voted?(poll)
     !(votes.find_by(poll: poll).nil?)
   end
@@ -113,43 +132,47 @@ class User < ApplicationRecord
 
   private
 
-    def encrypt_password_for_admin
-      if password.present? && (role_type != "ciudadano")
-        self.password_salt = BCrypt::Engine.generate_salt
-        self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-      end
+  def encrypt_password_for_admin
+    if password.present? && (role_type != "ciudadano")
+      self.password_salt = BCrypt::Engine.generate_salt
+      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
+  end
 
-    def major_electoral_representation_localities_length
-      if self.major_electoral_representation_localities.split(',').length > 2
-        errors.add(:major_electoral_representation_localities, "Seleccione sólo dos de las localidades de mayor representación electoral")
-      end
+  def major_electoral_representation_localities_length
+    if self.major_electoral_representation_localities.split(',').length > 2
+      errors.add(:major_electoral_representation_localities, "Seleccione sólo dos de las localidades de mayor representación electoral")
     end
+  end
 
-    def password_for_admin
-      if (password.nil? || password.present? != password_confirmation.present?)
-        errors.add(:contraseña, I18n.t(:password))
-      end
+  def password_for_admin
+    if (password.nil? || password.present? != password_confirmation.present?)
+      errors.add(:contraseña, I18n.t(:password))
     end
+  end
 
-    def password_for_admin_update
-      if (self.password != self.password_confirmation)
-        errors.add(:contraseña, I18n.t(:password))
-      end
+  def password_for_admin_update
+    if (self.password != self.password_confirmation)
+      errors.add(:contraseña, I18n.t(:password))
     end
+  end
 
-    def email_for_admin
-      if email.nil?
-        errors.add(:email, I18n.t(:email))
-      end
+  def email_for_admin
+    if email.nil?
+      errors.add(:email, I18n.t(:email))
     end
+  end
 
-    def politician?
-      role_type == "politico"
-    end
+  def politician?
+    role_type == "politico"
+  end
 
-    def admin?
-      role_type == "administrador"
-    end
+  def admin?
+    role_type == "administrador"
+  end
 
+  def confirmation_required?
+    # This is for avoiding confirmation process, next line maybe helps for development env
+    return false if Rails.env == 'development'
+  end
 end

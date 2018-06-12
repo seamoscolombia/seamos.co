@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :validate_session, only: :already_voted
   before_action :set_user, only: [:edit, :update, :destroy, :politician_profile]
   before_action :validate_administrator, only: :index
+  before_action :authenticate_user!
 
   def already_voted
     render json: {

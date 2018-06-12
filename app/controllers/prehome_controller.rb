@@ -1,7 +1,7 @@
 class PrehomeController < ApplicationController
   before_action :validate_user, only: :index
   
-  def index    
+  def index
   end
 
   def validate_user 

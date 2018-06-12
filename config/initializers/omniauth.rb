@@ -1,5 +1,11 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook,  Rails.application.secrets.app_id, Rails.application.secrets.app_secret,
-           { scope: 'publish_actions, publish_pages' }
-          # ,callback_url: Rails.application.secrets.callback_url
+  provider :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'],
+  {
+    name: 'google',
+    scope: 'email, profile, plus.me',
+    prompt: 'select_account',
+    image_aspect_ratio: 'square',
+    image_size: 50
+  }
+  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], scope: 'email, user_location'
 end
