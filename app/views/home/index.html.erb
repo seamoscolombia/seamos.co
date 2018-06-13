@@ -6,7 +6,7 @@
         <h1>Temas de Interés</h1>
       </div>
       <section id="tags-component">
-        <%= render 'tags/tags_list' %>
+        <%= render partial: 'tags/tags_list' %>
       </section>
     </div>
     <div class="right-col">
@@ -35,7 +35,7 @@
         </div>
         <div class="polls-wrapper">
           <% @polls.each do |poll| %>
-            <%= render 'polls/partials/poll', :poll => poll %>
+            <%= render partial: 'polls/partials/poll', locals: {poll: poll} %>
           <% end %>
         </div>
       </div>
