@@ -6,22 +6,7 @@
         <h1>Temas de Interés</h1>
       </div>
       <section id="tags-component">
-        <div class="flex-container tags-box">
-          <% @tags.each do |tag| %>
-            <a href="/tag/<%= tag.id %>/polls">
-              <div 
-                id="tag-component" 
-                style="
-                  background-image: url(<%= tag.thumbnail %>); 
-                  background-color: <%= tag.tag_color %>;">
-                <div class="undefined">
-                  <span class="glyphicon glyphicon-ok-sign"></span>
-                </div>
-                <div class="tag-name"><%= tag.name %></div>
-              </div>
-            </a>
-          <% end %>
-        </div>
+        <%= render 'tags/tags_list' %>
       </section>
     </div>
     <div class="right-col">
@@ -50,45 +35,11 @@
         </div>
         <div class="polls-wrapper">
           <% @polls.each do |poll| %>
-            <div>
-              <a href="/client/polls/<%= poll.id %>" style="text-decoration: none;">
-                <div id="poll-component">
-                  <div class="poll-image-container">
-                    <img alt="poll" src="<%= poll.poll_image %>">
-                  </div>
-                  <% if poll.closed? %>
-                    <div class="closed-ribbon">Propuesta Cerrada</div>
-                  <% end %>
-                  <div class="poll-title">
-                    <span><%= poll.title %>
-                    </span>
-                  </div>
-                  <div class="poll-description"><%= poll.summary %> 
-                  </div>
-                  <div class="politician-info">
-                    <div class="picture-container">
-                      <img src="https://document-photos-seamos.s3.amazonaws.com/uploads/user/admin_photo/9/Sin_ti_tulo-5-08.png" alt="politician">
-                    </div>
-                    <div class="name-container"><%= poll.user.full_name %>
-                    </div>
-                  </div>
-                  <div class="poll-infos-container">
-                    <div class="poll-details">                      
-                        <div 
-                          class="poll-tag-name" 
-                          style= "width: <%= poll.closed? ? "52%;" : "70%;" %>" >
-                          <%= display_tag_name(poll) %>
-                        </div>
-                        <div class="color-separator" style="border-left: 5px solid <%= display_tag_color(poll) %>;">
-                        </div>
-                        <div class="btn button btn-plus-read" style="background-color: <%= display_tag_color(poll) %>;">
-                          <%= poll.closed? ? "RESULTADOS" : "VOTA" %>
-                        </div>                      
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
+
+
+            <%= render 'polls/partials/poll', :poll => poll %>
+
+
           <% end %>
         </div>
       </div>
