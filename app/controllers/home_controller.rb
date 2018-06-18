@@ -15,7 +15,6 @@ class HomeController < ApplicationController
   end
 
   private
-
     def order_param
       case params[:order_by]
       when 'nearest-closing-date-first'
