@@ -29,9 +29,10 @@
         <div class="polls-wrapper">
           <% if @polls.empty? %>
             <p>Por favor inicia sesión y selecciona tus temas de interés</p>
-          <% end %>
-          <% @polls.each do |poll| %>
-            <%= render partial: 'polls/partials/poll_preview', locals: {poll: poll} %>
+          <% else %>
+            <% @polls.each do |poll| %>
+              <%= render partial: 'polls/partials/poll_preview', locals: {poll: poll} %>
+            <% end %>
           <% end %>
         </div>
       </div>
