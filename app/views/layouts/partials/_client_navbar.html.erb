@@ -60,25 +60,48 @@
             <li>
               <%= link_to  "Temas", tags_path %>
             </li>
-            <li>
-              <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-            </li>
             <li id="politicians-link">
               <a href="#/politicians"> Concejales </a>
             </li>
-            <div class="hide-on-mobile">
-              <span>
-                <li style="display: inline-block;">
-                  <button class="btn nav-with-background">
-                    <img src="">
-                    TU PERFIL
-                  </button>
+            <% if user_signed_in? %>
+              <div class="hide-on-mobile">
+                <span>
+                  <li style="display: inline-block;">
+                    <button class="btn nav-with-background">
+                      <img src="<%= current_user.provider_image %>" role="presentation" style="width: 25px; height: 25px; border-radius: 50%; margin-right: 3px;">
+                      TU PERFIL
+                    </button>
+                  </li>
+                </span>
+              </div>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete,  class: "btn nav-with-background" do %>
+                  SALIR
+                <% end %>
+              </li>
+            <% else %>
+              <div class="hide-on-mobile">
+                <li class="dropdown"><button class="nav-with-background" type="button" data-toggle="dropdown"><!-- react-text: 39 -->REGÍSTRATE<!-- /react-text --><span class="caret"></span></button>
+                  <ul class="dropdown-menu custom--dropdown">
+                    <li>
+                      <span style="transition: opacity 0.5s;">
+                        <%= button_to user_facebook_omniauth_authorize_path, class: "loginBtn loginBtn--facebook metro" do %>
+                          Continuar con facebook
+                        <% end %>
+                      </span>
+                    </li>
+                    <li role="presentation" class="divider"></li>
+                    <li>
+                      <div>
+                        <%= button_to user_google_oauth2_omniauth_authorize_path, class: "loginBtn loginBtn--google" do %>
+                          Continuar con facebook
+                        <% end %>
+                      </div>
+                    </li>
+                  </ul>
                 </li>
-              </span>
-            </div>
-            <li>
-              <button class="btn nav-with-background">SALIR</button>
-            </li>
+              </div>
+            <% end %>
           </ul>
         </nav>
       </div>

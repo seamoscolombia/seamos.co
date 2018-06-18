@@ -20,48 +20,6 @@ class SessionsController < ApplicationController
                  }, status: :ok
   end
 
-  def create
-    uid = params[:uid]
-    session[:login_token] = params[:login_token]
-    session[:session_type] = "mobile"
-    session[:login_image] = params[:login_image]
-    session[:login_location] = params[:login_location]
-    session[:uid] = uid
-    @user = User.find_by(uid: uid)
-    respond_to do |format|
-      if (@user)
-        format.html do
-          if session[:session_type] == 'web' && is_admin?
-            redirect_to admin_dashboard_index_path
-          elsif session[:session_type] == 'mobile'
-            redirect_to polls_path
-          else
-            destroy
-          end
-        end
-        format.json { render json: { authenticity_token: form_authenticity_token },status: :ok }
-      else
-        format.html { redirect_to root_path }
-        format.json { render json: { authenticity_token: form_authenticity_token },status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy_facebook_session
-    reset_session
-    respond_to do |format|
-      format.json { render json: {} , status: :ok }
-    end
-  end
-
-  def destroy
-    session[:email] = session[:session_type] = nil
-    respond_to do |format|
-      format.html { redirect_to admin_login_path }
-      format.json { render json: {} , status: :ok }
-    end
-  end
-
   def error
   end
 
