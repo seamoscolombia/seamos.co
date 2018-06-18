@@ -14,16 +14,9 @@
         <div class="order-select-wrapper">
           <span class="order-string"> Ordenar 
           </span>
-          <select name="" class="order-select">
-            <option value="most-voted-first"> Propuestas más votadas 
-            </option>
-            <option value="newest-first"> Propuestas recientes 
-            </option>
-            <option value="nearest-closing-date-first"> Propuestas cercanas al cierre 
-            </option>
-            <option value="by-user-interests"> Propuestas según tus intereses 
-            </option>
-          </select>
+            <%= form_tag({controller: "home", action: "index", anchor: 'poll-page'}, method: "get") do %>
+              <%= select_tag(:order_by, options_for_select({'Propuestas más votadas': "most-voted-first", 'Propuestas recientes': "newest-first", 'Propuestas cercanas al cierre': "nearest-closing-date-first", "Propuestas según tus intereses": "by-user-interests" }, params[:order_by] ), {class: "order-select", onchange: 'this.form.submit();'}) %>
+            <% end %> 
           <div id="summary-wrapper">
             <span class="polls-summary-text"> Resumen de propuestas 
             </span>
@@ -34,8 +27,12 @@
           </div>
         </div>
         <div class="polls-wrapper">
-          <% @polls.each do |poll| %>
-            <%= render partial: 'polls/partials/poll', locals: {poll: poll} %>
+          <% if @polls.empty? %>
+            <p>Por favor inicia sesión y selecciona tus temas de interés</p>
+          <% else %>
+            <% @polls.each do |poll| %>
+              <%= render partial: 'polls/partials/poll_preview', locals: {poll: poll} %>
+            <% end %>
           <% end %>
         </div>
       </div>
