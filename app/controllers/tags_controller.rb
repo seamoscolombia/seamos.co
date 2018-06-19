@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: :show
+  before_action :set_random_polls, only: :index
 
   def index
     @location_from = ''
