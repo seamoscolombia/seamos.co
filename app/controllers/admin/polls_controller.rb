@@ -61,7 +61,7 @@ class Admin::PollsController < ApplicationController
     @used_tags = @poll.tags.map(&:name).join(',')
   end
 
-  def index_admin
+  def index
     @filtered_polls = Poll.by_title(params[:search_term]).by_status(params[:status])
     @polls = if current_user.politico?
                @filtered_polls.where(user_id: current_user.id).page(params[:page]).per(4)

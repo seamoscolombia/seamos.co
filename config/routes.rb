@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :tags
+    resources :polls
   end
 
   resources :subscriptions, only: [:create, :destroy]
@@ -51,7 +52,6 @@ Rails.application.routes.draw do
     post '/mail', to: 'messages#create'
     get '/mail_preview', to: 'messages#preview'
     # get '/', to: 'sessions#new'
-    get 'polls', to:  'polls#index_admin'
     get '/', to: 'sessions#new', as: :login
     post '/sessions', to: 'sessions#admin_create'
     get 'validate-users', to: 'users#index'
