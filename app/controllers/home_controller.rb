@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   def index
     @tags = Tag.joins(:polls).uniq
     if params[:order_by] == 'by-user-interests'
-      @polls = [] and return unless current_user
+      @polls = [] and return unless current_user && current_user.tag_ids.present?
       @polls = Poll.includes(:votes, :tags).by_user_interests(current_user).sort_by {|poll| poll.vote_count}.first(2)
       @reverse = true
       @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.vote_count}.first(2 - @polls.size)

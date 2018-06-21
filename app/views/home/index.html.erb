@@ -6,7 +6,7 @@
         <h1>Temas de Interés</h1>
       </div>
       <section id="tags-component">
-        <%= render partial: 'tags/tags_list' %>
+        <%= render partial: 'tags/tags_list', locals: {tags: @tags} %>
       </section>
     </div>
     <div class="right-col">

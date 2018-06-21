@@ -1,6 +1,16 @@
 <div>
   <%= link_to poll_path(poll), class: 'poll-link' do %>
     <div id="poll-component">
+      <% if current_user && current_page?(user_path(current_user)) %>
+        <div class="poll-my-vote">
+          <span class="poll-vote-title">
+            Mi voto: 
+          </span>
+          <span>
+            <%= poll.votes.by_user_id(current_user.id).first.name %>
+          </span>
+        </div>
+      <% end %>
       <div class="poll-image-container">
         <%= image_tag poll.poll_image %>
       </div>
@@ -17,7 +27,7 @@
       </div>
       <div class="politician-info">
         <div class="picture-container">
-          <%= image_tag poll.author_photo %>
+          <%= image_tag poll.author_photo if poll.author_photo %>
         </div>
         <div class="name-container">
           <%= poll.user.full_name %>

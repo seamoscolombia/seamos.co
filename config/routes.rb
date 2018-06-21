@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   get '/auth/sessions', to: 'sessions#error'
   get '/politician/:politician_id/polls', to: 'polls#filtered_by_politician', format: 'json'
-  get '/profile', to: 'users#show', format: 'json'
+  resources :users, only: [:show]
   get '/proponents/:id', to: 'users#politician_profile', format: 'json'
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
   get 'polls/closed', to: 'polls#index_closed', format: 'json'
