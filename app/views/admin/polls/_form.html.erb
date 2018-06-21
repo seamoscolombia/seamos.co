@@ -1,5 +1,5 @@
 <%= tinymce_assets %>
-<%= form_for(poll, html: { multipart: true } ) do |f| %>
+<%= form_for([:admin, poll], html: { multipart: true } ) do |f| %>
 <%= render 'shared/mensajes_de_error',  object: f.object %>
 
 <div class="radio_button_field">

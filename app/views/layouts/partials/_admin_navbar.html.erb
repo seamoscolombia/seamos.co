@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>  <%= link_to t('.polls'),admin_polls_path %></li>
         <% if current_user.politico? %>
-          <li>  <%= link_to t('.create_poll'), new_poll_path %> </li>
+          <li>  <%= link_to t('.create_poll'), new_admin_poll_path %> </li>
         <% end %>
         <% if is_admin? %>
           <li>  <%= link_to t('.users'), admin_validate_users_path %> </li>
