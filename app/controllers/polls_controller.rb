@@ -5,53 +5,18 @@ class PollsController < ApplicationController
   before_action :validate_session, except: [:index,
                                             :show,
                                             :client_show,
-                                            :filtered_by_politician,
                                             :filtered_by_tag,
-                                            :index_closed,
-                                            :random_non_voted_polls,
                                             :summary_polls]
  
   before_action :set_tag, only: :filtered_by_tag
   before_action :set_poll, only: :client_show
-  before_action :set_politician, only: :filtered_by_politician
 
-  def index_closed
-    respond_to do |format|
-      format.json do
-        @polls = Poll.includes(:votes, :tags).closed.sort_by {|poll| poll.closing_date}.reverse
-      end
-    end
-  end
-
-  def random_non_voted_polls
-    respond_to do |format|
-      format.json do
-        @polls = []
-        active_polls = Poll.includes(:votes, :tags).open
-        closed_polls = Poll.includes(:votes, :tags).closed
-        @polls << active_polls.first(4)
-        @polls << closed_polls.shuffle.first(4 - @polls.size)
-        @polls = @polls.flatten.first(4) if @polls.present?
-      end
-    end
-  end
 
   def summary_polls
     @polls = Poll.includes(:votes, :tags).order(created_at: :desc).limit(40)
   end
 
-  def filtered_by_politician
-    if @politician
-      respond_to do |format|
-        format.json do
-          @polls = @politician.polls.includes(:votes).sort_by {|poll| - poll.votes.size}
-        end
-      end
-    else
-      render :json => { :errors => t(".not_a_politician") }, :status => 400
-    end
-  end
-
+  
   def show
     @poll = Poll.find_by(id: params[:id])
     respond_to do |format|
@@ -77,45 +42,6 @@ class PollsController < ApplicationController
     end
   end
 
-  def client_show
-    if @poll
-      set_meta_tags og: {
-        title: @poll.title,
-        url: request.url,
-        image: {
-          _: @poll.poll_image,
-          width: 600,
-          height: 600
-        },
-        description: @poll.summary,
-        type: "article",
-        site_name: "seamOS"
-      }
-
-      set_meta_tags article: {
-        published_time:    @poll.created_at,
-        section:           @poll.tags.first.name,
-        tag:               @poll.tags.first.name,
-      }
-
-      set_meta_tags twitter: {
-        card:  "summary_large_image",
-        site:  "@seamos",
-        title:  @poll.title,
-        description: @poll.summary ? @poll.summary.first(199) : nil,
-        creator: "@seamos",
-        image: {
-          _:      @poll.poll_image,
-          width:  100,
-          height: 100,
-        }
-      }
-    else
-      redirect_to "/\#/404"
-    end
-    @props = {pollIdReducer: {id: params[:id]}}
-  end
-
   def voted
     @polls = current_user.voted_polls.last(5)
     respond_to do |format|
@@ -131,11 +57,6 @@ class PollsController < ApplicationController
 
     def set_tag
       @tag = Tag.find_by(id: params[:tag_id])
-    end
-
-    def set_politician
-      @user = User.find_by(id: params[:politician_id])
-      ( @user.present? && @user.politico? ) ? @politician = @user : @politician = nil
     end
 
     def validate_poll_closed?
