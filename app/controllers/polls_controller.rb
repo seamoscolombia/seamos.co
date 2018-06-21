@@ -4,42 +4,29 @@ class PollsController < ApplicationController
   
   before_action :validate_session, except: [:index,
                                             :show,
-                                            :client_show,
                                             :filtered_by_tag,
                                             :summary_polls]
  
   before_action :set_tag, only: :filtered_by_tag
-  before_action :set_poll, only: :client_show
-
 
   def summary_polls
     @polls = Poll.includes(:votes, :tags).order(created_at: :desc).limit(40)
   end
-
   
   def show
     @poll = Poll.find_by(id: params[:id])
-    respond_to do |format|
-      format.html do
-        chart_type = 'pie'
-        if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
-          @vote_types = @poll.votes.joins(:vote_type)
-          .group('vote_types.name')
-          .count('vote_types.id')
-        else
-          i_date = params[:poll][:initial_date]
-          f_date = params[:poll][:final_date]
-          @vote_types = @poll.votes.joins(:vote_type).where(created_at: i_date...f_date)
-          @vote_types = @vote_types.group('vote_types.name').count('vote_types.id') unless @vote_types.empty?
-        end
-        puts "@vote_types: #{@vote_types}"
-      end
-      format.json do
+      chart_type = 'pie'
+      if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
         @vote_types = @poll.votes.joins(:vote_type)
         .group('vote_types.name')
         .count('vote_types.id')
+      else
+        i_date = params[:poll][:initial_date]
+        f_date = params[:poll][:final_date]
+        @vote_types = @poll.votes.joins(:vote_type).where(created_at: i_date...f_date)
+        @vote_types = @vote_types.group('vote_types.name').count('vote_types.id') unless @vote_types.empty?
       end
-    end
+      puts "@vote_types: #{@vote_types}"
   end
 
   def voted
@@ -51,10 +38,6 @@ class PollsController < ApplicationController
   end
 
   private
-    def set_poll
-      @poll = Poll.find_by(id: params[:id])
-    end
-
     def set_tag
       @tag = Tag.find_by(id: params[:tag_id])
     end

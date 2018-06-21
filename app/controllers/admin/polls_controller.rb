@@ -1,13 +1,6 @@
 class Admin::PollsController < ApplicationController
   before_action :validate_admin_user
   # before_action :validate_closing_date, only: :edit
-  def toggle_status
-    @poll = Poll.find_by(id: params[:id])
-    @poll.active = !@poll.active
-    if @poll.save
-      redirect_to admin_polls_path
-    end
-  end
 
   def create
     @poll = Poll.new http_params
