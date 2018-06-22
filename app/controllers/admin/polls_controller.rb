@@ -1,6 +1,6 @@
 class Admin::PollsController < ApplicationController
   before_action :validate_admin_user
-  # before_action :validate_closing_date, only: :edit
+  before_action :set_poll, only: %i(edit update destroy)
 
   def create
     @poll = Poll.new http_params
@@ -12,29 +12,24 @@ class Admin::PollsController < ApplicationController
     Poll.transaction do
       @poll.vote_types.build(name: 'SI')
       @poll.vote_types.build(name: 'NO')
-      @poll.save! # We need vote_type.id
       @poll.vote_types.each do |vote_type|
         totals_hash[vote_type.id] = 0
       end
       @poll.totals = totals_hash.to_s
-      @poll.save!
+      if @poll.save
+        flash[:success] = I18n.t(:accion_exitosa)
+        redirect_to admin_dashboard_index_path
+      else
+        render :new
+      end
     end
-    flash[:success] = I18n.t(:accion_exitosa)
-    redirect_to admin_dashboard_index_path
-  rescue Exception => e
-    puts "ERROR POLL CREATION: #{e.inspect}"
-    logger.debug "ERROR POLL CREATION: #{e.inspect}"
-    logger.debug e.backtrace.to_s
-    render :new
   end
 
   def update
-    @poll = Poll.find_by(id: params[:id])
     @poll.tags = []
     @poll.set_tags(tags_param)
     bind_links
     if @poll.update(http_params)
-      # ActionCable.server.broadcast 'polls_channel', 'changed'
       flash[:success] = I18n.t(:accion_exitosa)
       redirect_to admin_dashboard_index_path
     else
@@ -43,14 +38,11 @@ class Admin::PollsController < ApplicationController
   end
 
   def destroy
-    @poll = Poll.find_by(id: params[:id])
     @poll.destroy
-    # ActionCable.server.broadcast 'polls_channel', 'changed'
     redirect_to admin_polls_path
   end
 
   def edit
-    @poll = Poll.find_by(id: params[:id])
     @used_tags = @poll.tags.map(&:name).join(',')
   end
 
@@ -120,8 +112,7 @@ class Admin::PollsController < ApplicationController
       )
     end
 
-    def validate_closing_date
-      poll = Poll.find_by(id: params[:id])
-      redirect_to root_path and return if poll.closing_date < Date.today.in_time_zone
+    def set_poll
+      @poll = Poll.find_by(id: params[:id])
     end
 end
