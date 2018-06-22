@@ -40,7 +40,7 @@
           <% if is_admin? || current_user.politico?%>
             <li> <%= link_to t('.edit_poll'), edit_admin_poll_path(poll.id), class: "btn btn-default" %></li>
             <li>|</li>
-            <li> <%= link_to t('.delete_poll'), poll, class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></li>
+            <li> <%= link_to t('.delete_poll'), admin_poll_path(poll.id), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></li>
           <% end %>
           <br>
           <li>

@@ -82,6 +82,10 @@ class Admin::PollsController < ApplicationController
       end
     end
 
+    def set_poll
+      @poll = Poll.find_by(id: params[:id])
+    end
+
     def tags_param
       params[:poll][:tags]
     end
@@ -110,9 +114,5 @@ class Admin::PollsController < ApplicationController
         :question,
         vote_types_attributes: [:name]
       )
-    end
-
-    def set_poll
-      @poll = Poll.find_by(id: params[:id])
-    end
+    end   
 end
