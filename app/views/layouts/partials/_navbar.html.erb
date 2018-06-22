@@ -1,4 +1,4 @@
-<% if session[:session_type] == "web" %>
+<% if current_user && current_user.administrador? %>
   <%= render 'layouts/partials/admin_navbar' %>
 <% else %>
   <%= render 'layouts/partials/client_navbar' %>

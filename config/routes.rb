@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     get 'polls', to:  'polls#index_admin'
     get '/', to: 'sessions#new', as: :login
     post '/sessions', to: 'sessions#admin_create'
-    get 'validate-users', to: 'users#index'
+    get 'validate-users', to: 'admin/users#index'
     resources 'dashboard', only: [:index]
     get '/dashboard/stats', to: 'dashboard#stats'
   end

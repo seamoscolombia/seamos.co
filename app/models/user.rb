@@ -36,9 +36,9 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   mount_uploader :admin_photo, AdminPhotoUploader
 
-  attr_accessor :password, :password_confirmation
+  # attr_accessor :password, :password_confirmation
 
-  before_save :encrypt_password_for_admin
+  # before_save :encrypt_password_for_admin
 
   has_many  :polls,  dependent: :destroy
   has_many  :voted_polls, source: 'poll', through: 'votes', foreign_key: 'poll_id'
@@ -49,19 +49,19 @@ class User < ApplicationRecord
   has_many :academic_titles, inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :academic_titles, reject_if: proc { |attributes| attributes[:title].blank? }, allow_destroy: true
 
-  validates  :first_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
+  # validates  :first_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòùæ.-]+\z/}
   # validates  :second_surname, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
-  validates  :names, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
+  # validates  :names, :format => { :with => /\A[a-zA-Z\sÁÉÍÓÚÄËÏÖÜÀÈÌÒÙÑáéíóúäëïöüñàèìòù.-]+\z/}
   validates  :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}, if: :admin?
-  validates_presence_of  [:first_surname, :names, :role_type]
+  # validates_presence_of  [:first_surname, :names, :role_type]
   validates_presence_of  [:bio, :organization, :admin_photo], if: :politician?
-  validates :uid, uniqueness: true, unless: [:admin?, :politician?]
+  # validates :uid, uniqueness: true, unless: [:admin?, :politician?]
 
   validate :email_for_admin, if: :admin?
-  validate :password_for_admin, on: :create, if: :admin?
-  validate :password_for_admin_update, on: :update, if: :admin?
+  # validate :password_for_admin, on: :create, if: :admin?
+  # validate :password_for_admin_update, on: :update, if: :admin?
   validate :major_electoral_representation_localities_length, if: :politician?
-  validates :uid, presence: true, unless: [:admin?, :politician?]
+  # validates :uid, presence: true, unless: [:admin?, :politician?]
 
   enum role_type: {ciudadano: 0, politico: 1, administrador: 2}
   enum current_corporation_commission: {"Comisión del plan": 0, "Comisión de Gobierno": 1, "Comisión de Hacienda": 2}
@@ -121,23 +121,23 @@ class User < ApplicationRecord
     votes.size
   end
 
-  def self.get_admin(params)
-    user = find_by_email(params[:email])
-    if user && user.password_hash && user.password_hash == BCrypt::Engine.hash_secret( params[:password], user.password_salt)
-      user
-    else
-      nil
-    end
-  end
+  # def self.get_admin(params)
+  #   user = find_by_email(params[:email])
+  #   if user && user.password_hash && user.password_hash == BCrypt::Engine.hash_secret( params[:password], user.password_salt)
+  #     user
+  #   else
+  #     nil
+  #   end
+  # end
 
   private
 
-  def encrypt_password_for_admin
-    if password.present? && (role_type != "ciudadano")
-      self.password_salt = BCrypt::Engine.generate_salt
-      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-    end
-  end
+  # def encrypt_password_for_admin
+  #   if password.present? && (role_type != "ciudadano")
+  #     self.password_salt = BCrypt::Engine.generate_salt
+  #     self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+  #   end
+  # end
 
   def major_electoral_representation_localities_length
     if self.major_electoral_representation_localities.split(',').length > 2
@@ -145,17 +145,17 @@ class User < ApplicationRecord
     end
   end
 
-  def password_for_admin
-    if (password.nil? || password.present? != password_confirmation.present?)
-      errors.add(:contraseña, I18n.t(:password))
-    end
-  end
+  # def password_for_admin
+  #   if (password.nil? || password.present? != password_confirmation.present?)
+  #     errors.add(:contraseña, I18n.t(:password))
+  #   end
+  # end
 
-  def password_for_admin_update
-    if (self.password != self.password_confirmation)
-      errors.add(:contraseña, I18n.t(:password))
-    end
-  end
+  # def password_for_admin_update
+  #   if (self.password != self.password_confirmation)
+  #     errors.add(:contraseña, I18n.t(:password))
+  #   end
+  # end
 
   def email_for_admin
     if email.nil?
