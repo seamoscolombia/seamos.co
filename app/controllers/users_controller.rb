@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  include SessionsHelper
-  before_action :validate_session, only: :already_voted
-  before_action :set_user, only: [:edit, :update, :destroy, :politician_profile]
   before_action :authenticate_user!
   before_action :set_random_polls, only: :show
 
@@ -11,7 +8,8 @@ class UsersController < ApplicationController
       @tags = @user.tags
       @participations = @user.votes.map(&:poll)
     else
-      render :json => { errors: t(".not_logged_in") }, status: 401
+      flash[:error] = t(".not_logged_in")
+      redirect_to root_path
     end
   end
 end

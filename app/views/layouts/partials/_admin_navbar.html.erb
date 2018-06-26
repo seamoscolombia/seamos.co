@@ -41,7 +41,7 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <%= link_to session_path, method: :delete do %>
+              <%= link_to destroy_user_session_path, method: :delete do %>
                 <%= t('.logout') %>
               <%end%>
             </li>

@@ -16,9 +16,5 @@ RSpec.describe SessionsController, type: :controller do
       { session: {email: user.email, password: user.password }
       })
     }
-    it "redirects to pending subscriptions page" do
-      post :admin_create, params: not_registered_user.to_unsafe_h
-      expect(response).to redirect_to(admin_login_path)
-    end
   end
 end

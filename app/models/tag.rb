@@ -24,6 +24,5 @@ class Tag < ApplicationRecord
   
   validates :name, presence: true, uniqueness: true
   validates :tag_image, presence: true, on: :create
-  validates :tag_icon, presence: true, on: :create
   validates :tag_color, presence: true, on: :create
 end
