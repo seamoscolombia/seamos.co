@@ -11,9 +11,9 @@
     </div>
   </div>
   <div>
-    <%= render partial: 'tags_list' %>
+    <%= render partial: 'tags_list', locals: {tags: @tags} %>
   </div>
   <div>
-    <span> Placeholder: Aquí va el partial "también te puede interesar" </span>
+    <%= render partial: 'layouts/partials/you_may_also_like' %>
   </div>
 </div>

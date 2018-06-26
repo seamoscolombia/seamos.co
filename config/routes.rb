@@ -2,13 +2,16 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: "prehome#index"
   get 'settings/unsubscribe'
+  get '/home', to: 'home#index'
 
   namespace :admin do
     resources :tags
+    resources :users, only: [:index, :edit, :update, :destroy]
+    resources :dashboard, only: [:index]
+    get '/dashboard/stats', to: 'dashboard#stats'
   end
 
   resources :subscriptions, only: [:create, :destroy]
-  get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
   resources :users , except: [:show] do
     get 'already_voted', on: :member
     get 'validate', on: :member
@@ -26,14 +29,13 @@ Rails.application.routes.draw do
 
   get '/auth/sessions', to: 'sessions#error'
   get '/politician/:politician_id/polls', to: 'polls#filtered_by_politician', format: 'json'
-  get '/profile', to: 'users#show', format: 'json'
+  resources :users, only: [:show]
   get '/proponents/:id', to: 'users#politician_profile', format: 'json'
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
   get 'polls/closed', to: 'polls#index_closed', format: 'json'
   get 'check_vote', to: 'votes#check_vote', format: 'json'
   get 'random_polls', to: 'polls#random_non_voted_polls', format: 'json'
   get 'summary_polls', to: 'polls#summary_polls', format: 'json'
-  post 'set_user_email', to: 'users#set_user_email', format: 'json'
 
   resources :polls do
     get 'last', on: :collection
@@ -53,9 +55,7 @@ Rails.application.routes.draw do
     get 'polls', to:  'polls#index_admin'
     get '/', to: 'sessions#new', as: :login
     post '/sessions', to: 'sessions#admin_create'
-    get 'validate-users', to: 'users#index'
-    resources 'dashboard', only: [:index]
-    get '/dashboard/stats', to: 'dashboard#stats'
+    get 'validate-users', to: 'admin/users#index'
   end
 
   get 'settings/unsubscribe'

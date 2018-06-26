@@ -14,14 +14,13 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li>  <%= link_to t('.polls'),admin_polls_path %></li>
+        <li>  <%= link_to 'Lista de propuestas',admin_polls_path %></li>
         <% if current_user.politico? %>
-          <li>  <%= link_to t('.create_poll'), new_poll_path %> </li>
+          <li>  <%= link_to 'Crear Propuesta', new_poll_path %> </li>
         <% end %>
         <% if is_admin? %>
-          <li>  <%= link_to t('.users'), admin_validate_users_path %> </li>
-          <li>  <%= link_to t('.create_admin'), new_admin_path %></li>
-          <li>  <%= link_to t(:tags_menu), new_admin_tag_path %></li>
+          <li>  <%= link_to 'Lista de usuarios', admin_validate_users_path %> </li>
+          <li>  <%= link_to 'Lista de temas', new_admin_tag_path %></li>
           <li>  <%= link_to "Datos", admin_dashboard_stats_path %> </li>
           <li class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,7 +40,7 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <%= link_to session_path, method: :delete do %>
+              <%= link_to destroy_user_session_path, method: :delete do %>
                 <%= t('.logout') %>
               <%end%>
             </li>

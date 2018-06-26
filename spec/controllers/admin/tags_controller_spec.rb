@@ -8,7 +8,7 @@ RSpec.describe Admin::TagsController, type: :controller do
     before(:each) do
       Tag.destroy_all
       allow_any_instance_of(Tag).to receive(:valid?).and_return(true)
-      session[:email] = user.email
+      sign_in user
       post :create, params: {
         tag: new_tag_params
       }
@@ -22,11 +22,11 @@ RSpec.describe Admin::TagsController, type: :controller do
   end
 
   describe 'GET new' do
+    let(:user) { FactoryGirl.create(:user, role_type: 2) }
     before(:each) do
-      session[:email] = user.email
+      sign_in user
       get :new
     end
-    let(:user) { FactoryGirl.create(:user, role_type: 2) }
     it 'assigns a new tag to @tag' do
       expect(assigns(:tag).new_record?).to be true
     end

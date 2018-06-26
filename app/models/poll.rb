@@ -147,6 +147,14 @@ class Poll < ApplicationRecord
     user.admin_photo.try(:url)
   end
 
+  def tag_name
+    tags.first.name if tags.present?
+  end
+
+  def tag_color
+    tags.first.tag_color if tags.present?
+  end
+
   private
 
   def closing_date_validation

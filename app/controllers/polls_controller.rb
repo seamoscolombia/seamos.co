@@ -1,5 +1,4 @@
 class PollsController < ApplicationController
-  include SessionsHelper
   before_action :validate_poll_closed?, only: :show
   # before_action :validate_closing_date, only: :edit
   before_action :validate_session, except: [:index,

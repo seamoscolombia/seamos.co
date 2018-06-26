@@ -6,7 +6,7 @@ class PrehomeController < ApplicationController
 
   def validate_user 
     if current_user && (current_user.administrador? || current_user.politico? )
-      redirect_to admin_homepage_path
+      redirect_to admin_dashboard_index_path
     end
   end
 end

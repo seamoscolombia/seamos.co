@@ -45,28 +45,11 @@ RSpec.describe User, type: :model do
   end
 
   describe 'validations' do
-    describe 'not an admin validations' do
-      let(:user) { User.new(role_type: 0, uid: '') }
-      it 'should validate presence' do
-        user.valid?
-        expect(user.errors[:uid]).to include('no puede estar en blanco')
-      end
-      let(:pre_invalid_user) { FactoryGirl.create(:user, uid: '1') }
-      let(:invalid_user) { User.new(role_type: 0, uid: pre_invalid_user.uid) }
-      it 'should validate uniqueness' do
-        invalid_user.valid?
-        expect(invalid_user.errors[:uid]).to include('ya ha sido tomado')
-      end
-    end
     describe 'admin validations' do
       let(:invalid_admin) { User.new(role_type: 2, uid: '', email: nil) }
       it 'should validate email' do
         invalid_admin.valid?
         expect(invalid_admin.errors[:email].empty?).to be false
-      end
-      it 'should validate password' do
-        invalid_admin.valid?
-        expect(invalid_admin.errors[:contraseña].empty?).to be false
       end
     end
     describe 'politician validations' do
@@ -75,13 +58,6 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of(:organization) }
       it { should validate_presence_of(:admin_photo) }
     end
-
-    describe '#first_surname' do
-      it { should_not allow_value('surname123').for(:first_surname) }
-    end
-    it { should validate_presence_of(:first_surname) }
-    it { should validate_presence_of(:names) }
-    it { should validate_presence_of(:role_type) }
   end
 
   describe 'User#full_name' do
@@ -106,23 +82,6 @@ RSpec.describe User, type: :model do
     context 'when user has not voted for a poll' do
       it 'returns false' do
         expect(user.already_voted?(non_voted_poll)).to be false
-      end
-    end
-  end
-  
-  describe 'User.get_admin()' do
-    let(:admin_user) { FactoryGirl.create(:user, role_type: 2) }
-    let(:non_admin_user) { FactoryGirl.create(:user, role_type: 0) }
-    context 'when user is an admin' do
-      it 'returns the user' do
-        params =  { email: admin_user.email, password: admin_user.password }
-        expect(User.get_admin(params)).to eq(admin_user)
-      end
-    end
-    context 'when user is not an admin' do
-      it 'returns nil' do
-        params =  { email: non_admin_user.email, password: non_admin_user.password }
-        expect(User.get_admin(params)).to eq(nil)
       end
     end
   end

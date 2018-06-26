@@ -67,10 +67,10 @@
               <div class="hide-on-mobile">
                 <span>
                   <li style="display: inline-block;">
-                    <button class="btn nav-with-background">
+                    <%= button_to user_path(current_user.id), class: "btn nav-with-background", method: :get do %>
                       <img src="<%= current_user.provider_image %>" role="presentation" style="width: 25px; height: 25px; border-radius: 50%; margin-right: 3px;">
                       TU PERFIL
-                    </button>
+                    <% end %>
                   </li>
                 </span>
               </div>
@@ -94,7 +94,7 @@
                     <li>
                       <div>
                         <%= button_to user_google_oauth2_omniauth_authorize_path, class: "loginBtn loginBtn--google" do %>
-                          Continuar con facebook
+                          Continuar con google
                         <% end %>
                       </div>
                     </li>

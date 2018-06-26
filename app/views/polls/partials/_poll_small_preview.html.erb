@@ -1,0 +1,41 @@
+<%= link_to poll_path(poll), class: 'poll-link' do %>
+  <div id="global-container">
+    <div id="other-poll-component">
+      <div class="left-side col-xs-4 col-md-4 no-padding">
+        <div class="poll-image-container">
+          <%= image_tag poll.poll_image %>
+        </div>
+        <% if poll.closed? %>
+          <div class="closed-ribbon"></div>
+        <% end %>
+      </div>
+      <div class="right-side col-xs-8 col-md-8">
+        <div class="poll-title">
+          <span>
+            <%= poll.title %>
+          </span>
+          <div class="diffuse"></div>
+        </div>
+        <div class="poll-infos-container">
+          <div class="poll-details">
+            <div class="poll-tag-name" style="width: 46%;">
+              <%= poll.tag_name %>
+            </div>
+            <div class="color-separator" style="border-left: 5px solid <%= poll.tag_color %>"></div>
+            <div class="btn button btn-plus-read" style="background-color: <%= poll.tag_color %>">
+              <%= poll.closed? ? 'RESULTADOS' : 'VOTA' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if current_user && current_page?(user_path(current_user)) && (!defined?(from_ymal) || defined?(from_ymal) && !from_ymal) %>
+      <div class="poll-my-vote">
+        <span class="poll-vote-title">Mi voto: </span>
+        <span style="font-family: HKNovaRegular;">
+          &nbsp; <%= poll.votes.by_user_id(current_user.id).first.name %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+<% end %>
