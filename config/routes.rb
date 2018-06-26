@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :tags
+    resources :users, only: [:index, :edit, :update, :destroy]
+    resources 'dashboard', only: [:index]
+    get '/dashboard/stats', to: 'dashboard#stats'
   end
 
   resources :subscriptions, only: [:create, :destroy]
@@ -34,7 +37,6 @@ Rails.application.routes.draw do
   get 'check_vote', to: 'votes#check_vote', format: 'json'
   get 'random_polls', to: 'polls#random_non_voted_polls', format: 'json'
   get 'summary_polls', to: 'polls#summary_polls', format: 'json'
-  post 'set_user_email', to: 'users#set_user_email', format: 'json'
 
   resources :polls do
     get 'last', on: :collection
@@ -55,8 +57,6 @@ Rails.application.routes.draw do
     get '/', to: 'sessions#new', as: :login
     post '/sessions', to: 'sessions#admin_create'
     get 'validate-users', to: 'admin/users#index'
-    resources 'dashboard', only: [:index]
-    get '/dashboard/stats', to: 'dashboard#stats'
   end
 
   get 'settings/unsubscribe'
