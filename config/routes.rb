@@ -7,12 +7,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :tags
     resources :users, only: [:index, :edit, :update, :destroy]
-    resources 'dashboard', only: [:index]
+    resources :dashboard, only: [:index]
     get '/dashboard/stats', to: 'dashboard#stats'
   end
 
   resources :subscriptions, only: [:create, :destroy]
-  get 'admin_homepage', to: 'intro#inicio', as: 'admin_homepage'
   resources :users , except: [:show] do
     get 'already_voted', on: :member
     get 'validate', on: :member
