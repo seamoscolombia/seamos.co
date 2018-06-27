@@ -100,8 +100,12 @@
     <div class="field politician-field">
       <%= f.label "Localidades de mayor representación electoral" %>
       <span class="optional"> (máximo dos) </span>
-      <span class="optional"> (localidades seleccionadas actualmente: <strong><%= user.try(:major_electoral_representation_localities) %></strong>) </span>
-      <%= f.select(:major_electoral_representation_localities, User.localities.keys, {}, {multiple: true, "data-live-search": "true", class: "selectpicker form-control", "data-size": 10}) %>
+      <%= f.select(
+        :major_electoral_representation_localities,
+        options_for_select(User.localities, user.major_electoral_representation_localities.split(', ')), 
+        {}, 
+        {multiple: true, "data-live-search": "true", class: "selectpicker form-control", "data-size": 10}) 
+      %>
     </div>
 
     <div class="field politician-field">
