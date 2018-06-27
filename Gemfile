@@ -23,7 +23,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'em-hiredis', '~> 0.3.1'
 # gem 'redis', '~> 3.3.3'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass', '~> 3.3.6'
 # Use Capistrano for deployment
@@ -51,6 +50,8 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'tinymce-rails'
 gem 'meta-tags'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'devise'
+gem 'omniauth-google-oauth2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -5,7 +5,7 @@
   <div id="may-interest-container">
     <div id="may-interest">
       <% @random_polls.each do |poll| %>
-        <%= render partial: 'polls/partials/poll_small_preview', locals: {poll: poll} %>
+        <%= render partial: 'polls/partials/poll_small_preview', locals: {poll: poll, from_ymal: true} %>
       <% end %>
     </div>
   </div>
