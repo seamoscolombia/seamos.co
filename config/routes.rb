@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root 'prehome#index'
   get '/home', to: 'home#index'
+  get '/politicians', to: 'pages#politicians'
+
 
   namespace :admin do
     resources :tags
