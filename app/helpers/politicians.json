@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Hollman Morris",
+    "party": "Progresistas",
+    "background_class": "p_one"
+  }, 
+  {
+    "name": "Juan Felipe Grillo",
+    "party": "Cambio Radical",
+    "background_class": "p_two"
+  },
+  {
+    "name": "Horacio José Serpa",
+    "party": "Partido Liberal",
+    "background_class": "p_three"
+  }
+]
