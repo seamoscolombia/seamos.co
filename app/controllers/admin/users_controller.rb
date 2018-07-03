@@ -1,11 +1,9 @@
 class Admin::UsersController < ApplicationController
-  before_action :validate_session, only: :already_voted
-  before_action :set_user, only: [:edit, :update, :destroy, :politician_profile]
-  before_action :validate_superadmin, only: %i(new delete)
+  before_action :set_user, except: :index
+  before_action :validate_superadmin
   before_action :authenticate_user!
 
   def edit
-    users_exist
   end
 
   def index
@@ -14,28 +12,17 @@ class Admin::UsersController < ApplicationController
     @users = @users.search(params[:search_term]).page(params[:page]).per(4) unless params[:search_term].blank?
   end
 
-  def show
-    if current_user
-      @user = current_user
-      @participations = @user.votes.map(&:poll)
-    else
-      render :json => { errors: t(".not_logged_in") }, status: 401
-    end
-  end
-
   def update
     @user.transaction do
-      @user = User.find_by(id: params[:id])
       @user.attributes = user_params.except(:major_electoral_representation_localities)
-      localities_string = localities_array_to_string(params[:user][:major_electoral_representation_localities]) unless params[:user][:major_electoral_representation_localities].blank?
+      localities_string = params[:user][:major_electoral_representation_localities].reject { |l| l.empty? }.join(', ') unless params[:user][:major_electoral_representation_localities].blank?
       @user.major_electoral_representation_localities = localities_string unless localities_string.blank?
       @user.save!
+      flash[:notice] = I18n.t(:accion_exitosa)
+      redirect_to admin_users_path
     end
-    flash[:notice] = I18n.t(:accion_exitosa)
-    redirect_to admin_users_path
   rescue ActiveRecord::RecordInvalid => e
-    puts "update user: #{e}"
-    flash[:danger] = " #{e}"
+    flash[:error] = " #{e}"
     redirect_to edit_users_path @user
   end
 
@@ -46,17 +33,12 @@ class Admin::UsersController < ApplicationController
 
   private
 
-  def localities_array_to_string(localities_array)
-    localities = []
-    localities_array.delete("")
-    localities_array.each do |res|
-      localities << res
-    end
-    localities.join(", ")
-  end
-
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
+    if @user.nil?
+      flash[:error] = "El usuario no existe"
+      redirect_to admin_users_path 
+    end
   end
 
   def user_params
@@ -86,17 +68,5 @@ class Admin::UsersController < ApplicationController
                                                               :institute,
                                                               :_destroy]
                                 )
-  end
-
-  def users_exist
-    @user = User.find_by(id: params[:id])
-    redirect_to users_path if @user.nil?
-  end
-
-  def remove_password_if_not_provided
-    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
-    end
   end
 end
