@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root to: "prehome#index"
   get 'settings/unsubscribe'
   get '/home', to: 'home#index'
+  get '/politicians', to: 'pages#politicians'
+
 
   namespace :admin do
     resources :tags

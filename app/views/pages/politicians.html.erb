@@ -1,0 +1,18 @@
+<div id="politicians">
+  <div class="row politicians-banner one">
+    <div class="one-caption">¿Qué concejales participan?</div>
+  </div>
+  <div class="row">
+      <div class="politicians">
+        <% @politicians.each do |politician| %>
+          <a class="politician-link" href="http://seamos.co/#/proponents/23">
+            <div class="politician <%= politician["background_class"] %>">
+              <div class="photo"></div>
+              <div class="name"><%= politician["name"] %></div>
+              <div class="organization"><%= politician["party"] %></div>
+            </div>
+          </a> 
+        <% end %>
+      </div>
+  </div>
+</div>
