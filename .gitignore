@@ -53,3 +53,6 @@ MOV_SEAMOS/
 
 \.DS_Store
 bcrypt
+
+/config/application.yml
+
