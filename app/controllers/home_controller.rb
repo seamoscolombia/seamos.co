@@ -12,6 +12,7 @@ class HomeController < ApplicationController
     end
     @polls.flatten!
     @polls = @reverse ? @polls.reverse.first(2) : @polls.first(2)
+    @subscription = Subscription.new
   end
 
   private

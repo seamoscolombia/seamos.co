@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
   
   def validate_superadmin
+    flash[:warning] = "Primero debes acceder como administrador"
     redirect_to :root unless current_user && current_user.role_type = 'administrador'
   end
 
