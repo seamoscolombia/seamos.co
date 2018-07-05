@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
-  before_action :fetch_message, only: :preview
-  before_action :validate_superadmin, only: %i(create preview new)
+  before_action :validate_superadmin, only: %i(create new)
+
   def new
     @message = Message.new
   end
@@ -19,22 +19,9 @@ class MessagesController < ApplicationController
     end
   end
 
-  def preview
-    @message = {subject: params[:subject], content: params[:content]}
-    render 'user_notifier_mailer/send_general_message'
-  end
-
   private
-
-  def fetch_message
-    @message = params[:message]
-  end
 
   def message_params
     params.require(:message).permit(params[:message].keys).to_h
-  end
-  
-  def validate_superadmin
-    redirect_to :root unless current_user && current_user.role_type = 'administrador'
   end
 end
