@@ -7,6 +7,7 @@ class UsersController < ApplicationController
       @user = current_user
       @tags = @user.tags
       @participations = @user.votes.map(&:poll)
+      @interests = @user.interests
     else
       flash[:error] = t(".not_logged_in")
       redirect_to root_path
