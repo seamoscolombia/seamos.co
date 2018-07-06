@@ -19,7 +19,6 @@ class VotesController < ApplicationController
   end
 
   def vote(code)
-    vote_type = nil
     @poll.transaction do
       vote_type = VoteType.find_by(id: code)
       vote = current_user.votes.build(
@@ -33,7 +32,7 @@ class VotesController < ApplicationController
     error_msg = "#{I18n.t(:accion_no_realizada)} "
     error_msg += vote.errors.messages[:base].join(' ') unless vote.errors.messages[:base].nil?
     Rails.logger.debug(error_msg)
-    flash[:danger] = " #{error_msg}"
+    flash[:danger] = "Tu voto no pudo ser registrado, intenta nuevamente"
     redirect_to polls_path
   end
 

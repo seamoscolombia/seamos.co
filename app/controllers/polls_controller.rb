@@ -1,4 +1,6 @@
 class PollsController < ApplicationController
+  CP_BASE_IMAGE_URL = "https://s3.amazonaws.com/poll-states/Control+Pol%C3%ADtico/ESTADOS+27+NOV+control+politico-0"
+  PA_BASE_IMAGE_URL = "https://s3.amazonaws.com/poll-states/Voto+o+Proyecto+de+Acuerdo/ESTADOS+27+NOV+PA+y+V-0"
   before_action :validate_poll_closed?, only: :show
   # before_action :validate_closing_date, only: :edit
   before_action :validate_session, except: [:index,
@@ -182,6 +184,9 @@ class PollsController < ApplicationController
 
   def client_show
     if @poll
+      @tag = @poll.tags.first
+      @author = @poll.user
+      @status_image = status_image
       set_meta_tags og: {
         title: @poll.title,
         url: request.url,
@@ -229,8 +234,16 @@ class PollsController < ApplicationController
 
   private
 
+  def status_image
+    if @poll.read_attribute_before_type_cast(:poll_type)
+      CP_BASE_IMAGE_URL + @poll.read_attribute_before_type_cast(:state).to_s + ".png"
+    else
+      PA_BASE_IMAGE_URL + @poll.read_attribute_before_type_cast(:state).to_s + ".png"
+    end
+  end
+
   def set_poll
-    @poll = Poll.find_by(id: params[:id])
+    @poll = Poll.includes(:tags, :user).find_by(id: params[:id])
   end
 
   def bind_links
