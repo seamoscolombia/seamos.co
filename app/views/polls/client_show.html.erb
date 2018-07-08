@@ -44,25 +44,79 @@
               <div id="poll-states">
                 <img src="<%= @status_image %>" class="state">
               </div>
-              <div class="external-links-container"></div>
-              <div class="external-links-container"></div>
+              <% if @poll.project_link.present? %>
+                <h5 class="external-links-title"> Enlace Proyecto Concejal </h5>
+                <div class="external-links-container">
+                  <div class="external-link">
+                    <a href="<%= @poll.project_link.url %>" target="_blank" rel="noopener noreferrer">
+                      <%= @poll.project_link.url.first(40) %>
+                    </a>
+                  </div>
+                </div>
+              <% end %>
+              <% if @poll.external_links.present? %>
+                <h5 class="external-links-title"> Enlaces Relacionados </h5>
+                <div class="external-links-container">
+                  <% @poll.external_links.each do |link| %>
+                    <div class="external-link">
+                      <a href="<%= link.url %>" target="_blank" rel="noopener noreferrer">
+                        <%= link.url.first(40) %>
+                      </a>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
           </div>
           <div class="col-sm-8">
               <div class="row">
                 <div class="col-sm-12">
                     <div class="row">
-                      <div class="col-xs-12 col-sm-6 buttons-wrapper">
+                      <% if current_user && @poll.voted_by_user?(current_user.id) || @poll.closed? %>
+                        <div class="col-xs-12 col-sm-6 buttons-wrapper">
                           <button class="progress btn voted-button">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 87%; cursor: default; background-color: gainsboro;"><span id="vote-name">SI</span><span id="percentage">87%</span></div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: <%= vote_percentage(vote_count(@poll)["SI"], @poll.vote_count) %>%; cursor: default; background-color: gainsboro;">
+                              <span id="vote-name">SI</span>
+                              <span id="percentage">
+                                <%= vote_percentage(vote_count(@poll)["SI"], @poll.vote_count) %> %
+                              </span>
+                            </div>
                           </button>
                           <button class="progress btn voted-button">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 13%; cursor: default; background-color: gainsboro;"><span id="vote-name">NO</span><span id="percentage">13%</span></div>
+                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: <%= vote_percentage(vote_count(@poll)["NO"], @poll.vote_count) %>%; cursor: default; background-color: gainsboro;">
+                              <span id="vote-name">NO</span>
+                              <span id="percentage">
+                                <%= vote_percentage(vote_count(@poll)["NO"], @poll.vote_count) %> %
+                              </span>
+                            </div>
                           </button>
-                      </div>
-                      <div class="col-xs-12 col-sm-12 poll-details"><span> propuesta cerrada</span></div>
+                        </div>
+                      <% elsif current_user %>
+                        <div class="col-xs-12 col-sm-6 buttons-wrapper">
+                          <%= button_to "SI", {:controller => "votes", action: "create", vote: 'SI', poll_id: @poll.id}, {class: "btn single-button non-voted-button"} %>
+                          <%= button_to "NO", {:controller => "votes", action: "create", vote: 'NO', poll_id: @poll.id}, {class: "btn single-button non-voted-button"} %>
+                        </div>
+                      <% else %>
+                        <div class="col-xs-12 col-sm-6 buttons-wrapper">
+                          <button class="btn single-button non-voted-button">
+                            SI
+                          </button>
+                          <button class="btn single-button non-voted-button">
+                            NO
+                          </button>
+                        </div>
+                      <% end %>
+                      <div class="col-xs-12 col-sm-12 poll-details">
+                        <span>
+                          <% if @poll.closed? %>
+                            propuesta cerrada
+                          <% else %>
+                            Quedan <%= distance_of_time_in_words(Date.today, Date.today + @poll.remaining_time_in_seconds.seconds) %>
+                          <% end %>
+                        </span>
+                      </div>                      
                     </div>
                     <div class="summary">
-                      @poll.summary
+                      <%= @poll.summary %>
                     </div>
                 </div>
                 <div class="poll-description-container col-sm-12">
@@ -76,4 +130,7 @@
         </section>
     </div>
   </section>
+  <%= render partial: 'layouts/partials/you_may_also_like' %>
+  <div class='spacer-big'> </div>
+  <div class='spacer-big'> </div>
 </div>

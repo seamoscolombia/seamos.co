@@ -23,6 +23,7 @@ class PollsController < ApplicationController
   before_action :set_tag, only: :filtered_by_tag
   before_action :set_poll, only: :client_show
   before_action :set_politician, only: :filtered_by_politician
+  before_action :set_random_polls, only: :client_show
 
   def toggle_status
     @poll = Poll.find_by(id: params[:id])
