@@ -15,11 +15,6 @@ class Admin::PollsController < ApplicationController
     end
   end
 
-  def show
-    @poll = Poll.find_by(id: params[:id])
-    @vote_types = @poll.votes.joins(:vote_type).group('vote_types.name').count('vote_types.id')
-  end
-
   def update
     if @poll.update(poll_params)
       flash[:success] = "Propuesta correctamente actualizada"
@@ -42,9 +37,9 @@ class Admin::PollsController < ApplicationController
   def index
     @filtered_polls = Poll.by_title(params[:search_term]).by_status(params[:status])
     @polls = if current_user.politico?
-               @filtered_polls.where(user_id: current_user.id).page(params[:page]).per(4)
+              Kaminari.paginate_array(@filtered_polls.select{ |p| p.user_id == current_user.id}).page(params[:page]).per(4)
              else
-               Kaminari.paginate_array(@filtered_polls).page(params[:page]).per(4)
+              Kaminari.paginate_array(@filtered_polls).page(params[:page]).per(4)
              end
   end
 

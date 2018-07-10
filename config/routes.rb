@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :tags
-    resources :polls
+    resources :polls, except: [:show]
     resources :users, only: [:index, :edit, :update, :destroy]
     resources :dashboard, only: [:index]
     get '/dashboard/stats', to: 'dashboard#stats'
