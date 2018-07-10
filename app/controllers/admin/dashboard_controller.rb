@@ -1,6 +1,8 @@
 class Admin::DashboardController < ApplicationController
   before_action :validate_session
-  before_action :validate_admin_user
+  before_action :validate_admin_user, only: :stats
+  before_action :validate_admin_or_politician, only: :index
+
 
   def stats
     @polls = Poll.all.includes(:votes)

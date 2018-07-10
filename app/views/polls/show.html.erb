@@ -58,6 +58,7 @@
                 <h5 class="external-links-title"> Enlaces Relacionados </h5>
                 <div class="external-links-container">
                   <% @poll.external_links.each do |link| %>
+                    <% next if link.is_project_link %>
                     <div class="external-link">
                       <a href="<%= link.url %>" target="_blank" rel="noopener noreferrer">
                         <%= link.url.first(40) %>

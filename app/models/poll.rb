@@ -114,7 +114,8 @@ class Poll < ApplicationRecord
   end
 
   def set_tags(tag_list)
-    tags << Tag.where(name: tag_list.split(','))
+    self.tags = []
+    self.tags << Tag.where(name: tag_list.split(','))
   end
 
   def remaining_time_in_seconds

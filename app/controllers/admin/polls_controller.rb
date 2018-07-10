@@ -1,37 +1,29 @@
 class Admin::PollsController < ApplicationController
-  before_action :validate_admin_user
+  before_action :validate_admin_or_politician, only: :index
+  before_action :validate_politician, except: :index
   before_action :set_poll, only: %i(edit update destroy)
+  before_action :bind_links, only: %i(create update)
+  before_action :set_tags, only: %i(create update)
 
   def create
-    @poll = Poll.new http_params
-    @poll.closing_hour = "23:59" if @poll.closing_hour.blank?
-    @poll.user = current_user
-    @poll.set_tags(tags_param)
-    bind_links
-    totals_hash = {}
-    Poll.transaction do
-      @poll.vote_types.build(name: 'SI')
-      @poll.vote_types.build(name: 'NO')
-      @poll.vote_types.each do |vote_type|
-        totals_hash[vote_type.id] = 0
-      end
-      @poll.totals = totals_hash.to_s
-      if @poll.save
-        flash[:success] = I18n.t(:accion_exitosa)
-        redirect_to admin_dashboard_index_path
-      else
-        render :new
-      end
+    if @poll.save
+      flash[:success] = "La propuesta fue creada correctamente"
+      redirect_to admin_polls_path
+    else
+      flash[:success] = "La propuesta no pudo ser creada, intente de nuevo por favor"
+      render :new
     end
   end
 
+  def show
+    @poll = Poll.find_by(id: params[:id])
+    @vote_types = @poll.votes.joins(:vote_type).group('vote_types.name').count('vote_types.id')
+  end
+
   def update
-    @poll.tags = []
-    @poll.set_tags(tags_param)
-    bind_links
-    if @poll.update(http_params)
-      flash[:success] = I18n.t(:accion_exitosa)
-      redirect_to admin_dashboard_index_path
+    if @poll.update(poll_params)
+      flash[:success] = "Propuesta correctamente actualizada"
+      redirect_to admin_polls_path
     else
       render :edit
     end
@@ -39,6 +31,7 @@ class Admin::PollsController < ApplicationController
 
   def destroy
     @poll.destroy
+    flash[:success] = "Propuesta eliminada"
     redirect_to admin_polls_path
   end
 
@@ -53,7 +46,6 @@ class Admin::PollsController < ApplicationController
              else
                Kaminari.paginate_array(@filtered_polls).page(params[:page]).per(4)
              end
-    render :index
   end
 
   def new
@@ -61,7 +53,9 @@ class Admin::PollsController < ApplicationController
   end
 
   private
+
     def bind_links
+      @poll = Poll.new(poll_params) unless @poll
       set_project_link
       @poll.related_links.destroy_all if @poll.external_links.present? && links_param != ""
       links_param.split(',').map(&:strip).uniq.each do |url|
@@ -82,6 +76,10 @@ class Admin::PollsController < ApplicationController
       @poll = Poll.find_by(id: params[:id])
     end
 
+    def set_tags
+      @poll.set_tags(tags_param)
+    end
+
     def tags_param
       params[:poll][:tags]
     end
@@ -94,7 +92,7 @@ class Admin::PollsController < ApplicationController
       params[:poll].permit(:project_link)
     end
 
-    def http_params
+    def poll_params
       params.require(:poll).permit(
         :closing_date,
         :closing_hour,
@@ -108,6 +106,7 @@ class Admin::PollsController < ApplicationController
         :poll_type,
         :summary,
         :question,
+        :user_id,
         vote_types_attributes: [:name]
       )
     end   

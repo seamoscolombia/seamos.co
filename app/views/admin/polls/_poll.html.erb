@@ -4,7 +4,7 @@
       <div class="col-md-12 center">
         <h4>
           <strong >
-            <%= link_to poll_path(poll.id), style: "color: #393939;" do %>
+            <%= link_to admin_poll_path(poll.id), style: "color: #393939;" do %>
                <%= poll.title%>
             <%end%>
           </strong>
@@ -23,7 +23,7 @@
     <br>
     <div class="row">
       <div class="col-md-3" >
-        <%= link_to poll_path(poll.id) do %>
+        <%= link_to admin_poll_path(poll.id) do %>
           <img src="<%= poll.poll_image %>"  style='width: 100%; ' alt="">
         <%end%>
       </div>
