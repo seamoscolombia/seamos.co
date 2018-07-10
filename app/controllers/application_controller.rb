@@ -6,8 +6,10 @@ class ApplicationController < ActionController::Base
   end
   
   def validate_superadmin
-    flash[:warning] = "Primero debes acceder como administrador"
-    redirect_to :root unless current_user && current_user.role_type = 'administrador'
+    unless current_user && current_user.role_type == 'administrador'
+      flash[:error] = "Primero debes acceder como administrador"
+      redirect_to root_path 
+    end
   end
 
   def set_random_polls
