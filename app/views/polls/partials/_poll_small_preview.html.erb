@@ -5,7 +5,9 @@
         <div class="poll-image-container">
           <%= image_tag poll.poll_image %>
         </div>
-        <div class="closed-ribbon"></div>
+        <% if poll.closed? %>
+          <div class="closed-ribbon"></div>
+        <% end %>
       </div>
       <div class="right-side col-xs-8 col-md-8">
         <div class="poll-title">
@@ -27,5 +29,13 @@
         </div>
       </div>
     </div>
+    <% if current_user && current_page?(user_path(current_user)) && (!defined?(from_ymal) || defined?(from_ymal) && !from_ymal) %>
+      <div class="poll-my-vote">
+        <span class="poll-vote-title">Mi voto: </span>
+        <span style="font-family: HKNovaRegular;">
+          &nbsp; <%= poll.votes.by_user_id(current_user.id).first.name %>
+        </span>
+      </div>
+    <% end %>
   </div>
 <% end %>

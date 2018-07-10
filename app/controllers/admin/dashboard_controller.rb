@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class Admin::DashboardController < ApplicationController
   before_action :validate_session
   before_action :validate_admin_user
 

@@ -148,7 +148,11 @@ class Poll < ApplicationRecord
   end
 
   def tag_name
-    tags.first.name if tags.present?
+    default_tag.name if tags.present?
+  end
+
+  def default_tag
+    tags.first if tags.present?
   end
 
   def tag_color

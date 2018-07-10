@@ -1,51 +1,136 @@
-<!-- resultado de votación -->
-<div class="row">
-  <div class="col-md-4">
-    <%= link_to admin_polls_path, class: 'mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button' do %>
-      <i class="material-icons">navigate_before</i>
-    <% end %>
-
-  </div>
-  <div class="col-md-4">
-    <h1><%= t '.poll_results' %></h1>
-  </div>
-  <div class="col-md-4">
-    <%= form_tag poll_path(@poll), html: { class: "row" }, method: :get do |f| %>
-      <div class="col-md-6">
-        <label for="">Fecha inicial</label>
-        <input
-          type="text"
-          data-provide='datepicker' data-date-language="es"
-          data-date-autoclose="true" data-date-format="yyyy-mm-dd"
-          class="input-sm form-control" name="poll[initial_date]"
-
-        />
-      </div>
-      <div class="col-md-6">
-        <label for="">Fecha final</label>
-        <input
-          type="text"
-          data-provide='datepicker' data-date-language="es"
-          data-date-autoclose="true" data-date-format="yyyy-mm-dd"
-          class="input-sm form-control" name="poll[final_date]"
-
-        />
-      </div>
-      <div class="col-md-12">
-        <input type="submit" name="" value="Filtar" class="btn">
-      </div>
-    <% end %>
-  </div>
-
+<div id="poll-detail-global-wrapper">
+  <section id="poll-detail">
+    <div class="top-color-bar" style="background-color: <%= @tag.tag_color %>">
+        <div class="tag-name">
+          <%= @tag.name %>
+        </div>
+    </div>
+    <div class="container">
+        <section id="politician" class="row">
+          <img src="<%= @author.admin_photo.url%>" role="presentation" alt="politician">
+          <div id="politician-info">
+              <a id="author" href="/#/proponents/19">
+                <%= @author.full_name %>
+              </a>
+              <div id="org">
+                <%= @author.organization %>
+              </div>
+          </div>
+        </section>
+        <div class="share-wrapper">
+          <span class="share-this hide-on-mobile"> COMPARTIR: </span>
+          <div role="button" tabindex="0" class="SocialMediaShareButton SocialMediaShareButton--facebook network__share-button"><a class="fa fa-facebook" rel="noopener noreferrer" style="display: block;"></a><br></div>
+          <div role="button" tabindex="0" class="SocialMediaShareButton SocialMediaShareButton--twitter network__share-button"><a class="fa fa-twitter" rel="noopener noreferrer" style="display: block;"></a><br></div>
+        </div>
+        <header class="row">
+          <p class="col-sm-12 poll-title">
+            <%= @poll.title %>
+          </p>
+        </header>
+        <section id="poll" class="row">
+          <div id="left-col" class="col-sm-4">
+              <div id="poll-image-container">
+                <img id="poll-thumbnail" src="<%= @poll.poll_image %>" role="presentation" alt="poll thumbnail">
+              </div>
+              <% if @poll.closed? %>
+                <div class="closed-ribbon-wrapper">
+                  <div class="closed-ribbon" style="display: flex;">Propuesta Cerrada</div>
+                </div>
+              <% end %>
+              <p id="objective" class="row" style="display: none;">
+                <strong> Objetivo: </strong>
+                <%= @poll.objective %>
+              </p>
+              <div id="poll-states">
+                <img src="<%= @status_image %>" class="state">
+              </div>
+              <% if @poll.project_link.present? %>
+                <h5 class="external-links-title"> Enlace Proyecto Concejal </h5>
+                <div class="external-links-container">
+                  <div class="external-link">
+                    <a href="<%= @poll.project_link.url %>" target="_blank" rel="noopener noreferrer">
+                      <%= @poll.project_link.url.first(40) %>
+                    </a>
+                  </div>
+                </div>
+              <% end %>
+              <% if @poll.external_links.present? %>
+                <h5 class="external-links-title"> Enlaces Relacionados </h5>
+                <div class="external-links-container">
+                  <% @poll.external_links.each do |link| %>
+                    <div class="external-link">
+                      <a href="<%= link.url %>" target="_blank" rel="noopener noreferrer">
+                        <%= link.url.first(40) %>
+                      </a>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+          </div>
+          <div class="col-sm-8">
+              <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                      <% if current_user && @poll.voted_by_user?(current_user.id) || @poll.closed? %>
+                        <div class="col-xs-12 col-sm-6 buttons-wrapper">
+                          <button class="progress btn voted-button">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: <%= vote_percentage(vote_count(@poll)["SI"], @poll.vote_count) %>%; cursor: default; background-color: gainsboro;">
+                              <span id="vote-name">SI</span>
+                              <span id="percentage">
+                                <%= vote_percentage(vote_count(@poll)["SI"], @poll.vote_count) %> %
+                              </span>
+                            </div>
+                          </button>
+                          <button class="progress btn voted-button">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: <%= vote_percentage(vote_count(@poll)["NO"], @poll.vote_count) %>%; cursor: default; background-color: gainsboro;">
+                              <span id="vote-name">NO</span>
+                              <span id="percentage">
+                                <%= vote_percentage(vote_count(@poll)["NO"], @poll.vote_count) %> %
+                              </span>
+                            </div>
+                          </button>
+                        </div>
+                      <% elsif current_user %>
+                        <div class="col-xs-12 col-sm-6 buttons-wrapper">
+                          <%= button_to "SI", {:controller => "votes", action: "create", vote: 'SI', poll_id: @poll.id}, {class: "btn single-button non-voted-button"} %>
+                          <%= button_to "NO", {:controller => "votes", action: "create", vote: 'NO', poll_id: @poll.id}, {class: "btn single-button non-voted-button"} %>
+                        </div>
+                      <% else %>
+                        <div class="col-xs-12 col-sm-6 buttons-wrapper">
+                          <button class="btn single-button non-voted-button">
+                            SI
+                          </button>
+                          <button class="btn single-button non-voted-button">
+                            NO
+                          </button>
+                        </div>
+                      <% end %>
+                      <div class="col-xs-12 col-sm-12 poll-details">
+                        <span>
+                          <% if @poll.closed? %>
+                            propuesta cerrada
+                          <% else %>
+                            Quedan <%= distance_of_time_in_words(Date.today, Date.today + @poll.remaining_time_in_seconds.seconds) %>
+                          <% end %>
+                        </span>
+                      </div>                      
+                    </div>
+                    <div class="summary">
+                      <%= @poll.summary %>
+                    </div>
+                </div>
+                <div class="poll-description-container col-sm-12">
+                    <div class="poll-static-title"> La Propuesta: </div>
+                    <div class="poll-description" style="max-height: 9999px;">
+                      <%= @poll.description.html_safe %>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </section>
+    </div>
+  </section>
+  <%= render partial: 'layouts/partials/you_may_also_like' %>
+  <div class='spacer-big'> </div>
+  <div class='spacer-big'> </div>
 </div>
-
-<h2>Total: <%= @poll.votes.count %></h2>
-<%= column_chart @vote_types%>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.datepicker').datepicker({
-      format: 'yyyy-mm-dd',
-    });
-  });
-</script>

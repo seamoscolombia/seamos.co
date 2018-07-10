@@ -60,10 +60,6 @@ class Admin::PollsController < ApplicationController
     @poll = Poll.new
   end
 
-  def validate_admin_user
-    redirect_to root_path if current_user.role_type == 'ciudadano'
-  end
-
   private
     def bind_links
       set_project_link

@@ -1,52 +1,31 @@
 class PollsController < ApplicationController
-  include SessionsHelper
-  before_action :validate_poll_closed?, only: :show
-  
-  before_action :validate_session, except: [:index,
-                                            :show,
-                                            :filtered_by_tag,
-                                            :summary_polls]
-  
+  include PollsHelper
   before_action :set_poll, only: :show
-  before_action :set_tag, only: :filtered_by_tag
+  before_action :set_random_polls, only: :show
+  before_action :set_metas, only: :show
+  before_action :set_status_image, only: :show
 
-  def summary_polls
-    @polls = Poll.includes(:votes, :tags).order(created_at: :desc).limit(40)
-  end
-  
   def show
-      chart_type = 'pie'
-      if params[:poll].nil? || (params[:poll][:initial_date].empty? && params[:poll][:final_date].empty?)
-        @vote_types = @poll.votes.joins(:vote_type)
-        .group('vote_types.name')
-        .count('vote_types.id')
-      else
-        i_date = params[:poll][:initial_date]
-        f_date = params[:poll][:final_date]
-        @vote_types = @poll.votes.joins(:vote_type).where(created_at: i_date...f_date)
-        @vote_types = @vote_types.group('vote_types.name').count('vote_types.id') unless @vote_types.empty?
-      end
-      puts "@vote_types: #{@vote_types}"
-  end
-
-  def voted
-    @polls = current_user.voted_polls.last(5)
+    @tag = @poll.default_tag
+    @author = @poll.user
   end
 
   private
-    def set_tag
-      @tag = Tag.find_by(id: params[:tag_id])
+
+  def set_status_image
+    @status_image = if @poll.read_attribute_before_type_cast(:poll_type) == 0
+      Rails.application.config.cp_base_image_url
+    else
+      Rails.application.config.pa_base_image_url
     end
+    @status_image += @poll.read_attribute_before_type_cast(:state).to_s + ".png"
+  end
 
-    def set_poll
-      @poll = Poll.find_by(id: params[:id])
+  def set_poll
+    @poll = Poll.includes(:tags, :user).find_by(id: params[:id])
+    unless @poll
+      flash[:error] = "la propuesta no existe" 
+      redirect_to root_path
     end
-
-    def validate_poll_closed?
-      poll = Poll.find_by(id: params[:id])
-      unless poll
-        redirect_to polls_path 
-      end
-    end    
-
+  end
 end

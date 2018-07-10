@@ -112,14 +112,14 @@ RSpec.describe PollsController, type: :controller do
     let(:poll_3) { FactoryGirl.create(:poll, user: politician) }
     let(:poll_4) { FactoryGirl.create(:poll, user: other_politician) }
     it 'assigns only the specific politician polls to @polls' do
-      session[:email] = citizen.email
+      sign_in citizen
       @by_politician_polls = [poll_1, poll_2, poll_3]
       get :filtered_by_politician, params: { politician_id: politician.id }, format: :json
       expect(assigns(:polls)).to match_array(@by_politician_polls)
     end
 
     it 'does not assign other politicians polls to @polls' do
-      session[:email] = citizen.email
+      sign_in citizen
       @by_politician_polls = [poll_1, poll_2, poll_3]
       get :filtered_by_politician, params: { politician_id: politician.id }, format: :json
       expect(assigns(:polls)).not_to include(poll_4)
@@ -128,13 +128,13 @@ RSpec.describe PollsController, type: :controller do
     context 'when the provided id does not belong to any user with a politician role type' do
 
       it 'renders an error' do
-        session[:email] = citizen.email
+        sign_in citizen
         get :filtered_by_politician, params: { politician_id: citizen.id }, format: :json
         expect(JSON.parse(response.body)["errors"]).to eq("El id suministrado no pertenece a ningún usuario con un tipo de rol político")
       end
 
       it 'returns bad request http status' do
-        session[:email] = citizen.email
+        sign_in citizen
         get :filtered_by_politician, params: { politician_id: citizen.id }, format: :json
         expect(response).to have_http_status(:bad_request)
       end
@@ -149,13 +149,13 @@ RSpec.describe PollsController, type: :controller do
     end
 
     it 'renders the filtered_by_politician template' do
-      session[:email] = citizen.email
+      sign_in citizen
       get :filtered_by_politician, params: { politician_id: politician.id }, format: :json
       expect(response).to render_template('filtered_by_politician')
     end
 
     it 'should return status ok' do
-      session[:email] = citizen.email
+      sign_in citizen
       get :filtered_by_politician, params: { politician_id: politician.id }, format: :json
       expect(response).to have_http_status(:ok)
     end
@@ -174,7 +174,7 @@ RSpec.describe PollsController, type: :controller do
       let(:poll) { FactoryGirl.create(:poll) }
       let(:user) { FactoryGirl.create(:user, role_type: 2)}
       it 'renders the edit template' do
-        session[:email] = user.email
+        sign_in user
         get :edit, params: {id: poll.id}
         expect(response).to render_template(:edit)
       end
@@ -184,7 +184,7 @@ RSpec.describe PollsController, type: :controller do
       let(:poll) { FactoryGirl.create(:poll, closing_date: Date.today - 30.days) }
       let(:user) { FactoryGirl.create(:user, role_type: 2)}
       it 'renders the edit template' do
-        session[:email] = user.email
+        sign_in user
         get :edit, params: {id: poll.id}
         expect(response).to render_template(:edit)
       end

@@ -14,4 +14,5 @@ class VoteType < ApplicationRecord
 
   validates :name, presence: true
   validates :poll, presence: true
+  scope :by_name, -> (name) { where(name: name) }
 end

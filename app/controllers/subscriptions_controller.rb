@@ -8,16 +8,11 @@ class SubscriptionsController < ApplicationController
     if @subscription.save
       @unsubscribe = Rails.application.message_verifier(:unsubscribe).generate(@subscription.id)
       UserNotifierMailer.send_subscription_email(@subscription.email, @unsubscribe).deliver_later
-      render json: {
-        message: "Tu email #{@subscription.email} ha quedado suscrito",
-        success: true
-      }, status: 201
+      flash[:success] = "Tu email #{@subscription.email} ha quedado suscrito"
     else
-      render json: {
-        message: "Ya te has suscrito previamente",
-        success: false
-      }
+      flash[:error] = "Tu email #{@subscription.email} no fue suscrito debido a: #{@subscription.errors.messages[:email].to_sentence}"
     end
+    redirect_to root_path
   end
 
   def destroy

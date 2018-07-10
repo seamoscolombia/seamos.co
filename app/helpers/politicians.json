@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Hollman Morris",
+    "party": "Progresistas",
+    "background_class": "p_one"
+  }, 
+  {
+    "name": "Juan Felipe Grillo",
+    "party": "Cambio Radical",
+    "background_class": "p_two"
+  },
+  {
+    "name": "Horacio José Serpa",
+    "party": "Partido Liberal",
+    "background_class": "p_three"
+  },
+  {
+    "name": "Lucía Bastidas",
+    "party": "Partido Alianza Verde",
+    "background_class": "p_four"
+  },
+  {
+    "name": "Diego Molano",
+    "party": "Centro Democrático",
+    "background_class": "p_five"
+  },
+  {
+    "name": "Angela Garzón",
+    "party": "Centro Democrático",
+    "background_class": "p_six"
+  },
+  {
+    "name": "Emel Rojas",
+    "party": "Movimiento Libres",
+    "background_class": "p_seven"
+  },
+  {
+    "name": "Daniel Palacios",
+    "party": "Centro Democrático",
+    "background_class": "p_eight"
+  },
+  {
+    "name": "Germán García",
+    "party": "Partido Liberal",
+    "background_class": "p_nine"
+  },
+  {
+    "name": "José David Castellanos",
+    "party": "Cambio Radical",
+    "background_class": "p_ten"
+  },
+  {
+    "name": "Yefer Vega",
+    "party": "Cambio Radical",
+    "background_class": "p_eleven"
+  },
+  {
+    "name": "María Clara Name",
+    "party": "Partido Alianza Verde",
+    "background_class": "p_twelve"
+  },
+  {
+    "name": "Manuel Sarmiento",
+    "party": "Polo Democrático Alternativo",
+    "background_class": "p_thirteen"
+  },
+  {
+    "name": "María Fernanda Rojas",
+    "party": "Partido Alianza Verde",
+    "background_class": "p_fourteen"
+  },
+  {
+    "name": "Armando Gutiérrez",
+    "party": "Partido Liberal",
+    "background_class": "p_fiveteen"
+  },
+  {
+    "name": "Celio Nieves",
+    "party": "Polo Democrático Alternativo",
+    "background_class": "p_sixteen"
+  }
+]

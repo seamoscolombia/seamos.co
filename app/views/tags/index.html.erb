@@ -11,7 +11,7 @@
     </div>
   </div>
   <div>
-    <%= render partial: 'tags_list' %>
+    <%= render partial: 'tags_list', locals: {tags: @tags} %>
   </div>
   <div>
     <%= render partial: 'layouts/partials/you_may_also_like' %>

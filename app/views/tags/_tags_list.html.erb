@@ -1,8 +1,13 @@
 <section id="tags-component">
   <div class="flex-container tags-box">
-    <% @tags.each do |tag| %>
+    <% tags.each do |tag| %>
       <%= link_to  tag_path(tag) do %>
-        <div id="tag-component" style="background-image: url('<%= tag.thumbnail.url %>'); background-color: <%= tag.tag_color %>">
+        <div id="<%= tag.id %>" class="tag-component" style="background-image: url('<%= tag.thumbnail.url %>'); background-color: <%= tag.tag_color %>" user_id="<%= current_user.id %>">
+          <% if params[:controller] == 'users' && params[:action] == 'show' %>
+            <div class="tag tag-selected <%= @interests.pluck(:tag_id).include?(tag.id) ? '' : 'hidden'%>">
+              <span class="glyphicon glyphicon-ok-sign"></span>
+            </div>
+          <% end %>
           <div class="tag-name"><%= tag.name %> </div>
         </div>
       <% end %>

@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <div class="container" id="users-list" >
 	<div class="row">
     <div class="col-md-3 admin-search-form">
@@ -28,12 +27,12 @@
                       <div class="pull-right">
                         <div>
                           <% unless user.role_type == 'ciudadano' %>
-                            <%= link_to "Editar datos de usuario" , edit_admin_path(user), class:"btn btn-info icon" %>
+                            <%= link_to "Editar datos de usuario" , edit_admin_user_path(user), class:"btn btn-info icon" %>
                           <% end %>
                         </div>
                         <br>
                         <div>
-                          <%= link_to t(".destroy_user"), user_path(user), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")} %>
+                          <%= link_to t(".destroy_user"), admin_user_path(user), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")} %>
                         </div>
                       </div>
                       <h4>

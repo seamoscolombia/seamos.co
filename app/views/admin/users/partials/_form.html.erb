@@ -2,7 +2,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <!-- multistep form -->
 <div id="new_admin_form">
-  <%= form_for user, :html => {:id => "msform"} do |f| %>
+  <%= form_for user, url: admin_user_path, :html => {:id => "msform"} do |f| %>
   <%= render 'shared/mensajes_de_error',  object: f.object %>
   <!-- progressbar -->
   <ul id="progressbar">
@@ -40,7 +40,7 @@
         <%= f.text_field :second_surname, class: 'form-control' %>
     </div>
 
-    <input type="button" name="next" class="next action-button" value="Next" />
+    <input type="button" name="next" class="next action-button" value="Siguiente" />
   </fieldset>
 
   <fieldset class="politician-field">
@@ -77,8 +77,8 @@
       <%= f.text_field :organization, class: 'form-control' %>
     </div>
 
-    <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <input type="button" name="next" class="next action-button" value="Next" />
+    <input type="button" name="previous" class="previous action-button" value="Atrás" />
+    <input type="button" name="next" class="next action-button" value="Siguiente" />
   </fieldset>
 
   <fieldset class="politician-field">
@@ -100,8 +100,12 @@
     <div class="field politician-field">
       <%= f.label "Localidades de mayor representación electoral" %>
       <span class="optional"> (máximo dos) </span>
-      <span class="optional"> (localidades seleccionadas actualmente: <strong><%= user.try(:major_electoral_representation_localities) %></strong>) </span>
-      <%= f.select(:major_electoral_representation_localities, User.localities.keys, {}, {multiple: true, "data-live-search": "true", class: "selectpicker form-control", "data-size": 10}) %>
+      <%= f.select(
+        :major_electoral_representation_localities,
+        options_for_select(User.localities, user.major_electoral_representation_localities.split(', ')), 
+        {}, 
+        {multiple: true, "data-live-search": "true", class: "selectpicker form-control", "data-size": 10}) 
+      %>
     </div>
 
     <div class="field politician-field">
@@ -124,8 +128,8 @@
       <%= f.text_area :proposed_initiatives_to_date, class: 'form-control' %>
     </div>
 
-    <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <input type="button" name="next" class="next action-button" value="Next" />
+    <input type="button" name="previous" class="previous action-button" value="Atrás" />
+    <input type="button" name="next" class="next action-button" value="Siguiente" />
   </fieldset>
 
   <fieldset class="politician-field">
@@ -149,8 +153,8 @@
           <%= academic_title_form.text_field :annotation %>
       </div>
     <% end %>
-    <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <input type="button" name="next" class="next action-button" value="Next" />
+    <input type="button" name="previous" class="previous action-button" value="Atrás" />
+    <input type="button" name="next" class="next action-button" value="Siguiente" />
   </fieldset>
 
   <fieldset class="final-step">
@@ -168,10 +172,9 @@
         <%= f.label "Confirmación de contraseña" %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
-    <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <!-- <input type="submit" name="submit" class="submit action-button" value="Submit" /> -->
+    <input type="button" name="previous" class="previous action-button" value="Atrás" />
     <span class="actions">
-        <%= f.submit(data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary action-button") %>
+        <%= f.submit( 'Guardar', data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary action-button") %>
     </span>
   </fieldset>
   <%end%>

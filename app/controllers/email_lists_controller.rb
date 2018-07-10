@@ -1,6 +1,6 @@
 class EmailListsController < ApplicationController
   before_action :email_list_params, only: :set_email_lists
-  before_action :validate_superadmin, only: %i(create new delete edit)
+  before_action :validate_superadmin
 
   def new
     @email_list = EmailList.new
@@ -36,9 +36,5 @@ class EmailListsController < ApplicationController
 
   def email_list_params
     params.require(:email_list).permit(:name, :raw_mail_list)
-  end
-
-  def validate_superadmin
-    redirect_to :root unless current_user && current_user.role_type = 'administrador'
   end
 end
