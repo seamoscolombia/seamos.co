@@ -1,0 +1,12 @@
+<div id="polls-summary-container">
+  <div class="row summary-header">
+  Resumen de Propuestas
+  </div>
+  <div id="may-interest-container">
+    <div id="may-interest">
+      <% @polls.each do |poll| %>
+        <%= render partial: 'polls/partials/poll_small_preview', locals: {poll: poll, from_ymal: true} %>
+      <% end %>
+    </div>
+  </div>;
+</div>
