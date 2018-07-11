@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'settings/unsubscribe'
   get '/home', to: 'home#index'
   get '/politicians', to: 'pages#politicians'
-
+  get '/terms', to: 'pages#terms'
 
   namespace :admin do
     resources :tags

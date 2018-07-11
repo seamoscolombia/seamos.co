@@ -4,4 +4,6 @@ class PagesController < ApplicationController
     @politicians = JSON.parse(File.read("app/helpers/politicians.json"))
   end
   
+  def terms
+  end
 end
