@@ -1,9 +1,9 @@
 <% if session[:session_type] == nil %>
   <div id="client-footer">
     <div class="hide-on-desktop-terms">
-      <a href="#/terms">
+      <%= link_to terms_path do %>
         <span id="who-text-mobile"> TÉRMINOS Y CONDICIONES </span>
-      </a>
+      <% end %>
       <br>
       <br>
       <a href="#/transparency">
@@ -16,9 +16,9 @@
           <br>
           <br>
         </div>
-        <a href="#/terms">
+        <%= link_to terms_path do %>
           <span class="who-text"> TÉRMINOS Y CONDICIONES </span>
-        </a>
+        <% end %>
         <br>
         <br>
         <a href="#/">
