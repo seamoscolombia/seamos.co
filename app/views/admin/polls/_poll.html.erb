@@ -4,9 +4,7 @@
       <div class="col-md-12 center">
         <h4>
           <strong >
-            <%= link_to poll_path(poll.id), style: "color: #393939;" do %>
-               <%= poll.title%>
-            <%end%>
+            <%= poll.title%>
           </strong>
         </h4>
       </div>
@@ -23,9 +21,7 @@
     <br>
     <div class="row">
       <div class="col-md-3" >
-        <%= link_to poll_path(poll.id) do %>
-          <img src="<%= poll.poll_image %>"  style='width: 100%; ' alt="">
-        <%end%>
+        <img src="<%= poll.poll_image %>"  style='width: 100%; ' alt="">
       </div>
       <div class="col-md-9">
         <p style="max-height: 75px; overflow: hidden">
@@ -38,9 +34,9 @@
         </ul>
         <ul class="list-inline list-unstyled">
           <% if is_admin? || current_user.politico?%>
-            <li> <%= link_to t('.edit_poll'), edit_poll_path(poll.id), class: "btn btn-default" %></li>
+            <li> <%= link_to t('.edit_poll'), edit_admin_poll_path(poll.id), class: "btn btn-default" %></li>
             <li>|</li>
-            <li> <%= link_to t('.delete_poll'), poll, class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></li>
+            <li> <%= link_to t('.delete_poll'), admin_poll_path(poll.id), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></li>
           <% end %>
           <br>
           <li>

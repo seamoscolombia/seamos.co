@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-3 admin-search-form">
       <%= label_tag "Filtros" %>
-      <%= form_tag({controller: "polls", action: "index_admin"}, method: "get") do %>
+      <%= form_tag({controller: "admin/polls", action: "index"}, method: "get") do %>
       <%= select_tag(:status, options_for_select({'Todas': "all", 'Abiertas': "open", 'Cerradas': "closed"}, params[:status] ), {class: "form-control"}) %>
       <%= text_field_tag :search_term, params[:search_term], class: 'form-control', placeholder: 'Búsqueda por Título' %>
       <%= submit_tag 'Filtrar', class: 'form-control btn-info' %>

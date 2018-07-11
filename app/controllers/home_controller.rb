@@ -7,7 +7,7 @@ class HomeController < ApplicationController
       @reverse = true
       @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.vote_count}.first(2 - @polls.size)
     else
-      @polls = Poll.includes(:votes, :tags).open.sort_by {|poll| poll.send(order_param)}.first(2)
+      @polls = Poll.includes(:votes, :tags).open.sort_by {|poll| poll.send(order_param)}.last(2)
       @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.send(order_param)}.first(2 - @polls.size)
     end
     @polls.flatten!

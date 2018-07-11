@@ -38,5 +38,12 @@ FactoryGirl.define do
         end
       end
     end
+    factory :poll_with_votes_and_tags do
+      after(:create) do |poll|
+        2.times do
+          poll.tags << FactoryGirl.create(:tag)
+        end
+      end
+    end
   end
 end

@@ -12,6 +12,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def validate_politician
+    unless current_user && current_user.role_type == 'politico'
+      flash[:error] = "Primero debes acceder como político"
+      redirect_to root_path 
+    end
+  end
+
+  def validate_admin_or_politician
+    unless current_user && (current_user.role_type == 'politico' || current_user.role_type == 'administrador')
+      flash[:error] = "No estás autorizado para realizar esta acción"
+      redirect_to root_path 
+    end
+  end
+
   def set_random_polls
     active_polls = Poll.includes(:votes, :tags).open
     closed_polls = Poll.includes(:votes, :tags).closed

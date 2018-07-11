@@ -1,5 +1,5 @@
 <%= tinymce_assets %>
-<%= form_for(poll, html: { multipart: true } ) do |f| %>
+<%= form_for([:admin, poll], html: { multipart: true } ) do |f| %>
 <%= render 'shared/mensajes_de_error',  object: f.object %>
 
 <div class="radio_button_field">
@@ -110,12 +110,12 @@
 </div>
 
 <div class="field">
-    <%= f.label "Hora de cierre (valor por defecto: 11:59 PM)" %>
+    <%= f.label "Hora de cierre" %>
     <%= f.time_field :closing_hour, class: 'form-control', value: poll.closing_hour %>
 </div>
 
 <div class="field">
-    <%= f.label t('.poll_image') %>
+    <%= f.label "Imagen principal" %>
     <% if poll.poll_image.file %>
     <p class="has_media">
         <%= t('.has_image', filename: poll.poll_image.file.filename) %>
@@ -126,13 +126,16 @@
 </div>
 
 <div class="tags-picker">
-    <%= f.label t('.tags_picker') %><br>
+    <%= f.label "seleccion de temas" %><br>
     <div class="alert alert-info alert-dismissable">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Selecciona el tema que mejor se adecúe a tu propuesta
     </div>
     <% @location_from = 'new_poll' %>
     <%= render 'admin/tags/tag_list', tags: Tag.all%>
+</div>
+<div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
 </div>
 
 <div class="actions">

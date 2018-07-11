@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :tags
+    resources :polls, except: [:show]
     resources :users, only: [:index, :edit, :update, :destroy]
     resources :dashboard, only: [:index]
     get '/dashboard/stats', to: 'dashboard#stats'
@@ -21,7 +22,6 @@ Rails.application.routes.draw do
     post 'interests', to: 'interests#association', format: 'json'
   end
 
-  get 'client/polls/:id', to: 'polls#client_show', as: 'client_poll'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/check_session', to: 'sessions#show', format: 'json'
   delete '/sessions', to: 'sessions#destroy', as: 'session'
@@ -54,7 +54,6 @@ Rails.application.routes.draw do
     post '/mail', to: 'messages#create'
     get '/mail_preview', to: 'messages#preview'
     # get '/', to: 'sessions#new'
-    get 'polls', to:  'polls#index_admin'
     get '/', to: 'sessions#new', as: :login
     post '/sessions', to: 'sessions#admin_create'
     get 'validate-users', to: 'admin/users#index'
