@@ -101,6 +101,13 @@
       align-items: center
       @media screen and (max-width: $break-medium)
         margin-top: 130px
+      a
+        display: flex
+        align-items: center
+        &:hover
+          color: #44434c
+          cursor: pointer
+          text-decoration: none
       img
         margin-right: 0.8em
         width: 50px
@@ -108,18 +115,14 @@
         border-radius: 50%
       #politician-info
         font-size: 20px
-        color: gray
+        color: #44434c
         display: inline-block
         font-family: 'RobotoCondensed'
         @media screen and (max-width: $break-medium)
           font-size: 14px
-        a
-          color: #44434c
-          &:hover
-            color: #44434c
-            cursor: pointer
         #org
           font-size: 15px
+          color: gray
     .share-wrapper
       position: relative
       line-height: 0

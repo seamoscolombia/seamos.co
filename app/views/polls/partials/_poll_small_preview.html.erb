@@ -18,7 +18,7 @@
         </div>
         <div class="poll-infos-container">
           <div class="poll-details">
-            <div class="poll-tag-name" style="width: 46%;">
+            <div class="poll-tag-name" style="width: <%= poll.closed? ? '50%' : '65%' %>;">
               <%= poll.tag_name %>
             </div>
             <div class="color-separator" style="border-left: 5px solid <%= poll.tag_color %>"></div>

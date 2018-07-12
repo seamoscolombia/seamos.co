@@ -30,9 +30,8 @@ Rails.application.routes.draw do
   get '/mail_preview', to: 'messages#preview'
 
   get '/auth/sessions', to: 'sessions#error'
-  get '/politician/:politician_id/polls', to: 'polls#filtered_by_politician', format: 'json'
   resources :users, only: [:show]
-  get '/proponents/:id', to: 'users#politician_profile', format: 'json'
+  get '/proponents/:id', to: 'users#politician_profile', as: :politician_profile
   patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
   get 'polls/closed', to: 'polls#index_closed', format: 'json'
   get 'check_vote', to: 'votes#check_vote', format: 'json'

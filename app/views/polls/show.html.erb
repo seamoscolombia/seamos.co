@@ -7,15 +7,15 @@
     </div>
     <div class="container">
         <section id="politician" class="row">
-          <img src="<%= @author.admin_photo.url%>" role="presentation" alt="politician">
-          <div id="politician-info">
-              <a id="author" href="/#/proponents/19">
-                <%= @author.full_name %>
-              </a>
+          <%= link_to politician_profile_path(@author.id) do %>
+            <img src="<%= @author.admin_photo.url%>" role="presentation" alt="politician">
+            <div id="politician-info">
+              <%= @author.full_name %>
               <div id="org">
                 <%= @author.organization %>
               </div>
-          </div>
+            </div>
+          <% end %>
         </section>
         <div class="share-wrapper">
           <span class="share-this hide-on-mobile"> COMPARTIR: </span>
