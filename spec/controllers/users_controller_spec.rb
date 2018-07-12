@@ -1,22 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  describe 'GET index' do
-    context 'when the request format is HTML' do
-      it 'get users' do
-        5.times { FactoryGirl.create(:user) }
-        get :index
-        expect(response).to have_http_status(:found)
-      end      
-    end
-  end
-
   describe 'GET show' do
     let(:user) { FactoryGirl.create(:user)}
     context 'and the user is not logged in' do
       it 'redirects to sign in path' do
         get :show, id: 12
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to(root_path)
       end
     end
     context 'and the user is logged in' do
