@@ -109,6 +109,10 @@ class User < ApplicationRecord
     votes.size
   end
 
+  def resolve_admin_photo
+    admin_photo.file.present? ? admin_photo.url : Rails.application.config.defaultavatar
+  end
+
   private
 
   def major_electoral_representation_localities_length
