@@ -5,6 +5,10 @@ class PollsController < ApplicationController
   before_action :set_metas, only: :show
   before_action :set_status_image, only: :show
 
+  def index
+    @polls = Poll.includes(:votes, :tags)
+  end
+
   def show
     @tag = @poll.default_tag
     @author = @poll.user

@@ -20,10 +20,10 @@
           <div id="summary-wrapper">
             <span class="polls-summary-text"> Resumen de propuestas 
             </span>
-            <a class="summary-btn-wrapper" href="#/summary">
+            <%= link_to polls_path, class: "summary-btn-wrapper" do %>
               <span class="polls-summary-btn"> Ver + 
               </span>
-            </a>
+            <% end %>
           </div>
         </div>
         <div class="polls-wrapper">
