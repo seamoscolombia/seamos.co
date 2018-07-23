@@ -1,0 +1,24 @@
+<!-- Modal -->
+<div class="modal fade" id="sign-in-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Primero debes iniciar sesión </h5>
+      </div>
+      <div class="modal-body">
+        <span style="transition: opacity 0.5s;">
+          <%= button_to user_facebook_omniauth_authorize_path, class: "loginBtn loginBtn--facebook metro" do %>
+            Continuar con facebook
+          <% end %>
+        </span>
+        <div>
+          <%= button_to user_google_oauth2_omniauth_authorize_path, class: "loginBtn loginBtn--google" do %>
+            Continuar con google
+          <% end %>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,8 +29,7 @@
 #
 
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable, :confirmable,
-         :recoverable, :rememberable, :trackable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   mount_uploader :admin_photo, AdminPhotoUploader
 

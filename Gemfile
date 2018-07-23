@@ -55,6 +55,8 @@ gem 'omniauth-google-oauth2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem "better_errors"
+  gem "binding_of_caller"
   gem 'byebug', platform: :mri
   gem 'rb-readline'
   gem 'factory_girl_rails', '4.5.0'

@@ -1,7 +1,6 @@
 <section class="custom-form">
-  <h3 class="title">Administración SeamOS</h3>
   <br>
-  <br>
+  <h3 class="title">Inicio de Sesión</h3>
   <%= form_for(resource, as: resource_name, url: user_session_path) do |f| %>
     <div class="field">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email" %>
