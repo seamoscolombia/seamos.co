@@ -6,7 +6,7 @@ RSpec.describe UsersController, type: :controller do
     context 'and the user is not logged in' do
       it 'redirects to sign in path' do
         get :show, id: 12
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
     context 'and the user is logged in' do
