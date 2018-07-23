@@ -24,7 +24,6 @@
       </div>
       <%= yield %>
     </div>
-
-    <%= render 'layouts/partials/footer' unless current_page?(admin_index_path) %>
+    <%= render 'layouts/partials/footer' unless current_user && (current_user.administrador? || current_user.politico?) %>
   </body>
 </html>

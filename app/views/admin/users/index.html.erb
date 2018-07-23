@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
 <div class="container" id="users-list" >
 	<div class="row">
     <div class="col-md-3 admin-search-form">
       <%= label_tag :Filtros %>
       <%= form_tag({controller: "users", action: "index"}, method: "get") do %>
-        <%= select_tag(:users_filter_select, options_for_select( User.role_types.keys,
-                                                                 params[:users_filter_select] ),
-                                                                 {class: "form-control",
-                                                                  include_blank: true
-                                                                 }) %>
+        <%= select_tag(:users_filter_select, options_for_select( 
+          ['sin asignar', *User.role_types.keys],
+          params[:users_filter_select] ),
+          {class: "form-control", include_blank: true}
+        ) %>
         <%= text_field_tag :search_term, params[:search_term], class: 'form-control', placeholder: "Búsqueda por email o nombre" %>
         <%= submit_tag 'Filtrar', class: 'form-control btn-info' %>
       <% end %>
@@ -26,9 +25,7 @@
                     <div class="caption" class="pull-left">
                       <div class="pull-right">
                         <div>
-                          <% unless user.role_type == 'ciudadano' %>
-                            <%= link_to "Editar datos de usuario" , edit_admin_user_path(user), class:"btn btn-info icon" %>
-                          <% end %>
+                          <%= link_to "Editar datos de usuario" , edit_admin_user_path(user), class:"btn btn-info icon" %>
                         </div>
                         <br>
                         <div>
@@ -38,8 +35,6 @@
                       <h4>
                       <a href="#" >
                         <%= user.names %>
-                        <%= user.first_surname %>
-                        <%= user.second_surname %>
                       </a>
                       </h4>
                       <p><small><b><%= User.human_attribute_name("email") %>: </b><%= user.email %></small></p>
@@ -57,11 +52,3 @@
     </div>
 	</div>
 </div>
-
-<script>
-function filterUser (event) {
-   $(this).parent().trigger('submit');
-};
-</script>
-
-<!-- # link_to 'Validar', edit_user_path(user) -->

@@ -87,7 +87,10 @@ const preHome = ({ session, inputReducer, subscribeNewsletter, newsletterReducer
           </span>
           <span id='info-3' className='info'>
             <div className='team-members'>
-              <div className='team-member one'>
+              <div>
+                Actualizando.
+              </div>
+              {/* <div className='team-member one'>
                 <div className='name'>
                   Nicolás <br className='breaker' />
                   Díaz
@@ -182,7 +185,7 @@ const preHome = ({ session, inputReducer, subscribeNewsletter, newsletterReducer
                 <div className='role'>
                   Comunicaciones
                 </div>
-              </div>
+              </div> */}
             </div>
           </span>
           <span id='info-4' className='info'>

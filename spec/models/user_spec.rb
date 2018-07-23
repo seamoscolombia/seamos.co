@@ -52,12 +52,6 @@ RSpec.describe User, type: :model do
         expect(invalid_admin.errors[:email].empty?).to be false
       end
     end
-    describe 'politician validations' do
-      subject { FactoryGirl.create(:user, role_type: 1) }
-      it { should validate_presence_of(:bio) }
-      it { should validate_presence_of(:organization) }
-      it { should validate_presence_of(:admin_photo) }
-    end
   end
 
   describe 'User#full_name' do

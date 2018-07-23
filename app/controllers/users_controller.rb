@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_random_polls, only: :show
+  before_action :authenticate_user!, only: :show
+  before_action :set_random_polls
   before_action :set_politician, only: :politician_profile
-  before_action :set_random_polls, only: :politician_profile
 
   def show
     if current_user

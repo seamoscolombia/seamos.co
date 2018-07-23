@@ -44,7 +44,6 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :academic_titles, reject_if: proc { |attributes| attributes[:title].blank? }, allow_destroy: true
 
   validates  :email, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}, if: :admin?
-  validates_presence_of  [:bio, :organization, :admin_photo], if: :politician?
 
   validate :email_for_admin, if: :admin?
   validate :major_electoral_representation_localities_length, if: :politician?
@@ -73,9 +72,9 @@ class User < ApplicationRecord
                   "Sumapaz": 19,
                   }
 
-  scope :by_role_type, -> (role_type) {
-    where(role_type: role_type)
-  }
+  scope :by_role_type, -> (role_type) do
+    self.role_types.keys.include?(role_type) ?  where(role_type: role_type) : where(role_type: nil)
+  end
 
   scope :search, -> (search_term) {
     where("names ILIKE ? OR first_surname ILIKE ? OR second_surname ILIKE ? OR email ILIKE ?", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%", "%#{search_term}%")
@@ -116,7 +115,8 @@ class User < ApplicationRecord
   private
 
   def major_electoral_representation_localities_length
-    if self.major_electoral_representation_localities.split(',').length > 2
+    merl = self.major_electoral_representation_localities
+    if merl && merl.split(',').length > 2
       errors.add(:major_electoral_representation_localities, "Seleccione sólo dos de las localidades de mayor representación electoral")
     end
   end
@@ -137,6 +137,6 @@ class User < ApplicationRecord
 
   def confirmation_required?
     # This is for avoiding confirmation process, next line maybe helps for development env
-    return false if Rails.env == 'development'
+    return false
   end
 end
