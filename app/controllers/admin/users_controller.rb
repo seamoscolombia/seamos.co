@@ -1,34 +1,32 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_user, except: :index
-  before_action :validate_superadmin
   before_action :authenticate_user!
+  before_action :check_permissions, only: [:edit, :update]
+  before_action :validate_admin_or_politician, only: [:edit, :update]
+  before_action :validate_superadmin, except: [:edit, :update]
+  before_action :set_user, except: [:index, :permits]
+  before_action :search_users, only: [:index, :permits]
 
   def edit
   end
 
-  def index
-    @users = User.all.page(params[:page]).per(4)
-    @users = @users.by_role_type(params[:users_filter_select]).page(params[:page]).per(4) if params[:users_filter_select] && params[:users_filter_select] != ''
-    @users = @users.search(params[:search_term]).page(params[:page]).per(4) unless params[:search_term].blank?
+  def permits
   end
 
   def update
-    @user.transaction do
-      @user.attributes = user_params.except(:major_electoral_representation_localities)
-      localities_string = params[:user][:major_electoral_representation_localities].reject { |l| l.empty? }.join(', ') unless params[:user][:major_electoral_representation_localities].blank?
-      @user.major_electoral_representation_localities = localities_string unless localities_string.blank?
-      @user.save!
-      flash[:notice] = I18n.t(:accion_exitosa)
-      redirect_to admin_users_path
+    @user.attributes = user_params.except(:major_electoral_representation_localities)
+    localities_string = params[:user][:major_electoral_representation_localities].reject { |l| l.empty? }.join(', ') unless params[:user][:major_electoral_representation_localities].blank?
+    @user.major_electoral_representation_localities = localities_string unless localities_string.blank?
+    if @user.save
+      flash[:notice] = "Información actualizada con éxito"
+    else
+      flash[:error] = @user.errors
     end
-  rescue ActiveRecord::RecordInvalid => e
-    flash[:error] = " #{e}"
-    redirect_to edit_users_path @user
+    redirect_to :back
   end
 
   def destroy
     @user.destroy
-    redirect_to admin_users_url, notice: I18n.t(:success)
+    redirect_to :back, notice: I18n.t(:success)
   end
 
   private
@@ -39,6 +37,12 @@ class Admin::UsersController < ApplicationController
       flash[:error] = "El usuario no existe"
       redirect_to admin_users_path 
     end
+  end
+
+  def search_users
+    @users = User.all.page(params[:page]).per(30)
+    @users = @users.by_role_type(params[:users_filter_select]).page(params[:page]).per(30) if (params[:users_filter_select])
+    @users = @users.search(params[:search_term]).page(params[:page]).per(30) unless params[:search_term].blank?
   end
 
   def user_params
@@ -68,5 +72,13 @@ class Admin::UsersController < ApplicationController
                                                               :institute,
                                                               :_destroy]
                                 )
+  end
+
+  def check_permissions
+    return true if current_user.administrador?
+    unless current_user.politico? && params[:id].to_i == current_user.id
+      flash[:error] = "Sólo puedes modificar tus propios datos"
+      redirect_to root_path
+    end
   end
 end

@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :tags
     resources :polls, except: [:show]
-    resources :users, only: [:index, :edit, :update, :destroy]
+    resources :users, only: [:index, :edit, :update, :destroy] do
+      collection do
+        get 'permits'
+      end
+    end
     resources :dashboard, only: [:index]
     get '/dashboard/stats', to: 'dashboard#stats'
   end
