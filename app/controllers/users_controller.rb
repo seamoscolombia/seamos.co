@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     if current_user
       @user = current_user
       @tags = @user.tags
-      @participations = @user.votes.map(&:poll)
+      @participations = @user.votes.map(&:poll).reverse
       @interests = @user.interests
     else
       flash[:error] = t(".not_logged_in")
