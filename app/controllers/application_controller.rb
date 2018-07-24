@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception, prepend: true
+  before_action :store_user_location!, if: :storable_location?
+  protect_from_forgery with: :reset_session, prepend: true
 
   def validate_session 
     redirect_to root_path if current_user.nil?
@@ -32,5 +33,19 @@ class ApplicationController < ActionController::Base
     @random_polls = active_polls.first(4)
     @random_polls << closed_polls.shuffle.first(4 - @random_polls.size)
     @random_polls = @random_polls.flatten.first(4) if @random_polls.present?
+  end
+
+  def after_sign_in_path_for(resource_or_scope)
+    stored_location_for(resource_or_scope) || super
+  end
+
+  private
+
+  def storable_location?
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
+  end
+
+  def store_user_location!
+    store_location_for(:user, request.fullpath)
   end
 end

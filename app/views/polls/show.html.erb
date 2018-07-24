@@ -1,3 +1,4 @@
+<%= render partial: 'layouts/modals/sign_in_modal' %>
 <div id="poll-detail-global-wrapper">
   <section id="poll-detail">
     <div class="top-color-bar" style="background-color: <%= @tag.tag_color %>">
@@ -98,10 +99,10 @@
                         </div>
                       <% else %>
                         <div class="col-xs-12 col-sm-6 buttons-wrapper">
-                          <button class="btn single-button non-voted-button">
+                          <button class="btn single-button non-voted-button" data-toggle="modal" data-target="#sign-in-modal">
                             SI
                           </button>
-                          <button class="btn single-button non-voted-button">
+                          <button class="btn single-button non-voted-button" data-toggle="modal" data-target="#sign-in-modal">
                             NO
                           </button>
                         </div>

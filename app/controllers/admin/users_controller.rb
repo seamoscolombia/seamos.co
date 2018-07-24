@@ -41,7 +41,7 @@ class Admin::UsersController < ApplicationController
 
   def search_users
     @users = User.all.page(params[:page]).per(30)
-    @users = @users.by_role_type(params[:users_filter_select]).page(params[:page]).per(30) if (params[:users_filter_select])
+    @users = @users.by_role_type(params[:users_filter_select]).page(params[:page]).per(30) unless params[:users_filter_select].blank?
     @users = @users.search(params[:search_term]).page(params[:page]).per(30) unless params[:search_term].blank?
   end
 
