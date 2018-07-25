@@ -1,0 +1,24 @@
+@import './variables.scss'
+.navbar-brand
+  padding: 0px 0 10px 0
+  background-color: rgba(0, 0, 0, 0) !important
+  @media screen and (max-width: $break-medium)
+    padding: 0
+    display: flex
+    align-items: center
+  &:hover
+    background-color: rgba(0, 0, 0, 0) !important
+    border-radius: 10px
+  #brand-logo
+    background-size: cover
+    min-height: 50px
+    min-width: 140px
+    background: url(asset_path('LogoSeamos_blanco.png'))
+    min-height: 30px
+    min-width: 90px
+    background-size: contain
+    background-repeat: no-repeat
+    @media screen and (max-width: $break-medium)
+      background-size: contain
+      min-height: 29px
+      
