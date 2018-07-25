@@ -1,5 +1,4 @@
 require 'rails_helper'
-include SessionsHelper
 
 RSpec.describe VotesController, type: :controller do
   describe 'Post create' do

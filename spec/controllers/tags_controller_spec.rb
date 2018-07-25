@@ -1,5 +1,4 @@
 require 'rails_helper'
-include SessionsHelper
 
 RSpec.describe TagsController, type: :controller do
   describe 'GET index' do

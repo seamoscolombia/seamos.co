@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
   before_action :store_user_location!, if: :storable_location?
   protect_from_forgery with: :reset_session, prepend: true
 
@@ -36,6 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource_or_scope)
+    return admin_dashboard_index_path if admin_or_politician?(current_user)
     stored_location_for(resource_or_scope) || super
   end
 

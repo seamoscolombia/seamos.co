@@ -34,9 +34,6 @@ erl_crash.dump
 npm-debug.log*
 node_modules
 
-# Generated js bundles
-/app/assets/webpack/*
-
 client/node_modules/
 
 client/package-lock.json

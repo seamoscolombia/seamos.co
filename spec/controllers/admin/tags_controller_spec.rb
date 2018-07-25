@@ -1,5 +1,4 @@
 require 'rails_helper'
-include SessionsHelper
 
 RSpec.describe Admin::TagsController, type: :controller do
   describe 'POST create' do

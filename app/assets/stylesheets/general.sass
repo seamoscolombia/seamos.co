@@ -15,7 +15,6 @@
   margin-bottom: 0 !important
   overflow-x: hidden
   overflow-y: visible
-  width: 100vw
 .admin-search-form
   background: gainsboro
   border-radius: 7px
@@ -66,8 +65,11 @@
   position: absolute
   right: 30px
   top: 87px
-  background-color: rgba(78, 55, 55, 0.6)
+  background-color: rgba(78, 55, 55, 0.7)
   z-index: 3
+  @media screen and (max-width: $break-medium)
+    top: 66px
+    right: 0px
   .alert
     margin-bottom: 0
     font-family: RobotoRegular
@@ -76,3 +78,7 @@
     border-radius: 0
   .alert-success
     background-color: #96d87b
+.center-flex
+  display: flex
+  justify-content: center
+  align-content: center

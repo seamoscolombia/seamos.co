@@ -43,7 +43,6 @@ gem 'omniauth-facebook', '~> 4.0.0'
 gem 'pg', '0.18.4'
 gem 'sidekiq', '~> 4.2.10'
 gem 'active_model_serializers', '~> 0.10.0'
-gem 'react_on_rails', '~> 7.0.4'
 gem 'rails_12factor', group: :production
 gem "cf-autoconfig", '~> 0.2.1'
 gem 'font-awesome-sass', '~> 4.7.0'
