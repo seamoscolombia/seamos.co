@@ -1,113 +1,57 @@
 <div>
   <header id="navbar-client" class="navbar navbar-fixed-top" role="banner">
     <div id="client-navbar">
+      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <a class="navbar-brand" href="#/">
-          <div id="brand-logo"></div>
-        </a>
-        <div class="hide-on-desktop only-photo">
-          <span>
-            <li style="display: inline-block;">
-              <button class="btn nav-with-background">
-                <img 
-                src="" 
-                role="presentation" 
-                style="width: 25px; height: 25px; border-radius: 50%; margin-right: 3px;"
-                >
-                TU PERFIL
-              </button>
-            </li>
-          </span>
-        </div>
-        <button 
-          class="navbar-toggle pull-right" 
-          data-toggle="collapse-side" 
-          data-target=".side-collapse" 
-          data-target-2=".side-collapse-container" 
-          type="button" 
-          style="top: 0px;">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a class="navbar-brand" href="#/">
+          <div id="brand-logo"></div> 
+        </a>
       </div>
-      <div class="navbar-transparent side-collapse in">
-        <nav class="navbar-collapse" role="navigation">
-          <ul class="nav navbar-nav navbar-right navbar-options">
-            <div class="hide-on-desktop login-buttons">
-              <span>
-                <li style="display: inline-block;">
-                  <button class="btn nav-with-background">
-                    <img 
-                      src="" 
-                      role="presentation" 
-                      style="width: 25px; height: 25px; border-radius: 50%; margin-right: 3px;"
-                    >
-                    TU PERFIL
-                  </button>
-                </li>
-              </span>
-            </div>
-            <li>
-              <a href="http://sifuerapresidente.co" target="_blank" rel="noopener noreferrer"> SIFUERAPRESIDENTE </a>
-            </li>
-            <li id="this">
-              <a>Quienes somos</a>
-            </li>
-            <li>
-              <a href="https://seamosit.github.io" rel="noopener noreferrer"> Blog</a>
-            </li>
-            <li>
-              <%= link_to  "Temas", tags_path %>
-            </li>
-            <li id="politicians-link">
-              <a href="/politicians"> Concejales </a>
-            </li>
-            <% if user_signed_in? %>
-              <div class="hide-on-mobile">
-                <span>
-                  <li style="display: inline-block;">
-                    <%= button_to user_path(current_user.id), class: "btn nav-with-background", method: :get do %>
-                      <img src="<%= current_user.provider_image %>" role="presentation" style="width: 25px; height: 25px; border-radius: 50%; margin-right: 3px;">
-                      TU PERFIL
-                    <% end %>
-                  </li>
-                </span>
-              </div>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete,  class: "btn nav-with-background" do %>
-                  SALIR
-                <% end %>
-              </li>
-            <% else %>
-              <div class="hide-on-mobile">
-                <li class="dropdown"><button class="nav-with-background" type="button" data-toggle="dropdown"><!-- react-text: 39 -->REGÍSTRATE<!-- /react-text --><span class="caret"></span></button>
-                  <ul class="dropdown-menu custom--dropdown">
-                    <li>
-                      <span style="transition: opacity 0.5s;">
-                        <%= button_to user_facebook_omniauth_authorize_path, class: "loginBtn loginBtn--facebook metro" do %>
-                          Continuar con facebook
-                        <% end %>
-                      </span>
-                    </li>
-                    <li role="presentation" class="divider"></li>
-                    <li>
-                      <div>
-                        <%= button_to user_google_oauth2_omniauth_authorize_path, class: "loginBtn loginBtn--google" do %>
-                          Continuar con google
-                        <% end %>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </div>
-            <% end %>
-          </ul>
-        </nav>
-      </div>
-    </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
   </header>
-  <div class="notification-container notification-container-empty">
-    <span></span>
-  </div>
 </div>
