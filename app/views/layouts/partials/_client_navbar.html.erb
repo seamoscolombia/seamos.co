@@ -20,27 +20,52 @@
           <a href="http://sifuerapresidente.co" target="_blank" rel="noopener noreferrer"> SIFUERAPRESIDENTE </a>
         </li>
         <li id="this">
-          <a>Quienes somos</a>
+          <a>QUIENES SOMOS</a>
         </li>
         <li>
-          <a href="https://seamosit.github.io" rel="noopener noreferrer"> Blog</a>
+          <a href="https://seamosit.github.io" rel="noopener noreferrer"> BLOG</a>
         </li>
         <li>
-          <%= link_to  "Temas", tags_path %>
+          <%= link_to  "TEMAS", tags_path %>
         </li>
         <li id="politicians-link">
-          <a href="/politicians"> Concejales </a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+          <a href="/politicians"> CONCEJALES </a>
+        </li>  
+        <% if user_signed_in? %>      
+          <li style="display: inline-block;">
+            <%= button_to user_path(current_user.id), class: "btn nav-with-background", method: :get do %>
+              <img src="<%= current_user.provider_image %>" role="presentation" style="width: 25px; height: 25px; border-radius: 50%; margin-right: 3px;">
+              TU PERFIL
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete,  class: "btn nav-with-background" do %>
+              SALIR
+            <% end %>
+          </li>        
+          <% else %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">REGÍSTRATE <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <span style="transition: opacity 0.5s;">
+                    <%= button_to user_facebook_omniauth_authorize_path, class: "loginBtn loginBtn--facebook metro" do %>
+                      Continuar con facebook
+                    <% end %>
+                  </span>
+                </li>
+                <li role="presentation" class="divider"></li>
+                <li>
+                  <div>
+                    <%= button_to user_google_oauth2_omniauth_authorize_path, class: "loginBtn loginBtn--google" do %>
+                      Continuar con google
+                    <% end %>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
