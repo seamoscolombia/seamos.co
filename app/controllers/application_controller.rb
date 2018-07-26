@@ -50,4 +50,13 @@ class ApplicationController < ActionController::Base
   def store_user_location!
     store_location_for(:user, request.fullpath)
   end
+
+  def layout_by_resource
+    debugger
+    if devise_controller?
+      "default"
+    else
+      "application"
+    end
+  end
 end

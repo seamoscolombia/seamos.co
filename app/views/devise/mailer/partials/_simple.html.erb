@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=Roboto');
+      .message-container {
+        width: auto;
+        background-color: #abdadf;
+        padding: 50px;
+        font-family: 'Roboto', sans-serif;
+      }
+      .message-container .message-wrapper {
+        width: 90%;
+        text-align: justify;
+        background-color: white;
+        border-radius: 6px;
+        margin: auto;
+        position: relative;
+      }
+      .message-container .message-wrapper .message-header img {
+        height: 70px;
+        margin: auto
+      }
+      .message-container .message-wrapper img {
+        max-width: 100%;
+        height: auto
+      }
+
+      .message-container .message-wrapper .message-header {
+        text-align: center;
+        margin-top: 0px;
+        position: absolute;
+        width: 100%;
+        height: 200px;
+        background-color: #f6f7f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .message-container .message-wrapper .top-image-container img {
+        width: 100%;
+        height: auto;
+      }
+      
+      .message-container .message-wrapper .top-image-container {
+        margin-top: -4px;
+        height: 230px;
+        overflow: hidden;
+      }
+
+      .message-container .message-wrapper .message-body p {
+        font-size: 16px
+      }
+
+      .message-container .message-wrapper .message-body {
+        position: relative;
+        top: 200px;
+        padding: 30px 60px;
+      }
+
+      .message-container .message-wrapper .message-body .message-title {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      #client-footer {
+        background-color: #44434c;
+        color: white;
+        width: 100%;
+        height: 230px;
+        position: relative;
+        bottom: 0;
+        padding-top: 1px;
+      }
+      @media screen and (max-width: 770px) {
+        #client-footer {
+          bottom: 0;
+          height: 200px;
+          overflow: hidden;
+        }
+      }
+      #client-footer .hide-on-desktop-terms {
+        text-align: center;
+        position: relative;
+        top: 94px;
+      }
+      @media screen and (min-width: 770px) {
+        #client-footer .hide-on-desktop-terms {
+          display: none;
+        }
+      }
+      #client-footer .hide-on-desktop-terms a {
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+      }
+      #client-footer .hide-on-desktop-terms #who-text-mobile {
+        font-size: 16px;
+      }
+      #client-footer .disclaimer-container {
+        text-align: center;
+        margin: 38px 0 4px 0;
+        text-align: center;
+        margin: 130px 0 27px 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        font-family: 'Roboto', sans-serif;
+      }
+      @media screen and (max-width: 770px) {
+        #client-footer .disclaimer-container {
+          margin: 22px 0 4px 0;
+        }
+        .message-container .message-wrapper {
+          width: 95%
+        }
+        .message-container .message-wrapper .message-body {
+          padding: 30px 20px;
+          margin: initial;
+        }
+      }
+      #client-footer .disclaimer-container .disclaimer {
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+      }
+      @media screen and (max-width: 770px) {
+        #client-footer .disclaimer-container .disclaimer {
+          font-size: 14px;
+        }
+      }
+      #client-footer .logo-container .logo-background {
+        margin-top: 15px;
+      }
+      @media screen and (max-width: 770px) {
+        #client-footer .logo-container .logo-background {
+          width: 28px;
+          height: 28px;
+        }
+      }
+      #client-footer .logo-container .logo-background a .logo {
+        width: 350px;
+        background-image: url("https://s3.amazonaws.com/misc-assets-seamos/LogoSeamos_blanco.png");
+        background-size: contain;
+        background-position: 20px center;
+        background-repeat: no-repeat;
+        height: 50px;
+        position: relative;
+      }
+    </style>
+  </head>
+  <div class="message-container">
+    <div class="message-wrapper">
+      <div class="message-header">
+        <img src="https://s3.amazonaws.com/misc-assets-seamos/logo-color.png"></img>
+      </div>
+      <div class='message-body' style='position: relative; top: 200px;'>
+        <p class='message-title'>
+          <% if request && (request.path == mail_preview_path) %>
+            <%= "Hola usuario de prueba, tenemos algo qué contarte:" %>
+          <% else %>
+            <%= "Hola #{user.email}!" %>
+          <% end %>
+        </p>
+        <span>
+          <%= content.html_safe %>
+          <%= link_to  link_name, link %>
+
+        </span>
+      </div>
+      <div id='client-footer' class="noprint">
+        <div class='logo-container'>
+          <div class='logo-background'>
+              <a href="http://seamos.co" target="_blank">
+                <div class='logo'>
+                  <br>
+                  <br>
+                </div>
+              </a>
+          </div>
+        </div>
+        <div class='disclaimer-container'>
+          <span class='disclaimer'>Copyright 2018 SeamOS Democracia Digital</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>
