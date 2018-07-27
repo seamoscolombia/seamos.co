@@ -9,7 +9,7 @@
       <% if current_user.try(:administrador?) %>
         <%= render 'layouts/partials/admin_options' %>
       <% elsif current_user.try(:politico?) %>
-        <%= render 'layouts/partials/candidate_options' %>
+        <%= render 'layouts/partials/politician_options' %>
       <% else %>
         <%= render 'layouts/partials/normal_user_options' %>
       <% end %>
@@ -21,7 +21,7 @@
         <% if current_user.try(:administrador?) %>
         <%= render 'layouts/partials/admin_options' %>
         <% elsif current_user.try(:politico?) %>
-          <%= render 'layouts/partials/candidate_options' %>
+          <%= render 'layouts/partials/politician_options' %>
         <% else %>
           <%= render 'layouts/partials/normal_user_options' %>
         <% end %>
