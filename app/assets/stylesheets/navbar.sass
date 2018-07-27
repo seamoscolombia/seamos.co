@@ -1,0 +1,96 @@
+@import "font-awesome-sprockets"
+@import "font-awesome"
+@import './variables.scss'
+
+#client-navbar
+  header
+    font-family: 'RobotoBold'
+    font-size: 20px
+    width: 100%
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 14px 30px 14px 33px
+    .campaign-logo
+      width: 184px
+      @media screen and (max-width: $break-medium)
+        width: 163px
+    @media screen and (max-width: $break-medium)
+      padding: 10px
+      flex-direction: column
+      height: 65px
+
+    a#hamburger 
+      color: black
+      z-index: 3
+      position: fixed
+      right: 25px
+      top: 21px
+      @media screen and (min-width: $break-medium)
+        display: none
+    a 
+      z-index: 2
+      &:hover
+        text-decoration: none
+    #top-nav
+      nav
+        display: flex
+        align-items: center
+        margin-right: -15px
+        font-size: 17px
+        font-family: Robotobold
+        .organization-logo
+          width: 112px
+        li
+          margin: 0 15px
+        li:first-child
+          list-style-type: none
+        li:nth-child(2)
+          list-style-type: none
+    #hide-side-nav
+      width: 25%
+      height: 120%
+      position: fixed
+      z-index: 1
+      background-color: rgba(121, 200, 203, 0.7) 
+      top: 0
+      left: -40%
+      line-height: 38px
+      transition: 0.5s
+    .hsn-open
+      left: 0 !important
+    .open
+      right: 0 !important    
+    #side-nav
+      width: 75%
+      height: 120%
+      position: fixed
+      z-index: 1
+      background-color: white 
+      padding: 90px 25px 0px 25px
+      top: 0
+      right: -75%
+      line-height: 38px
+      transition: 0.5s
+      nav 
+        list-style: none
+        #sidebar-logos-container
+          display: inline-flex
+          position: absolute
+          top: 83vh
+          justify-content: space-evenly
+          margin-left: -25px
+          li
+            width: 40%
+            height: 45px
+            position: relative
+            bottom: 0
+            display: flex
+            align-self: center
+            a
+              .logo
+                width: 100%
+        li 
+          a 
+            color: black
+    

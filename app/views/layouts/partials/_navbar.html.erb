@@ -1,10 +1,31 @@
-<% if current_user && (current_user.administrador? || current_user.politico?) %>
-  <%= render 'layouts/partials/admin_navbar' %>
-<% else %>
-  <%= render 'layouts/partials/client_navbar' %>
-<% end %>
+<div id="client-navbar">
+  <!-- header -->
+  <header>
+    <%= link_to  image_tag('LogoSeamos.png', class: 'campaign-logo'), root_path %>
+    <a id='hamburger'>
+      <i class="fa fa-bars"></i>
+    </a>
+    <span id='top-nav' class="hide-on-mobile">
+      <% if current_user.try(:administrador?) %>
+        <%= render 'layouts/partials/admin_options' %>
+      <% elsif current_user.try(:politico?) %>
+        <%= render 'layouts/partials/candidate_options' %>
+      <% else %>
+        <%= render 'layouts/partials/normal_user_options' %>
+      <% end %>
+    </span>
+    <span id='hide-side-nav' class="hide-on-desktop">
 
-
-  
-
-
+    </span>
+    <span id='side-nav', class='hide-on-desktop'>
+        <% if current_user.try(:administrador?) %>
+        <%= render 'layouts/partials/admin_options' %>
+        <% elsif current_user.try(:politico?) %>
+          <%= render 'layouts/partials/candidate_options' %>
+        <% else %>
+          <%= render 'layouts/partials/normal_user_options' %>
+        <% end %>
+    </span>
+  </header>
+  <hr class="hr-header">
+</div>
