@@ -4,19 +4,21 @@
 
 #client-navbar
   header
-    font-family: 'RobotoBold'
+    nav
+      list-style: none
+    background-color: rgba(80,80,80,0.6)
+    font-family: 'RobotoCondensed'
     font-size: 20px
     width: 100%
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 14px 30px 14px 33px
+    padding: 5px 20px 
     .campaign-logo
-      width: 184px
+      width: 140px
       @media screen and (max-width: $break-medium)
-        width: 163px
+        width: 140px
     @media screen and (max-width: $break-medium)
-      padding: 10px
       flex-direction: column
       height: 65px
 
@@ -29,20 +31,27 @@
       @media screen and (min-width: $break-medium)
         display: none
     a 
+      font-family: 'RobotoCondensed'
+      font-weight: bold
+      padding: 5px !important
+      font-size: 13px
       z-index: 2
+      color: white
+      line-height: 20px
       &:hover
         text-decoration: none
+      @media screen and (max-width: $break-medium)
+        font-size: 20px
     #top-nav
       nav
         display: flex
         align-items: center
-        margin-right: -15px
         font-size: 17px
         font-family: Robotobold
         .organization-logo
           width: 112px
         li
-          margin: 0 15px
+          margin: 0 5px
         li:first-child
           list-style-type: none
         li:nth-child(2)
