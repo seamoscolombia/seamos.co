@@ -1,9 +1,4 @@
 <nav>
-  <li class="hide-on-mobile">        
-    <a href="http://seamos.co/#/" target="_blank">
-      <%= image_tag('LogoSeamos.png', class: "organization-logo") %>
-    </a>
-  </li>
   <li id="this">
     <a>Quienes somos</a>
   </li>
@@ -21,10 +16,20 @@
       Facebook
     </a>
   </li>
+  <li>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      SALIR
+    <% end %>
+  </li>
   <li class="hide-on-mobile">
-    <a href="https://www.facebook.com/seamoscolombia/", target="_blank">
-      <i class="fa fa-facebook"></i>
-    </a>
+    <%= link_to user_facebook_omniauth_authorize_path do %>
+      Continuar con facebook
+    <% end %>
+  </li>
+  <li class="hide-on-mobile">
+    <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+      Continuar con google
+    <% end %>
   </li>
   <div id='sidebar-logos-container' class="hide-on-desktop">
     <li>        
@@ -34,3 +39,17 @@
     </li>
   </div>
 </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
