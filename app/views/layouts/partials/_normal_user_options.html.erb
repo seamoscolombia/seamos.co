@@ -1,36 +1,34 @@
 <nav>
-  <li id="this">
-    <a>Quienes somos</a>
+  <li id="this" class="hide-on-mobile">
+    <a>QUIENES SOMOS</a>
   </li>
   <li>
-    <a href="https://seamosit.github.io" rel="noopener noreferrer"> Blog</a>
+    <a href="https://seamosit.github.io" rel="noopener noreferrer"> BLOG</a>
   </li>
   <li>
-    <%= link_to  "Temas", tags_path %>
+    <%= link_to  "TEMAS", tags_path %>
   </li>
   <li id="politicians-link">
-    <a href="/politicians"> Concejales </a>
+    <a href="/politicians"> CONCEJALES </a>
   </li>
-  <li class="hide-on-desktop">
-    <a href="https://www.facebook.com/seamoscolombia/", target="_blank">
-      Facebook
-    </a>
-  </li>
+  <% if user_signed_in? %>
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        SALIR
+      <% end %>
+    </li>
+  <% else %>
   <li>
-    <%= link_to destroy_user_session_path, method: :delete do %>
-      SALIR
-    <% end %>
-  </li>
-  <li class="hide-on-mobile">
     <%= link_to user_facebook_omniauth_authorize_path do %>
       Continuar con facebook
     <% end %>
   </li>
-  <li class="hide-on-mobile">
+  <li>
     <%= link_to user_google_oauth2_omniauth_authorize_path do %>
       Continuar con google
     <% end %>
   </li>
+  <% end %>
   <div id='sidebar-logos-container' class="hide-on-desktop">
     <li>        
       <a href="http://seamos.co/#/" target="_blank">
