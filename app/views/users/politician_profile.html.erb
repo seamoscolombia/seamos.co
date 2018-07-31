@@ -41,6 +41,7 @@
         <div class="cv-title">Formación</div>
         <div class="further-studies">
           <% @politician.academic_titles.each do |academic_title| %>
+            <% next unless academic_title.title %>
             <div class="academic-title">
               <div>
                 <strong>

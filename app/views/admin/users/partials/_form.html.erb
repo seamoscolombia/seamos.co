@@ -17,13 +17,15 @@
   <fieldset class="first-step">
     <h2 class="fs-title">Datos Generales</h2>
 
-    <div class="radio_button_field">
+    <% unless current_user.politico? %>
+      <div class="radio_button_field">
         <%= f.label "Tipo de rol" %><br/><br>
         <%= f.radio_button :role_type, "administrador" %>
         <%= f.label :role_type, "Administrador"%><br>
         <%= f.radio_button :role_type, "politico", checked: "#{@user && @user.role_type == 'politico' ? 'checked' : false}" %>
         <%= f.label :role_type, "Politico",class: "radio_button_lbl"  %>
-    </div>
+      </div>
+    <% end %>
 
     <div class="field">
       <%= f.label "Nombres" %>
@@ -124,10 +126,6 @@
       <div>
           <%= academic_title_form.label "Institución" %>
           <%= academic_title_form.text_field :institute %>
-      </div>
-      <div>
-          <%= academic_title_form.label "Anotación" %>
-          <%= academic_title_form.text_field :annotation %>
       </div>
     <% end %>
     <input type="button" name="previous" class="previous action-button" value="Atrás" />

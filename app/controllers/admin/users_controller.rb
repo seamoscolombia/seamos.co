@@ -7,6 +7,7 @@ class Admin::UsersController < ApplicationController
   before_action :search_users, only: [:index, :permits]
 
   def edit
+    3.times { @user.academic_titles << AcademicTitle.new } unless @user.academic_titles.present?
   end
 
   def permits

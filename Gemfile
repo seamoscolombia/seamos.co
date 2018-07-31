@@ -29,19 +29,13 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # gem 'capistrano-rails', group: :development
 # #### project gems ####
 # gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
-gem 'anti-captcha', '~> 0.1.1'
 gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
-gem 'capybara', '~> 2.10.1'
 gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave-base64', '~> 2.3.2'
-gem 'chartkick', '~> 2.1.1'
 gem 'fog-aws', '~> 0.12.0'
 gem 'kaminari', '~> 1.0.1'
 gem 'koala', '~>2.4.0'
-gem 'omniauth-facebook', '~> 4.0.0'
 gem 'pg', '0.18.4'
-gem 'sidekiq', '~> 4.2.10'
-gem 'active_model_serializers', '~> 0.10.0'
 gem 'rails_12factor', group: :production
 gem "cf-autoconfig", '~> 0.2.1'
 gem 'font-awesome-sass', '~> 4.7.0'
@@ -49,6 +43,7 @@ gem 'tinymce-rails'
 gem 'meta-tags'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'devise'
+gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-google-oauth2'
 
 group :development, :test do
@@ -65,10 +60,8 @@ group :development, :test do
 end
 
 group :development do
-  # Use sqlite3 as the database for Active Record
   gem 'annotate'
   gem 'listen', '~> 3.0.5'
-  gem 'sqlite3', '~> 1.3.13'
   gem 'table_print', '~> 1.5.6'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
