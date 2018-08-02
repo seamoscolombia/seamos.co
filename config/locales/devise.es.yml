@@ -29,13 +29,13 @@ es:
         subject: "Password Changed"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
-      success: "Ingresaste exitosamente con tu cuenta de %{kind}, ahora puedes votar!"
+      success: "Ingresaste exitosamente con tu cuenta de %{kind}"
     passwords:
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
-      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_instructions: "Vas a recibir un email con instrucciones sobre cómo reestablecer tu contraseña."
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
-      updated: "Your password has been changed successfully. You are now signed in."
-      updated_not_active: "Your password has been changed successfully."
+      updated: "Tu contraseña ha sido cambiada con éxito. Has iniciado sesión."
+      updated_not_active: "Tu contraseña ha sido cambiada con éxito."
     registrations:
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."

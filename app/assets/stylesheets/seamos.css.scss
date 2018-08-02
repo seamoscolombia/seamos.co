@@ -2,7 +2,6 @@
 @import "bootstrap";
 
 @import "bootstrap-datepicker3";
-@import "material";
 @import "./variables";
 
 /* mixins, variables, etc. */
@@ -97,6 +96,7 @@ p {
 }
 
 #primary-container{
+  min-height: 75vh;
   padding: 0;
   margin: 0;
   width: 100%;

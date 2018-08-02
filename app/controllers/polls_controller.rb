@@ -22,7 +22,12 @@ class PollsController < ApplicationController
     else
       Rails.application.config.pa_base_image_url
     end
-    @status_image += @poll.read_attribute_before_type_cast(:state).to_s + ".png"
+
+    if  @poll.read_attribute_before_type_cast(:state).present?
+      @status_image += @poll.read_attribute_before_type_cast(:state).to_s + ".png"
+    else
+      @status_image += "0.png"
+    end
   end
 
   def set_poll

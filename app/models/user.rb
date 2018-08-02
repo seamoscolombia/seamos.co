@@ -46,6 +46,7 @@ class User < ApplicationRecord
 
   validate :email_for_admin, if: :admin?
   validate :major_electoral_representation_localities_length, if: :politician?
+  validates_uniqueness_of :email
 
   enum role_type: {ciudadano: 0, politico: 1, administrador: 2}
   enum current_corporation_commission: {"Comisión del plan": 0, "Comisión de Gobierno": 1, "Comisión de Hacienda": 2}
@@ -81,6 +82,7 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     user = where(email: auth.info.email).first
+    refresh_user_image(user, auth.info.image)
     return user if user
     where(provider: auth.provider, uid: auth.uid, email: auth.info.email).first_or_create do |user|
       user.email = auth.info.email
@@ -137,5 +139,12 @@ class User < ApplicationRecord
   def confirmation_required?
     # This is for avoiding confirmation process, next line maybe helps for development env
     return false
+  end
+
+  def self.refresh_user_image(user, image)
+    if user.present?
+      user.provider_image = image
+      user.save
+    end
   end
 end

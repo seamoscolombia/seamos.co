@@ -1,5 +1,5 @@
 class UserNotifierMailer < ApplicationMailer
-  default :from => 'seamoscolombia@gmail.com'
+  default :from => 'contacto@seamos.co'
 
 # send a signup email to the user, pass in the user object that contains the user's email address
   def send_subscription_email(email, unsubscribe)
@@ -14,7 +14,7 @@ class UserNotifierMailer < ApplicationMailer
     @content = content
     @recipient = recipient
     @top_image_url = top_image_url
-    @sender = sender.present? ? sender : 'seamoscolombia@gmail.com'
-    mail( from: @sender, to: recipient, subject: subject, content: content )
+    @sender = sender.present? ? sender : 'contacto@seamos.co'
+    mail( from: "SeamOS Democracia Digital <#{@sender}>", to: recipient, subject: subject, content: content )
   end
 end

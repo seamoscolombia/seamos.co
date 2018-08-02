@@ -1,6 +1,6 @@
 class Admin::PollsController < ApplicationController
-  before_action :validate_admin_or_politician, only: :index
-  before_action :validate_politician, except: :index
+  before_action :validate_admin_or_politician, only: [:index, :edit]
+  before_action :validate_politician, except: [:index, :edit]
   before_action :set_poll, only: %i(edit update destroy)
   before_action :bind_links, only: %i(create update)
   before_action :set_tags, only: %i(create update)

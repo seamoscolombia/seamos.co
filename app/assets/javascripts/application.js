@@ -14,7 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-datepicker
-//= require chartkick
-//= require material
 
 //= require_tree .
