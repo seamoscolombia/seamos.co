@@ -23,15 +23,17 @@
       </div>
       <div class="col-md-4 social-info">
         <div class="social-info-wrapper">
-          <div class="">
-            <a class="no-decoration" href=<%="https://twitter.com/#{@politician.twitter_username.delete('@')}"%>>
-              <p>
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-                  &nbsp; &nbsp;                
-                  <%= @politician.twitter_username.upcase %>
-              </p>
-            </a>
-          </div>
+          <% if @politician.twitter_username.present? %>
+            <div class="">
+              <a class="no-decoration" href=<%="https://twitter.com/#{@politician.twitter_username.delete('@')}"%>>
+                <p>
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                    &nbsp; &nbsp;
+                    <%= @politician.twitter_username.upcase %>
+                </p>
+              </a>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="col-md-2"></div>
@@ -68,20 +70,22 @@
           </div>
           <div class="cv-subtitle">Las dos localidades con mayor representación</div>
           <div class="major-representation-localities">
-            <% @politician.major_electoral_representation_localities.split(', ').each do |localitie| %>
-              <span>
+            <% if @politician.major_electoral_representation_localities.present? %>
+              <% @politician.major_electoral_representation_localities.split(', ').each do |localitie| %>
                 <span>
-                  <%= User.localities.key(localitie.to_i) %>
+                  <span>
+                    <%= User.localities.key(localitie.to_i) %>
+                  </span>
+                  <br>
                 </span>
-                <br>
-              </span>
+              <% end %>
             <% end %>
           </div>
           <% if @politician.other_periods_elected %>
             <div class="cv-title">Otros periodos electo</div>
             <div class="without-image">
               <%= @politician.other_periods_elected %>
-            </div>            
+            </div>
           <% end %>
           <div class="cv-title">Comisión</div>
           <div class="without-image">
@@ -104,7 +108,7 @@
             <h1 class="title"> Propuestas </h1>
             <% @polls.each do |poll| %>
               <%= render partial: "polls/partials/poll_small_preview", locals: {poll: poll} %>
-            <% end %>          
+            <% end %>
           </div>
         </div>
       </div>
