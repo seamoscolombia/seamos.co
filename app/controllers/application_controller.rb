@@ -3,28 +3,28 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   protect_from_forgery with: :reset_session, prepend: true
 
-  def validate_session 
+  def validate_session
     redirect_to root_path if current_user.nil?
   end
-  
+
   def validate_superadmin
     unless current_user && current_user.role_type == 'administrador'
       flash[:error] = "Primero debes acceder como administrador"
-      redirect_to root_path 
+      redirect_to root_path
     end
   end
 
   def validate_politician
     unless current_user && current_user.role_type == 'politico'
       flash[:error] = "Primero debes acceder como político"
-      redirect_to root_path 
+      redirect_to root_path
     end
   end
 
   def validate_admin_or_politician
     unless current_user && (current_user.role_type == 'politico' || current_user.role_type == 'administrador')
       flash[:error] = "No estás autorizado para realizar esta acción"
-      redirect_to root_path 
+      redirect_to root_path
     end
   end
 
@@ -44,19 +44,10 @@ class ApplicationController < ActionController::Base
   private
 
   def storable_location?
-    request.get? && is_navigational_format? && !devise_controller? && !request.xhr? 
+    request.get? && is_navigational_format? && !devise_controller? && !request.xhr?
   end
 
   def store_user_location!
     store_location_for(:user, request.fullpath)
-  end
-
-  def layout_by_resource
-    debugger
-    if devise_controller?
-      "default"
-    else
-      "application"
-    end
   end
 end
