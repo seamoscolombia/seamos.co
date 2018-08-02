@@ -13,33 +13,34 @@
 </div>
 
 <br />
-
-<% if f.object.poll_type == "Control político" %>
-  <div class="field politician-field politic-control">
-    <%= f.label "Estado de la Propuesta" %>
-    <%= f.select(:state) do %>
-      <% [['Votación seamos', "Votación seamos"], ['Radica concejal', "Radica concejal"], ['Primer debate', "Primer debate"], ['Debate de control político', "Segundo debate"], ['Moción de censura', 'Sanción del proyecto de acuerdo']].each do |c| %>
-        <%= content_tag(:option, c.first, value: c.last, selected: f.object.state == c.last ? 'selected' : false) %>
+<% unless current_user.politico? %>
+  <% if f.object.poll_type == "Control político" %>
+    <div class="field politician-field politic-control">
+      <%= f.label "Estado de la Propuesta" %>
+      <%= f.select(:state) do %>
+        <% [['Votación seamos', "Votación seamos"], ['Radica concejal', "Radica concejal"], ['Primer debate', "Primer debate"], ['Debate de control político', "Segundo debate"], ['Moción de censura', 'Sanción del proyecto de acuerdo']].each do |c| %>
+          <%= content_tag(:option, c.first, value: c.last, selected: f.object.state == c.last ? 'selected' : false) %>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-  <div class="field politician-field vote-or-agreement hidden">
-    <%= f.label "Estado de la Propuesta" %>
-    <%= f.select :state, Poll.states.keys, {}, {class: 'form-control', id: 'vote-agreement-select'} %>
-  </div>
-<% else %>
-  <div class="field politician-field politic-control hidden">
-    <%= f.label "Estado de la Propuesta" %>
-    <%= f.select(:state) do %>
-      <% [['Votación seamos', "Votación seamos"], ['Radica concejal', "Radica concejal"], ['Primer debate', "Primer debate"], ['Debate de control político', "Segundo debate"], ['Moción de censura', 'Sanción del proyecto de acuerdo']].each do |c| %>
-        <%= content_tag(:option, c.first, value: c.last, selected: f.object.state == c.last ? 'selected' : false) %>
+    </div>
+    <div class="field politician-field vote-or-agreement hidden">
+      <%= f.label "Estado de la Propuesta" %>
+      <%= f.select :state, Poll.states.keys, {}, {class: 'form-control', id: 'vote-agreement-select'} %>
+    </div>
+  <% else %>
+    <div class="field politician-field politic-control hidden">
+      <%= f.label "Estado de la Propuesta" %>
+      <%= f.select(:state) do %>
+        <% [['Votación seamos', "Votación seamos"], ['Radica concejal', "Radica concejal"], ['Primer debate', "Primer debate"], ['Debate de control político', "Segundo debate"], ['Moción de censura', 'Sanción del proyecto de acuerdo']].each do |c| %>
+          <%= content_tag(:option, c.first, value: c.last, selected: f.object.state == c.last ? 'selected' : false) %>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-  <div class="field politician-field vote-or-agreement">
-    <%= f.label "Estado de la Propuesta" %>
-    <%= f.select :state, Poll.states.keys, {}, {class: 'form-control', id: 'vote-agreement-select'} %>
-  </div>
+    </div>
+    <div class="field politician-field vote-or-agreement">
+      <%= f.label "Estado de la Propuesta" %>
+      <%= f.select :state, Poll.states.keys, {}, {class: 'form-control', id: 'vote-agreement-select'} %>
+    </div>
+  <%end%>
 <%end%>
 
 <div class="field">
@@ -59,12 +60,7 @@
     <label id='counter-label' class='char-left'>3000</label>
 </div>
 
-<div class="field">
-    <%= f.label "pregunta" %>
-    <%= f.text_field :question, class: 'form-control' %>
-</div>
-
-<%= f.label "Enlace Del Proyecto" %>
+<%= f.label "Enlace Del Proyecto (opcional)" %>
 
 <div>
  <%= f.text_field :project_link, id: 'project_link', class: "form-control",  placeholder: "Enlace del Proyecto", value: poll.project_link ? poll.project_link.url : ''%>
@@ -129,7 +125,7 @@
     <%= f.label "seleccion de temas" %><br>
     <div class="alert alert-info alert-dismissable">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        Selecciona el tema que mejor se adecúe a tu propuesta
+        Selecciona los temas que mejor se adecúen a tu propuesta
     </div>
     <% @location_from = 'new_poll' %>
     <%= render 'admin/tags/tag_list', tags: Tag.all%>

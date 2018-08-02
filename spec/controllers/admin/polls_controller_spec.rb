@@ -68,19 +68,10 @@ RSpec.describe Admin::PollsController, type: :controller do
 
     context 'when the user is an admin' do
       let(:poll) { FactoryGirl.create(:poll) }
-      it 'redirects to root path' do
+      it 'allow admin to edit user info' do
         sign_in admin
         get :edit, params: {id: poll.id}
-        expect(response).to have_http_status(302)
-      end
-    end
-
-    context 'when the user is not logged in' do
-      let(:poll) { FactoryGirl.create(:poll) }
-      it 'redirects to root path' do
-        sign_in admin
-        get :edit, params: {id: poll.id}
-        expect(response).to have_http_status(302)
+        expect(response).to have_http_status(200)
       end
     end
   end

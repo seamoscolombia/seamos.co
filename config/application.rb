@@ -29,5 +29,3 @@ module Seamos
     end
   end
 end
-
-
