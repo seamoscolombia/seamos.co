@@ -13,7 +13,7 @@
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 5px 20px 
+    padding: 5px 20px
     .campaign-logo
       width: 140px
       @media screen and (max-width: $break-medium)
@@ -22,15 +22,15 @@
       flex-direction: column
       height: 65px
 
-    a#hamburger 
-      color: black
+    a#hamburger
+      color: white
       z-index: 3
-      position: fixed
+      position: absolute
       right: 25px
       top: 21px
       @media screen and (min-width: $break-medium)
         display: none
-    a 
+    a
       font-family: 'RobotoCondensed'
       font-weight: bold
       padding: 5px !important
@@ -64,45 +64,73 @@
       height: 120%
       position: fixed
       z-index: 1
-      background-color: rgba(121, 200, 203, 0.7) 
-      top: 0
+      background-color: rgba(80, 80, 80, 0.6)
+      top: 65px
       left: -40%
       line-height: 38px
       transition: 0.5s
     .hsn-open
       left: 0 !important
     .open
-      right: 0 !important    
+      right: 0 !important
     #side-nav
       width: 75%
       height: 120%
       position: fixed
       z-index: 1
-      background-color: white 
-      padding: 90px 25px 0px 25px
-      top: 0
+      background-color: white
+      padding: 13px 25px 0px 25px
       right: -75%
       line-height: 38px
       transition: 0.5s
-      nav 
+      nav
         list-style: none
-        #sidebar-logos-container
-          display: inline-flex
-          position: absolute
-          top: 83vh
-          justify-content: space-evenly
-          margin-left: -25px
-          li
-            width: 40%
-            height: 45px
-            position: relative
-            bottom: 0
-            display: flex
-            align-self: center
-            a
-              .logo
-                width: 100%
-        li 
-          a 
+        li
+          a
             color: black
-    
+            font-family: RobotoRegular
+            font-size: 14px
+.loginBtn
+  box-sizing: border-box
+  position: relative
+  margin: 0.2em
+  padding: 0 15px 0 46px
+  border: none
+  text-align: left
+  line-height: 34px
+  white-space: nowrap
+  font-size: 16px
+  color: #FFF
+  @media screen and (max-width: $break-medium)
+    padding: 0 7px 0 41px
+    font-size: 14px
+  &:before
+    content: ""
+    box-sizing: border-box
+    position: absolute
+    top: 0
+    left: 0
+    width: 34px
+    height: 100%
+  &:focus
+    outline: none
+  &:active
+    box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1)
+
+.loginBtn--facebook
+  background-color: #4267b2
+  &:before
+    background-image: url(asset_path('facebook-logo-white.png'))
+    background-size: 70%
+    background-position: center center
+    background-repeat: no-repeat
+.loginBtn--google
+  background: #DD4B39
+  border: 1px solid #dd4b39
+  &:before
+    background-image: url(asset_path('google-logo.svg'))
+    background-size: 130%
+    background-position: center center
+    background-repeat: no-repeat
+  &:hover, &:focus
+    background: #E74B37

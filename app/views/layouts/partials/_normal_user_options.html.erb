@@ -22,23 +22,16 @@
     </li>
   <% else %>
   <li>
-    <%= link_to user_facebook_omniauth_authorize_path do %>
+    <%= button_to user_facebook_omniauth_authorize_path, class: "loginBtn loginBtn--facebook metro" do %>
       Continuar con facebook
     <% end %>
   </li>
   <li>
-    <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+    <%= button_to user_google_oauth2_omniauth_authorize_path, class: "loginBtn loginBtn--google" do %>
       Continuar con google
     <% end %>
   </li>
   <% end %>
-  <div id='sidebar-logos-container' class="hide-on-desktop">
-    <li>        
-      <a href="http://seamos.co/#/" target="_blank">
-        <%= image_tag('LogoSeamos.png', class: "logo") %>
-      </a>
-    </li>
-  </div>
 </nav>
 
 
