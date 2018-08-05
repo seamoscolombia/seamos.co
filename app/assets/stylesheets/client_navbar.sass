@@ -4,8 +4,6 @@
 
 #client-navbar
   header
-    nav
-      list-style: none
     background-color: rgba(80,80,80,0.6)
     font-family: 'RobotoCondensed'
     font-size: 20px
@@ -19,11 +17,22 @@
       height: 58px
       align-items: flex-start
       padding: 5px 8px
+    nav
+      list-style: none
     .campaign-logo
       width: 140px
       @media screen and (max-width: $break-medium)
         width: 110px
-
+    .only-photo
+      position: absolute
+      top: 14px
+      right: 60px
+    .navbar-photo
+      width: 25px
+      height: 25px
+      border-radius: 50%
+      margin-right: 3px
+      margin-bottom: 3px
     a#hamburger
       color: white
       z-index: 3
@@ -50,7 +59,6 @@
           &:hover
             background-color: #ec6257
         display: flex
-        align-items: center
         font-size: 17px
         font-family: Robotobold
         .organization-logo
@@ -92,6 +100,37 @@
             color: black
             font-family: RobotoRegular
             font-size: 14px
+  .nav-with-background
+    font-family: 'RobotoCondensed'
+    text-transform: uppercase
+    font-size: 13px
+    font-weight: bold
+    padding: 5px 5px !important
+    display: flex
+    align-items: center
+    background-color: transparent
+    color: white
+    border: 0px
+    @media screen and (max-width: $break-medium)
+      color: white
+    &:hover
+      background-color: #ec6257
+      border-radius: 3px
+      -webkit-transition: width 0.5s, background-color 0.5s linear
+      -ms-transition: width 0.5s, background-color 0.5s linear
+      transition: width 0.5s, background-color 0.5s linear
+  .custom-dropdown
+    padding: 0 !important
+    background-color: rgba(0, 0, 0, 0.1)
+    left: auto
+    right: -8px
+    top: 65px
+    li
+      margin: 0
+      text-align: center
+      button
+        margin: 10px
+
 .loginBtn
   box-sizing: border-box
   position: relative

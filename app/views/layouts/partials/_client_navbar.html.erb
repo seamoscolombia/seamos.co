@@ -1,6 +1,11 @@
 <div id="client-navbar">
   <header>
     <%= link_to  image_tag('LogoSeamos_blanco.png', class: 'campaign-logo'), root_path %>
+    <% if current_user.present? %>
+      <div class="hide-on-desktop only-photo">
+        <%= image_tag current_user.resolve_photo, class: 'navbar-photo' %>
+      </div>
+    <% end %>
     <a id='hamburger'>
       <i class="fa fa-bars"></i>
     </a>
