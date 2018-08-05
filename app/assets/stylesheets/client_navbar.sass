@@ -14,20 +14,22 @@
     justify-content: space-between
     align-items: center
     padding: 5px 20px
+    @media screen and (max-width: $break-medium)
+      flex-direction: column
+      height: 58px
+      align-items: flex-start
+      padding: 5px 8px
     .campaign-logo
       width: 140px
       @media screen and (max-width: $break-medium)
-        width: 140px
-    @media screen and (max-width: $break-medium)
-      flex-direction: column
-      height: 65px
+        width: 110px
 
     a#hamburger
       color: white
       z-index: 3
       position: absolute
-      right: 25px
-      top: 21px
+      right: 20px
+      top: 15px
       @media screen and (min-width: $break-medium)
         display: none
     a
@@ -65,7 +67,7 @@
       position: fixed
       z-index: 1
       background-color: rgba(80, 80, 80, 0.6)
-      top: 65px
+      top: 57px
       left: -40%
       line-height: 38px
       transition: 0.5s

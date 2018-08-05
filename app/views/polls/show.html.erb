@@ -55,7 +55,7 @@
                   </div>
                 </div>
               <% end %>
-              <% if @poll.external_links.present? %>
+              <% if @poll.external_links.where(is_project_link: false).present? %>
                 <h5 class="external-links-title"> Enlaces Relacionados </h5>
                 <div class="external-links-container">
                   <% @poll.external_links.each do |link| %>
@@ -115,7 +115,7 @@
                             Quedan <%= distance_of_time_in_words(Date.today, Date.today + @poll.remaining_time_in_seconds.seconds) %>
                           <% end %>
                         </span>
-                      </div>                      
+                      </div>
                     </div>
                     <div class="summary">
                       <%= @poll.summary %>
