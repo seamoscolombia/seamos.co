@@ -19,9 +19,11 @@
           <% end %>
         </section>
         <div class="share-wrapper">
+          <%= social_share_button_tag(@poll.title, desc: @poll.title, :allow_sites => %w(facebook)) %>
+          <%= social_share_button_tag(@poll.title, desc: @poll.title.first(50), via: "SeamOS", :allow_sites => %w(twitter)) %>
           <span class="share-this hide-on-mobile"> COMPARTIR: </span>
-          <div role="button" tabindex="0" class="SocialMediaShareButton SocialMediaShareButton--facebook network__share-button"><a class="fa fa-facebook" rel="noopener noreferrer" style="display: block;"></a><br></div>
-          <div role="button" tabindex="0" class="SocialMediaShareButton SocialMediaShareButton--twitter network__share-button"><a class="fa fa-twitter" rel="noopener noreferrer" style="display: block;"></a><br></div>
+          <div id= 'fb-btn' role="button" tabindex="0" class="SocialMediaShareButton SocialMediaShareButton--facebook network__share-button"><a class="fa fa-facebook" rel="noopener noreferrer" style="display: block;"></a><br></div>
+          <div id= 'tw-btn' role="button" tabindex="0" class="SocialMediaShareButton SocialMediaShareButton--twitter network__share-button"><a class="fa fa-twitter" rel="noopener noreferrer" style="display: block;"></a><br></div>
         </div>
         <header class="row">
           <p class="col-sm-12 poll-title">
@@ -115,7 +117,7 @@
                             Quedan <%= distance_of_time_in_words(Date.today, Date.today + @poll.remaining_time_in_seconds.seconds) %>
                           <% end %>
                         </span>
-                      </div>                      
+                      </div>
                     </div>
                     <div class="summary">
                       <%= @poll.summary %>
