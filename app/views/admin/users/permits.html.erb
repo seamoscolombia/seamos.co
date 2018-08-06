@@ -1,9 +1,10 @@
 <div class="container" id="users-list" >
 	<div class="row">
+    <div class='spacer-big'></div>
     <div class="col-md-3 admin-search-form">
       <%= label_tag :Filtros %>
       <%= form_tag({controller: "users", action: "permits"}, method: "get") do %>
-        <%= select_tag(:users_filter_select, options_for_select( 
+        <%= select_tag(:users_filter_select, options_for_select(
           ['sin asignar', *User.role_types.keys],
           params[:users_filter_select] ),
           {class: "form-control", include_blank: true},
@@ -53,7 +54,7 @@
               </td>
             </tr>
           <% end %>
-        </table>    
+        </table>
       </div>
       <p> <%= paginate @users %> </p>
     </div>

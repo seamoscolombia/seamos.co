@@ -1,0 +1,72 @@
+<nav>
+  <li>
+    <a href="http://sifuerapresidente.co" target="_blank" rel="noopener noreferrer"> SIFUERAPRESIDENTE </a>
+  </li>
+  <li id="this" class="hide-on-mobile">
+    <a>QUIENES SOMOS</a>
+  </li>
+  <li>
+    <a href="https://seamosit.github.io" rel="noopener noreferrer"> BLOG</a>
+  </li>
+  <li>
+    <%= link_to  "TEMAS", tags_path %>
+  </li>
+  <li id="politicians-link">
+    <a href="/politicians"> CONCEJALES </a>
+  </li>
+  <% if user_signed_in? %>
+    <div class="hide-on-mobile">
+      <%= link_to user_path(current_user) do %>
+        <%= image_tag  current_user.resolve_photo, class: 'navbar-photo' %>
+          TU PERFIL
+          <% end %>
+    </div>
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        SALIR
+        <% end %>
+    </li>
+    <% else %>
+      <div class="hide-on-mobile">
+        <li class="dropdown">
+          <button class="nav-with-background" type="button" data-toggle="dropdown" aria-expanded="false">
+            REGÍSTRATE
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu custom-dropdown">
+            <li>
+              <span style="transition: opacity 0.5s;">
+                <form class="button_to" method="post" action="/users/auth/facebook">
+                  <button class="loginBtn loginBtn--facebook metro" type="submit">
+                    Continuar con facebook
+                  </button>
+                  <input type="hidden" name="authenticity_token" value="8cov2NI86UF1R1uIPk+PNyXX0Yo0CNj3d8a5qJuVo06Tu9FlfPS778wO2XDf+gxAjvgwsv7B+gisLoy5p5vQZA==">
+                </form>
+              </span>
+            </li>
+            <li role="presentation" class="divider"></li>
+            <li>
+              <div>
+                <form class="button_to" method="post" action="/users/auth/google_oauth2">
+                  <button class="loginBtn loginBtn--google" type="submit">
+                    Continuar con google
+                  </button>
+                  <input type="hidden" name="authenticity_token" value="8cov2NI86UF1R1uIPk+PNyXX0Yo0CNj3d8a5qJuVo06Tu9FlfPS778wO2XDf+gxAjvgwsv7B+gisLoy5p5vQZA==">
+                </form>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </div>
+        <li class='hide-on-desktop'>
+          <%= button_to user_facebook_omniauth_authorize_path, class: "loginBtn loginBtn--facebook metro" do %>
+            Continuar con facebook
+            <% end %>
+        </li>
+        <li class='hide-on-desktop'>
+          <%= button_to user_google_oauth2_omniauth_authorize_path, class: "loginBtn loginBtn--google" do %>
+            Continuar con google
+            <% end %>
+        </li>
+      <% end %>
+</nav>

@@ -12,8 +12,12 @@
     <%= favicon_link_tag 'favicon.png' %>
   </head>
   <body>
-    <%= render 'layouts/partials/navbar' unless current_page?(admin_index_path) %>
-    
+    <% if admin_or_politician?(current_user) %>
+      <%= render 'layouts/partials/admin_navbar' %>
+    <% else %>
+      <%= render 'layouts/partials/client_navbar' %>
+    <% end %>
+
     <div id='primary-container' class="container">
       <div id="flash-messages-container">
         <% flash.each do |message_type, message| %>

@@ -1,113 +1,20 @@
-<div>
-  <header id="navbar-client" class="navbar navbar-fixed-top" role="banner">
-    <div id="client-navbar">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#/">
-          <div id="brand-logo"></div>
-        </a>
-        <div class="hide-on-desktop only-photo">
-          <span>
-            <li style="display: inline-block;">
-              <button class="btn nav-with-background">
-                <img 
-                src="" 
-                role="presentation" 
-                style="width: 25px; height: 25px; border-radius: 50%; margin-right: 3px;"
-                >
-                TU PERFIL
-              </button>
-            </li>
-          </span>
-        </div>
-        <button 
-          class="navbar-toggle pull-right" 
-          data-toggle="collapse-side" 
-          data-target=".side-collapse" 
-          data-target-2=".side-collapse-container" 
-          type="button" 
-          style="top: 0px;">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+<div id="client-navbar">
+  <header>
+    <%= link_to  image_tag('LogoSeamos_blanco.png', class: 'campaign-logo'), root_path %>
+    <% if current_user.present? %>
+      <div class="hide-on-desktop only-photo">
+        <%= image_tag current_user.resolve_photo, class: 'navbar-photo' %>
       </div>
-      <div class="navbar-transparent side-collapse in">
-        <nav class="navbar-collapse" role="navigation">
-          <ul class="nav navbar-nav navbar-right navbar-options">
-            <div class="hide-on-desktop login-buttons">
-              <span>
-                <li style="display: inline-block;">
-                  <button class="btn nav-with-background">
-                    <img 
-                      src="" 
-                      role="presentation" 
-                      style="width: 25px; height: 25px; border-radius: 50%; margin-right: 3px;"
-                    >
-                    TU PERFIL
-                  </button>
-                </li>
-              </span>
-            </div>
-            <li>
-              <a href="http://sifuerapresidente.co" target="_blank" rel="noopener noreferrer"> SIFUERAPRESIDENTE </a>
-            </li>
-            <li id="this">
-              <a>Quienes somos</a>
-            </li>
-            <li>
-              <a href="https://seamosit.github.io" rel="noopener noreferrer"> Blog</a>
-            </li>
-            <li>
-              <%= link_to  "Temas", tags_path %>
-            </li>
-            <li id="politicians-link">
-              <a href="/politicians"> Concejales </a>
-            </li>
-            <% if user_signed_in? %>
-              <div class="hide-on-mobile">
-                <span>
-                  <li style="display: inline-block;">
-                    <%= button_to user_path(current_user.id), class: "btn nav-with-background", method: :get do %>
-                      <img src="<%= current_user.provider_image %>" role="presentation" style="width: 25px; height: 25px; border-radius: 50%; margin-right: 3px;">
-                      TU PERFIL
-                    <% end %>
-                  </li>
-                </span>
-              </div>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete,  class: "btn nav-with-background" do %>
-                  SALIR
-                <% end %>
-              </li>
-            <% else %>
-              <div class="hide-on-mobile">
-                <li class="dropdown"><button class="nav-with-background" type="button" data-toggle="dropdown"><!-- react-text: 39 -->REGÍSTRATE<!-- /react-text --><span class="caret"></span></button>
-                  <ul class="dropdown-menu custom--dropdown">
-                    <li>
-                      <span style="transition: opacity 0.5s;">
-                        <%= button_to user_facebook_omniauth_authorize_path, class: "loginBtn loginBtn--facebook metro" do %>
-                          Continuar con facebook
-                        <% end %>
-                      </span>
-                    </li>
-                    <li role="presentation" class="divider"></li>
-                    <li>
-                      <div>
-                        <%= button_to user_google_oauth2_omniauth_authorize_path, class: "loginBtn loginBtn--google" do %>
-                          Continuar con google
-                        <% end %>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </div>
-            <% end %>
-          </ul>
-        </nav>
-      </div>
-    </div>
+    <% end %>
+    <a id='hamburger'>
+      <i class="fa fa-bars"></i>
+    </a>
+    <span id='top-nav' class="hide-on-mobile">
+      <%= render 'layouts/partials/normal_user_options' %>
+    </span>
+    <span id='hide-side-nav' class="hide-on-desktop" />
+    <span id='side-nav', class='hide-on-desktop'>
+      <%= render 'layouts/partials/normal_user_options' %>
+    </span>
   </header>
-  <div class="notification-container notification-container-empty">
-    <span></span>
-  </div>
 </div>

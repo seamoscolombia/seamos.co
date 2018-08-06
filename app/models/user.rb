@@ -29,6 +29,7 @@
 #
 
 class User < ApplicationRecord
+  include ApplicationHelper
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   mount_uploader :admin_photo, AdminPhotoUploader
@@ -111,6 +112,10 @@ class User < ApplicationRecord
 
   def resolve_admin_photo
     admin_photo.file.present? ? admin_photo.url : Rails.application.config.defaultavatar
+  end
+
+  def resolve_photo
+    url_exists?(provider_image) ? provider_image : Rails.application.config.defaultavatar
   end
 
   private
