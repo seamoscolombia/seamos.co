@@ -106,6 +106,10 @@ class User < ApplicationRecord
     "#{names} #{first_surname} #{second_surname}"
   end
 
+  def has_polls?
+    polls.present?
+  end
+
   def vote_count
     votes.size
   end

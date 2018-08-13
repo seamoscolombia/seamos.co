@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def politician_profile
-    @polls = @politician.polls.first(6) 
+    @polls = @politician.polls.first(6)
   end
 
   private
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @politician = User.includes({polls: [:tags]}).find_by(id: params[:id])
     unless @politician && @politician.politico?
       flash[:error] = "El usuario que buscas no es político"
-      redirect_to root_path 
+      redirect_to root_path
     end
   end
 end

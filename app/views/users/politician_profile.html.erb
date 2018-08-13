@@ -81,10 +81,12 @@
               <% end %>
             <% end %>
           </div>
-          <% if @politician.other_periods_elected %>
+          <% if @politician.other_periods_elected.present? %>
             <div class="cv-title">Otros periodos electo</div>
             <div class="without-image">
-              <%= @politician.other_periods_elected %>
+              <p>
+                <%= @politician.other_periods_elected %>
+              </p>
             </div>
           <% end %>
           <div class="cv-title">Comisión</div>
@@ -95,19 +97,21 @@
       </div>
       <div class="col-md-8">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-12 politician-bio-wrapper">
             <td>
               <p id= 'politician-bio'>
-                <%= @politician.bio.html_safe %>
+                <%= @politician.bio.try(:html_safe) %>
               </p>
             </td>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
-            <h1 class="title"> Propuestas </h1>
-            <% @polls.each do |poll| %>
-              <%= render partial: "polls/partials/poll_small_preview", locals: {poll: poll} %>
+            <% if @politician.has_polls? %>
+              <h1 class="title"> Propuestas </h1>
+              <% @polls.each do |poll| %>
+                <%= render partial: "polls/partials/poll_small_preview", locals: {poll: poll} %>
+              <% end %>
             <% end %>
           </div>
         </div>
