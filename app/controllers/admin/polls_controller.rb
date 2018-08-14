@@ -1,7 +1,8 @@
 class Admin::PollsController < ApplicationController
   before_action :validate_admin_or_politician, only: [:index, :edit]
-  before_action :validate_politician, except: [:index, :edit]
-  before_action :set_poll, only: %i(edit update destroy)
+  before_action :validate_politician, except: [:index, :edit, :toggle_active_flag]
+  before_action :validate_superadmin, only: [:toggle_active_flag]
+  before_action :set_poll, only: %i(edit update destroy toggle_active_flag)
   before_action :bind_links, only: %i(create update)
   before_action :set_tags, only: %i(create update)
 
@@ -47,6 +48,17 @@ class Admin::PollsController < ApplicationController
     @poll = Poll.new
   end
 
+
+  def toggle_active_flag
+    @poll.active = !@poll.active
+    if @poll.save
+      flash[:success] = "propuesta correctamente actualizada"
+    else
+      flash[:error] = "La propuesta no pudo ser activada, intente nuevamente"
+    end
+    redirect_to :back
+  end
+
   private
 
     def bind_links
@@ -68,7 +80,7 @@ class Admin::PollsController < ApplicationController
     end
 
     def set_poll
-      @poll = Poll.find_by(id: params[:id])
+      @poll = Poll.find_by(id: params[:id] || params[:poll_id])
     end
 
     def set_tags
@@ -104,5 +116,5 @@ class Admin::PollsController < ApplicationController
         :user_id,
         vote_types_attributes: [:name]
       )
-    end   
+    end
 end

@@ -1,5 +1,8 @@
 <%= render partial: 'layouts/modals/sign_in_modal' %>
 <div id="poll-detail-global-wrapper">
+  <% unless @poll.active? %>
+    <%= render partial: 'polls/partials/unactive_poll_banner', locals: {poll: @poll} %>
+  <% end %>
   <section id="poll-detail">
     <div class="top-color-bar" style="background-color: <%= @tag.tag_color %>">
         <div class="tag-name">

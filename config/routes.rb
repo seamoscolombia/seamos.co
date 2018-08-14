@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :tags
-    resources :polls, except: [:show]
+    resources :polls, except: [:show] do
+      patch 'toggle_active_flag'
+    end
     resources :users, only: [:index, :edit, :update, :destroy] do
       collection do
         get 'permits'
@@ -36,7 +38,6 @@ Rails.application.routes.draw do
   get '/auth/sessions', to: 'sessions#error'
   resources :users, only: [:show]
   get '/proponents/:id', to: 'users#politician_profile', as: :politician_profile
-  patch 'poll/:id', to: 'polls#toggle_status', as: :toggle_poll_status
   get 'polls/closed', to: 'polls#index_closed', format: 'json'
   get 'check_vote', to: 'votes#check_vote', format: 'json'
   get 'random_polls', to: 'polls#random_non_voted_polls', format: 'json'

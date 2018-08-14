@@ -4,7 +4,9 @@
       <div class="col-md-12 center">
         <h4>
           <strong >
-            <%= poll.title%>
+            <%= link_to poll_path(poll) do %>
+              <%= poll.title%>
+            <% end %>
           </strong>
         </h4>
       </div>
@@ -16,12 +18,17 @@
           <i class="material-icons mdl-list__item-avatar inactive">clear</i>
           <span><%= "Propuesta cerrada" %></span>
         <% end %>
+        <span>
+          <%= "| #{poll.active? ? 'Aprobada (publicada)' : 'Sin Aprobar (no publicada)'}" %>
+        </span>
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col-md-3" >
-        <img src="<%= poll.poll_image %>"  style='width: 100%; ' alt="">
+        <%= link_to poll_path(poll) do %>
+          <img src="<%= poll.poll_image %>"  style='width: 100%; ' alt="">
+        <% end %>
       </div>
       <div class="col-md-9">
         <p style="max-height: 75px; overflow: hidden">
@@ -41,7 +48,7 @@
           <br>
           <li>
             <span>
-              fecha de cierre 
+              fecha de cierre
               <%= poll.closing_date %>
             </span>
           </li>
