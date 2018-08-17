@@ -20,7 +20,7 @@
     display: flex
     flex-wrap: wrap
     align-items: center
-    justify-content: center
+    justify-content: space-between
     h3
       margin: 20px 0
       font-family: 'HKNovaRegular'
@@ -31,16 +31,17 @@
         letter-spacing: 5px
         margin: 10px 0
     a
-      width: 50%
+      width: 32%
       @media screen and (max-width: $break-medium)
         width: 100%
       .image-btn
         width: 100%
         background-size: contain
-        padding: 20px
         padding-top: 0
         @media screen and (max-width: $break-medium)
           padding: 10px 15px
+        &:nth-child(2)
+          padding: 20px
       img
         width: 100%
       .left
@@ -48,7 +49,7 @@
   .mid-section-container
     display: flex
     flex-wrap: wrap
-    padding: 20px
+    padding: 20px 0
     .fist
       width: 30%
       @media screen and (max-width: $break-medium)
