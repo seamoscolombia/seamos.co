@@ -8,5 +8,7 @@ class PagesController < ApplicationController
   end
 
   def diplomat
+    @experts = JSON.parse(File.read("app/helpers/experts.json"))
+    @tuttors = JSON.parse(File.read("app/helpers/tuttors.json"))
   end
 end

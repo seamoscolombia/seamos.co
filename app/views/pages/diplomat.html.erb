@@ -15,18 +15,18 @@
        <strong> Requisitos previos: </strong> Estar comprometido con el cambio de tu comunidad.
        No requiere título universitario. <br><br>
        <strong> Dedicación: </strong> 4-6 horas semanales. <br><br>
-       <strong> Método de graduación: </strong> Participación activa en todos <br><br>
-       los módulos y presentación proyecto final.
-       <strong> Dirigido a: </strong> <br><br>
-        Líderes sociales, políticos y activistas con vocación de transformación.
-       <strong> Consultas a: </strong> <br><br>
-        sebastian.guanumen26@gmail.com, contacto@seamos.co
+       <strong> Método de graduación: </strong> Participación activa en todos
+       los módulos y presentación proyecto final. <br><br>
+       <strong> Dirigido a: </strong>
+        Líderes sociales, políticos y activistas con vocación de transformación. <br><br>
+       <strong> Consultas a: </strong>
+        sebastian.guanumen26@gmail.com, contacto@seamos.co <br><br>
        <strong> Costo: </strong> $ 890.000 COP incluye IVA <br><br>
        <strong> Certifica: </strong> <br><br>
        <%= image_tag  'inn-arizona.png', id: 'arizona' %>
     </div>
     <div id="right-text-col" class="col-md-6">
-      <p>
+      <p class='justified'>
         Necesitamos actualizar nuestras democracias. Las mismas fueron pensadas en el siglo XVIII,
         y se implementaron con ideas y tecnologías del siglo XIX y XX. Este programa se propone formar
         líderes con los debates, conceptos y herramientas disponibles en el siglo XXI. El perfil es la
@@ -37,30 +37,30 @@
         las nuevas maneras de participación en democracia y la posibilidad de modelos productivos sostenibles
         e inclusivos.
       </p>
-        <strong> Qué desarrollarás? </strong><br>
-        <ul>
-          <li>
-            Capacidades para entender y analizar las claves que caracterizan las actuales transformaciones sociales y éticas ciudadanas.
-          </li>
-          <li>
-            Comprensión sobre las nuevas formas de plantear la gestión pública, gobierno abierto, tecnologías cívicas.
-          </li>
-          <li>
-            Conocimientos y reflexiones sobre modelos económicos inclusivos, cooperativos y sustentables.
-          </li>
-          <li>
-            Uso de herramientas de alto impacto social.
-          </li>
-          <li>
-            Aplicación de los contenidos teóricos a la práctica.
-          </li>
-          <li>
-            Elaboración de un proyecto de incidencia en el ámbito local.
-          </li>
-          <li>
-            Ser parte de una comunidad regional de alto impacto.
-          </li>
-        </ul>
+      <strong> Qué desarrollarás? </strong><br><br>
+      <ul>
+        <li>
+          Capacidades para entender y analizar las claves que caracterizan las actuales transformaciones sociales y éticas ciudadanas.
+        </li>
+        <li>
+          Comprensión sobre las nuevas formas de plantear la gestión pública, gobierno abierto, tecnologías cívicas.
+        </li>
+        <li>
+          Conocimientos y reflexiones sobre modelos económicos inclusivos, cooperativos y sustentables.
+        </li>
+        <li>
+          Uso de herramientas de alto impacto social.
+        </li>
+        <li>
+          Aplicación de los contenidos teóricos a la práctica.
+        </li>
+        <li>
+          Elaboración de un proyecto de incidencia en el ámbito local.
+        </li>
+        <li>
+          Ser parte de una comunidad regional de alto impacto.
+        </li>
+      </ul>
     </div>
   </div>
   <div class="row">
@@ -69,14 +69,171 @@
     </div>
   </div>
   <div class="row">
-    <div class='classroom mid-banner' class="col-md-12">
+    <div class='online mid-banner' class="col-md-12">
       <span class='subtitle'> ESTRUCTURA Y CONTENIDOS: </span>
       <span> VIRTUALES </span>
     </div>
-    <div class='online mid-banner' class="col-md-12">
+    <div id='online-content'>
+      <p class='justified'>
+        El diplomado se estructura en 3 módulos con una duración de 1 mes cada uno y talleres prácticos a través
+        del laboratorio feeling* donde se realizará un proyecto de incidencia a nivel local. La coordinación de las
+        aulas virtuales estará a cargo de un/a tutor/a quien acompañara a los estudiantes durante todo el proceso
+        de aprendizaje.
+      </p>
+      <div id='modules' class='row'>
+        <div class='col-md-4 module'>
+          Módulo 1: Sociedades en transformación.
+          <ul>
+            <li> Los desafíos políticos en América Latina.</li>
+            <li> Revolución digital.</li>
+            <li> Innovación ciudadana en la era digital.</li>
+          </ul>
+        </div>
+        <div class='col-md-4 module'>
+          Módulo 2: Gestión pública abierta y participativa.
+          <ul>
+            <li> Gobiernos abiertos para la participación política inclusiva.</li>
+            <li> Datos abiertos.</li>
+            <li> Interfases abiertas de co-creación de políticas públicas.</li>
+          </ul>
+        </div>
+        <div class='col-md-4 module'>
+          Módulo 3: Economía sostenible, prácticas colaborativas e inclusión.
+          <ul>
+            <li> Desigualdad e inclusión social en América Latina.</li>
+            <li> Conocimiento libre y construcción colectiva de la sociedad.</li>
+            <li> Emprendedurismo social.</li>
+          </ul>
+        </div>
+      </div>
+      <div id='experts-title'> EQUIPO DE EXPERTOS EN CONTENIDOS: </div>
+      <br>
+      <p class='justified'>
+        El perfil de contenidistas es de jóvenes profesionales vinculados a la acción
+        y con mucha experiencia en el territorio.
+      </p>
+      <br>
+      <div id='experts' class='row'>
+        <div class='col-md-6 left-col'>
+          <% @experts.first(6).each_with_index do |expert, idx| %>
+            <div class="row expert e<%=idx%>">
+              <div class='col-md-2'>
+                <div class="expert-photo ep<%=idx%>">
+                </div>
+              </div>
+              <div class='col-md-10'>
+                <div class='expert-main-info'>
+                  <%= expert["main_info"] %>
+                </div>
+                <div class='expert-description'>
+                  <%= expert["description"] %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class='col-md-6 right-col'>
+          <% @experts[6..11].each_with_index do |expert, idx| %>
+            <div class="row expert e<%=idx%>">
+              <div class='col-md-2'>
+                <div class="expert-photo ep<%=idx%>">
+                </div>
+              </div>
+              <div class='col-md-10'>
+                <div class='expert-main-info'>
+                  <%= expert["main_info"] %>
+                </div>
+                <div class='expert-description'>
+                  <%= expert["description"] %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class='classroom mid-banner' class="col-md-12">
       <span class='subtitle'> ESTRUCTURA Y CONTENIDOS: </span>
       <span> PRESENCIALES </span>
     </div>
+    <div id='classroom-content'>
+      <p class='justified'>
+        SeamOS desarrolla cuatro encuentros presenciales en Bogotá – Colombia.
+      </p>
+      <div id='modules-2' class='row'>
+        <div class='col-md-4 module-b'>
+          Módulo 1: <br>
+          Revolución digital.
+
+        </div>
+        <div class='col-md-4 module-b'>
+          Módulo 2: <br>
+          Gobiernos abiertos para la participación política inclusiva.
+        </div>
+        <div class='col-md-4 module-b'>
+          Módulo 3: <br>
+          Desigualdad e inclusión social en América Latina.
+        </div>
+      </div>
+      <br>
+      <div class='tuttors row'>
+        <% @tuttors.each_with_index do |tuttor, idx| %>
+          <div class="row tuttor t<%=idx%>">
+            <div class='col-md-4'>
+              <div class="tuttor-photo tp<%=idx%>">
+              </div>
+            </div>
+            <div class='col-md-8'>
+              <div class='tuttor-name'>
+                <%= tuttor["names"] %>
+              </div>
+              <div class='tuttor-country'>
+                <%= tuttor["country"] %>
+              </div>
+              <div class='tuttor-organization'>
+                <%= tuttor["organization"] %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div id='feeling' class='row'>
+        <div class='col-md-3'>
+          <%= image_tag 'inn-feeling.png' %>
+        </div>
+        <div class='col-md-9'>
+          <p class='justified'>
+            *El laboratorio Feeling busca generar estrategias creativas e innovadoras para
+            solucionar problemas centrándose en el ser humano. Los participantes podrán
+            aplicar la metodología feeling para desarrollar un proyecto que se aplique en su
+            ámbito y/o comunidad.
+          </p>
+        </div>
+      </div>
+      <div class='tuttors row'>
+        <div class="row tuttor t4">
+          <div class='col-md-4'>
+            <div class="tuttor-photo tp4">
+            </div>
+          </div>
+          <div class='col-md-8'>
+            <div class='tuttor-name'>
+              Laboratorio feeling
+            </div>
+            <div class='tuttor-name'>
+              Javier Arteaga
+            </div>
+            <div class='tuttor-country'>
+              (Colombia)
+            </div>
+            <div class='tuttor-organization'>
+              CREADOR DE LA METODOLOGÍA FEELING
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
   <hr>
   <div class='row'>
