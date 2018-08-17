@@ -40,6 +40,11 @@
     align-items: center
     font-size: 25px
     margin-top: 30px
+    @media screen and (max-width: $break-medium)
+      font-size: 16px
+      min-height: 56px
+      margin-top: 10px
+
   .mid-banner
     width: 100%
     padding: 25px
@@ -54,9 +59,9 @@
     margin: 20px 0
     color: white
     @media screen and (max-width: $break-medium)
-      font-size: 22px
+      font-size: 18px
       min-height: 120px
-      padding: 20px
+      padding: 12px
     &:hover
       border: 3px solid #f1e73c
     .subtitle
@@ -65,7 +70,7 @@
       width: 100%
       margin-bottom: -55px
       @media screen and (max-width: $break-medium)
-        margin-bottom: -20px
+        margin-bottom: -36px
   .classroom
     cursor: pointer
     background-image: url(asset_path('inn-mid-banner-1.png'))
@@ -83,6 +88,9 @@
     align-items: center
     .partner-logo
       width: 20%
+      @media screen and (max-width: $break-medium)
+        width: 30%
+
   #online-content
     display: none
     #modules
@@ -91,8 +99,16 @@
         background-size: cover
         padding: 50px 55px 20px 68px
         min-height: 237px
+        background-repeat: no-repeat
         @media screen and (max-width: $break-medium)
           margin-bottom: 25px
+          background-size: auto 55vw
+          background-position: center center
+          padding: 50px 30px 20px 70px
+          display: flex
+          flex-wrap: wrap
+          justify-content: center
+          align-items: center
     #experts-title
       height: 65px
       margin-top: 28px
@@ -104,6 +120,7 @@
       @media screen and (max-width: $break-medium)
         font-size: 18px
         text-align: center
+        margin-top: 0
     #experts
       margin-bottom: 40px
       .left-col
@@ -163,8 +180,16 @@
         color: #f4e938
         display: flex
         align-items: center
+        background-repeat: no-repeat
         @media screen and (max-width: $break-medium)
           margin-bottom: 25px
+          background-size: auto 34vw
+          background-position: center center
+          display: flex
+          flex-wrap: wrap
+          justify-content: center
+          align-items: center
+          padding: 0 60px
     .tuttors
       margin-bottom: 40px
       display: flex
@@ -179,6 +204,7 @@
         @media screen and (max-width: $break-medium)
           display: flex
           margin-top: 8px
+          padding: 0 15px
         .tuttor-names
         .tuttor-country
           color: #68c4cb
