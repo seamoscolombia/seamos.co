@@ -32,14 +32,18 @@
   #button-wrapper
     text-align: center
     margin-top: 30px
+    @media screen and (max-width: $break-medium)
+      margin-bottom: 30px
     #button
       text-align: center
       width: 100%
       background-color: #eb6357
       color: #f1e73c
-      padding: 10px 120px
-      font-size: 25px
+      padding: 8px 120px
+      font-size: 20px
       margin-top: 57px
+      @media screen and (max-width: $break-medium)
+        padding: 10px 40px
       &:hover
         background-color: #a14a3d
         text-decoration: none
@@ -110,7 +114,7 @@
     #modules
       .module
         background-image: url(asset_path('inn-s-inphographics.png'))
-        background-size: cover
+        background-size: 100%
         padding: 50px 55px 20px 68px
         min-height: 237px
         background-repeat: no-repeat
@@ -123,6 +127,14 @@
           flex-wrap: wrap
           justify-content: center
           align-items: center
+          font-size: 13px
+        ul
+          padding-right: 18px
+          @media screen and (max-width: $break-medium)
+            padding-right: 38px
+        .plus-width
+          @media screen and (max-width: $break-medium)
+            width: 120%
     #experts-title
       height: 65px
       margin-top: 28px
