@@ -1,4 +1,4 @@
-ready = function(){
+$( document ).ready(function(){
   $('#btn-1').click(function(){
     $('.info').hide('fast');
     $('#info-1').show('fast')
@@ -28,11 +28,4 @@ ready = function(){
       scrollTop: $("#who-are-we").offset().top - 70
     }, 1000);
   };
-}
-
-$( document ).on('turbolinks:load', function(){
-  ready()
- })
-$( document ).ready(function(){ 
-  ready()
 })
