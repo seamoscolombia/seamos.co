@@ -58,17 +58,17 @@ RSpec.describe Poll, type: :model do
   end
 
   describe 'named scopes' do
-    let(:poll_1) { FactoryGirl.create(:poll, closing_date: Date.today - 3.days) }
-    let(:poll_2) { FactoryGirl.create(:poll, closing_date: Date.today + 3.days) }
+    let(:poll_1) { FactoryGirl.create(:poll, closing_date: Date.today - 3.days, active: false) }
+    let(:poll_2) { FactoryGirl.create(:poll, closing_date: Date.today + 3.days, active: true) }
     let(:poll_3) { FactoryGirl.create(:poll, closing_date: Date.today + 3.days, active: false) }
     describe 'active' do
       it 'returns only polls that are active' do
-        expect(Poll.active).to include(poll_1, poll_2)
-        expect(Poll.active).not_to include(poll_3)
+        expect(Poll.active).to include( poll_2)
+        expect(Poll.active).not_to include(poll_3, poll_1)
       end
     end
     describe 'inactive' do
-      it 'returns only polls that are inactive or closed' do
+      it 'returns only polls that are inactive' do
         expect(Poll.inactive).not_to include(poll_2)
         expect(Poll.inactive).to include(poll_1, poll_3)
       end
