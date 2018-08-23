@@ -6,12 +6,15 @@
       <div class="title">
         <h3>NUESTROS PROYECTOS</h3>
       </div>
-      <%= link_to  image_tag('https://s3.amazonaws.com/si-yo-fuera-presidente/assets/seamos-btn.png', class: 'image-btn left'), home_path %>
-      <a href="http://sifuerapresidente.co" target="_blank">
-        <div class="image-btn right">
-          <img src="https://s3.amazonaws.com/si-yo-fuera-presidente/assets/sfp-btn.png" alt="">
-        </div>
-      </a>
+      <%= link_to home_path do %>
+        <%= image_tag('concejales-btn.jpg', class: 'image-btn left') %>
+      <% end %>
+      <%= link_to "http://sifuerapresidente.co", :target => "_blank" do %>
+        <%= image_tag('sfp-btn.png', class: 'image-btn right') %>
+      <% end %>
+      <%= link_to diplomado_innovacion_politica_path do %>
+        <%= image_tag('diplomat-btn.jpg', class: 'image-btn right') %>
+      <% end %>
     </section>
     <section class="mid-section-container">
       <div class="fist">

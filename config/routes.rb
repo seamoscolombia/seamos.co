@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/home', to: 'home#index'
   get '/politicians', to: 'pages#politicians'
   get '/terms', to: 'pages#terms'
+  get '/diplomado-innovacion-politica', to: 'pages#diplomat'
 
   namespace :admin do
     resources :tags
