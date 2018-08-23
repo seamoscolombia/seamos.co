@@ -4,6 +4,7 @@ class PollsController < ApplicationController
   before_action :set_random_polls, only: :show
   before_action :set_metas, only: :show
   before_action :set_status_image, only: :show
+  before_action :check_if_is_publish_link, only: :show
 
   def index
     @polls = Poll.active.includes(:votes, :tags)
@@ -38,6 +39,13 @@ class PollsController < ApplicationController
     end
     if !@poll.active? && !current_user.try(:administrador?)
       flash[:error] = "la propuesta aún no está abierta a votación"
+      redirect_to root_path
+    end
+  end
+
+  def check_if_is_publish_link
+    if params[:publish_link] && !current_user.try(:administrador?)
+      flash[:error] = "Debes iniciar sesión como administrador para aprobar la propuesta para su publicación"
       redirect_to root_path
     end
   end

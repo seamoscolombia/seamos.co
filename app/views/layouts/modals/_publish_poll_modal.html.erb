@@ -1,0 +1,23 @@
+<!-- Modal -->
+<div class="modal fade" id="publish-poll-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <% if @poll.active? %>
+          <h5 class="modal-title" id="exampleModalLabel" style= "text-align: center"> La propuesta ya está publicada, ¿ Quieres ocultarla ?</h5>
+        <% else %>
+          <h5 class="modal-title" id="exampleModalLabel" style= "text-align: center"> ¿ Quieres activar la propuesta para su publicación ? </h5>
+        <% end %>
+      </div>
+      <div class="modal-body flex-container" style= "text-align: center">
+        <%= link_to (@poll.active? ? "Ocultar Propuesta" : "Publicar Propuesta"),
+          admin_poll_toggle_active_flag_path(@poll),
+          method: :patch, data: {confirm: @poll.active? ? t("polls.partials.unactive_poll_banner.hide_poll?") : t("polls.partials.unactive_poll_banner.publish_poll?")},
+          class: 'btn btn-info'
+        %>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

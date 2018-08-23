@@ -8,6 +8,7 @@ class Admin::PollsController < ApplicationController
 
   def create
     if @poll.save
+      notify_administrators_about_new_poll
       flash[:success] = "La propuesta fue creada correctamente"
       redirect_to admin_polls_path
     else
@@ -52,14 +53,21 @@ class Admin::PollsController < ApplicationController
   def toggle_active_flag
     @poll.active = !@poll.active
     if @poll.save
-      flash[:success] = "propuesta correctamente actualizada"
+      flash[:success] = "propuesta publicada!" if @poll.active?
+      flash[:success] = "propuesta oculta al público" if !@poll.active?
     else
-      flash[:error] = "La propuesta no pudo ser activada, intente nuevamente"
+      flash[:error] = "La propuesta no pudo ser actualizada, intente nuevamente"
     end
     redirect_to :back
   end
 
   private
+
+    def notify_administrators_about_new_poll
+      User.administrador.each do |admin|
+        AdminNotifierMailer.new_poll_created(@poll, current_user, admin).deliver_later
+      end
+    end
 
     def bind_links
       @poll = Poll.new(poll_params) unless @poll

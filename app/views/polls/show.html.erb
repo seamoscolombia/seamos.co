@@ -1,6 +1,9 @@
 <%= render partial: 'layouts/modals/sign_in_modal' %>
+<% if current_user && current_user.administrador? && params[:publish_link].present?%>
+  <%= render partial: 'layouts/modals/publish_poll_modal' %>
+<% end %>
 <div id="poll-detail-global-wrapper">
-  <% unless @poll.active? %>
+  <% if current_user && current_user.administrador? %>
     <%= render partial: 'polls/partials/unactive_poll_banner', locals: {poll: @poll} %>
   <% end %>
   <section id="poll-detail">
@@ -141,3 +144,9 @@
   <div class='spacer-big'> </div>
   <div class='spacer-big'> </div>
 </div>
+
+<script type="text/javascript">
+  $(window).on('load',function(){
+      $('#publish-poll-modal').modal('show');
+  });
+</script>

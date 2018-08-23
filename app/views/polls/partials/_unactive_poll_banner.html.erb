@@ -1,10 +1,20 @@
 <div id='unactive-poll-banner'>
-  <p>
-    Esta propuesta aún no ha sido aprobada para ser vista por el
-    público general, puedes aprobarla haciendo click en
-    <strong>
-      <%= link_to  "este enlace", admin_poll_toggle_active_flag_path(poll), method: :patch, confirm: "¿Estás seguro de que quieres aprobar la propuesta?" %>
-    </strong>
-  </p>
+  <% if !poll.active? %>
+    <p>
+      Esta propuesta aún no ha sido aprobada para ser vista por el
+      público general, puedes aprobarla haciendo click en
+      <strong>
+        <%= link_to "este enlace" , admin_poll_toggle_active_flag_path(poll), method: :patch, data: {confirm: poll.active? ? t(".hide_poll?") : t(".publish_poll?")} %>
+      </strong>
+    </p>
+  <% else %>
+    <p>
+      Esta propuesta está publicada y es visible para el público general,
+      puedes ocultarla haciendo click en
+      <strong>
+        <%= link_to "este enlace" , admin_poll_toggle_active_flag_path(poll), method: :patch, data: {confirm: poll.active? ? t(".hide_poll?") : t(".publish_poll?")} %>
+      </strong>
+    </p>
+  <% end %>
 </div>
 
