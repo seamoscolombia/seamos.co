@@ -44,8 +44,10 @@
             <li> <%= link_to "Editar propuesta" , edit_admin_poll_path(poll.id), class: "btn btn-default" %></li>
             <li>|</li>
             <li> <%= link_to "Eliminar propuesta", admin_poll_path(poll.id), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></li>
-            <li>|</li>
-            <li>  <%= link_to  (poll.active? ? "Ocultar propuesta" : "Publicar propuesta") , admin_poll_toggle_active_flag_path(poll), method: :patch, data: {confirm: poll.active? ? t(".hide_poll?") : t(".publish_poll?")}, class: 'btn btn-info' %></li>
+            <% if current_user && current_user.administrador? %>
+              <li>|</li>
+              <li>  <%= link_to  (poll.active? ? "Ocultar propuesta" : "Publicar propuesta") , admin_poll_toggle_active_flag_path(poll), method: :patch, data: {confirm: poll.active? ? t(".hide_poll?") : t(".publish_poll?")}, class: 'btn btn-info' %></li>
+            <% end %>
           <% end %>
           <br>
           <li>

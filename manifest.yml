@@ -5,4 +5,4 @@ applications:
   instances: 1
   random-route: false
   memory: 512M
-  command: rake cf:on_first_instance db:migrate && bin/rails server -p $PORT -e $RAILS_ENV
+  command: rake db:migrate && bin/rails server -p $PORT -e $RAILS_ENV

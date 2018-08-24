@@ -1,10 +1,10 @@
 class PollsController < ApplicationController
   include PollsHelper
+  before_action :check_if_is_publish_link, only: :show
   before_action :set_poll, only: :show
   before_action :set_random_polls, only: :show
   before_action :set_metas, only: :show
   before_action :set_status_image, only: :show
-  before_action :check_if_is_publish_link, only: :show
 
   def index
     @polls = Poll.active.includes(:votes, :tags)
