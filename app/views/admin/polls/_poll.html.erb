@@ -4,7 +4,9 @@
       <div class="col-md-12 center">
         <h4>
           <strong >
-            <%= poll.title%>
+            <%= link_to poll_path(poll) do %>
+              <%= poll.title%>
+            <% end %>
           </strong>
         </h4>
       </div>
@@ -16,12 +18,17 @@
           <i class="material-icons mdl-list__item-avatar inactive">clear</i>
           <span><%= "Propuesta cerrada" %></span>
         <% end %>
+        <span>
+          <%= "| #{poll.active? ? 'Aprobada (publicada)' : 'Sin Aprobar (no publicada)'}" %>
+        </span>
       </div>
     </div>
     <br>
     <div class="row">
       <div class="col-md-3" >
-        <img src="<%= poll.poll_image %>"  style='width: 100%; ' alt="">
+        <%= link_to poll_path(poll) do %>
+          <img src="<%= poll.poll_image %>"  style='width: 100%; ' alt="">
+        <% end %>
       </div>
       <div class="col-md-9">
         <p style="max-height: 75px; overflow: hidden">
@@ -37,11 +44,15 @@
             <li> <%= link_to "Editar propuesta" , edit_admin_poll_path(poll.id), class: "btn btn-default" %></li>
             <li>|</li>
             <li> <%= link_to "Eliminar propuesta", admin_poll_path(poll.id), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></li>
+            <% if current_user && current_user.administrador? %>
+              <li>|</li>
+              <li>  <%= link_to  (poll.active? ? "Ocultar propuesta" : "Publicar propuesta") , admin_poll_toggle_active_flag_path(poll), method: :patch, data: {confirm: poll.active? ? t(".hide_poll?") : t(".publish_poll?")}, class: 'btn btn-info' %></li>
+            <% end %>
           <% end %>
           <br>
           <li>
             <span>
-              fecha de cierre 
+              fecha de cierre
               <%= poll.closing_date %>
             </span>
           </li>

@@ -30,6 +30,7 @@ FactoryGirl.define do
     to_create { |instance| instance.save(validate: false) }
     user { FactoryGirl.create(:user) }
     objective { Faker::Lorem.sentence }
+    active true
 
     factory :poll_with_votes do
       after(:create) do |poll|

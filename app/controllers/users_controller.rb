@@ -6,8 +6,9 @@ class UsersController < ApplicationController
   def show
     if current_user
       @user = current_user
-      @tags = @user.tags
+      @tags = Tag.joins(:polls).where(polls: {active: true}).uniq
       @participations = @user.votes.map(&:poll).reverse
+      @participations = @participations.reject{ |p| p.active == false }
       @interests = @user.interests
     else
       flash[:error] = t(".not_logged_in")

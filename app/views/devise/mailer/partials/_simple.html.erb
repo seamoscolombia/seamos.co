@@ -43,7 +43,7 @@
         width: 100%;
         height: auto;
       }
-      
+
       .message-container .message-wrapper .top-image-container {
         margin-top: -4px;
         height: 230px;
@@ -157,10 +157,8 @@
       </div>
       <div class='message-body' style='position: relative; top: 200px;'>
         <p class='message-title'>
-          <% if request && (request.path == mail_preview_path) %>
-            <%= "Hola usuario de prueba, tenemos algo qué contarte:" %>
-          <% else %>
-            <%= "Hola #{user.email}!" %>
+          <% if user %>
+            <%= "Hola #{user.present? ? user.email.split('@').first : ''}!" %>
           <% end %>
         </p>
         <span>

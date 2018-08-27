@@ -18,7 +18,7 @@
             <div>
                <section id="my-subjects" class="col-sm-12">
                   <div class="cv-title">Mis temas de interés</div>
-                  <%= render partial: 'tags/tags_list', locals: {tags: Tag.joins(:polls).uniq} %>
+                  <%= render partial: 'tags/tags_list', locals: {tags: @tags} %>
                </section>
             </div>
          </div>

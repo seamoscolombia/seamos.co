@@ -1,12 +1,14 @@
 class Admin::PollsController < ApplicationController
   before_action :validate_admin_or_politician, only: [:index, :edit]
-  before_action :validate_politician, except: [:index, :edit]
-  before_action :set_poll, only: %i(edit update destroy)
+  before_action :validate_politician, except: [:index, :edit, :toggle_active_flag]
+  before_action :validate_superadmin, only: [:toggle_active_flag]
+  before_action :set_poll, only: %i(edit update destroy toggle_active_flag)
   before_action :bind_links, only: %i(create update)
   before_action :set_tags, only: %i(create update)
 
   def create
     if @poll.save
+      notify_administrators_about_new_poll
       flash[:success] = "La propuesta fue creada correctamente"
       redirect_to admin_polls_path
     else
@@ -47,7 +49,25 @@ class Admin::PollsController < ApplicationController
     @poll = Poll.new
   end
 
+
+  def toggle_active_flag
+    @poll.active = !@poll.active
+    if @poll.save
+      flash[:success] = "propuesta publicada!" if @poll.active?
+      flash[:success] = "propuesta oculta al público" if !@poll.active?
+    else
+      flash[:error] = "La propuesta no pudo ser actualizada, intente nuevamente"
+    end
+    redirect_to :back
+  end
+
   private
+
+    def notify_administrators_about_new_poll
+      User.administrador.each do |admin|
+        AdminNotifierMailer.new_poll_created(@poll, current_user, admin).deliver_later
+      end
+    end
 
     def bind_links
       @poll = Poll.new(poll_params) unless @poll
@@ -68,7 +88,7 @@ class Admin::PollsController < ApplicationController
     end
 
     def set_poll
-      @poll = Poll.find_by(id: params[:id])
+      @poll = Poll.find_by(id: params[:id] || params[:poll_id])
     end
 
     def set_tags
@@ -104,5 +124,5 @@ class Admin::PollsController < ApplicationController
         :user_id,
         vote_types_attributes: [:name]
       )
-    end   
+    end
 end

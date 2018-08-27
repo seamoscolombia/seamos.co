@@ -57,13 +57,9 @@ class Poll < ApplicationRecord
                 "Sanción del proyecto de acuerdo": 4
               }
 
-  scope :active, -> {
-    where('active IS TRUE')
-  }
+  scope :active, -> { where('active IS TRUE') }
 
-  scope :inactive, -> {
-    where('active IS FALSE OR closing_date < ?', Date.current)
-  }
+  scope :inactive, -> { where('active IS FALSE') }
 
   scope :open, -> {
     select{|p| !p.closed?}

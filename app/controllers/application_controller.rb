@@ -29,9 +29,9 @@ class ApplicationController < ActionController::Base
   end
 
   def set_random_polls
-    active_polls = Poll.includes(:votes, :tags).open
+    open_polls = Poll.active.includes(:votes, :tags).open
     closed_polls = Poll.includes(:votes, :tags).closed
-    @random_polls = active_polls.first(4)
+    @random_polls = open_polls.first(4)
     @random_polls << closed_polls.shuffle.first(4 - @random_polls.size)
     @random_polls = @random_polls.flatten.first(4) if @random_polls.present?
   end

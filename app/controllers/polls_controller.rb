@@ -1,12 +1,13 @@
 class PollsController < ApplicationController
   include PollsHelper
+  before_action :check_if_is_publish_link, only: :show
   before_action :set_poll, only: :show
   before_action :set_random_polls, only: :show
   before_action :set_metas, only: :show
   before_action :set_status_image, only: :show
 
   def index
-    @polls = Poll.includes(:votes, :tags)
+    @polls = Poll.active.includes(:votes, :tags)
   end
 
   def show
@@ -33,7 +34,18 @@ class PollsController < ApplicationController
   def set_poll
     @poll = Poll.includes(:tags, :user).find_by(id: params[:id])
     unless @poll
-      flash[:error] = "la propuesta no existe" 
+      flash[:error] = "la propuesta no existe"
+      redirect_to root_path
+    end
+    if !@poll.active? && !current_user.try(:administrador?)
+      flash[:error] = "la propuesta aún no está abierta a votación"
+      redirect_to root_path
+    end
+  end
+
+  def check_if_is_publish_link
+    if params[:publish_link] && !current_user.try(:administrador?)
+      flash[:error] = "Debes iniciar sesión como administrador para aprobar la propuesta para su publicación"
       redirect_to root_path
     end
   end
