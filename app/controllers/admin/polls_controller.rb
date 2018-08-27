@@ -38,6 +38,7 @@ class Admin::PollsController < ApplicationController
 
   def index
     @filtered_polls = Poll.by_title(params[:search_term]).by_status(params[:status])
+    @filtered_polls = params[:status] == 'inactive' ? @filtered_polls.inactive : @filtered_polls
     @polls = if current_user.politico?
               Kaminari.paginate_array(@filtered_polls.select{ |p| p.user_id == current_user.id}).page(params[:page]).per(4)
              else

@@ -10,7 +10,7 @@ class HomeController < ApplicationController
       @polls = Poll.active.includes(:votes, :tags).open.sort_by {|poll| poll.send(order_param)}.last(2)
       @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.send(order_param)}.first(2 - @polls.size)
     end
-    @polls.flatten!
+    @polls = @polls.flatten.uniq
     @polls = @reverse ? @polls.reverse.first(2) : @polls.first(2)
     @subscription = Subscription.new
   end
