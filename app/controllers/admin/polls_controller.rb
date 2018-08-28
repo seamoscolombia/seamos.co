@@ -18,7 +18,7 @@ class Admin::PollsController < ApplicationController
   end
 
   def update
-    if @poll.update(poll_params)
+    if @poll.update(poll_params.except(:user_id))
       flash[:success] = "Propuesta correctamente actualizada"
       redirect_to admin_polls_path
     else
