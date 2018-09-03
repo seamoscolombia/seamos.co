@@ -47,7 +47,9 @@ class User < ApplicationRecord
 
   validate :email_for_admin, if: :admin?
   validate :major_electoral_representation_localities_length, if: :politician?
-  validates_uniqueness_of :email
+
+  validates :email, :uniqueness => {:scope => :provider}
+  validates :uid, :uniqueness => {:scope => :provider}
 
   enum role_type: {ciudadano: 0, politico: 1, administrador: 2}
   enum current_corporation_commission: {"Comisión del plan": 0, "Comisión de Gobierno": 1, "Comisión de Hacienda": 2}
@@ -83,18 +85,21 @@ class User < ApplicationRecord
 
   def self.from_omniauth(auth)
     user = where(email: auth.info.email).first
-    refresh_user_image(user, auth.info.image)
-    return user if user
-    where(provider: auth.provider, uid: auth.uid, email: auth.info.email).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.names = auth.info.name   # assuming the user model has a name
-      user.provider_image = auth.info.image # assuming the user model has an image
-      user.role_type = 'ciudadano'
-      user.first_surname = auth.info.name.split(' ').last
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
+    if user
+      refresh_user_image(user, auth.info.image)
+      return user
+    else
+      where(provider: auth.provider, uid: auth.uid, email: auth.info.email).first_or_create do |user|
+        refresh_user_image(user, auth.info.image)
+        user.password = Devise.friendly_token[0,20]
+        user.names = auth.info.name   # assuming the user model has a name
+        user.provider_image = auth.info.image # assuming the user model has an image
+        user.role_type = 'ciudadano'
+        user.first_surname = auth.info.name.split(' ').last
+        # If you are using confirmable and the provider(s) you use validate emails,
+        # uncomment the line below to skip the confirmation emails.
+        # user.skip_confirmation!
+      end
     end
   end
 

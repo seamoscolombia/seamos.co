@@ -28,6 +28,10 @@
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
 
+    <div class="field">
+      <%= f.hidden_field :provider, :value => 'email' %>
+    </div>
+
     <div class="actions">
       <%= f.submit "Regístrate", class: 'btn btn-info' %>
     </div>
