@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.vote_count}.first(2 - @polls.size)
     else
       @polls = Poll.active.includes(:votes, :tags).open.sort_by {|poll| poll.send(order_param)}.last(2)
-      @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.send(order_param)}.first(2 - @polls.size)
+      @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.send(order_param)}.first(3 - @polls.size)
     end
     @polls = @polls.flatten.uniq
     @polls = @reverse ? @polls.reverse.first(2) : @polls.first(2)
@@ -30,7 +30,7 @@ class HomeController < ApplicationController
         order_param = 'vote_count'
       else
         @reverse = true
-        order_param = 'vote_count'
+        order_param = 'created_at'
       end
       order_param
     end

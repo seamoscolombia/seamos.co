@@ -15,7 +15,7 @@
           <span class="order-string"> Ordenar
           </span>
             <%= form_tag({controller: "home", action: "index", anchor: 'poll-page'}, method: "get") do %>
-              <%= select_tag(:order_by, options_for_select({'Propuestas más votadas': "most-voted-first", 'Propuestas recientes': "newest-first", 'Propuestas cercanas al cierre': "nearest-closing-date-first", "Propuestas según tus intereses": "by-user-interests" }, params[:order_by] ), {class: "order-select", onchange: 'this.form.submit();'}) %>
+              <%= select_tag(:order_by, options_for_select({'Propuestas recientes': "newest-first", 'Propuestas más votadas': "most-voted-first", 'Propuestas cercanas al cierre': "nearest-closing-date-first", "Propuestas según tus intereses": "by-user-interests" }, params[:order_by] ), {class: "order-select", onchange: 'this.form.submit();'}) %>
             <% end %>
           <div id="summary-wrapper">
             <span class="polls-summary-text"> Resumen de propuestas

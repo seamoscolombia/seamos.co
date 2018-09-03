@@ -18,9 +18,15 @@
     <div class="hide-on-mobile">
       <%= link_to user_path(current_user) do %>
         <%= image_tag  current_user.resolve_photo, class: 'navbar-photo' %>
-          TU PERFIL
-          <% end %>
+        TU PERFIL
+      <% end %>
     </div>
+    <li class="hide-on-desktop">
+      <%= link_to user_path(current_user) do %>
+        TU PERFIL
+        <%= image_tag  current_user.resolve_photo, class: 'navbar-photo' %>
+      <% end %>
+    </li>
     <li>
       <%= link_to destroy_user_session_path, method: :delete do %>
         SALIR
