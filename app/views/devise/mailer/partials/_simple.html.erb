@@ -4,11 +4,48 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
     <style>
       @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+      /* poll small preview compact css */
+      .one-mod { display: none; }
+      #may-interest { width: 100%; margin: auto; display: flex; flex-wrap: wrap; position: relative;}
+      @media screen and (max-width: 740px) { #may-interest { width: auto; } }
+      #may-interest #global-container #other-poll-component { width: 410px; margin-right: 20px; margin-bottom: 20px; }
+      @media screen and (max-width: 740px) { #may-interest #global-container #other-poll-component { margin: auto; width: 88%; height: 88px; } }
+      #other-poll-component { display: inline-flex; flex-wrap: wrap; width: 585px; position: relative; border: 2px solid gainsboro; }
+      @media screen and (max-width: 770px) { #other-poll-component { width: 88%; height: 105px; margin: 0; } }
+      #other-poll-component .left-side { overflow: hidden; }
+      #other-poll-component .right-side { padding: 0; }
+      #other-poll-component .closed-ribbon { display: none; }
+      #other-poll-component .closed-ribbon:before { content: "Closed"; }
+      @media screen and (max-width: 770px) { #other-poll-component .closed-ribbon { top: 30px; height: 24px; background-size: 25px; } }
+      #other-poll-component .poll-image-container { height: 160px; width: 160px; position: relative; overflow: hidden; margin: auto; display: flex; align-items: center; justify-content: center; }
+      @media screen and (max-width: 770px) { #other-poll-component .poll-image-container { height: auto; overflow: hidden; } }
+      #other-poll-component .poll-image-container img { min-height: 200px; max-height: 210px; width: 200px; }
+      #other-poll-component .poll-title { font-size: 20px; margin: 16px 0; font-family: 'Roboto', sans-serif; font-weight: bold; line-height: 1em; text-align: left; color: #44424c; padding: 0 10px; position: absolute; height: 92px; overflow: hidden; }
+      @media screen and (max-width: 770px) { #other-poll-component .poll-title { text-align: left; font-size: 12px; height: 56px; position: relative; overflow: hidden; width: 90%; margin: 7px 0; } }
+      #other-poll-component .politician-info { width: 100%; display: flex; align-items: center; padding: 15px 10px; }
+      #other-poll-component .politician-info .name-container { font-size: 18px; font-family: 'Roboto', sans-serif; color: #44424c; text-align: left; padding-left: 10px; }
+      #other-poll-component .poll-description { font-size: 17px; font-family: 'Roboto', sans-serif; line-height: 1.3em; overflow: hidden; height: 96px; text-align: left; color: #44424c; padding: 0 10px; padding-top: 6px; }
+      @media screen and (max-width: 770px) { #other-poll-component .poll-description { font-size: 14px; max-height: 80px; } }
+      #other-poll-component .poll-infos-container { position: relative; padding-top: 0; width: 100%; padding: 0 10px; }
+      @media screen and (max-width: 770px) { #other-poll-component .poll-infos-container { width: 90%; margin: auto; margin-top: 0; margin-bottom: 0; padding: 0; padding-left: 5px; max-height: 150px; overflow: visible; } }
+      #other-poll-component .poll-infos-container .poll-details {  font-family: "Roboto", sans-serif; font-size: 8px; color: rgba(30, 30, 30, 0.6); position: absolute; bottom: -150px; }
+      @media screen and (max-width: 770px) { #other-poll-component .poll-infos-container .poll-details { height: 36px; bottom: -19px; top: auto; } }
+      #other-poll-component .poll-infos-container .poll-details .poll-tag-name { color: #44424c; font-size: 20px; line-height: 23px; text-align: left; width: 62%; }
+      @media screen and (max-width: 770px) { #other-poll-component .poll-infos-container .poll-details .poll-tag-name { font-size: 12px; line-height: 10px; } }
+      #other-poll-component .poll-infos-container .poll-details .btn-plus-read { color: white; font-size: 15px; line-height: 15px; font-family: 'Roboto', sans-serif; text-transform: uppercase; border-radius: 2px; padding: 10px 20px; right: 14px; }
+      @media screen and (max-width: 770px) { #other-poll-component .poll-infos-container .poll-details .btn-plus-read { margin-right: 0; font-size: 8px; padding: 6px; position: absolute; right: 0; bottom: 11px; line-height: 0; } }
+      #other-poll-component .poll-infos-container .poll-info { color: black; text-decoration: none; padding: 0 10px; }
+      #other-poll-component .poll-infos-container .poll-info:hover { text-decoration: none; }
+
+
+      /* END poll small preview compact css */
       .message-container {
         width: auto;
         background-color: #abdadf;
         padding: 50px;
         font-family: 'Roboto', sans-serif;
+        height: 100vh
       }
       .message-container .message-wrapper {
         width: 90%;
@@ -70,7 +107,7 @@
         width: 100%;
         height: 230px;
         position: relative;
-        bottom: 0;
+        top: 230px;
         padding-top: 1px;
       }
       @media screen and (max-width: 770px) {
@@ -158,11 +195,11 @@
       <div class='message-body' style='position: relative; top: 200px;'>
         <p class='message-title'>
           <% if user %>
-            <%= "Hola #{user.present? ? user.email.split('@').first : ''}!" %>
+            <%= "Hola #{user.present? ? user.names.split(' ').first : ''}!" %>
           <% end %>
         </p>
         <span>
-          <%= content.html_safe %>
+          <%= yield :mail_content %>
         </span>
       </div>
       <div id='client-footer' class="noprint">

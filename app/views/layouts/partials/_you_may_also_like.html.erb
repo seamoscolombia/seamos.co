@@ -1,11 +1,12 @@
 <div>
+  <% mailing = defined?(mailing).present? ? mailing : false %>
   <div class="row interest-banner one-mod">
     También te puede interesar
   </div>
   <div id="may-interest-container">
     <div id="may-interest">
       <% @random_polls.each do |poll| %>
-        <%= render partial: 'polls/partials/poll_small_preview', locals: {poll: poll, from_ymal: true} %>
+        <%= render partial: 'polls/partials/poll_small_preview', locals: {poll: poll, from_ymal: true, mailing: mailing} %>
       <% end %>
     </div>
   </div>

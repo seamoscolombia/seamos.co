@@ -53,9 +53,11 @@ class Admin::PollsController < ApplicationController
 
   def toggle_active_flag
     @poll.active = !@poll.active
-    if @poll.save
-      flash[:success] = "propuesta publicada!" if @poll.active?
-      flash[:success] = "propuesta oculta al público" if !@poll.active?
+    if @poll.save && @poll.active?
+      flash[:success] = "propuesta publicada!"
+      notify_users_about_new_poll
+    elsif @poll.save && !@poll.active?
+      flash[:success] = "propuesta oculta al público"
     else
       flash[:error] = "La propuesta no pudo ser actualizada, intente nuevamente"
     end
@@ -68,6 +70,14 @@ class Admin::PollsController < ApplicationController
       User.administrador.each do |admin|
         AdminNotifierMailer.new_poll_created(@poll, current_user, admin).deliver_later
       end
+    end
+
+    def notify_users_about_new_poll
+      set_random_polls
+      UserNotifierMailer.send_new_poll_mail(@poll, current_user, @random_polls).deliver_later
+      UserNotifierMailer.poll_settled_mail(@poll, current_user, @random_polls).deliver_later
+      # User.administrador.each do |admin|
+      # end
     end
 
     def bind_links

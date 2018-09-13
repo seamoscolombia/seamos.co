@@ -1,4 +1,5 @@
-<%= link_to poll_path(poll), class: 'poll-link' do %>
+<% rendering_at_mail = defined?(mailing).present? && mailing %>
+<%= link_to (rendering_at_mail ? poll_url(poll) : poll_path(poll)), class: 'poll-link' do %>
   <div id="global-container">
     <div id="other-poll-component">
       <div class="left-side col-xs-4 col-md-4 no-padding">
@@ -29,13 +30,15 @@
         </div>
       </div>
     </div>
-    <% if current_user && current_page?(user_path(current_user)) && (!defined?(from_ymal) || defined?(from_ymal) && !from_ymal) %>
-      <div class="poll-my-vote">
-        <span class="poll-vote-title">Mi voto: </span>
-        <span style="font-family: HKNovaRegular;">
-          &nbsp; <%= poll.votes.by_user_id(current_user.id).first.name %>
-        </span>
-      </div>
+    <% unless rendering_at_mail %>
+      <% if current_user && current_page?(user_path(current_user)) && (!defined?(from_ymal) || defined?(from_ymal) && !from_ymal) %>
+        <div class="poll-my-vote">
+          <span class="poll-vote-title">Mi voto: </span>
+          <span style="font-family: HKNovaRegular;">
+            &nbsp; <%= poll.votes.by_user_id(current_user.id).first.name %>
+          </span>
+        </div>
+      <% end %>
     <% end %>
   </div>
 <% end %>

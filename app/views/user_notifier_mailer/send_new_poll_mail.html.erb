@@ -1,0 +1,25 @@
+<% content_for :mail_content do %>
+  <h2>
+    Hola <%= @user.first_name %>,
+  </h2>
+
+  <p>
+    La democracia digital te permite incidir en las decisiones que se toman todos los días y que afectan tu vida en Bogotá.
+    <br><br>
+    El/La Concejal <strong> <%= @poll.author_names %> </strong> quiere que tú decidas <strong> <%= link_to @poll.title, poll_url(@poll) %> </strong>.
+    <br><br>
+    Vota <%=  link_to 'aquí', poll_url(@poll) %> y decide el futuro de esta propuesta en el Concejo de Bogotá. Esto NO es un encuesta: los concejales están OBLIGADOS a cumplir los resultados de la votación.
+    <br><br>
+    La política está en tus manos, SeamOS Democracia Digital.
+    <br><br>
+    <h3>
+      Otras propuestas que te pueden interesar:
+    </h3>
+    <%= render partial: 'layouts/partials/you_may_also_like', locals: { mailing: true} %>
+  </p>
+<% end %>
+
+<%= render partial: '/devise/mailer/partials/simple.html.erb', locals: { user: @recipient } %>
+
+
+

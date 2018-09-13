@@ -127,6 +127,10 @@ class User < ApplicationRecord
     url_exists?(provider_image) ? provider_image : Rails.application.config.defaultavatar
   end
 
+  def first_name
+    names.split(' ').first
+  end
+
   private
 
   def major_electoral_representation_localities_length

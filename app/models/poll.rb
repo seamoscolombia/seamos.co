@@ -144,6 +144,10 @@ class Poll < ApplicationRecord
     user.admin_photo.try(:url)
   end
 
+  def author_names
+    user.names
+  end
+
   def tag_name
     default_tag.name if tags.present?
   end
