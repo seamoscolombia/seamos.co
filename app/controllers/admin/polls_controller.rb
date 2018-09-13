@@ -6,6 +6,8 @@ class Admin::PollsController < ApplicationController
   before_action :bind_links, only: %i(create update)
   before_action :set_tags, only: %i(create update)
 
+  include VotesHelper
+
   def create
     if @poll.save
       notify_administrators_about_new_poll
@@ -74,8 +76,15 @@ class Admin::PollsController < ApplicationController
 
     def notify_users_about_new_poll
       set_random_polls
-      UserNotifierMailer.send_new_poll_mail(@poll, current_user, @random_polls).deliver_later
-      UserNotifierMailer.poll_settled_mail(@poll, current_user, @random_polls).deliver_later
+      # UserNotifierMailer.send_new_poll_mail(@poll, current_user, @random_polls).deliver_later
+      # UserNotifierMailer.poll_settled_mail(@poll, current_user, @random_polls).deliver_later(wait_until: 5.minutes.from_now)
+      # UserNotifierMailer.poll_voting_reminder(@poll, current_user, @random_polls).deliver_now
+      # UserNotifierMailer.poll_closed_notification(@poll, current_user, @random_polls, vote_count(@poll)).deliver_now
+      # UserNotifierMailer.first_debate_scheduled(@poll, current_user, @random_polls).deliver_now
+      # UserNotifierMailer.one_day_away_from_first_debate(@poll, current_user, @random_polls).deliver_now
+      # UserNotifierMailer.second_debate_scheduled(@poll, current_user, @random_polls).deliver_now
+      # UserNotifierMailer.one_day_away_from_second_debate(@poll, current_user, @random_polls).deliver_now
+      UserNotifierMailer.agreement_sanction(@poll, current_user, @random_polls).deliver_now
       # User.administrador.each do |admin|
       # end
     end

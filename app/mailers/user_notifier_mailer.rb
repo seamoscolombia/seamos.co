@@ -34,4 +34,68 @@ class UserNotifierMailer < ApplicationMailer
     subject = "¡Tu voto ha incidido! El/La Concejal #{@poll.author_names} ha radicado proyecto por el que votaste."
     mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
   end
+
+  def poll_voting_reminder(poll, recipient, related_polls)
+    @sender = 'contacto@seamos.co'
+    @random_polls = related_polls
+    @user = recipient
+    @poll = poll
+    subject = "Todavía puedes incidir: #{@poll.title}"
+    mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
+  end
+
+  def first_debate_scheduled(poll, recipient, related_polls)
+    @sender = 'contacto@seamos.co'
+    @random_polls = related_polls
+    @user = recipient
+    @poll = poll
+    subject = "¡Seguimos avanzando! El proyecto en el que votaste ha avanzado un paso más"
+    mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
+  end
+
+  def second_debate_scheduled(poll, recipient, related_polls)
+    @sender = 'contacto@seamos.co'
+    @random_polls = related_polls
+    @user = recipient
+    @poll = poll
+    subject = "¡Estamos a punto de lograrlo! El proyecto en el que votaste está a un paso de ser una realidad"
+    mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
+  end
+
+  def one_day_away_from_first_debate(poll, recipient, related_polls)
+    @sender = 'contacto@seamos.co'
+    @random_polls = related_polls
+    @user = recipient
+    @poll = poll
+    subject = "Mañana se debate en el Concejo la propuesta en la que participaste"
+    mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
+  end
+
+  def one_day_away_from_second_debate(poll, recipient, related_polls)
+    @sender = 'contacto@seamos.co'
+    @random_polls = related_polls
+    @user = recipient
+    @poll = poll
+    subject = "Mañana se debate en el Concejo la propuesta en la que participaste"
+    mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
+  end
+
+  def poll_closed_notification(poll, recipient, related_polls, vote_count)
+    @sender = 'contacto@seamos.co'
+    @random_polls = related_polls
+    @user = recipient
+    @poll = poll
+    @vote_count = vote_count
+    subject = "Tu voto cuenta y los bogotanos respondieron la pregunta:  #{@poll.title}"
+    mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
+  end
+
+  def agreement_sanction(poll, recipient, related_polls)
+    @sender = 'contacto@seamos.co'
+    @random_polls = related_polls
+    @user = recipient
+    @poll = poll
+    subject = "¡Lo logramos! La propuesta en la que votaste se convirtió en un Acuerdo Distrital"
+    mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
+  end
 end

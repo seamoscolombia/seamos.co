@@ -1,0 +1,31 @@
+<% content_for :mail_content do %>
+  <h2>
+    Hola <%= @user.first_name %>,
+  </h2>
+
+  <p>
+    Tu participación incide en la decisiones del Concejo.
+    <br><br>
+    A la pregunta <strong> <%= link_to @poll.title, poll_url(@poll) %> </strong>, los bogotanos votaron de la siguiente manera:
+    <br>
+
+    <div id="piechart"></div>
+
+    <br><br>
+    <% if @vote_count["SI"].to_i > @vote_count["NO"].to_i %>
+      Gracias a tu participación y de acuerdo al resultado de la votación El/La Concejal <strong> <%= @poll.author_names %> </strong> presentará un proyecto de acuerdo.
+      Te invitamos a hacerle seguimiento al desarrollo de esta propuesta en el Concejo <strong> <%= link_to 'aquí', poll_url(@poll) %> </strong> y en nuestras redes [Link FB, Twitter, Instagram].
+    <% elsif @vote_count["SI"].to_i < @vote_count["NO"].to_i %>
+      De acuerdo a este resultado, esta propuesta no llegará al Concejo de Bogotá.
+    <% end %>
+    <br><br>
+    La política está en tus manos, SeamOS Democracia Digital.
+    <br><br>
+    <h3>
+    Otras propuestas que te pueden interesar:
+    </h3>
+    <%= render partial: 'layouts/partials/you_may_also_like', locals: { mailing: true} %>
+  </p>
+<% end %>
+
+<%= render partial: '/devise/mailer/partials/simple.html.erb', locals: { user: @recipient } %>

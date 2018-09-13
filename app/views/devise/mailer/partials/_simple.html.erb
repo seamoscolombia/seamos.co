@@ -37,9 +37,18 @@
       @media screen and (max-width: 770px) { #other-poll-component .poll-infos-container .poll-details .btn-plus-read { margin-right: 0; font-size: 8px; padding: 6px; position: absolute; right: 0; bottom: 11px; line-height: 0; } }
       #other-poll-component .poll-infos-container .poll-info { color: black; text-decoration: none; padding: 0 10px; }
       #other-poll-component .poll-infos-container .poll-info:hover { text-decoration: none; }
-
-
       /* END poll small preview compact css */
+      /* pieachart */
+      #piechart { justify-content: center; display: flex; }
+      /* END pieachart */
+
+      body { background-color: #abdadf }
+
+      a {
+        color: #d14f47;
+        text-decoration: none
+      }
+
       .message-container {
         width: auto;
         background-color: #abdadf;
@@ -189,9 +198,11 @@
   </head>
   <div class="message-container">
     <div class="message-wrapper">
-      <div class="message-header">
-        <img src="https://s3.amazonaws.com/misc-assets-seamos/logo-color.png"></img>
-      </div>
+      <a href="http://seamos.co" target="_blank">
+        <div class="message-header">
+          <img src="https://s3.amazonaws.com/misc-assets-seamos/logo-color.png">
+        </div>
+      </a>
       <div class='message-body' style='position: relative; top: 200px;'>
         <p class='message-title'>
           <% if user %>
@@ -220,3 +231,29 @@
     </div>
   </div>
 </html>
+
+<% if @vote_count.present? %>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="text/javascript">
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Draw the chart and set the chart values
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+      ['Voto', 'Porcentage'],
+      ['SI', <%= @vote_count["SI"] %> ],
+      ['NO', <%= @vote_count["NO"] %> ]
+    ]);
+
+      // Optional; add a title and set the width and height of the chart
+      var options = {'title':'Resultados de la votación', 'width':550, 'height':400};
+
+      // Display the chart inside the <div> element with id="piechart"
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+    }
+  </script>
+<% end %>
