@@ -76,17 +76,14 @@ class Admin::PollsController < ApplicationController
 
     def notify_users_about_new_poll
       set_random_polls
-      # UserNotifierMailer.send_new_poll_mail(@poll, current_user, @random_polls).deliver_later
-      # UserNotifierMailer.poll_settled_mail(@poll, current_user, @random_polls).deliver_later(wait_until: 5.minutes.from_now)
-      # UserNotifierMailer.poll_voting_reminder(@poll, current_user, @random_polls).deliver_now
-      # UserNotifierMailer.poll_closed_notification(@poll, current_user, @random_polls, vote_count(@poll)).deliver_now
-      # UserNotifierMailer.first_debate_scheduled(@poll, current_user, @random_polls).deliver_now
-      # UserNotifierMailer.one_day_away_from_first_debate(@poll, current_user, @random_polls).deliver_now
-      # UserNotifierMailer.second_debate_scheduled(@poll, current_user, @random_polls).deliver_now
-      # UserNotifierMailer.one_day_away_from_second_debate(@poll, current_user, @random_polls).deliver_now
-      UserNotifierMailer.agreement_sanction(@poll, current_user, @random_polls).deliver_now
-      # User.administrador.each do |admin|
-      # end
+      # only notify users that already voted for polls that have the same author or any tag in common
+      @related_polls = [*Poll.related_by_theme(@poll.tag_ids), *Poll.related_by_author(@poll.user)].uniq
+      receivers = @related_polls.each_with_object([]) do |poll, receivers|
+        receivers << poll.votes.map(&:user)
+      end
+      receivers.flatten.uniq.each do |receiver|
+        UserNotifierMailer.send_new_poll_mail(@poll, receiver, @random_polls).deliver_later
+      end
     end
 
     def bind_links
@@ -108,7 +105,7 @@ class Admin::PollsController < ApplicationController
     end
 
     def set_poll
-      @poll = Poll.find_by(id: params[:id] || params[:poll_id])
+      @poll = Poll.includes(:tags, votes: [:user]).find_by(id: params[:id] || params[:poll_id])
     end
 
     def set_tags

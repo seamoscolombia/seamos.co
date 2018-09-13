@@ -61,21 +61,21 @@ class Poll < ApplicationRecord
 
   scope :inactive, -> { where('active IS FALSE') }
 
-  scope :open, -> {
-    select{|p| !p.closed?}
-  }
+  scope :open, -> { select{|p| !p.closed?} }
 
-  scope :closed, -> {
-    select{|p| p.closed?}
-  }
+  scope :closed, -> { select{|p| p.closed?} }
+
+  scope :related_by_author, -> (poll_author) { where(user: poll_author).distinct }
+
+  scope :related_by_theme, -> (poll_tag_ids) do
+    joins(:tags).where("tags.id IN (?)", poll_tag_ids).distinct
+  end
 
   scope :get_user_participations, -> (user) {
     joins(:votes).where("votes.user_id = ?", user.id)
   }
 
-  scope :by_title, -> (poll_title) {
-    where("title ILIKE ?", "%#{poll_title}%")
-  }
+  scope :by_title, -> (poll_title) { where("title ILIKE ?", "%#{poll_title}%") }
 
   def self.search(search_term)
     if search_term

@@ -5,10 +5,10 @@ class HomeController < ApplicationController
       @polls = [] and return unless current_user && current_user.tag_ids.present?
       @polls = Poll.active.includes(:votes, :tags).by_user_interests(current_user).sort_by {|poll| poll.vote_count}.first(2)
       @reverse = true
-      @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.vote_count}.first(2 - @polls.size)
+      @polls << Poll.active.includes(:votes, :tags).sort_by {|poll| poll.vote_count}.first(2 - @polls.size)
     else
       @polls = Poll.active.includes(:votes, :tags).open.sort_by {|poll| poll.send(order_param)}.last(2)
-      @polls << Poll.includes(:votes, :tags).sort_by {|poll| poll.send(order_param)}.first(3 - @polls.size)
+      @polls << Poll.active.includes(:votes, :tags).sort_by {|poll| poll.send(order_param)}.first(3 - @polls.size)
     end
     @polls = @polls.flatten.uniq
     @polls = @reverse ? @polls.reverse.first(2) : @polls.first(2)
