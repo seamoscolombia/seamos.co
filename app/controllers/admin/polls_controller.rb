@@ -58,6 +58,8 @@ class Admin::PollsController < ApplicationController
     if @poll.save && @poll.active?
       flash[:success] = "propuesta publicada!"
       notify_users_about_new_poll
+      @poll.specs['new_poll_mail_sent'] = true
+      @poll.save
     elsif @poll.save && !@poll.active?
       flash[:success] = "propuesta oculta al público"
     else
@@ -75,6 +77,7 @@ class Admin::PollsController < ApplicationController
     end
 
     def notify_users_about_new_poll
+      return if @poll.specs['new_poll_mail_sent'] == true
       set_random_polls
       # only notify users that already voted for polls that have the same author or any tag in common
       @related_polls = [*Poll.related_by_theme(@poll.tag_ids), *Poll.related_by_author(@poll.user)].uniq
