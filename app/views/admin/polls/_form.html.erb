@@ -5,42 +5,23 @@
 <div class="radio_button_field">
     <%= f.label "Tipo de propuesta" %><br/>
   <div class="radio-buttons">
-    <%= f.radio_button :poll_type, "Voto o proyecto de acuerdo" %>
+    <%= f.radio_button :poll_type, "Voto o proyecto de acuerdo", id: 'agreement-radio' %>
     <%= f.label :poll_type, "Voto o proyecto de acuerdo"%><br/>
-    <%= f.radio_button :poll_type, "Control político", checked: "#{poll && poll.poll_type == 'Control político' ? 'checked' : false}" %>
+    <%= f.radio_button :poll_type, "Control político", checked: "#{poll && poll.poll_type == 'Control político' ? 'checked' : false}", id: 'control-radio' %>
     <%= f.label :role_type, "Control político",class: "radio_button_lbl"  %>
   </div>
 </div>
 
 <br />
 <% unless current_user.politico? %>
-  <% if f.object.poll_type == "Control político" %>
-    <div class="field politician-field politic-control">
-      <%= f.label "Estado de la Propuesta" %>
-      <%= f.select(:state) do %>
-        <% [['Votación seamos', "Votación seamos"], ['Radica concejal', "Radica concejal"], ['Primer debate', "Primer debate"], ['Debate de control político', "Segundo debate"], ['Moción de censura', 'Sanción del proyecto de acuerdo']].each do |c| %>
-          <%= content_tag(:option, c.first, value: c.last, selected: f.object.state == c.last ? 'selected' : false) %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="field politician-field vote-or-agreement hidden">
-      <%= f.label "Estado de la Propuesta" %>
-      <%= f.select :state, Poll.states.keys, {}, {class: 'form-control', id: 'vote-agreement-select'} %>
-    </div>
-  <% else %>
-    <div class="field politician-field politic-control hidden">
-      <%= f.label "Estado de la Propuesta" %>
-      <%= f.select(:state) do %>
-        <% [['Votación seamos', "Votación seamos"], ['Radica concejal', "Radica concejal"], ['Primer debate', "Primer debate"], ['Debate de control político', "Segundo debate"], ['Moción de censura', 'Sanción del proyecto de acuerdo']].each do |c| %>
-          <%= content_tag(:option, c.first, value: c.last, selected: f.object.state == c.last ? 'selected' : false) %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="field politician-field vote-or-agreement">
-      <%= f.label "Estado de la Propuesta" %>
-      <%= f.select :state, Poll.states.keys, {}, {class: 'form-control', id: 'vote-agreement-select'} %>
-    </div>
-  <%end%>
+  <div class="field politician-field politic-control" style="<%='display: none' if f.object.poll_type == 'Voto o proyecto de acuerdo' %>">
+    <%= f.label "Estado de la Propuesta" %>
+    <%= f.select :state, [['Votación seamos', "Votación seamos"], ['Radica concejal', "Radica concejal"], ['Primer debate', "Primer debate"], ['Debate de control político', "Segundo debate"], ['Moción de censura', 'Sanción del proyecto de acuerdo']], {}, {class: 'form-control', id: 'politic-control-select'} %>
+  </div>
+  <div class="field politician-field vote-or-agreement" style="<%='display: none' if f.object.poll_type == 'Control político' %>">
+    <%= f.label "Estado de la Propuesta" %>
+    <%= f.select :state, Poll.states.keys, {}, {class: 'form-control', id: 'vote-agreement-select'} %>
+  </div>
 <%end%>
 
 <div class="field">

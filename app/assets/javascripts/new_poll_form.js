@@ -1,23 +1,24 @@
 $( document ).ready(function(){
-  if ($("#poll_poll_type_control_poltico").prop("checked") == true) {
-    $(".vote-or-agreement").addClass("hidden");
+  if ($("#control-radio").prop("checked") == true) {
     $("#vote-agreement-select").attr("disabled", "disabled");
   }
-  if ($("#poll_poll_type_voto_o_proyecto_de_acuerdo").prop("checked") == true) {
-    $(".vote-or-agreement").removeClass("hidden");
-    $(".politic-control").addClass("hidden");
-    $("#poll_state").attr("disabled", "disabled");
+  if ($("#agreement-radio").prop("checked") == true) {
+    $("#politic-control-select").attr("disabled", "disabled");
   }
-  $("#poll_poll_type_control_poltico").click(function(){
-    $(".politic-control").removeClass("hidden");
-    $("#poll_state").removeAttr("disabled");
-    $(".vote-or-agreement").addClass("hidden");
-    $("#vote-agreement-select").attr("disabled", "disabled");
+  $("#control-radio").click(function(){
+    $(".politic-control").show()
+    $(".vote-or-agreement").hide()
+    if ($("#control-radio").prop("checked") == true) {
+      $("#vote-agreement-select").attr("disabled", "disabled");
+      $("#politic-control-select").attr("disabled", false);
+    }
   })
-  $("#poll_poll_type_voto_o_proyecto_de_acuerdo").click(function(){
-    $(".vote-or-agreement").removeClass("hidden");
-    $("#vote-agreement-select").removeAttr("disabled");
-    $(".politic-control").addClass("hidden");
-    $("#poll_state").attr("disabled", "disabled");
+  $("#agreement-radio").click(function(){
+    $(".politic-control").hide()
+    $(".vote-or-agreement").show()
+    if ($("#agreement-radio").prop("checked") == true) {
+      $("#politic-control-select").attr("disabled", "disabled");
+      $("#vote-agreement-select").attr("disabled", false);
+    }
   })
 });

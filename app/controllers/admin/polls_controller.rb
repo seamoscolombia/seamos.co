@@ -22,6 +22,11 @@ class Admin::PollsController < ApplicationController
   def update
     if @poll.update(poll_params.except(:user_id))
       flash[:success] = "Propuesta correctamente actualizada"
+      if @poll.state == "Radica concejal"
+        notify_poll_settled
+        @poll.specs['poll_settled_notification_sent'] = true
+        @poll.save
+      end
       redirect_to admin_polls_path
     else
       render :edit
@@ -39,7 +44,7 @@ class Admin::PollsController < ApplicationController
   end
 
   def index
-    @filtered_polls = Poll.by_title(params[:search_term]).by_status(params[:status])
+    @filtered_polls = Poll.includes(:tags, votes: [:user]).by_title(params[:search_term]).by_status(params[:status])
     @filtered_polls = params[:status] == 'inactive' ? @filtered_polls.inactive : @filtered_polls
     @polls = if current_user.politico?
               Kaminari.paginate_array(@filtered_polls.select{ |p| p.user_id == current_user.id}).page(params[:page]).per(4)
@@ -58,7 +63,11 @@ class Admin::PollsController < ApplicationController
     if @poll.save && @poll.active?
       flash[:success] = "propuesta publicada!"
       notify_users_about_new_poll
+      schedule_voting_reminder
+      schedule_voting_closed_notification
       @poll.specs['new_poll_mail_sent'] = true
+      @poll.specs['voting_reminder_sent'] = true
+      @poll.specs['voting_closed_notification_sent'] = true
       @poll.save
     elsif @poll.save && !@poll.active?
       flash[:success] = "propuesta oculta al público"
@@ -79,14 +88,53 @@ class Admin::PollsController < ApplicationController
     def notify_users_about_new_poll
       return if @poll.specs['new_poll_mail_sent'] == true
       set_random_polls
-      # only notify users that already voted for polls that have the same author or any tag in common
-      @related_polls = [*Poll.related_by_theme(@poll.tag_ids), *Poll.related_by_author(@poll.user)].uniq
-      receivers = @related_polls.each_with_object([]) do |poll, receivers|
-        receivers << poll.votes.map(&:user)
-      end
-      receivers.flatten.uniq.each do |receiver|
+      receivers = related_users
+      # if poll is from a new author or theme, notify all users
+      receivers = User.all if (@related_by_author.count < 2) || (@related_by_theme.count < 2)
+      receivers.each do |receiver|
         UserNotifierMailer.send_new_poll_mail(@poll, receiver, @random_polls).deliver_later
       end
+    end
+
+    def schedule_voting_reminder
+      return if @poll.specs['voting_reminder_sent'] == true
+      set_random_polls
+      receivers = related_users - @poll.votes.map(&:user)
+      days_from_today = (@poll.closing_date - Date.today).to_i / 2
+      receivers.each do |receiver|
+        UserNotifierMailer.poll_voting_reminder(@poll, receiver, @random_polls).deliver_later(wait_until: days_from_today.days.from_now) if days_from_today.positive?
+      end
+    end
+
+    def schedule_voting_closed_notification
+      return if @poll.specs['voting_closed_notification_sent'] == true
+      set_random_polls
+      receivers = @poll.votes.map(&:user).uniq
+      days_from_today = (@poll.closing_date - Date.today).to_i
+      receivers.each do |receiver|
+        UserNotifierMailer.poll_closed_notification(@poll, receiver, @random_polls, vote_count(@poll)).deliver_later(wait_until: days_from_today.days.from_now.end_of_day)
+      end
+    end
+
+
+    def notify_poll_settled
+      return if @poll.specs['poll_settled_notification_sent'] == true
+      set_random_polls
+      receivers = @poll.votes.map(&:user).uniq
+      receivers.each do |receiver|
+        UserNotifierMailer.poll_settled_mail(@poll, receiver, @random_polls).deliver_now
+      end
+    end
+
+    def related_users
+      # only notify users that already voted for polls that have the same author or any tag in common
+      @related_by_author = Poll.includes(:tags, votes: [:user]).related_by_author(@poll.user)
+      @related_by_theme = Poll.includes(:tags, votes: [:user]).related_by_theme(@poll.tag_ids)
+      related_polls = [*@related_by_theme, *@related_by_author].uniq
+      related_users = related_polls.each_with_object([]) do |poll, receivers|
+        receivers << poll.votes.map(&:user)
+      end
+      related_users.to_a.flatten.uniq
     end
 
     def bind_links
