@@ -1,0 +1,25 @@
+default: &default
+
+development:
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  database: development_seamos
+
+test:
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  database: test_seamos
+
+production:
+    adapter: postgresql
+    encoding: unicode
+    database: <%= ENV['DATABASE_URL'] %>
+    password: <%= ENV['MYSQL_PASSWORD'] %>
+
+staging:
+    adapter: postgresql
+    encoding: unicode
+    database: <%= ENV['DATABASE_URL'] %>
+    password: <%= ENV['MYSQL_PASSWORD'] %>
