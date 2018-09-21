@@ -1,6 +1,0 @@
-{
-  "extends": "rallycoding",
-  "env": {
-    "jest": true
-  }
-}

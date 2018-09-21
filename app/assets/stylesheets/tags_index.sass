@@ -1,0 +1,112 @@
+@import './variables'
+#tags-page
+  @media screen and (max-width: $break-medium)
+    margin-bottom: -50px
+  .background-container
+    padding-top: 80px
+    padding-bottom: 35px
+    margin-bottom: 66px
+    text-align: center
+    color: white
+    background-color: #55bec8
+    height: 460px
+    display: flex
+    font-weight: bold
+    @media screen and (max-width: $break-medium)
+      height: 225px
+      padding-bottom: 10px
+      padding-top: 62px
+      margin-bottom: 10px
+    .question
+      font-size: 50px
+      line-height: 1.3em
+      font-weight: bold
+      color: #3d4f62
+      text-transform: none
+      font-family: 'HKNovaBold'
+      @media screen and (max-width: $break-medium)
+        line-height: 1.1em
+        font-size: 22px
+#tags-component
+  .tags-box
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    overflow: hidden
+    @media screen and (max-width: $break-medium)
+      margin-bottom: 20px
+    a
+      &:hover
+        text-decoration: none
+.tag-component
+  $break-medium: 720px
+  $tag-size: 190px
+  border: 10px solid white
+  height: $tag-size
+  width: $tag-size
+  transition: opacity 0.5s
+  background-size: cover
+  display: table-cell
+  vertical-align: bottom
+  &:hover
+    opacity: 0.7
+  @media screen and (max-width: $break-medium)
+    margin: 3px
+    height: 134px
+    width: 134px
+  .tag-selected
+    height: 100%
+    width: 100%
+    opacity: 0.6
+    position: relative
+    @media screen and (max-width: $break-medium)
+      // top: -272px
+    .glyphicon
+      position: relative
+      color: #272427
+      font-size: 140px
+  .tag-not-selected
+    display: none
+  .undefined
+    display: none
+
+  .tag-image
+    width: $tag-size
+    overflow: hidden
+    display: flex
+    justify-content: center
+    @media screen and (max-width: $break-medium)
+      width: 134px
+    img
+      height: $tag-size
+      -webkit-transition: width 0.5s /* For Safari 3.1 to 6.0 */
+      transition: opacity 0.5s
+      &:hover
+        opacity: 0.9
+      @media screen and (max-width: $break-medium)
+        height: 134px
+  .tag-name
+    color: white
+    font-family: "HKNovaBold"
+    font-size: 19px
+    padding: 10px
+    &:hover
+      text-decoration: none
+    @media screen and (max-width: $break-medium)
+      bottom: 160px
+      font-size: 12px
+  .tag-icon
+    width: 160px
+    display: flex
+    justify-content: center
+    margin: auto
+    img
+      height: 160px
+      position: relative
+      bottom: 185px
+      z-index: 5
+      @media screen and (max-width: $break-medium)
+        height: 120px
+        bottom: 135px
+        left: -9px
+

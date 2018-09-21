@@ -1,0 +1,62 @@
+<div class="container" id="users-list" >
+	<div class="row">
+    <div class='spacer-big'></div>
+    <div class="col-md-3 admin-search-form">
+      <%= label_tag :Filtros %>
+      <%= form_tag({controller: "users", action: "permits"}, method: "get") do %>
+        <%= select_tag(:users_filter_select, options_for_select(
+          ['sin asignar', *User.role_types.keys],
+          params[:users_filter_select] ),
+          {class: "form-control", include_blank: true},
+        ) %>
+        <%= text_field_tag :search_term, params[:search_term], class: 'form-control', placeholder: "Búsqueda por email o nombre" %>
+        <%= submit_tag 'Filtrar', class: 'form-control btn-info' %>
+      <% end %>
+    </div>
+    <div class="span12 col-md-9">
+      <div id='default-table-wrapper'>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Correo electrónico</th>
+            <th>Tipo</th>
+            <th>Opciones</th>
+          </tr>
+          <% @users.each do |user| %>
+            <tr>
+              <td>
+                <%= user.names %>
+              </td>
+              <td>
+                <%= user.email %>
+              </td>
+              <td>
+                <div class="field">
+                    <%= form_for user, url: admin_user_path(user.id), :html => {:class => "flex-form"} do |f| %>
+                      <%= f.hidden_field :id %>
+                      <%= f.label :role_type, "Admin", :value => "admin"  %>
+                      <%= f.radio_button :role_type, 'administrador', class: 'role-radio', :checked => user.administrador?  %>
+                      <%= f.label :role_type, "Politico", :value => "politician" %>
+                      <%= f.radio_button :role_type, 'politico', class: 'role-radio', :checked => user.politico? %>
+                      <%= f.label :role_type, "Ciudadano", :value => "ciitizen" %>
+                      <%= f.radio_button :role_type, 'ciudadano', class: 'role-radio', :checked => user.ciudadano? %>
+                    <% end %>
+                  </div>
+              </td>
+              <td>
+                <div class="field flex-field">
+                    <%= link_to "Editar" , edit_admin_user_path(user), class:"btn btn-info" %>
+                    <%= form_for [:admin, user], method: :delete do |f| %>
+                      <%= f.hidden_field :id %>
+                      <%= f.submit "Eliminar", data: { confirm: 'Estás seguro?' }, class: "btn btn-danger" %>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <p> <%= paginate @users %> </p>
+    </div>
+  </div>
+</div>

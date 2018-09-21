@@ -1,0 +1,52 @@
+<div>
+  <%= link_to poll_path(poll), class: 'poll-link' do %>
+    <div id="poll-component">
+      <% if current_user && current_page?(user_path(current_user)) %>
+        <div class="poll-my-vote">
+          <span class="poll-vote-title">
+            Mi voto: 
+          </span>
+          <span>
+            <%= poll.votes.by_user_id(current_user.id).first.name %>
+          </span>
+        </div>
+      <% end %>
+      <div class="poll-image-container">
+        <%= image_tag poll.poll_image %>
+      </div>
+      <% if poll.closed? %>
+        <div class="closed-ribbon">Propuesta Cerrada</div>
+      <% end %>
+      <div class="poll-title">
+        <span>
+          <%= poll.title %>
+        </span>
+      </div>
+      <div class="poll-description">
+        <%= poll.summary %>
+      </div>
+      <div class="politician-info">
+        <div class="picture-container">
+          <%= image_tag poll.author_photo if poll.author_photo %>
+        </div>
+        <div class="name-container">
+          <%= poll.user.full_name %>
+        </div>
+      </div>
+      <div class="poll-infos-container">
+        <div class="poll-details">                      
+            <div 
+              class="poll-tag-name" 
+              style= "width: <%= poll.closed? ? "52%;" : "70%;" %>" >
+              <%= display_tag_name(poll) %>
+            </div>
+            <div class="color-separator" style="border-left: 5px solid <%= display_tag_color(poll) %>;">
+            </div>
+            <div class="btn button btn-plus-read" style="background-color: <%= display_tag_color(poll) %>;">
+              <%= poll.closed? ? "RESULTADOS" : "VOTA" %>
+            </div>                      
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

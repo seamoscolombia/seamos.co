@@ -2,19 +2,22 @@
 #
 # Table name: polls
 #
-#  id            :integer          not null, primary key
-#  title         :string           not null
-#  description   :text             not null
-#  closing_date  :date             not null
-#  user_id       :integer
-#  totals        :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  poll_image    :string
-#  active        :boolean          default(TRUE)
-#  poll_document :string
-#  poll_type     :integer
-#  objective     :string
+#  id           :integer          not null, primary key
+#  title        :string           not null
+#  description  :text             not null
+#  closing_date :date             not null
+#  user_id      :integer
+#  totals       :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  poll_image   :string
+#  active       :boolean          default(TRUE)
+#  poll_type    :integer
+#  objective    :string
+#  summary      :string
+#  question     :string
+#  state        :integer
+#  closing_hour :string
 #
 
 class Poll < ApplicationRecord
@@ -24,15 +27,12 @@ class Poll < ApplicationRecord
   belongs_to :user
   has_many :vote_types, inverse_of: :poll, dependent: :destroy
   has_many :votes, dependent: :destroy
-  has_many :debates, dependent: :destroy
   accepts_nested_attributes_for :vote_types
   has_many :taggings, dependent: :destroy
   has_many :tags, -> { distinct }, through: :taggings
 
   has_many :external_links, dependent: :destroy
   has_one :project_link, -> { where(is_project_link: true) }, class_name: 'ExternalLink'
-
-  has_many :poll_states
 
   validates :title, presence: true
   validates :closing_date, presence: true
@@ -42,6 +42,8 @@ class Poll < ApplicationRecord
 
   # validate :closing_date_validation
   validate :at_least_one_tag
+
+  delegate :admin_photo, to: :user, allow_nil: true
 
   enum poll_type: {
                     "Voto o proyecto de acuerdo": 1,
@@ -55,13 +57,9 @@ class Poll < ApplicationRecord
                 "Sanción del proyecto de acuerdo": 4
               }
 
-  scope :active, -> {
-    where('active IS TRUE')
-  }
+  scope :active, -> { where('active IS TRUE') }
 
-  scope :inactive, -> {
-    where('active IS FALSE OR closing_date < ?', Date.current)
-  }
+  scope :inactive, -> { where('active IS FALSE') }
 
   scope :open, -> {
     select{|p| !p.closed?}
@@ -112,7 +110,8 @@ class Poll < ApplicationRecord
   end
 
   def set_tags(tag_list)
-    tags << Tag.where(name: tag_list.split(','))
+    self.tags = []
+    self.tags << Tag.where(name: tag_list.split(','))
   end
 
   def remaining_time_in_seconds
@@ -139,6 +138,22 @@ class Poll < ApplicationRecord
 
   def related_links
     external_links.where(is_project_link: false)
+  end
+
+  def author_photo
+    user.admin_photo.try(:url)
+  end
+
+  def tag_name
+    default_tag.name if tags.present?
+  end
+
+  def default_tag
+    tags.first if tags.present?
+  end
+
+  def tag_color
+    tags.first.tag_color if tags.present?
   end
 
   private

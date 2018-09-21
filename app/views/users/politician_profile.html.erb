@@ -1,0 +1,122 @@
+<div id="politician-profile">
+  <div id="top-color-banner"></div>
+  <div id="profile" class="container">
+    <div class="row top">
+      <div class="col-md-2 col-12 picture-wrapper-wrapper">
+        <div class="picture-wrapper">
+          <%= image_tag @politician.resolve_admin_photo %>
+        </div>
+      </div>
+      <div class="col-md-6 basic-info">
+        <div class="basic-info-wrapper">
+          <div class="">
+            <h1>
+              <%= @politician.names %>
+            </h1>
+          </div>
+          <div class="">
+            <h2>
+              <%= @politician.organization %>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 social-info">
+        <div class="social-info-wrapper">
+          <% if @politician.twitter_username.present? %>
+            <div class="">
+              <a class="no-decoration" href=<%="https://twitter.com/#{@politician.twitter_username.delete('@')}"%>>
+                <p>
+                  <i class="fa fa-twitter" aria-hidden="true"></i>
+                    &nbsp; &nbsp;
+                    <%= @politician.twitter_username.upcase %>
+                </p>
+              </a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row mid">
+      <div class="col-md-4">
+        <div class="cv-title">Formación</div>
+        <div class="further-studies">
+          <% @politician.academic_titles.each do |academic_title| %>
+            <% next unless academic_title.title %>
+            <div class="academic-title">
+              <div>
+                <strong>
+                  Título:
+                  <br>
+                </strong>
+                <%= academic_title.title %>
+              </div>
+              <div class="institute">
+                <strong>
+                  Institución:
+                  <br>
+                </strong>
+                <%= academic_title.institute %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="cv-title">Carrera Política</div>
+        <div class="career">
+          <div class="cv-subtitle">Votos conseguidos</div>
+          <div class="achieved-votes">
+            <%= @politician.last_election_vote_count %>
+          </div>
+          <div class="cv-subtitle">Las dos localidades con mayor representación</div>
+          <div class="major-representation-localities">
+            <% if @politician.major_electoral_representation_localities.present? %>
+              <% @politician.major_electoral_representation_localities.split(', ').each do |localitie| %>
+                <span>
+                  <span>
+                    <%= User.localities.key(localitie.to_i) %>
+                  </span>
+                  <br>
+                </span>
+              <% end %>
+            <% end %>
+          </div>
+          <% if @politician.other_periods_elected.present? %>
+            <div class="cv-title">Otros periodos electo</div>
+            <div class="without-image">
+              <p>
+                <%= @politician.other_periods_elected %>
+              </p>
+            </div>
+          <% end %>
+          <div class="cv-title">Comisión</div>
+          <div class="without-image">
+            <%= @politician.current_corporation_commission %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-12 politician-bio-wrapper">
+            <td>
+              <p id= 'politician-bio'>
+                <%= @politician.bio.try(:html_safe) %>
+              </p>
+            </td>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <% if @politician.has_polls? %>
+              <h1 class="title"> Propuestas </h1>
+              <% @polls.each do |poll| %>
+                <%= render partial: "polls/partials/poll_small_preview", locals: {poll: poll} %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: 'layouts/partials/you_may_also_like' %>

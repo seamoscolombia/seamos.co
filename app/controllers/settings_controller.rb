@@ -1,4 +1,5 @@
 class SettingsController < ApplicationController
+
   def unsubscribe
     @subscription_id = Rails.application.message_verifier(:unsubscribe).verify(params[:id])
     @subscription = Subscription.find(@subscription_id)

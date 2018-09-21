@@ -1,0 +1,11 @@
+<% content =
+"<p>
+  <strong> #{@author.names} </strong> ha creado una nueva propuesta llamada <strong> #{@poll.title} </strong>. La propuesta está pendiente para su aprobación.
+</p>
+<p>
+Una vez incies sessión con tu cuenta de administrador podrás aprobarla para su publicación mediante
+#{link_to 'este enlace' , poll_url(@poll, publish_link: 'true')}
+</p>
+"%>
+
+<%= render partial: '/devise/mailer/partials/simple.html.erb', locals: { user: @user, content: content } %>

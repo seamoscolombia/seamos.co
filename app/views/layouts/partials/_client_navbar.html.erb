@@ -1,0 +1,20 @@
+<div id="client-navbar">
+  <header>
+    <%= link_to  image_tag('LogoSeamos_blanco.png', class: 'campaign-logo'), root_path %>
+    <% if current_user.present? %>
+      <div class="hide-on-desktop only-photo">
+        <%= image_tag current_user.resolve_photo, class: 'navbar-photo' %>
+      </div>
+    <% end %>
+    <a id='hamburger'>
+      <i class="fa fa-bars"></i>
+    </a>
+    <span id='top-nav' class="hide-on-mobile">
+      <%= render 'layouts/partials/normal_user_options' %>
+    </span>
+    <span id='hide-side-nav' class="hide-on-desktop" />
+    <span id='side-nav', class='hide-on-desktop'>
+      <%= render 'layouts/partials/normal_user_options' %>
+    </span>
+  </header>
+</div>

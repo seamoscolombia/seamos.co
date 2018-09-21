@@ -2,19 +2,22 @@
 #
 # Table name: polls
 #
-#  id            :integer          not null, primary key
-#  title         :string           not null
-#  description   :text             not null
-#  closing_date  :date             not null
-#  user_id       :integer
-#  totals        :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  poll_image    :string
-#  active        :boolean          default(TRUE)
-#  poll_document :string
-#  poll_type     :integer
-#  objective     :string
+#  id           :integer          not null, primary key
+#  title        :string           not null
+#  description  :text             not null
+#  closing_date :date             not null
+#  user_id      :integer
+#  totals       :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  poll_image   :string
+#  active       :boolean          default(TRUE)
+#  poll_type    :integer
+#  objective    :string
+#  summary      :string
+#  question     :string
+#  state        :integer
+#  closing_hour :string
 #
 
 require 'rails_helper'
@@ -24,9 +27,10 @@ RSpec.describe Poll, type: :model do
     it { should belong_to(:user) }
     it { should have_many(:vote_types) }
     it { should have_many(:votes) }
-    it { should have_many(:debates) }
     it { should have_many(:external_links) }
-    it { should have_many(:poll_states) }
+    it { should have_many(:taggings) }
+    it { should have_many(:tags) }
+    it { should have_one(:project_link) }
     it { should accept_nested_attributes_for(:vote_types) }
   end
 
@@ -54,19 +58,43 @@ RSpec.describe Poll, type: :model do
   end
 
   describe 'named scopes' do
-    let(:poll_1) { FactoryGirl.create(:poll, closing_date: Date.today - 3.days) }
-    let(:poll_2) { FactoryGirl.create(:poll, closing_date: Date.today + 3.days) }
+    let(:poll_1) { FactoryGirl.create(:poll, closing_date: Date.today - 3.days, active: false) }
+    let(:poll_2) { FactoryGirl.create(:poll, closing_date: Date.today + 3.days, active: true) }
     let(:poll_3) { FactoryGirl.create(:poll, closing_date: Date.today + 3.days, active: false) }
     describe 'active' do
       it 'returns only polls that are active' do
-        expect(Poll.active).to include(poll_1, poll_2)
-        expect(Poll.active).not_to include(poll_3)
+        expect(Poll.active).to include( poll_2)
+        expect(Poll.active).not_to include(poll_3, poll_1)
       end
     end
     describe 'inactive' do
-      it 'returns only polls that are inactive or closed' do
+      it 'returns only polls that are inactive' do
         expect(Poll.inactive).not_to include(poll_2)
         expect(Poll.inactive).to include(poll_1, poll_3)
+      end
+    end
+
+    describe 'get_user_participations' do
+      let(:user) { FactoryGirl.create(:user)}
+      let(:poll_a) { FactoryGirl.create(:poll) }
+      let(:poll_b) { FactoryGirl.create(:poll) }
+      let(:vote_a) { FactoryGirl.create(:vote, poll: poll_a, user: user)}
+      let(:vote_b) { FactoryGirl.create(:vote, poll: poll_b, user: user)}
+      before(:each) do
+        user.votes << [vote_a, vote_b]
+      end
+      it 'returns the polls in which the user has participated' do
+        expect(Poll.get_user_participations(user)).to match_array([poll_a, poll_b])
+      end
+    end
+
+    describe 'by_title' do
+      let(:poll_x) { FactoryGirl.create(:poll, title: 'Lorem ipsum dolor sit amet, laoconsectetur adipiscing elit. Phasellus ornare') }
+      let(:poll_y) { FactoryGirl.create(:poll, title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare') }
+      let(:poll_z) { FactoryGirl.create(:poll, title: 'Lorem ipsum sit amet, consectetur adipiscing elit. Phasellus ornare laoreet') }
+      it 'returns polls with similar title' do
+        expect(Poll.by_title('dolor')).to match_array([poll_y])
+        expect(Poll.by_title('lao')).to match_array([poll_x, poll_z])
       end
     end
   end
@@ -82,6 +110,31 @@ RSpec.describe Poll, type: :model do
       it 'returns false' do
         poll.update(closing_date: Date.today + 3.days)
         expect(poll.closed?).to eq(false)
+      end
+    end
+  end
+
+  describe 'poll#voted_by_user?' do
+    let(:user_a) { FactoryGirl.create(:user)}
+    let(:user_b) { FactoryGirl.create(:user)}
+    let(:poll_a) { FactoryGirl.create(:poll) }
+    let(:poll_b) { FactoryGirl.create(:poll) }
+    let(:vote_a) { FactoryGirl.create(:vote, poll: poll_a, user: user_a)}
+    let(:vote_b) { FactoryGirl.create(:vote, poll: poll_b, user: user_b)}
+    before(:each) do
+      user_a.votes << [vote_a]
+      user_b.votes << [vote_b]
+    end
+    context 'when user already voted the poll' do
+      it 'returns true' do
+        expect(poll_a.voted_by_user?(user_a.id)).to eq(true)
+        expect(poll_b.voted_by_user?(user_b.id)).to eq(true)
+      end
+    end
+    context 'when the user has not yet voted the poll' do
+      it 'returns true' do
+        expect(poll_b.voted_by_user?(user_a.id)).to eq(false)
+        expect(poll_a.voted_by_user?(user_b.id)).to eq(false)
       end
     end
   end

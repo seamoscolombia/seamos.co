@@ -1,45 +1,45 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Primer apellido:</strong>
-  <%= @user.first_surname %>
-</p>
-
-<p>
-  <strong>Segundo apellido:</strong>
-  <%= @user.segundo_apellido %>
-</p>
-
-<p>
-  <strong>Nombres:</strong>
-  <%= @user.nombres %>
-</p>
-
-<p>
-  <strong>Tipo de documento:</strong>
-  <%= @user.tipo_de_documento %>
-</p>
-
-<p>
-  <strong>Numero documento:</strong>
-  <%= @user.numero_documento %>
-</p>
-
-<p>
-  <strong>Fecha expedicion:</strong>
-  <%= @user.fecha_expedicion %>
-</p>
-
-<p>
-  <strong>Rol:</strong>
-  <%= @user.role_type %>
-</p>
-
-
-<p>
-  <strong>Valido:</strong>
-  <%= @user.valido %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div id="profile">
+   <div id="profile-banner">
+      <div class="row profile--banner one"></div>
+   </div>
+   <div class="container">
+      <header class="media">
+         <div class="row profile-info-container">
+            <div class="col-sm-1 media-left"><img src="<%= current_user.provider_image %>" class="media-object" role="presentation"></div>
+            <div class="media-body col-sm-10">
+               <h4 class="media-heading"> <%= current_user.names %></h4>
+               <h6 class="media-heading"></h6>
+            </div>
+         </div>
+      </header>
+      <br>
+      <div id="profile-container" class="row">
+         <div class="col-md-4">
+            <div>
+               <section id="my-subjects" class="col-sm-12">
+                  <div class="cv-title">Mis temas de interés</div>
+                  <%= render partial: 'tags/tags_list', locals: {tags: @tags} %>
+               </section>
+            </div>
+         </div>
+         <section class="my-participations col-sm-8">
+            <div class="open-title">Participaciones recientes</div>
+            <div class="polls-wrapper">
+              <% @participations.first(2).each do |poll| %>
+                <%= render partial: 'polls/partials/poll_preview', locals: {poll: poll} %>
+              <% end %>
+            </div>
+            <div class="open-title other">Otras participaciones</div>
+            <div class="polls-wrapper">
+              <% if @participations.size > 2 %>
+                <% @participations[2..@participations.size].each do |poll| %>
+                  <%= render partial: 'polls/partials/poll_small_preview', locals: {poll: poll} %>
+                <% end %>
+              <% end %>
+            </div>
+         </section>
+      </div>
+   </div>
+    <%= render partial: 'layouts/partials/you_may_also_like' %>
+   </div>
+</div>

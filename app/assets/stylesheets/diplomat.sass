@@ -1,0 +1,266 @@
+@import './variables'
+#diplomat
+  font-family: RobotoRegular
+  font-size: 16px
+  @media screen and (max-width: $break-medium)
+    padding: 0 35px
+  .justified
+    text-align: justify
+  #main-banner-wrapper
+    #main-banner
+      margin-top: 50px
+      @media screen and (max-width: $break-medium)
+        margin-top: 30px
+      img
+        width: 100%
+  #left-text-col
+    margin-top: 20px
+    padding-left: 0
+    font-size: 18px
+    font-family: robotoRegular
+    #arizona
+      width: 75%
+  #right-text-col
+    margin-top: 20px
+    padding-right: 0
+    font-size: 18px
+    font-family: robotoRegular
+    @media screen and (max-width: $break-medium)
+      padding-left: 0
+    ul
+      padding-left: 30px
+  #button-wrapper
+    text-align: center
+    margin-top: 30px
+    @media screen and (max-width: $break-medium)
+      margin-bottom: 30px
+    #button
+      text-align: center
+      width: 100%
+      background-color: #eb6357
+      color: #f1e73c
+      padding: 8px 120px
+      font-size: 20px
+      margin-top: 57px
+      @media screen and (max-width: $break-medium)
+        padding: 10px 40px
+      &:hover
+        background-color: #a14a3d
+        text-decoration: none
+  #structure-title
+    background-color: #f1e73c
+    font-family: HKNovaRegular
+    letter-spacing: 5px
+    min-height: 75px
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 25px
+    margin-top: 30px
+    @media screen and (max-width: $break-medium)
+      font-size: 16px
+      min-height: 56px
+      margin-top: 10px
+
+  .mid-banner
+    width: 100%
+    padding: 25px
+    display: flex
+    flex-wrap: wrap
+    align-items: flex-end
+    font-size: 36px
+    min-height: 200px
+    font-weight: bold
+    background-size: cover
+    background-position: center center
+    margin: 20px 0
+    color: white
+    @media screen and (max-width: $break-medium)
+      font-size: 18px
+      min-height: 120px
+      padding: 12px
+    &:hover
+      border: 3px solid #f1e73c
+    .subtitle
+      font-family: robotoRegular
+      color: #f1e73c
+      width: 100%
+      margin-bottom: -55px
+      @media screen and (max-width: $break-medium)
+        margin-bottom: -36px
+  .classroom
+    cursor: pointer
+    background-image: url(asset_path('inn-mid-banner-1.png'))
+  .online
+    cursor: pointer
+    background-image: url(asset_path('inn-mid-banner.png'))
+  hr
+    color: gainsboro
+    padding: 0
+    margin: 20px 0
+  #partner-logos-container
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    align-items: center
+    .partner-logo
+      width: 20%
+      @media screen and (max-width: $break-medium)
+        width: 30%
+
+  #online-content
+    display: none
+    #modules
+      .module
+        background-image: url(asset_path('inn-s-inphographics.png'))
+        background-size: 100%
+        padding: 50px 55px 20px 68px
+        min-height: 237px
+        background-repeat: no-repeat
+        @media screen and (max-width: $break-medium)
+          margin-bottom: 25px
+          background-size: auto 55vw
+          background-position: center center
+          padding: 50px 30px 20px 70px
+          display: flex
+          flex-wrap: wrap
+          justify-content: center
+          align-items: center
+          font-size: 13px
+        ul
+          padding-right: 18px
+          @media screen and (max-width: $break-medium)
+            padding-right: 38px
+        .plus-width
+          @media screen and (max-width: $break-medium)
+            width: 120%
+    #experts-title
+      height: 65px
+      margin-top: 28px
+      display: flex
+      align-items: center
+      justify-content: center
+      font-size: 30px
+      letter-spacing: 10px
+      @media screen and (max-width: $break-medium)
+        font-size: 18px
+        text-align: center
+        margin-top: 0
+    #experts
+      margin-bottom: 40px
+      .left-col
+        .expert
+          margin-top: 8px
+          @media screen and (max-width: $break-medium)
+            display: flex
+            margin-top: 20px
+          .expert-main-info
+            color: #1d9c35
+          .expert-photo
+            background-image: url(asset_path('inn-experts-sprite-1.png'))
+            background-size: cover
+            width: 100px
+            min-height: 90px
+          .ep0
+            background-position: 0 0
+          .ep1
+            background-position: 0 -100px
+          .ep2
+            background-position: 0 -188px
+          .ep3
+            background-position: 0 -275px
+          .ep4
+            background-position: 0 -366px
+          .ep5
+            background-position: 0 -462px
+      .right-col
+        .expert
+          margin-top: 8px
+          @media screen and (max-width: $break-medium)
+            display: flex
+            margin-top: 20px
+          .expert-main-info
+            color: #1d9c35
+          .expert-photo
+            background-image: url(asset_path('inn-experts-sprite-2.png'))
+            background-size: cover
+            width: 100px
+            min-height: 90px
+          .ep0
+            background-position: 0 4px
+          .ep1
+            background-position: 0 -81px
+          .ep2
+            background-position: 0 -168px
+          .ep3
+            background-position: 0 -255px
+          .ep4
+            background-position: 0 -350px
+  #classroom-content
+    display: none
+    #modules-2
+      .module-b
+        background-image: url(asset_path('inn-s-inphographics-1.png'))
+        background-size: cover
+        padding: 0 50px
+        min-height: 145px
+        color: #f4e938
+        display: flex
+        align-items: center
+        background-repeat: no-repeat
+        @media screen and (max-width: $break-medium)
+          margin-bottom: 25px
+          background-size: auto 34vw
+          background-position: center center
+          display: flex
+          flex-wrap: wrap
+          justify-content: center
+          align-items: center
+          padding: 0 60px
+    .tuttors
+      margin-bottom: 40px
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      .t4
+        width: 500px !important
+        margin-top: 30px
+      .tuttor
+        width: 400px
+        margin-bottom: 15px
+        @media screen and (max-width: $break-medium)
+          display: flex
+          margin-top: 8px
+          padding: 0 15px
+        .tuttor-names
+        .tuttor-country
+          color: #68c4cb
+        .tuttor-photo
+          background-image: url(asset_path('inn-tuttors-sprite-1.png'))
+          background-size: cover
+          width: 120px
+          min-height: 90px
+          background-repeat: no-repeat
+        .tp0
+          background-image: url(asset_path('inn-tuttor-a.png'))
+        .tp1
+          background-image: url(asset_path('inn-tuttor-c.png'))
+          background-position: 0 -4px
+        .tp2
+          background-image: url(asset_path('inn-tuttor-d.png'))
+          background-position: 0 4px
+        .tp3
+          background-image: url(asset_path('inn-tuttor-b.png'))
+        .tp4
+          background-image: url(asset_path('inn-tuttor-e.png'))
+          background-position: 0 4px
+    #feeling
+      img
+        width: 100%
+
+
+
+
+
+

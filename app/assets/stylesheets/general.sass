@@ -1,4 +1,6 @@
 @import './variables'
+body
+  overflow: hidden
 .spacer-mid
   height: 20px
 .spacer-big
@@ -15,11 +17,9 @@
   margin-bottom: 0 !important
   overflow-x: hidden
   overflow-y: visible
-  width: 100vw
 .admin-search-form
   background: gainsboro
   border-radius: 7px
-  margin-top: 24px
 .interest-banner
   height: 150px
   font-size: 34px
@@ -60,3 +60,29 @@
 .hide-on-mobile
   @media screen and (max-width: $break-medium)
     display: none
+.hidden
+  display: none
+#flash-messages-container
+  position: absolute
+  right: 15px
+  top: 20px
+  background-color: rgba(78, 55, 55, 0.7)
+  z-index: 3
+  @media screen and (max-width: $break-medium)
+    top: 12px
+    right: 12px
+  .alert
+    margin-bottom: 0
+    font-family: RobotoRegular
+    color: white
+    font-size: 16px
+    border-radius: 0
+  .alert-success
+    background-color: #96d87b
+.center-flex
+  display: flex
+  justify-content: center
+  align-content: center
+.stop-scrolling
+  height: 100%
+  overflow: hidden

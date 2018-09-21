@@ -330,6 +330,10 @@ es:
       "true": Anónima
     new:
       create: Crear
+    partials:
+      unactive_poll_banner:
+        hide_poll?: "¿Seguro que quieres ocultar la propuesta al público?"
+        publish_poll?: "¿Seguro que quieres aprobar la propuesta para su publicación?"
     poll:
       blank: En blanco
       confirmation: ¿Está seguro de borrar la propuesta?
@@ -397,6 +401,11 @@ es:
   actualizacion_exitosa: "Actualización exitosa."
   tags_menu: Temas
   admin: Menú administración
+  admin:
+    polls:
+      poll:
+        hide_poll?: "¿Seguro que quieres ocultar la propuesta al público?"
+        publish_poll?: "¿Seguro que quieres aprobar la propuesta para su publicación?"
   admin_invalid: Comunicate con la administración de seamos
   cedula_invalida: Lo sentimos esta cédula no es válida
   confirmar: Favor confirmar la operación
@@ -414,8 +423,7 @@ es:
   tags:
     name: El nombre del tema
     edit: Editar
-    tag_list:
-      confirmation: ¿Esta seguro de borrar la tema?
+    confirmation: ¿Esta seguro de borrar el tema?
     new:
       available_tags: Temas disponibles
     form:
@@ -424,7 +432,7 @@ es:
       tag_color: Color del tema
       tag_name: Nombre del Tema
       has_image: El tema ya tiene la imagen %{filename}. Si desea cambiarla, por favor escoja otra. En caso contrario deje el campo vacío.
-  :tags_creados: "%{created} creadas con éxito"
+  :tags_creados: "%{created} creados con éxito"
   tipo_de_documento:
     cedula: Cédula
     cedula_extranjeria: Cédula de extranjería

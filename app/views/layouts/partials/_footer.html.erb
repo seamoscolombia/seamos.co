@@ -1,0 +1,56 @@
+<% if session[:session_type] == nil %>
+  <div id="client-footer">
+    <div class="hide-on-desktop-terms">
+      <%= link_to terms_path do %>
+        <span id="who-text-mobile"> TÉRMINOS Y CONDICIONES </span>
+      <% end %>
+      <br>
+      <br>
+      <a href="#/transparency">
+        <span class="who-text"> TRANSPARENCIA </span>
+      </a>
+      <br>
+      <br>
+      <%= link_to user_session_path, class: 'hide-on-desktop' do %>
+        <span class="who-text"> ingreso concejales </span>
+      <% end %>
+    </div>
+    <div class="logo-container">
+      <div class="logo-background">
+        <div class="logo">
+          <br>
+          <br>
+        </div>
+        <%= link_to terms_path do %>
+          <span class="who-text"> TÉRMINOS Y CONDICIONES </span>
+        <% end %>
+        <br>
+        <br>
+        <a href="#/">
+          <span class="who-text"> TRANSPARENCIA </span>
+        </a>
+        <div id="who-are-we">
+          <span id="footer-social-icons-container">
+            <a class="footer-social-icon" href="https://www.facebook.com/seamoscolombia/" target="_blank" rel="noopener noreferrer">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a class="footer-social-icon" href="https://twitter.com/seamos" target="_blank" rel="noopener noreferrer">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a class="footer-social-icon" href="https://www.instagram.com/seamoscolombia/" target="_blank" rel="noopener noreferrer">
+              <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a>
+            <a class="footer-social-icon" href="https://www.youtube.com/channel/UCC8EUjRTWhzELH3_iypQQ8w" target="_blank" rel="noopener noreferrer">
+              <i class="fa fa-youtube" aria-hidden="true"></i>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="disclaimer-container">
+      <%= link_to "ingreso concejales", user_session_path, class: 'hide-on-mobile' %>
+      <br>
+      <span class="disclaimer">Copyright 2017 SeamOS Democracia Digital</span>
+    </div>
+  </div>
+<% end %>

@@ -1,57 +1,41 @@
 class VotesController < ApplicationController
-  include SessionsHelper
-  before_action :validate_session, except: :check_vote
-  before_action :set_poll, except: :check_vote
+  before_action :validate_session
+  before_action :set_poll
+  before_action :set_vote_type
 
   def create
-    vote(http_params)
-    render json: { message: "vote registered" }, status: :ok
-  end
-
-  def check_vote
-    vote_exists = Vote.where('poll_id = ? AND user_id = ?',
-                             params[:poll_id],
-                             params[:user_id]).first.present?
-    render json: {
-      already_voted: vote_exists
-    }, status: :ok
+    return true if @poll.voted_by_user?(current_user.id)
+    vote = Vote.new( poll: @poll, vote_type: @vote_type, user: current_user)
+    if vote.save
+      flash[:success] = "Tu voto ha sido registrado con éxito"
+      redirect_to :back
+    else
+      flash[:danger] = "Tu voto no pudo ser registrado, intenta nuevamente mas tarde"
+      redirect_to root_path
+    end
   end
 
   private
 
   def set_poll
-    @poll = VoteType.find_by(id: http_params).poll
-    if @poll.nil?
+    @poll = Poll.find_by(id: params[:poll_id])
+    unless @poll
       flash[:danger] = t('.poll_does_not_exist')
-      redirect_to polls_path
+      redirect_to root_path
     end
   end
 
-  def vote(code)
-    vote_type = nil
-    @poll.transaction do
-      vote_type = VoteType.find_by(id: code)
-      vote = current_user.votes.build(
-        poll_id: @poll.id,
-        vote_type: vote_type
-      )
-      return true if user_already_voted?(current_user, @poll)
-      vote.save
+  def set_vote_type
+    ensure_valid_vote_type
+    @vote_type = @poll.vote_types.where(name: params[:vote]).first_or_create do |vote|
+      vote.name = params[:vote]
     end
-  rescue ActiveRecord::RecordInvalid
-    error_msg = "#{I18n.t(:accion_no_realizada)} "
-    error_msg += vote.errors.messages[:base].join(' ') unless vote.errors.messages[:base].nil?
-    Rails.logger.debug(error_msg)
-    flash[:danger] = " #{error_msg}"
-    redirect_to polls_path
   end
 
-  def http_params
-    params[:vote][:vote_type_id].to_i
+  def ensure_valid_vote_type
+    unless params[:vote] == 'SI' || params[:vote] == 'NO'
+      flash[:error] = "Tipo de voto no válido"
+      redirect_to root_path
+    end
   end
-
-  def user_already_voted?(user, poll)
-    Vote.where('user_id = ? AND poll_id = ?', user.id, poll.id).present?
-  end
-
 end

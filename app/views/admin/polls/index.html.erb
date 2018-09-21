@@ -1,0 +1,27 @@
+<div id="polls-index" class='container'>
+  <br><br>
+  <div class="row">
+    <div class="col-md-3 admin-search-form">
+      <%= label_tag "Filtros" %>
+      <%= form_tag({controller: "admin/polls", action: "index"}, method: "get") do %>
+      <%= select_tag(:status, options_for_select({'Todas': "all", 'En votación': "open", 'Cerradas': "closed", 'Sin publicar': "inactive"}, params[:status] ), {class: "form-control"}) %>
+      <%= text_field_tag :search_term, params[:search_term], class: 'form-control', placeholder: 'Búsqueda por Título' %>
+      <%= submit_tag 'Filtrar', class: 'form-control btn-info' %>
+      <% end %>
+    </div>
+    <div class="col-md-9">
+      <% if @polls.length > 0 %>
+      <%= render @polls%>
+      <% else %>
+      <div>
+        <h2> No hay resultados </h2>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-md-12">
+      <h2>
+        <%= paginate @polls %>
+      </h2>
+    </div>
+  </div>
+</div>

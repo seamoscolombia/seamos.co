@@ -1,6 +1,8 @@
 @import './variables.scss'
 #politician-profile
   $picture-size: 160px
+  @media screen and (min-width: $break-medium)
+    margin-bottom: -70px
   .hide-on-desktop
     display: none
     @media screen and (max-width: $break-medium)
@@ -79,10 +81,11 @@
         .picture-wrapper
           max-width: $picture-size
           max-height: $picture-size
+          display: flex
+          justify-content: center
           border-radius: 50%
           overflow: hidden
           img
-            width: $picture-size
             height: $picture-size
     .mid
       td
@@ -154,13 +157,13 @@
         background-image: url(asset_path('localities.png'))
       .without-image
         font-family: "RobotoBold"
-        height: 50px
+        padding: 15px 0
         display: flex
         align-items: center
         min-height: 62px
         font-size: 20px
         justify-content: flex-start
-        color: #3d5062
+        color: #44434c
       h2
         @media screen and (max-width: $break-medium)
           text-align: center
@@ -182,3 +185,10 @@
         @media screen and (max-width: $break-medium)
           margin: auto
           margin-bottom: 35px
+  .politician-bio-wrapper
+    text-align: justify
+    p
+      text-align: justify
+    #politician-bio
+      text-align: justify
+

@@ -1,0 +1,35 @@
+<%= form_for [:admin, @tag] do |f| %>
+  <%= render 'shared/mensajes_de_error',  object: f.object %>
+  <div class="field">
+    <%= f.label "Nombre" %>
+    <%= f.text_field :name, class: 'form-control',  autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label "Color" %>
+    <%= f.text_field :tag_color, class: 'form-control', placeholder: 'código de color hexadecimal, ejemplo: #F72222' %>
+  </div>
+  <div class="field">
+    <%= f.label "Imagen Para el banner del tema" %>
+    <% if tag.tag_image.file %>
+      <p class="has_media">
+        <%= t('.has_image', filename: tag.tag_image.file.filename) %>
+      </p>
+    <% end %>
+    <%= f.file_field :tag_image %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "Ícono del tema" %>
+    <% if tag.thumbnail.present? %>
+      <p class="has_media">
+        <%= t('.has_image', filename: tag.thumbnail.file.filename) %>
+      </p>
+    <% end %>
+    <%= f.file_field :thumbnail %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit("Guardar", data: {disable_with: I18n.t(:processing)}, class: "btn btn-primary") %>
+  </div>
+<% end %>
+<br><hr>
