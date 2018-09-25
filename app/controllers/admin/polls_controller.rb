@@ -1,8 +1,8 @@
 class Admin::PollsController < ApplicationController
   before_action :validate_admin_or_politician, only: [:index, :edit, :update]
-  before_action :validate_politician, except: [:index, :edit, :update, :toggle_active_flag]
-  before_action :validate_superadmin, only: [:toggle_active_flag]
-  before_action :set_poll, only: %i(edit update destroy toggle_active_flag)
+  before_action :validate_politician, except: [:index, :edit, :update, :toggle_active_flag, :one_day_away_from_first_debate_notification, :one_day_away_from_second_debate_notification]
+  before_action :validate_superadmin, only: [:toggle_active_flag, :one_day_away_from_first_debate_notification, :one_day_away_from_second_debate_notification]
+  before_action :set_poll, only: %i(edit update destroy toggle_active_flag one_day_away_from_first_debate_notification one_day_away_from_second_debate_notification)
   before_action :bind_links, only: %i(create update)
   before_action :set_tags, only: %i(create update)
 
@@ -25,8 +25,11 @@ class Admin::PollsController < ApplicationController
       if @poll.state == "Radica concejal"
         notify_poll_settled
         @poll.specs['poll_settled_notification_sent'] = true
-        @poll.save
+      elsif @poll.state == "Primer debate"
+        notify_first_debate_scheduled
+        @poll.specs['first_debate_sheduled_notification_sent'] = true
       end
+      @poll.save
       redirect_to admin_polls_path
     else
       render :edit
@@ -64,7 +67,7 @@ class Admin::PollsController < ApplicationController
       flash[:success] = "propuesta publicada!"
       notify_users_about_new_poll
       schedule_voting_reminder
-      schedule_voting_closed_notification
+      schedule_voting_closed_notification unless @poll.closed?
       @poll.specs['new_poll_mail_sent'] = true
       @poll.specs['voting_reminder_sent'] = true
       @poll.specs['voting_closed_notification_sent'] = true
@@ -74,6 +77,32 @@ class Admin::PollsController < ApplicationController
     else
       flash[:error] = "La propuesta no pudo ser actualizada, intente nuevamente"
     end
+    redirect_to :back
+  end
+
+  def one_day_away_from_first_debate_notification
+    return if @poll.specs['one_day_left_for_first_debate_notification_sent'] == true
+    set_random_polls
+    receivers = @poll.votes.map(&:user).uniq
+    receivers.each do |receiver|
+      UserNotifierMailer.one_day_away_from_first_debate(@poll, receiver, @random_polls).deliver_now
+    end
+    flash[:success] = "Notificación enviada: A un día del primer debate"
+    @poll.specs['one_day_left_for_first_debate_notification_sent'] = true
+    @poll.save
+    redirect_to :back
+  end
+
+  def one_day_away_from_second_debate_notification
+    return if @poll.specs['one_day_left_for_second_debate_notification_sent'] == true
+    set_random_polls
+    receivers = @poll.votes.map(&:user).uniq
+    receivers.each do |receiver|
+      UserNotifierMailer.one_day_away_from_second_debate(@poll, receiver, @random_polls).deliver_now
+    end
+    flash[:success] = "Notificación enviada: A un día del primer debate"
+    @poll.specs['one_day_left_for_second_debate_notification_sent'] = true
+    @poll.save
     redirect_to :back
   end
 
@@ -123,6 +152,15 @@ class Admin::PollsController < ApplicationController
       receivers = @poll.votes.map(&:user).uniq
       receivers.each do |receiver|
         UserNotifierMailer.poll_settled_mail(@poll, receiver, @random_polls).deliver_now
+      end
+    end
+
+    def notify_first_debate_scheduled
+      return if @poll.specs['first_debate_sheduled_notification_sent'] == true
+      set_random_polls
+      receivers = @poll.votes.map(&:user).uniq
+      receivers.each do |receiver|
+        UserNotifierMailer.first_debate_scheduled(@poll, receiver, @random_polls).deliver_now
       end
     end
 

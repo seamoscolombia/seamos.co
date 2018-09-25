@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :tags
     resources :polls, except: [:show] do
       patch 'toggle_active_flag'
+      post 'one_day_away_from_first_debate_notification'
+      post 'one_day_away_from_second_debate_notification'
     end
     resources :users, only: [:index, :edit, :update, :destroy] do
       collection do
@@ -72,6 +74,4 @@ Rails.application.routes.draw do
   get 'settings/unsubscribe'
   get 'settings/successfully_unsubscribed'
   patch 'settings/update'
-
-  # mount ActionCable.server => '/cable'
 end

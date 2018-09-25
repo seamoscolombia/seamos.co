@@ -1,3 +1,4 @@
+<%= render partial: 'layouts/modals/admin_to_users_mail_notifications_modal', locals: {poll: poll} %>
 <div class="row">
   <div class="col-md-12 admin-poll">
     <div class="row">
@@ -46,7 +47,9 @@
             <li> <%= link_to "Eliminar propuesta", admin_poll_path(poll.id), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></li>
             <% if current_user && current_user.administrador? %>
               <li>|</li>
-              <li>  <%= link_to  (poll.active? ? "Ocultar propuesta" : "Publicar propuesta") , admin_poll_toggle_active_flag_path(poll), method: :patch, data: {confirm: poll.active? ? t(".hide_poll?") : t(".publish_poll?")}, class: 'btn btn-info' %></li>
+              <li><%= link_to  (poll.active? ? "Ocultar propuesta" : "Publicar propuesta") , admin_poll_toggle_active_flag_path(poll), method: :patch, data: {confirm: poll.active? ? t(".hide_poll?") : t(".publish_poll?")}, class: 'btn btn-info' %></li>
+              <li>|</li>
+              <button class='btn btn-warning show-notifications-modal' poll_id="<%=poll.id%>">Notificaciones</button>
             <% end %>
           <% end %>
           <br>
@@ -74,3 +77,11 @@
   </div>
 </div>
 <hr>
+<script type="text/javascript">
+  $(window).on('load',function(){
+    $(".show-notifications-modal").on('click', function(event){
+      target = "#admin-notifications-modal-" + $(event.target).attr('poll_id')
+      $(target).modal('show');
+    });
+  });
+</script>

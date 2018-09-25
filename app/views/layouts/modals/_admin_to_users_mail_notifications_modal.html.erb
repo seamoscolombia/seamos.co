@@ -1,0 +1,21 @@
+<!-- Modal -->
+<div class="modal fade" id="admin-notifications-modal-<%=poll.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"> Envío de notificaciones por correo electrónico </h5>
+      </div>
+      <div class="modal-body">
+        <p>
+          Recuerde que estas notificaciones sólo deben ser enviadas en una unica ocasión,
+          una vez enviada la notificación el botón quedará deshabilitado.
+        </p>
+        <%= button_to "Notificar que estamos a un día del primer debate", admin_poll_one_day_away_from_first_debate_notification_path(poll.id), class: "btn btn-info", method: :post, data: {confirm: 'seguro camarada?'}, :disabled =>  poll.specs['one_day_left_for_first_debate_notification_sent'] %>
+        <div class='spacer-small'> </div>
+        <%= button_to "Notificar que estamos a un día del segundo debate", admin_poll_one_day_away_from_second_debate_notification_path(poll.id), class: "btn btn-info", method: :post, data: {confirm: 'seguro camarada?'}, :disabled =>  poll.specs['one_day_left_for_second_debate_notification_sent'] %>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
