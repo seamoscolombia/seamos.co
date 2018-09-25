@@ -1,0 +1,21 @@
+development:
+    adapter: postgresql
+    database: development_seamos
+    encoding: utf8
+    username: root
+    password:
+    host: localhost
+test: &test
+    adapter: postgresql
+    database: test_seamos
+    encoding: utf8
+    username: root
+    password:
+    host: localhost
+production:
+    adapter: postgresql
+    database: production_seamos
+    encoding: utf8
+    username: root
+    password:
+    host: localhost
