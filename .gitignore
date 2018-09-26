@@ -53,5 +53,5 @@ bcrypt
 
 /config/application.yml
 
-config/secrets.yml
+/config/secrets.yml
 seamos.komodoproject
