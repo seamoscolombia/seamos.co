@@ -17,6 +17,14 @@
           </span>
           <div class="diffuse"></div>
         </div>
+        <% if rendering_at_mail %>
+          <div class="poll-summary">
+            <span>
+              <%= poll.summary %>
+            </span>
+            <div class="s-diffuse"></div>
+          </div>
+        <% end %>
         <div class="poll-infos-container">
           <div class="poll-details">
             <div class="poll-tag-name" style="width: <%= poll.closed? ? '50%' : '65%' %>;">

@@ -66,7 +66,7 @@ class Admin::PollsController < ApplicationController
     if @poll.save && @poll.active?
       flash[:success] = "propuesta publicada!"
       notify_users_about_new_poll
-      schedule_voting_reminder
+      schedule_voting_reminder unless @poll.closed?
       schedule_voting_closed_notification unless @poll.closed?
       @poll.specs['new_poll_mail_sent'] = true
       @poll.specs['voting_reminder_sent'] = true
