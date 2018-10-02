@@ -162,6 +162,11 @@ class Poll < ApplicationRecord
     tags.first.tag_color if tags.present?
   end
 
+  def clear_specs
+    specs.each {|spec| specs[spec.first] = nil }
+    save
+  end
+
   private
 
   def closing_date_validation

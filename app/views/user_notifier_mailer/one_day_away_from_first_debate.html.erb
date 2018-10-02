@@ -6,7 +6,7 @@
   <p>
     Tu participación incide en la decisiones del Concejo.
     <br><br>
-    Hace unos días respondiste a la pregunta <strong> <%= link_to @poll.title, poll_url(@poll) %> </strong>, de acuerdo al resultado de la votación El/La Concejal <strong> <%= @poll.author_names %> </strong> presentó un proyecto de acuerdo y mañana se hará el primer debate.
+    Hace unos días respondiste a la pregunta <strong> <%= link_to @poll.title, poll_url(@poll) %> </strong>, de acuerdo al resultado de la votación el/la Concejal <strong> <%= @poll.author_names %> </strong> presentó <%= @poll_type == 1 ? 'un proyecto de acuerdo y mañana se hará el primer debate' : 'una proposición de control político y mañana se llevará a cabo el debate' %>.
     <br><br>
     Te invitamos a hacerle seguimiento al desarrollo de esta propuesta en el Concejo en <strong> <%= link_to 'SeamOS.co', poll_url(@poll) %> </strong> y en nuestras redes [Link FB, Twitter, Instagram].
     <br><br>

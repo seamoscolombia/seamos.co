@@ -6,7 +6,7 @@
   <p>
     Tu participación incidió en la decisiones del Concejo.
     <br><br>
-    Gracias a tu participación, y de acuerdo al resultado de la votación, El/La Concejal <strong> <%= @poll.author_names %> </strong> radicó un proyecto de acuerdo.
+    Gracias a tu participación, y de acuerdo al resultado de la votación, El/La Concejal <strong> <%= @poll.author_names %> </strong> <%= @poll_type == 1 ? 'radicó un proyecto de acuerdo' : 'radicó una proposición de control político' %>.
     Te invitamos a hacerle seguimiento al desarrollo de <strong> <%= link_to 'esta propuesta', poll_url(@poll) %> </strong>, en caso de ser agendado el debate en el Concejo, puedes hacerlo en <strong> <%= link_to 'SeamOS.co', poll_url(@poll) %> </strong> y en nuestras redes [Link FB, Twitter, Instagram].
     <br><br>
     La política está en tus manos, SeamOS Democracia Digital.

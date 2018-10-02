@@ -10,9 +10,11 @@
           Recuerde que estas notificaciones sólo deben ser enviadas en una unica ocasión,
           una vez enviada la notificación el botón quedará deshabilitado.
         </p>
-        <%= button_to "Notificar que estamos a un día del primer debate", admin_poll_one_day_away_from_first_debate_notification_path(poll.id), class: "btn btn-info", method: :post, data: {confirm: 'seguro camarada?'}, :disabled =>  poll.specs['one_day_left_for_first_debate_notification_sent'] %>
+        <%= button_to (Poll.poll_types[poll.poll_type] == 1 ? "Notificar que estamos a un día del primer debate" : "Notificar que estamos a un día del debate"), admin_poll_one_day_away_from_first_debate_notification_path(poll.id), class: "btn btn-info", method: :post, data: {confirm: 'seguro camarada?'}, :disabled =>  poll.specs['one_day_left_for_first_debate_notification_sent'] %>
         <div class='spacer-small'> </div>
-        <%= button_to "Notificar que estamos a un día del segundo debate", admin_poll_one_day_away_from_second_debate_notification_path(poll.id), class: "btn btn-info", method: :post, data: {confirm: 'seguro camarada?'}, :disabled =>  poll.specs['one_day_left_for_second_debate_notification_sent'] %>
+        <% if Poll.poll_types[poll.poll_type] == 1 %>
+          <%= button_to "Notificar que estamos a un día del segundo debate", admin_poll_one_day_away_from_second_debate_notification_path(poll.id), class: "btn btn-info", method: :post, data: {confirm: 'seguro camarada?'}, :disabled =>  poll.specs['one_day_left_for_second_debate_notification_sent'] %>
+        <% end %>
       </div>
       <div class="modal-footer">
       </div>

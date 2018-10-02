@@ -28,6 +28,15 @@ class Admin::PollsController < ApplicationController
       elsif @poll.state == "Primer debate"
         notify_first_debate_scheduled
         @poll.specs['first_debate_sheduled_notification_sent'] = true
+      elsif @poll.state == "Segundo debate" && Poll.poll_types[@poll.poll_type] == 1
+        notify_second_debate_scheduled
+        @poll.specs['second_debate_sheduled_notification_sent'] = true
+      elsif @poll.state == "Sanción del proyecto de acuerdo" && Poll.poll_types[@poll.poll_type] == 0
+        notify_motion_of_censure
+        @poll.specs['motion_of_censure_notification_sent'] = true
+      elsif @poll.state == "Sanción del proyecto de acuerdo" && Poll.poll_types[@poll.poll_type] == 1
+        notify_agreemen_sanction
+        @poll.specs['agreement_sanction_notification_sent'] = true
       end
       @poll.save
       redirect_to admin_polls_path
@@ -161,6 +170,33 @@ class Admin::PollsController < ApplicationController
       receivers = @poll.votes.map(&:user).uniq
       receivers.each do |receiver|
         UserNotifierMailer.first_debate_scheduled(@poll, receiver, @random_polls).deliver_now
+      end
+    end
+
+    def notify_second_debate_scheduled
+      return if @poll.specs['second_debate_sheduled_notification_sent'] == true
+      set_random_polls
+      receivers = @poll.votes.map(&:user).uniq
+      receivers.each do |receiver|
+        UserNotifierMailer.second_debate_scheduled(@poll, receiver, @random_polls).deliver_now
+      end
+    end
+
+    def notify_motion_of_censure
+      return if @poll.specs['motion_of_censure_notification_sent'] == true
+      set_random_polls
+      receivers = @poll.votes.map(&:user).uniq
+      receivers.each do |receiver|
+        UserNotifierMailer.motion_of_censure(@poll, receiver, @random_polls).deliver_now
+      end
+    end
+
+    def notify_agreemen_sanction
+      return if @poll.specs['agreement_sanction_notification_sent'] == true
+      set_random_polls
+      receivers = @poll.votes.map(&:user).uniq
+      receivers.each do |receiver|
+        UserNotifierMailer.agreement_sanction(@poll, receiver, @random_polls).deliver_now
       end
     end
 

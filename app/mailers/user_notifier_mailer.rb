@@ -31,6 +31,7 @@ class UserNotifierMailer < ApplicationMailer
     @random_polls = related_polls
     @user = recipient
     @poll = poll
+    @poll_type = Poll.poll_types[poll.poll_type]
     subject = "¡Tu voto ha incidido! El/La Concejal #{@poll.author_names} ha radicado proyecto por el que votaste."
     mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
   end
@@ -49,6 +50,7 @@ class UserNotifierMailer < ApplicationMailer
     @random_polls = related_polls
     @user = recipient
     @poll = poll
+    @poll_type = Poll.poll_types[poll.poll_type]
     subject = "¡Seguimos avanzando! El proyecto en el que votaste ha avanzado un paso más"
     mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
   end
@@ -67,7 +69,8 @@ class UserNotifierMailer < ApplicationMailer
     @random_polls = related_polls
     @user = recipient
     @poll = poll
-    subject = "Mañana se debate en el Concejo la propuesta en la que participaste"
+    @poll_type = Poll.poll_types[poll.poll_type]
+    subject = (@poll_type == 1 ? "Mañana se debate en el Concejo la propuesta en la que participaste" : "Mañana se llevará a cabo el debate de control político en el Concejo de la propuesta en la que participaste")
     mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
   end
 
@@ -86,6 +89,7 @@ class UserNotifierMailer < ApplicationMailer
     @user = recipient
     @poll = poll
     @vote_count = vote_count
+    @poll_type = Poll.poll_types[poll.poll_type]
     subject = "Tu voto cuenta y los bogotanos respondieron la pregunta:  #{@poll.title}"
     mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
   end
@@ -96,6 +100,15 @@ class UserNotifierMailer < ApplicationMailer
     @user = recipient
     @poll = poll
     subject = "¡Lo logramos! La propuesta en la que votaste se convirtió en un Acuerdo Distrital"
+    mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
+  end
+
+  def motion_of_censure(poll, recipient, related_polls)
+    @sender = 'contacto@seamos.co'
+    @random_polls = related_polls
+    @user = recipient
+    @poll = poll
+    subject = "El control político funcionó, hay moción de censura"
     mail( from: "SeamOS Democracia Digital <#{@sender}>", to: @user.email, subject: subject)
   end
 end
