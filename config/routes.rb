@@ -34,7 +34,6 @@ Rails.application.routes.draw do
     post 'interests', to: 'interests#association', format: 'json'
   end
 
-  get '/auth/:provider/callback', to: 'sessions#create'
   get '/check_session', to: 'sessions#show', format: 'json'
   delete '/sessions', to: 'sessions#destroy', as: 'session'
   delete '/destroy_facebook_session', to: 'sessions#destroy_facebook_session'

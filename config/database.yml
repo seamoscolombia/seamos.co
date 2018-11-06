@@ -1,4 +1,7 @@
 default: &default
+  host: localhost
+  pool: 5
+  timeout: 5000
 
 development:
   adapter: postgresql
@@ -13,13 +16,17 @@ test:
   database: test_seamos
 
 production:
-    adapter: postgresql
-    encoding: unicode
-    database: <%= ENV['DATABASE_URL'] %>
-    password: <%= ENV['MYSQL_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  port: 5432
+  host: localhost
+  database: <%= ENV['DATABASE_URL'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 staging:
-    adapter: postgresql
-    encoding: unicode
-    database: <%= ENV['DATABASE_URL'] %>
-    password: <%= ENV['MYSQL_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  port: 5432
+  host: localhost
+  database: <%= ENV['DATABASE_URL'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
