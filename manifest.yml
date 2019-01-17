@@ -1,8 +1,8 @@
 ---
 applications:
-- name: staging-seamos
+- name: seamosproduction
   buildpack:  https://github.com/cloudfoundry/ruby-buildpack.git
   instances: 1
   random-route: false
-  memory: 512M
+  memory: 2560M
   command: rake db:migrate && bin/rails server -p $PORT -e $RAILS_ENV
