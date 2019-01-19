@@ -14,4 +14,7 @@ class PagesController < ApplicationController
 
   def digital_era
   end
+
+  def maping
+  end
 end
