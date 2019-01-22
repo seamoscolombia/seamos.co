@@ -16,10 +16,9 @@
   #image-buttons-container
     text-align: left
     @media screen and (max-width: $break-medium)
-      margin-bottom: 30px
+      margin-bottom: 0px
     .image-button
       padding: 10px
-      cursor: pointer
       background-size: cover
       margin: 0px
       background-size: 98%
@@ -28,47 +27,65 @@
       display: flex
       align-items: center
       background-position: center center
+      @media screen and (max-width: $break-medium)
+        background-size: 100%
+        margin-bottom: 15px
       &:hover
         background-image: none
         background-color: #f39c52
         text-decoration: none
-        p
+        color: black
+        display: table-footer-group
+        padding: 25px
+        width: 49%
+        // transition: 0.5s
+        .text-container
           display: block
-        .title
-          display: block
-      .title
-        font-size: 20px
-        font-weight: bold
-        margin-bottom: 5px
-        position: absolute
+          position: absolute
+          top: 0
+          left: 0
+          padding: 25px
+          background-color: #f39c52
+          pointer-events: all
+        img
+          @media screen and (max-width: $break-medium)
+            display: none
+      .text-container
         display: none
-        top: 30px
-        left: 25px
+        pointer-events: none
+        position: absolute
         @media screen and (max-width: $break-medium)
-          padding: 10px 40px
-      p
-        position: absolute
-        left: 25px
-        text-align: justify
-        width: 91%
-        display: none
+          position: relative !important
+          padding: 25px
+          font-size: 14px
+          border-bottom: 15px solid white
+        .title
+          font-size: 20px
+          font-weight: bold
+          margin-bottom: 5px
+          top: 30px
+          left: 25px
+          @media screen and (max-width: $break-medium)
+        p
+          left: 25px
+          text-align: justify
       img
-        width: 100%
+        width: 98%
         visibility: hidden
     .one
       background-image: url(asset_path('maping-1.png'))
     .two
       background-image: url(asset_path('maping-2.png'))
     .three
-      background-image: url(asset_path('maping-4.png'))
+      background-image: url(asset_path('maping-3.png'))
     .four
       background-image: url(asset_path('maping-4.png'))
-  #button-wrapper
+  #doc-button-wrapper
     text-align: center
     margin-top: 30px
     @media screen and (max-width: $break-medium)
       margin-bottom: 30px
-    #button
+    #doc-button
       text-align: center
       width: 100%
       background-color: #25387c
@@ -78,43 +95,14 @@
       margin-top: 57px
       letter-spacing: 4px
       @media screen and (max-width: $break-medium)
-        padding: 10px 40px
+        padding: 10px 10px
+        font-size: 12px
+        letter-spacing: 2px
       &:hover
         background-color: #a14a3d
         text-decoration: none
       &:visited
         text-decoration: none
-  .big-info
-    display: none
-    padding: 40px 20px
-    position: relative
-    .title
-      font-weight: bold
-      margin-bottom: 15px
-    .ex
-      position: absolute
-      right: 8px
-      top: 0
-      background-color: #25387b
-      width: 29px
-      text-align: center
-      color: white
-      padding: 5px
-      cursor: pointer
-  .one
-    background-color: #eaeaea
-  .two
-    background-color: #f1ea2c
-  .three
-    background-color: #e0b20c
-  .four
-    background-color: #df8008
-  .five
-    background-color: #b4b914
-  .six
-    background-color: #e4295d
-  .seven
-    background-color: #24af85
-  .eight
-    background-color: #61beb3
-
+  p
+    font-size: 15px
+    line-height: 22px
