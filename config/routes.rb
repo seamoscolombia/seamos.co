@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/politicians', to: 'pages#politicians'
   get '/terms', to: 'pages#terms'
   get '/diplomado-innovacion-politica', to: 'pages#diplomat'
+  get '/partidos-politicos-en-la-era-digital', to: 'pages#digital_era', as: 'digital_era'
+  get '/mapeo-de-infraestructuras-civicas', to: 'pages#maping', as: 'maping'
 
   namespace :admin do
     resources :tags
