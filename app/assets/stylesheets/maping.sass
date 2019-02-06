@@ -27,6 +27,7 @@
       display: flex
       align-items: center
       background-position: center center
+      padding: 0
       @media screen and (max-width: $break-medium)
         background-size: 100%
         margin-bottom: 15px
@@ -36,24 +37,43 @@
         text-decoration: none
         color: black
         display: table-footer-group
-        padding: 25px
+        padding: 0
         width: 49%
-        // transition: 0.5s
+        transition: width 0.5s
         .text-container
           display: block
-          position: absolute
+          position: relative
           top: 0
           left: 0
           padding: 25px
           background-color: #f39c52
           pointer-events: all
+          min-height: 392px
+          border-bottom: 10px solid white
+          left: 0px
+          border-left: 5px solid white
+          @media screen and (max-width: $break-medium)
+            border-left: none
+            min-height: 200px
+            padding: 25px 25px 65px 25px
+          #doc-button-wrapper
+            position: absolute
+            bottom: 20px
+            display: block
+            @media screen and (max-width: $break-medium)
+              bottom: 0
+            #doc-button
+              pointer-events: all
+              display: block
         img
+          display: none
           @media screen and (max-width: $break-medium)
             display: none
       .text-container
         display: none
         pointer-events: none
         position: absolute
+        background-color: white
         @media screen and (max-width: $break-medium)
           position: relative !important
           padding: 25px
@@ -69,6 +89,19 @@
         p
           left: 25px
           text-align: justify
+        #doc-button-wrapper
+          right: 20px
+          left: auto
+          display: none
+          pointer-events: none
+          #doc-button
+            font-size: 15px
+            display: none
+            pointer-events: none
+            padding: 7px 28px
+            @media screen and (max-width: $break-medium)
+              font-size: 12px
+              padding: 4px 20px
       img
         width: 98%
         visibility: hidden
@@ -104,5 +137,6 @@
       &:visited
         text-decoration: none
   p
-    font-size: 15px
-    line-height: 22px
+    @media screen and (max-width: $break-medium)
+      font-size: 15px
+      line-height: 22px
