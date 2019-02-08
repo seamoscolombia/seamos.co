@@ -12,23 +12,28 @@
       </tr>
     </thead>
     <tbody>
-      <% polls.each do |poll| %>
-        <% grouped_by_vote_type = poll.votes.joins(:vote_type)
-                                  .group('vote_types.name')
-                                  .count('vote_types.id') %>
-        <% y_percentage = poll.vote_count > 0 ? '(' + (100 * (grouped_by_vote_type['SI'].to_f / poll.vote_count)).round(0).to_s + '%)' : '' %>
-        <% n_percentage = poll.vote_count > 0 ? '(' + (100 * (grouped_by_vote_type['NO'].to_f / poll.vote_count)).round(0).to_s + '%)' : '' %>
+      <% polls_by_year.each do |year, polls| %>
         <tr>
-          <td><%= poll.id %></td>
-          <td><%= poll.title %></td>
-          <td><%= poll.user.full_name %></td>
-          <td><%= poll.created_at.to_date %></td>
-          <td><%= poll.closing_date %></td>
-          <td style="border-left: 1px solid gainsboro; white-space: nowrap"><%= "#{grouped_by_vote_type['SI']} #{y_percentage}" %></td>
-          <td style="border-left: 1px solid gainsboro; white-space: nowrap"><%= "#{grouped_by_vote_type["NO"]} #{n_percentage}" %></td>
-          <td style="border-left: 1px solid gainsboro;"><%= poll.vote_count %></td>
+          <td colspan='12' class='year-separator'> <%= year %> </td>
+        <tr>
+        <% polls.each do |poll| %>
+          <% grouped_by_vote_type = poll.votes.joins(:vote_type)
+                                    .group('vote_types.name')
+                                    .count('vote_types.id') %>
+          <% y_percentage = poll.vote_count > 0 ? '(' + (100 * (grouped_by_vote_type['SI'].to_f / poll.vote_count)).round(0).to_s + '%)' : '' %>
+          <% n_percentage = poll.vote_count > 0 ? '(' + (100 * (grouped_by_vote_type['NO'].to_f / poll.vote_count)).round(0).to_s + '%)' : '' %>
+          <tr>
+            <td><%= poll.id %></td>
+            <td><%= poll.title %></td>
+            <td><%= poll.user.full_name %></td>
+            <td><%= poll.created_at.to_date %></td>
+            <td><%= poll.closing_date %></td>
+            <td style="border-left: 1px solid gainsboro; white-space: nowrap"><%= "#{grouped_by_vote_type['SI']} #{y_percentage}" %></td>
+            <td style="border-left: 1px solid gainsboro; white-space: nowrap"><%= "#{grouped_by_vote_type["NO"]} #{n_percentage}" %></td>
+            <td style="border-left: 1px solid gainsboro;"><%= poll.vote_count %></td>
 
-        </tr>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

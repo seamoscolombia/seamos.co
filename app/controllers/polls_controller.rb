@@ -7,7 +7,7 @@ class PollsController < ApplicationController
   before_action :set_status_image, only: :show
 
   def index
-    @polls = Poll.active.includes(:votes, :tags)
+    @polls_by_year = Poll.active.includes(:votes, :tags).group_by { |m| m.created_at.year}.sort.reverse.to_h
   end
 
   def show
