@@ -20,6 +20,12 @@
           <div class="poll-details">
             <div class="poll-tag-name" style="width: <%= poll.closed? ? '50%' : '65%' %>;">
               <%= poll.tag_name %>
+              <div class='extra-info'>
+                <span> Apertura: <%= l(poll.created_at, format: '%b de %Y')  %> </span>
+                  <br/>
+                <span> Cierre: <%= l(poll.closing_date, format: '%b de %Y')  %> </span>
+                <div class='spacer-small'></div>
+              </div>
             </div>
             <div class="color-separator" style="border-left: 5px solid <%= poll.tag_color %>"></div>
             <div class="btn button btn-plus-read" style="background-color: <%= poll.tag_color %>">

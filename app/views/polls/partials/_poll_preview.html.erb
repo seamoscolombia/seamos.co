@@ -4,7 +4,7 @@
       <% if current_user && current_page?(user_path(current_user)) %>
         <div class="poll-my-vote">
           <span class="poll-vote-title">
-            Mi voto: 
+            Mi voto:
           </span>
           <span>
             <%= poll.votes.by_user_id(current_user.id).first.name %>
@@ -22,6 +22,14 @@
           <%= poll.title %>
         </span>
       </div>
+      <div class='extra-info'>
+        <span> Abierta el <%= l(poll.created_at, format: '%d de %b del %Y')  %> </span>
+          <br/>
+        <% if poll.closed? %>
+          <span> Cerrada el <%= l(poll.closing_date, format: '%d de %b del %Y')  %> </span>
+          <div class='spacer-small'></div>
+        <% end %>
+      </div>
       <div class="poll-description">
         <%= poll.summary %>
       </div>
@@ -32,11 +40,13 @@
         <div class="name-container">
           <%= poll.user.full_name %>
         </div>
+        <br/>
+
       </div>
       <div class="poll-infos-container">
-        <div class="poll-details">                      
-            <div 
-              class="poll-tag-name" 
+        <div class="poll-details">
+            <div
+              class="poll-tag-name"
               style= "width: <%= poll.closed? ? "52%;" : "70%;" %>" >
               <%= display_tag_name(poll) %>
             </div>
@@ -44,7 +54,7 @@
             </div>
             <div class="btn button btn-plus-read" style="background-color: <%= display_tag_color(poll) %>;">
               <%= poll.closed? ? "RESULTADOS" : "VOTA" %>
-            </div>                      
+            </div>
         </div>
       </div>
     </div>

@@ -36,6 +36,13 @@
             <%= @poll.title %>
           </p>
         </header>
+        <div class='extra-info'>
+          <span> Abierta el <%= l(@poll.created_at, format: '%d de %b del %Y')  %></span>
+          <% if @poll.closed? %>
+            <span> / Cerrada el <%= l(@poll.closing_date, format: '%d de %b del %Y')  %> </span>
+            <div class='spacer-small'></div>
+          <% end %>
+        </div>
         <section id="poll" class="row">
           <div id="left-col" class="col-sm-4">
               <div id="poll-image-container">

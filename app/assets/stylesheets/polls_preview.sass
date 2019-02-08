@@ -75,8 +75,8 @@
 
 .poll-link
   &:hover
-    text-decoration: none    
-        
+    text-decoration: none
+
 #poll-component
   $break-medium: 720px
   display: inline-flex
@@ -135,7 +135,7 @@
     height: 45px
   .poll-title
     font-size: 24px
-    margin: 16px 0
+    margin: 16px 0 10px 0
     font-family: 'RobotoCondensed'
     line-height: 1em
     text-align: left
@@ -149,6 +149,7 @@
       width: 90%
       margin: auto
       margin-top: 16px
+      margin-bottom: 10px
   .politician-info
     width: 100%
     display: flex
@@ -170,18 +171,27 @@
       text-align: left
       padding-left: 10px
   .poll-description
+    width: 100%
     font-size: 17px
     font-family: 'HKNovaRegular'
     line-height: 1.3em
     overflow: hidden
     height: 96px
-    text-align: left
+    text-align: justify
     color: #44424c
     padding: 0 10px
     padding-top: 6px
     @media screen and (max-width: $break-medium)
       font-size: 14px
       max-height: 80px
+  .extra-info
+    width: 100%
+    padding: 0 10px
+    line-height: 10px
+    text-align: right
+    span
+      font-size: 12px
+      color: gray
   .poll-infos-container
     position: relative
     width: 340px

@@ -6,6 +6,7 @@ class Admin::DashboardController < ApplicationController
 
   def stats
     @polls = Poll.all.includes(:votes)
+    @polls_by_year = @polls.group_by { |m| m.created_at.year}.sort.reverse.to_h
     @open_polls = @polls.open
     @closed_polls = @polls.closed
     @citizens = User.where(role_type: 0).includes(:votes)

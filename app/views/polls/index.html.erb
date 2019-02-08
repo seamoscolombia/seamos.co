@@ -4,9 +4,15 @@
   </div>
   <div id="may-interest-container">
     <div id="may-interest">
-      <% @polls.each do |poll| %>
-        <%= render partial: 'polls/partials/poll_small_preview', locals: {poll: poll, from_ymal: true} %>
+      <% @polls_by_year.each do |year, polls| %>
+        <div class="year-separator">
+          <span> <%= year %> </span>
+          <hr>
+        </div>
+        <% polls.each do |poll| %>
+          <%= render partial: 'polls/partials/poll_small_preview', locals: {poll: poll, from_ymal: true} %>
+        <% end %>
       <% end %>
     </div>
-  </div>;
+  </div>
 </div>
