@@ -74,5 +74,6 @@ Rails.application.routes.draw do
   get 'settings/successfully_unsubscribed'
   patch 'settings/update'
 
+  mount Thredded::Engine => '/forum'
   # mount ActionCable.server => '/cable'
 end

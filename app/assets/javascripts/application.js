@@ -15,5 +15,6 @@
 //= require bootstrap
 //= require social-share-button
 //= require bootstrap-datepicker
+//= require thredded
 
 //= require_tree .
