@@ -30,6 +30,8 @@
 
 class User < ApplicationRecord
   include ApplicationHelper
+  include SimpleDiscussion::ForumUser
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   mount_uploader :admin_photo, AdminPhotoUploader
@@ -109,6 +111,11 @@ class User < ApplicationRecord
 
   def full_name
     "#{names} #{first_surname} #{second_surname}"
+  end
+
+  # for the matter of simple_discussion gem
+  def name
+    names
   end
 
   def has_polls?

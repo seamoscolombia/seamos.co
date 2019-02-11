@@ -44,6 +44,7 @@ gem 'devise'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-google-oauth2'
 gem 'social-share-button'
+gem 'simple_discussion'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

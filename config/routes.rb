@@ -74,5 +74,5 @@ Rails.application.routes.draw do
   get 'settings/successfully_unsubscribed'
   patch 'settings/update'
 
-  # mount ActionCable.server => '/cable'
+  mount SimpleDiscussion::Engine => "/forum"
 end
