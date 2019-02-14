@@ -38,7 +38,7 @@ class PollsController < ApplicationController
       redirect_to root_path
     end
     if !@poll.active? && !current_user.try(:administrador?)
-      flash[:error] = "la propuesta aún no está abierta a votación"
+      flash[:error] = "la propuesta no está abierta a votación"
       redirect_to root_path
     end
   end
