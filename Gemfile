@@ -32,7 +32,7 @@ gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
 gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave-base64', '~> 2.3.2'
 gem 'fog-aws', '~> 0.12.0'
-gem 'kaminari', '~> 1.0.1'
+gem 'kaminari'
 gem 'koala', '~>2.4.0'
 gem 'pg', '0.18.4'
 gem 'rails_12factor', group: :production

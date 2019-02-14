@@ -1,6 +1,6 @@
+<div class='spacer-big'></div>
 <div class="container" id="users-list" >
 	<div class="row">
-    <div class='spacer-big'></div>
     <div class="col-md-3 admin-search-form">
       <%= label_tag :Filtros %>
       <%= form_tag({controller: "users", action: "index"}, method: "get") do %>
@@ -39,11 +39,13 @@
                       </a>
                       </h4>
                       <p><small><b><%= User.human_attribute_name("email") %>: </b><%= user.email %></small></p>
-                      <p><small><b>ID de Facebook: </b><%= user.uid %></small></p>
                       <p><small><b>tipo de usuario: </b><%= user.role_type %></small></p>
                     </div>
                   </div>
                 </li>
+                <div class='spacer-small'> </div>
+                <hr>
+                <div class='spacer-mid'> </div>
             <% end %>
           </ul>
         <%else%>
