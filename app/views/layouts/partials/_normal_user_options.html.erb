@@ -15,11 +15,11 @@
     <a href="/politicians"> CONCEJALES </a>
   </li>
   <% if user_signed_in? %>
-    <div class="hide-on-mobile">
-      <%= link_to user_path(current_user) do %>
+    <div>
+      <%= link_to user_path(current_user), class: 'profile-button' do %>
         <%= image_tag  current_user.resolve_photo, class: 'navbar-photo' %>
           TU PERFIL
-          <% end %>
+        <% end %>
     </div>
     <li>
       <%= link_to destroy_user_session_path, method: :delete do %>

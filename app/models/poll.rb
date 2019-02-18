@@ -141,7 +141,7 @@ class Poll < ApplicationRecord
   end
 
   def author_photo
-    user.admin_photo.try(:url)
+    user.resolve_admin_photo
   end
 
   def tag_name

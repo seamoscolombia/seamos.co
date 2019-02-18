@@ -17,7 +17,7 @@
     <div class="container">
         <section id="politician" class="row">
           <%= link_to politician_profile_path(@author.id) do %>
-            <img src="<%= @author.admin_photo.url%>" role="presentation" alt="politician">
+            <img src="<%= @author.resolve_admin_photo%>" role="presentation" alt="politician">
             <div id="politician-info">
               <%= @author.full_name %>
               <div id="org">
