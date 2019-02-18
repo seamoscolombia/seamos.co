@@ -45,10 +45,10 @@ gem 'devise'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-google-oauth2'
 gem 'social-share-button'
-gem 'simple_discussion'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem "simple_discussion", :path => "/home/alexander/Documents/repos/forks/simple_discussion"
   gem "better_errors"
   gem "binding_of_caller"
   gem 'byebug', platform: :mri
@@ -69,6 +69,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :production, :staging do
+  # gem "simple_discussion", :git => "git@github.com:yonnyquiceno/simple_discussion.git"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
