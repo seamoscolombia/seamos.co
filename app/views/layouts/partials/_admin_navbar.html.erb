@@ -10,14 +10,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto" id='options'>
       <li class="nav-item"><%= link_to 'Propuestas', admin_polls_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Foro', simple_discussion_path, class: 'nav-link' %></li>
       <% if current_user.politico? %>
         <li class='nav-item'><%= link_to 'Crear Propuesta', new_admin_poll_path, class: 'nav-link' %></li>
-        <li class='nav-item'><%= link_to 'Modificar información de perfil', edit_admin_user_path(current_user), class: 'nav-link' %></li>
+        <li class='nav-item'><%= link_to 'Editar información de perfil', edit_admin_user_path(current_user), class: 'nav-link' %></li>
       <% end %>
       <% if current_user.administrador? %>
-        <li class="nav-item"><%= link_to 'Lista de usuarios', admin_validate_users_path, class: 'nav-link' %></li>
-        <li class="nav-item"><%= link_to 'Lista de temas', new_admin_tag_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'Usuarios', admin_validate_users_path, class: 'nav-link' %></li>
+        <li class="nav-item"><%= link_to 'Temas', new_admin_tag_path, class: 'nav-link' %></li>
         <li class="nav-item"><%= link_to "Datos", admin_dashboard_stats_path, class: 'nav-link' %> </li>
+        <li class="nav-item"><%= link_to "Permisos", permits_admin_users_path, class: 'nav-link' %> </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Emails

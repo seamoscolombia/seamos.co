@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190211162334) do
+ActiveRecord::Schema.define(version: 20190219161753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,14 @@ ActiveRecord::Schema.define(version: 20190211162334) do
     t.integer  "forum_posts_count", default: 0
     t.boolean  "pinned",            default: false
     t.boolean  "solved",            default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forum_votes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "forum_votable_id"
+    t.string   "forum_votable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -223,6 +231,7 @@ ActiveRecord::Schema.define(version: 20190211162334) do
   add_foreign_key "forum_subscriptions", "users"
   add_foreign_key "forum_threads", "forum_categories"
   add_foreign_key "forum_threads", "users"
+  add_foreign_key "forum_votes", "users"
   add_foreign_key "interests", "tags"
   add_foreign_key "interests", "users"
   add_foreign_key "polls", "users"

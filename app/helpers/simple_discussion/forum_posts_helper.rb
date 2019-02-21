@@ -4,6 +4,10 @@ module SimpleDiscussion::ForumPostsHelper
     user.present? ? image_tag(user.resolve_photo, class: "rounded avatar") : image_tag(Rails.application.config.defaultavatar, class: "rounded avatar")
   end
 
+  # def avatar_tag(email)
+  #   gravatar_image_tag(email, gravatar: { size: 40 }, class: "rounded avatar")
+  # end
+
   def category_link(category)
     link_to category.name, simple_discussion.forum_category_forum_threads_path(category),
       style: "color: #{category.color}"

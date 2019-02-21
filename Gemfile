@@ -48,7 +48,7 @@ gem 'social-share-button'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem "simple_discussion", :path => "/home/alexander/Documents/repos/forks/simple_discussion"
+  # gem "simple_discussion", :path => "/home/alexander/Documents/repos/forks/simple_discussion"
   gem "better_errors"
   gem "binding_of_caller"
   gem 'byebug', platform: :mri
@@ -72,7 +72,8 @@ group :development do
 end
 
 group :production, :staging do
-  # gem "simple_discussion", :git => "git@github.com:yonnyquiceno/simple_discussion.git"
+  # gem "simple_discussion", :git => "https://github.com/yonnyquiceno/simple_discussion.git"
+  gem "simple_discussion", github: "yonnyquiceno/simple_discussion"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

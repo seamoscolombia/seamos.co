@@ -4,7 +4,7 @@
           <% tags.reverse_each do |tag|%>
             <div class="content">
                 <img src="<%= tag.tag_image.url %>">
-                <img class="tag-icon" src="<%= tag.tag_icon.url %>">
+                <img class="tag-icon" src="<%= tag.thumbnail.url %>">
                 <div>
                     <div class="name">
                         <%=tag.name%>

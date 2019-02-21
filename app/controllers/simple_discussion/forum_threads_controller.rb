@@ -39,7 +39,7 @@ class SimpleDiscussion::ForumThreadsController < SimpleDiscussion::ApplicationCo
 
   def create
     @forum_thread = current_user.forum_threads.create!(forum_thread_params)
-    @forum_thread.forum_posts << ForumPost.create!(forum_post_params.merge(forum_thread: @forum_thread))
+    @forum_thread.forum_posts << ForumPost.create!(forum_post_params.merge(forum_thread: @forum_thread, user: current_user))
     SimpleDiscussion::ForumThreadNotificationJob.perform_later(@forum_thread)
     redirect_to simple_discussion.forum_thread_path(@forum_thread)
   rescue StandardError => e

@@ -1,9 +1,12 @@
 <%= cache forum_thread do %>
   <div class="forum-thread">
     <div class="row">
+      <span class="votable-container text-center">
+        <%= render partial: 'shared/voting', locals: { user: current_user, votable: forum_thread } %>
+      </span>
 
       <div class="col-sm-1 text-center">
-          <%= avatar_tag(forum_thread.user) %>
+        <%= avatar_tag(forum_thread.user) %>
       </div>
 
       <div class="col">
@@ -19,16 +22,16 @@
 
         <div class="thread-details">
           <strong><%= category_link(forum_thread.forum_category) %></strong>
-          • Asked <%= time_ago_in_words(forum_thread.created_at) + ' ago' %> by <%= forum_thread.user.name %>
+          • <%= t('asked_time_ago', time: time_ago_in_words(forum_thread.created_at), author: forum_thread.user.name) %>
         </div>
 
         <p class="text-muted"><%= truncate(forum_thread.forum_posts.first.body, length: 200) %></p>
       </div>
 
-      <div class="col-sm-1 text-center">
+      <div class="col-sm-2 text-center">
         <%= link_to simple_discussion.forum_thread_path(forum_thread), class: "thread-posts-count" do %>
           <span class="count"><%= forum_thread.forum_posts_count %></span>
-          <small><%= "post".pluralize(forum_thread.forum_posts_count) %></small>
+          <small><%= t("post", count: forum_thread.forum_posts_count) %></small>
         <% end %>
       </div>
 

@@ -406,6 +406,16 @@ es:
       poll:
         hide_poll?: "¿Seguro que quieres ocultar la propuesta al público?"
         publish_poll?: "¿Seguro que quieres aprobar la propuesta para su publicación?"
+    tags:
+      edit:
+        tag: Tema
+      form:
+        has_image: Ya tiene una imagen seleccionada
+      new:
+        available_tags: Temas existentes
+    users:
+      index:
+        destroy_user: Eliminar usuario
   admin_invalid: Comunicate con la administración de seamos
   cedula_invalida: Lo sentimos esta cédula no es válida
   confirmar: Favor confirmar la operación

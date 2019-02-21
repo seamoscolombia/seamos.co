@@ -39,6 +39,7 @@ class User < ApplicationRecord
   has_many  :polls,  dependent: :destroy
   has_many  :voted_polls, source: 'poll', through: 'votes', foreign_key: 'poll_id'
   has_many  :votes, dependent: :destroy
+  has_many :forum_votes, dependent: :destroy
   has_many :interests, dependent: :destroy
   has_many :tags, -> { distinct }, through: :interests
 
@@ -131,7 +132,7 @@ class User < ApplicationRecord
   end
 
   def resolve_photo
-    url_exists?(provider_image) ? provider_image : Rails.application.config.defaultavatar
+    provider_image || Rails.application.config.defaultavatar
   end
 
   private

@@ -1,7 +1,8 @@
-PATH
-  remote: /home/alexander/Documents/repos/forks/simple_discussion
+GIT
+  remote: git://github.com/yonnyquiceno/simple_discussion.git
+  revision: 592d9dbe7cf7876646f2ad5567e4ef08e2df1170
   specs:
-    simple_discussion (0.9.5)
+    simple_discussion (1.0.0)
       font-awesome-sass (~> 4.7.0)
       friendly_id (>= 5.2.0)
       gravatar_image_tag
