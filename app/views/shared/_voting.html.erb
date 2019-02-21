@@ -11,8 +11,8 @@
       <% end %>
     <% end %>
   <% else %>
-    <a data-toggle="modal" data-target="#sign-in-modal">
+    <span data-toggle="tooltip" data-placement="top" title="Debes iniciar sesión para votar">
       <%= render partial: 'shared/voting_button', locals: {forum_votes_count: votable.vote_count} %>
-    </a>
+    </span>
   <% end %>
 </div>
