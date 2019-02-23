@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/yonnyquiceno/simple_discussion.git
-  revision: 592d9dbe7cf7876646f2ad5567e4ef08e2df1170
+  revision: d14abd8d22677ce16ffdde1a2b168989a1da5e1c
   specs:
     simple_discussion (1.0.0)
       font-awesome-sass (~> 4.7.0)
