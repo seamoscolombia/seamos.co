@@ -15,10 +15,5 @@ class CreateForumCategories < ActiveRecord::Migration[4.2]
       name: "General",
       color: "#4ea1d3",
     )
-
-    ForumCategory.create(
-      name: "Feedback",
-      color: "#16bc9c",
-    )
   end
 end
