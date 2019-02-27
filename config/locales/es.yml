@@ -272,6 +272,9 @@ es:
       users: Lista de Usuarios
       create_admin: Crear Admin / Político
       create_poll: Crear Propuesta
+    simple_discussion:
+      answered: Respondidos
+      my_questions: Mis Temas
 
   dashboard:
     index:

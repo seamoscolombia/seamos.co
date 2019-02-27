@@ -4,8 +4,8 @@
     <div class="card card-body">
       <%= link_to t('ask_a_question'), simple_discussion.new_forum_thread_path,
         class: "btn btn-outline-primary btn-block",
-        'data-toggle': "#{current_user.present? ? '' : 'modal'}" ,
-        'data-target': "#{current_user.present? ? '' : '#sign-in-modal'}"
+        'data-toggle': "#{'modal' unless current_user.present?}",
+        'data-target': "#{'#sign-in-modal' unless current_user.present?}"
       %>
       <hr />
 
@@ -69,6 +69,7 @@
               <% end %>
               <%= link_to simple_discussion.forum_category_path(category),
                 method: 'delete',
+                data: {confirm: t('delete_category?', category_name: category.name)},
                 class: "pull-right #{'disabled' if category.slug == 'general' }",
                 title: t('delete_category') do %>
                   <%= icon "times", style: "color: #{category.color}" %>
@@ -103,7 +104,11 @@
         <%# User has not posted in the thread or subscribed %>
         <h5><%= t('.notifications') %></h5>
 
-        <%= link_to simple_discussion.forum_thread_notifications_path(@forum_thread), method: :post, class: "btn btn-secondary btn-sm btn-block mb-2" do %>
+        <%= link_to "#{current_user.present? ? simple_discussion.forum_thread_notifications_path(@forum_thread) : ''}",
+          method: "#{'post' if current_user.present?}",
+          class: "btn btn-secondary btn-sm btn-block mb-2",
+          'data-toggle': "#{'modal' unless current_user.present?}",
+          'data-target': "#{'#sign-in-modal' unless current_user.present?}" do %>
           <% if @forum_thread.subscribed? current_user %>
             <%= icon "bell-slash" %> Unsubscribe
           <% else %>
