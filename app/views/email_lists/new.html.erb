@@ -1,6 +1,6 @@
 <h1> Crear nueva lista de correos </h1>
 
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6 margin-auto">
   <%= form_for [:admin, @email_list] do |f| %>
     <%= render 'shared/mensajes_de_error',  object: f.object %>
     <div class="field">
@@ -10,9 +10,9 @@
     <div class="field">
       <%= f.label "Lista de correos" %>
       <%= f.text_area :raw_mail_list, class: 'form-control',  autofocus: true %>
-    </div>  
+    </div>
     <div class="field">
       <%= f.submit "Guardar lista" %>
-    </div>  
+    </div>
   <% end %>
 </div>

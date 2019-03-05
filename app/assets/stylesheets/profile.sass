@@ -5,6 +5,8 @@
   $team-member-size: 200px
   $politician-size: 150px
   $politician-mobile-size: 100px
+  $tag-size: 150px
+  $tag-size-mobile: $tag-size - 20px
   margin-bottom: 165px
   .open-title
     font-family: RobotoCondensed
@@ -46,11 +48,10 @@
     margin-bottom: -72px
     @media screen and (max-width: $break-medium)
       margin-bottom: -120px
-      margin-top: -30px
       height: 100px
       font-size: 27px
   .one-mod
-    margin-bottom: -233px
+    margin-bottom: -140px
     @media screen and (max-width: $break-medium)
       margin-bottom: -120px
       margin-top: -12px
@@ -61,8 +62,6 @@
     background-color: black
     color: white
     font-family: 'HKNovaBold'
-  $tag-size: 150px
-  $tag-size-mobile: $tag-size - 20px
   .container
     margin-top: -55px
   .divider
@@ -74,6 +73,12 @@
     display: flex
     align-items: center
     margin-bottom: 40px
+    @media screen and (max-width: $break-medium)
+      margin-bottom: -100px
+      text-align: center
+      position: relative
+      top: -100px
+      left: 13px
   .flex-container
     width: 100%
   #tags-component
@@ -92,8 +97,10 @@
       height: $tag-size-mobile
     .tag-selected
       position: relative
-      top: 18px
-      right: -6px
+      top: -2px
+      right: -8px
+      font-size: 35px
+      color: #272427
     .tag-name
       font-size: 14px
       width: $tag-size
@@ -118,9 +125,10 @@
   .media-body
     vertical-align: middle
     width: auto
-    padding-left: 40px
+    padding-left: 80px
     @media screen and (max-width: $break-medium)
       padding-left: 0
+      margin-top: 15px
     h4
       margin-left: 1.3em
       font-family: 'HKNovaBold'

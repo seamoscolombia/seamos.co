@@ -1,4 +1,10 @@
 es:
+  add_a_comment: Da más detalles
+  ask_a_question: ¿Sobre qué quieres hablar?
+  ask_your_question: Inicia la discusión
+  this_solved_my_question: Esto concluye el tema de discusión
+  how_do_i: Resume tu tema de discución en una frase
+  what_do_you_need_help_with?: Cuéntanos más
   views:
     pagination:
       first: "&laquo; Primera"
@@ -272,7 +278,9 @@ es:
       users: Lista de Usuarios
       create_admin: Crear Admin / Político
       create_poll: Crear Propuesta
-
+    simple_discussion:
+      answered: Respondidos
+      my_questions: Mis Temas
   dashboard:
     index:
       validate_users: Validar Usuarios
@@ -406,6 +414,16 @@ es:
       poll:
         hide_poll?: "¿Seguro que quieres ocultar la propuesta al público?"
         publish_poll?: "¿Seguro que quieres aprobar la propuesta para su publicación?"
+    tags:
+      edit:
+        tag: Tema
+      form:
+        has_image: Ya tiene una imagen seleccionada
+      new:
+        available_tags: Temas existentes
+    users:
+      index:
+        destroy_user: Eliminar usuario
   admin_invalid: Comunicate con la administración de seamos
   cedula_invalida: Lo sentimos esta cédula no es válida
   confirmar: Favor confirmar la operación

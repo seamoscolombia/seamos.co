@@ -30,6 +30,8 @@
 
 class User < ApplicationRecord
   include ApplicationHelper
+  include SimpleDiscussion::ForumUser
+
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable
   devise :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   mount_uploader :admin_photo, AdminPhotoUploader
@@ -37,6 +39,7 @@ class User < ApplicationRecord
   has_many  :polls,  dependent: :destroy
   has_many  :voted_polls, source: 'poll', through: 'votes', foreign_key: 'poll_id'
   has_many  :votes, dependent: :destroy
+  has_many :forum_votes, dependent: :destroy
   has_many :interests, dependent: :destroy
   has_many :tags, -> { distinct }, through: :interests
 
@@ -112,6 +115,11 @@ class User < ApplicationRecord
     "#{names} #{first_surname} #{second_surname}"
   end
 
+  # for the matter of simple_discussion gem
+  def name
+    names
+  end
+
   def has_polls?
     polls.present?
   end
@@ -125,7 +133,7 @@ class User < ApplicationRecord
   end
 
   def resolve_photo
-    url_exists?(provider_image) ? provider_image : Rails.application.config.defaultavatar
+    provider_image || Rails.application.config.defaultavatar
   end
 
   private

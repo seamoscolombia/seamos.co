@@ -15,11 +15,14 @@ body
 #primary-container
   position: relative
   margin-bottom: 0 !important
-  overflow-x: hidden
-  overflow-y: visible
+  min-height: 75vh
+  padding: 0
+  width: 100%
+  margin-bottom: $margin-bottom-for-footer
+  overflow: visible
 .admin-search-form
-  background: gainsboro
-  border-radius: 7px
+  background-color: #ececec
+  height: 200px
 .interest-banner
   height: 150px
   font-size: 34px
@@ -31,7 +34,7 @@ body
   align-items: center
   justify-content: center
   word-break: break-word
-  margin: 30px 0 -75px 0
+  margin: 30px 0 -15px 0
   color: #45434c
   text-align: center
   @media screen and (max-width: $break-medium)
@@ -83,6 +86,7 @@ body
   display: flex
   justify-content: center
   align-content: center
+  text-align: center
 .stop-scrolling
   height: 100%
   overflow: hidden
@@ -90,3 +94,16 @@ body
   text-align: justify
 .centered
   text-align: center !important
+.rounded.avatar
+  width: 60px
+  height: 60px
+  border-radius: 50%
+.simple_discussion
+  padding: 80px
+.margin-auto
+  margin: auto
+
+
+.thumb-tack
+  font-size: 20px
+  color: #bebebe

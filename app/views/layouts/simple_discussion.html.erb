@@ -1,0 +1,135 @@
+<div class="row simple_discussion">
+  <div class="col-md-3 mb-3">
+    <%= render partial: 'layouts/modals/sign_in_modal' %>
+    <div class="card card-body">
+      <%= link_to t('ask_a_question'), simple_discussion.new_forum_thread_path,
+        class: "btn btn-outline-primary btn-block",
+        'data-toggle': "#{'modal' unless current_user.present?}",
+        'data-target': "#{'#sign-in-modal' unless current_user.present?}"
+      %>
+      <hr />
+
+      <div class="forum-thread-filters">
+        <h5>
+          <strong>
+            <%= t('filters') %>
+          </strong>
+        </h5>
+        <div>
+          <%= forum_link_to simple_discussion.forum_threads_path, exact: true do %>
+            <%= icon "bars" %>
+            <%= t('.all_threads') %>
+          <% end %>
+        </div>
+        <% if user_signed_in? %>
+          <div>
+            <%= forum_link_to simple_discussion.mine_forum_threads_path do %><%= icon "user-circle-o" %>
+              <%= t('.my_questions') %>
+            <% end %>
+          </div>
+          <div>
+            <%= forum_link_to simple_discussion.participating_forum_threads_path do %>
+              <%= icon "comments-o" %>
+              <%= t('.participating') %>
+            <% end %>
+          </div>
+        <% end %>
+        <div>
+          <%= forum_link_to simple_discussion.answered_forum_threads_path do %>
+            <%= icon "check" %>
+            <%= t('.answered') %>
+          <% end %>
+        </div>
+        <div>
+          <%= forum_link_to simple_discussion.unanswered_forum_threads_path do %>
+            <%= icon "question" %>
+            <%= t('.unanswered') %>
+          <% end %>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="forum-thread-filters">
+        <h6>
+          <strong>
+            <%= t('.by_category') %>
+          </strong>
+        </h6>
+        <div><%= forum_link_to simple_discussion.forum_threads_path, exact: true do %><%= icon "circle" %> All<% end %></div>
+        <% ForumCategory.sorted.each do |category| %>
+          <div>
+            <%= forum_link_to simple_discussion.forum_category_forum_threads_path(category) do %>
+              <%= icon "circle", style: "color: #{category.color}" %>
+              <%= category.name %>
+            <% end %>
+            <% if is_moderator? %>
+              <%= link_to simple_discussion.edit_forum_category_path(category.id), class: 'pull-right', title: t('edit_category') do %>
+                  <%= icon "edit", style: "color: #{category.color}" %>
+              <% end %>
+              <%= link_to simple_discussion.forum_category_path(category),
+                method: 'delete',
+                data: {confirm: t('delete_category?', category_name: category.name)},
+                class: "pull-right #{'disabled' if category.slug == 'general' }",
+                title: t('delete_category') do %>
+                  <%= icon "times", style: "color: #{category.color}" %>
+                  &nbsp;
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <% if is_moderator? %>
+        <hr />
+
+        <div class="forum-thread-filters">
+          <h6>
+            <strong>
+              <%= t('.moderator_options') %>
+            </strong>
+          </h6>
+          <div>
+            <%= forum_link_to simple_discussion.new_forum_category_path do %>
+              <%= icon "plus-square" %>
+              <%= t('.new_category') %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @forum_thread.present? && @forum_thread.persisted? %>
+        <hr />
+
+        <%# User has not posted in the thread or subscribed %>
+        <h5><%= t('.notifications') %></h5>
+
+        <%= link_to "#{current_user.present? ? simple_discussion.forum_thread_notifications_path(@forum_thread) : ''}",
+          method: "#{'post' if current_user.present?}",
+          class: "btn btn-secondary btn-sm btn-block mb-2",
+          'data-toggle': "#{'modal' unless current_user.present?}",
+          'data-target': "#{'#sign-in-modal' unless current_user.present?}" do %>
+          <% if @forum_thread.subscribed? current_user %>
+            <%= icon "bell-slash" %> Unsubscribe
+          <% else %>
+            <%= icon "bell" %>
+            <%= t('.suscribe') %>
+          <% end %>
+        <% end %>
+
+        <small><%= @forum_thread.subscribed_reason(current_user) %></small>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="col-md-9 mb-3">
+
+    <div class="card card-body">
+      <%= yield %>
+    </div>
+
+  </div>
+</div>
+
+<% parent_layout("application") %>
