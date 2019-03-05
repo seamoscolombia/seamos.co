@@ -1,5 +1,6 @@
 <div class="row">
   <div class="col-md-12 admin-poll">
+    <div class='spacer-small'></div>
     <div class="row">
       <div class="col-md-12 center">
         <h4>
@@ -36,41 +37,33 @@
         </p>
         <ul class="list-inline list-unstyled">
           <%poll.tags.each do |tag| %>
-          <li class="label label-default tag"><%=tag.name%></li>
+          <li class="badge badge-secondary"><%=tag.name%></li>
           <%end%>
         </ul>
         <ul class="list-inline list-unstyled">
           <% if current_user.administrador? || current_user.politico?%>
-            <li> <%= link_to "Editar propuesta" , edit_admin_poll_path(poll.id), class: "btn btn-default" %></li>
-            <li>|</li>
-            <li> <%= link_to "Eliminar propuesta", admin_poll_path(poll.id), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></li>
+            <span> <%= link_to "Editar propuesta" , edit_admin_poll_path(poll.id), class: "btn btn-info" %></span>
+            <span> <%= link_to "Eliminar propuesta", admin_poll_path(poll.id), class: "btn btn-danger", method: :delete, data: {confirm: t(".confirmation")}  %></span>
             <% if current_user && current_user.administrador? %>
-              <li>|</li>
-              <li>  <%= link_to  (poll.active? ? "Ocultar propuesta" : "Publicar propuesta") , admin_poll_toggle_active_flag_path(poll), method: :patch, data: {confirm: poll.active? ? t(".hide_poll?") : t(".publish_poll?")}, class: 'btn btn-info' %></li>
+              <span>  <%= link_to  (poll.active? ? "Ocultar propuesta" : "Publicar propuesta") , admin_poll_toggle_active_flag_path(poll), method: :patch, data: {confirm: poll.active? ? t(".hide_poll?") : t(".publish_poll?")}, class: 'btn btn-info' %></span>
             <% end %>
           <% end %>
           <br>
-          <li>
-            <span>
-              fecha de cierre
-              <%= poll.closing_date %>
-            </span>
-          </li>
-          <li>
-            <span>
-              fecha de creación
-              <%= poll.created_at.to_date %>
-            </span>
-          </li>
-          <li>
-            <span>
-              última actualización
-              <%= poll.updated_at.to_date %>
-            </span>
-          </li>
+          <span>
+             cierre:
+            <%= poll.closing_date %>
+          </span>
+          <span>
+            | creación:
+            <%= poll.created_at.to_date %>
+          </span>
+          <span>
+            | última actualización:
+            <%= poll.updated_at.to_date %>
+          </span>
         </ul>
       </div>
     </div>
   </div>
 </div>
-<hr>
+<div class='spacer-small'></div>

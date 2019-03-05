@@ -1,3 +1,5 @@
+<% yes_styles = "width: #{vote_percentage(vote_count(@poll)["SI"], @poll.vote_count)}%; #{"background-color: gainsboro;" if @poll.closed?}" %>
+<% no_styles = "width: #{vote_percentage(vote_count(@poll)["NO"], @poll.vote_count)}%;#{"background-color: gainsboro;" if @poll.closed?}" %>
 <%= render partial: 'layouts/modals/sign_in_modal' %>
 <% if current_user && current_user.administrador? && params[:publish_link].present?%>
   <%= render partial: 'layouts/modals/publish_poll_modal' %>
@@ -15,7 +17,7 @@
     <div class="container">
         <section id="politician" class="row">
           <%= link_to politician_profile_path(@author.id) do %>
-            <img src="<%= @author.admin_photo.url%>" role="presentation" alt="politician">
+            <img src="<%= @author.resolve_admin_photo%>" role="presentation" alt="politician">
             <div id="politician-info">
               <%= @author.full_name %>
               <div id="org">
@@ -90,22 +92,34 @@
                     <div class="row">
                       <% if current_user && @poll.voted_by_user?(current_user.id) || @poll.closed? %>
                         <div class="col-xs-12 col-sm-6 buttons-wrapper">
-                          <button class="progress btn voted-button">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: <%= vote_percentage(vote_count(@poll)["SI"], @poll.vote_count) %>%; cursor: default; background-color: gainsboro;">
+                          <div class="progress btn voted-button">
+                            <div
+                              class="progress-bar"
+                              role="progressbar"
+                              aria-valuenow="70"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              style= "<%= yes_styles %>">
                               <span id="vote-name">SI</span>
                               <span id="percentage">
                                 <%= vote_percentage(vote_count(@poll)["SI"], @poll.vote_count) %> %
                               </span>
                             </div>
-                          </button>
-                          <button class="progress btn voted-button">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: <%= vote_percentage(vote_count(@poll)["NO"], @poll.vote_count) %>%; cursor: default; background-color: gainsboro;">
+                          </div>
+                          <div class="progress btn voted-button">
+                            <div
+                              class="progress-bar"
+                              role="progressbar"
+                              aria-valuenow="70"
+                              aria-valuemin="0"
+                              aria-valuemax="100"
+                              style= "<%= no_styles %>">
                               <span id="vote-name">NO</span>
                               <span id="percentage">
                                 <%= vote_percentage(vote_count(@poll)["NO"], @poll.vote_count) %> %
                               </span>
                             </div>
-                          </button>
+                          </div>
                         </div>
                       <% elsif current_user %>
                         <div class="col-xs-12 col-sm-6 buttons-wrapper">

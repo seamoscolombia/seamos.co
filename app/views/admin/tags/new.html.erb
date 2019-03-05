@@ -1,8 +1,10 @@
+<div class='spacer-big'></div>
 <h1><%= t :create %> Tema </h1>
-
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-6 margin-auto">
   <%= render 'form', tag: @tag %>
   <h4 class="center"> <%= t(".available_tags") %> </h4>
+</div>
+<div class="col-md-8 margin-auto">
   <% @location_from = "new_tags" %>
   <%= render 'tag_list', tags: Tag.all %>
 </div>

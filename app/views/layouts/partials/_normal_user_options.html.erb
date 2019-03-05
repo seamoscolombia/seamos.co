@@ -9,17 +9,20 @@
     <a href="https://seamosit.github.io" rel="noopener noreferrer"> BLOG</a>
   </li>
   <li>
+    <%= link_to "FORO", simple_discussion_path %>
+  </li>
+  <li>
     <%= link_to  "TEMAS", tags_path %>
   </li>
   <li id="politicians-link">
     <a href="/politicians"> CONCEJALES </a>
   </li>
   <% if user_signed_in? %>
-    <div class="hide-on-mobile">
-      <%= link_to user_path(current_user) do %>
+    <div>
+      <%= link_to user_path(current_user), class: 'profile-button' do %>
         <%= image_tag  current_user.resolve_photo, class: 'navbar-photo' %>
           TU PERFIL
-          <% end %>
+        <% end %>
     </div>
     <li>
       <%= link_to destroy_user_session_path, method: :delete do %>

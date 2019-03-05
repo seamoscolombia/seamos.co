@@ -36,14 +36,15 @@ class Admin::UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     if @user.nil?
       flash[:error] = "El usuario no existe"
-      redirect_to admin_users_path 
+      redirect_to admin_users_path
     end
   end
 
   def search_users
-    @users = User.all.page(params[:page]).per(30)
-    @users = @users.by_role_type(params[:users_filter_select]).page(params[:page]).per(30) unless params[:users_filter_select].blank?
-    @users = @users.search(params[:search_term]).page(params[:page]).per(30) unless params[:search_term].blank?
+    @users = User.all
+    @users = @users.by_role_type(params[:users_filter_select]) unless params[:users_filter_select].blank?
+    @users = @users.search(params[:search_term]) unless params[:search_term].blank?
+    @users = Kaminari.paginate_array(@users).page(params[:page]).per(10)
   end
 
   def user_params

@@ -5,6 +5,7 @@ assets:clean[keep]
 assets:clobber
 assets:environment
 assets:precompile
+autoprefixer:info
 cache_digests:dependencies
 cache_digests:nested_dependencies
 db:create
@@ -32,9 +33,12 @@ notes:custom
 restart
 routes
 secret
+simple_discussion:install:migrations
 spec
 spec:controllers
+spec:mailers
 spec:models
+spec:views
 stats
 test
 test:db
