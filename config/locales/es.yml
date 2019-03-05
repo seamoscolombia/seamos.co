@@ -1,4 +1,10 @@
 es:
+  add_a_comment: Da más detalles
+  ask_a_question: ¿Sobre qué quieres hablar?
+  ask_your_question: Inicia la discusión
+  this_solved_my_question: Esto concluye el tema de discusión
+  how_do_i: Resume tu tema de discución en una frase
+  what_do_you_need_help_with?: Cuéntanos más
   views:
     pagination:
       first: "&laquo; Primera"
@@ -275,7 +281,6 @@ es:
     simple_discussion:
       answered: Respondidos
       my_questions: Mis Temas
-
   dashboard:
     index:
       validate_users: Validar Usuarios
