@@ -17,14 +17,18 @@ test:
 
 production:
   adapter: postgresql
-  encoding: unicode
-  port: 5432
-  host: localhost
-  database: production_seamosbuenaventura
+  encoding: utf8
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
 
 staging:
   adapter: postgresql
-  encoding: unicode
-  port: 5432
-  host: localhost
-  database: staging_seamosbuenaventura
+  encoding: utf8
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
