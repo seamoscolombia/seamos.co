@@ -99,7 +99,6 @@ class User < ApplicationRecord
         user.provider_image = auth.info.image # assuming the user model has an image
         user.role_type = 'ciudadano'
         user.first_surname = auth.info.name.split(' ').last
-        user.role_type = 2 unless User.where(role_type: "administrador").any?
         # If you are using confirmable and the provider(s) you use validate emails,
         # uncomment the line below to skip the confirmation emails.
         # user.skip_confirmation!
