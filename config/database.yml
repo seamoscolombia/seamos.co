@@ -7,26 +7,24 @@ development:
   adapter: postgresql
   pool: 5
   timeout: 5000
-  database: development_seamos
+  database: development_seamosbuenaventura
 
 test:
   adapter: postgresql
   pool: 5
   timeout: 5000
-  database: test_seamos
+  database: test_seamosbuenaventura
 
 production:
   adapter: postgresql
   encoding: unicode
   port: 5432
   host: localhost
-  database: <%= ENV['DATABASE_URL'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: production_seamosbuenaventura
 
 staging:
   adapter: postgresql
   encoding: unicode
   port: 5432
   host: localhost
-  database: <%= ENV['DATABASE_URL'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: staging_seamosbuenaventura
