@@ -31,6 +31,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
 gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave-base64', '~> 2.3.2'
+gem 'mini_magick'
 gem 'fog-aws', '~> 0.12.0'
 gem 'kaminari'
 gem 'koala', '~>2.4.0'
@@ -45,10 +46,11 @@ gem 'devise'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-google-oauth2'
 gem 'social-share-button'
+gem 'ckeditor'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem "simple_discussion", :path => "/home/alexander/Documents/repos/forks/simple_discussion"
+  gem "simple_discussion", :path => "/home/alexander/Documents/repos/forks/simple_discussion"
   gem "better_errors"
   gem "binding_of_caller"
   gem 'byebug', platform: :mri
@@ -73,7 +75,7 @@ end
 
 group :production, :staging do
   # gem "simple_discussion", :git => "https://github.com/yonnyquiceno/simple_discussion.git"
-  gem "simple_discussion", github: "yonnyquiceno/simple_discussion"
+  # gem "simple_discussion", github: "yonnyquiceno/simple_discussion"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

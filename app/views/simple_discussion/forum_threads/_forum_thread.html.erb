@@ -34,8 +34,7 @@
           <strong><%= category_link(forum_thread.forum_category) %></strong>
           • <%= t('asked_time_ago', time: time_ago_in_words(forum_thread.created_at), author: forum_thread.user.name) %>
         </div>
-
-        <p class="text-muted"><%= truncate(forum_thread.forum_posts.first.body, length: 200) %></p>
+        <p class="text-muted"><%= sanitize(forum_thread.forum_posts.first.body.first(600).to_s, :tags=>[]) %></p>
       </div>
 
       <div class="col-sm-2 text-center">

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   constraints subdomain: 'www' do
     get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
   end
@@ -74,5 +75,5 @@ Rails.application.routes.draw do
   get 'settings/successfully_unsubscribed'
   patch 'settings/update'
 
-  mount SimpleDiscussion::Engine => "/forum"
+  mount SimpleDiscussion::Engine => "/foro"
 end

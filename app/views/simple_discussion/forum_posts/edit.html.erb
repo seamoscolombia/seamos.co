@@ -1,4 +1,4 @@
-<p><small><%= link_to "← Back to the thread", simple_discussion.forum_thread_path(@forum_thread) %></small></p>
+<p><small><%= link_to "← vuelve a la discusión", simple_discussion.forum_thread_path(@forum_thread) %></small></p>
 
 <h2><%= content_tag :span, "Pinned", class: "text-muted" if @forum_thread.pinned?(current_user) %> <%= @forum_thread.title %></h2>
 

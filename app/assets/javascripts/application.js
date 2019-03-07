@@ -17,5 +17,6 @@
 //= require jquery_ujs
 //= require social-share-button
 //= require bootstrap-datepicker
+//= require ckeditor/init
 
 //= require_tree .
