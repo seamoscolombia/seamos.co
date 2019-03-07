@@ -10,16 +10,22 @@
 
       <div class="col">
         <h4>
+        <% method = if current_user.present? %>
+          <% forum_thread.pinned?(current_user) ? 'destroy' : 'create'%>
+        <%else%>
+          <% nil %>
+        <%end%>
 
-          <%= link_to(
-            icon(
-              "thumb-tack",
-              class: "thumb-tack",
-              style: "color: #{forum_thread.forum_category.color + ' !important' if forum_thread.pinned?(current_user)};"
-            ),
-            simple_discussion.forum_thread_pins_path(forum_thread),
-            method: forum_thread.pinned?(current_user) ? 'destroy' : 'create',
-          )%>
+          <%= link_to simple_discussion.forum_thread_pins_path(forum_thread),
+            method: method ,
+            'data-toggle': "#{'modal' unless current_user.present?}",
+            'data-target': "#{'#sign-in-modal' unless current_user.present?}" do %>
+              <%= icon(
+                "thumb-tack",
+                class: "thumb-tack",
+                style: "color: #{forum_thread.forum_category.color + ' !important' if forum_thread.pinned?(current_user)};"
+              )%>
+          <% end %>
 
           <% if forum_thread.solved? %>
             <span class="text-success"><%= icon "check-circle" %></span>
@@ -34,8 +40,7 @@
           <strong><%= category_link(forum_thread.forum_category) %></strong>
           • <%= t('asked_time_ago', time: time_ago_in_words(forum_thread.created_at), author: forum_thread.user.name) %>
         </div>
-
-        <p class="text-muted"><%= truncate(forum_thread.forum_posts.first.body, length: 200) %></p>
+        <p class="text-muted"><%= sanitize(forum_thread.forum_posts.first.body.first(600).to_s, :tags=>[]) %></p>
       </div>
 
       <div class="col-sm-2 text-center">

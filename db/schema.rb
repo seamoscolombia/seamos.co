@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190302000732) do
+ActiveRecord::Schema.define(version: 20190307144920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20190302000732) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_academic_titles_on_user_id", using: :btree
+  end
+
+  create_table "ckeditor_assets", force: :cascade do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["type"], name: "index_ckeditor_assets_on_type", using: :btree
   end
 
   create_table "email_lists", force: :cascade do |t|
@@ -58,6 +70,7 @@ ActiveRecord::Schema.define(version: 20190302000732) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "forum_votable_count", default: 0
+    t.boolean  "first_post",          default: false
   end
 
   create_table "forum_subscriptions", force: :cascade do |t|

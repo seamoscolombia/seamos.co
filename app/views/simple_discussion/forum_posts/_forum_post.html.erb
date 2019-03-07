@@ -4,9 +4,11 @@
   <div class="card-header">
 
       <div class="pull-right">
-        <span class="votable-container text-center">
-          <%= render partial: 'shared/voting', locals: { user: current_user, votable: forum_post } %>
-        </span>
+        <% unless forum_post.first_post? %>
+          <span class="votable-container text-center">
+            <%= render partial: 'shared/voting', locals: { user: current_user, votable: forum_post } %>
+          </span>
+        <% end %>
       </div>
 
     <div>
@@ -38,7 +40,11 @@
         %>
       <% end %>
     </div>
-    <%= formatted_content forum_post.body %>
+    <% if forum_post.first_post? %>
+      <%= forum_post.body.html_safe %>
+    <% else %>
+      <%= formatted_content forum_post.body %>
+    <% end %>
   </div>
 
   <% if @forum_thread.solved? && forum_post.solved? %>

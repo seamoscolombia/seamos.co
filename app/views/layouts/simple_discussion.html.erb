@@ -56,7 +56,7 @@
             <%= t('.by_category') %>
           </strong>
         </h6>
-        <div><%= forum_link_to simple_discussion.forum_threads_path, exact: true do %><%= icon "circle" %> All<% end %></div>
+        <div><%= forum_link_to simple_discussion.forum_threads_path, exact: true do %><%= icon "circle" %> Todas<% end %></div>
         <% ForumCategory.sorted.each do |category| %>
           <div>
             <%= forum_link_to simple_discussion.forum_category_forum_threads_path(category) do %>

@@ -28,6 +28,7 @@ class SimpleDiscussion::ForumThreadsController < SimpleDiscussion::ApplicationCo
   end
 
   def show
+    @forum_posts = @forum_thread.forum_posts.order(first_post: :desc).most_voted_first.includes(:user)
     @forum_post = ForumPost.new
     @forum_post.user = current_user
   end
@@ -39,7 +40,7 @@ class SimpleDiscussion::ForumThreadsController < SimpleDiscussion::ApplicationCo
 
   def create
     @forum_thread = current_user.forum_threads.create!(forum_thread_params)
-    @forum_thread.forum_posts << ForumPost.create!(forum_post_params.merge(forum_thread: @forum_thread, user: current_user))
+    @forum_thread.forum_posts << ForumPost.create!(forum_post_params.merge(forum_thread: @forum_thread, user: current_user, first_post: true))
     SimpleDiscussion::ForumThreadNotificationJob.perform_later(@forum_thread)
     redirect_to simple_discussion.forum_thread_path(@forum_thread)
   rescue StandardError => e
