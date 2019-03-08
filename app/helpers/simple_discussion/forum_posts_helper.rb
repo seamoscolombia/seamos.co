@@ -18,11 +18,6 @@ module SimpleDiscussion::ForumPostsHelper
     simple_format(text)
   end
 
-  def remove_html_tags(text)
-    re = /<("[^"]*"|'[^']*'|[^'">])*>/
-    text.gsub!(re, '')
-  end
-
   def forum_post_classes(forum_post)
     klasses = ["forum-post", "card", "mb-3"]
     klasses << "solved" if forum_post.solved?
