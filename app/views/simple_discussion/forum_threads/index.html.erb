@@ -1,0 +1,13 @@
+<% if @forum_threads.none? %>
+
+  <div><%= t('no_results_html', href: link_to(t('the_latest_questions'), simple_discussion.forum_threads_path).html_safe) %></div>
+
+<% else %>
+
+    <%= render partial: "simple_discussion/forum_threads/forum_thread", collection: @forum_threads, spacer_template: "shared/spacer" %>
+
+  <div class="forum-threads-nav text-center">
+    <%= will_paginate @forum_threads, url_builder: simple_discussion, renderer: SimpleDiscussion::BootstrapLinkRenderer %>
+  </div>
+
+<% end %>

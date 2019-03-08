@@ -1,5 +1,5 @@
 es:
-  add_a_comment: Da más detalles
+  add_a_comment: Escribe tu comentario...
   ask_a_question: ¿Sobre qué quieres hablar?
   ask_your_question: Inicia la discusión
   this_solved_my_question: Esto concluye el tema de discusión
@@ -280,7 +280,9 @@ es:
       create_poll: Crear Propuesta
     simple_discussion:
       answered: Respondidos
-      my_questions: Mis Temas
+      my_questions: Mis Discusiones
+      all_threads: Todas las discusiones
+      answered: Respondidas
   dashboard:
     index:
       validate_users: Validar Usuarios
