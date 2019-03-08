@@ -17,7 +17,7 @@
         <%end%>
 
           <%= link_to simple_discussion.forum_thread_pins_path(forum_thread),
-            method: method ,
+            method: method,
             'data-toggle': "#{'modal' unless current_user.present?}",
             'data-target': "#{'#sign-in-modal' unless current_user.present?}" do %>
               <%= icon(
@@ -40,11 +40,15 @@
           <strong><%= category_link(forum_thread.forum_category) %></strong>
           • <%= t('asked_time_ago', time: time_ago_in_words(forum_thread.created_at), author: forum_thread.user.name) %>
         </div>
-        <p class="text-muted"><%= sanitize(forum_thread.forum_posts.first.body.first(600).to_s, :tags=>[]) %></p>
+        <p class="text-muted"><%= sanitize(preview_comments(forum_thread).first, :tags=>[]) %></p>
+        <div class="subcomments">
+          <p class="text-muted"><%= preview_comments(forum_thread).second&.html_safe %></p>
+          <p class="text-muted"><%= preview_comments(forum_thread).third&.html_safe %></p>
+        </div>
       </div>
 
-      <div class="col-sm-2 text-center">
-        <%= link_to simple_discussion.forum_thread_path(forum_thread), class: "thread-posts-count" do %>
+      <div class="col-sm-2 posts-counter">
+        <%= link_to simple_discussion.forum_thread_path(forum_thread), class: "thread-posts-count text-muted" do %>
           <span class="count"><%= forum_thread.forum_posts_count %></span>
           <small><%= t("post", count: forum_thread.forum_posts_count) %></small>
         <% end %>
