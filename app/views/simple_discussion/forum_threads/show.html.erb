@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-11">
+  <div class="col-md-11 forum-thread-title-wrapper">
     <h1><%= icon "thumb-tack", class: "text-muted" if @forum_thread.pinned?(current_user) %> <%= @forum_thread.title %></h1>
   </div>
 
@@ -24,6 +24,18 @@
   • <%= t('asked_time_ago', time: time_ago_in_words(@forum_thread.created_at), author: @forum_thread.user.name) %>
 </p>
 
-<%= render partial: "simple_discussion/forum_posts/forum_post", collection: @forum_posts %>
+<%= nested_forum_posts @forum_posts.arrange(:order => :created_at) %>
 
-<%= render partial: "simple_discussion/forum_posts/form" if user_signed_in? %>
+<% if user_signed_in? %>
+  <span id="forum_post_form_wrapper">
+    <%= render partial: "simple_discussion/forum_posts/form" %>
+  <span>
+<% else %>
+  <div class='advice'> Debes registrarte para participar en la discusión </div>
+<% end %>
+
+<script>
+  $('.forum-post').first().css("max-height", "10000px").css("padding-bottom", "50px")
+  $('.forum-post').first().find('.diffuse').hide()
+  $(document.getElementById('#right-side-container')).addClass('small-padd')
+</script>

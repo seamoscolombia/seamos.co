@@ -18,5 +18,7 @@
 //= require social-share-button
 //= require bootstrap-datepicker
 //= require ckeditor/init
+//= require simple_discussion
+
 
 //= require_tree .

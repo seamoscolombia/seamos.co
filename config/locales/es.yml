@@ -2,7 +2,8 @@ es:
   add_a_comment: Escribe tu comentario...
   ask_a_question: ¿Sobre qué quieres hablar?
   ask_your_question: Inicia la discusión
-  this_solved_my_question: Esto concluye el tema de discusión
+  comment: ">"
+  this_solved_my_question: conclusión
   how_do_i: Resume tu tema de discución en una frase
   what_do_you_need_help_with?: Cuéntanos más
   views:

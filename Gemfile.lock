@@ -1,11 +1,13 @@
 GIT
   remote: git://github.com/yonnyquiceno/simple_discussion.git
-  revision: 20fba62b52bd8c91b36b6efa8384ee8c38ca8e1e
+  revision: 35538b08af723765bd7b37a160a9736f9aaddabd
   specs:
     simple_discussion (1.0.0)
+      ancestry
       font-awesome-sass (~> 4.7.0)
       friendly_id (>= 5.2.0)
       gravatar_image_tag
+      jquery-rails
       rails (>= 4.2)
       will_paginate (>= 3.1.0)
 
@@ -51,6 +53,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
+    ancestry (3.0.5)
+      activerecord (>= 3.2.0)
     annotate (2.7.4)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
