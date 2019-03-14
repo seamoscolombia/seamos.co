@@ -26,5 +26,14 @@
 
 <%= nested_forum_posts @forum_posts.arrange(:order => :created_at) %>
 
+<% if user_signed_in? %>
+  <span id="forum_post_form_wrapper">
+    <%= render partial: "simple_discussion/forum_posts/form" %>
+  <span>
+<% else %>
+  <div class='advice'> Debes registrarte para participar en la discusión </div>
+<% end %>
 
-<%= render partial: "simple_discussion/forum_posts/form" if user_signed_in? %>
+<script>
+  $('.forum-post').first().css("max-height", "10000px")
+</script>

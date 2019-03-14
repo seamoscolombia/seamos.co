@@ -74,7 +74,7 @@
         <span> | </span>
       <% end %>
       <small>
-        <%= content_tag :a, href: '#', data: { behavior: "reply-link", target: dom_id(forum_post) + '_subcomment'  } do %>
+        <%= content_tag :a, href: '#', data: { behavior: "reply-link", toggle: ('modal' unless current_user.present?), target: (current_user.present? ? (dom_id(forum_post) + '_subcomment') : '#sign-in-modal')} do %>
           <%= icon("reply") %>
           <%= t('reply') %>
         <% end %>
