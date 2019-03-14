@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190307144920) do
+ActiveRecord::Schema.define(version: 20190311175726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,8 @@ ActiveRecord::Schema.define(version: 20190307144920) do
     t.datetime "updated_at"
     t.integer  "forum_votable_count", default: 0
     t.boolean  "first_post",          default: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_forum_posts_on_ancestry", using: :btree
   end
 
   create_table "forum_subscriptions", force: :cascade do |t|
