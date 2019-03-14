@@ -16,3 +16,4 @@ Rails.application.config.assets.version = '1.0'
 # If you have a different server bundle file than your client bundle, you'll
 # need to add it here, like this:
 # Rails.application.config.assets.precompile += %w( server-bundle.js )
+Rails.application.config.assets.precompile += %w( ckeditor/*)

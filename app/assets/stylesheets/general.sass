@@ -95,11 +95,17 @@ body
 .centered
   text-align: center !important
 .rounded.avatar
-  width: 60px
-  height: 60px
-  border-radius: 50%
+  width: 40px
+  height: 40px
+  border-radius: 50% !important
+  position: absolute
+  top: 40px
+  left: 40px
 .simple_discussion
   padding: 80px
+  @media screen and (max-width: $break-medium)
+    padding: 5px
+
 .margin-auto
   margin: auto
 

@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-11 forum-thread-title-wrapper">
+    <h1><%= icon "thumb-tack", class: "text-muted" if @forum_thread.pinned?(current_user) %> <%= @forum_thread.title %></h1>
+  </div>
+
+  <% if is_moderator_or_owner?(@forum_thread) %>
+    <div class="col-md-1">
+      <%= link_to icon("pencil"), simple_discussion.edit_forum_thread_path(@forum_thread),
+        class: "text-muted",
+        data: { toggle: "tooltip", placement: "left" },
+        title: t('edit_this_thread') %>
+      <%= link_to icon("times"), simple_discussion.forum_thread_path(@forum_thread),
+        method: 'delete',
+        class: "text-muted",
+        data: { confirm: t('delete_forum_thread?'), toggle: "tooltip", placement: "left" },
+        title: t('delete_this_thread') %>
+    </div>
+  <% end %>
+
+</div>
+
+<p class="thread-details">
+  <strong><%= category_link(@forum_thread.forum_category) %></strong>
+  • <%= t('asked_time_ago', time: time_ago_in_words(@forum_thread.created_at), author: @forum_thread.user.name) %>
+</p>
+
+<%= nested_forum_posts @forum_posts.arrange(:order => :created_at) %>
+
+<% if user_signed_in? %>
+  <span id="forum_post_form_wrapper">
+    <%= render partial: "simple_discussion/forum_posts/form" %>
+  <span>
+<% else %>
+  <div class='advice'> Debes registrarte para participar en la discusión </div>
+<% end %>
+
+<script>
+  $('.forum-post').first().css("max-height", "10000px").css("padding-bottom", "50px")
+  $('.forum-post').first().find('.diffuse').hide()
+  $(document.getElementById('#right-side-container')).addClass('small-padd')
+</script>
