@@ -8,7 +8,7 @@
         <%= avatar_tag(forum_thread.user) %>
       </div>
 
-      <div class="col no-padding">
+      <div class="col variable-padding">
         <h4>
         <% method = if current_user.present? %>
           <% forum_thread.pinned?(current_user) ? 'destroy' : 'create'%>

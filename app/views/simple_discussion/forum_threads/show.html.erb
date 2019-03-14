@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-11">
+  <div class="col-md-11 forum-thread-title-wrapper">
     <h1><%= icon "thumb-tack", class: "text-muted" if @forum_thread.pinned?(current_user) %> <%= @forum_thread.title %></h1>
   </div>
 
@@ -37,4 +37,5 @@
 <script>
   $('.forum-post').first().css("max-height", "10000px").css("padding-bottom", "50px")
   $('.forum-post').first().find('.diffuse').hide()
+  $(document.getElementById('#right-side-container')).addClass('small-padd')
 </script>

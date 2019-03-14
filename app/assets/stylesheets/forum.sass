@@ -1,3 +1,4 @@
+@import './variables'
 .forum-thread
   .posts-counter
     display: flex
@@ -24,3 +25,7 @@
   font-weight: bold
   font-family: RobotoRegular
   font-size: 20px
+
+.simple_discussion hr
+  @media screen and (max-width: $break-medium)
+    margin: 29px -7px !important

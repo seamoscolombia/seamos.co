@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/yonnyquiceno/simple_discussion.git
-  revision: 49f8a5b73f178c515ba2007872d585c1654af21e
+  revision: 35538b08af723765bd7b37a160a9736f9aaddabd
   specs:
     simple_discussion (1.0.0)
       ancestry
