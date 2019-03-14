@@ -23,8 +23,8 @@
   </div>
 
   <div class="card-body">
-    <div class="pull-right options">
-      <% if is_moderator_or_owner?(forum_post) %>
+    <% if is_moderator_or_owner?(forum_post) %>
+      <div class="pull-right options">
         <%= link_to icon("pencil"), simple_discussion.edit_forum_thread_forum_post_path(@forum_thread, forum_post),
           class: "text-muted",
           data: { toggle: "tooltip", placement: "left" },
@@ -36,8 +36,8 @@
           data: { confirm: t('delete_post?'), toggle: "tooltip", placement: "left" },
           title: t('delete_this_post')
         %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <% if forum_post.first_post? %>
       <%= forum_post.body.html_safe %>
     <% else %>
