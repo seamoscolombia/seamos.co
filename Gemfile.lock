@@ -146,6 +146,7 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    google-analytics-rails (1.1.1)
     gravatar_image_tag (1.2.0)
     hashie (3.6.0)
     i18n (1.5.3)
@@ -370,6 +371,7 @@ DEPENDENCIES
   faker
   fog-aws (~> 0.12.0)
   font-awesome-sass (~> 4.7.0)
+  google-analytics-rails (= 1.1.1)
   jbuilder (~> 2.5)
   jquery-rails
   kaminari

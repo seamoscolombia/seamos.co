@@ -10,6 +10,7 @@
     <%= javascript_include_tag "https://www.google.com/jsapi" %>
     <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag 'favicon.png' %>
+    <%= analytics_init if GoogleAnalytics.valid_tracker? %>
   </head>
   <body>
     <% if admin_or_politician?(current_user) %>

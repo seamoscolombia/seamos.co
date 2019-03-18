@@ -1,26 +1,28 @@
 $(document).ready(function () {
-  $( 'p:empty' ).remove();
+  $('p:empty').remove();
 
-  $("form").keypress(function(e) {
+  $("form").keypress(function (e) {
     //Enter key
     if (e.which == 13 && $(this).find('textarea').val() == '') {
       return false;
     }
   });
 
-  $("[data-behavior~=comment-form]").each(function(){
+  $("[data-behavior~=comment-form]").each(function () {
     var textarea = $(this).find('#forum_post_body')
-    var submit_button = $(this).find('button[type="submit"]')
+    if (textarea.length) {
+      var submit_button = $(this).find('button[type="submit"]')
 
-    submit_button.prop('disabled', true);
+      submit_button.prop('disabled', true);
 
-    textarea.on("keyup", function() {
+      textarea.on("keyup", function () {
 
-      if(textarea.val() == ''){
-        submit_button.prop('disabled' , true);
-      } else {
-        submit_button.prop('disabled' , false);
-      }
-    })
+        if (textarea.val() == '') {
+          submit_button.prop('disabled', true);
+        } else {
+          submit_button.prop('disabled', false);
+        }
+      })
+    }
   })
 })
