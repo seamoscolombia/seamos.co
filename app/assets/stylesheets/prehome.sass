@@ -1,10 +1,30 @@
 @import './variables'
 #prehomepage
-  // blog widget
+  background-color: #f7f7f79e
+  padding-bottom: 10px
+  p
+    color: #7b7a7a
+    font-family: RobotoRegular
+    font-size: 22px
+    @media screen and (max-width: $break-medium)
+      font-size: 15px
+      text-align: justify
+  hr
+    display: block
+    border: none
+    color: white
+    height: 3px
+    background: black
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#b5b5b53b), to(#fafafa))
+    margin: 36px 0
+  h3
+    @media screen and (max-width: $break-medium)
+      font-size: 24px
+
+  /* blog widget */
   .zi-10
     z-index: 10
   #blog-info
-    /* Let's get this party started */
     transform: scale(0.9)
     font-family: RobotoRegular
     width: 300px
@@ -13,6 +33,9 @@
     margin-top: 30px
     margin-left: 25px
     border-radius: 30px
+    @media screen and (max-width: $break-medium)
+      margin: 0 auto
+      width: 90%
     ::-webkit-scrollbar
         width: 12px
 
@@ -56,6 +79,8 @@
       left: -20px
       position: relative
       overflow-y: auto
+      @media screen and (max-width: $break-medium)
+        width: 103%
 
       #posts-container
         max-height: 250px
@@ -104,58 +129,193 @@
               i
                 color: #e62767
 
+  /* main-banner */
+  #main-banner
+    .carousel-inner
+      .carousel-item
+        img
+          max-width: 100%
+    .carousel-control-prev
+      i
+        font-size: 65px
+        font-weight: bold
+        color: #e63554
+    .carousel-control-next
+      i
+        font-size: 65px
+        font-weight: bold
+        color: #e63554
 
-  // mid section
-  .mid-section-container
-    display: flex
-    flex-wrap: wrap
-    padding: 20px 0
-    .fist
-      width: 30%
-      @media screen and (max-width: $break-medium)
-        height: 75px
-      img
-        width: 100%
-    .right-side
-      width: 70%
+  /*  how we achieve change */
+  .subcontainer
+    padding: 0 7%
+    width: 100%
+
+  .how
+    width: 100%
+    text-align: center
+    h3
+      font-weight: bold
+  .p-how
+    text-align: center
+    @media screen and (max-width: $break-medium)
+      text-align: justify
+      padding: 0 15px
+  .info
+    .head
+      padding: 5px 15px
+      border-radius: 15px
+      background-color: white
       display: flex
       flex-wrap: wrap
-      justify-content: space-between
-      margin: 0 auto
-      padding-left: 40px
-      @media screen and (max-width: $break-medium)
-        padding-left: 10px
+      h3
+        font-weight: bold
       .title
-        width: 100%
-        letter-spacing: 7px
-        font-size: 25px
-        font-size: 1.8vw
-        margin-bottom: 20px
+        display: flex
+        align-items: flex-end
+      .icon
+        width: 150px
+        min-width: 150px
+        height: 150px
+        background-image: url(asset_path('phb-sprite.png'))
+        background-size: 500%
+      .explore
+        background-position: -46px -1730px
+      .registry
+        background-position: -46px -1918px
+      .participate
+        background-position: -46px -2103px
+      .name
+        background-position: -47px -2287px
+    .description
+      padding-top: 10px
+      font-size: 17px
+      text-align: center
+      color: #7b7a7a
+
+  /*  mid section */
+  .dots
+    width: 100%
+    background-image: url(asset_path('b-dots.png'))
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center center
+    height: 4vw
+  #mid-section
+    background-image: url(asset_path('bancada-back.png'))
+    background-size: contain
+    background-repeat: no-repeat
+    background-position: center center
+    @media screen and (max-width: $break-medium)
+      padding-left: 30px
+    .left
+      img
+        max-width: 100%
+    .right
+      display: flex
+      align-items: flex-end
+      h3
         text-align: left
-        @media screen and (max-width: $break-medium)
-          margin-bottom: 0
-          letter-spacing: 0
-          font-size: 13px
-      .left
-      .caption
-        padding: 10px 0
-        font-family: 'RobotoRegular'
-        @media screen and (max-width: $break-medium)
-          width: 100%
-          padding: 0
-          border-bottom: none
-        h3
-          font-family: 'RobotoCondensed'
-          font-size: 30px
-          font-size: 1.9vw
-          margin-top: 11px
-          margin-bottom: 8px
-          @media screen and (max-width: $break-medium)
-            font-size: 18px
-        p
-          font-family: 'RobotoRegular'
-          font-size: 22px
-          font-size: 1.4vw
-          line-height: 1.1
-          @media screen and (max-width: $break-medium)
-            font-size: 14px
+      p
+        text-align: justify
+
+  /*  politicians */
+  #politicians
+    h3
+      width: 100%
+      text-align: center
+      font-weight: bold
+  #politicians > section > div.row > div
+    width: unset
+
+  /*  who are we */
+  .who
+    @media screen and (max-width: $break-medium)
+      padding: 0 15px
+    .title
+      width: 100%
+      text-align: center
+      h3
+        text-align: center
+        font-weight: bold
+    p
+      text-align: justify
+    .btn-container
+      width: 100%
+      text-align: center
+
+  //forum
+  .forum-row
+    background-color: #f5e9d1
+    padding: 30px 0
+    h3
+      font-weight: bold
+      width: 100%
+      text-align: center
+    .forum-thread
+      padding: 30px
+      background-color: white
+      margin: 10px
+      p
+        text-align: left
+      a
+        font-size: 21px
+        text-transform: uppercase
+        font-family: RobotoRegular
+        font-weight: bold
+        color: #e63554
+
+  //forum widget
+  .MultiCarousel
+    float: left
+    overflow: hidden
+    padding: 15px
+    width: 100%
+    position: relative
+    .MultiCarousel-inner
+      transition: 1s ease all
+      float: left
+      .item
+        float: left
+        > div
+          text-align: center
+          padding: 10px
+          margin: 10px
+          background: #f1f1f1
+          color: #666
+        .pad15
+          background: #e63554
+          background: #e63554
+          min-height: 170px
+          align-items: flex-start
+          font-weight: bold
+          p
+            color: #fff
+            text-align: left
+        .disabled
+          background-color: #00000014
+    .leftLst, .rightLst
+      position: absolute
+      border-radius: 50%
+      top: calc(50% - 20px)
+    .leftLst
+      left: 0
+    .rightLst
+      right: 0
+    .leftLst.over, .rightLst.over
+      pointer-events: none
+      background: #ccc
+
+  //newsletter
+  #homepage
+    .newsletter-container
+      .title
+        font-family: Gobol
+        font-size: 53px
+        letter-spacing: 3px
+        line-height: 1.3em
+        text-transform: uppercase
+        text-align: center
+        color: $red
+        width: 100%
+        margin-bottom: 4px

@@ -6,6 +6,7 @@ class PrehomeController < ApplicationController
   def index
     @blog_posts = HTTParty.get('https://seamosit.github.io/posts.json')
     @politicians = JSON.parse(File.read("app/helpers/politicians.json"))
+    @discussions = ForumThread.all
   end
 
   private
