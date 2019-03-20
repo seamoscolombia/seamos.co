@@ -5,9 +5,13 @@ class PrehomeController < ApplicationController
 
   def index
     @blog_posts = HTTParty.get('https://seamosit.github.io/posts.json')
-    @politicians = JSON.parse(File.read("app/helpers/politicians.json"))
+    @politicians = if Rails.env.staging? || Rails.env.development?
+      JSON.parse(File.read("app/helpers/dummy-politicians.json"))
+    elsif Rails.env.production?
+      JSON.parse(File.read("app/helpers/politicians.json"))
+    end
     @discussions = ForumThread.all
-    @tags = Tag.all
+    @tags = Tag.joins(:polls).where(polls: {active: true}).uniq
   end
 
   private
