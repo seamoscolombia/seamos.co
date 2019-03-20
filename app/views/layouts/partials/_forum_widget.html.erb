@@ -5,10 +5,14 @@
       <div class="item">
         <div class="pad15">
           <p class="lead"><%= discussion.title %></p>
+          <%= link_to simple_discussion.forum_thread_path(discussion), class: 'discussion-link' do %>
+            Leer
+            <i class="fa fa-eye"></i>
+          <% end %>
         </div>
       </div>
       <% end %>
-      <% 3.times do %>
+      <% 4.times do %>
         <div class="item">
           <div class="pad15 disabled">
           </div>

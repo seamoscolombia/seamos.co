@@ -5,7 +5,7 @@
   p
     color: #7b7a7a
     font-family: RobotoRegular
-    font-size: 22px
+    font-size: 18px
     @media screen and (max-width: $break-medium)
       font-size: 15px
       text-align: justify
@@ -193,6 +193,49 @@
       text-align: center
       color: #7b7a7a
 
+  /* tu votas tu decides */
+  #tvtd
+    background-color: #f5e9d1
+    padding: 25px 0
+    margin-top: 70px
+    .title
+      font-family: Gobol
+      font-size: 53px
+      letter-spacing: 3px
+      line-height: 1.3em
+      text-transform: uppercase
+      text-align: center
+      color: #e62c55
+      width: 100%
+      margin-bottom: 4px
+    .subtitle
+      width: 100%
+      text-align: center
+
+    // .cards-container
+  //forum widget
+  .discussions-cards-container
+    .MultiCarousel
+      .MultiCarousel-inner
+        .item
+          div
+          .pad15
+            position: relative
+            p.lead
+              color: white
+              font-size: 20px
+              text-align: left
+            .discussion-link
+              color: white
+              position: absolute
+              bottom: 6px
+              right: 29px
+          .disabled
+      .leftLst, .rightLst
+      .leftLst
+      .rightLst
+      .leftLst.over, .rightLst.over
+
   /*  mid section */
   .dots
     width: 100%
@@ -244,67 +287,6 @@
       width: 100%
       text-align: center
 
-  //forum
-  .forum-row
-    background-color: #f5e9d1
-    padding: 30px 0
-    h3
-      font-weight: bold
-      width: 100%
-      text-align: center
-    .forum-thread
-      padding: 30px
-      background-color: white
-      margin: 10px
-      p
-        text-align: left
-      a
-        font-size: 21px
-        text-transform: uppercase
-        font-family: RobotoRegular
-        font-weight: bold
-        color: #e63554
-
-  //forum widget
-  .MultiCarousel
-    float: left
-    overflow: hidden
-    padding: 15px
-    width: 100%
-    position: relative
-    .MultiCarousel-inner
-      transition: 1s ease all
-      float: left
-      .item
-        float: left
-        > div
-          text-align: center
-          padding: 10px
-          margin: 10px
-          background: #f1f1f1
-          color: #666
-        .pad15
-          background: #e63554
-          background: #e63554
-          min-height: 170px
-          align-items: flex-start
-          font-weight: bold
-          p
-            color: #fff
-            text-align: left
-        .disabled
-          background-color: #00000014
-    .leftLst, .rightLst
-      position: absolute
-      border-radius: 50%
-      top: calc(50% - 20px)
-    .leftLst
-      left: 0
-    .rightLst
-      right: 0
-    .leftLst.over, .rightLst.over
-      pointer-events: none
-      background: #ccc
 
   //newsletter
   #homepage

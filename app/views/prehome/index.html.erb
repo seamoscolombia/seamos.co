@@ -39,13 +39,8 @@
         </div>
         <div class="spacer-small"></div>
         <p class='p-how'>
-          Lorem ipsum dolor sit amet consectetur adipiscing elit sagittis aliquet, sapien class porta dapibus
-          natoque accumsan leo est posuere eleifend, varius luctus rhoncus convallis eros maecenas habitasse
-          sociis. Magnis primis pellentesque suspendisse litora habitant torquent aliquam bibendum, augue euismod
-          lacinia mattis ultrices porta laoreet, facilisi sapien velit praesent sollicitudin proin mollis.
-          Lacinia quis dapibus feugiat porttitor sociis conubia platea dis sem mattis, lectus ultrices viverra
-          ligula blandit aliquam parturient maecenas risus, nullam aenean vehicula quam cubilia egestas orci
-          rhoncus ultricies.
+          La plataforma SeamOS es un canal entre la ciudadanía y los políticos en ejercicio para generar
+          un diálogo con ellos y hacer valer la representación democrática que les otorgamos con nuestro voto.
         </p>
       </div>
     </div>
@@ -94,13 +89,23 @@
       </div>
     </div>
 
+    <!-- tu votas tu decides -->
+    <div id='tvtd'  class="row precontainer">
+      <h1 class="title">TÚ VOTAS, TÚ DECIDES</h1>
+      <p class="subtitle">Temas que le interesan a la comunidad</p>
+      <div class="tags-cards-container subcontainer">
+        <%= render partial: "layouts/partials/tags_widget", locals: {tags: @tags} %>
+      </div>
+    </div>
+
+    <hr>
+
     <!-- forum -->
     <% if @discussions.any? %>
-      <div class="spacer-big"></div>
       <div class="row forum-row">
         <h3>FORO SEAMOS</h3>
         <div class="spacer-mid"></div>
-        <div class="subcontainer">
+        <div class="discussions-cards-container subcontainer">
           <%= render partial: "layouts/partials/forum_widget", locals: {discussions: @discussions} %>
           <%= render partial: "simple_discussion/forum_threads/forum_thread", locals: {forum_thread: @discussions.first} %>
         </div>
@@ -183,21 +188,6 @@
     </div>
 
     <!-- newsletter -->
-
-    <div id="homepage" class="flex-container">
-      <div class="newsletter-container">
-        <div class="title">Suscríbete a nuestro newsletter</div>
-        <div class="newsletter">
-          <%= form_for(Subscription.new) do |form| %>
-          <div class="input-group">
-            <%= form.text_field :email, class: "form-control", placeholder: "correo" %>
-            <span class="input-group-btn">
-              <%= form.button "ENVIAR", class: "btn btn-secondary", type: 'submit'%>
-            </span>
-          </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <%= render partial: "layouts/partials/newsletter" %>
   </div>
 </span>
