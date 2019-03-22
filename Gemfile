@@ -31,8 +31,10 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap-datepicker-rails', '~> 1.6.4.1'
 gem 'carrierwave', '~> 0.11.2'
 gem 'carrierwave-base64', '~> 2.3.2'
+gem 'mini_magick'
 gem 'fog-aws', '~> 0.12.0'
 gem 'kaminari'
+gem 'will_paginate'
 gem 'koala', '~>2.4.0'
 gem 'pg', '0.18.4'
 gem 'rails_12factor', group: :production
@@ -45,10 +47,13 @@ gem 'devise'
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-google-oauth2'
 gem 'social-share-button'
+gem 'ckeditor'
+# gem "simple_discussion", :path => "/home/alexander/Documents/repos/forks/simple_discussion"
+gem "simple_discussion", github: "yonnyquiceno/simple_discussion"
+gem 'httparty'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  # gem "simple_discussion", :path => "/home/alexander/Documents/repos/forks/simple_discussion"
   gem "better_errors"
   gem "binding_of_caller"
   gem 'byebug', platform: :mri
@@ -69,11 +74,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-group :production, :staging do
-  # gem "simple_discussion", :git => "https://github.com/yonnyquiceno/simple_discussion.git"
-  gem "simple_discussion", github: "yonnyquiceno/simple_discussion"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,6 +1,6 @@
 class SimpleDiscussion::ApplicationController < ::ApplicationController
   layout "simple_discussion"
-  before_action :redirect_to_root
+  # before_action :redirect_to_root
 
   def page_number
     page = params.fetch(:page, '').gsub(/[^0-9]/, '').to_i

@@ -28,7 +28,7 @@
     <%= f.fields_for :forum_post do |p| %>
       <div class="form-group">
         <%= p.label :body, t('what_do_you_need_help_with?') %>
-        <%= p.text_area :body, placeholder: t('add_a_comment'), rows: 10, class: "form-control simplemde", data: { behavior: "comment-body" } %>
+        <%= p.cktext_area :body, placeholder: t('add_a_comment'), rows: 10, class: "form-control simplemde", data: { behavior: "comment-body" }, ckeditor: { language: 'es'} %>
       </div>
     <% end %>
   <% end %>

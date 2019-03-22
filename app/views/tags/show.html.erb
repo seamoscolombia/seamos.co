@@ -18,5 +18,21 @@
         <% end %>
       </div>
     </div>
+
+    <!-- forum -->
+    <hr class="fading-hr">
+    <% if @discussions.any? %>
+      <div class="row forum-row">
+        <h3>FORO SEAMOS</h3>
+        <div class="spacer-mid"></div>
+        <div class="subcontainer">
+          <%= render partial: "layouts/partials/forum_widget", locals: {discussions: @discussions} %>
+          <%= render partial: "simple_discussion/forum_threads/forum_thread", locals: {forum_thread: @discussions.first} %>
+        </div>
+      </div>
+    <% end %>
+    <hr class="fading-hr">
+    <%= render partial: "layouts/partials/newsletter" %>
+
   </section>
 </div>

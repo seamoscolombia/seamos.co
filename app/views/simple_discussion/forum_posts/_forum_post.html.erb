@@ -3,13 +3,13 @@
 <%= content_tag :div, id: dom_id(forum_post), class: forum_post_classes(forum_post) do %>
   <div class="card-header">
 
-      <div class="pull-right">
+      <div class="pull-left">
         <span class="votable-container text-center">
           <%= render partial: 'shared/voting', locals: { user: current_user, votable: forum_post } %>
         </span>
       </div>
 
-    <div>
+    <div class='user-info-container'>
       <%= avatar_tag(forum_post.user) %>
 
       <strong class="forum-post-user">
@@ -23,8 +23,8 @@
   </div>
 
   <div class="card-body">
-    <div class="pull-right">
-      <% if is_moderator_or_owner?(forum_post) %>
+    <% if is_moderator_or_owner?(forum_post) %>
+      <div class="pull-right options">
         <%= link_to icon("pencil"), simple_discussion.edit_forum_thread_forum_post_path(@forum_thread, forum_post),
           class: "text-muted",
           data: { toggle: "tooltip", placement: "left" },
@@ -36,14 +36,26 @@
           data: { confirm: t('delete_post?'), toggle: "tooltip", placement: "left" },
           title: t('delete_this_post')
         %>
-      <% end %>
-    </div>
-    <%= formatted_content forum_post.body %>
+      </div>
+    <% end %>
+    <% if forum_post.first_post? %>
+      <%= forum_post.body.html_safe %>
+    <% else %>
+      <%= formatted_content forum_post.body %>
+    <% end %>
   </div>
 
-  <% if @forum_thread.solved? && forum_post.solved? %>
-    <div class="card-footer">
-      <div class="pull-right">
+  <div class="card-footer">
+    <div class='diffuse'>
+      <small class='show-more'>
+        <%= content_tag :a, href: '#', data: { behavior: "see-more", target: dom_id(forum_post) } do %>
+          <%= icon("plus") %>
+          <%= t('see_more') %>
+        <% end %>
+      </small>
+    </div>
+    <div class="pull-right options">
+      <% if @forum_thread.solved? && forum_post.solved? %>
         <strong class="text-success"><%= icon("check") %> <%= t('solved') %></strong>
 
         <% if is_moderator_or_owner?(@forum_thread) %>
@@ -51,19 +63,26 @@
             <%= link_to t('undo'), simple_discussion.unsolved_forum_thread_forum_post_path(@forum_thread, forum_post), method: :put %>
           </small>
         <% end %>
-      </div>
-    </div>
-
-  <% elsif is_moderator_or_owner?(@forum_thread) %>
-    <div class="card-footer">
-      <div class="pull-right">
+        <span> | </span>
+      <% elsif is_moderator_or_owner?(@forum_thread) %>
         <small>
           <%= link_to simple_discussion.solved_forum_thread_forum_post_path(@forum_thread, forum_post), method: :put do %>
             <%= icon("check") %>
             <%= t('this_solved_my_question') %>
           <% end %>
         </small>
-      </div>
+        <span> | </span>
+      <% end %>
+      <small>
+        <%= content_tag :a, href: '#', data: { behavior: "reply-link", toggle: ('modal' unless current_user.present?), target: (current_user.present? ? (dom_id(forum_post) + '_subcomment') : '#sign-in-modal')} do %>
+          <%= icon("reply") %>
+          <%= t('reply') %>
+        <% end %>
+      </small>
     </div>
-  <% end %>
+  </div>
+<% end %>
+
+<%= content_tag :div, id: dom_id(forum_post) + '_subcomment', class: "subcomment-area" do %>
+  <%= render partial: "simple_discussion/forum_posts/form", locals: {parent_id: forum_post.id} if user_signed_in? %>
 <% end %>
