@@ -9,7 +9,7 @@ es:
     failure:
       already_authenticated: "You are already signed in."
       inactive: "Your account is not activated yet."
-      invalid: "Invalid %{authentication_keys} or password."
+      invalid: "%{authentication_keys} or contraseña no válidos."
       locked: "Your account is locked."
       last_attempt: "You have one more attempt before your account is locked."
       not_found_in_database: "Invalid %{authentication_keys} or password."
@@ -60,5 +60,5 @@ es:
       not_found: "not found"
       not_locked: "was not locked"
       not_saved:
-        one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        one: "1 error no permitió que este %{resource} fuera guardado:"
+        other: "%{count} errores no permitieron que este %{resource} fuera guardado:"

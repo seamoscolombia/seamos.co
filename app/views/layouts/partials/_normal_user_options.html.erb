@@ -58,18 +58,31 @@
                 </form>
               </div>
             </li>
+            <li>
+              <div>
+                <%= button_to new_user_session_path, class: "loginBtn loginBtn--email" do %>
+                  Continuar con email
+                <% end %>
+              </div>
+            </li>
           </ul>
         </li>
       </div>
         <li class='hide-on-desktop'>
           <%= button_to user_facebook_omniauth_authorize_path, class: "loginBtn loginBtn--facebook metro" do %>
             Continuar con facebook
-            <% end %>
+          <% end %>
         </li>
         <li class='hide-on-desktop'>
           <%= button_to user_google_oauth2_omniauth_authorize_path, class: "loginBtn loginBtn--google" do %>
             Continuar con google
-            <% end %>
+          <% end %>
         </li>
+        <li class='hide-on-desktop'>
+          <%= button_to new_user_session_path, class: "loginBtn loginBtn--email" do %>
+            Continuar con email
+          <% end %>
+        </li>
+
       <% end %>
 </nav>
