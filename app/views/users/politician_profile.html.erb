@@ -135,8 +135,13 @@
       <h3>FORO SEAMOS</h3>
       <div class="spacer-mid"></div>
       <div class="subcontainer">
-        <%= render partial: "layouts/partials/forum_widget", locals: {discussions: @discussions} %>
+        <div class="row">
+        	<%= render partial: "layouts/partials/forum_widget", locals: {discussions: @discussions} %>
+        </div>
         <%= render partial: "simple_discussion/forum_threads/forum_thread", locals: {forum_thread: @discussions.first} %>
+      </div>
+      <div class="btn-container">
+        <%= link_to  "Ingresar al foro", simple_discussion_path, class: 'gray-fading-btn' %>
       </div>
     </div>
   <% end %>

@@ -5,7 +5,7 @@
   p
     color: #7b7a7a
     font-family: RobotoRegular
-    font-size: 18px
+    font-size: 1rem
     @media screen and (max-width: $break-medium)
       font-size: 15px
       text-align: justify
@@ -161,6 +161,7 @@
     @media screen and (max-width: $break-medium)
       text-align: justify
       padding: 0 15px
+      line-height: 1.4rem
   .info
     .head
       padding: 5px 15px
@@ -179,6 +180,7 @@
         height: 150px
         background-image: url(asset_path('phb-sprite.png'))
         background-size: 500%
+
       .explore
         background-position: -46px -1730px
       .registry
@@ -190,8 +192,11 @@
     .description
       padding-top: 10px
       font-size: 17px
+      line-height: 1.4rem
       text-align: center
       color: #7b7a7a
+      @media screen and (max-width: $break-medium)
+        font-size: 14px
 
   /* tu votas tu decides */
   #tvtd
@@ -202,7 +207,7 @@
       font-family: Gobol
       font-size: 53px
       letter-spacing: 3px
-      line-height: 1.3em
+      line-height: 1.2em
       text-transform: uppercase
       text-align: center
       color: #e62c55
@@ -223,8 +228,11 @@
             position: relative
             p.lead
               color: white
-              font-size: 20px
+              font-size: 1.1rem
               text-align: left
+              @media screen and (max-width: $break-medium)
+                font-size: 15px
+                line-height: 1.2rem
             .discussion-link
               color: white
               position: absolute
@@ -237,13 +245,6 @@
       .leftLst.over, .rightLst.over
 
   /*  mid section */
-  .dots
-    width: 100%
-    background-image: url(asset_path('b-dots.png'))
-    background-size: contain
-    background-repeat: no-repeat
-    background-position: center center
-    height: 4vw
   #mid-section
     background-image: url(asset_path('bancada-back.png'))
     background-size: contain
@@ -261,6 +262,7 @@
         text-align: left
       p
         text-align: justify
+        line-height: 1.4rem
 
   /*  politicians */
   #politicians
@@ -300,6 +302,7 @@
         font-weight: bold
     p
       text-align: justify
+      line-height: 1.5rem
     .btn-container
       width: 100%
       text-align: center
@@ -310,9 +313,9 @@
     .newsletter-container
       .title
         font-family: Gobol
-        font-size: 53px
+        font-size: 40px
         letter-spacing: 3px
-        line-height: 1.3em
+        line-height: 1.2em
         text-transform: uppercase
         text-align: center
         color: $red

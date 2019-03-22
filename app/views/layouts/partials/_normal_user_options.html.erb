@@ -1,6 +1,6 @@
 <nav>
   <li>
-    <%= link_to  "TEMAS", '#tvtd' %>
+    <%= link_to  "TEMAS", root_path(anchor: 'tvtd') %>
   </li>
   <li>
     <a href="http://sifuerapresidente.co" target="_blank" rel="noopener noreferrer"> SIFUERAPRESIDENTE </a>
@@ -15,7 +15,7 @@
     <%= link_to  "FORO", simple_discussion_path %>
   </li>
   <li id="politicians-link">
-    <a href="/politicians"> CONCEJALES </a>
+    <%= link_to  "CONCEJALES", root_path(anchor: 'councilors') %>
   </li>
   <% if user_signed_in? %>
     <div>

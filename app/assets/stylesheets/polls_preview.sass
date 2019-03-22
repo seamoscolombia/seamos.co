@@ -51,16 +51,17 @@
       flex-wrap: wrap
       justify-content: left
       align-items: left
-      padding-left: 11px
+      padding: 0 60px
       overflow: hidden
       @media screen and (max-width: $break-medium)
-        margin-top: 0px
+        margin-top: 20px
         padding: 0 10px
         min-height: 380px
       .polls-wrapper
         display: flex
         flex-wrap: wrap
         @media screen and (max-width: $break-medium)
+          width: 100%
           margin: auto
           justify-content: center
       h3
@@ -71,6 +72,9 @@
     background-color: #f7f7f79e
 
   .poll-link
+    width: 50%
+    @media screen and (max-width: $break-medium)
+      width: 100%
     &:hover
       text-decoration: none
 
