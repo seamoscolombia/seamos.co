@@ -53,6 +53,7 @@ class User < ApplicationRecord
 
   validates :email, :uniqueness => {:scope => :provider}
   validates :uid, :uniqueness => {:scope => :provider}
+  validates :password, confirmation: { case_sensitive: true }
 
   enum role_type: {ciudadano: 0, politico: 1, administrador: 2}
   enum current_corporation_commission: {"Comisión del plan": 0, "Comisión de Gobierno": 1, "Comisión de Hacienda": 2}
