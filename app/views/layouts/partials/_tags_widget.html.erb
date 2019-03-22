@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="MultiCarousel" data-items="2,4,6,7" data-slide="1" id="MultiCarousel" data-interval="1000">
+  <div class="MultiCarousel hh" data-items="2,4,6,7" data-slide="1" id="MultiCarousel" data-interval="1000">
     <div class="MultiCarousel-inner">
       <%if tags.present? %>
         <% tags.each do |tag| %>
@@ -29,8 +29,11 @@
         <% end %>
       <% end %>
     </div>
-    <button class="btn btn-primary leftLst">
-      <</button> <button class="btn btn-primary rightLst">>
+    <button class="leftLst hh">
+      <%= image_tag  "b-card-carousel-handlers-l", class: 'rightLST' %>
     </button>
+    <button class="rightLst hh">
+      <%= image_tag  "b-card-carousel-handlers-r", class: 'rightLST' %>
+    <button>
   </div>
 </div>
