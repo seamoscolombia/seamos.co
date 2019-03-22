@@ -51,6 +51,7 @@ gem 'ckeditor'
 # gem "simple_discussion", :path => "/home/alexander/Documents/repos/forks/simple_discussion"
 gem "simple_discussion", github: "yonnyquiceno/simple_discussion"
 gem 'httparty'
+gem 'google-analytics-rails', '1.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

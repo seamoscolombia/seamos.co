@@ -147,6 +147,7 @@
   white-space: nowrap
   font-size: 16px
   color: #FFF
+  width: 93%
   @media screen and (max-width: $break-medium)
     padding: 0 7px 0 41px
     font-size: 14px
@@ -170,6 +171,14 @@
     background-size: 70%
     background-position: center center
     background-repeat: no-repeat
+.loginBtn--email
+  background-color: #ebba4c
+  &:before
+    background-image: url(asset_path('envelope.svg'))
+    background-size: 70%
+    background-position: center center
+    background-repeat: no-repeat
+    background-color: white
 .loginBtn--google
   background: #DD4B39
   border: 1px solid #dd4b39

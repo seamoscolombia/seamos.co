@@ -11,6 +11,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    existent_user = User.where(email: params['user']['email']).first
+    if existent_user.present?
+      flash[:error] = "Ya tienes una cuenta de #{existent_user.provider.split('_').first} registrada que usa el correo electrónico #{existent_user.email}, por favor inicia sesión con #{existent_user.provider.split('_').first}"
+      redirect_to :back and return
+    end
+    params['user'].merge!(uid: SecureRandom.hex, role_type: 0, provider: 'email')
     super
   end
 
@@ -42,7 +48,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :names, :provider])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :names, :provider, :uid, :role_type, :provider])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
