@@ -1,9 +1,14 @@
+@import './variables'
+.MultiCarousel.hh
+  width: 120%
+  border-left: 20px solid #f5e9d2
+  border-right: 20px solid #f5e9d2
+  @media screen and (max-width: $break-medium)
+    border: none
 .MultiCarousel
   float: left
   overflow: hidden
   padding: 15px
-  width: 100%
-  position: relative
   .MultiCarousel-inner
     transition: 1s ease all
     float: left
@@ -22,13 +27,21 @@
         min-height: 170px
         align-items: flex-start
         font-weight: bold
+        @media screen and (max-width: $break-medium)
+          min-height: 130px
+      .single-on-mobile
+        @media screen and (max-width: $break-medium)
+          width: 72%
+          left: 12%
         p.lead
           font-family: RobotoRegular
           font-weight: bold
-          font-size: 23px
           color: white
-          font-size: 20px
+          font-size: 14px
           text-align: left
+          @media screen and (max-width: $break-medium)
+            font-size: 12px
+            line-height: 14px
         .discussion-link
           color: white
           position: absolute
@@ -40,10 +53,26 @@
     position: absolute
     border-radius: 50%
     top: calc(50% - 20px)
+  .hh
+    border: none
+    background: transparent
+    outline: none
+    border-radius: none
+    top: unset
+    width: 100px
+    @media screen and (max-width: $break-medium)
+      margin-top: 25px
+    img
+      height: 190px
+      @media screen and (max-width: $break-medium)
+        height: 100px
   .leftLst
     left: 0
+    @media screen and (max-width: $break-medium)
+      text-align: left
   .rightLst
     right: 0
+    @media screen and (max-width: $break-medium)
+      text-align: right
   .leftLst.over, .rightLst.over
     pointer-events: none
-    background: #ccc

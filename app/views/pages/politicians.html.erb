@@ -1,6 +1,14 @@
-<div id="politicians">
-  <div class="row politicians-banner one">
-    <div class="one-caption">¿Qué concejales participan?</div>
+<div id="politician-profile">
+  <div id="top-color-banner">
+    <h1>Concejales</h1>
   </div>
-  <%= render partial: "layouts/partials/politicians", locals: {politicians: @politicians} %>
 </div>
+<% if @politicians.any? %>
+  <div id='politicians' class="subcontainer">
+    <section class="row">
+      <div class="col-12">
+      </div>
+      <%= render partial: "layouts/partials/politicians", locals: {politicians: @politicians} %>
+    </section>
+  </div>
+<% end %>

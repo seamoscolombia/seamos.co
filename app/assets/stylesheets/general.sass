@@ -104,10 +104,6 @@ body
   position: absolute
   top: 40px
   left: 40px
-.simple_discussion
-  padding: 80px
-  @media screen and (max-width: $break-medium)
-    padding: 5px
 
 .margin-auto
   margin: auto
@@ -167,3 +163,13 @@ body
   height: 3px
   background: black
   background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 350, from(#b5b5b53b), to(#fafafa))
+  @media screen and (max-width: $break-medium)
+    margin-top: 0.3rem
+    margin-bottom: 0.3rem
+.dots
+  width: 100%
+  background-image: url(asset_path('b-dots.png'))
+  background-size: contain
+  background-repeat: no-repeat
+  background-position: center center
+  height: 4vw
